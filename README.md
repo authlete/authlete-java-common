@@ -35,7 +35,7 @@ Source Download
 JavaDoc
 -------
 
-[JavaDoc of authlete-java-common](http://authlete.github.com/auhlete-java-common/)
+[JavaDoc of authlete-java-common](http://authlete.github.io/authlete-java-common/)
 
 
 Example
