@@ -54,6 +54,7 @@
             <id>authlete</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+
         <repository>
             <id>authlete</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
@@ -123,7 +124,7 @@
                 <version>1.6.4</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <serverId>ossrh</serverId>
+                    <serverId>authlete</serverId>
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
