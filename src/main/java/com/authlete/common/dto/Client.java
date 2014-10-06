@@ -1,0 +1,1630 @@
+/*
+ * Copyright (C) 2014 Authlete, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.authlete.common.dto;
+
+
+import java.io.Serializable;
+import java.net.URI;
+import com.authlete.common.types.ApplicationType;
+import com.authlete.common.types.ClientAuthMethod;
+import com.authlete.common.types.ClientType;
+import com.authlete.common.types.GrantType;
+import com.authlete.common.types.JWEAlg;
+import com.authlete.common.types.JWEEnc;
+import com.authlete.common.types.JWSAlg;
+import com.authlete.common.types.ResponseType;
+import com.authlete.common.types.SubjectType;
+
+
+/**
+ * Information about a client application.
+ *
+ * <p>
+ * Some properties correspond to the ones listed in <a href=
+ * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+ * >Client Metadata</a> in <a href=
+ * "http://openid.net/specs/openid-connect-registration-1_0.html"
+ * >OpenID Connect Dynamic Client Registration 1.0</a>.
+ * </p>
+ *
+ * @see <a href="http://openid.net/specs/openid-connect-registration-1_0.html"
+ *      >OpenID Connect Dynamic Client Registration 1.0</a>
+ *
+ * @author Takahiko Kawasaki
+ */
+public class Client implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+
+
+    /*
+     * Do not change variable names. They must match the variable names
+     * in JSONs which are exchanged between clients and Authlete server.
+     */
+
+
+    /**
+     * Client number.
+     */
+    private int number;
+
+
+    /**
+     * Service number.
+     */
+    private int serviceNumber;
+
+
+    /**
+     * Developer unique ID.
+     */
+    private String developer;
+
+
+    /**
+     * Client ID.
+     */
+    private long clientId;
+
+
+    /**
+     * Client secret.
+     */
+    private String clientSecret;
+
+
+    /**
+     * Client type.
+     */
+    private ClientType clientType;
+
+
+    /**
+     * Redirect URIs.
+     */
+    private String[] redirectUris;
+
+
+    /**
+     * Response types.
+     */
+    private ResponseType[] responseTypes;
+
+
+    /**
+     * Grant types.
+     */
+    private GrantType[] grantTypes;
+
+
+    /**
+     * Application type.
+     */
+    private ApplicationType applicationType;
+
+
+    /**
+     * Email addresses of contacts.
+     */
+    private String[] contacts;
+
+
+    /**
+     * Client name.
+     */
+    private String clientName;
+
+
+    /**
+     * Client names.
+     */
+    private TaggedValue[] clientNames;
+
+
+    /**
+     * Logo URI.
+     */
+    private URI logoUri;
+
+
+    /**
+     * Logo URIs.
+     */
+    private TaggedValue[] logoUris;
+
+
+    /**
+     * Client URI.
+     */
+    private URI clientUri;
+
+
+    /**
+     * Client URIs.
+     */
+    private TaggedValue[] clientUris;
+
+
+    /**
+     * Policy URI.
+     */
+    private URI policyUri;
+
+
+    /**
+     * Policy URIs.
+     */
+    private TaggedValue[] policyUris;
+
+
+    /**
+     * Terms of Service URI.
+     */
+    private URI tosUri;
+
+
+    /**
+     * Terms of Service URIs.
+     */
+    private TaggedValue[] tosUris;
+
+
+    /**
+     * JSON Web Key Set URI.
+     */
+    private URI jwksUri;
+
+
+    /**
+     * JSON Web Key Set.
+     */
+    private String jwks;
+
+
+    /**
+     * Sector identifier.
+     */
+    private URI sectorIdentifier;
+
+
+    private SubjectType subjectType;
+
+
+    private JWSAlg idTokenSignAlg;
+    private JWEAlg idTokenEncryptionAlg;
+    private JWEEnc idTokenEncryptionEnc;
+    private JWSAlg userInfoSignAlg;
+    private JWEAlg userInfoEncryptionAlg;
+    private JWEEnc userInfoEncryptionEnc;
+    private JWSAlg requestSignAlg;
+    private JWEAlg requestEncryptionAlg;
+    private JWEEnc requestEncryptionEnc;
+    private ClientAuthMethod tokenAuthMethod;
+    private JWSAlg tokenAuthSignAlg;
+    private int defaultMaxAge;
+    private String[] defaultAcrs;
+    private boolean authTimeRequired;
+    private URI loginUri;
+    private String[] requestUris;
+    private String description;
+    private TaggedValue[] descriptions;
+
+
+    /**
+     * Get the client number.
+     *
+     * @return
+     *         The client number.
+     */
+    public int getNumber()
+    {
+        return number;
+    }
+
+
+    /**
+     * Set the client number.
+     *
+     * @param number
+     *         The client number.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setNumber(int number)
+    {
+        this.number = number;
+
+        return this;
+    }
+
+
+    /**
+     * Get the number of the service which this client belongs to.
+     *
+     * @return
+     *         The service number
+     */
+    public int getServiceNumber()
+    {
+        return serviceNumber;
+    }
+
+
+    /**
+     * Set the number of the service which this client belongs to.
+     *
+     * @param number
+     *         The service number.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setServiceNumber(int number)
+    {
+        this.serviceNumber = number;
+
+        return this;
+    }
+
+
+    /**
+     * Get the developer unique ID assigned by the service.
+     *
+     * @return
+     *         THe developer unique ID.
+     */
+    public String getDeveloper()
+    {
+        return developer;
+    }
+
+
+    /**
+     * Set the developer unique ID assigned by the service.
+     *
+     * @param developer
+     *         The developer unique ID.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setDeveloper(String developer)
+    {
+        this.developer = developer;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client ID.
+     *
+     * @return
+     *         The client ID.
+     */
+    public long getClientId()
+    {
+        return clientId;
+    }
+
+
+    /**
+     * Set the client ID.
+     *
+     * @param clientId
+     *         The client ID.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setClientId(long clientId)
+    {
+        this.clientId = clientId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client secret.
+     *
+     * @return
+     *         The client secret.
+     */
+    public String getClientSecret()
+    {
+        return clientSecret;
+    }
+
+
+    /**
+     * Set the client secret.
+     *
+     * @param clientSecret
+     *         The client secret.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setClientSecret(String clientSecret)
+    {
+        this.clientSecret = clientSecret;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client type.
+     *
+     * @return
+     *         The client type.
+     */
+    public ClientType getClientType()
+    {
+        return clientType;
+    }
+
+
+    /**
+     * Set the client type.
+     *
+     * @param clientType
+     *         The client type.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setClientType(ClientType clientType)
+    {
+        this.clientType = clientType;
+
+        return this;
+    }
+
+
+    /**
+     * Get the redirect URIs.
+     *
+     * @return
+     *         The redirect URIs.
+     *
+     * @see <a href="http://tools.ietf.org/html/rfc6749#section-3.1.2"
+     *      >RFC 6749 (OAuth 2.0), 3.1.2. Redirection Endpoint</a>
+     */
+    public String[] getRedirectUris()
+    {
+        return redirectUris;
+    }
+
+
+    /**
+     * Set the redirect URIs.
+     *
+     * @param uris
+     *         The redirect URIs.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="http://tools.ietf.org/html/rfc6749#section-3.1.2"
+     *      >RFC 6749 (OAuth 2.0), 3.1.2. Redirection Endpoint</a>
+     */
+    public Client setRedirectUris(String[] uris)
+    {
+        this.redirectUris = uris;
+
+        return this;
+    }
+
+
+    /**
+     * Get {@code response_type} values that the client is declaring
+     * that it will restrict itself to using.
+     *
+     * @return
+     *         The response types.
+     */
+    public ResponseType[] getResponseTypes()
+    {
+        return responseTypes;
+    }
+
+
+    /**
+     * Set {@code response_type} values that the client is declaring
+     * that it will restrict itself to using.
+     *
+     * @param responseTypes
+     *         The response types.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setResponseTypes(ResponseType[] responseTypes)
+    {
+        this.responseTypes = responseTypes;
+
+        return this;
+    }
+
+
+    /**
+     * Get {@code grant_type} values that the client is declaring
+     * that it will restrict itself to using.
+     *
+     * @return
+     *         The grant types.
+     */
+    public GrantType[] getGrantTypes()
+    {
+        return grantTypes;
+    }
+
+
+    /**
+     * Set {@code grant_type} values that the client is declaring
+     * that it will restrict itself to using.
+     *
+     * @param grantTypes
+     *         The grant types.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setGrantTypes(GrantType[] grantTypes)
+    {
+        this.grantTypes = grantTypes;
+
+        return this;
+    }
+
+
+    /**
+     * Get the application type.
+     *
+     * @return
+     *         The application type.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     *      >OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata</a>
+     */
+    public ApplicationType getApplicationType()
+    {
+        return applicationType;
+    }
+
+
+    /**
+     * Set the application type.
+     *
+     * @param applicationType
+     *         The application type.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     *      >OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata</a>
+     */
+    public Client setApplicationType(ApplicationType applicationType)
+    {
+        this.applicationType = applicationType;
+
+        return this;
+    }
+
+
+    /**
+     * Get the email addresses of contacts.
+     *
+     * @return
+     *         Email addresses of contacts.
+     */
+    public String[] getContacts()
+    {
+        return contacts;
+    }
+
+
+    /**
+     * Set the email addresses of contacts.
+     *
+     * @param contacts
+     *         Email addresses of contacts.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setContacts(String[] contacts)
+    {
+        this.contacts = contacts;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client name.
+     *
+     * @return
+     *         The client name.
+     */
+    public String getClientName()
+    {
+        return clientName;
+    }
+
+
+    /**
+     * Set the client name.
+     *
+     * @param clientName
+     *         The client name.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setClientName(String clientName)
+    {
+        this.clientName = clientName;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client names each of which has a language tag.
+     *
+     * @return
+     *         The client names each of which has a language tag.
+     */
+    public TaggedValue[] getClientNames()
+    {
+        return clientNames;
+    }
+
+
+    /**
+     * Set the client names each of which has a language tag.
+     *
+     * @param clientNames
+     *         The client names.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setClientNames(TaggedValue[] clientNames)
+    {
+        this.clientNames = clientNames;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the logo image.
+     *
+     * @return
+     *         The URI of the logo image.
+     */
+    public URI getLogoUri()
+    {
+        return logoUri;
+    }
+
+
+    /**
+     * Set the URI of the logo image.
+     *
+     * @param uri
+     *         The URI of the logo image.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setLogoUri(URI uri)
+    {
+        this.logoUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the logo URIs each of which has a language tag.
+     *
+     * @return
+     *         The logo URIs.
+     */
+    public TaggedValue[] getLogoUris()
+    {
+        return logoUris;
+    }
+
+
+    /**
+     * Set the logo URIs each of which has a language tag.
+     *
+     * @param uris
+     *         The logo URIs.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setLogoUris(TaggedValue[] uris)
+    {
+        this.logoUris = uris;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the home page.
+     *
+     * @return
+     *         The URI of the home page.
+     */
+    public URI getClientUri()
+    {
+        return clientUri;
+    }
+
+
+    /**
+     * Set the URI of the home page.
+     *
+     * @param uri
+     *         The URI of the home page.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setClientUri(URI uri)
+    {
+        this.clientUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URIs of the home pages for specific languages.
+     *
+     * @return
+     *         The URIs of the home page for specific languages.
+     */
+    public TaggedValue[] getClientUris()
+    {
+        return clientUris;
+    }
+
+
+    /**
+     * Set the URIs of the home pages for specific languages.
+     *
+     * @param uris
+     *         The URIs of the home page for specific languages.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setClientUris(TaggedValue[] uris)
+    {
+        this.clientUris = uris;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the policy page which describes how
+     * the client application uses the profile data of the
+     * end-user.
+     *
+     * @return
+     *         The URI of the policy page.
+     */
+    public URI getPolicyUri()
+    {
+        return policyUri;
+    }
+
+
+    /**
+     * Set the URI of the policy page which describes how
+     * the client application uses the profile data of the
+     * end-user.
+     *
+     * @param uri
+     *         The URI of the policy page.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setPolicyUri(URI uri)
+    {
+        this.policyUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URIs of the policy pages for specific languages.
+     *
+     * @return
+     *         The URIs of the policy pages for specific languages.
+     */
+    public TaggedValue[] getPolicyUris()
+    {
+        return policyUris;
+    }
+
+
+    /**
+     * Set the URIs of the policy pages for specific languages.
+     *
+     * @param uris
+     *         The URIs of the policy pages for specific languages.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setPolicyUris(TaggedValue[] uris)
+    {
+        this.policyUris = uris;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the "Terms Of Service" page.
+     *
+     * @return
+     *         The URI of the "Terms Of Service" page.
+     */
+    public URI getTosUri()
+    {
+        return tosUri;
+    }
+
+
+    /**
+     * Set the URI of the "Terms Of Service" page.
+     *
+     * @param uri
+     *         The URI of the "Terms Of Service" page.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setTosUri(URI uri)
+    {
+        this.tosUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URIs of the "Terms Of Service" pages for specific languages.
+     *
+     * @return
+     *         The URIs of the "Terms Of Service" pages for specific languages.
+     */
+    public TaggedValue[] getTosUris()
+    {
+        return tosUris;
+    }
+
+
+    /**
+     * Set the URIs of the "Terms Of Service" pages for specific languages.
+     *
+     * @param uris
+     *         The URIs of the "Terms Of Service" pages for specific languages.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setTosUris(TaggedValue[] uris)
+    {
+        this.tosUris = uris;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the JSON Web Key Set of the client application.
+     *
+     * @return
+     *         The URI of the JSON Web Key Set of the client application.
+     */
+    public URI getJwksUri()
+    {
+        return jwksUri;
+    }
+
+
+    /**
+     * Set the URI of the JSON Web Key Set of the client application.
+     *
+     * @param uri
+     *         The URI of the JSON Web Key Set of the client application.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setJwksUri(URI uri)
+    {
+        this.jwksUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JSON Web Key Set.
+     *
+     * @return
+     *         The JSON Web Key Set.
+     */
+    public String getJwks()
+    {
+        return jwks;
+    }
+
+
+    /**
+     * Set the JSON Web Key Set.
+     *
+     * @param jwks
+     *         The JSON Web Key Set.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setJwks(String jwks)
+    {
+        this.jwks = jwks;
+
+        return this;
+    }
+
+
+    /**
+     * Get the sector identifier.
+     *
+     * @return
+     *         The sector identifier.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation"
+     *      >5. "sector_identifier_uri" Validation</a>
+     */
+    public URI getSectorIdentifier()
+    {
+        return sectorIdentifier;
+    }
+
+
+    /**
+     * Set the sector identifier.
+     *
+     * @param sectorIdentifier
+     *         The sector identifier.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation"
+     *      >5. "sector_identifier_uri" Validation</a>
+     */
+    public Client setSectorIdentifier(URI sectorIdentifier)
+    {
+        this.sectorIdentifier = sectorIdentifier;
+
+        return this;
+    }
+
+
+    /**
+     * Get the subject type that this client application requests.
+     *
+     * @return
+     *         The subject type.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes"
+     *      >Subject Identifier Types</a>
+     */
+    public SubjectType getSubjectType()
+    {
+        return subjectType;
+    }
+
+
+    /**
+     * Set the subject type that thsi client application requests.
+     *
+     * @param subjectType
+     *          The subject type.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes"
+     *      >Subject Identifier Types</a>
+     */
+    public Client setSubjectType(SubjectType subjectType)
+    {
+        this.subjectType = subjectType;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWS <code>alg</code> algorithm for signing the ID token
+     * issued to this client. This property corresponds to
+     * <code>id_token_signed_response_alg</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The JWS <code>alg</code> algorithm for signing the ID
+     *         token issued to this client.
+     */
+    public JWSAlg getIdTokenSignAlg()
+    {
+        return idTokenSignAlg;
+    }
+
+
+    /**
+     * Set the JWS <code>alg</code> algorithm for signing the ID token
+     * issued to this client. This property corresponds to
+     * <code>id_token_signed_response_alg</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param alg
+     *         The JWS <code>alg</code> algorithm for signing the
+     *         ID token issued to this client.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setIdTokenSignAlg(JWSAlg alg)
+    {
+        this.idTokenSignAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWE <code>alg</code> algorithm for encrypting the ID token
+     * issued to this client. This property corresponds to
+     * <code>id_token_encrypted_response_alg</code>in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The JWE <code>alg</code> algorithm for encrypting the
+     *         ID token issued to this client.
+     */
+    public JWEAlg getIdTokenEncryptionAlg()
+    {
+        return idTokenEncryptionAlg;
+    }
+
+
+    /**
+     * Set the JWE <code>alg</code> algorithm for encrypting the ID token
+     * issued to this client. This property corresponds to
+     * <code>id_token_encrypted_response_alg</code>in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param alg
+     *         The JWE <code>alg</code> algorithm for encrypting the
+     *         ID token issued to this client.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setIdTokenEncryptionAlg(JWEAlg alg)
+    {
+        this.idTokenEncryptionAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWE <code>enc</code> algorithm for encrypting the ID token
+     * issued to this client. This property corresponds to
+     * <code>id_token_encrypted_response_enc</code>in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The JWE <code>enc</code> algorithm for encrypting the
+     *         ID token issued to this client.
+     */
+    public JWEEnc getIdTokenEncryptionEnc()
+    {
+        return idTokenEncryptionEnc;
+    }
+
+
+    /**
+     * Set the JWE <code>enc</code> algorithm for encrypting the ID token
+     * issued to this client. This property corresponds to
+     * <code>id_token_encrypted_response_enc</code>in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param enc
+     *         The JWE <code>enc</code> algorithm for encrypting the
+     *         ID token issued to this client.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setIdTokenEncryptionEnc(JWEEnc enc)
+    {
+        this.idTokenEncryptionEnc = enc;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWS <code>alg</code> algorithm for signing UserInfo responses.
+     * This property corresponds to <code>userinfo_signed_response_alg</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The JWS <code>alg</code> algorithm for signing UserInfo responses.
+     */
+    public JWSAlg getUserInfoSignAlg()
+    {
+        return userInfoSignAlg;
+    }
+
+
+    /**
+     * Set the JWS <code>alg</code> algorithm for signing UserInfo responses.
+     * This property corresponds to <code>userinfo_signed_response_alg</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param alg
+     *         The JWS <code>alg</code> algorithm for signing UserInfo responses.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setUserInfoSignAlg(JWSAlg alg)
+    {
+        this.userInfoSignAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWE <code>alg</code> algorithm for encrypting UserInfo responses.
+     * This property corresponds to <code>userinfo_encrypted_response_alg</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The JWE <code>alg</code> algorithm for encrypting UserInfo responses.
+     */
+    public JWEAlg getUserInfoEncryptionAlg()
+    {
+        return userInfoEncryptionAlg;
+    }
+
+
+    /**
+     * Set the JWE <code>alg</code> algorithm for encrypting UserInfo responses.
+     * This property corresponds to <code>userinfo_encrypted_response_alg</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param alg
+     *         The JWE <code>alg</code> algorithm for encrypting UserInfo responses.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setUserInfoEncryptionAlg(JWEAlg alg)
+    {
+        this.userInfoEncryptionAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWE <code>enc</code> algorithm for encrypting UserInfo responses.
+     * This property corresponds to <code>userinfo_encrypted_response_enc</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The JWE <code>enc</code> algorithm for encrypting UserInfo responses.
+     */
+    public JWEEnc getUserInfoEncryptionEnc()
+    {
+        return userInfoEncryptionEnc;
+    }
+
+
+    /**
+     * Set the JWE <code>enc</code> algorithm for encrypting UserInfo responses.
+     * This property corresponds to <code>userinfo_encrypted_response_enc</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param enc
+     *         The JWE <code>enc</code> algorithm for encrypting UserInfo responses.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setUserInfoEncryptionEnc(JWEEnc enc)
+    {
+        this.userInfoEncryptionEnc = enc;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWS <code>alg</code> algorithm for signing request objects.
+     * This property corresponds to <code>request_object_signing_alg</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The JWS <code>alg</code> algorithm for signing request objects.
+     */
+    public JWSAlg getRequestSignAlg()
+    {
+        return requestSignAlg;
+    }
+
+
+    /**
+     * Set the JWS <code>alg</code> algorithm for signing request objects.
+     * This property corresponds to <code>request_object_signing_alg</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param alg
+     *         The JWS <code>alg</code> algorithm for signing request objects.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setRequestSignAlg(JWSAlg alg)
+    {
+        this.requestSignAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWE <code>alg</code> algorithm for encrypting request objects.
+     * This property corresponds to <code>request_object_encryption_alg</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The JWE <code>alg</code> algorithm for encrypting request objects.
+     */
+    public JWEAlg getRequestEncryptionAlg()
+    {
+        return requestEncryptionAlg;
+    }
+
+
+    /**
+     * Set the JWE <code>alg</code> algorithm for encrypting request objects.
+     * This property corresponds to <code>request_object_encryption_alg</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param alg
+     *         The JWE <code>alg</code> algorithm for encrypting request objects.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setRequestEncryptionAlg(JWEAlg alg)
+    {
+        this.requestEncryptionAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWE <code>enc</code> algorithm for encrypting request objects.
+     * This property corresponds to <code>request_object_encryption_enc</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The JWE <code>enc</code> algorithm for encrypting request objects.
+     */
+    public JWEEnc getRequestEncryptionEnc()
+    {
+        return requestEncryptionEnc;
+    }
+
+
+    /**
+     * Set the JWE <code>enc</code> algorithm for encrypting request objects.
+     * This property corresponds to <code>request_object_encryption_enc</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param enc
+     *         The JWE <code>enc</code> algorithm for encrypting request objects.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setRequestEncryptionEnc(JWEEnc enc)
+    {
+        this.requestEncryptionEnc = enc;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client authentication method for the token endpoint.
+     * This property corresponds to <code>token_endpoint_auth_method</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The client authentication method for the token endpoint.
+     */
+    public ClientAuthMethod getTokenAuthMethod()
+    {
+        return tokenAuthMethod;
+    }
+
+
+    /**
+     * Set the client authentication method for the token endpoint.
+     * This property corresponds to <code>token_endpoint_auth_method</code>
+     * in <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param method
+     *         The client authentication method for the token endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setTokenAuthMethod(ClientAuthMethod method)
+    {
+        this.tokenAuthMethod = method;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWS <code>alg</code> algorithm for signing the JWT used to
+     * authenticate the client at the token endpoint. This property corresponds
+     * to <code>token_endpoint_auth_signing_alg</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The JWS <code>alg</code> algorithm for signing the JWT used to
+     *         authenticate the client at the token endpoint.
+     */
+    public JWSAlg getTokenAuthSignAlg()
+    {
+        return tokenAuthSignAlg;
+    }
+
+
+    /**
+     * Set the JWS <code>alg</code> algorithm for signing the JWT used to
+     * authenticate the client at the token endpoint. This property corresponds
+     * to <code>token_endpoint_auth_signing_alg</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param alg
+     *         The JWS <code>alg</code> algorithm for signing the JWT used to
+     *         authenticate the client at the token endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setTokenAuthSignAlg(JWSAlg alg)
+    {
+        this.tokenAuthSignAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the default value of the maximum authentication age in seconds.
+     * This property corresponds to <code>default_max_age</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The default value of the maximum authentication age in seconds.
+     */
+    public int getDefaultMaxAge()
+    {
+        return defaultMaxAge;
+    }
+
+
+    /**
+     * Set the default value of the maximum authentication age in seconds.
+     * This property corresponds to <code>default_max_age</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * <p>
+     * This value is used when the request from the client application does
+     * not contain the <code>max_age</code> request parameter.
+     * </p>
+     *
+     * @param defaultMaxAge
+     *         The default value of the maximum authentication age in seconds.
+     *         0 means that no default value is set.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setDefaultMaxAge(int defaultMaxAge)
+    {
+        this.defaultMaxAge = defaultMaxAge;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether this client requires <code>auth_time</code>
+     * claim to be embedded in the ID token. This property corresponds to
+     * <code>require_auth_time</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The flag to indicate whether this client requires <code>auth_time</code>
+     *         claim to be embedded in the ID token.
+     */
+    public boolean isAuthTimeRequired()
+    {
+        return authTimeRequired;
+    }
+
+
+    /**
+     * Set the flag to indicate whether this client requires <code>auth_time</code>
+     * claim to be embedded in the ID token. This property corresponds to
+     * <code>require_auth_time</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param required
+     *         The flag to indicate whether this client requires <code>auth_time</code>
+     *         claim to be embedded in the ID token.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setAuthTimeRequired(boolean required)
+    {
+        this.authTimeRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the default list of authentication context class references.
+     * This property corresponds to <code>default_max_age</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The default list of authentication context class references.
+     */
+    public String[] getDefaultAcrs()
+    {
+        return defaultAcrs;
+    }
+
+
+    /**
+     * Set the default list of authentication context class references.
+     * This property corresponds to <code>default_max_age</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * <p>
+     * This value is used when the request from the client application does
+     * not contain the <code>acr_values</code> request parameter.
+     * </p>
+     *
+     * @param defaultAcrs
+     *         The default list of authentication context class references.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setDefaultAcrs(String[] defaultAcrs)
+    {
+        this.defaultAcrs = defaultAcrs;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URL that can initiate a login for this client application.
+     * This property corresponds to <code>initiate_login_uri</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The URL that can initiate a login for this client application.
+     */
+    public URI getLoginUri()
+    {
+        return loginUri;
+    }
+
+
+    /**
+     * Set the URL that can initiate a login for this client application.
+     * This property corresponds to <code>initiate_login_uri</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param uri
+     *         The URL that can initiate a login for this client application.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setLoginUri(URI uri)
+    {
+        this.loginUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the request URIs that this client declares it may use. This property
+     * corresponds to <code>request_uris</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @return
+     *         The request URIs that this client declares it may use.
+     */
+    public String[] getRequestUris()
+    {
+        return requestUris;
+    }
+
+
+    /**
+     * Set the request URIs that this client declares it may use. This property
+     * corresponds to <code>request_uris</code> in <a href=
+     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >Client Metadata</a>.
+     *
+     * @param uris
+     *         The request URIs that this client declares it may use.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setRequestUris(String[] uris)
+    {
+        this.requestUris = uris;
+
+        return this;
+    }
+
+
+    /**
+     * Get the description.
+     *
+     * @return
+     *         The description.
+     */
+    public String getDescription()
+    {
+        return description;
+    }
+
+
+    /**
+     * Set the description.
+     *
+     * @param description
+     *         The description.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setDescription(String description)
+    {
+        this.description = description;
+
+        return this;
+    }
+
+
+    /**
+     * Get the descriptions for specific languages.
+     *
+     * @return
+     *         The descriptions for specific languages.
+     */
+    public TaggedValue[] getDescriptions()
+    {
+        return descriptions;
+    }
+
+
+    /**
+     * Set the descriptions for specific languages.
+     *
+     * @param descriptions
+     *         The descriptions for specific languages.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setDescriptions(TaggedValue[] descriptions)
+    {
+        this.descriptions = descriptions;
+
+        return this;
+    }
+}
