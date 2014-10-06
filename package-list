@@ -1,0 +1,7 @@
+com.authlete.common
+com.authlete.common.api
+com.authlete.common.conf
+com.authlete.common.dto
+com.authlete.common.types
+com.authlete.common.util
+com.authlete.common.web
