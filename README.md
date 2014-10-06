@@ -44,7 +44,7 @@ Example
 ```java
 // Create an instance of AuthleteConfiguration. This example uses
 // AuthletePropertiesConfiguration which searches the file system
-// or the class path for a properties file that stores the
+// and the class path for a properties file that contains the
 // configuration parameters. See JavaDoc for other implementations
 // of AuthleteConfiguration interface.
 AuthleteConfiguration configuration
@@ -59,8 +59,8 @@ AuthleteConfiguration configuration
 AuthleteApi api = AuthleteApiFactory.getInstance(configuration);
 
 // Now Authlete APIs can be called. For example, the following code
-// gets the services of the service owner. (getServiceList() does
-// not all the services. See JavaDoc for details.)
+// gets the services of the service owner. (getServiceList() returns
+// not all but some of existing services. See JavaDoc for details.)
 ServiceListResponse response = api.getServiceList();
 ```
 
