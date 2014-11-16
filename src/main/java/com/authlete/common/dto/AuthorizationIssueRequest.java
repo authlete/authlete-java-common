@@ -79,7 +79,7 @@ import java.io.Serializable;
  */
 public class AuthorizationIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -97,7 +97,7 @@ public class AuthorizationIssueRequest implements Serializable
     /**
      * The time when the end-user was authenticated.
      */
-    private int authTime;
+    private long authTime;
 
 
     /**
@@ -186,7 +186,7 @@ public class AuthorizationIssueRequest implements Serializable
      *         The time when the end-user authentication occurred.
      *         It is the number of seconds since 1970-01-01.
      */
-    public int getAuthTime()
+    public long getAuthTime()
     {
         return authTime;
     }
@@ -203,7 +203,7 @@ public class AuthorizationIssueRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public AuthorizationIssueRequest setAuthTime(int authTime)
+    public AuthorizationIssueRequest setAuthTime(long authTime)
     {
         this.authTime = authTime;
 
