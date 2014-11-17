@@ -54,6 +54,13 @@ import java.io.Serializable;
  * A space-delimited names of claims to request.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>claimsLocales</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * A space-delimited locales for claims.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
@@ -63,7 +70,7 @@ import java.io.Serializable;
  */
 public class AuthorizationAuthenticateRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -88,6 +95,12 @@ public class AuthorizationAuthenticateRequest implements Serializable
      * The claims to request.
      */
     private String claims;
+
+
+    /**
+     * Locales for claims.
+     */
+    private String claimsLocales;
 
 
     /**
@@ -205,6 +218,35 @@ public class AuthorizationAuthenticateRequest implements Serializable
     public AuthorizationAuthenticateRequest setClaims(String claims)
     {
         this.claims = claims;
+
+        return this;
+    }
+
+
+    /**
+     * Get the space-delimited locales for claims.
+     *
+     * @return
+     *         The space-delimited locales for claims.
+     */
+    public String getClaimsLocales()
+    {
+        return claimsLocales;
+    }
+
+
+    /**
+     * Set the space-delimited locales for claims.
+     *
+     * @param claimsLocales
+     *         The space-delimited locales for claims.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public AuthorizationAuthenticateRequest setClaimsLocales(String claimsLocales)
+    {
+        this.claimsLocales = claimsLocales;
 
         return this;
     }
