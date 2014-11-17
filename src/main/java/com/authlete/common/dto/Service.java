@@ -1055,6 +1055,8 @@ public class Service implements Serializable
      *
      * @return
      *         The URI of the authentication callback endpoint.
+     *
+     * @since 1.1
      */
     public URI getAuthenticationCallbackEndpoint()
     {
@@ -1070,6 +1072,8 @@ public class Service implements Serializable
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 1.1
      */
     public Service setAuthenticationCallbackEndpoint(URI endpoint)
     {
@@ -1084,6 +1088,8 @@ public class Service implements Serializable
      *
      * @return
      *         The API key to access the authentication callback endpoint.
+     *
+     * @since 1.1
      */
     public String getAuthenticationCallbackApiKey()
     {
@@ -1099,6 +1105,8 @@ public class Service implements Serializable
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 1.1
      */
     public Service setAuthenticationCallbackApiKey(String apiKey)
     {
@@ -1113,6 +1121,8 @@ public class Service implements Serializable
      *
      * @return
      *         The API secret to access the authentication callback endpoint.
+     *
+     * @since 1.1
      */
     public String getAuthenticationCallbackApiSecret()
     {
@@ -1128,6 +1138,8 @@ public class Service implements Serializable
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 1.1
      */
     public Service setAuthenticationCallbackApiSecret(String apiSecret)
     {

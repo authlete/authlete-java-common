@@ -23,6 +23,8 @@ import java.io.Serializable;
  * Authentication request from Authlete to a service implementation.
  *
  * @author Takahiko Kawasaki
+ *
+ * @since 1.1
  */
 public class AuthenticationCallbackRequest implements Serializable
 {

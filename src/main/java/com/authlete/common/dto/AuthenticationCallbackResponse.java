@@ -23,6 +23,8 @@ import java.io.Serializable;
  * Authentication response from a service implementation to Authlete.
  *
  * @author Takahiko Kawasaki
+ *
+ * @since 1.1
  */
 public class AuthenticationCallbackResponse implements Serializable
 {
