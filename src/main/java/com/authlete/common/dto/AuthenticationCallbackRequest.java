@@ -26,10 +26,11 @@ import java.io.Serializable;
  */
 public class AuthenticationCallbackRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
-    private long apiKey;
+    private long serviceApiKey;
+    private long clientId;
     private String id;
     private String password;
     private String[] claims;
@@ -39,12 +40,16 @@ public class AuthenticationCallbackRequest implements Serializable
     /**
      * Get the API key of the target service.
      *
+     * <p>
+     * This property is always set when Authlete makes a request.
+     * </p>
+     *
      * @return
      *         The API key of the target service.
      */
-    public long getApiKey()
+    public long getServiceApiKey()
     {
-        return apiKey;
+        return serviceApiKey;
     }
 
 
@@ -57,9 +62,44 @@ public class AuthenticationCallbackRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public AuthenticationCallbackRequest setApiKey(long apiKey)
+    public AuthenticationCallbackRequest setServiceApiKey(long apiKey)
     {
-        this.apiKey = apiKey;
+        this.serviceApiKey = apiKey;
+
+        return this;
+    }
+
+
+    /**
+     * Get the ID of the client application that triggered this
+     * authentication request.
+     *
+     * <p>
+     * This property is always set when Authlete makes a request.
+     * </p>
+     *
+     * @return
+     *         The ID of the client application.
+     */
+    public long getClientId()
+    {
+        return clientId;
+    }
+
+
+    /**
+     * Set the ID of the client application that triggered this
+     * authentication request.
+     *
+     * @param clientId
+     *         The ID of the client application.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public AuthenticationCallbackRequest setClientId(long clientId)
+    {
+        this.clientId = clientId;
 
         return this;
     }
