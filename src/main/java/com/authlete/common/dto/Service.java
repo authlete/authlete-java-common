@@ -43,7 +43,7 @@ import com.authlete.common.types.ResponseType;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /*
@@ -102,6 +102,9 @@ public class Service implements Serializable
     private String[] supportedUiLocales;
     private URI policyUri;
     private URI tosUri;
+    private URI authenticationCallbackEndpoint;
+    private String authenticationCallbackApiKey;
+    private String authenticationCallbackApiSecret;
 
 
     /**
@@ -1042,6 +1045,93 @@ public class Service implements Serializable
     public Service setIdTokenDuration(int duration)
     {
         this.idTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the authentication callback endpoint.
+     *
+     * @return
+     *         The URI of the authentication callback endpoint.
+     */
+    public URI getAuthenticationCallbackEndpoint()
+    {
+        return authenticationCallbackEndpoint;
+    }
+
+
+    /**
+     * Set the URI of the authentication callback endpoint.
+     *
+     * @param endpoint
+     *         The URI of the authentication callback endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Service setAuthenticationCallbackEndpoint(URI endpoint)
+    {
+        this.authenticationCallbackEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the API key to access the authentication callback endpoint.
+     *
+     * @return
+     *         The API key to access the authentication callback endpoint.
+     */
+    public String getAuthenticationCallbackApiKey()
+    {
+        return authenticationCallbackApiKey;
+    }
+
+
+    /**
+     * Set the API key to access the authentication callback endpoint.
+     *
+     * @param apiKey
+     *         The API key to access the authentication callback endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Service setAuthenticationCallbackApiKey(String apiKey)
+    {
+        this.authenticationCallbackApiKey = apiKey;
+
+        return this;
+    }
+
+
+    /**
+     * Get the API secret to access the authentication callback endpoint.
+     *
+     * @return
+     *         The API secret to access the authentication callback endpoint.
+     */
+    public String getAuthenticationCallbackApiSecret()
+    {
+        return authenticationCallbackApiSecret;
+    }
+
+
+    /**
+     * Set the API secret to access the authentication callback endpoint.
+     *
+     * @param apiSecret
+     *         The API secret to access the authentication callback endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Service setAuthenticationCallbackApiSecret(String apiSecret)
+    {
+        this.authenticationCallbackApiSecret = apiSecret;
 
         return this;
     }
