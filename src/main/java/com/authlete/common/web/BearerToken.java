@@ -20,7 +20,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.commons.codec.binary.Base64;
 
 
 /**
@@ -75,7 +74,7 @@ public class BearerToken
      *
      * <blockquote>
      * <ol>
-     *   <li><code>"Bearer <i>{base64-encoded-access-token}</i>"</code>
+     *   <li><code>"Bearer <i>{access-token}</i>"</code>
      *   <li>Parameters formatted in <code>application/x-www-form-urlencoded</code>
      *       containing <code>access_token=<i>{access-token}</i></code>.
      * </ol>
@@ -87,7 +86,7 @@ public class BearerToken
      * </p>
      *
      * <pre>
-     * BearerToken.parse("Bearer aGVsbG8td29ybGQ=");
+     * BearerToken.parse("Bearer hello-world");
      * BearerToken.parse("key1=value1&amp;access_token=hello-world");
      * </pre>
      *
@@ -108,38 +107,21 @@ public class BearerToken
         }
 
         // First, check whether the input matches the pattern
-        // "Bearer {base64-encoded-access-token}".
+        // "Bearer {access-token}".
         Matcher matcher = CHALLENGE_PATTERN.matcher(input);
 
         // If the input matches the pattern.
         if (matcher.matches())
         {
-            // Decode the string after "Bearer ".
-            return decodeBase64(matcher.group(1));
+            // Return the value as is. Note that it is not Base64-encoded.
+            // See https://www.ietf.org/mail-archive/web/oauth/current/msg08489.html
+            return matcher.group(1);
         }
         else
         {
             // Assume that the input is formatted in
             // application/x-www-form-urlencoded.
             return extractFromFormParameters(input);
-        }
-    }
-
-
-    private static String decodeBase64(String encoded)
-    {
-        // Decode the base64 string.
-        byte[] decoded = Base64.decodeBase64(encoded);
-
-        try
-        {
-            // Convert the byte array to String.
-            return new String(decoded, "UTF-8");
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            // This won't happen.
-            return null;
         }
     }
 
