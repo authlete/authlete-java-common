@@ -23,6 +23,7 @@ import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.Display;
 import com.authlete.common.types.GrantType;
 import com.authlete.common.types.ResponseType;
+import com.authlete.common.types.Sns;
 
 
 /**
@@ -43,7 +44,7 @@ import com.authlete.common.types.ResponseType;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /*
@@ -105,6 +106,8 @@ public class Service implements Serializable
     private URI authenticationCallbackEndpoint;
     private String authenticationCallbackApiKey;
     private String authenticationCallbackApiSecret;
+    private Sns[] supportedSnses;
+    private SnsCredentials[] snsCredentials;
 
 
     /**
@@ -1144,6 +1147,70 @@ public class Service implements Serializable
     public Service setAuthenticationCallbackApiSecret(String apiSecret)
     {
         this.authenticationCallbackApiSecret = apiSecret;
+
+        return this;
+    }
+
+
+    /**
+     * Get the list of supported SNSes for social login at the authorization
+     * endpoint.
+     *
+     * @return
+     *         The list of SNSes.
+     */
+    public Sns[] getSupportedSnses()
+    {
+        return supportedSnses;
+    }
+
+
+    /**
+     * Set the list of supported SNSes for social login at the authorization
+     * endpoint.
+     *
+     * @param supportedSnses
+     *         The list of SNSes.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.2
+     */
+    public Service setSupportedSnses(Sns[] supportedSnses)
+    {
+        this.supportedSnses = supportedSnses;
+
+        return this;
+    }
+
+
+    /**
+     * Get the list of SNS credentials that Authlete uses to support social login.
+     *
+     * @return
+     *         The list of SNS credentials.
+     */
+    public SnsCredentials[] getSnsCredentials()
+    {
+        return snsCredentials;
+    }
+
+
+    /**
+     * Set the list of SNS credentials that Authlete uses to support social login.
+     *
+     * @param snsCredentials
+     *         The list of SNS credentials.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.2
+     */
+    public Service setSnsCredentials(SnsCredentials[] snsCredentials)
+    {
+        this.snsCredentials = snsCredentials;
 
         return this;
     }
