@@ -321,7 +321,7 @@ public class AuthenticationCallbackRequest implements Serializable
      *         {@code null} is returned if the end-user did not
      *         use social login.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public Sns getSns()
     {
@@ -338,7 +338,7 @@ public class AuthenticationCallbackRequest implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public AuthenticationCallbackRequest setSns(Sns sns)
     {
@@ -356,7 +356,7 @@ public class AuthenticationCallbackRequest implements Serializable
      *         The access token returned by the SNS. {@code null}
      *         is returned when social login was not used.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public String getAccessToken()
     {
@@ -374,7 +374,7 @@ public class AuthenticationCallbackRequest implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public AuthenticationCallbackRequest setAccessToken(String accessToken)
     {
@@ -393,7 +393,7 @@ public class AuthenticationCallbackRequest implements Serializable
      *         is returned when social login was not used or if
      *         the SNS did not return a refresh token.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public String getRefreshToken()
     {
@@ -411,7 +411,7 @@ public class AuthenticationCallbackRequest implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public AuthenticationCallbackRequest setRefreshToken(String refreshToken)
     {
@@ -429,7 +429,7 @@ public class AuthenticationCallbackRequest implements Serializable
      *         when social login was not used of if the SNS did not return
      *         information about lifetime of the access token.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public long getExpiresIn()
     {
@@ -446,7 +446,7 @@ public class AuthenticationCallbackRequest implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public AuthenticationCallbackRequest setExpiresIn(long expiresIn)
     {
@@ -467,7 +467,7 @@ public class AuthenticationCallbackRequest implements Serializable
      * @return
      *         The raw response from the token endpoint of the SNS.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public String getRawTokenResponse()
     {
@@ -484,7 +484,7 @@ public class AuthenticationCallbackRequest implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public AuthenticationCallbackRequest setRawTokenResponse(String response)
     {

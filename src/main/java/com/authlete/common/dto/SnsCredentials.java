@@ -25,7 +25,7 @@ import com.authlete.common.types.Sns;
  *
  * @author Takahiko Kawasaki
  *
- * @since 1.2
+ * @since 1.3
  */
 public class SnsCredentials implements Serializable
 {

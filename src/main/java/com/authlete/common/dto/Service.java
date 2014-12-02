@@ -1175,7 +1175,7 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public Service setSupportedSnses(Sns[] supportedSnses)
     {
@@ -1206,7 +1206,7 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 1.2
+     * @since 1.3
      */
     public Service setSnsCredentials(SnsCredentials[] snsCredentials)
     {
