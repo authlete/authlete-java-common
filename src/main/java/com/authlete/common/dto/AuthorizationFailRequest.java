@@ -51,7 +51,7 @@ import java.io.Serializable;
  */
 public class AuthorizationFailRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -156,6 +156,20 @@ public class AuthorizationFailRequest implements Serializable
          * application.
          */
         DENIED,
+
+        /**
+         * Server error.
+         *
+         * @since 1.3
+         */
+        SERVER_ERROR,
+
+        /**
+         * The end-user was not authenticated.
+         *
+         * @since 1.3
+         */
+        NOT_AUTHENTICATED
     }
 
 
@@ -169,6 +183,12 @@ public class AuthorizationFailRequest implements Serializable
      * The reason of the failure.
      */
     private Reason reason;
+
+
+    /**
+     * The custom description about the failure.
+     */
+    private String description;
 
 
     /**
@@ -230,6 +250,39 @@ public class AuthorizationFailRequest implements Serializable
     public AuthorizationFailRequest setReason(Reason reason)
     {
         this.reason = reason;
+
+        return this;
+    }
+
+
+    /**
+     * Get the custom description about the authorization failure.
+     *
+     * @return
+     *         The custom description.
+     *
+     * @since 1.3
+     */
+    public String getDescription()
+    {
+        return description;
+    }
+
+
+    /**
+     * Set the custom description about the authorization failure.
+     *
+     * @param description
+     *         The custom description.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.3
+     */
+    public AuthorizationFailRequest setDescription(String description)
+    {
+        this.description = description;
 
         return this;
     }
