@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,6 +44,12 @@ public class JoseUtils
      * <li>{@link JWEAlg#RSA1_5 RSA1_5}
      * <li>{@link JWEAlg#RSA_OAEP RSA-OAEP}
      * <li>{@link JWEAlg#RSA_OAEP_256 RSA-OAEP-256}
+     * <li>{@link JWEAlg#A128KW A128KW}
+     * <li>{@link JWEAlg#A192KW A192KW}
+     * <li>{@link JWEAlg#A256KW A256KW}
+     * <li>{@link JWEAlg#A128GCMKW A128GCMKW}
+     * <li>{@link JWEAlg#A192GCMKW A192GCMKW}
+     * <li>{@link JWEAlg#A256GCMKW A256GCMKW}
      * <li>{@link JWEAlg#DIR dir}
      * </ol>
      * </blockquote>
@@ -69,6 +75,12 @@ public class JoseUtils
             case RSA1_5:
             case RSA_OAEP:
             case RSA_OAEP_256:
+            case A128KW:
+            case A192KW:
+            case A256KW:
+            case A128GCMKW:
+            case A192GCMKW:
+            case A256GCMKW:
             case DIR:
                 // Supported
                 return true;
