@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,10 @@ import com.authlete.common.dto.TokenIssueRequest;
 import com.authlete.common.dto.TokenIssueResponse;
 import com.authlete.common.dto.TokenRequest;
 import com.authlete.common.dto.TokenResponse;
+import com.authlete.common.dto.UserInfoIssueRequest;
+import com.authlete.common.dto.UserInfoIssueResponse;
+import com.authlete.common.dto.UserInfoRequest;
+import com.authlete.common.dto.UserInfoResponse;
 
 
 /**
@@ -113,6 +117,30 @@ public interface AuthleteApi
      *         Response from the API.
      */
     TokenIssueResponse tokenIssue(TokenIssueRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/userinfo} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     */
+    UserInfoResponse userinfo(UserInfoRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/userinfo/issue} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     */
+    UserInfoIssueResponse userinfoIssue(UserInfoIssueRequest request) throws AuthleteApiException;
 
 
     /**
