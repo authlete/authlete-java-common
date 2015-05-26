@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.authlete.common.dto;
 
 import com.authlete.common.types.Display;
 import com.authlete.common.types.Prompt;
+import com.authlete.common.util.Utils;
 
 
 /**
@@ -700,7 +701,7 @@ import com.authlete.common.types.Prompt;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -759,7 +760,7 @@ public class AuthorizationResponse extends ApiResponse
     private static final String SUMMARY_FORMAT
         = "ticket=%s, action=%s, serviceNumber=%d, clientNumber=%d, clientId=%d, "
         + "clientSecret=%s, clientType=%s, developer=%s, display=%s, maxAge=%d, "
-        + "scopes=%s, uiLocales=%s, claimsLocales-%s, claims=%s, acrEssential=%s, "
+        + "scopes=%s, uiLocales=%s, claimsLocales=%s, claims=%s, acrEssential=%s, "
         + "acrs=%s, subject=%s, loginHint=%s, lowestPrompt=%s";
 
 
@@ -962,7 +963,11 @@ public class AuthorizationResponse extends ApiResponse
     /**
      * Get the list of claims that the client application requests
      * to be embedded in the ID token. The value comes from
-     * {@code "claims"} request parameter.
+     * {@code "scope"} and {@code "claims"} request parameters of
+     * the original authorization request.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
+     *      >OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values</a>
      *
      * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
      *      >OpenID Connect Core 1.0, 5.5. Requesting Claims using
@@ -1224,27 +1229,6 @@ public class AuthorizationResponse extends ApiResponse
 
     private String join(String[] strings)
     {
-        if (strings == null)
-        {
-            return null;
-        }
-
-        if (strings.length == 0)
-        {
-            return "";
-        }
-
-        StringBuilder sb = new StringBuilder();
-
-        for (String string : strings)
-        {
-            sb.append(string);
-            sb.append(" ");
-        }
-
-        // Remove the last " ".
-        sb.setLength(sb.length() - 1);
-
-        return sb.toString();
+        return Utils.join(strings, " ");
     }
 }
