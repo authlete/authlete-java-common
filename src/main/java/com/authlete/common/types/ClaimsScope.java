@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@ package com.authlete.common.types;
 
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -127,9 +129,20 @@ public enum ClaimsScope
     ;
 
 
-    private static final ClaimsScope[] sValues = values();
+    private static final Map<String, ClaimsScope> sNameMap;
     private final String mName;
     private final SortedSet<String> mClaims;
+
+
+    static
+    {
+        sNameMap = new HashMap<String, ClaimsScope>();
+
+        for (ClaimsScope value : values())
+        {
+            sNameMap.put(value.mName, value);
+        }
+    }
 
 
     private ClaimsScope(String name, String... claims)
@@ -148,7 +161,7 @@ public enum ClaimsScope
 
 
     /**
-     * Get the scope name.
+     * Get the scope name in lower-case letters.
      *
      * @return
      *         The scope name.
@@ -183,19 +196,6 @@ public enum ClaimsScope
      */
     public static ClaimsScope getByName(String name)
     {
-        if (name == null)
-        {
-            return null;
-        }
-
-        for (ClaimsScope value : sValues)
-        {
-            if (value.mName.equals(name))
-            {
-                return value;
-            }
-        }
-
-        return null;
+        return sNameMap.get(name);
     }
 }

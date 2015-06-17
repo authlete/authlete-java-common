@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,8 +53,8 @@ public enum SubjectType
     ;
 
 
-    private static final SubjectType[] mValues = values();
-    private static final Helper mHelper = new Helper(mValues);
+    private static final SubjectType[] sValues = values();
+    private static final Helper sHelper = new Helper(sValues);
     private final short mValue;
     private final String mString;
 
@@ -93,13 +93,13 @@ public enum SubjectType
      */
     public static SubjectType getByValue(short value)
     {
-        if (value < 1 || mValues.length < value)
+        if (value < 1 || sValues.length < value)
         {
             // Not found.
             return null;
         }
 
-        return mValues[value - 1];
+        return sValues[value - 1];
     }
 
 
@@ -135,25 +135,25 @@ public enum SubjectType
 
     public static int toBits(EnumSet<SubjectType> set)
     {
-        return mHelper.toBits(set);
+        return sHelper.toBits(set);
     }
 
 
     public static SubjectType[] toArray(int bits)
     {
-        return mHelper.toArray(bits);
+        return sHelper.toArray(bits);
     }
 
 
     public static EnumSet<SubjectType> toSet(int bits)
     {
-        return mHelper.toSet(bits);
+        return sHelper.toSet(bits);
     }
 
 
     public static EnumSet<SubjectType> toSet(SubjectType[] array)
     {
-        return mHelper.toSet(array);
+        return sHelper.toSet(array);
     }
 
 

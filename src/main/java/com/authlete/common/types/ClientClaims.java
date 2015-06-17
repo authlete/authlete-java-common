@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ public class ClientClaims
 {
     public static final String CLIENT_NAME = "client_name";
     public static final String LOGO_URI    = "logo_uri";
-    public static final String CLIENT_URI  = "client_URI";
+    public static final String CLIENT_URI  = "client_uri";
     public static final String POLICY_URI  = "policy_uri";
     public static final String TOS_URI     = "tos_uri";
     public static final String DESCRIPTION = "urn:fdc:authlete.com:2014:openid:client_claim:description";

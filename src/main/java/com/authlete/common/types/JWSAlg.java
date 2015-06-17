@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -111,8 +111,8 @@ public enum JWSAlg
     ;
 
 
-    private static final JWSAlg[] mValues = values();
-    private static final Helper mHelper = new Helper(mValues);
+    private static final JWSAlg[] sValues = values();
+    private static final Helper sHelper = new Helper(sValues);
     private final short mValue;
     private final String mString;
     private final HashAlg mHashAlg;
@@ -165,13 +165,13 @@ public enum JWSAlg
      */
     public static JWSAlg getByValue(short value)
     {
-        if (value < 0 || mValues.length <= value)
+        if (value < 0 || sValues.length <= value)
         {
             // Not found.
             return null;
         }
 
-        return mValues[value];
+        return sValues[value];
     }
 
 
@@ -207,25 +207,25 @@ public enum JWSAlg
 
     public static int toBits(EnumSet<JWSAlg> set)
     {
-        return mHelper.toBits(set);
+        return sHelper.toBits(set);
     }
 
 
     public static JWSAlg[] toArray(int bits)
     {
-        return mHelper.toArray(bits);
+        return sHelper.toArray(bits);
     }
 
 
     public static EnumSet<JWSAlg> toSet(int bits)
     {
-        return mHelper.toSet(bits);
+        return sHelper.toSet(bits);
     }
 
 
     public static EnumSet<JWSAlg> toSet(JWSAlg[] array)
     {
-        return mHelper.toSet(array);
+        return sHelper.toSet(array);
     }
 
 
