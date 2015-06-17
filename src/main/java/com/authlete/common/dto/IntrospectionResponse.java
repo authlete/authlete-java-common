@@ -95,7 +95,8 @@ package com.authlete.common.dto;
  * <dd>
  * <p>
  * When the value of {@code "action"} is {@code "UNAUTHORIZED"}, it means
- * that the access token does not exist or has expired.
+ * that the access token does not exist or has expired. Or the client
+ * application associated with the access token does not exist any longer.
  * </p>
  *
  * <p>
