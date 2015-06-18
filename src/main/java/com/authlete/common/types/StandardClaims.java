@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,10 @@ package com.authlete.common.types;
 
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -326,10 +330,18 @@ public final class StandardClaims
     /**
      * Set of claim names.
      */
-    private static final SortedSet<String> sStandardClaims;
+    private static final SortedSet<String> sStandardClaims
+        = createStandardClaims();
 
 
-    static
+    private static final Map<String, Integer> sClaimToNumberMap
+        = createClaimToNumberMap();
+
+
+    private static final String[] sValues = createValues();
+
+
+    private static SortedSet<String> createStandardClaims()
     {
         SortedSet<String> set = new TreeSet<String>();
 
@@ -354,7 +366,53 @@ public final class StandardClaims
         set.add(ADDRESS);
         set.add(UPDATED_AT);
 
-        sStandardClaims = Collections.unmodifiableSortedSet(set);
+        return Collections.unmodifiableSortedSet(set);
+    }
+
+
+    private static Map<String, Integer> createClaimToNumberMap()
+    {
+        Map<String, Integer> map = new HashMap<String, Integer>();
+
+        put(map, SUB, 1);
+        put(map, NAME, 2);
+        put(map, GIVEN_NAME, 3);
+        put(map, FAMILY_NAME, 4);
+        put(map, MIDDLE_NAME, 5);
+        put(map, NICKNAME, 6);
+        put(map, PREFERRED_USERNAME, 7);
+        put(map, PROFILE, 8);
+        put(map, PICTURE, 9);
+        put(map, WEBSITE, 10);
+        put(map, EMAIL, 11);
+        put(map, EMAIL_VERIFIED, 12);
+        put(map, GENDER, 13);
+        put(map, BIRTHDATE, 14);
+        put(map, ZONEINFO, 15);
+        put(map, LOCALE, 16);
+        put(map, PHONE_NUMBER, 17);
+        put(map, PHONE_NUMBER_VERIFIED, 18);
+        put(map, ADDRESS, 19);
+        put(map, UPDATED_AT, 20);
+
+        return Collections.unmodifiableMap(map);
+    }
+
+
+    private static void put(Map<String, Integer> map, String claim, int number)
+    {
+        map.put(claim, Integer.valueOf(number));
+    }
+
+
+    private static String[] createValues()
+    {
+        return new String[] {
+            SUB, NAME, GIVEN_NAME, FAMILY_NAME, MIDDLE_NAME, NICKNAME,
+            PREFERRED_USERNAME, PROFILE, PICTURE, WEBSITE, EMAIL,
+            EMAIL_VERIFIED, GENDER, BIRTHDATE, ZONEINFO, LOCALE,
+            PHONE_NUMBER, PHONE_NUMBER_VERIFIED, ADDRESS, UPDATED_AT
+        };
     }
 
 
@@ -387,5 +445,44 @@ public final class StandardClaims
     public static SortedSet<String> getStandardClaims()
     {
         return sStandardClaims;
+    }
+
+
+    public static int toBits(Set<String> set)
+    {
+        if (set == null)
+        {
+            return 0;
+        }
+
+        int bits = 0;
+
+        for (String claim : set)
+        {
+            Integer number = sClaimToNumberMap.get(claim);
+
+            if (number != null)
+            {
+                bits |= (1 << number);
+            }
+        }
+
+        return bits;
+    }
+
+
+    public static Set<String> toSet(int bits)
+    {
+        Set<String> set = new HashSet<String>();
+
+        for (int i = 0; i < sValues.length; ++i)
+        {
+            if ((bits & (1 << (i + 1))) != 0)
+            {
+                set.add(sValues[i]);
+            }
+        }
+
+        return set;
     }
 }
