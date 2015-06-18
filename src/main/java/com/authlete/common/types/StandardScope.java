@@ -16,8 +16,7 @@
 package com.authlete.common.types;
 
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.EnumSet;
 
 
 /**
@@ -40,7 +39,7 @@ public enum StandardScope
      * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
      *      >OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values</a>
      */
-    ADDRESS("address"),
+    ADDRESS((short)1, "address"),
 
 
     /**
@@ -52,7 +51,7 @@ public enum StandardScope
      * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
      *      >OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values</a>
      */
-    EMAIL("email"),
+    EMAIL((short)2, "email"),
 
 
     /**
@@ -62,7 +61,7 @@ public enum StandardScope
      * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
      *      >OpenID Connect Core 1.0, 3.1.2.1. Authentication Request</a>
      */
-    OPENID("openid"),
+    OPENID((short)3, "openid"),
 
 
     /**
@@ -74,7 +73,7 @@ public enum StandardScope
      * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess"
      *      >OpenID Connect Core 1.0, 11. Offline Access</a>
      */
-    OFFLINE_ACCESS("offline_access"),
+    OFFLINE_ACCESS((short)4, "offline_access"),
 
 
     /**
@@ -86,7 +85,7 @@ public enum StandardScope
      * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
      *      >OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values</a>
      */
-    PHONE("phone"),
+    PHONE((short)5, "phone"),
 
 
     /**
@@ -102,54 +101,133 @@ public enum StandardScope
      * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
      *      >OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values</a>
      */
-    PROFILE("profile")
+    PROFILE((short)6, "profile")
     ;
 
 
-    private static final Map<String, StandardScope> sNameMap;
-    private final String mName;
+    private static final StandardScope[] sValues = values();
+    private static final Helper sHelper = new Helper(sValues);
+    private final short mValue;
+    private final String mString;
 
 
-    static
+    private StandardScope(short value, String string)
     {
-        sNameMap = new HashMap<String, StandardScope>();
+        mValue  = value;
+        mString = string;
+    }
 
-        for (StandardScope value : values())
+
+    /**
+     * Get the integer representation of this enum instance.
+     */
+    public short getValue()
+    {
+        return mValue;
+    }
+
+
+    @Override
+    public String toString()
+    {
+        return mString;
+    }
+
+
+    /**
+     * Find an instance of this enum by a value.
+     *
+     * @param value
+     *         The integer representation of the instance to find.
+     *
+     * @return
+     *         An instance of this enum, or {@code null} if not found.
+     */
+    public static StandardScope getByValue(short value)
+    {
+        if (value < 1 || sValues.length < value)
         {
-            sNameMap.put(value.mName, value);
+            // Not found.
+            return null;
         }
-    }
 
-
-    private StandardScope(String name)
-    {
-        mName = name;
+        return sValues[value - 1];
     }
 
 
     /**
-     * Get the scope name in lower-case letters.
+     * Convert {@code String} to {@code StandardScope}.
+     *
+     * @param scope
+     *         A standard scope name. For example, {@code "openid"}.
      *
      * @return
-     *         The scope name.
+     *         {@code StandardScope} instance, or {@code null}.
      */
-    public String getName()
+    public static StandardScope parse(String scope)
     {
-        return mName;
+        if (scope == null)
+        {
+            return null;
+        }
+
+        for (StandardScope entry : values())
+        {
+            if (entry.mString.equals(scope))
+            {
+                // Found.
+                return entry;
+            }
+        }
+
+        // Not found.
+        return null;
     }
 
 
-    /**
-     * Get the {@code StandardScope} instance from a scope name.
-     *
-     * @param name
-     *         Scope name in lower-case letters.
-     *
-     * @return
-     *         A {@code StandardScope} instance, or {@code null} if not found.
-     */
-    public static StandardScope getByName(String name)
+    public static int toBits(EnumSet<StandardScope> set)
     {
-        return sNameMap.get(name);
+        return sHelper.toBits(set);
+    }
+
+
+    public static StandardScope[] toArray(int bits)
+    {
+        return sHelper.toArray(bits);
+    }
+
+
+    public static EnumSet<StandardScope> toSet(int bits)
+    {
+        return sHelper.toSet(bits);
+    }
+
+
+    public static EnumSet<StandardScope> toSet(StandardScope[] array)
+    {
+        return sHelper.toSet(array);
+    }
+
+
+    private static class Helper extends EnumHelper<StandardScope>
+    {
+        public Helper(StandardScope[] values)
+        {
+            super(StandardScope.class, values);
+        }
+
+
+        @Override
+        protected short getValue(StandardScope entry)
+        {
+            return entry.getValue();
+        }
+
+
+        @Override
+        protected StandardScope[] newArray(int size)
+        {
+            return new StandardScope[size];
+        }
     }
 }
