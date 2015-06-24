@@ -165,6 +165,8 @@ public class Scope implements Serializable
      *
      * @return
      *         Descriptions.
+     *
+     * @since 1.5
      */
     public TaggedValue[] getDescriptions()
     {
@@ -180,6 +182,8 @@ public class Scope implements Serializable
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 1.5
      */
     public Scope setDescriptions(TaggedValue[] descriptions)
     {
