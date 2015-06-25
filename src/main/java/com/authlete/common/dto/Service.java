@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /*
@@ -108,6 +108,8 @@ public class Service implements Serializable
     private String authenticationCallbackApiSecret;
     private Sns[] supportedSnses;
     private SnsCredentials[] snsCredentials;
+    private long createdAt;
+    private long modifiedAt;
 
 
     /**
@@ -1211,6 +1213,76 @@ public class Service implements Serializable
     public Service setSnsCredentials(SnsCredentials[] snsCredentials)
     {
         this.snsCredentials = snsCredentials;
+
+        return this;
+    }
+
+
+    /**
+     * Get the time at which this service was created.
+     *
+     * @return
+     *         The time at which this service was created.
+     *         The value is represented as milliseconds since
+     *         the UNIX epoch (1970-01-01).
+     *
+     * @since 1.6
+     */
+    public long getCreatedAt()
+    {
+        return createdAt;
+    }
+
+
+    /**
+     * Set the time at which this service was created.
+     *
+     * @param createdAt
+     *         The time at which this service was created.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.6
+     */
+    public Service setCreatedAt(long createdAt)
+    {
+        this.createdAt = createdAt;
+
+        return this;
+    }
+
+
+    /**
+     * Get the time at which this service was last modified.
+     *
+     * @return
+     *         The time at which this service was last modified.
+     *         The value is represented as milliseconds since
+     *         the UNIX epoch (1970-01-01).
+     *
+     * @since 1.6
+     */
+    public long getModifiedAt()
+    {
+        return modifiedAt;
+    }
+
+
+    /**
+     * Set the time at which this service was last modified.
+     *
+     * @param modifiedAt
+     *         The time at which this service was modified.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.6
+     */
+    public Service setModifiedAt(long modifiedAt)
+    {
+        this.modifiedAt = modifiedAt;
 
         return this;
     }
