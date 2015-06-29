@@ -17,6 +17,7 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 
 /**
@@ -225,5 +226,70 @@ public class Scope implements Serializable
 
         // Extracted scope names.
         return names;
+    }
+
+
+    /**
+     * Comparator based on scope names.
+     *
+     * @since 1.7
+     */
+    public static class NameComparator implements Comparator<Scope>, Serializable
+    {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        public int compare(Scope a, Scope b)
+        {
+            if (a == null)
+            {
+                if (b == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                if (b == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return compareNames(a.getName(), b.getName());
+                }
+            }
+        }
+
+
+        private int compareNames(String a, String b)
+        {
+            if (a == null)
+            {
+                if (b == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                if (b == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return a.compareTo(b);
+                }
+            }
+        }
     }
 }
