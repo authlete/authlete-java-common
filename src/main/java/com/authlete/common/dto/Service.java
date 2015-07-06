@@ -44,7 +44,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /*
@@ -110,6 +110,9 @@ public class Service implements Serializable
     private SnsCredentials[] snsCredentials;
     private long createdAt;
     private long modifiedAt;
+    private URI developerAuthenticationCallbackEndpoint;
+    private String developerAuthenticationCallbackApiKey;
+    private String developerAuthenticationCallbackApiSecret;
 
 
     /**
@@ -1343,6 +1346,105 @@ public class Service implements Serializable
     public Service setProperties(String[][] properties)
     {
         this.properties = properties;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the developer authentication callback endpoint.
+     *
+     * @return
+     *         The URI of the developer authentication callback endpoint.
+     *
+     * @since 1.9
+     */
+    public URI getDeveloperAuthenticationCallbackEndpoint()
+    {
+        return developerAuthenticationCallbackEndpoint;
+    }
+
+
+    /**
+     * Set the URI of the developer authentication callback endpoint.
+     *
+     * @param endpoint
+     *         The URI of the developer authentication callback endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.9
+     */
+    public Service setDeveloperAuthenticationCallbackEndpoint(URI endpoint)
+    {
+        this.developerAuthenticationCallbackEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the API key to access the developer authentication callback endpoint.
+     *
+     * @return
+     *         The API key to access the developer authentication callback endpoint.
+     *
+     * @since 1.9
+     */
+    public String getDeveloperAuthenticationCallbackApiKey()
+    {
+        return developerAuthenticationCallbackApiKey;
+    }
+
+
+    /**
+     * Set the API key to access the developer authentication callback endpoint.
+     *
+     * @param apiKey
+     *         The API key to access the developer authentication callback endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.9
+     */
+    public Service setDeveloperAuthenticationCallbackApiKey(String apiKey)
+    {
+        this.developerAuthenticationCallbackApiKey = apiKey;
+
+        return this;
+    }
+
+
+    /**
+     * Get the API secret to access the developer authentication callback endpoint.
+     *
+     * @return
+     *         The API secret to access the developer authentication callback endpoint.
+     *
+     * @since 1.9
+     */
+    public String getDeveloperAuthenticationCallbackApiSecret()
+    {
+        return developerAuthenticationCallbackApiSecret;
+    }
+
+
+    /**
+     * Set the API secret to access the developer authentication callback endpoint.
+     *
+     * @param apiSecret
+     *         The API secret to access the developer authentication callback endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.9
+     */
+    public Service setDeveloperAuthenticationCallbackApiSecret(String apiSecret)
+    {
+        this.developerAuthenticationCallbackApiSecret = apiSecret;
 
         return this;
     }
