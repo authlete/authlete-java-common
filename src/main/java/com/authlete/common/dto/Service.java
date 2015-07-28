@@ -44,7 +44,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /*
@@ -113,6 +113,8 @@ public class Service implements Serializable
     private URI developerAuthenticationCallbackEndpoint;
     private String developerAuthenticationCallbackApiKey;
     private String developerAuthenticationCallbackApiSecret;
+    private Sns[] supportedDeveloperSnses;
+    private SnsCredentials[] developerSnsCredentials;
 
 
     /**
@@ -1169,6 +1171,8 @@ public class Service implements Serializable
      *
      * @return
      *         The list of SNSes.
+     *
+     * @since 1.3
      */
     public Sns[] getSupportedSnses()
     {
@@ -1201,6 +1205,8 @@ public class Service implements Serializable
      *
      * @return
      *         The list of SNS credentials.
+     *
+     * @since 1.3
      */
     public SnsCredentials[] getSnsCredentials()
     {
@@ -1445,6 +1451,74 @@ public class Service implements Serializable
     public Service setDeveloperAuthenticationCallbackApiSecret(String apiSecret)
     {
         this.developerAuthenticationCallbackApiSecret = apiSecret;
+
+        return this;
+    }
+
+
+    /**
+     * Get the list of supported SNSes for social login at the developer console.
+     *
+     * @return
+     *         The list of SNSes.
+     *
+     * @since 1.10
+     */
+    public Sns[] getSupportedDeveloperSnses()
+    {
+        return supportedDeveloperSnses;
+    }
+
+
+    /**
+     * Set the list of supported SNSes for social login at the developer console.
+     *
+     * @param supportedSnses
+     *         The list of SNSes.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.10
+     */
+    public Service setSupportedDeveloperSnses(Sns[] supportedSnses)
+    {
+        this.supportedDeveloperSnses = supportedSnses;
+
+        return this;
+    }
+
+
+    /**
+     * Get the list of SNS credentials that Authlete uses to support social login
+     * at the developer console.
+     *
+     * @return
+     *         The list of SNS credentials.
+     *
+     * @since 1.10
+     */
+    public SnsCredentials[] getDeveloperSnsCredentials()
+    {
+        return developerSnsCredentials;
+    }
+
+
+    /**
+     * Set the list of SNS credentials that Authlete uses to support social login
+     * at the developer console.
+     *
+     * @param snsCredentials
+     *         The list of SNS credentials.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.10
+     */
+    public Service setDeveloperSnsCredentials(SnsCredentials[] snsCredentials)
+    {
+        this.developerSnsCredentials = snsCredentials;
 
         return this;
     }
