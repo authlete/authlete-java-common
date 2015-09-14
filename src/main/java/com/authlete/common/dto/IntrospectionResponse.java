@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -198,7 +198,7 @@ package com.authlete.common.dto;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -245,7 +245,7 @@ public class IntrospectionResponse extends ApiResponse
 
     private static final String SUMMARY_FORMAT
         = "action=%s, clientId=%d, subject=%s, existent=%s, "
-        + "usable=%s, sufficient=%s, refreshable=%s, scopes=%s";
+        + "usable=%s, sufficient=%s, refreshable=%s, expiresAt=%d, scopes=%s";
 
 
     /**
@@ -301,6 +301,12 @@ public class IntrospectionResponse extends ApiResponse
      * Entity body of the response to the client.
      */
     private String responseContent;
+
+
+    /**
+     * The time at which the access token expires.
+     */
+    private long expiresAt;
 
 
     /**
@@ -500,13 +506,39 @@ public class IntrospectionResponse extends ApiResponse
 
 
     /**
+     * Get the time at which the access token expires in milliseconds
+     * since the Unix epoch (1970-01-01).
+     *
+     * @return
+     *         The time at which the access token expires.
+     */
+    public long getExpiresAt()
+    {
+        return expiresAt;
+    }
+
+
+    /**
+     * Set the time at which the access token expires in milliseconds
+     * since the Unix epoch (1970-01-01).
+     *
+     * @param expiresAt
+     *         The time at which the access token expires.
+     */
+    public void setExpiresAt(long expiresAt)
+    {
+        this.expiresAt = expiresAt;
+    }
+
+
+    /**
      * Get the summary of this instance.
      */
     public String summarize()
     {
         return String.format(SUMMARY_FORMAT,
                 action, clientId, subject, existent, usable,
-                sufficient, refreshable, buildScopes());
+                sufficient, refreshable, expiresAt, buildScopes());
     }
 
 
