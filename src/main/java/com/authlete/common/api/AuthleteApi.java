@@ -28,6 +28,8 @@ import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
 import com.authlete.common.dto.Service;
 import com.authlete.common.dto.ServiceListResponse;
+import com.authlete.common.dto.TokenCreateRequest;
+import com.authlete.common.dto.TokenCreateResponse;
 import com.authlete.common.dto.TokenFailRequest;
 import com.authlete.common.dto.TokenFailResponse;
 import com.authlete.common.dto.TokenIssueRequest;
@@ -93,6 +95,20 @@ public interface AuthleteApi
      *         Response from the API.
      */
     TokenResponse token(TokenRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/token/create} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 1.13
+     */
+    TokenCreateResponse tokenCreate(TokenCreateRequest request) throws AuthleteApiException;
 
 
     /**
