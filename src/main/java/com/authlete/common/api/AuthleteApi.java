@@ -283,6 +283,80 @@ public interface AuthleteApi
 
 
     /**
+     * Get the JWK Set of a service.
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <thread>
+     *     <tr>
+     *       <th colspan="2">Service JWK Set</th>
+     *       <th colspan="3">Response</th>
+     *     </tr>
+     *     <tr>
+     *       <th>Content</th>
+     *       <th>URI</th>
+     *       <th>Status Code</th>
+     *       <th>Return Value</th>
+     *       <th>Exception</th>
+     *     </tr>
+     *   </thead>
+     *   <tbody>
+     *     <tr>
+     *       <td>Registered</td>
+     *       <td>Registered</td>
+     *       <td>200 OK</td>
+     *       <td>JWK Set</td>
+     *       <td>Not Raised</td>
+     *     </tr>
+     *     <tr>
+     *       <td>Registered</td>
+     *       <td>Not Registered</td>
+     *       <td>200 OK</td>
+     *       <td>JWK Set</td>
+     *       <td>Not Raised</td>
+     *     </tr>
+     *     <tr>
+     *       <td rowspan="2">Not Registered</td>
+     *       <td rowspan="2">Registered</td>
+     *       <td>204 No Content</td>
+     *       <td>{@code null}</td>
+     *       <td>Not Raised</td>
+     *     </tr>
+     *     <tr>
+     *       <td>302 Found <sup>*</sup></td>
+     *       <td>&nbsp;</td>
+     *       <td>Raised</td>
+     *     </tr>
+     *     <tr>
+     *       <td>Not Registered</td>
+     *       <td>Not Registered</td>
+     *       <td>204 No Content</td>
+     *       <td>{@code null}</td>
+     *       <td>Not Raised</td>
+     *     </tr>
+     *   </tbody>
+     * </table>
+     * <p>
+     * * 302 Found is returned when the request URI and the registered JWK Set URI
+     *   are different. In this case, {@code Location} header contains the registered
+     *   JWK Set URI. If you need the value of the URI, catch {@link AuthleteApiException}
+     *   and call {@link AuthleteApiException#getResponseHeaders() getResponseHeaders()}.
+     * </p>
+     * </blockquote>
+     *
+     * @return
+     *         JSON representation of the JWK Set of the service.
+     *         {@code null} is returned when the service has registered
+     *         neither content or URI of its JWK Set.
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc7517">RFC 7517: JSON Web Key (JWK)</a>
+     *
+     * @since 1.13
+     */
+    String getServiceJwks() throws AuthleteApiException;
+
+
+    /**
      * Create a client (= call Authlete's {@code /client/create} API).
      *
      * @param client
