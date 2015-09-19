@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,19 @@ import java.io.Serializable;
  * API ({@link TokenResponse}).
  * </p>
  * </dd>
+ * <dt><b><code>subject</code></b> (REQUIRED)</dt>
+ * <dd>
+ * <p>
+ * The subject (= unique identifier) of the authenticated user.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
+ *
+ * <p>
+ * {@code subject} request parameter was added as a required parameter
+ * on version 1.13.
+ * </p>
  *
  * @see TokenResponse
  *
@@ -42,13 +53,19 @@ import java.io.Serializable;
  */
 public class TokenIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
      * The ticket issued by Authlete's endpoint.
      */
     private String ticket;
+
+
+    /**
+     * The subject (unique identifier) of the authenticated user.
+     */
+    private String subject;
 
 
     /**
@@ -79,6 +96,41 @@ public class TokenIssueRequest implements Serializable
     public TokenIssueRequest setTicket(String ticket)
     {
         this.ticket = ticket;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of {@code "subject"} which is the unique
+     * identifier of the authenticated user.
+     *
+     * @return
+     *         The subject of the authenticated user.
+     *
+     * @since 1.13
+     */
+    public String getSubject()
+    {
+        return subject;
+    }
+
+
+    /**
+     * Set the value of {@code "subject"} which is the unique
+     * identifier of the authenticated user.
+     *
+     * @param subject
+     *         The subject of the authenticated user.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.13
+     */
+    public TokenIssueRequest setSubject(String subject)
+    {
+        this.subject = subject;
 
         return this;
     }

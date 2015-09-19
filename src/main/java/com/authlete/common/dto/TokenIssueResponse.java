@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -124,13 +124,15 @@ public class TokenIssueResponse extends ApiResponse
     }
 
 
-    /**
-     * The next action that the service implementation should take.
-     */
     private static final String SUMMARY_FORMAT = "action=%s, responseContent=%s";
 
 
+    /**
+     * The next action that the service implementation should take.
+     */
     private Action action;
+
+
     private String responseContent;
 
 

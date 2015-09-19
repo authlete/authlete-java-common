@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -163,7 +163,7 @@ package com.authlete.common.dto;
  * </p>
  *
  * <p>
- * In this case, {@link #getSubject()} returns the value of {@code "username"}
+ * In this case, {@link #getUsername()} returns the value of {@code "username"}
  * request parameter and {@link #getPassword()} returns the value of {@code
  * "password"} request parameter which were contained in the token request
  * from the client application. The service implementation must validate the
@@ -176,7 +176,8 @@ package com.authlete.common.dto;
  *   <p>
  *     <b>When the credentials are valid</b>, call Authlete's {@code
  *     /auth/token/issue} API to generate an access token for the client
- *     application. The API requires {@code "ticket"} request parameter.
+ *     application. The API requires {@code "ticket"} request parameter and
+ *     {@code "subject"} request parameter.
  *     Use the value returned from {@link #getTicket()} method as the value
  *     for {@code "ticket"} parameter.
  *   </p>
@@ -249,7 +250,7 @@ package com.authlete.common.dto;
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -297,12 +298,12 @@ public class TokenResponse extends ApiResponse
 
 
     private static final String SUMMARY_FORMAT
-        = "action=%s, subject=%s, password=%s, ticket=%s, responseContent=%s";
+        = "action=%s, username=%s, password=%s, ticket=%s, responseContent=%s";
 
 
     private Action action;
     private String responseContent;
-    private String subject;
+    private String username;
     private String password;
     private String ticket;
 
@@ -354,21 +355,35 @@ public class TokenResponse extends ApiResponse
      * is {@code "password"}.
      * </p>
      *
+     * <p>
+     * {@code getSubject()} method was renamed to {@code getUsername()}
+     * on version 1.13.
+     * </p>
+     *
+     * @since 1.13
+     *
      * @see <a href="http://tools.ietf.org/html/rfc6749#section-4.3.2"
      *      >RFC 6749, 4.3.2. Access Token Request</a>
      */
-    public String getSubject()
+    public String getUsername()
     {
-        return subject;
+        return username;
     }
 
 
     /**
      * Set the value of {@code "username"} request parameter.
+     *
+     * <p>
+     * {@code setSubject(String}} was renamed to {@code setUsername(String)}
+     * on version 1.13.
+     * </p>
+     *
+     * @since 1.13
      */
-    public void setSubject(String subject)
+    public void setUsername(String username)
     {
-        this.subject = subject;
+        this.username = username;
     }
 
 
@@ -432,6 +447,6 @@ public class TokenResponse extends ApiResponse
     public String summarize()
     {
         return String.format(SUMMARY_FORMAT,
-                action, subject, password, ticket, responseContent);
+                action, username, password, ticket, responseContent);
     }
 }
