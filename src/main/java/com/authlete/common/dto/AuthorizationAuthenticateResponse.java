@@ -122,7 +122,7 @@ package com.authlete.common.dto;
  */
 public class AuthorizationAuthenticateResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -151,10 +151,11 @@ public class AuthorizationAuthenticateResponse extends ApiResponse
     }
 
 
-    private static final String SUMMARY_FORMAT = "action=%s, responseContent=%s";
+    private static final String SUMMARY_FORMAT = "action=%s, authenticated=%s, responseContent=%s";
 
 
     private Action action;
+    private boolean authenticated;
     private String responseContent;
 
 
@@ -173,6 +174,34 @@ public class AuthorizationAuthenticateResponse extends ApiResponse
     public void setAction(Action action)
     {
         this.action = action;
+    }
+
+
+    /**
+     * Get the result of the authentication.
+     *
+     * @return
+     *         {@code true} if authenticated.
+     *
+     * @since 1.15
+     */
+    public boolean isAuthenticated()
+    {
+        return authenticated;
+    }
+
+
+    /**
+     * Set the result of the authentication.
+     *
+     * @param authenticated
+     *         {@code true} if authenticated.
+     *
+     * @since 1.15
+     */
+    public void setAuthenticated(boolean authenticated)
+    {
+        this.authenticated = authenticated;
     }
 
 
@@ -201,6 +230,6 @@ public class AuthorizationAuthenticateResponse extends ApiResponse
      */
     public String summarize()
     {
-        return String.format(SUMMARY_FORMAT, action, responseContent);
+        return String.format(SUMMARY_FORMAT, action, authenticated, responseContent);
     }
 }
