@@ -44,7 +44,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     /*
@@ -86,6 +86,7 @@ public class Service implements Serializable
     private URI issuer;
     private URI authorizationEndpoint;
     private URI tokenEndpoint;
+    private URI revocationEndpoint;
     private URI userInfoEndpoint;
     private URI jwksUri;
     private String jwks;
@@ -115,6 +116,12 @@ public class Service implements Serializable
     private String developerAuthenticationCallbackApiSecret;
     private Sns[] supportedDeveloperSnses;
     private SnsCredentials[] developerSnsCredentials;
+    private int clientsPerDeveloper;
+    private boolean directAuthorizationEndpointEnabled;
+    private boolean directTokenEndpointEnabled;
+    private boolean directRevocationEndpointEnabled;
+    private boolean directUserInfoEndpointEnabled;
+    private boolean directJwksEndpointEnabled;
 
 
     /**
@@ -383,6 +390,43 @@ public class Service implements Serializable
     public Service setTokenEndpoint(URI endpoint)
     {
         this.tokenEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the token revocation endpoint.
+     *
+     * @return
+     *         The URI of the token revocation endpoint.
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc7009">RFC 7009: OAuth 2.0 Token Revocation</a>
+     *
+     * @since 1.16
+     */
+    public URI getRevocationEndpoint()
+    {
+        return revocationEndpoint;
+    }
+
+
+    /**
+     * Set the URI of the token revocation endpoint.
+     *
+     * @param endpoint
+     *         The URI of the token revocation endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc7009">RFC 7009: OAuth 2.0 Token Revocation</a>
+     *
+     * @since 1.16
+     */
+    public Service setRevocationEndpoint(URI endpoint)
+    {
+        this.revocationEndpoint = endpoint;
 
         return this;
     }
@@ -1519,6 +1563,230 @@ public class Service implements Serializable
     public Service setDeveloperSnsCredentials(SnsCredentials[] snsCredentials)
     {
         this.developerSnsCredentials = snsCredentials;
+
+        return this;
+    }
+
+
+    /**
+     * Get the number of client applications that one developer can create.
+     * 0 means that developers can create as many client applications as
+     * they want.
+     *
+     * @return
+     *         The number of client applications that one developer can create.
+     *         0 means no limit.
+     *
+     * @since 1.16
+     */
+    public int getClientsPerDeveloper()
+    {
+        return clientsPerDeveloper;
+    }
+
+
+    /**
+     * Set the number of client applications that one developer can create.
+     * 0 means that developers can create as many client applications as
+     * they want.
+     *
+     * @param count
+     *         The number of client applications that one developer can create.
+     *         0 means no limit.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.16
+     */
+    public Service setClientsPerDeveloper(int count)
+    {
+        this.clientsPerDeveloper = count;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether the direct authorization endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/auth/authorization/direct/{serviceApiKey}</code>
+     *
+     * @return
+     *         {@code true} if enabled.
+     *
+     * @since 1.16
+     */
+    public boolean isDirectAuthorizationEndpointEnabled()
+    {
+        return directAuthorizationEndpointEnabled;
+    }
+
+
+    /**
+     * Set the flag to indicate whether the direct authorization endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/auth/authorization/direct/{serviceApiKey}</code>
+     *
+     * @param endpoint
+     *         {@code true} to enable the direct endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.16
+     */
+    public Service setDirectAuthorizationEndpointEnabled(boolean endpoint)
+    {
+        this.directAuthorizationEndpointEnabled = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether the direct token endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/auth/token/direct/{serviceApiKey}</code>
+     *
+     * @return
+     *         {@code true} if enabled.
+     *
+     * @since 1.16
+     */
+    public boolean isDirectTokenEndpointEnabled()
+    {
+        return directTokenEndpointEnabled;
+    }
+
+
+    /**
+     * Set the flag to indicate whether the direct token endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/auth/token/direct/{serviceApiKey}</code>
+     *
+     * @param endpoint
+     *         {@code true} to enable the direct endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.16
+     */
+    public Service setDirectTokenEndpointEnabled(boolean endpoint)
+    {
+        this.directTokenEndpointEnabled = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether the direct revocation endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/auth/revocation/direct/{serviceApiKey}</code>
+     *
+     * @return
+     *         {@code true} if enabled.
+     *
+     * @since 1.16
+     */
+    public boolean isDirectRevocationEndpointEnabled()
+    {
+        return directRevocationEndpointEnabled;
+    }
+
+
+    /**
+     * Set the flag to indicate whether the direct revocation endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/auth/revocation/direct/{serviceApiKey}</code>
+     *
+     * @param endpoint
+     *         {@code true} to enable the direct endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.16
+     */
+    public Service setDirectRevocationEndpointEnabled(boolean endpoint)
+    {
+        this.directRevocationEndpointEnabled = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether the direct userinfo endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/auth/userinfo/direct/{serviceApiKey}</code>
+     *
+     * @return
+     *         {@code true} if enabled.
+     *
+     * @since 1.16
+     */
+    public boolean isDirectUserInfoEndpointEnabled()
+    {
+        return directUserInfoEndpointEnabled;
+    }
+
+
+    /**
+     * Set the flag to indicate whether the direct userinfo endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/auth/userinfo/direct/{serviceApiKey}</code>
+     *
+     * @param endpoint
+     *         {@code true} to enable the direct endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.16
+     */
+    public Service setDirectUserInfoEndpointEnabled(boolean endpoint)
+    {
+        this.directUserInfoEndpointEnabled = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether the direct jwks endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/service/jwks/get/direct/{serviceApiKey}</code>
+     *
+     * @return
+     *         {@code true} if enabled.
+     *
+     * @since 1.16
+     */
+    public boolean isDirectJwksEndpointEnabled()
+    {
+        return directJwksEndpointEnabled;
+    }
+
+
+    /**
+     * Set the flag to indicate whether the direct jwks endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/service/jwks/get/direct/{serviceApiKey}</code>
+     *
+     * @param endpoint
+     *         {@code true} to enable the direct endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.16
+     */
+    public Service setDirectJwksEndpointEnabled(boolean endpoint)
+    {
+        this.directJwksEndpointEnabled = endpoint;
 
         return this;
     }

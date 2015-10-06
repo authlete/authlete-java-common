@@ -26,6 +26,8 @@ import com.authlete.common.dto.Client;
 import com.authlete.common.dto.ClientListResponse;
 import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
+import com.authlete.common.dto.RevocationRequest;
+import com.authlete.common.dto.RevocationResponse;
 import com.authlete.common.dto.Service;
 import com.authlete.common.dto.ServiceListResponse;
 import com.authlete.common.dto.TokenCreateRequest;
@@ -133,6 +135,20 @@ public interface AuthleteApi
      *         Response from the API.
      */
     TokenIssueResponse tokenIssue(TokenIssueRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/revocation} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 1.16
+     */
+    RevocationResponse revocation(RevocationRequest request) throws AuthleteApiException;
 
 
     /**
