@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import com.authlete.common.types.Plan;
 
 
 /**
@@ -26,7 +27,7 @@ import java.io.Serializable;
  */
 public class ServiceOwner implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     private int number;
@@ -35,6 +36,7 @@ public class ServiceOwner implements Serializable
     private String loginId;
     private long apiKey;
     private String apiSecret;
+    private Plan plan;
 
 
     /**
@@ -206,6 +208,36 @@ public class ServiceOwner implements Serializable
     public ServiceOwner setApiSecret(String apiSecret)
     {
         this.apiSecret = apiSecret;
+
+        return this;
+    }
+
+
+
+    /**
+     * Get the plan.
+     *
+     * @return
+     *         The plan.
+     */
+    public Plan getPlan()
+    {
+        return plan;
+    }
+
+
+    /**
+     * Set the plan.
+     *
+     * @param plan
+     *         The plan.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public ServiceOwner setPlan(Plan plan)
+    {
+        this.plan = plan;
 
         return this;
     }
