@@ -31,7 +31,7 @@
     <scm>
         <connection>scm:git:git@github.com:authlete/authlete-java-common.git</connection>
         <developerConnection>scm:git:git@github.com:authlete/authlete-java-common.git</developerConnection>
-        <url>git@github.com:authlete/authlete-java-common.git</url>
+        <url>https://github.com/authlete/authlete-java-common.git</url>
         <tag>HEAD</tag>
     </scm>
 
