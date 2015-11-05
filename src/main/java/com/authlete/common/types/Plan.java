@@ -22,6 +22,8 @@ package com.authlete.common.types;
  * @author Takahiko Kawasaki
  *
  * @see <a href="https://www.authlete.com/pricing">Pricing</a>
+ *
+ * @since 1.17
  */
 public enum Plan
 {
