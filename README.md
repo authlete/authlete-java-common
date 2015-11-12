@@ -21,7 +21,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.18</version>
+    <version>1.19</version>
 </dependency>
 ```
 
@@ -69,5 +69,5 @@ Links
 -----
 
 * [Authlete Home Page](https://www.authlete.com/)
-* [Authlete Documents](https://www.authlete.com/documents.html)
-* [Authlete Web APIs](https://www.authlete.com/authlete_web_apis.html)
+* [Authlete Documents](https://www.authlete.com/documents)
+* [Authlete Web APIs](https://www.authlete.com/documents/apis)
