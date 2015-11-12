@@ -4,7 +4,7 @@
 
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.19-SNAPSHOT</version>
+    <version>1.19</version>
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>
@@ -32,7 +32,7 @@
         <connection>scm:git:git@github.com:authlete/authlete-java-common.git</connection>
         <developerConnection>scm:git:git@github.com:authlete/authlete-java-common.git</developerConnection>
         <url>https://github.com/authlete/authlete-java-common.git</url>
-        <tag>HEAD</tag>
+        <tag>authlete-java-common-1.19</tag>
     </scm>
 
     <properties>
