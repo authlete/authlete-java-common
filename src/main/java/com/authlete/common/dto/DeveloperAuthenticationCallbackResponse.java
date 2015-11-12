@@ -28,13 +28,12 @@ import java.io.Serializable;
  */
 public class DeveloperAuthenticationCallbackResponse implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     private boolean authenticated;
     private String subject;
     private String displayName;
-    private boolean mock;
 
 
     /**
@@ -147,42 +146,6 @@ public class DeveloperAuthenticationCallbackResponse implements Serializable
     public DeveloperAuthenticationCallbackResponse setDisplayName(String displayName)
     {
         this.displayName = displayName;
-
-        return this;
-    }
-
-
-    /**
-     * Check whether this response is from the mock endpoint or not.
-     *
-     * @return
-     *         {@code true} if this response was made by the mock endpoint.
-     *         Otherwise, {@code false}.
-     *
-     * @since 1.11
-     */
-    public boolean isMock()
-    {
-        return mock;
-    }
-
-
-    /**
-     * Set the flag to indicate whether this response is from the mock
-     * endpoint or not.
-     *
-     * @param mock
-     *         {@code true} to indicate that this response is made by
-     *         the mock endpoint. Otherwise, {@code false}.
-     *
-     * @return
-     *         {@code this} object.
-     *
-     * @since 1.11
-     */
-    public DeveloperAuthenticationCallbackResponse setMock(boolean mock)
-    {
-        this.mock = mock;
 
         return this;
     }
