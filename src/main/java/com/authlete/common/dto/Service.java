@@ -44,7 +44,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 8L;
+    private static final long serialVersionUID = 9L;
 
 
     /*
@@ -122,6 +122,7 @@ public class Service implements Serializable
     private boolean directRevocationEndpointEnabled;
     private boolean directUserInfoEndpointEnabled;
     private boolean directJwksEndpointEnabled;
+    private boolean singleAccessTokenPerSubject;
 
 
     /**
@@ -1787,6 +1788,59 @@ public class Service implements Serializable
     public Service setDirectJwksEndpointEnabled(boolean endpoint)
     {
         this.directJwksEndpointEnabled = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether the number of access tokens
+     * per subject (and per client) is at most one or can be more.
+     *
+     * <p>
+     * If this flag is , an attempt to issue a new access token
+     * invalidates existing access tokens associated with the same
+     * subject (and the same client). Note that, however, attempts
+     * by Client Credentials Flow and Refresh Token Flow do not
+     * invalidate existing access tokens.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the number of access tokens per subject
+     *         (and per client) is at most one.
+     *
+     * @since 1.20
+     */
+    public boolean isSingleAccessTokenPerSubject()
+    {
+        return singleAccessTokenPerSubject;
+    }
+
+
+    /**
+     * Set the flag to indicate whether the number of access tokens
+     * per subject (and per client) is at most one or can be more.
+     *
+     * <p>
+     * If {@code true} is set, an attempt to issue a new access token
+     * invalidates existing access tokens associated with the same
+     * subject (and the same client). Note that, however, attempts
+     * by Client Credentials Flow and Refresh Token Flow do not
+     * invalidate existing access tokens.
+     * </p>
+     *
+     * @param single
+     *         {@code true} to set the maximum number of access tokens
+     *         per subject (and per client) to 1.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.20
+     */
+    public Service setSingleAccessTokenPerSubject(boolean single)
+    {
+        this.singleAccessTokenPerSubject = single;
 
         return this;
     }
