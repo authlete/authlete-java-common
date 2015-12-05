@@ -1798,11 +1798,19 @@ public class Service implements Serializable
      * per subject (and per client) is at most one or can be more.
      *
      * <p>
-     * If this flag is , an attempt to issue a new access token
-     * invalidates existing access tokens associated with the same
-     * subject (and the same client). Note that, however, attempts
-     * by Client Credentials Flow and Refresh Token Flow do not
-     * invalidate existing access tokens.
+     * If this flag is {@code true}, an attempt to issue a new access
+     * token invalidates existing access tokens associated with the
+     * same subject and the same client.
+     * </p>
+     *
+     * <p>
+     * Note that, however, attempts by Client Credentials Flow do not
+     * invalidate existing access tokens because access tokens issued
+     * by Client Credentials Flow are not associated with any end-user's
+     * subject. Also note that an attempt by Refresh Token Flow
+     * invalidates the coupled access token only and this invalidation
+     * is always performed regardless of whether this flag is {@code
+     * true} or {@code false}.
      * </p>
      *
      * @return
@@ -1824,9 +1832,17 @@ public class Service implements Serializable
      * <p>
      * If {@code true} is set, an attempt to issue a new access token
      * invalidates existing access tokens associated with the same
-     * subject (and the same client). Note that, however, attempts
-     * by Client Credentials Flow and Refresh Token Flow do not
-     * invalidate existing access tokens.
+     * subject and the same client.
+     * </p>
+     *
+     * <p>
+     * Note that, however, attempts by Client Credentials Flow do not
+     * invalidate existing access tokens because access tokens issued
+     * by Client Credentials Flow are not associated with any end-user's
+     * subject. Also note that an attempt by Refresh Token Flow
+     * invalidates the coupled access token only and this invalidation
+     * is always performed regardless of whether this flag is {@code
+     * true} or {@code false}.
      * </p>
      *
      * @param single
