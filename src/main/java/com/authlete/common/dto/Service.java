@@ -123,6 +123,7 @@ public class Service implements Serializable
     private boolean directUserInfoEndpointEnabled;
     private boolean directJwksEndpointEnabled;
     private boolean singleAccessTokenPerSubject;
+    private boolean pkceRequired;
 
 
     /**
@@ -1857,6 +1858,51 @@ public class Service implements Serializable
     public Service setSingleAccessTokenPerSubject(boolean single)
     {
         this.singleAccessTokenPerSubject = single;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether the use of Proof Key for Code
+     * Exchange (PKCE) is always required for authorization requests
+     * by <a href="https://tools.ietf.org/html/rfc6749#section-4.1"
+     * >Authorization Code Flow</a>. See <a href=
+     * "https://tools.ietf.org/html/rfc7636">RFC 7636</a> (Proof Key
+     * for Code Exchange by OAuth Public Clients</a> for details.
+     *
+     * @return
+     *         {@code true} if PKCE is always required for authorization
+     *         requests by Authorization Code Flow.
+     *
+     * @since 1.21
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc7636">RFC 7636</a>
+     */
+    public boolean isPkceRequired()
+    {
+        return pkceRequired;
+    }
+
+
+    /**
+     * Set the flag to indicate whether the use of Proof Key for Code
+     * Exchange (PKCE) is always required for authorization requests
+     * by <a href="https://tools.ietf.org/html/rfc6749#section-4.1"
+     * >Authorization Code Flow</a>. See <a href=
+     * "https://tools.ietf.org/html/rfc7636">RFC 7636</a> (Proof Key
+     * for Code Exchange by OAuth Public Clients</a> for details.
+     *
+     * @param required
+     *         {@code true} to always require PKCE for authorization
+     *         requests by Authorization Code Flow.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Service setPkceRequired(boolean required)
+    {
+        this.pkceRequired = required;
 
         return this;
     }
