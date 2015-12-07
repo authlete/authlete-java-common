@@ -156,7 +156,7 @@ public enum GrantType
             return null;
         }
 
-        for (GrantType entry : values())
+        for (GrantType entry : sValues)
         {
             if (entry.mString.equals(grantType))
             {

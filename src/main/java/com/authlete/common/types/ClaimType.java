@@ -129,7 +129,7 @@ public enum ClaimType
             return null;
         }
 
-        for (ClaimType value : values())
+        for (ClaimType value : sValues)
         {
             if (value.mString.equals(claimType))
             {

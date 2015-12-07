@@ -108,7 +108,7 @@ public enum ApplicationType
             return null;
         }
 
-        for (ApplicationType entry : values())
+        for (ApplicationType entry : sValues)
         {
             if (entry.mString.equals(applicationType))
             {

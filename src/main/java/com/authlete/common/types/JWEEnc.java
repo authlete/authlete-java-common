@@ -141,7 +141,7 @@ public enum JWEEnc
             return null;
         }
 
-        for (JWEEnc entry : values())
+        for (JWEEnc entry : sValues)
         {
             if (entry.mString.equals(alg))
             {

@@ -170,7 +170,7 @@ public enum ResponseMode
             return null;
         }
 
-        for (ResponseMode entry : values())
+        for (ResponseMode entry : sValues)
         {
             if (entry.mString.equals(responseMode))
             {

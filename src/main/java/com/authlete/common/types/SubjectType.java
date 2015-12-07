@@ -119,7 +119,7 @@ public enum SubjectType
             return null;
         }
 
-        for (SubjectType value : values())
+        for (SubjectType value : sValues)
         {
             if (value.mString.equals(subjectType))
             {

@@ -171,7 +171,7 @@ public enum StandardScope
             return null;
         }
 
-        for (StandardScope entry : values())
+        for (StandardScope entry : sValues)
         {
             if (entry.mString.equals(scope))
             {

@@ -155,7 +155,7 @@ public enum Prompt
             return null;
         }
 
-        for (Prompt value : values())
+        for (Prompt value : sValues)
         {
             if (value.mString.equals(prompt))
             {

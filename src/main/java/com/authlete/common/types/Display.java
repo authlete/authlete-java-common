@@ -147,7 +147,7 @@ public enum Display
             return null;
         }
 
-        for (Display value : values())
+        for (Display value : sValues)
         {
             if (value.mString.equals(display))
             {

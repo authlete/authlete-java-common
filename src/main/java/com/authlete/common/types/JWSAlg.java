@@ -191,7 +191,7 @@ public enum JWSAlg
             return null;
         }
 
-        for (JWSAlg entry : values())
+        for (JWSAlg entry : sValues)
         {
             if (entry.mString.equals(alg))
             {

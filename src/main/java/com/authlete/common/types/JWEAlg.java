@@ -199,7 +199,7 @@ public enum JWEAlg
             return null;
         }
 
-        for (JWEAlg entry : values())
+        for (JWEAlg entry : sValues)
         {
             if (entry.mString.equals(alg))
             {

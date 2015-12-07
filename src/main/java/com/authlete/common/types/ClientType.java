@@ -123,7 +123,7 @@ public enum ClientType
             return null;
         }
 
-        for (ClientType entry : values())
+        for (ClientType entry : sValues)
         {
             if (entry.mString.equals(clientType))
             {

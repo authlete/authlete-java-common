@@ -94,7 +94,7 @@ public enum Sns
             return null;
         }
 
-        for (Sns entry : values())
+        for (Sns entry : sValues)
         {
             if (entry.mString.equals(sns))
             {
