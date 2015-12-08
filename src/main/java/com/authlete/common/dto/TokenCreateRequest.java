@@ -112,15 +112,15 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     private GrantType grantType;
     private long clientId;
     private String subject;
     private String[] scopes;
-    private int accessTokenDuration;
-    private int refreshTokenDuration;
+    private long accessTokenDuration;
+    private long refreshTokenDuration;
 
 
     /**
@@ -253,7 +253,7 @@ public class TokenCreateRequest implements Serializable
      * @return
      *         The duration of a newly created access token.
      */
-    public int getAccessTokenDuration()
+    public long getAccessTokenDuration()
     {
         return accessTokenDuration;
     }
@@ -270,7 +270,7 @@ public class TokenCreateRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public TokenCreateRequest setAccessTokenDuration(int accessTokenDuration)
+    public TokenCreateRequest setAccessTokenDuration(long accessTokenDuration)
     {
         this.accessTokenDuration = accessTokenDuration;
 
@@ -286,7 +286,7 @@ public class TokenCreateRequest implements Serializable
      * @return
      *         The duration of a newly created refresh token.
      */
-    public int getRefreshTokenDuration()
+    public long getRefreshTokenDuration()
     {
         return refreshTokenDuration;
     }
@@ -303,7 +303,7 @@ public class TokenCreateRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public TokenCreateRequest setRefreshTokenDuration(int refreshTokenDuration)
+    public TokenCreateRequest setRefreshTokenDuration(long refreshTokenDuration)
     {
         this.refreshTokenDuration = refreshTokenDuration;
 
