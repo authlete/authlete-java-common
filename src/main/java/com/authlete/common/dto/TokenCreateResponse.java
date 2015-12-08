@@ -119,7 +119,7 @@ public class TokenCreateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     private static final String SUMMARY_FORMAT
         = "action=%s, grantType=%s, clientId=%d, subject=%s, scopes=%s, "
         + "accessToken=%s, tokenType=%s, expiresIn=%d, expiresAt=%d, refreshToken=%s";
@@ -132,7 +132,7 @@ public class TokenCreateResponse extends ApiResponse
     private String[] scopes;
     private String accessToken;
     private String tokenType;
-    private int expiresIn;
+    private long expiresIn;
     private long expiresAt;
     private String refreshToken;
 
@@ -357,7 +357,7 @@ public class TokenCreateResponse extends ApiResponse
      * @return
      *         The duration of the access token.
      */
-    public int getExpiresIn()
+    public long getExpiresIn()
     {
         return expiresIn;
     }
@@ -372,7 +372,7 @@ public class TokenCreateResponse extends ApiResponse
      * @return
      *         {@code this} object.
      */
-    public TokenCreateResponse setExpiresIn(int expiresIn)
+    public TokenCreateResponse setExpiresIn(long expiresIn)
     {
         this.expiresIn = expiresIn;
 
