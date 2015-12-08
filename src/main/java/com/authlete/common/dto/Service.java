@@ -44,7 +44,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 9L;
+    private static final long serialVersionUID = 10L;
 
 
     /*
@@ -144,19 +144,19 @@ public class Service implements Serializable
     /**
      * Duration of access tokens in seconds.
      */
-    private int accessTokenDuration;
+    private long accessTokenDuration;
 
 
     /**
      * Duration of refresh tokens in seconds.
      */
-    private int refreshTokenDuration;
+    private long refreshTokenDuration;
 
 
     /**
      * Duration of ID tokens in seconds.
      */
-    private int idTokenDuration;
+    private long idTokenDuration;
 
 
     /**
@@ -1027,7 +1027,7 @@ public class Service implements Serializable
      * @see <a href="http://tools.ietf.org/html/rfc6749#section-5.1"
      *      >RFC 6749 (OAuth 2.0), 5.1. Successful Response</a>
      */
-    public int getAccessTokenDuration()
+    public long getAccessTokenDuration()
     {
         return accessTokenDuration;
     }
@@ -1046,7 +1046,7 @@ public class Service implements Serializable
      * @see <a href="http://tools.ietf.org/html/rfc6749#section-5.1"
      *      >RFC 6749 (OAuth 2.0), 5.1. Successful Response</a>
      */
-    public Service setAccessTokenDuration(int duration)
+    public Service setAccessTokenDuration(long duration)
     {
         this.accessTokenDuration = duration;
 
@@ -1060,7 +1060,7 @@ public class Service implements Serializable
      * @return
      *         The duration of refresh tokens in seconds.
      */
-    public int getRefreshTokenDuration()
+    public long getRefreshTokenDuration()
     {
         return refreshTokenDuration;
     }
@@ -1075,7 +1075,7 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      */
-    public Service setRefreshTokenDuration(int duration)
+    public Service setRefreshTokenDuration(long duration)
     {
         this.refreshTokenDuration = duration;
 
@@ -1089,7 +1089,7 @@ public class Service implements Serializable
      * @return
      *         The duration of ID tokens in seconds.
      */
-    public int getIdTokenDuration()
+    public long getIdTokenDuration()
     {
         return idTokenDuration;
     }
@@ -1104,7 +1104,7 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      */
-    public Service setIdTokenDuration(int duration)
+    public Service setIdTokenDuration(long duration)
     {
         this.idTokenDuration = duration;
 
