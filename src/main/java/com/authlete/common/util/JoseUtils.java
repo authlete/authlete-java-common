@@ -36,7 +36,8 @@ public class JoseUtils
      *
      * <p>
      * This method returns {@code true} when the given JWE algorithm
-     * is one of the following.
+     * is one of the following. (All the algorithms listed in {@code
+     * JWEAlg} are supported as of Dec. 15, 2015.)
      * </p>
      *
      * <blockquote>
@@ -47,10 +48,17 @@ public class JoseUtils
      * <li>{@link JWEAlg#A128KW A128KW}
      * <li>{@link JWEAlg#A192KW A192KW}
      * <li>{@link JWEAlg#A256KW A256KW}
+     * <li>{@link JWEAlg#DIR dir}
+     * <li>{@link JWEAlg#ECDH_ES ECDH-ES}
+     * <li>{@link JWEAlg#ECDH_ES_A128KW ECDH-ES+A128KW}
+     * <li>{@link JWEAlg#ECDH_ES_A192KW ECDH-ES+A192KW}
+     * <li>{@link JWEAlg#ECDH_ES_A256KW ECDH-ES+A256KW}
      * <li>{@link JWEAlg#A128GCMKW A128GCMKW}
      * <li>{@link JWEAlg#A192GCMKW A192GCMKW}
      * <li>{@link JWEAlg#A256GCMKW A256GCMKW}
-     * <li>{@link JWEAlg#DIR dir}
+     * <li>{@link JWEAlg#PBES2_HS256_A128KW PBSE2-HS256-A128KW}
+     * <li>{@link JWEAlg#PBES2_HS384_A192KW PBSE2-HS384-A192KW}
+     * <li>{@link JWEAlg#PBES2_HS512_A256KW PBSE2-HS512-A256KW}
      * </ol>
      * </blockquote>
      *
@@ -65,29 +73,7 @@ public class JoseUtils
      */
     public static boolean isSupported(JWEAlg alg)
     {
-        if (alg == null)
-        {
-            return false;
-        }
-
-        switch (alg)
-        {
-            case RSA1_5:
-            case RSA_OAEP:
-            case RSA_OAEP_256:
-            case A128KW:
-            case A192KW:
-            case A256KW:
-            case A128GCMKW:
-            case A192GCMKW:
-            case A256GCMKW:
-            case DIR:
-                // Supported
-                return true;
-
-            default:
-                // Not supported.
-                return false;
-        }
+        // All the algorithms listed in JWEAlg are supported.
+        return (alg != null);
     }
 }
