@@ -701,7 +701,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -771,6 +771,7 @@ public class AuthorizationResponse extends ApiResponse
 
 
     private Action action;
+    private Service service;
     private Client client;
     private Display display;
     private int maxAge;
@@ -802,6 +803,34 @@ public class AuthorizationResponse extends ApiResponse
     public void setAction(Action action)
     {
         this.action = action;
+    }
+
+
+    /**
+     * Get the information about the service.
+     *
+     * @return
+     *         Information about the service.
+     *
+     * @since 1.23
+     */
+    public Service getService()
+    {
+        return service;
+    }
+
+
+    /**
+     * Set the information about the service.
+     *
+     * @param service
+     *         Information about the service.
+     *
+     * @since 1.23
+     */
+    public void setService(Service service)
+    {
+        this.service = service;
     }
 
 
