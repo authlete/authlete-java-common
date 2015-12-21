@@ -17,6 +17,8 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.util.Map;
+import com.authlete.common.web.URLCoder;
 
 
 /**
@@ -101,7 +103,7 @@ import java.io.Serializable;
  */
 public class RevocationRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -123,7 +125,7 @@ public class RevocationRequest implements Serializable
 
 
     /**
-     * Get the value of {@code "parameters"} which are the request
+     * Get the value of {@code parameters} which are the request
      * parameters that the OAuth 2.0 token revocation endpoint of
      * the service implementation received from the client application.
      */
@@ -134,7 +136,7 @@ public class RevocationRequest implements Serializable
 
 
     /**
-     * Set the value of {@code "parameters"} which are the request
+     * Set the value of {@code parameters} which are the request
      * parameters that the OAuth 2.0 token revocation endpoint of
      * the service implementation received from the client application.
      */
@@ -143,6 +145,31 @@ public class RevocationRequest implements Serializable
         this.parameters = parameters;
 
         return this;
+    }
+
+
+    /**
+     * Set the value of {@code parameters} which are the request
+     * parameters that the OAuth 2.0 token revocation endpoint of
+     * the service implementation received from the client application.
+     *
+     * <p>
+     * This method converts the given map into a string in {@code
+     * x-www-form-urlencoded} and passes it to {@link
+     * #setParameters(String)} method.
+     * </p>
+     *
+     * @param parameters
+     *         Request parameters.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.24
+     */
+    public RevocationRequest setParameters(Map<String, String[]> parameters)
+    {
+        return setParameters(URLCoder.formUrlEncode(parameters));
     }
 
 

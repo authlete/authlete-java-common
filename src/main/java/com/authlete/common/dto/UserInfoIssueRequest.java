@@ -17,6 +17,8 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.util.Map;
+import com.authlete.common.util.Utils;
 
 
 /**
@@ -52,7 +54,7 @@ import java.io.Serializable;
  */
 public class UserInfoIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -153,5 +155,32 @@ public class UserInfoIssueRequest implements Serializable
         this.claims = claims;
 
         return this;
+    }
+
+
+    /**
+     * Set the value of {@code "claims"} which is the claims of the subject.
+     * The argument is converted into a JSON string and passed to {@link
+     * #setClaims(String)} method.
+     *
+     * @param claims
+     *         The claims of the subject. Keys are claim names.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.24
+     */
+    public UserInfoIssueRequest setClaims(Map<String, Object> claims)
+    {
+        if (claims == null || claims.size() == 0)
+        {
+            this.claims = null;
+            return this;
+        }
+
+        String json = Utils.toJson(claims);
+
+        return setClaims(json);
     }
 }

@@ -16,14 +16,35 @@
 package com.authlete.common.util;
 
 
+import com.google.gson.Gson;
+
+
 public class Utils
 {
+    private static final Gson GSON = new Gson();
+
+
     private Utils()
     {
     }
 
 
 
+    /**
+     * Concatenate string with the specified delimiter.
+     *
+     * @param strings
+     *         Strings to be concatenated.
+     *
+     * @param delimiter
+     *         A delimiter used between strings. If {@code null} or an empty
+     *         string is given, delimiters are not inserted between strings.
+     *
+     * @return
+     *         A concatenated string. If {@code strings} is {@code null},
+     *         {@code null} is returned. If the size of {@code strings} is 0,
+     *         an empty string is returned.
+     */
     public static String join(String[] strings, String delimiter)
     {
         if (strings == null)
@@ -36,17 +57,50 @@ public class Utils
             return "";
         }
 
+        boolean useDelimiter = (delimiter != null && delimiter.length() != 0);
+
         StringBuilder sb = new StringBuilder();
 
         for (String string : strings)
         {
             sb.append(string);
-            sb.append(delimiter);
+
+            if (useDelimiter);
+            {
+                sb.append(delimiter);
+            }
         }
 
-        // Remove the last delimiter.
-        sb.setLength(sb.length() - delimiter.length());
+        if (useDelimiter && sb.length() != 0)
+        {
+            // Remove the last delimiter.
+            sb.setLength(sb.length() - delimiter.length());
+        }
 
         return sb.toString();
+    }
+
+
+    /**
+     * Convert the given object into a JSON string using
+     * <a href="https://github.com/google/gson">Gson</a>.
+     *
+     * @param object
+     *         The input object.
+     *
+     * @return
+     *         A JSON string. If {@code object} is {@code null},
+     *         {@code null} is returned.
+     *
+     * @since 1.24
+     */
+    public static String toJson(Object object)
+    {
+        if (object == null)
+        {
+            return null;
+        }
+
+        return GSON.toJson(object);
     }
 }

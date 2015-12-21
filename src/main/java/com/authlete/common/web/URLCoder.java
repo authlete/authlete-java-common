@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package com.authlete.common.web;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Map;
 
 
 /**
@@ -71,5 +72,75 @@ public class URLCoder
             // This never happens.
             return input;
         }
+    }
+
+
+    /**
+     * Convert the given map to a string in {@code x-www-form-urlencoded} format.
+     *
+     * @param parameters
+     *         Pairs of key and values.
+     *
+     * @return
+     *         A string in {@code x-www-form-urlencoded} format.
+     *         {@code null} is returned if {@code parameters} is {@code null}.
+     *
+     * @since 1.24
+     */
+    public static String formUrlEncode(Map<String, String[]> parameters)
+    {
+        if (parameters == null)
+        {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        // For each key-values pair.
+        for (Map.Entry<String, String[]> entry : parameters.entrySet())
+        {
+            // Key
+            String key = entry.getKey();
+
+            // If the key is invalid.
+            if (key == null || key.length() == 0)
+            {
+                continue;
+            }
+
+            // Encode the key.
+            key = encode(key);
+
+            // Values
+            String[] values = entry.getValue();
+
+            if (values == null || values.length == 0)
+            {
+                // Just append "{key}&".
+                sb.append(key).append("&");
+                continue;
+            }
+
+            // For each value of the key.
+            for (String value : values)
+            {
+                sb.append(key);
+
+                if (value != null && value.length() != 0)
+                {
+                    sb.append("=").append(encode(value));
+                }
+
+                sb.append("&");
+            }
+        }
+
+        if (sb.length() != 0)
+        {
+            // Drop the last &.
+            sb.setLength(sb.length() - 1);
+        }
+
+        return sb.toString();
     }
 }
