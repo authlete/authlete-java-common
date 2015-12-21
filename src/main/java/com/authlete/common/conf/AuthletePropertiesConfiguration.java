@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2015 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ import com.neovisionaries.security.AESCipher;
  * <dt><b>{@code base_url}</b></dt>
  * <dd>
  * The base URL of Authlete Web API. The default value is
- * {@code "https://authlete.appspot.com"}.
+ * {@code "https://api.authlete.com"}.
  * <br/><br/>
  * </dd>
  *
@@ -96,7 +96,7 @@ import com.neovisionaries.security.AESCipher;
  * </p>
  *
  * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
- * echo -n <i>"{Sevice-Owner-API-Secret}"</i> | openssl aes-128-cbc -e -a \
+ * echo -n <i>"{Service-Owner-API-Secret}"</i> | openssl aes-128-cbc -e -a \
  *   -K  <i>"{Your-Secret-Key-in-Hex}"</i> -iv <i>"{Your-Initial-Vector-in-Hex}"</i></pre>
  *
  * <p>
@@ -116,7 +116,7 @@ import com.neovisionaries.security.AESCipher;
  * </p>
  *
  * <p>
- * If you encrypt your service owner API secret and serivce API secret
+ * If you encrypt your service owner API secret and service API secret
  * as shown below:
  * </p>
  *
@@ -165,9 +165,30 @@ import com.neovisionaries.security.AESCipher;
 public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 {
     /**
-     * File name of the configuration file.
+     * The default value of the secret key to decode encrypted property values
+     * ({@code a281ac2de1195e8c91ea383d38d05d1c}).
+     *
+     * @since 1.24
      */
-    private static final String CONFIGURATION_FILE = "authlete.properties";
+    public static final String DEFAULT_KEY = "a281ac2de1195e8c91ea383d38d05d1c";
+
+
+    /**
+     * The default value of the initial vector to decode encrypted property values
+     * ({@code b6f5d0f0dd7146b0e3915ebd2dd078f3}).
+     *
+     * @since 1.24
+     */
+    public static final String DEFAULT_IV = "b6f5d0f0dd7146b0e3915ebd2dd078f3";
+
+
+    /**
+     * The default value of the name of the configuration file
+     * ({@code authlete.properties}).
+     *
+     * @since 1.24
+     */
+    public static final String DEFAULT_FILE = "authlete.properties";
 
 
     /**
@@ -219,9 +240,9 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
 
     /**
-     * The default value of the base URL ({@code https://authlete.appspot.com}).
+     * The default value of the base URL ({@code https://api.authlete.com}).
      */
-    private static final String BASE_URL_DEFAULT = "https://authlete.appspot.com";
+    private static final String BASE_URL_DEFAULT = "https://api.authlete.com";
 
 
     /**
@@ -255,11 +276,12 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
 
     /**
-     * Constructor.
+     * Constructor with a pair of secret key and initial vector to decode
+     * encrypted property values.
      *
      * <p>
-     * This constructor is an alias of {@link #AuthletePropertiesConfiguration(String, String, String)
-     * this("authlete.properties", key, iv)}.
+     * This constructor is an alias of {@link #AuthletePropertiesConfiguration(
+     * String, String, String) this}{@code (}{@link #DEFAULT_FILE}{@code , key, iv)}.
      * </p>
      *
      * @param key
@@ -272,7 +294,6 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      *
      * @throws IllegalArgumentException
      *         <ul>
-     *         <li>{@code file} is {@code null}
      *         <li>{@code key} is {@code null}
      *         <li>{@code iv} is {@code null}
      *         </ul>
@@ -285,16 +306,17 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      */
     public AuthletePropertiesConfiguration(String key, String iv)
     {
-        this(CONFIGURATION_FILE, key, iv);
+        this(DEFAULT_FILE, key, iv);
     }
 
 
     /**
-     * Constructor.
+     * Constructor with a pair of secret key and initial vector to decode
+     * encrypted property values.
      *
      * <p>
-     * This constructor is an alias of {@link #AuthletePropertiesConfiguration(String, byte[], byte[])
-     * this("authlete.properties", key, iv)}.
+     * This constructor is an alias of {@link #AuthletePropertiesConfiguration(
+     * String, byte[], byte[]) this}{@code (}{@link #DEFAULT_FILE}{@code , key, iv)}.
      * </p>
      *
      * @param key
@@ -311,12 +333,13 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      */
     public AuthletePropertiesConfiguration(byte[] key, byte[] iv)
     {
-        this(CONFIGURATION_FILE, key, iv);
+        this(DEFAULT_FILE, key, iv);
     }
 
 
     /**
-     * Constructor.
+     * Constructor with a configuration file name and a pair of secret key
+     * and initial vector to decode encrypted property values.
      *
      * @param file
      *         The name of the configuration file. The file system and then
@@ -350,7 +373,49 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
 
     /**
-     * Constructor.
+     * Constructor with a configuration file name.
+     *
+     * <p>
+     * This constructor is an alias of {@link #AuthletePropertiesConfiguration(
+     * String, String, String) this}{@code (file, }{@link #DEFAULT_KEY}{@code
+     * , }{@link #DEFAULT_IV}{@code )}.
+     * </p>
+     *
+     * @param file
+     *         The name of the configuration file. The file system and then
+     *         the classpath are searched for the file.
+     *
+     * @throws IllegalArgumentException
+     *         {@code file} is {@code null}.
+     *
+     * @since 1.24
+     */
+    public AuthletePropertiesConfiguration(String file)
+    {
+        this(file, DEFAULT_KEY, DEFAULT_IV);
+    }
+
+
+    /**
+     * Constructor with no argument.
+     *
+     * <p>
+     * This constructor is an alias of {@link #AuthletePropertiesConfiguration(
+     * String, String, String) this}{@code (}{@link #DEFAULT_FILE}{@code , }{@link
+     * #DEFAULT_KEY}{@code , }{@link #DEFAULT_IV}{@code )}.
+     * </p>
+     *
+     * @since 1.24
+     */
+    public AuthletePropertiesConfiguration()
+    {
+        this(DEFAULT_FILE, DEFAULT_KEY, DEFAULT_IV);
+    }
+
+
+    /**
+     * Constructor with a configuration file name and a pair of secret key
+     * and initial vector to decode encrypted property values.
      *
      * @param file
      *         The name of the configuration file. The file system and then
