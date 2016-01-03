@@ -36,11 +36,19 @@ import com.authlete.common.util.Utils;
  * </p>
  * </dd>
  *
- * <dt><b><code>subject</code></b> (REQUIRED)</dt>
+ * <dt><b><code>subject</code></b> (CONDITIONALLY REQUIRED)</dt>
  * <dd>
  * <p>
  * The subject (= a user account managed by the service) who has
- * granted authorization to the client application.
+ * granted authorization to the client application. This parameter
+ * is required unless the authorization request has come with
+ * {@code response_type=none} (which means the client application
+ * did not request any token to be returned). See "<a href=
+ * "http://openid.net/specs/oauth-v2-multiple-response-types-1_0.html#none"
+ * >4. None Response Type</a>" in <a href=
+ * "http://openid.net/specs/oauth-v2-multiple-response-types-1_0.html"
+ * >OAuth 2.0 Multiple Response Type Encoding Practices</a> for
+ * details about {@code response_type=none}.
  * </p>
  * </dd>
  *
