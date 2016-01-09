@@ -19,6 +19,7 @@ package com.authlete.common.web;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.List;
 import java.util.Map;
 
 
@@ -79,7 +80,8 @@ public class URLCoder
      * Convert the given map to a string in {@code x-www-form-urlencoded} format.
      *
      * @param parameters
-     *         Pairs of key and values.
+     *         Pairs of key and values. The type of values must be either
+     *         {@code String[]} or {@code List<String>}.
      *
      * @return
      *         A string in {@code x-www-form-urlencoded} format.
@@ -87,7 +89,7 @@ public class URLCoder
      *
      * @since 1.24
      */
-    public static String formUrlEncode(Map<String, String[]> parameters)
+    public static String formUrlEncode(Map<String, ?> parameters)
     {
         if (parameters == null)
         {
@@ -97,42 +99,18 @@ public class URLCoder
         StringBuilder sb = new StringBuilder();
 
         // For each key-values pair.
-        for (Map.Entry<String, String[]> entry : parameters.entrySet())
+        for (Map.Entry<String, ?> entry : parameters.entrySet())
         {
-            // Key
-            String key = entry.getKey();
+            String key    = entry.getKey();
+            Object values = entry.getValue();
 
-            // If the key is invalid.
-            if (key == null || key.length() == 0)
+            if (values instanceof List)
             {
-                continue;
+                List<?> list = (List<?>)values;
+                values = list.toArray(new String[list.size()]);
             }
 
-            // Encode the key.
-            key = encode(key);
-
-            // Values
-            String[] values = entry.getValue();
-
-            if (values == null || values.length == 0)
-            {
-                // Just append "{key}&".
-                sb.append(key).append("&");
-                continue;
-            }
-
-            // For each value of the key.
-            for (String value : values)
-            {
-                sb.append(key);
-
-                if (value != null && value.length() != 0)
-                {
-                    sb.append("=").append(encode(value));
-                }
-
-                sb.append("&");
-            }
+            appendParameters(sb, key, (String[])values);
         }
 
         if (sb.length() != 0)
@@ -142,5 +120,38 @@ public class URLCoder
         }
 
         return sb.toString();
+    }
+
+
+    private static void appendParameters(StringBuilder sb, String key, String[] values)
+    {
+        // If the key is invalid.
+        if (key == null || key.length() == 0)
+        {
+            return;
+        }
+
+        // Encode the key.
+        key = encode(key);
+
+        if (values == null || values.length == 0)
+        {
+            // Just append "{key}&".
+            sb.append(key).append("&");
+            return;
+        }
+
+        // For each value of the key.
+        for (String value : values)
+        {
+            sb.append(key);
+
+            if (value != null && value.length() != 0)
+            {
+                sb.append("=").append(encode(value));
+            }
+
+            sb.append("&");
+        }
     }
 }
