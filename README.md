@@ -109,7 +109,7 @@ method. This method searches the file system and the classpath for a properties
 file named `authlete.properties` and loads the content of the file using
 `AuthletePropertiesConfiguration` class.
 
-```
+```java
 // Search the file system and the classpath for "authlete.properties".
 AuthleteApi api = DefaultApiFactory.getInstance();
 ```
@@ -152,14 +152,15 @@ values. See the [JavaDoc][8] for details.
 
 As a matter of fact, authlete-java-common library does NOT include any
 implementation of `AuthleteApi` interface. Therefore, you need another library
-that includes an implementation of `AuthleteApi` interface. At the time of this
+that contains an implementation of `AuthleteApi` interface. At the time of this
 writing, [authlete-java-jaxrs][7] is the only such library.
 
 `AuthleteApiFactory.getInstance()` method searches known locations for an
-`AuthleteApi` implementation using reflection to avoid depending on specific
-implementations (e.g. JAX-RS based implementation in authlete-java-jaxrs). And,
-at the time of this writing, `com.authlete.jaxrs.api.AuthleteApiImpl` is the
-only entry in the internal list of known locations of implementation classes.
+`AuthleteApi` implementation using reflection. The reason reflection is used is
+to avoid depending on specific implementations (e.g. JAX-RS based implementation
+in authlete-java-jaxrs). And, at the time of this writing,
+`com.authlete.jaxrs.api.AuthleteApiImpl` is the only entry in the internal list
+of known locations of implementation classes.
 
 
 #### AuthleteApi Method Categories
@@ -212,7 +213,8 @@ Methods in `AuthleteApi` interface can be divided into some categories.
     - `getServiceJwks()`
 
 
-#### Examples
+Examples
+--------
 
 The following code snippet is an example to get the list of the existing services
 (each of which represents an authorization server) of yours.
@@ -224,6 +226,15 @@ AuthleteApi api = DefaultApiFactory.getInstance();
 // Get the list of services.
 ServiceListResponse response = api.getServiceList();
 ```
+
+
+Note
+----
+
+You can write an authorization server using the methods in `AuthleteApi`
+interface only, but the task will become much easier if you use utility classes
+in [authlete-java-jaxrs][7] library. See [java-oauth-server][6] for an example of
+an authorization server implementation using the utility classes.
 
 
 See Also
