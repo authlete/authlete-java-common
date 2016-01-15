@@ -11,7 +11,7 @@ This is a wrapper library for [Authlete Web APIs][2].
 provided by Authlete, you can build a _DB-less_ authorization server.
 "DB-less" here means that you don't have to prepare a database server that
 stores authorization data (e.g. access tokens), settings of authorization
-servers and settings of client applications because they are stored in the
+servers and settings of client applications. These data are stored in the
 Authlete server on cloud.
 
 [java-oauth-server][6] is the reference implementation of an authorization
@@ -90,14 +90,14 @@ authlete-java-common library includes three implementations of
 | `AuthleteSimpleConfiguration`     | Configuration via POJO                  |
 
 You can use one of these or create your own implementation of the interface. In
-either case, you can get an implementation of `AutleteApi` interface by passing
+either case, you can get an implementation of `AuthleteApi` interface by passing
 an `AuthleteConfiguration` instance to `getInstance()` method of
 `AuthleteApiFactory` class.
 
 In summary, the flow to get an implementation of `AuthleteApi` becomes like below.
 
 ```java
-// Get an instance of AuthleteConfiguration interface.
+// Prepare an instance of AuthleteConfiguration interface.
 AuthleteConfiguration configuration = ...;
 
 // Get an instance of AuthleteApi interface.
@@ -114,9 +114,9 @@ file named `authlete.properties` and loads the content of the file using
 AuthleteApi api = DefaultApiFactory.getInstance();
 ```
 
-`DefaultApiFactory.getInstance()` method caches the result, so you can call the
-method as many times as you like without worrying about the overhead of file
-loading.
+`DefaultApiFactory.getInstance()` method caches the search result, so you can
+call th emethod as many times as you like without worrying about the overhead of
+file loading.
 
 
 #### AuthletePropertiesConfiguration
@@ -156,9 +156,9 @@ that contains an implementation of `AuthleteApi` interface. At the time of this
 writing, [authlete-java-jaxrs][7] is the only such library.
 
 `AuthleteApiFactory.getInstance()` method searches known locations for an
-`AuthleteApi` implementation using reflection. The reason reflection is used is
-to avoid depending on specific implementations (e.g. JAX-RS based implementation
-in authlete-java-jaxrs). And, at the time of this writing,
+`AuthleteApi` implementation and loads one using reflection. The reason to use
+reflection is to avoid depending on specific implementations (e.g. JAX-RS based
+implementation in authlete-java-jaxrs). And again, at the time of this writing,
 `com.authlete.jaxrs.api.AuthleteApiImpl` is the only entry in the internal list
 of known locations of implementation classes.
 
@@ -216,8 +216,8 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 Examples
 --------
 
-The following code snippet is an example to get the list of the existing services
-(each of which represents an authorization server) of yours.
+The following code snippet is an example to get the list of your existing
+services. Each service corresponds to an authorization server.
 
 ```java
 // Get an implementation of AuthleteApi interface.
@@ -234,7 +234,7 @@ Note
 You can write an authorization server using the methods in `AuthleteApi`
 interface only, but the task will become much easier if you use utility classes
 in [authlete-java-jaxrs][7] library. See [java-oauth-server][6] for an example of
-an authorization server implementation using the utility classes.
+an authorization server implementation written using the utility classes.
 
 
 See Also
