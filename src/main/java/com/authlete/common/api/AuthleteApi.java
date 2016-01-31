@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -301,6 +301,14 @@ public interface AuthleteApi
     /**
      * Get the JWK Set of a service.
      *
+     * <p>
+     * You can register either or both (1) the content of a JWK set and
+     * (2) the URI of a JWK set. The table below describes how registration
+     * combinations affect the response from this method. For example, the
+     * table indicates that the content of the JWK Set is returned with a
+     * status code 200 if both (content and URI) are registered.
+     * </p>
+     *
      * <blockquote>
      * <table border="1" cellpadding="5" style="border-collapse: collapse;">
      *   <thread>
@@ -370,6 +378,30 @@ public interface AuthleteApi
      * @since 1.13
      */
     String getServiceJwks() throws AuthleteApiException;
+
+
+    /**
+     * Get the configuration of the service in JSON format that complies with
+     * <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
+     * >OpenID Connect Discovery 1.0</a>.
+     *
+     * <p>
+     * The value returned from this method can be used as the response body
+     * from {@code /.well-known/openid-configuration}. See "<a href=
+     * "http://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig"
+     * >4. Obtaining OpenID Provider Configuration Information</a>" in OpenID
+     * Connect Discovery 1.0 for details.
+     * </p>
+     *
+     * @return
+     *         The configuration of the service in JSON format.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
+     *      >OpenID Connect Discovery 1.0</a>
+     *
+     * @since 1.27
+     */
+    String getServiceConfiguration() throws AuthleteApiException;
 
 
     /**
