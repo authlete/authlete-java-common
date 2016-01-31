@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.26</version>
+    <version>1.27</version>
 </dependency>
 ```
 
@@ -38,13 +38,13 @@ Maven
 ソースコード
 ------------
 
-  https://github.com/authlete/authlete-java-common
+  <code>https://github.com/authlete/authlete-java-common</code>
 
 
 JavaDoc
 -------
 
-  http://authlete.github.io/authlete-java-common/
+  <code>http://authlete.github.io/authlete-java-common/</code>
 
 
 説明
@@ -203,6 +203,10 @@ API シークレットを平文で書きたくなければ、`*.api_secret` キ�
   8. JWK セットエンドポイント実装のためのメソッド群
 
     - `getServiceJwks()`
+
+  9. OpenID Connect Discovery のためのメソッド群
+
+    - `getServiceConfiguration()`
 
 
 例

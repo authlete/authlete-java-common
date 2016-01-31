@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.26</version>
+    <version>1.27</version>
 </dependency>
 ```
 
@@ -40,13 +40,13 @@ Maven
 Source Code
 -----------
 
-  https://github.com/authlete/authlete-java-common
+  <code>https://github.com/authlete/authlete-java-common</code>
 
 
 JavaDoc
 -------
 
-  http://authlete.github.io/authlete-java-common/
+  <code>http://authlete.github.io/authlete-java-common/</code>
 
 
 Description
@@ -211,6 +211,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   8. Methods for JWK Set Endpoint Implementation
 
     - `getServiceJwks()`
+
+  9. Methods for OpenID Connect Discovery
+
+    - `getServiceConfiguration()`
 
 
 Examples
