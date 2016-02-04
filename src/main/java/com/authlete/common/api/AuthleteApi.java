@@ -302,6 +302,26 @@ public interface AuthleteApi
      * Get the JWK Set of a service.
      *
      * <p>
+     * This method is an alias of {@link #getServiceJwks(boolean, boolean)
+     * getServiceJwks}{@code (true, false)}.
+     * </p>
+     *
+     * @return
+     *         JSON representation of the JWK Set of the service.
+     *         {@code null} is returned when the service has registered
+     *         neither content or URI of its JWK Set.
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc7517">RFC 7517: JSON Web Key (JWK)</a>
+     *
+     * @since 1.13
+     */
+    String getServiceJwks() throws AuthleteApiException;
+
+
+    /**
+     * Get the JWK Set of a service.
+     *
+     * <p>
      * You can register either or both (1) the content of a JWK set and
      * (2) the URI of a JWK set. The table below describes how registration
      * combinations affect the response from this method. For example, the
@@ -360,13 +380,21 @@ public interface AuthleteApi
      *     </tr>
      *   </tbody>
      * </table>
-     * <p>
-     * * 302 Found is returned when the request URI and the registered JWK Set URI
-     *   are different. In this case, {@code Location} header contains the registered
-     *   JWK Set URI. If you need the value of the URI, catch {@link AuthleteApiException}
-     *   and call {@link AuthleteApiException#getResponseHeaders() getResponseHeaders()}.
-     * </p>
      * </blockquote>
+     *
+     * <p>
+     * 302 Found is returned when the request URI and the registered JWK Set URI
+     * are different. In this case, {@code Location} header contains the registered
+     * JWK Set URI. If you need the value of the URI, catch {@link AuthleteApiException}
+     * and call {@link AuthleteApiException#getResponseHeaders() getResponseHeaders()}.
+     * </p>
+     *
+     * @param pretty
+     *         {@code true} to get the JSON in pretty format.
+     *
+     * @param includePrivateKeys
+     *         {@code true} to keep private keys in the JSON. {@code false} to
+     *         remove private keys.
      *
      * @return
      *         JSON representation of the JWK Set of the service.
@@ -375,9 +403,30 @@ public interface AuthleteApi
      *
      * @see <a href="https://tools.ietf.org/html/rfc7517">RFC 7517: JSON Web Key (JWK)</a>
      *
-     * @since 1.13
+     * @since 1.28
      */
-    String getServiceJwks() throws AuthleteApiException;
+    String getServiceJwks(boolean pretty, boolean includePrivateKeys) throws AuthleteApiException;
+
+
+    /**
+     * Get the configuration of the service in JSON format that complies with
+     * <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
+     * >OpenID Connect Discovery 1.0</a>.
+     *
+     * <p>
+     * This method is an alias of {@link #getService(long)
+     * getServiceConfiguration}{@code (true)}.
+     * </p>
+     *
+     * @return
+     *         The configuration of the service in JSON format.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
+     *      >OpenID Connect Discovery 1.0</a>
+     *
+     * @since 1.27
+     */
+    String getServiceConfiguration() throws AuthleteApiException;
 
 
     /**
@@ -393,15 +442,18 @@ public interface AuthleteApi
      * Connect Discovery 1.0 for details.
      * </p>
      *
+     * @param pretty
+     *         {@code true} to get the JSON in pretty format.
+     *
      * @return
      *         The configuration of the service in JSON format.
      *
      * @see <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
      *      >OpenID Connect Discovery 1.0</a>
      *
-     * @since 1.27
+     * @since 1.28
      */
-    String getServiceConfiguration() throws AuthleteApiException;
+    String getServiceConfiguration(boolean pretty) throws AuthleteApiException;
 
 
     /**
