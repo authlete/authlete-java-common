@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.authlete.common.api;
 
 import java.lang.reflect.Constructor;
 import com.authlete.common.conf.AuthleteConfiguration;
+import com.authlete.common.conf.AuthletePropertiesConfiguration;
 
 
 /**
@@ -35,6 +36,12 @@ public class AuthleteApiFactory
     };
 
 
+    /**
+     * The default {@link AuthleteApi} instance.
+     */
+    private static AuthleteApi sDefaultApi;
+
+
     private AuthleteApiFactory()
     {
     }
@@ -44,7 +51,7 @@ public class AuthleteApiFactory
      * Create an instance of {@link AuthleteApi}.
      *
      * <p>
-     * This method repeats to call {@link #getInstance(AuthleteConfiguration, String)}
+     * This method repeats to call {@link #create(AuthleteConfiguration, String)}
      * until one of the known classes is successfully instantiated.
      * </p>
      *
@@ -66,13 +73,13 @@ public class AuthleteApiFactory
      *         that implement {@code AuthleteApi} interface was successfully
      *         instantiated, {@code null} is returned.
      */
-    public static AuthleteApi getInstance(AuthleteConfiguration configuration)
+    public static AuthleteApi create(AuthleteConfiguration configuration)
     {
         for (String className : sKnownImpls)
         {
             try
             {
-                return getInstance(configuration, className);
+                return create(configuration, className);
             }
             catch (Exception e)
             {
@@ -112,7 +119,7 @@ public class AuthleteApiFactory
      * @throws IllegalStateException
      *         The constructor of the specified class threw an exception.
      */
-    public static AuthleteApi getInstance(AuthleteConfiguration configuration, String className)
+    public static AuthleteApi create(AuthleteConfiguration configuration, String className)
     {
         if (configuration == null)
         {
@@ -163,5 +170,50 @@ public class AuthleteApiFactory
         }
 
         return api;
+    }
+
+
+    /**
+     * Get the default instance of {@link AuthleteApi}.
+     *
+     * <p>
+     * This method loads a configuration file (using {@link
+     * AuthletePropertiesConfiguration}) on the first call, creates
+     * an instance of {@link AuthleteApi} and caches the instance.
+     * The second and subsequent calls return the cached instance.
+     * </p>
+     *
+     * <p>
+     * The default name of the configuration file is {@code
+     * authlete.properties}, but it can be changed by a system property
+     * {@code authlete.configuration.file}. The current directory and
+     * the classpath are searched for the configuration file in this order.
+     * </p>
+     *
+     * @return
+     *         An instance of {@code AuthleteApi}.
+     */
+    public static AuthleteApi getDefaultApi()
+    {
+        if (sDefaultApi != null)
+        {
+            return sDefaultApi;
+        }
+
+        synchronized (AuthleteApiFactory.class)
+        {
+            if (sDefaultApi != null)
+            {
+                return sDefaultApi;
+            }
+
+            // Load an Authlete configuration file.
+            AuthleteConfiguration ac = new AuthletePropertiesConfiguration();
+
+            // Create an AuthleteApi instance using the configuration.
+            sDefaultApi = create(ac);
+
+            return sDefaultApi;
+        }
     }
 }

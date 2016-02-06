@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -192,6 +192,19 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
 
     /**
+     * The system property key to specify the name of an Authlete
+     * configuration file ({@code authlete.configuration.file}).
+     * When this system property has a value, it is used as the name
+     * of the configuration file. Otherwise, the default file
+     * ({@code authlete.properties}) is used.
+     *
+     * @since 1.29
+     */
+    public static final String SYSTEM_PROPERTY_AUTHLETE_CONFIGURATION_FILE =
+        "authlete.configuration.file";
+
+
+    /**
      * Property key to specify the base URL ({@code base_url}).
      */
     private static final String PROPERTY_KEY_BASE_URL = "base_url";
@@ -281,7 +294,11 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      *
      * <p>
      * This constructor is an alias of {@link #AuthletePropertiesConfiguration(
-     * String, String, String) this}{@code (}{@link #DEFAULT_FILE}{@code , key, iv)}.
+     * String, String, String) this}<code>(<i>file</i>, key, iv)</code> where
+     * <code><i>file</i></code> is either {@link #DEFAULT_FILE
+     * authlete.properties} or the value of the system property {@link
+     * #SYSTEM_PROPERTY_AUTHLETE_CONFIGURATION_FILE authlete.configuration.file}
+     * if the value is not empty.
      * </p>
      *
      * @param key
@@ -306,7 +323,7 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      */
     public AuthletePropertiesConfiguration(String key, String iv)
     {
-        this(DEFAULT_FILE, key, iv);
+        this(getFile(), key, iv);
     }
 
 
@@ -316,7 +333,11 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      *
      * <p>
      * This constructor is an alias of {@link #AuthletePropertiesConfiguration(
-     * String, byte[], byte[]) this}{@code (}{@link #DEFAULT_FILE}{@code , key, iv)}.
+     * String, byte[], byte[]) this}<code>(<i>file</i>, key, iv)</code> where
+     * <code><i>file</i></code> is either {@link #DEFAULT_FILE
+     * authlete.properties} or the value of the system property {@link
+     * #SYSTEM_PROPERTY_AUTHLETE_CONFIGURATION_FILE authlete.configuration.file}
+     * if the value is not empty.
      * </p>
      *
      * @param key
@@ -333,7 +354,7 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      */
     public AuthletePropertiesConfiguration(byte[] key, byte[] iv)
     {
-        this(DEFAULT_FILE, key, iv);
+        this(getFile(), key, iv);
     }
 
 
@@ -401,15 +422,19 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      *
      * <p>
      * This constructor is an alias of {@link #AuthletePropertiesConfiguration(
-     * String, String, String) this}{@code (}{@link #DEFAULT_FILE}{@code , }{@link
-     * #DEFAULT_KEY}{@code , }{@link #DEFAULT_IV}{@code )}.
+     * String, String, String) this}<code>(<i>file</i>, </code>{@link
+     * #DEFAULT_KEY}{@code , }{@link #DEFAULT_IV}{@code )} where
+     * <code><i>file</i></code> is either {@link #DEFAULT_FILE
+     * authlete.properties} or the value of the system property {@link
+     * #SYSTEM_PROPERTY_AUTHLETE_CONFIGURATION_FILE authlete.configuration.file}
+     * if the value is not empty.
      * </p>
      *
      * @since 1.24
      */
     public AuthletePropertiesConfiguration()
     {
-        this(DEFAULT_FILE, DEFAULT_KEY, DEFAULT_IV);
+        this(getFile(), DEFAULT_KEY, DEFAULT_IV);
     }
 
 
@@ -479,6 +504,21 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
         {
             mServiceApiSecret = props.getString(PROPERTY_KEY_SERVICE_API_SECRET);
         }
+    }
+
+
+    private static String getFile()
+    {
+        // The name of the authlete configuration file specified via the system property.
+        String file = System.getProperty(SYSTEM_PROPERTY_AUTHLETE_CONFIGURATION_FILE);
+
+        if (file != null && file.length() != 0)
+        {
+            return file;
+        }
+
+        // The default file name.
+        return DEFAULT_FILE;
     }
 
 
