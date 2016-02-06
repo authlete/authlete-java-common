@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.28</version>
+    <version>1.29</version>
 </dependency>
 ```
 
@@ -56,15 +56,15 @@ Description
 
 All the methods to communicate with [Authlete Web APIs][2] are gathered in
 `AuthleteApi` interface. To get an implementation of the interface, you need to
-call `getInstance()` method of `AuthleteApiFactory` class. There are two variants
+call `create()` method of `AuthleteApiFactory` class. There are two variants
 of the method as shown below.
 
 ```java
 public static AuthleteApi
-    getInstance(AuthleteConfiguration configuration);
+    create(AuthleteConfiguration configuration);
 
 public static AuthleteApi
-    getInstance(AuthleteConfiguration configuration, String className);
+    create(AuthleteConfiguration configuration, String className);
 ```
 
 As you can see, both methods take `AuthleteConfiguration` as their first argument.
@@ -91,8 +91,8 @@ authlete-java-common library includes three implementations of
 
 You can use one of these or create your own implementation of the interface. In
 either case, you can get an implementation of `AuthleteApi` interface by passing
-an `AuthleteConfiguration` instance to `getInstance()` method of
-`AuthleteApiFactory` class.
+an `AuthleteConfiguration` instance to `create()` method of `AuthleteApiFactory`
+class.
 
 In summary, the flow to get an implementation of `AuthleteApi` becomes like below.
 
@@ -101,20 +101,20 @@ In summary, the flow to get an implementation of `AuthleteApi` becomes like belo
 AuthleteConfiguration configuration = ...;
 
 // Get an instance of AuthleteApi interface.
-AuthleteApi api = AuthleteApiFactory.getInstance(configuration);
+AuthleteApi api = AuthleteApiFactory.create(configuration);
 ```
 
-If you want to do it in an easier way, use `DefaultApiFactory.getInstance()`
+If you want to do it in an easier way, use `AuthleteApiFactory.getDefaultApi()`
 method. This method searches the file system and the classpath for a properties
 file named `authlete.properties` and loads the content of the file using
 `AuthletePropertiesConfiguration` class.
 
 ```java
 // Search the file system and the classpath for "authlete.properties".
-AuthleteApi api = DefaultApiFactory.getInstance();
+AuthleteApi api = AuthleteApiFactory.getDefaultApi();
 ```
 
-`DefaultApiFactory.getInstance()` method caches the search result, so you can
+`AuthleteApiFactory.getDefaultApi()` method caches the search result, so you can
 call th emethod as many times as you like without worrying about the overhead of
 file loading.
 
@@ -155,7 +155,7 @@ implementation of `AuthleteApi` interface. Therefore, you need another library
 that contains an implementation of `AuthleteApi` interface. At the time of this
 writing, [authlete-java-jaxrs][7] is the only such library.
 
-`AuthleteApiFactory.getInstance()` method searches known locations for an
+`AuthleteApiFactory.create()` method searches known locations for an
 `AuthleteApi` implementation and loads one using reflection. The reason to use
 reflection is to avoid depending on specific implementations (e.g. JAX-RS based
 implementation in authlete-java-jaxrs). And again, at the time of this writing,
@@ -225,7 +225,7 @@ services. Each service corresponds to an authorization server.
 
 ```java
 // Get an implementation of AuthleteApi interface.
-AuthleteApi api = DefaultApiFactory.getInstance();
+AuthleteApi api = AuthleteApiFactory.getDefaultApi();
 
 // Get the list of services.
 ServiceListResponse response = api.getServiceList();

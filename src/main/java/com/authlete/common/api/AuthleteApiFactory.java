@@ -192,6 +192,8 @@ public class AuthleteApiFactory
      *
      * @return
      *         An instance of {@code AuthleteApi}.
+     *
+     * @since 1.29
      */
     public static AuthleteApi getDefaultApi()
     {

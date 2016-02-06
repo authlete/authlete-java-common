@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.28</version>
+    <version>1.29</version>
 </dependency>
 ```
 
@@ -53,15 +53,15 @@ JavaDoc
 #### AuthleteApi の取得方法
 
 [Authlete Web API][2] とやりとりするメソッドは全て `AuthleteApi` インターフェースに集められています。
-`AuthleteApiFactory` クラスの `getInstance()` メソッドを呼ぶと、`AuthleteApi` の実装を取得できます。
+`AuthleteApiFactory` クラスの `create()` メソッドを呼ぶと、`AuthleteApi` の実装を取得できます。
 このメソッドには二つのバリアントがあります。
 
 ```java
 public static AuthleteApi
-    getInstance(AuthleteConfiguration configuration);
+    create(AuthleteConfiguration configuration);
 
 public static AuthleteApi
-    getInstance(AuthleteConfiguration configuration, String className);
+    create(AuthleteConfiguration configuration, String className);
 ```
 
 どちらのメソッドも `AuthleteConfiguration` を第一引数として受け取ります。
@@ -87,7 +87,7 @@ authlete-java-common ライブラリには、`AuthleteConfiguration` インタ�
 
 これらの実装を使うこともできますし、インターフェースの実装を自分で作成することもできます。
 いずれにしても、`AuthleteConfiguration` インスタンスを `AuthleteApiFactory` クラスの
-`getInstance()` メソッドに渡すことで、`AuthleteApi` の実装を取得することができます。
+`create()` メソッドに渡すことで、`AuthleteApi` の実装を取得することができます。
 
 まとめると、`AuthleteApi` の実装を取得する流れは次のようになります。
 
@@ -96,20 +96,20 @@ authlete-java-common ライブラリには、`AuthleteConfiguration` インタ�
 AuthleteConfiguration configuration = ...;
 
 // AuthleteApi インターフェースのインスタンスを取得する。
-AuthleteApi api = AuthleteApiFactory.getInstance(configuration);
+AuthleteApi api = AuthleteApiFactory.create(configuration);
 ```
 
-より簡単な方法がよければ、`DefaultApiFactory.getInstance()` メソッドを使用してください。
+より簡単な方法がよければ、`AuthleteApiFactory.getDefaultApi()` メソッドを使用してください。
 このメソッドは、ファイルシステムとクラスパスから、`authlete.properties`
 という名前のプロパティーファイルを探し、`AuthletePropertiesConfiguration`
 クラスを使ってそのファイルの内容を読み込みます。
 
 ```java
 //ファイルシステムとクラスパスから "authlete.properties" を探す。
-AuthleteApi api = DefaultApiFactory.getInstance();
+AuthleteApi api = AuthleteApiFactory.getDefaultApi();
 ```
 
-`DefaultApiFactory.getInstance()` メソッドは結果をキャッシュするので、
+`AuthleteApiFactory.getDefaultApi()` メソッドは結果をキャッシュするので、
 ファイルを読み込む処理のオーバーヘッドを気にせずに何回でも呼ぶことができます。
 
 
@@ -148,7 +148,7 @@ API シークレットを平文で書きたくなければ、`*.api_secret` キ�
 ですので、`AuthleteApi` インターフェースの実装を含む別のライブラリが必要となります。
 この文章を書いている時点では、[authlete-java-jaxrs][7] だけが該当するライブラリです。
 
-`AuthleteApiFactory.getInstance()` メソッドは既知の場所を探し、`AuhleteApi`
+`AuthleteApiFactory.create()` メソッドは既知の場所を探し、`AuhleteApi`
 の実装をリフレクションを使ってロードします。 リフレクションを使用する理由は、特定の実装
 (例えば authlete-java-jaxrs 内の JAX-RS ベースの実装) に依存しないようにするためです。
 そしてまた、この文章を書いている時点では、実装クラスの既知の場所として内部リストに入っているのは
@@ -217,7 +217,7 @@ API シークレットを平文で書きたくなければ、`*.api_secret` キ�
 
 ```java
 // AuthleteApi インターフェースの実装を取得する。
-AuthleteApi api = DefaultApiFactory.getInstance();
+AuthleteApi api = AuthleteApiFactory.getDefaultApi();
 
 // サービスのリストを取得する。
 ServiceListResponse response = api.getServiceList();
