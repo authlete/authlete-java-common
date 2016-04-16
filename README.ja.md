@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.29</version>
+    <version>1.30</version>
 </dependency>
 ```
 
@@ -208,6 +208,10 @@ API シークレットを平文で書きたくなければ、`*.api_secret` キ�
 
     - `getServiceConfiguration()`
 
+  10. その他
+
+    - `tokenCreate()`
+      OAuth フローをエミュレートしてアクセストークンを作成する。
 
 例
 --

@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.29</version>
+    <version>1.30</version>
 </dependency>
 ```
 
@@ -216,6 +216,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
     - `getServiceConfiguration()`
 
+  10. Others
+
+    - `tokenCreate()`
+      Create an access token by emulating an OAuth flow.
 
 Examples
 --------
