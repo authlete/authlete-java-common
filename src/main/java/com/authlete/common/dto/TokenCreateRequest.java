@@ -370,7 +370,9 @@ public class TokenCreateRequest implements Serializable
      * <p>
      * Keys listed below should not be used and they would be ignored on
      * the server side even if they were used. It's because they are reserved
-     * in <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.
+     * in <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a> and
+     * <a href="http://openid.net/specs/openid-connect-core-1_0.html"
+     * >OpenID Connect Core 1.0</a>.
      * </p>
      *
      * <ul>
@@ -382,6 +384,7 @@ public class TokenCreateRequest implements Serializable
      *   <li>{@code error}
      *   <li>{@code error_description}
      *   <li>{@code error_uri}
+     *   <li>{@code id_token}
      * </ul>
      *
      * <p>
