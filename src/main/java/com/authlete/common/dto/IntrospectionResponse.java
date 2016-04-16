@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -198,7 +198,7 @@ package com.authlete.common.dto;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -245,7 +245,8 @@ public class IntrospectionResponse extends ApiResponse
 
     private static final String SUMMARY_FORMAT
         = "action=%s, clientId=%d, subject=%s, existent=%s, "
-        + "usable=%s, sufficient=%s, refreshable=%s, expiresAt=%d, scopes=%s";
+        + "usable=%s, sufficient=%s, refreshable=%s, expiresAt=%d, "
+        + "scopes=%s, properties=%s";
 
 
     /**
@@ -307,6 +308,12 @@ public class IntrospectionResponse extends ApiResponse
      * The time at which the access token expires.
      */
     private long expiresAt;
+
+
+    /**
+     * Extra properties associated with the access token.
+     */
+    private String[][] properties;
 
 
     /**
@@ -532,13 +539,45 @@ public class IntrospectionResponse extends ApiResponse
 
 
     /**
+     * Get the extra properties associated with the access token.
+     *
+     * @return
+     *         Extra properties. Each property is a pair of a string key
+     *         and a string value. This method returns {@code null} when
+     *         no extra property is associated with the access token.
+     *
+     * @since 1.30
+     */
+    public String[][] getProperties()
+    {
+        return properties;
+    }
+
+
+    /**
+     * Set the extra properties associated with the access token.
+     *
+     * @param properties
+     *         Extra properties. Each property should be a pair of
+     *         a string key and a string value.
+     *
+     * @since 1.30
+     */
+    public void setProperties(String[][] properties)
+    {
+        this.properties = properties;
+    }
+
+
+    /**
      * Get the summary of this instance.
      */
     public String summarize()
     {
         return String.format(SUMMARY_FORMAT,
                 action, clientId, subject, existent, usable,
-                sufficient, refreshable, expiresAt, buildScopes());
+                sufficient, refreshable, expiresAt,
+                buildScopes(), buildProperties());
     }
 
 
@@ -562,6 +601,42 @@ public class IntrospectionResponse extends ApiResponse
             // Remove the last space.
             sb.setLength(sb.length() - 1);
         }
+
+        return sb.toString();
+    }
+
+
+    private String buildProperties()
+    {
+        if (properties == null)
+        {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (String[] property : properties)
+        {
+            if (property == null || property.length != 2)
+            {
+                continue;
+            }
+
+            sb.append(property[0]);
+            sb.append("=");
+            sb.append(property[1]);
+            sb.append(",");
+        }
+
+        if (0 < sb.length())
+        {
+            // Remove the last comma.
+            sb.setLength(sb.length() - 1);
+        }
+
+        // Enclose with square brackets.
+        sb.insert(0, "[");
+        sb.append("]");
 
         return sb.toString();
     }

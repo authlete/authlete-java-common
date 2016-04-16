@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,6 +71,16 @@ import com.authlete.common.web.URLCoder;
  * value should be extracted and set to this parameter.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>properties</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * Extra properties to associate with an access token. Note that
+ * {@code properties} parameter is accepted only when Content-Type
+ * of the request is application/json, so don't use
+ * application/x-www-form-urlencoded if you want to specify
+ * {@code properties}
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -90,7 +100,7 @@ import com.authlete.common.web.URLCoder;
  */
 public class TokenRequest implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -109,6 +119,12 @@ public class TokenRequest implements Serializable
      * Client secret.
      */
     private String clientSecret;
+
+
+    /**
+     * Extra properties to associate with an access token.
+     */
+    private String[][] properties;
 
 
     /**
@@ -199,6 +215,135 @@ public class TokenRequest implements Serializable
     public TokenRequest setClientSecret(String clientSecret)
     {
         this.clientSecret = clientSecret;
+
+        return this;
+    }
+
+
+    /**
+     * Get the extra properties to associate with an access token which
+     * may be issued by this request.
+     *
+     * @return
+     *         Extra properties. Each property is a pair of a string key
+     *         and a string value.
+     *
+     * @since 1.30
+     */
+    public String[][] getProperties()
+    {
+        return properties;
+    }
+
+
+    /**
+     * Set extra properties to associate with an access token which may
+     * be issued by this request.
+     *
+     * <p>
+     * If the value of {@code grant_type} parameter contained in the token
+     * request from the client application is {@code authorization_code},
+     * properties set by this method will be added as the extra properties
+     * of a newly created access token. The extra properties specified when
+     * the authorization code was issued (using {@link
+     * AuthorizationIssueRequest#setProperties(String[][])}) will also be
+     * used, but their values will be overwritten if the extra properties
+     * set by this method have the same keys. In other words, extra
+     * properties contained in this request will be merged into existing
+     * extra properties which are associated with the authorization code.
+     * </p>
+     *
+     * <p>
+     * Otherwise, if the value of {@code grant_type} parameter contained
+     * in the token request from the client application is {@code
+     * refresh_token}, properties set by this method will be added to the
+     * existing extra properties of the corresponding access token. Extra
+     * properties having the same keys will be overwritten in the same
+     * manner as the case of {@code grant_type=authorization_code}.
+     * </p>
+     *
+     * <p>
+     * Otherwise, if the value of {@code grant_type} parameter contained
+     * in the token request from the client application is {@code
+     * client_credentials}, properties set by this method will be used
+     * simply as extra properties of a newly created access token.
+     * Because <a href="https://tools.ietf.org/html/rfc6749#section-4.4"
+     * >Client Credentials flow</a> does not have a preceding authorization
+     * request, merging extra properties will not be performed. This is
+     * different from the cases of {@code grant_type=authorization_code}
+     * and {@code grant_type=refresh_token}.
+     * </p>
+     *
+     * <p>
+     * In other cases ({@code grant_type=password}), properties set by
+     * this method will not be used. When you want to associate extra
+     * properties with an access token which is issued using <a href=
+     * "https://tools.ietf.org/html/rfc6749#section-4.3">Resource Owner
+     * Password Credentials flow</a>, use {@link
+     * TokenIssueRequest#setProperties(String[][])} method instead.
+     * </p>
+     *
+     * <p>
+     * The argument {@code properties} is an array of properties. Each
+     * property must be a pair of a string key and a string value.
+     * That is, each property must be a string array of size 2. The key
+     * must not be {@code null} or an empty string, but the value may be.
+     * </p>
+     *
+     * <p>
+     * Keys of extra properties will be used as labels of top-level
+     * entries in a JSON response containing an access token which is
+     * returned from an authorization server. An example is
+     * {@code example_parameter}, which you can find in <a href=
+     * "https://tools.ietf.org/html/rfc6749#section-5.1">5.1. Successful
+     * Response</a> in RFC 6749. The following code snippet is an example
+     * to set one extra property having {@code example_parameter} as its
+     * key and {@code example_value} as its value.
+     * </p>
+     *
+     * <blockquote>
+     * <pre>
+     * String[][] properties = { { "example_parameter", "example_value" } };
+     * request.{@link #setProperties(String[][]) setProperties}(properties);
+     * </pre>
+     * </blockquote>
+     *
+     * <p>
+     * Keys listed below should not be used and they would be ignored on
+     * the server side even if they were used. It's because they are reserved
+     * in <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.
+     * </p>
+     *
+     * <ul>
+     *   <li>{@code access_token}
+     *   <li>{@code token_type}
+     *   <li>{@code expires_in}
+     *   <li>{@code refresh_token}
+     *   <li>{@code scope}
+     *   <li>{@code error}
+     *   <li>{@code error_description}
+     *   <li>{@code error_uri}
+     * </ul>
+     *
+     * <p>
+     * Note that <b>there is an upper limit on the total size of extra properties</b>.
+     * On the server side, the properties will be (1) converted to JSON, (2) encrypted
+     * by AES/CBC/PKCS5Padding, (3) encoded by base64url, and then stored into the
+     * database. The length of the resultant string must not exceed 65,535 in bytes.
+     * This is the upper limit, but we think it is big enough.
+     * </p>
+     *
+     * @param properties
+     *         Extra properties.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.30
+     */
+    public TokenRequest setProperties(String[][] properties)
+    {
+        this.properties = properties;
 
         return this;
     }

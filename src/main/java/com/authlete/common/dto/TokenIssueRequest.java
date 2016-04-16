@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import java.io.Serializable;
  *
  * <blockquote>
  * <dl>
+ *
  * <dt><b><code>ticket</code></b> (REQUIRED)</dt>
  * <dd>
  * <p>
@@ -33,12 +34,25 @@ import java.io.Serializable;
  * API ({@link TokenResponse}).
  * </p>
  * </dd>
+ *
  * <dt><b><code>subject</code></b> (REQUIRED)</dt>
  * <dd>
  * <p>
  * The subject (= unique identifier) of the authenticated user.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>properties</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * Extra properties to associate with a newly created access token.
+ * Note that {@code properties} parameter is accepted only when
+ * Content-Type of the request is application/json, so don't use
+ * application/x-www-form-urlencoded if you want to specify
+ * {@code properties}
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -53,7 +67,7 @@ import java.io.Serializable;
  */
 public class TokenIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -66,6 +80,12 @@ public class TokenIssueRequest implements Serializable
      * The subject (unique identifier) of the authenticated user.
      */
     private String subject;
+
+
+    /**
+     * Extra properties to associate with an access token.
+     */
+    private String[][] properties;
 
 
     /**
@@ -131,6 +151,92 @@ public class TokenIssueRequest implements Serializable
     public TokenIssueRequest setSubject(String subject)
     {
         this.subject = subject;
+
+        return this;
+    }
+
+
+    /**
+     * Get the extra properties to associate with an access token which
+     * will be issued by this request.
+     *
+     * @return
+     *         Extra properties. Each property is a pair of a string key
+     *         and a string value.
+     *
+     * @since 1.30
+     */
+    public String[][] getProperties()
+    {
+        return properties;
+    }
+
+
+    /**
+     * Set extra properties to associate with an access token which will
+     * be issued by this request.
+     *
+     * <p>
+     * The argument {@code properties} is an array of properties. Each
+     * property must be a pair of a string key and a string value.
+     * That is, each property must be a string array of size 2. The key
+     * must not be {@code null} or an empty string, but the value may be.
+     * </p>
+     *
+     * <p>
+     * Keys of extra properties will be used as labels of top-level
+     * entries in a JSON response containing an access token which is
+     * returned from an authorization server. An example is
+     * {@code example_parameter}, which you can find in <a href=
+     * "https://tools.ietf.org/html/rfc6749#section-5.1">5.1. Successful
+     * Response</a> in RFC 6749. The following code snippet is an example
+     * to set one extra property having {@code example_parameter} as its
+     * key and {@code example_value} as its value.
+     * </p>
+     *
+     * <blockquote>
+     * <pre>
+     * String[][] properties = { { "example_parameter", "example_value" } };
+     * request.{@link #setProperties(String[][]) setProperties}(properties);
+     * </pre>
+     * </blockquote>
+     *
+     * <p>
+     * Keys listed below should not be used and they would be ignored on
+     * the server side even if they were used. It's because they are reserved
+     * in <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.
+     * </p>
+     *
+     * <ul>
+     *   <li>{@code access_token}
+     *   <li>{@code token_type}
+     *   <li>{@code expires_in}
+     *   <li>{@code refresh_token}
+     *   <li>{@code scope}
+     *   <li>{@code error}
+     *   <li>{@code error_description}
+     *   <li>{@code error_uri}
+     * </ul>
+     *
+     * <p>
+     * Note that <b>there is an upper limit on the total size of extra properties</b>.
+     * On the server side, the properties will be (1) converted to JSON, (2) encrypted
+     * by AES/CBC/PKCS5Padding, (3) encoded by base64url, and then stored into the
+     * database. The length of the resultant string must not exceed 65,535 in bytes.
+     * This is the upper limit, but we think it is big enough.
+     * </p>
+     *
+     * @param properties
+     *         Extra properties.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.30
+     */
+    public TokenIssueRequest setProperties(String[][] properties)
+    {
+        this.properties = properties;
 
         return this;
     }
