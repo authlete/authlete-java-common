@@ -100,7 +100,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -137,7 +137,7 @@ public class AuthorizationIssueRequest implements Serializable
      * Extra properties to associate with an access token and/or
      * an authorization code.
      */
-    private String[][] properties;
+    private Property[] properties;
 
 
     /**
@@ -371,12 +371,11 @@ public class AuthorizationIssueRequest implements Serializable
      * an authorization code which will be issued by this request.
      *
      * @return
-     *         Extra properties. Each property is a pair of a string key
-     *         and a string value.
+     *         Extra properties.
      *
      * @since 1.30
      */
-    public String[][] getProperties()
+    public Property[] getProperties()
     {
         return properties;
     }
@@ -385,13 +384,6 @@ public class AuthorizationIssueRequest implements Serializable
     /**
      * Set extra properties to associate with an access token and/or
      * an authorization code which will be issued by this request.
-     *
-     * <p>
-     * The argument {@code properties} is an array of properties. Each
-     * property must be a pair of a string key and a string value.
-     * That is, each property must be a string array of size 2. The key
-     * must not be {@code null} or an empty string, but the value may be.
-     * </p>
      *
      * <p>
      * Keys of extra properties will be used as labels of top-level
@@ -406,8 +398,9 @@ public class AuthorizationIssueRequest implements Serializable
      *
      * <blockquote>
      * <pre>
-     * String[][] properties = { { "example_parameter", "example_value" } };
-     * request.{@link #setProperties(String[][]) setProperties}(properties);
+     * {@link Property}[] properties = { new {@link Property#Property(String, String)
+     * Property}("example_parameter", "example_value") };
+     * request.{@link #setProperties(Property[]) setProperties}(properties);
      * </pre>
      * </blockquote>
      *
@@ -447,7 +440,7 @@ public class AuthorizationIssueRequest implements Serializable
      *
      * @since 1.30
      */
-    public AuthorizationIssueRequest setProperties(String[][] properties)
+    public AuthorizationIssueRequest setProperties(Property[] properties)
     {
         this.properties = properties;
 

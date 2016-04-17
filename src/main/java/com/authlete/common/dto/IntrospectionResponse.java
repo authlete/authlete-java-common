@@ -198,7 +198,7 @@ package com.authlete.common.dto;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -313,7 +313,7 @@ public class IntrospectionResponse extends ApiResponse
     /**
      * Extra properties associated with the access token.
      */
-    private String[][] properties;
+    private Property[] properties;
 
 
     /**
@@ -542,13 +542,12 @@ public class IntrospectionResponse extends ApiResponse
      * Get the extra properties associated with the access token.
      *
      * @return
-     *         Extra properties. Each property is a pair of a string key
-     *         and a string value. This method returns {@code null} when
+     *         Extra properties. This method returns {@code null} when
      *         no extra property is associated with the access token.
      *
      * @since 1.30
      */
-    public String[][] getProperties()
+    public Property[] getProperties()
     {
         return properties;
     }
@@ -558,12 +557,11 @@ public class IntrospectionResponse extends ApiResponse
      * Set the extra properties associated with the access token.
      *
      * @param properties
-     *         Extra properties. Each property should be a pair of
-     *         a string key and a string value.
+     *         Extra properties.
      *
      * @since 1.30
      */
-    public void setProperties(String[][] properties)
+    public void setProperties(Property[] properties)
     {
         this.properties = properties;
     }
@@ -615,16 +613,16 @@ public class IntrospectionResponse extends ApiResponse
 
         StringBuilder sb = new StringBuilder();
 
-        for (String[] property : properties)
+        for (Property property : properties)
         {
-            if (property == null || property.length != 2)
+            if (property == null)
             {
                 continue;
             }
 
-            sb.append(property[0]);
+            sb.append(property.getKey());
             sb.append("=");
-            sb.append(property[1]);
+            sb.append(property.getValue());
             sb.append(",");
         }
 

@@ -124,7 +124,7 @@ public class TokenRequest implements Serializable
     /**
      * Extra properties to associate with an access token.
      */
-    private String[][] properties;
+    private Property[] properties;
 
 
     /**
@@ -225,12 +225,11 @@ public class TokenRequest implements Serializable
      * may be issued by this request.
      *
      * @return
-     *         Extra properties. Each property is a pair of a string key
-     *         and a string value.
+     *         Extra properties.
      *
      * @since 1.30
      */
-    public String[][] getProperties()
+    public Property[] getProperties()
     {
         return properties;
     }
@@ -246,7 +245,7 @@ public class TokenRequest implements Serializable
      * properties set by this method will be added as the extra properties
      * of a newly created access token. The extra properties specified when
      * the authorization code was issued (using {@link
-     * AuthorizationIssueRequest#setProperties(String[][])}) will also be
+     * AuthorizationIssueRequest#setProperties(Property[])}) will also be
      * used, but their values will be overwritten if the extra properties
      * set by this method have the same keys. In other words, extra
      * properties contained in this request will be merged into existing
@@ -280,7 +279,7 @@ public class TokenRequest implements Serializable
      * properties with an access token which is issued using <a href=
      * "https://tools.ietf.org/html/rfc6749#section-4.3">Resource Owner
      * Password Credentials flow</a>, use {@link
-     * TokenIssueRequest#setProperties(String[][])} method instead.
+     * TokenIssueRequest#setProperties(Property[])} method instead.
      * </p>
      *
      * <p>
@@ -303,8 +302,9 @@ public class TokenRequest implements Serializable
      *
      * <blockquote>
      * <pre>
-     * String[][] properties = { { "example_parameter", "example_value" } };
-     * request.{@link #setProperties(String[][]) setProperties}(properties);
+     * {@link Property}[] properties = { new {@link Property#Property(String, String)
+     * Property}("example_parameter", "example_value") };
+     * request.{@link #setProperties(Property[]) setProperties}(properties);
      * </pre>
      * </blockquote>
      *
@@ -344,7 +344,7 @@ public class TokenRequest implements Serializable
      *
      * @since 1.30
      */
-    public TokenRequest setProperties(String[][] properties)
+    public TokenRequest setProperties(Property[] properties)
     {
         this.properties = properties;
 
