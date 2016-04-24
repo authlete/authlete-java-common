@@ -216,10 +216,11 @@ public class TokenIssueRequest implements Serializable
      *
      * <p>
      * Note that <b>there is an upper limit on the total size of extra properties</b>.
-     * On the server side, the properties will be (1) converted to JSON, (2) encrypted
-     * by AES/CBC/PKCS5Padding, (3) encoded by base64url, and then stored into the
-     * database. The length of the resultant string must not exceed 65,535 in bytes.
-     * This is the upper limit, but we think it is big enough.
+     * On the server side, the properties will be (1) converted to a multidimensional
+     * string array, (2) converted to JSON, (3) encrypted by AES/CBC/PKCS5Padding, (4)
+     * encoded by base64url, and then stored into the database. The length of the
+     * resultant string must not exceed 65,535 in bytes. This is the upper limit, but
+     * we think it is big enough.
      * </p>
      *
      * @param properties
