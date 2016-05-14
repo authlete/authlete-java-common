@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 10L;
+    private static final long serialVersionUID = 11L;
 
 
     /*
@@ -124,6 +124,7 @@ public class Service implements Serializable
     private boolean directJwksEndpointEnabled;
     private boolean singleAccessTokenPerSubject;
     private boolean pkceRequired;
+    private boolean refreshTokenKept;
 
 
     /**
@@ -1899,10 +1900,49 @@ public class Service implements Serializable
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 1.21
      */
     public Service setPkceRequired(boolean required)
     {
         this.pkceRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether a refresh token remains unchanged
+     * or gets renewed after its use.
+     *
+     * @return
+     *         {@code true} if a refresh token remains unchanged after its use.
+     *         {@code false} if a new refresh token is issued after its use.
+     *
+     * @since 1.33
+     */
+    public boolean isRefreshTokenKept()
+    {
+        return refreshTokenKept;
+    }
+
+
+    /**
+     * Set the flag to indicate whether a refresh token remains unchanged
+     * or gets renewed after its use.
+     *
+     * @param kept
+     *         {@code true} to keep a refresh token valid after its use.
+     *         {@code false} to renew a refresh token after its use.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.33
+     */
+    public Service setRefreshTokenKept(boolean kept)
+    {
+        this.refreshTokenKept = kept;
 
         return this;
     }
