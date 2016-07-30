@@ -255,6 +255,7 @@ ServiceListResponse response = api.getServiceList();
 - [JavaDoc][8] - このライブラリの JavaDoc
 - [authlete-java-jaxrs][7] - JAX-RS (Java) 用 Authlete ライブラリ
 - [java-oauth-server][6] - 認可サーバー実装
+- [java-resource-server][9] - リソースサーバー実装
 
 
 サポート
@@ -272,3 +273,4 @@ support@authlete.com
 [6]: https://github.com/authlete/java-oauth-server
 [7]: https://github.com/authlete/authlete-java-jaxrs
 [8]: http://authlete.github.io/authlete-java-common/
+[9]: https://github.com/authlete/java-resource-server

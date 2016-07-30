@@ -263,6 +263,7 @@ See Also
 - [JavaDoc][8] - JavaDoc of this library
 - [authlete-java-jaxrs][7] - Authlete Library for JAX-RS (Java)
 - [java-oauth-server][6] - Authorization Server Implementation
+- [java-resource-server][9] - Resource Server Implementation
 
 
 Support
@@ -280,3 +281,4 @@ support@authlete.com
 [6]: https://github.com/authlete/java-oauth-server
 [7]: https://github.com/authlete/authlete-java-jaxrs
 [8]: http://authlete.github.io/authlete-java-common/
+[9]: https://github.com/authlete/java-resource-server
