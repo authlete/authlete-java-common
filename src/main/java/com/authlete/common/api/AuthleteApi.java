@@ -38,6 +38,8 @@ import com.authlete.common.dto.TokenIssueRequest;
 import com.authlete.common.dto.TokenIssueResponse;
 import com.authlete.common.dto.TokenRequest;
 import com.authlete.common.dto.TokenResponse;
+import com.authlete.common.dto.TokenUpdateRequest;
+import com.authlete.common.dto.TokenUpdateResponse;
 import com.authlete.common.dto.UserInfoIssueRequest;
 import com.authlete.common.dto.UserInfoIssueResponse;
 import com.authlete.common.dto.UserInfoRequest;
@@ -135,6 +137,20 @@ public interface AuthleteApi
      *         Response from the API.
      */
     TokenIssueResponse tokenIssue(TokenIssueRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/token/update} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 1.34
+     */
+    TokenUpdateResponse tokenUpdate(TokenUpdateRequest request) throws AuthleteApiException;
 
 
     /**
@@ -622,4 +638,95 @@ public interface AuthleteApi
      *         Information about the updated client.
      */
     Client updateClient(Client client) throws AuthleteApiException;
+
+
+    /**
+     * Get the requestable scopes assigned to a client (= call Authlete's
+     * <code>/client/extension/requestable_scopes/get/{clientId}</code> API).
+     *
+     * @param clientId
+     *         A client ID.
+     *
+     * @return
+     *         <dl>
+     *           <dt>null</dt>
+     *           <dd>
+     *             Requestable scopes are not assigned to the client, meaning
+     *             that the client can request any scopes supported by the service.
+     *           </dd>
+     *           <dt>An empty array</dt>
+     *           <dd>
+     *             The client cannot request any scopes, meaning that values
+     *             included in the {@code scope} request parameter in authorization
+     *             requests and token requests are all ignored.
+     *           </dd>
+     *           <dt>An array of scope names</dt>
+     *           <dd>
+     *             The array represents the set of scopes that the client is allowed
+     *             to request.
+     *           </dd>
+     *         </dl>
+     *
+     * @since 1.34
+     */
+    String[] getRequestableScopes(long clientId) throws AuthleteApiException;
+
+
+    /**
+     * Set the requestable scopes assigned to a client (= call Authlete's
+     * <code>/client/extension/requestable_scopes/update/{clientId}</code> API).
+     *
+     * <p>
+     * Calling this method with {@code scopes=null} has the same effect as calling
+     * {@link #deleteRequestableScopes(long) deleteRequestableScopes(clientId)}.
+     * </p>
+     *
+     * @param clientId
+     *         A client ID.
+     *
+     * @param scopes
+     *         <dl>
+     *           <dt>null</dt>
+     *           <dd>
+     *             Requestable scopes assigned to the client are cleared. This
+     *             results in that the client can request any scopes supported
+     *             by the service.
+     *           </dd>
+     *           <dt>An empty array</dt>
+     *           <dd>
+     *             The client cannot request any scopes, meaning that values included
+     *             in the {@code scope} request parameter in authorization requests
+     *             and token requests are all ignored.
+     *           </dd>
+     *           <dt>An array of scope names</dt>
+     *           <dd>
+     *             The given array is used as the set of scopes that the client is
+     *             allowed to request.
+     *           </dd>
+     *         </dl>
+     *
+     * @return
+     *         The resultant set of requestable scopes. The value may be different
+     *         from the one given to this method.
+     *
+     * @since 1.34
+     */
+    String[] setRequestableScopes(long clientId, String[] scopes) throws AuthleteApiException;
+
+
+    /**
+     * Clear the requestable scopes assigned to a client (= call Authlete's
+     * <code>/client/extension/requestable_scopes/delete/{clientId}</code> API).
+     *
+     * <p>
+     * Calling this method has the same effect as calling {@link #setRequestableScopes(long, String[])
+     * setRequestableScopes(clientId, null)}.
+     * </p>
+     *
+     * @param clientId
+     *         A client ID.
+     *
+     * @since 1.34
+     */
+    void deleteRequestableScopes(long clientId) throws AuthleteApiException;
 }

@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.32</version>
+    <version>1.34</version>
 </dependency>
 ```
 
@@ -169,57 +169,68 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
   1. Methods for Authorization Endpoint Implementation
 
-    - `authorization()`
-    - `authorizationFail()`
-    - `authorizationIssue()`
+    - `authorization(AuthorizationRequest)`
+    - `authorizationFail(AuthorizationFailRequest)`
+    - `authorizationIssue(AuthorizationIssueRequest)`
 
   2. Methods for Token Endpoint Implementation
 
-    - `token()`
-    - `tokenFail()`
-    - `tokenIssue()`
+    - `token(TokenRequest)`
+    - `tokenFail(TokenFailRequest)`
+    - `tokenIssue(TokenIssueRequest)`
 
   3. Methods for Service Management
 
-    - `createService()`
-    - `deleteService()`
-    - `getService()`
+    - `createService(Service)`
+    - `deleteService(long serviceApiKey)`
+    - `getService(long serviceApiKey)`
     - `getServiceList()`
-    - `updateService()`
+    - `getServiceList(int start, int end)`
+    - `updateService(Service)`
 
   4. Methods for Client Application Management
 
-    - `createClient()`
-    - `deleteClient()`
-    - `getClient()`
+    - `createClient(Client)`
+    - `deleteClient(long clientId)`
+    - `getClient(long clientId)`
     - `getClientList()`
-    - `updateClient()`
+    - `getClientList(int start, int end)`
+    - `updateClient(Client)`
 
   5. Methods for Access Token Introspection
 
-    - `introspection()`
+    - `introspection(IntrospectionRequest)`
 
   6. Methods for Revocation Endpoint Implementation
 
-    - `revocation()`
+    - `revocation(RevocationRequest)`
 
   7. Methods for User Info Endpoint Implementation
 
-    - `userinfo()`
-    - `userinfoIssue()`
+    - `userinfo(UserInfoRequest)`
+    - `userinfoIssue(UserInfoIssueRequest)`
 
   8. Methods for JWK Set Endpoint Implementation
 
     - `getServiceJwks()`
+    - `getServiceJwks(boolean pretty, boolean includePrivateKeys)`
 
   9. Methods for OpenID Connect Discovery
 
     - `getServiceConfiguration()`
+    - `getServiceConfiguration(boolean pretty)`
 
-  10. Others
+  10. Methods for Token Operations
 
-    - `tokenCreate()`
-      Create an access token by emulating an OAuth flow.
+    - `tokenCreate(TokenCreateRequest)`
+    - `tokenUpdate(TokenUpdateRequest)`
+
+  11. Methods for Requestable Scopes per Client
+
+    - `getRequestableScopes(long clientId)`
+    - `setRequestableScopes(long clientId, String[] scopes)`
+    - `deleteRequestableScopes(long clientId)`
+
 
 Examples
 --------

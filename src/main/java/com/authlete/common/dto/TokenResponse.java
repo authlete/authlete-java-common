@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -250,7 +250,7 @@ package com.authlete.common.dto;
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -298,7 +298,10 @@ public class TokenResponse extends ApiResponse
 
 
     private static final String SUMMARY_FORMAT
-        = "action=%s, username=%s, password=%s, ticket=%s, responseContent=%s";
+        = "action=%s, username=%s, password=%s, ticket=%s, responseContent=%s, "
+        + "accessToken=%s, accessTokenExpiresAt=%d, accessTokenDuration=%d, "
+        + "refreshToken=%s, refreshTokenExpiresAt=%d, refreshTokenDuration=%d, "
+        + "idToken=%s";
 
 
     private Action action;
@@ -306,6 +309,13 @@ public class TokenResponse extends ApiResponse
     private String username;
     private String password;
     private String ticket;
+    private String accessToken;
+    private long accessTokenExpiresAt;
+    private long accessTokenDuration;
+    private String refreshToken;
+    private long refreshTokenExpiresAt;
+    private long refreshTokenDuration;
+    private String idToken;
 
 
     /**
@@ -432,7 +442,7 @@ public class TokenResponse extends ApiResponse
 
 
     /**
-     * Set the ticket used for {@code /aut/token/issue} API or {@code
+     * Set the ticket used for {@code /auth/token/issue} API or {@code
      * /auth/token/fail} API.
      */
     public void setTicket(String ticket)
@@ -447,6 +457,229 @@ public class TokenResponse extends ApiResponse
     public String summarize()
     {
         return String.format(SUMMARY_FORMAT,
-                action, username, password, ticket, responseContent);
+                action, username, password, ticket, responseContent,
+                accessToken, accessTokenExpiresAt, accessTokenDuration,
+                refreshToken, refreshTokenExpiresAt, refreshTokenDuration,
+                idToken);
+    }
+
+
+    /**
+     * Get the newly issued access token. This method returns a non-null
+     * value only when {@link #getAction()} returns {@link Action#OK}.
+     *
+     * @return
+     *         The newly issued access token.
+     *
+     * @since 1.34
+     */
+    public String getAccessToken()
+    {
+        return accessToken;
+    }
+
+
+    /**
+     * Set the newly issued access token.
+     *
+     * @param accessToken
+     *         The newly issued access token.
+     *
+     * @since 1.34
+     */
+    public void setAccessToken(String accessToken)
+    {
+        this.accessToken = accessToken;
+    }
+
+
+    /**
+     * Get the date in milliseconds since the Unix epoch (1970-01-01)
+     * at which the access token will expire.
+     *
+     * @return
+     *         The expiration date in milliseconds since the Unix epoch
+     *         (1970-01-01) at which the access token will expire.
+     *
+     * @since 1.34
+     */
+    public long getAccessTokenExpiresAt()
+    {
+        return accessTokenExpiresAt;
+    }
+
+
+    /**
+     * Set the date in milliseconds since the Unix epoch (1970-01-01)
+     * at which the access token will expire.
+     *
+     * @param expiresAt
+     *         The expiration date in milliseconds since the Unix epoch
+     *         (1970-01-01) at which the access token will expire.
+     *
+     * @since 1.34
+     */
+    public void setAccessTokenExpiresAt(long expiresAt)
+    {
+        this.accessTokenExpiresAt = expiresAt;
+    }
+
+
+    /**
+     * Get the duration of the access token in seconds.
+     *
+     * @return
+     *         Duration in seconds.
+     *
+     * @since 1.34
+     */
+    public long getAccessTokenDuration()
+    {
+        return accessTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the access token in seconds.
+     *
+     * @param duration
+     *         Duration in seconds.
+     *
+     * @since 1.34
+     */
+    public void setAccessTokenDuration(long duration)
+    {
+        this.accessTokenDuration = duration;
+    }
+
+
+    /**
+     * Get the newly issued refresh token. This method returns a non-null
+     * value only when {@link #getAction()} returns {@link Action#OK} and
+     * the service supports the <a href=
+     * "https://tools.ietf.org/html/rfc6749#section-6">refresh token flow</a>.
+     *
+     * @return
+     *         The newly issued refresh token.
+     *
+     * @since 1.34
+     */
+    public String getRefreshToken()
+    {
+        return refreshToken;
+    }
+
+
+    /**
+     * Set the newly issued refresh token.
+     *
+     * @param refreshToken
+     *         The newly issued refresh token.
+     *
+     * @since 1.34
+     */
+    public void setRefreshToken(String refreshToken)
+    {
+        this.refreshToken = refreshToken;
+    }
+
+
+    /**
+     * Get the date in milliseconds since the Unix epoch (1970-01-01)
+     * at which the refresh token will expire.
+     *
+     * @return
+     *         The expiration date in milliseconds since the Unix epoch
+     *         (1970-01-01) at which the refresh token will expire.
+     *         If the refresh token is null, this method returns 0.
+     *
+     * @since 1.34
+     */
+    public long getRefreshTokenExpiresAt()
+    {
+        return refreshTokenExpiresAt;
+    }
+
+
+    /**
+     * Set the date in milliseconds since the Unix epoch (1970-01-01)
+     * at which the refresh token will expire.
+     *
+     * @param expiresAt
+     *         The expiration date in milliseconds since the Unix epoch
+     *         (1970-01-01) at which the refresh token will expire.
+     *         If the refresh token is null, this method returns 0.
+     *
+     * @since 1.34
+     */
+    public void setRefreshTokenExpiresAt(long expiresAt)
+    {
+        this.refreshTokenExpiresAt = expiresAt;
+    }
+
+
+    /**
+     * Get the duration of the refresh token in seconds.
+     *
+     * @return
+     *         Duration in seconds.
+     *
+     * @since 1.34
+     */
+    public long getRefreshTokenDuration()
+    {
+        return refreshTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the refresh token in seconds.
+     *
+     * @param duration
+     *         Duration in seconds.
+     *
+     * @since 1.34
+     */
+    public void setRefreshTokenDuration(long duration)
+    {
+        this.refreshTokenDuration = duration;
+    }
+
+
+    /**
+     * Get the ID token.
+     *
+     * <p>
+     * An <a href="http://openid.net/specs/openid-connect-core-1_0.html#IDToken"
+     * >ID token</a> is issued from a token endpoint when the <a href=
+     * "https://tools.ietf.org/html/rfc6749#section-4.1">authorization code
+     * flow</a> is used and <code>"openid"</code> is included in the scope list.
+     * </p>
+     *
+     * @return
+     *         ID token.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth"
+     *      >Authentication using the Authorization Code Flow</a>
+     *
+     * @since 1.34
+     */
+    public String getIdToken()
+    {
+        return idToken;
+    }
+
+
+    /**
+     * Set the ID token.
+     *
+     * @param idToken
+     *         ID token.
+     *
+     * @since 1.34
+     */
+    public void setIdToken(String idToken)
+    {
+        this.idToken = idToken;
     }
 }

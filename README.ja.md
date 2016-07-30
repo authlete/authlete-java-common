@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.32</version>
+    <version>1.34</version>
 </dependency>
 ```
 
@@ -161,57 +161,68 @@ API シークレットを平文で書きたくなければ、`*.api_secret` キ�
 
   1. 認可エンドポイント実装のためのメソッド群
 
-    - `authorization()`
-    - `authorizationFail()`
-    - `authorizationIssue()`
+    - `authorization(AuthorizationRequest)`
+    - `authorizationFail(AuthorizationFailRequest)`
+    - `authorizationIssue(AuthorizationIssueRequest)`
 
   2. トークンエンドポイント実装のためのメソッド群
 
-    - `token()`
-    - `tokenFail()`
-    - `tokenIssue()`
+    - `token(TokenRequest)`
+    - `tokenFail(TokenFailRequest)`
+    - `tokenIssue(TokenIssueRequest)`
 
   3. サービス管理のためのメソッド群
 
-    - `createService()`
-    - `deleteService()`
-    - `getService()`
+    - `createService(Service)`
+    - `deleteService(long serviceApiKey)`
+    - `getService(long serviceApiKey)`
     - `getServiceList()`
-    - `updateService()`
+    - `getServiceList(int start, int end)`
+    - `updateService(Service)`
 
   4. クライアントアプリケーション管理のためのメソッド群
 
-    - `createClient()`
-    - `deleteClient()`
-    - `getClient()`
+    - `createClient(Client)`
+    - `deleteClient(long clientId)`
+    - `getClient(long clientId)`
     - `getClientList()`
-    - `updateClient()`
+    - `getClientList(int start, int end)`
+    - `updateClient(Client)`
 
   5. アクセストークンの情報取得のためのメソッド群
 
-    - `introspection()`
+    - `introspection(IntrospectionRequest)`
 
   6. アクセストークン取り消しエンドポイント実装のためのメソッド群
 
-    - `revocation()`
+    - `revocation(RevocationRequest)`
 
   7. ユーザー情報エンドポイント実装のためのメソッド群
 
-    - `userinfo()`
-    - `userinfoIssue()`
+    - `userinfo(UserInfoRequest)`
+    - `userinfoIssue(UserInfoIssueRequest)`
 
   8. JWK セットエンドポイント実装のためのメソッド群
 
     - `getServiceJwks()`
+    - `getServiceJwks(boolean pretty, boolean includePrivateKeys)`
 
   9. OpenID Connect Discovery のためのメソッド群
 
     - `getServiceConfiguration()`
+    - `getServiceConfiguration(boolean pretty)`
 
-  10. その他
+  10. トークン操作のためのメソッド群
 
-    - `tokenCreate()`
-      OAuth フローをエミュレートしてアクセストークンを作成する。
+    - `tokenCreate(TokenCreateRequest)`
+    - `tokenUpdate(TokenUpdateRequest)`
+
+  11. クライアント毎の要求可能スコープ群に関するメソッド群
+
+    - `getRequestableScopes(long clientId)`
+    - `setRequestableScopes(long clientId, String[] scopes)`
+    - `deleteRequestableScopes(long clientId)`
+
 
 例
 --

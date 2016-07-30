@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -341,10 +341,10 @@ import com.authlete.common.util.Utils;
  *         <br/>
  *       <li>
  *         <p><b>[subject]</b>
- *           This parameter represents the current end-user. It may be called
- *           "User ID", "User Account", "Login ID", etc. In any case, it is a
- *           number or a string assigned to an end-user by the service
- *           implementation. Authlete does not care about the format of the
+ *           This parameter represents the unique identifier of the current end-user.
+ *           It is often called "user ID" and it may or may not be visible to the user.
+ *           In any case, it is a number or a string assigned to an end-user by the
+ *           service implementation. Authlete does not care about the format of the
  *           value of {@code subject}, but it must consist of only ASCII letters
  *           and its length must be equal to or less than 100.
  *         </p>
@@ -575,7 +575,8 @@ import com.authlete.common.util.Utils;
  *           SELECT_ACCOUNT}, display a form to let the end-user select one of
  *           his/her accounts for login. If {@link #getSubject()} returns a
  *           non-null value, it is the end-user ID that the client application
- *           expects, so it should be set to the input field for the login ID.
+ *           expects, so it should be used to determine the value of the login ID
+ *           (Note that a subject and a login ID are not necessarily equal).
  *           If {@link #getSubject()} returns null, the value returned by
  *           {@link #getLoginHint()} may be set to the input field.
  *         </p>
@@ -701,7 +702,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -761,7 +762,7 @@ public class AuthorizationResponse extends ApiResponse
         = "ticket=%s, action=%s, serviceNumber=%d, clientNumber=%d, clientId=%d, "
         + "clientSecret=%s, clientType=%s, developer=%s, display=%s, maxAge=%d, "
         + "scopes=%s, uiLocales=%s, claimsLocales=%s, claims=%s, acrEssential=%s, "
-        + "acrs=%s, subject=%s, loginHint=%s, lowestPrompt=%s";
+        + "acrs=%s, subject=%s, loginHint=%s, lowestPrompt=%s, prompts=%s";
 
 
     /*
@@ -784,6 +785,7 @@ public class AuthorizationResponse extends ApiResponse
     private String subject;
     private String loginHint;
     private Prompt lowestPrompt;
+    private Prompt[] prompts;
     private String responseContent;
     private String ticket;
 
@@ -921,6 +923,16 @@ public class AuthorizationResponse extends ApiResponse
      * authorization request does not contain valid scopes and none
      * of registered scopes is marked as default.
      *
+     * <p>
+     * You may want to enable end-users to select/deselect scopes in
+     * the authorization page. In other words, you may want to use
+     * a different set of scopes than the set specified by the original
+     * authorization request. You can replace scopes when you call
+     * Authlete's /auth/authorization/issue API. See the description
+     * of {@link AuthorizationIssueRequest#setScopes(String[])} for
+     * details.
+     * </p>
+     *
      * @see <a href="http://tools.ietf.org/html/rfc6749#section-3.3"
      *      >OAuth 2.0, 3.3. Access Token Scope</a>
      */
@@ -934,6 +946,16 @@ public class AuthorizationResponse extends ApiResponse
      * Set the scopes which the client application requests or the
      * default scopes when the authorization request does not contain
      * {@code "scope"} request parameter.
+     *
+     * <p>
+     * You may want to enable end-users to select/deselect scopes in
+     * the authorization page. In other words, you may want to use
+     * a different set of scopes than the set specified by the original
+     * authorization request. You can replace scopes when you call
+     * Authlete's /auth/authorization/issue API. See the description
+     * of {@link AuthorizationIssueRequest#setScopes(String[])} for
+     * details.
+     * </p>
      */
     public void setScopes(Scope[] scopes)
     {
@@ -1158,6 +1180,39 @@ public class AuthorizationResponse extends ApiResponse
 
 
     /**
+     * Get the list of prompts contained in the authorization request
+     * (= the value of {@code prompt} request parameter).
+     *
+     * @return
+     *         The list of prompts contained in the authorization request.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+     *      >OpenID Connect Core 1.0, 3.1.2.1. Authentication Request</a>
+     *
+     * @since 1.34
+     */
+    public Prompt[] getPrompts()
+    {
+        return prompts;
+    }
+
+
+    /**
+     * Set the list of prompts contained in the authorization request
+     * (= the value of {@code prompt} request parameter).
+     *
+     * @param prompts
+     *         The list of prompts contained in the authorization request.
+     *
+     * @since 1.34
+     */
+    public void setPrompts(Prompt[] prompts)
+    {
+        this.prompts = prompts;
+    }
+
+
+    /**
      * Get the response content which can be used to generate a response
      * to the client application. The format of the value varies depending
      * on the value of {@code "action"}.
@@ -1225,7 +1280,9 @@ public class AuthorizationResponse extends ApiResponse
                 join(acrs),
                 subject,
                 loginHint,
-                lowestPrompt);
+                lowestPrompt,
+                listPrompts(prompts)
+                );
     }
 
 
@@ -1253,6 +1310,25 @@ public class AuthorizationResponse extends ApiResponse
         sb.setLength(sb.length() - 1);
 
         return sb.toString();
+    }
+
+
+    private String listPrompts(Prompt[] prompts)
+    {
+        if (prompts == null)
+        {
+            return null;
+        }
+
+        String[] array = new String[prompts.length];
+
+        for (int i = 0; i < prompts.length; ++i)
+        {
+            array[i] = (prompts[i] == null) ? null
+                     : prompts[i].name().toLowerCase();
+        }
+
+        return join(array);
     }
 
 

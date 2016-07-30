@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Authlete, Inc.
+ * Copyright (C) 2015-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -119,7 +119,7 @@ public class TokenCreateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
     private static final String SUMMARY_FORMAT
         = "action=%s, grantType=%s, clientId=%d, subject=%s, scopes=%s, "
         + "accessToken=%s, tokenType=%s, expiresIn=%d, expiresAt=%d, refreshToken=%s";
@@ -135,6 +135,7 @@ public class TokenCreateResponse extends ApiResponse
     private long expiresIn;
     private long expiresAt;
     private String refreshToken;
+    private Property[] properties;
 
 
     /**
@@ -438,6 +439,39 @@ public class TokenCreateResponse extends ApiResponse
     public TokenCreateResponse setRefreshToken(String refreshToken)
     {
         this.refreshToken = refreshToken;
+
+        return this;
+    }
+
+
+    /**
+     * Get the properties associated with the access token.
+     *
+     * @return
+     *         Properties.
+     *
+     * @since 1.34
+     */
+    public Property[] getProperties()
+    {
+        return properties;
+    }
+
+
+    /**
+     * Set the properties associated with the access token.
+     *
+     * @param properties
+     *         Properties.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.34
+     */
+    public TokenCreateResponse setProperties(Property[] properties)
+    {
+        this.properties = properties;
 
         return this;
     }

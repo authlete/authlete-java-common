@@ -88,6 +88,42 @@ import com.authlete.common.util.Utils;
  * want to specify {@code properties} parameter.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>scopes</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * Scopes to associate with an access token and/or an authorization code.
+ * If this field is {@code null}, the scopes specified in the original
+ * authorization request from the client application are used. In other
+ * cases, including the case of an empty array, the specified scopes will
+ * replace the original scopes contained in the original authorization
+ * request.
+ * </p>
+ * <p>
+ * Even scopes that are not included in the original authorization request
+ * can be specified. However, as an exception, <code>"openid"</code> scope
+ * is ignored on the server side if it is not included in the original
+ * request. It is because the existence of <code>"openid"</code> scope
+ * considerably changes the validation steps and because adding
+ * <code>"openid"</code> triggers generation of an ID token (although the
+ * client application has not requested it) and the behavior is a major
+ * violation against the specification.
+ * </p>
+ * <p>
+ * If you add <code>"offline_access"</code> scope although it is not
+ * included in the original request, keep in mind that the specification
+ * requires explicit consent from the user for the scope (<a href=
+ * "http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess"
+ * >OpenID Connect Core 1.0, 11. Offline Access</a>). When
+ * <code>"offline_access"</code> is included in the original request, the
+ * current implementation of Authlete's /api/auth/authorization API checks
+ * whether the request has come along with <code>prompt</code> request
+ * parameter and the value includes <code>"consent"</code>. However, note
+ * that the implementation of Authlete's /api/auth/authorization/issue API
+ * does not perform such checking if <code>"offline_access"</code> scope
+ * is added via this <code>scopes</code> parameter.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
@@ -100,7 +136,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /**
@@ -138,6 +174,16 @@ public class AuthorizationIssueRequest implements Serializable
      * an authorization code.
      */
     private Property[] properties;
+
+
+    /**
+     * Scopes to associate with an access token and/or an authorization code.
+     * If this field is {@code null}, the scopes specified in the original
+     * authorization request from the client application are used. In other
+     * cases, including the case of an empty array, the scopes here will
+     * replace the original scopes contained in the original request.
+     */
+    private String[] scopes;
 
 
     /**
@@ -444,6 +490,106 @@ public class AuthorizationIssueRequest implements Serializable
     public AuthorizationIssueRequest setProperties(Property[] properties)
     {
         this.properties = properties;
+
+        return this;
+    }
+
+
+    /**
+     * Get scopes to associate with an authorization code and/or an access token.
+     * If this method returns a non-null value, the set of scopes will be used
+     * instead of the scopes specified in the original authorization request.
+     *
+     * @return
+     *         Scopes to replace the scopes specified in the original authorization
+     *         request. When {@code null} is returned from this method, replacement
+     *         is not performed.
+     *
+     * @since 1.34
+     */
+    public String[] getScopes()
+    {
+        return scopes;
+    }
+
+
+    /**
+     * Set scopes to associate with an authorization code and/or an access token.
+     * If {@code null} (the default value) is set, the scopes specified in the
+     * original authorization request from the client application are used. In
+     * other cases, including the case of an empty array, the scopes given to
+     * this method will replace the original scopes contained in the original
+     * request.
+     * </p>
+     *
+     * <p>
+     * Even scopes that are not included in the original authorization request
+     * can be specified. However, as an exception, <code>"openid"</code> scope
+     * is ignored on the server side if it is not included in the original
+     * request (to be exact, if <code>"openid"</code> was not included in the
+     * {@code parameters} request parameter of /api/auth/authorization API call).
+     * It is because the existence of <code>"openid"</code> scope considerably
+     * changes the validation steps and because adding <code>"openid"</code>
+     * triggers generation of an ID token (although the client application has
+     * not requested it) and the behavior is a major violation against the
+     * specification.
+     * </p>
+     *
+     * <p>
+     * If you add <code>"offline_access"</code> scope although it is not
+     * included in the original request, keep in mind that the specification
+     * requires explicit consent from the user for the scope (<a href=
+     * "http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess"
+     * >OpenID Connect Core 1.0, 11. Offline Access</a>). When
+     * <code>"offline_access"</code> is included in the original request, the
+     * current implementation of Authlete's /api/auth/authorization API checks
+     * whether the request has come along with <code>prompt</code> request
+     * parameter and the value includes <code>"consent"</code>. However, note
+     * that the implementation of Authlete's /api/auth/authorization/issue API
+     * does not perform such checking if <code>"offline_access"</code> scope
+     * is added via this <code>scopes</code> parameter.
+     * </p>
+     *
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <tr>
+     *     <th>Value</th>
+     *     <th>Effect</th>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code null}</td>
+     *     <td>
+     *       The scopes contained in the original authorization request are used.
+     *     </td>
+     *   </tr>
+     *   <tr>
+     *     <td>An empty array</td>
+     *     <td>
+     *       No scopes are associated with an authorization code and/or an access token.
+     *       The scopes contained in the original authorization request are not used.
+     *     </td>
+     *   </tr>
+     *   <tr>
+     *     <td>A non-empty array of scope names</td>
+     *     <td>
+     *       Scopes listed in the array are associated with an authorization code
+     *       and/or an access token.
+     *     </td>
+     *   </tr>
+     * </table>
+     *
+     * @param scopes
+     *         Scopes to associate with an authorization code and/or an access
+     *         token. If a non null value is set, the original scopes requested
+     *         by the client application are replaced.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.34
+     */
+    public AuthorizationIssueRequest setScopes(String[] scopes)
+    {
+        this.scopes = scopes;
 
         return this;
     }

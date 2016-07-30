@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -158,7 +158,7 @@ package com.authlete.common.dto;
  */
 public class AuthorizationIssueResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -195,11 +195,18 @@ public class AuthorizationIssueResponse extends ApiResponse
     }
 
 
-    private static final String SUMMARY_FORMAT = "action=%s, responseContent=%s";
+    private static final String SUMMARY_FORMAT
+        = "action=%s, responseContent=%s, accessToken=%s, accessTokenExpiresAt=%d, "
+        + "accessTokenDuration=%d, idToken=%s, authorizationCode=%s";
 
 
     private Action action;
     private String responseContent;
+    private String accessToken;
+    private long accessTokenExpiresAt;
+    private long accessTokenDuration;
+    private String idToken;
+    private String authorizationCode;
 
 
     /**
@@ -241,10 +248,165 @@ public class AuthorizationIssueResponse extends ApiResponse
 
 
     /**
+     * Get the access token. An access token is issued when the
+     * {@code response_type} request parameter of the authorization
+     * request includes {@code token}.
+     *
+     * @return
+     *         The newly issued access token. If an access token is
+     *         not issued, this method returns {@code null}.
+     *
+     * @since 1.34
+     */
+    public String getAccessToken()
+    {
+        return accessToken;
+    }
+
+
+    /**
+     * Set the access token.
+     *
+     * @param accessToken
+     *         The newly issued access token.
+     *
+     * @since 1.34
+     */
+    public void setAccessToken(String accessToken)
+    {
+        this.accessToken = accessToken;
+    }
+
+
+    /**
+     * Get the date in milliseconds since the Unix epoch at which
+     * the access token will expire.
+     *
+     * @return
+     *         The date at which the access token will expire.
+     *         If an access token is not issued, this method
+     *         returns 0.
+     *
+     * @since 1.34
+     */
+    public long getAccessTokenExpiresAt()
+    {
+        return accessTokenExpiresAt;
+    }
+
+
+    /**
+     * Set the date in milliseconds since the Unix epoch at which
+     * the access token will expire.
+     *
+     * @param expiresAt
+     *         The date at which the access token will expire.
+     *
+     * @since 1.34
+     */
+    public void setAccessTokenExpiresAt(long expiresAt)
+    {
+        this.accessTokenExpiresAt = expiresAt;
+    }
+
+
+    /**
+     * Get the duration of the access token in seconds.
+     *
+     * @return
+     *         The duration of the access token in seconds.
+     *
+     * @since 1.34
+     */
+    public long getAccessTokenDuration()
+    {
+        return accessTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the access token in seconds.
+     *
+     * @param duration
+     *         The duration of the access token in seconds.
+     *
+     * @since 1.34
+     */
+    public void setAccessTokenDuration(long duration)
+    {
+        this.accessTokenDuration = duration;
+    }
+
+
+    /**
+     * Get the newly issued ID token. An ID token is issued when the
+     * {@code response_type} request parameter of the authorization
+     * request includes {@code id_token}.
+     *
+     * @return
+     *         The newly issued ID token. If an ID token is not issued,
+     *         this method returns {@code null}.
+     *
+     * @since 1.34
+     */
+    public String getIdToken()
+    {
+        return idToken;
+    }
+
+
+    /**
+     * Set the newly issued ID token.
+     *
+     * @param idToken
+     *         The newly issued ID token.
+     *
+     * @since 1.34
+     */
+    public void setIdToken(String idToken)
+    {
+        this.idToken = idToken;
+    }
+
+
+    /**
+     * Get the newly issued authorization code. An authorization code is
+     * issued when the {@code response_type} request parameter of the
+     * authorization request includes {@code code}.
+     *
+     * @return
+     *         The newly issued authorization code. If an authorization
+     *         code is not issued, this method returns {@code null}.
+     *
+     * @since 1.34
+     */
+    public String getAuthorizationCode()
+    {
+        return authorizationCode;
+    }
+
+
+    /**
+     * Set the newly issued authorization code.
+     *
+     * @param code
+     *         The newly issued authorization code.
+     *
+     * @since 1.34
+     */
+    public void setAuthorizationCode(String code)
+    {
+        this.authorizationCode = code;
+    }
+
+
+    /**
      * Get the summary of this instance.
      */
     public String summarize()
     {
-        return String.format(SUMMARY_FORMAT, action, responseContent);
+        return String.format(SUMMARY_FORMAT,
+                action, responseContent, accessToken, accessTokenExpiresAt,
+                accessTokenDuration, idToken, authorizationCode);
     }
 }
