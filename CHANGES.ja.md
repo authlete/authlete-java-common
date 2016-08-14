@@ -1,8 +1,19 @@
 変更点
 ======
 
+1.35 (2016 年 8 月 15 日)
+-------------------------
+
+- `AuthorizationIssueRequest`
+    * `sub` クレームの値を調整するための `sub` フィールドを追加。
+
+- `UserInfoIssueRequest`
+    * `sub` クレームの値を調整するための `sub` フィールドを追加。
+
+
 1.34 (2016 年 7 月 30 日)
 -------------------------
+
 - 新しいクラス
     * `TokenUpdateRequest` クラスを追加。
     * `TokenUpdateResponse` クラスを追加。

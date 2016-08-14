@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+1.35 (2016-08-15)
+-----------------
+
+- `AuthorizationIssueRequest`
+    * Added `sub` field to adjust the value of the `sub` claim.
+
+- `UserInfoIssueRequest`
+    * Added `sub` field to adjust the value of the `sub` claim.
+
+
 1.34 (2016-07-30)
 -----------------
 
