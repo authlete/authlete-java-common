@@ -124,6 +124,20 @@ import com.authlete.common.util.Utils;
  * is added via this <code>scopes</code> parameter.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>sub</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code sub} claim. If the value of this request parameter
+ * is not empty, it is used as the value of the 'sub' claim. Otherwise, the
+ * value of the subject associated with the access token is used.
+ * </p>
+ * <p>
+ * Note that even if this {@code sub} property is not empty, the value of the
+ * {@code subject} request parameter is used as the value of the subject which
+ * is associated with the access token (if one is issued).
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
@@ -136,7 +150,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -149,6 +163,13 @@ public class AuthorizationIssueRequest implements Serializable
      * The subject (end-user) managed by the service.
      */
     private String subject;
+
+
+    /**
+     * The value of the 'sub' claim in an ID token.
+     * When this field is empty, 'subject' is used.
+     */
+    private String sub;
 
 
     /**
@@ -224,8 +245,25 @@ public class AuthorizationIssueRequest implements Serializable
      * (= a user account managed by the service) who has granted
      * authorization to the client application.
      *
+     * <p>
+     * This {@code subject} property is used as the value of the
+     * subject associated with the access token (if one is issued)
+     * and as the value of the {@code sub} claim in the ID token
+     * (if one is issued).
+     * </p>
+     *
+     * <p>
+     * Note that, if {@link #getSub()} returns a non-empty value,
+     * it is used as the value of the {@code sub} claim in the ID
+     * token. However, even in such a case, the value of the
+     * subject associated with the access token is still the value
+     * of this {@code subject} property.
+     * </p>
+     *
      * @return
      *         The subject.
+     *
+     * @see #getSub()
      */
     public String getSubject()
     {
@@ -238,15 +276,91 @@ public class AuthorizationIssueRequest implements Serializable
      * (= a user account managed by the service) who has granted
      * authorization to the client application.
      *
+     * <p>
+     * This {@code subject} property is used as the value of the
+     * subject associated with the access token (if one is issued)
+     * and as the value of the {@code sub} claim in the ID token
+     * (if one is issued).
+     * </p>
+     *
+     * <p>
+     * Note that, if a non-empty value is set by {@link #setSub(String)}
+     * method, the value is used as the value of the {@code sub} claim
+     * in the ID token. However, even in such a case, the value of the
+     * subject associated with the access token is still the value set
+     * by this method.
+     * </p>
+     *
      * @param subject
      *         The subject.
      *
      * @return
      *         {@code this} object.
+     *
+     * @since {@link #setSub(String)}
      */
     public AuthorizationIssueRequest setSubject(String subject)
     {
         this.subject = subject;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the {@code sub} claim that should be used in
+     * the ID token which is to be issued. If this method returns
+     * {@code null} or its value is empty, the value of the {@code
+     * subject} is used. The main purpose of this {@code sub} property
+     * is to hide the actual value of the subject from client applications.
+     *
+     * <p>
+     * Note that the value of the {@code subject} request parameter is
+     * used as the value of the subject associated with the access token
+     * regardless of whether this {@code sub} property is a non-empty
+     * value or not.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code sub} claim.
+     *
+     * @since 1.35
+     *
+     * @see #getSubject()
+     */
+    public String getSub()
+    {
+        return sub;
+    }
+
+
+    /**
+     * Set the value of the {@code sub} claim that should be used in
+     * the ID token which is to be issued. If {@code null} (the default
+     * value) or an empty string is given, the value of the {@code
+     * subject} is used. The main purpose of this {@code sub} property
+     * is to hide the actual value of the subject from client applications.
+     *
+     * <p>
+     * Note that the value of the {@code subject} request parameter is
+     * used as the value of the subject associated with the access token
+     * regardless of whether this {@code sub} property is a non-empty
+     * value or not.
+     * </p>
+     *
+     * @param sub
+     *         The value of the {@code sub} claim.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.35
+     *
+     * @see #setSubject(String)
+     */
+    public AuthorizationIssueRequest setSub(String sub)
+    {
+        this.sub = sub;
 
         return this;
     }
@@ -579,7 +693,7 @@ public class AuthorizationIssueRequest implements Serializable
      *
      * @param scopes
      *         Scopes to associate with an authorization code and/or an access
-     *         token. If a non null value is set, the original scopes requested
+     *         token. If a non-null value is set, the original scopes requested
      *         by the client application are replaced.
      *
      * @return

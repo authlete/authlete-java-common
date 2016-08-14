@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Authlete, Inc.
+ * Copyright (C) 2015-2016 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,6 +47,15 @@ import com.authlete.common.util.Utils;
  * >OpenID Connect Core 1.0, 5.1. Standard Claims</a>"</i>.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>sub</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code sub} claim. If the value of this request parameter
+ * is not empty, it is used as the value of the 'sub' claim. Otherwise, the
+ * value of the subject associated with the access token is used.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
@@ -54,7 +63,7 @@ import com.authlete.common.util.Utils;
  */
 public class UserInfoIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -67,6 +76,14 @@ public class UserInfoIssueRequest implements Serializable
      * Claims in JSON format.
      */
     private String claims;
+
+
+    /**
+     * The value of the 'sub' claim. If this field is empty, the value of
+     * the subject that is associated with the access token is used as the
+     * value of the 'sub' claim.
+     */
+    private String sub;
 
 
     /**
@@ -182,5 +199,42 @@ public class UserInfoIssueRequest implements Serializable
         String json = Utils.toJson(claims);
 
         return setClaims(json);
+    }
+
+
+    /**
+     * Get the value of the {@code sub} claim. If this method returns a non-empty value,
+     * it is used as the value of the 'sub' claim. Otherwise, the value of the subject
+     * associated with the access token is used.
+     *
+     * @return
+     *         The value of the {@code sub} claim.
+     *
+     * @since 1.35
+     */
+    public String getSub()
+    {
+        return sub;
+    }
+
+
+    /**
+     * Set the value of the {@code sub} claim. If a non-empty value is given, it is
+     * used as the value of the 'sub' claim. Otherwise, the value of the subject
+     * associated with the access token is used.
+     *
+     * @param sub
+     *         The value of the {@code sub} claim.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.35
+     */
+    public UserInfoIssueRequest setSub(String sub)
+    {
+        this.sub = sub;
+
+        return this;
     }
 }
