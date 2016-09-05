@@ -333,14 +333,14 @@ import com.authlete.common.util.Utils;
  *     <br/>
  *     <ul>
  *       <li>
- *         <p><b>[ticket]</b>
+ *         <p><b>[ticket]</b> (required)
  *           This parameter represents a ticket which is exchanged with tokens
  *           at the {@code /auth/authorization/issue} endpoint.
  *           Use the value returned by {@link #getTicket()} as it is.
  *         </p>
  *         <br/>
  *       <li>
- *         <p><b>[subject]</b>
+ *         <p><b>[subject]</b> (required)
  *           This parameter represents the unique identifier of the current end-user.
  *           It is often called "user ID" and it may or may not be visible to the user.
  *           In any case, it is a number or a string assigned to an end-user by the
@@ -366,9 +366,14 @@ import com.authlete.common.util.Utils;
  *           >8. Subject Identifier Types</a> of OpenID Connect Core 1.0 for
  *           details about subject types.
  *         </p>
+ *         <p>
+ *           You can use the <code>sub</code> request parameter to adjust the value
+ *           of the <code>sub</code> claim in an ID token. See the description of the
+ *           <code>sub</code> request parameter for details.
+ *         </p>
  *         <br/>
  *       <li>
- *         <p><b>[authTime]</b>
+ *         <p><b>[authTime]</b> (optional)
  *           This parameter represents the time when the end-user authentication
  *           occurred. Its value is the number of seconds from 1970-01-01. The
  *           value of this parameter will be embedded in an ID token as the value
@@ -377,7 +382,7 @@ import com.authlete.common.util.Utils;
  *         <br/>
  *       </li>
  *       <li>
- *         <p><b>[acr]</b>
+ *         <p><b>[acr]</b> (optional)
  *           This parameter represents the ACR (Authentication Context Class
  *           Reference) which the authentication of the end-user satisfies.
  *           When {@link #getAcrs()} method returns a non-empty array and
@@ -390,7 +395,7 @@ import com.authlete.common.util.Utils;
  *         <br/>
  *       </li>
  *       <li>
- *         <p><b>[claims]</b>
+ *         <p><b>[claims]</b> (optional)
  *           This parameter represents claims of the end-user. "Claims" here
  *           are pieces of information about the end-user such as {@code "name"},
  *           {@code "email"} and {@code "birthdate"}. The service implementation
@@ -408,9 +413,12 @@ import com.authlete.common.util.Utils;
  *           contains {@code "name"}, {@code "email"} and {@code "birthdate"},
  *           the value of this parameter should look like the following.
  *         </p>
- *         <br/>
  *         <blockquote>
- *           <code>{"name":"John Smith","email":"john@example.com","birthdate":"1974-05-06"}</code>
+ *           <pre style="padding: 0.7em; margin: 1em;"> {
+ *   "name": "John Smith",
+ *   "email": "john@example.com",
+ *   "birthdate": "1974-05-06"
+ * }</pre>
  *         </blockquote>
  *         <p>
  *           {@link #getClaimsLocales()} lists the end-user's preferred languages
@@ -453,6 +461,52 @@ import com.authlete.common.util.Utils;
  *         <br/>
  *         <p>
  *           The claim values in this parameter will be embedded in an ID token.
+ *         </p>
+ *       </li>
+ *       <li>
+ *         <p><b>[properties]</b> (optional)
+ *           Extra properties to associate with an access token and/or an authorization
+ *           code that may be issued by this request. Note that <code>properties</code>
+ *           parameter is accepted only when Content-Type of the request is
+ *           <code>application/json</code>, so don't use
+ *           <code>application/x-www-form-urlencoded</code> See <a href=
+ *           "https://www.authlete.com/documents/definitive_guide/extra_properties"
+ *           >Extra Properties</a> for details.
+ *         </p>
+ *       </li>
+ *       <li>
+ *         <p><b>[scopes]</b> (optional)
+ *           Scopes to associate with an access token and/or an authorization code.
+ *           If this parameter is null, the scopes specified in the original authorization
+ *           request from the client application are used. In other cases, including the
+ *           case of an empty array, the specified scopes will replace the original scopes
+ *           contained in the original authorization request.
+ *         </p>
+ *         <p>
+ *           Even scopes that are not included in the original authorization request
+ *           can be specified. However, as an exception, <code>"openid"</code> scope
+ *           is ignored on the server side if it is not included in the original request.
+ *           It is because the existence of <code>"openid"</code> scope considerably
+ *           changes the validation steps and because adding <code>"openid"</code>
+ *           triggers generation of an ID token (although the client application has not
+ *           requested it) and the behavior is a major violation against the specification.
+ *         </p>
+ *         <p>
+ *           If you add <code>"offline_access"</code> scope although it is not included
+ *           in the original request, keep in mind that the specification requires explicit
+ *           consent from the user for the scope (<a href=
+ *           "http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess">OpenID
+ *           Connect Core 1.0, 11. Offline Access</a>). When <code>"offline_access"</code>
+ *           is included in the original request, the current implementation of Authlete's
+ *           {@code /auth/authorization} API checks whether the request has come along with
+ *           <code>prompt</code> request parameter and the value includes
+ *           <code>"consent"</code>. However, note that the implementation of Authlete's
+ *           {@code /auth/authorization/issue} API does not perform such checking if
+ *           <code>"offline_access"</code> scope is added via this scopes parameter.
+ *         </p>
+ *       </li>
+ *       <li>
+ *         <p><b>[sub]</b> (optional)
  *         </p>
  *       </li>
  *     </ul>
@@ -567,6 +621,10 @@ import com.authlete.common.util.Utils;
  *           The meanings of the values are described in
  *           <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
  *           >3.1.2.1. Authentication Request</a> of OpenID Connect Core 1.0.
+ *           Note that <code>prompts</code> response parameter has been included
+ *           in the response since August, 2016. So, you may refer to the parameter
+ *           directly for better control (especially if the logic here does not
+ *           meet your requirements).
  *         </p>
  *         <br/>
  *       <li>
@@ -1105,7 +1163,7 @@ public class AuthorizationResponse extends ApiResponse
 
 
     /**
-     * Get the subject (= end-user's login ID) that the client
+     * Get the subject (= end-user's unique ID) that the client
      * application requests. The value comes from {@code "sub"}
      * claim in {@code "claims"} request parameter. This method
      * may return {@code null} (probably in most cases).

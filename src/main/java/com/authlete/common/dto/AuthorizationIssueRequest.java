@@ -116,11 +116,11 @@ import com.authlete.common.util.Utils;
  * "http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess"
  * >OpenID Connect Core 1.0, 11. Offline Access</a>). When
  * <code>"offline_access"</code> is included in the original request, the
- * current implementation of Authlete's /api/auth/authorization API checks
- * whether the request has come along with <code>prompt</code> request
- * parameter and the value includes <code>"consent"</code>. However, note
- * that the implementation of Authlete's /api/auth/authorization/issue API
- * does not perform such checking if <code>"offline_access"</code> scope
+ * current implementation of Authlete's {@code /auth/authorization} API
+ * checks whether the request has come along with <code>prompt</code>
+ * request parameter and the value includes <code>"consent"</code>. However,
+ * note that the implementation of Authlete's {@code /auth/authorization/issue}
+ * API does not perform such checking if <code>"offline_access"</code> scope
  * is added via this <code>scopes</code> parameter.
  * </p>
  * </dd>
@@ -129,13 +129,15 @@ import com.authlete.common.util.Utils;
  * <dd>
  * <p>
  * The value of the {@code sub} claim. If the value of this request parameter
- * is not empty, it is used as the value of the 'sub' claim. Otherwise, the
- * value of the subject associated with the access token is used.
+ * is not empty, it is used as the value of the {@code sub} claim. Otherwise,
+ * the value of the {@code subject} request parameter is used as the value of
+ * the {@code sub} claim. The main purpose of this parameter is to hide the
+ * actual value of the subject from client applications.
  * </p>
  * <p>
- * Note that even if this {@code sub} property is not empty, the value of the
+ * Note that even if this {@code sub} parameter is not empty, the value of the
  * {@code subject} request parameter is used as the value of the subject which
- * is associated with the access token (if one is issued).
+ * is associated with the access token.
  * </p>
  * </dd>
  * </dl>

@@ -78,7 +78,7 @@ import com.authlete.common.web.URLCoder;
  * {@code properties} parameter is accepted only when Content-Type
  * of the request is application/json, so don't use
  * application/x-www-form-urlencoded if you want to specify
- * {@code properties}
+ * {@code properties}.
  * </dd>
  *
  * </dl>
