@@ -70,7 +70,7 @@ import java.io.Serializable;
  * </dl>
  * </blockquote>
  *
- * @see TokenCreateResponse
+ * @see TokenUpdateResponse
  *
  * @author Takahiko Kawasaki
  *
