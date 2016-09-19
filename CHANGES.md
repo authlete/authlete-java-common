@@ -1,6 +1,24 @@
 CHANGES
 =======
 
+1.38 (2016-09-20)
+-----------------
+
+- Added `GrantedScopesGetResponse` class.
+
+
+1.37 (2016-09-12)
+-----------------
+
+- Added `ClientAuthorizationUpdateRequest` class.
+
+
+1.36 (2016-09-06)
+-----------------
+
+- Added `AuthorizedClientListResponse` class.
+
+
 1.35 (2016-08-15)
 -----------------
 
