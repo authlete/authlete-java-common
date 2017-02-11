@@ -47,7 +47,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /*
@@ -223,6 +223,8 @@ public class Client implements Serializable
     private TaggedValue[] descriptions;
     private long createdAt;
     private long modifiedAt;
+
+    private ClientExtension extension;
 
 
     /**
@@ -1696,6 +1698,39 @@ public class Client implements Serializable
     public Client setModifiedAt(long modifiedAt)
     {
         this.modifiedAt = modifiedAt;
+
+        return this;
+    }
+
+
+    /**
+     * Get the extended information about this client.
+     *
+     * @return
+     *         The extended information about this client.
+     *
+     * @since 1.39
+     */
+    public ClientExtension getExtension()
+    {
+        return extension;
+    }
+
+
+    /**
+     * Set the extended information about this client.
+     *
+     * @param extension
+     *         The extended information about this client.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.39
+     */
+    public Client setExtension(ClientExtension extension)
+    {
+        this.extension = extension;
 
         return this;
     }
