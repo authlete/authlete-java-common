@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 11L;
+    private static final long serialVersionUID = 12L;
 
 
     /*
@@ -164,6 +164,14 @@ public class Service implements Serializable
      * Extra properties.
      */
     private String[][] properties;
+
+
+    /**
+     * Metadata.
+     *
+     * @since 1.39
+     */
+    private Pair[] metadata;
 
 
     /**
@@ -1376,7 +1384,10 @@ public class Service implements Serializable
      *         {@code null} may be returned.
      *
      * @since 1.8
+     *
+     * @deprecated
      */
+    @Deprecated
     public String[][] getProperties()
     {
         return properties;
@@ -1395,12 +1406,66 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 1.8
+     *
+     * @deprecated
      */
+    @Deprecated
     public Service setProperties(String[][] properties)
     {
         this.properties = properties;
 
         return this;
+    }
+
+
+    /**
+     * Get metadata.
+     *
+     * <p>
+     * The content of the returned array depends on contexts.
+     * </p>
+     *
+     * <br/>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <caption>Predefined Service Metadata</caption>
+     *   <tr>
+     *     <th bgcolor="orange">Key</th>
+     *     <th bgcolor="orange">Description</th>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "clientCount"}</td>
+     *     <td>The number of client applications which belong to this service.</td>
+     *   </tr>
+     * </table>
+     *
+     * @return
+     *         Metadata. The type is an array of {@link Pair}.
+     *
+     * @since 1.39
+     */
+    public Pair[] getMetadata()
+    {
+        return metadata;
+    }
+
+
+    /**
+     * Set metadata.
+     *
+     * @param metadata
+     *         Metadata. The type is an array of {@link Pair}.
+     *         {@code null} may be returned.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.39
+     */
+    public Service setMetadata(Pair[] metadata)
+    {
+         this.metadata = metadata;
+
+         return this;
     }
 
 
