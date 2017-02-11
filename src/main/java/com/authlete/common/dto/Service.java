@@ -126,6 +126,8 @@ public class Service implements Serializable
     private boolean singleAccessTokenPerSubject;
     private boolean pkceRequired;
     private boolean refreshTokenKept;
+    private boolean errorDescriptionOmitted;
+    private boolean errorUriOmitted;
 
 
     /**
@@ -2046,6 +2048,100 @@ public class Service implements Serializable
     public Service setRefreshTokenKept(boolean kept)
     {
         this.refreshTokenKept = kept;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether the {@code error_description} response
+     * parameter is omitted.
+     *
+     * <p>
+     * According to RFC 6749, an authorization server may include the {@code
+     * error_description} response parameter in error responses. When this
+     * {@code errorDescriptionOmitted} property is {@code true}, Authlete does
+     * not embed the {@code error_description} response parameter in error
+     * responses.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the {@code error_description} response parameter
+     *         is omitted. {@code false} if the {@code error_description}
+     *         response parameter is included in error responses from the
+     *         authorization server.
+     *
+     * @since 1.39
+     */
+    public boolean isErrorDescriptionOmitted()
+    {
+        return errorDescriptionOmitted;
+    }
+
+
+    /**
+     * Omit or embed the {@code error_description} response parameter in
+     * error responses.
+     *
+     * @param omitted
+     *         {@code true} to omit the {@code error_description} response
+     *         parameter. {@code false} to embed the parameter.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.39
+     */
+    public Service setErrorDescriptionOmitted(boolean omitted)
+    {
+        this.errorDescriptionOmitted = omitted;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether the {@code error_uri} response
+     * parameter is omitted.
+     *
+     * <p>
+     * According to RFC 6749, an authorization server may include the
+     * {@code error_uri} response parameter in error responses. When
+     * this {@code errorUriOmitted} property is {@code true}, Authlete
+     * does not embed the {@code error_uri} response parameter in error
+     * responses.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the {@code error_uri} response parameter
+     *         is omitted. {@code false} if the {@code error_uri}
+     *         response parameter is included in error responses from
+     *         the authorization server.
+     *
+     * @since 1.39
+     */
+    public boolean isErrorUriOmitted()
+    {
+        return errorUriOmitted;
+    }
+
+
+    /**
+     * Omit or embed the {@code error_uri} response parameter in error
+     * responses.
+     *
+     * @param omitted
+     *         {@code true} to omit the {@code error_uri} response parameter.
+     *         {@code false} to embed the parameter.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.39
+     */
+    public Service setErrorUriOmitted(boolean omitted)
+    {
+        this.errorUriOmitted = omitted;
 
         return this;
     }
