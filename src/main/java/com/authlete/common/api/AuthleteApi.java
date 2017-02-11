@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import com.authlete.common.dto.AuthorizationRequest;
 import com.authlete.common.dto.AuthorizationResponse;
 import com.authlete.common.dto.Client;
 import com.authlete.common.dto.ClientListResponse;
+import com.authlete.common.dto.GrantedScopesGetResponse;
 import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
 import com.authlete.common.dto.RevocationRequest;
@@ -681,6 +682,24 @@ public interface AuthleteApi
      * {@link #deleteRequestableScopes(long) deleteRequestableScopes(clientId)}.
      * </p>
      *
+     * <p>
+     * Since the version 1.39, the {@link Client} class has {@code extension}
+     * property and information about <i>"Requestable Scopes per Client"</i>
+     * is included in the property. So, calling <code>/client/update/{clientId}</code>
+     * API is enough and recommended. In other words, calling
+     * <code>/client/extension/requestable_scopes/update/{clientId}</code> API
+     * is no longer recommended.
+     * </p>
+     *
+     * <p>
+     * Known issue: The JSON parser used by the implementation of
+     * <code>/client/extension/requestable_scopes/update/{clientId}</code> API
+     * treats an empty array as null and it does not provide any configuration
+     * method to change the behavior. Until the JSON parser is replaced, passing
+     * an empty array to the API leads to the same result as passing {@code null}
+     * to the API.
+     * </p>
+     *
      * @param clientId
      *         A client ID.
      *
@@ -729,4 +748,22 @@ public interface AuthleteApi
      * @since 1.34
      */
     void deleteRequestableScopes(long clientId) throws AuthleteApiException;
+
+
+    /**
+     * Get the set of scopes that a user has granted to a client application
+     * (call Authlete's <code>/client/granted_scopes/get/{clientId}</code> API).
+     *
+     * @param clientId
+     *         A client ID.
+     *
+     * @param subject
+     *         A unique user identifier.
+     *
+     * @return
+     *         Information about scopes granted to a client application by a user.
+     *
+     * @since 1.39
+     */
+    GrantedScopesGetResponse getGrantedScopes(long clientId, String subject);
 }
