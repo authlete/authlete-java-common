@@ -122,6 +122,7 @@ public class Service implements Serializable
     private boolean directRevocationEndpointEnabled;
     private boolean directUserInfoEndpointEnabled;
     private boolean directJwksEndpointEnabled;
+    private boolean directIntrospectionEndpointEnabled;
     private boolean singleAccessTokenPerSubject;
     private boolean pkceRequired;
     private boolean refreshTokenKept;
@@ -1696,7 +1697,7 @@ public class Service implements Serializable
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/authorization/direct/{serviceApiKey}</code>
      *
-     * @param endpoint
+     * @param enabled
      *         {@code true} to enable the direct endpoint.
      *
      * @return
@@ -1704,9 +1705,9 @@ public class Service implements Serializable
      *
      * @since 1.16
      */
-    public Service setDirectAuthorizationEndpointEnabled(boolean endpoint)
+    public Service setDirectAuthorizationEndpointEnabled(boolean enabled)
     {
-        this.directAuthorizationEndpointEnabled = endpoint;
+        this.directAuthorizationEndpointEnabled = enabled;
 
         return this;
     }
@@ -1733,7 +1734,7 @@ public class Service implements Serializable
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/token/direct/{serviceApiKey}</code>
      *
-     * @param endpoint
+     * @param enabled
      *         {@code true} to enable the direct endpoint.
      *
      * @return
@@ -1741,9 +1742,9 @@ public class Service implements Serializable
      *
      * @since 1.16
      */
-    public Service setDirectTokenEndpointEnabled(boolean endpoint)
+    public Service setDirectTokenEndpointEnabled(boolean enabled)
     {
-        this.directTokenEndpointEnabled = endpoint;
+        this.directTokenEndpointEnabled = enabled;
 
         return this;
     }
@@ -1770,7 +1771,7 @@ public class Service implements Serializable
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/revocation/direct/{serviceApiKey}</code>
      *
-     * @param endpoint
+     * @param enabled
      *         {@code true} to enable the direct endpoint.
      *
      * @return
@@ -1778,9 +1779,9 @@ public class Service implements Serializable
      *
      * @since 1.16
      */
-    public Service setDirectRevocationEndpointEnabled(boolean endpoint)
+    public Service setDirectRevocationEndpointEnabled(boolean enabled)
     {
-        this.directRevocationEndpointEnabled = endpoint;
+        this.directRevocationEndpointEnabled = enabled;
 
         return this;
     }
@@ -1807,7 +1808,7 @@ public class Service implements Serializable
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/userinfo/direct/{serviceApiKey}</code>
      *
-     * @param endpoint
+     * @param enabled
      *         {@code true} to enable the direct endpoint.
      *
      * @return
@@ -1815,9 +1816,9 @@ public class Service implements Serializable
      *
      * @since 1.16
      */
-    public Service setDirectUserInfoEndpointEnabled(boolean endpoint)
+    public Service setDirectUserInfoEndpointEnabled(boolean enabled)
     {
-        this.directUserInfoEndpointEnabled = endpoint;
+        this.directUserInfoEndpointEnabled = enabled;
 
         return this;
     }
@@ -1844,7 +1845,7 @@ public class Service implements Serializable
      * is enabled or not. The path of the endpoint is
      * <code>/api/service/jwks/get/direct/{serviceApiKey}</code>
      *
-     * @param endpoint
+     * @param enabled
      *         {@code true} to enable the direct endpoint.
      *
      * @return
@@ -1852,9 +1853,46 @@ public class Service implements Serializable
      *
      * @since 1.16
      */
-    public Service setDirectJwksEndpointEnabled(boolean endpoint)
+    public Service setDirectJwksEndpointEnabled(boolean enabled)
     {
-        this.directJwksEndpointEnabled = endpoint;
+        this.directJwksEndpointEnabled = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to indicate whether the direct introspection endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/auth/introspection/direct/{serviceApiKey}</code>
+     *
+     * @return
+     *         {@code true} if enabled.
+     *
+     * @since 1.39
+     */
+    public boolean isDirectIntrospectionEndpointEnabled()
+    {
+        return directIntrospectionEndpointEnabled;
+    }
+
+
+    /**
+     * Set the flag to indicate whether the direct introspection endpoint
+     * is enabled or not. The path of the endpoint is
+     * <code>/api/auth/introspection/direct/{serviceApiKey}</code>
+     *
+     * @param enabled
+     *         {@code true} to enable the direct endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.39
+     */
+    public Service setDirectIntrospectionEndpointEnabled(boolean enabled)
+    {
+        this.directIntrospectionEndpointEnabled = enabled;
 
         return this;
     }
