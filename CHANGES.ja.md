@@ -1,6 +1,27 @@
 変更点
 ======
 
+1.39 (2017 年 2 月 13 日)
+-------------------------
+
+- 新しいクラスを追加
+    * `ClientExtension` クラス
+    * `Pair` クラス
+
+- `AuthleteApi` インターフェース
+    * `getGrantedScopes(long, String)` メソッドを追加
+
+- `Client` クラス
+    * `extension` フィールドを追加
+
+- `Service` クラス
+    * `directIntrospectionEndpointEnabled` フィールドを追加
+    * `errorDescriptionOmitted` フィールドを追加
+    * `errorUriOmitted` フィールドを追加
+    * `metadata` フィールドを追加
+    * `properties` プロパティーを deprecated 化
+
+
 1.38 (2016 年 9 月 20 日)
 -------------------------
 

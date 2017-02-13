@@ -1,6 +1,27 @@
 CHANGES
 =======
 
+1.39 (2017-02-13)
+-----------------
+
+- Added new classes
+    * `ClientExtension` class
+    * `Pair` class
+
+- `AuthleteApi` interface
+    * Added `getGrantedScopes(long, String)` method.
+
+- `Client` class
+    * Added `extension` field.
+
+- `Service` class
+    * Added `directIntrospectionEndpointEnabled` field.
+    * Added `errorDescriptionOmitted` field.
+    * Added `errorUriOmitted` field.
+    * Added `metadata` field.
+    * Marked `properties` property as deprecated.
+
+
 1.38 (2016-09-20)
 -----------------
 
