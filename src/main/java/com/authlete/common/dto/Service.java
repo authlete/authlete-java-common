@@ -164,12 +164,6 @@ public class Service implements Serializable
 
 
     /**
-     * Extra properties.
-     */
-    private String[][] properties;
-
-
-    /**
      * Metadata.
      *
      * @since 1.39
@@ -1356,66 +1350,6 @@ public class Service implements Serializable
     public Service setModifiedAt(long modifiedAt)
     {
         this.modifiedAt = modifiedAt;
-
-        return this;
-    }
-
-
-    /**
-     * Get extra properties.
-     *
-     * <p>
-     * The content of the returned array depends on contexts.
-     * </p>
-     *
-     * <br/>
-     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
-     *   <caption>Predefined Service Properties</caption>
-     *   <tr>
-     *     <th bgcolor="orange">Key</th>
-     *     <th bgcolor="orange">Description</th>
-     *   </tr>
-     *   <tr>
-     *     <td>{@code "clientCount"}</td>
-     *     <td>The number of client applications which belong to this service.</td>
-     *   </tr>
-     * </table>
-     *
-     * @return
-     *         Extra properties. The type is an array of {@code String[2]}.
-     *         {@code String[0]} is a key and {@code String[1]} is its value.
-     *         {@code null} may be returned.
-     *
-     * @since 1.8
-     *
-     * @deprecated
-     */
-    @Deprecated
-    public String[][] getProperties()
-    {
-        return properties;
-    }
-
-
-    /**
-     * Set extra properties.
-     *
-     * @param properties
-     *         Extra properties. The type is an array of {@code String[2]}.
-     *         {@code String[0]} is a key and {@code String[1]} is its value.
-     *         {@code null} may be returned.
-     *
-     * @return
-     *         {@code this} object.
-     *
-     * @since 1.8
-     *
-     * @deprecated
-     */
-    @Deprecated
-    public Service setProperties(String[][] properties)
-    {
-        this.properties = properties;
 
         return this;
     }
