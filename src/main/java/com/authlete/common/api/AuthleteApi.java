@@ -754,6 +754,15 @@ public interface AuthleteApi
      * Get the set of scopes that a user has granted to a client application
      * (call Authlete's <code>/client/granted_scopes/get/{clientId}</code> API).
      *
+     * <p>
+     * A dedicated Authlete server provides a functionality to remember the set
+     * of scopes that a user has granted to a client application. A remembered
+     * set is NOT removed from the database even after all existing access tokens
+     * associated with the combination of the client application and the subject
+     * have expired. Note that this functionality is not provided by the shared
+     * Authlete server.
+     * </p>
+     *
      * @param clientId
      *         A client ID.
      *
@@ -766,4 +775,32 @@ public interface AuthleteApi
      * @since 1.39
      */
     GrantedScopesGetResponse getGrantedScopes(long clientId, String subject);
+
+
+    /**
+     * Delete DB records about the set of scopes that a user has granted to a
+     * client application (call Authlete's
+     * <code>/client/granted_scopes/delete/{clientId}</code> API).
+     *
+     * <p>
+     * Even if you delete records about granted scopes by calling this API,
+     * existing access tokens are not deleted and scopes of existing access
+     * tokens are not changed.
+     * </p>
+     *
+     * <p>
+     * Please call this method if the user identified by the subject is deleted
+     * from your system. Otherwise, garbage data continue to exist in the
+     * database.
+     * </p>
+     *
+     * @param clientId
+     *         A client ID.
+     *
+     * @param subject
+     *         A unique user identifier.
+     *
+     * @since 1.40
+     */
+    void deleteGrantedScopes(long clientId, String subject);
 }
