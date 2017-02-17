@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+1.40 (2017-02-17)
+-----------------
+
+- Added `deleteGrantedScopes(long, String)` method to
+  `AuthleteApi` interface.
+
+- Deleted `properties` property from `Service` class.
+
+
 1.39 (2017-02-13)
 -----------------
 

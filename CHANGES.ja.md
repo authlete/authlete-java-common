@@ -1,6 +1,15 @@
 変更点
 ======
 
+1.40 (2017 年 2 月 17 日)
+-------------------------
+
+- `AuthleteApi` インターフェースに `deleteGrantedScopes(long, String)`
+  メソッドを追加。
+
+- `Service` クラスから `properties` プロパティーを削除。
+
+
 1.39 (2017 年 2 月 13 日)
 -------------------------
 
@@ -9,17 +18,17 @@
     * `Pair` クラス
 
 - `AuthleteApi` インターフェース
-    * `getGrantedScopes(long, String)` メソッドを追加
+    * `getGrantedScopes(long, String)` メソッドを追加。
 
 - `Client` クラス
-    * `extension` フィールドを追加
+    * `extension` フィールドを追加。
 
 - `Service` クラス
-    * `directIntrospectionEndpointEnabled` フィールドを追加
-    * `errorDescriptionOmitted` フィールドを追加
-    * `errorUriOmitted` フィールドを追加
-    * `metadata` フィールドを追加
-    * `properties` プロパティーを deprecated 化
+    * `directIntrospectionEndpointEnabled` フィールドを追加。
+    * `errorDescriptionOmitted` フィールドを追加。
+    * `errorUriOmitted` フィールドを追加。
+    * `metadata` フィールドを追加。
+    * `properties` プロパティーを deprecated 化。
 
 
 1.38 (2016 年 9 月 20 日)
