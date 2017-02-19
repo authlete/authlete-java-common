@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+1.41 (2017-02-19)
+-----------------
+
+- Added `setRequestableScopes(Set)` method to 'ClientExtension' class.
+
+
 1.40 (2017-02-17)
 -----------------
 
