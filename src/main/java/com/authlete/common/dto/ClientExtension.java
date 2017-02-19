@@ -17,6 +17,7 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.util.Set;
 
 
 /**
@@ -44,7 +45,7 @@ import java.io.Serializable;
  */
 public class ClientExtension implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     private boolean requestableScopesEnabled;
@@ -144,6 +145,46 @@ public class ClientExtension implements Serializable
     public ClientExtension setRequestableScopes(String[] scopes)
     {
         this.requestableScopes = scopes;
+
+        return this;
+    }
+
+
+    /**
+     * Set the set of scopes that this client application can request when
+     * <i>"Requestable Scopes per Client"</i> is enabled (= when {@link
+     * #isRequestableScopesEnabled()} returns {@code true}).
+     *
+     * <p>
+     * See the description of {@link #isRequestableScopesEnabled()} for details
+     * about <i>"Requestable Scopes per Client"</i>.
+     * </p>
+     *
+     * @param scopes
+     *         A set of scopes.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.41
+     */
+    public ClientExtension setRequestableScopes(Set<String> scopes)
+    {
+        if (scopes == null)
+        {
+            this.requestableScopes = null;
+
+            return this;
+        }
+
+        int size = scopes.size();
+
+        this.requestableScopes = new String[size];
+
+        if (size != 0)
+        {
+            scopes.toArray(this.requestableScopes);
+        }
 
         return this;
     }
