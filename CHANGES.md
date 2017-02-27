@@ -1,6 +1,23 @@
 CHANGES
 =======
 
+2.0 (2017-02-27)
+----------------
+
+- Added an implementation of `AuthleteApi` interface using
+  `HttpURLConnection`. The new implementation has been added
+  to the list of known implementations in `AuthleteApiFactory`.
+
+- Implemented command line interface for Authlete API.
+  `CLI` class and `authlete-cli.sh` script have been added.
+
+- `Utils` class
+    * Added `toJson(Object, boolean)` method.
+    * Added `fromJson(String, Class)` method.
+
+- Added `authlete.properties` in `.gitignore`.
+
+
 1.41 (2017-02-19)
 -----------------
 

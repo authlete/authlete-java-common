@@ -1,6 +1,22 @@
 変更点
 ======
 
+2.0 (2017 年 2 月 27 日)
+------------------------
+
+- `HttpURLConnection` による `AuthleteApi` インターフェースの実装を追加。
+  `AuthleteApiFactory` 内にある既知の実装リストに新しい実装を追加。
+
+- Authlete API のコマンドラインインターフェースを実装。
+  `CLI` クラスと `authlete-cli.sh` スクリプトを追加。
+
+- `Utils` クラス
+    * `toJson(Object, boolean)` メソッドを追加。
+    * `fromJson(String, class)` メソッドを追加。
+
+- `authlete.properties` を `.gitignore` に追加。
+
+
 1.41 (2017 年 2 月 19 日)
 -------------------------
 

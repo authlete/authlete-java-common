@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.41</version>
+    <version>2.0</version>
 </dependency>
 ```
 
@@ -150,17 +150,23 @@ values. See the [JavaDoc][8] for details.
 
 #### AuthleteApi Implementation
 
-As a matter of fact, authlete-java-common library does NOT include any
-implementation of `AuthleteApi` interface. Therefore, you need another library
-that contains an implementation of `AuthleteApi` interface. At the time of this
-writing, [authlete-java-jaxrs][7] is the only such library.
+Since version 2.0, authlete-java-common library includes an implementation of
+`AuthleteApi` interface using `HttpURLConnection`. Before version 2.0,
+[authlete-java-jaxrs][7] which contains an implementation of `AuthleteApi` was
+additionally needed.
 
 `AuthleteApiFactory.create()` method searches known locations for an
 `AuthleteApi` implementation and loads one using reflection. The reason to use
 reflection is to avoid depending on specific implementations (e.g. JAX-RS based
-implementation in authlete-java-jaxrs). And again, at the time of this writing,
-`com.authlete.jaxrs.api.AuthleteApiImpl` is the only entry in the internal list
-of known locations of implementation classes.
+implementation in authlete-java-jaxrs).
+
+As of this writing, known implementations of `AuthleteApi` interface are as
+follows.
+
+  1. `com.authlete.jaxrs.api.AuthleteApiImpl` (in [authlete-java-jaxrs][7])
+  2. `com.authlete.common.api.AuthleteApiImpl` (in authlete-java-common)
+
+`AuthleteApiFactory` checks existence of the above classes in this order.
 
 
 #### AuthleteApi Method Categories
@@ -225,11 +231,16 @@ Methods in `AuthleteApi` interface can be divided into some categories.
     - `tokenCreate(TokenCreateRequest)`
     - `tokenUpdate(TokenUpdateRequest)`
 
-  11. Methods for Requestable Scopes per Client
+  11. Methods for Requestable Scopes per Client (deprecated; Client APIs suffice)
 
     - `getRequestableScopes(long clientId)`
     - `setRequestableScopes(long clientId, String[] scopes)`
     - `deleteRequestableScopes(long clientId)`
+
+  12. Methods for Records of Granted Scopes
+
+    - `getGrantedScopes(long clientId, String subject)`
+    - `deleteGrantedScopes(long clientId, String subject)`
 
 
 Examples
@@ -266,11 +277,16 @@ See Also
 - [java-resource-server][9] - Resource Server Implementation
 
 
-Support
+Contact
 -------
 
-[Authlete, Inc.][1]<br/>
-support@authlete.com
+| Purpose   | Email Address        |
+|:----------|:---------------------|
+| General   | info@authlete.com    |
+| Sales     | sales@authlete.com   |
+| PR        | pr@authlete.com      |
+| Technical | support@authlete.com |
+
 
 
 [1]: https://www.authlete.com/

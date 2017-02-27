@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>1.41</version>
+    <version>2.0</version>
 </dependency>
 ```
 
@@ -144,15 +144,20 @@ API シークレットを平文で書きたくなければ、`*.api_secret` キ�
 
 #### AuthleteApi の実装
 
-実は、authlete-java-common ライブラリには `AuthleteApi` インターフェースの実装は含まれて_いません_。
-ですので、`AuthleteApi` インターフェースの実装を含む別のライブラリが必要となります。
-この文章を書いている時点では、[authlete-java-jaxrs][7] だけが該当するライブラリです。
+authlete-java-common ライブラリのバージョン 2.0 以降には、`HttpURLConnection` による
+`AuthleteApi` インターフェースの実装が含まれています。バージョン 2.0 以前は `AuthleteApi`
+インターフェースの実装を含む [authlete-java-jaxrs][7] ライブラリが別途必要でした。
 
-`AuthleteApiFactory.create()` メソッドは既知の場所を探し、`AuhleteApi`
+`AuthleteApiFactory.create()` メソッドは既知の場所を探し、`AuthleteApi`
 の実装をリフレクションを使ってロードします。 リフレクションを使用する理由は、特定の実装
 (例えば authlete-java-jaxrs 内の JAX-RS ベースの実装) に依存しないようにするためです。
-そしてまた、この文章を書いている時点では、実装クラスの既知の場所として内部リストに入っているのは
-`com.authlete.jaxrs.api.AuthleteApiImpl` のみです。
+
+現時点で `AuthleteApi` インターフェースの既知の実装は次の二つです。
+
+  1. `com.authlete.jaxrs.api.AuthleteApiImpl` (in [authlete-java-jaxrs][7])
+  2. `com.authlete.common.api.AuthleteApiImpl` (in authlete-java-common)
+
+`AuthleteApiFactory` は上記の順番で実装を検索しにいきます。
 
 
 #### AuthleteApi メソッドのカテゴリー
@@ -217,11 +222,16 @@ API シークレットを平文で書きたくなければ、`*.api_secret` キ�
     - `tokenCreate(TokenCreateRequest)`
     - `tokenUpdate(TokenUpdateRequest)`
 
-  11. クライアント毎の要求可能スコープ群に関するメソッド群
+  11. クライアント毎の要求可能スコープ群に関するメソッド群 (非推奨; Client API で代替可能)
 
     - `getRequestableScopes(long clientId)`
     - `setRequestableScopes(long clientId, String[] scopes)`
     - `deleteRequestableScopes(long clientId)`
+
+  12. 付与されたスコープの記録に関するメソッド群
+
+    - `getGrantedScopes(long clientId, String subject)`
+    - `deleteGrantedScopes(long clientId, String subject)`
 
 
 例
@@ -258,11 +268,15 @@ ServiceListResponse response = api.getServiceList();
 - [java-resource-server][9] - リソースサーバー実装
 
 
-サポート
---------
+コンタクト
+----------
 
-[Authlete, Inc.][1]<br/>
-support@authlete.com
+| 目的 | メールアドレス       |
+|:-----|:---------------------|
+| 一般 | info@authlete.com    |
+| 営業 | sales@authlete.com   |
+| 広報 | pr@authlete.com      |
+| 技術 | support@authlete.com |
 
 
 [1]: https://www.authlete.com/
