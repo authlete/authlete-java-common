@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,25 @@ import com.authlete.common.conf.AuthletePropertiesConfiguration;
 public class AuthleteApiFactory
 {
     /**
+     * An implementation of {@link AuthleteApi} using JAX-RS.
+     * This implementation exists in authlete/authlete-java-jaxrs.
+     */
+    private static final String IMPL_JAX_RS = "com.authlete.jaxrs.api.AuthleteApiImpl";
+
+
+    /**
+     * An implementation of {@link AuthleteApi} using {@link java.net.HttpURLConnection HttpURLConnection}.
+     * This implementation exists in authlete/authlete-java-common.
+     */
+    private static final String IMPL_HTTP_URL_CONNECTION = "com.authlete.common.api.AuthleteApiImpl";
+
+
+    /**
      * Known implementations of AuthleteApi.
      */
     private static final String[] sKnownImpls = {
-        "com.authlete.jaxrs.api.AuthleteApiImpl"
+        IMPL_JAX_RS,
+        IMPL_HTTP_URL_CONNECTION
     };
 
 
@@ -57,12 +72,13 @@ public class AuthleteApiFactory
      *
      * <p>
      * The classes listed below are the ones that the current implementation knows.
-     * (Currently, just one.)
      * </p>
      *
      * <ol>
      * <li><code>com.authlete.jaxrs.api.AuthleteApiImpl</code><br/>
-     *     (contained in <code>com.authlete:authlete-java-jaxrs</code>)
+     *     (using JAX-RS 2.0 API, contained in <code>com.authlete:authlete-java-jaxrs</code>)
+     * <li><code>com.authlete.common.api.AuthleteApiImpl</code><br/>
+     *     (using {@link java.net.HttpURLConnection HttpURLConnection}, contained in <code>com.authlete:authlete-java-common</code> since version 2.0)
      * </ol>
      *
      * @param configuration
