@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Authlete, Inc.
+ * Copyright (C) 2015-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,13 @@ package com.authlete.common.util;
 
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 public class Utils
 {
     private static final Gson GSON = new Gson();
+    private static final Gson PRETTY_GSON = new GsonBuilder().setPrettyPrinting().create();
 
 
     private Utils()
@@ -96,11 +98,61 @@ public class Utils
      */
     public static String toJson(Object object)
     {
+        return toJson(object, false);
+    }
+
+
+    /**
+     * Convert the given object into a JSON string using
+     * <a href="https://github.com/google/gson">Gson</a>.
+     *
+     * @param object
+     *         The input object.
+     *
+     * @param pretty
+     *         True for human-readable format.
+     *
+     * @return
+     *         A JSON string. If {@code object} is {@code null},
+     *         {@code null} is returned.
+     *
+     * @since 2.0
+     */
+    public static String toJson(Object object, boolean pretty)
+    {
         if (object == null)
         {
             return null;
         }
 
-        return GSON.toJson(object);
+        if (pretty)
+        {
+            return PRETTY_GSON.toJson(object);
+        }
+        else
+        {
+            return GSON.toJson(object);
+        }
+    }
+
+
+    /**
+     * Convert the given JSON string into an object using
+     * <a href="https://github.com/google/gson">Gson</a>.
+     *
+     * @param json
+     *         The input JSON.
+     *
+     * @param klass
+     *         The class of the resultant object.
+     *
+     * @return
+     *         A new object generated based on the input JSON.
+     *
+     * @since 2.0
+     */
+    public static <T> T fromJson(String json, Class<T> klass)
+    {
+        return GSON.fromJson(json, klass);
     }
 }
