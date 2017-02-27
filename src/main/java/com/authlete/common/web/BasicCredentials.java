@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,6 +49,12 @@ public class BasicCredentials
      * Password.
      */
     private final String mPassword;
+
+
+    /**
+     * "Basic {base64-encoded ID:Password}"
+     */
+    private transient String mFormatted;
 
 
     /**
@@ -169,6 +175,11 @@ public class BasicCredentials
      */
     public String format()
     {
+        if (mFormatted != null)
+        {
+            return mFormatted;
+        }
+
         // userid:password
         String credentials = String.format("%s:%s",
                 mUserId   == null ? "" : mUserId,
@@ -181,7 +192,9 @@ public class BasicCredentials
         String encoded = Base64.encodeBase64String(credentialsBytes);
 
         // Build the value of Authorization header.
-        return "Basic " + encoded;
+        mFormatted = "Basic " + encoded;
+
+        return mFormatted;
     }
 
 
