@@ -172,6 +172,38 @@ public class Service implements Serializable
 
 
     /**
+     * Key ID to identify a JWK used for ID token signature using an asymmetric key.
+     *
+     * @since 2.1
+     */
+    private String idTokenSignatureKeyId;
+
+
+    /**
+     * Key ID to identify a JWK used for ID token encryption using an asymmetric key.
+     *
+     * @since 2.1
+     */
+    private String idTokenEncryptionKeyId;
+
+
+    /**
+     * Key ID to identify a JWK used for User Info signature using an asymmetric key.
+     *
+     * @since 2.1
+     */
+    private String userInfoSignatureKeyId;
+
+
+    /**
+     * Key ID to identify a JWK used for User Info encryption using an asymmetric key.
+     *
+     * @since 2.1
+     */
+    private String userInfoEncryptionKeyId;
+
+
+    /**
      * Get the service number.
      *
      * @return
@@ -2076,6 +2108,258 @@ public class Service implements Serializable
     public Service setErrorUriOmitted(boolean omitted)
     {
         this.errorUriOmitted = omitted;
+
+        return this;
+    }
+
+
+    /**
+     * Get the key ID to identify a JWK used for ID token signature using
+     * an asymmetric key.
+     *
+     * <p>
+     * A JWK Set can be registered as a property of a Service. A JWK Set can
+     * contain 0 or more JWKs (See <a href="https://tools.ietf.org/html/rfc7517"
+     * >RFC 7517</a> for details about JWK). Authlete Server has to pick up
+     * one JWK for signature from the JWK Set when it generates an ID token
+     * and signature using an asymmetric key is required. Authlete Server
+     * searches the registered JWK Set for a JWK which satisfies conditions
+     * for ID token signature. If the number of JWK candidates which satisfy
+     * the conditions is 1, there is no problem. On the other hand, if there
+     * exist multiple candidates, a <a href=
+     * "https://tools.ietf.org/html/rfc7517#section-4.5">Key ID</a> is needed
+     * to be specified so that Authlete Server can pick up one JWK from among
+     * the JWK candidates.
+     * </p>
+     *
+     * <p>
+     * This {@code idTokenSignatureKeyId} property exists for the purpose
+     * described above. For key rotation (OpenID Connect Core 1.0, <a href=
+     * "http://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys"
+     * >10.1.1. Rotation of Asymmetric Signing Keys</a>), this mechanism is
+     * needed.
+     * </p>
+     *
+     * @return
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @since 2.1
+     */
+    public String getIdTokenSignatureKeyId()
+    {
+        return idTokenSignatureKeyId;
+    }
+
+
+    /**
+     * Set the key ID to identify a JWK used for ID token signature using
+     * an asymmetric key.
+     *
+     * <p>
+     * See the description of {@link #getIdTokenSignatureKeyId()} for details.
+     * </p>
+     *
+     * @param keyId
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.1
+     */
+    public Service setIdTokenSignatureKeyId(String keyId)
+    {
+        this.idTokenSignatureKeyId = keyId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the key ID to identify a JWK used for ID token encryption using
+     * an asymmetric key.
+     *
+     * <p>
+     * A JWK Set can be registered as a property of a Service. A JWK Set can
+     * contain 0 or more JWKs (See <a href="https://tools.ietf.org/html/rfc7517"
+     * >RFC 7517</a> for details about JWK). Authlete Server has to pick up
+     * one JWK for encryption from the JWK Set when it generates an ID token
+     * and encryption using an asymmetric key is required. Authlete Server
+     * searches the registered JWK Set for a JWK which satisfies conditions
+     * for ID token encryption. If the number of JWK candidates which satisfy
+     * the conditions is 1, there is no problem. On the other hand, if there
+     * exist multiple candidates, a <a href=
+     * "https://tools.ietf.org/html/rfc7517#section-4.5">Key ID</a> is needed
+     * to be specified so that Authlete Server can pick up one JWK from among
+     * the JWK candidates.
+     * </p>
+     *
+     * <p>
+     * This {@code idTokenEncryptionKeyId} property exists for the purpose
+     * described above. For key rotation (OpenID Connect Core 1.0, <a href=
+     * "http://openid.net/specs/openid-connect-core-1_0.html#RotateEncKeys"
+     * >10.2.1. Rotation of Asymmetric Encryption Keys</a>), this mechanism
+     * is needed.
+     * </p>
+     *
+     * @return
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @since 2.1
+     */
+    public String getIdTokenEncryptionKeyId()
+    {
+        return idTokenEncryptionKeyId;
+    }
+
+
+    /**
+     * Set the key ID to identify a JWK used for ID token encryption using
+     * an asymmetric key.
+     *
+     * <p>
+     * See the description of {@link #getIdTokenEncryptionKeyId()} for details.
+     * </p>
+     *
+     * @param keyId
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.1
+     */
+    public Service setIdTokenEncryptionKeyId(String keyId)
+    {
+        this.idTokenEncryptionKeyId = keyId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the key ID to identify a JWK used for user info signature using
+     * an asymmetric key.
+     *
+     * <p>
+     * A JWK Set can be registered as a property of a Service. A JWK Set can
+     * contain 0 or more JWKs (See <a href="https://tools.ietf.org/html/rfc7517"
+     * >RFC 7517</a> for details about JWK). Authlete Server has to pick up
+     * one JWK for signature from the JWK Set when it is required to sign
+     * user info (which is returned from <a href=
+     * "http://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
+     * >UserInfo Endpoint</a>) using an asymmetric key. Authlete Server
+     * searches the registered JWK Set for a JWK which satisfies conditions
+     * for user info signature. If the number of JWK candidates which satisfy
+     * the conditions is 1, there is no problem. On the other hand, if there
+     * exist multiple candidates, a <a href=
+     * "https://tools.ietf.org/html/rfc7517#section-4.5">Key ID</a> is needed
+     * to be specified so that Authlete Server can pick up one JWK from among
+     * the JWK candidates.
+     * </p>
+     *
+     * <p>
+     * This {@code userInfoSignatureKeyId} property exists for the purpose
+     * described above. For key rotation (OpenID Connect Core 1.0, <a href=
+     * "http://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys"
+     * >10.1.1. Rotation of Asymmetric Signing Keys</a>), this mechanism is
+     * needed.
+     * </p>
+     *
+     * @return
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @since 2.1
+     */
+    public String getUserInfoSignatureKeyId()
+    {
+        return userInfoSignatureKeyId;
+    }
+
+
+    /**
+     * Set the key ID to identify a JWK used for user info signature using
+     * an asymmetric key.
+     *
+     * <p>
+     * See the description of {@link #getUserInfoSignatureKeyId()} for details.
+     * </p>
+     *
+     * @param keyId
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.1
+     */
+    public Service setUserInfoSignatureKeyId(String keyId)
+    {
+        this.userInfoSignatureKeyId = keyId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the key ID to identify a JWK used for user info encryption using
+     * an asymmetric key.
+     *
+     * <p>
+     * A JWK Set can be registered as a property of a Service. A JWK Set can
+     * contain 0 or more JWKs (See <a href="https://tools.ietf.org/html/rfc7517"
+     * >RFC 7517</a> for details about JWK). Authlete Server has to pick up
+     * one JWK for encryption from the JWK Set when it is required to encrypt
+     * user info (which is returned from <a href=
+     * "http://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
+     * >UserInfo Endpoint</a>) using an asymmetric key. Authlete Server
+     * searches the registered JWK Set for a JWK which satisfies conditions
+     * for user info encryption. If the number of JWK candidates which satisfy
+     * the conditions is 1, there is no problem. On the other hand, if there
+     * exist multiple candidates, a <a href=
+     * "https://tools.ietf.org/html/rfc7517#section-4.5">Key ID</a> is needed
+     * to be specified so that Authlete Server can pick up one JWK from among
+     * the JWK candidates.
+     * </p>
+     *
+     * <p>
+     * This {@code userInfoEncryptionKeyId} property exists for the purpose
+     * described above. For key rotation (OpenID Connect Core 1.0, <a href=
+     * "http://openid.net/specs/openid-connect-core-1_0.html#RotateEncKeys"
+     * >10.2.1. Rotation of Asymmetric Encryption Keys</a>), this mechanism
+     * is needed.
+     * </p>
+     *
+     * @return
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @since 2.1
+     */
+    public String getUserInfoEncryptionKeyId()
+    {
+        return userInfoEncryptionKeyId;
+    }
+
+
+    /**
+     * Set the key ID to identify a JWK used for user info encryption using
+     * an asymmetric key.
+     *
+     * <p>
+     * See the description of {@link #getUserInfoEncryptionKeyId()} for details.
+     * </p>
+     *
+     * @param keyId
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.1
+     */
+    public Service setUserInfoEncryptionKeyId(String keyId)
+    {
+        this.userInfoEncryptionKeyId = keyId;
 
         return this;
     }
