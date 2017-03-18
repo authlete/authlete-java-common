@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Authlete, Inc.
+ * Copyright (C) 2016-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,11 +65,45 @@ public class ClientAuthorizationUpdateRequest implements Serializable
 
 
     /**
-     * Get the subject (= identifier) of the end-user who has granted
+     * The default constructor.
+     *
+     * <p>
+     * Because the {@code subject} parameter is mandatory for
+     * <code>/api/client/authorization/update/<i>{clientId}</i></code> API,
+     * a non-null value should be set using {@link #setSubject(String)}
+     * method later.
+     * </p>
+     */
+    public ClientAuthorizationUpdateRequest()
+    {
+    }
+
+
+    /**
+     * A constructor with a subject and scopes.
+     *
+     * @param subject
+     *         The subject (= unique identifier) of the end-user.
+     *
+     * @param scopes
+     *         The new value of scopes that is set to existing access tokens.
+     *         {@code null} means that scopes are not changed.
+     *
+     * @since 2.1
+     */
+    public ClientAuthorizationUpdateRequest(String subject, String[] scopes)
+    {
+        this.subject = subject;
+        this.scopes  = scopes;
+    }
+
+
+    /**
+     * Get the subject (= unique identifier) of the end-user who has granted
      * authorization to the client application.
      *
      * @return
-     *         The subject of the end-user.
+     *         The subject (= unique identifier) of the end-user.
      */
     public String getSubject()
     {
@@ -78,11 +112,11 @@ public class ClientAuthorizationUpdateRequest implements Serializable
 
 
     /**
-     * Set the subject (= identifier) of the end-user who has granted
+     * Set the subject (= unique identifier) of the end-user who has granted
      * authorization to the client application.
      *
      * @param subject
-     *         The subject of the end-user.
+     *         The subject (= unique identifier) of the end-user.
      *
      * @return
      *         {@code this} object.
