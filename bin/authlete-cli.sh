@@ -34,6 +34,7 @@
 # ----------------------
 #
 #   getClient {clientId}
+#   getClientAuthorizationList subject={subject} [developer={developer}] [start={start}] [end={end}]
 #   getClientList [developer={developer}] [start={start}] [end={end}]
 #   getService {serviceApiKey}
 #   getServiceConfiguration [pretty={true|false}]
@@ -47,6 +48,7 @@
 # --------
 #
 #   $ bin/authlete-cli.sh getClient 4326385670
+#   $ bin/authlete-cli.sh getClientAuthorizationList subject=authlete_5526908833
 #   $ bin/authlete-cli.sh getClientList developer=authlete_5526908833
 #   $ bin/authlete-cli.sh getService 5526908833
 #   $ bin/authlete-cli.sh getServiceConfiguration pretty=true

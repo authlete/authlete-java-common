@@ -22,7 +22,9 @@ import java.util.Map;
 import com.authlete.common.api.AuthleteApi;
 import com.authlete.common.api.AuthleteApiException;
 import com.authlete.common.api.AuthleteApiFactory;
+import com.authlete.common.dto.AuthorizedClientListResponse;
 import com.authlete.common.dto.Client;
+import com.authlete.common.dto.ClientAuthorizationGetListRequest;
 import com.authlete.common.dto.ClientListResponse;
 import com.authlete.common.dto.Service;
 import com.authlete.common.dto.ServiceListResponse;
@@ -53,6 +55,7 @@ import com.authlete.common.dto.ServiceListResponse;
  * <h3>API NAME AND ARGUMENTS</h3>
  * <pre>
  * getClient {clientId}
+ * getClientAuthorizationList subject={subject} [developer={developer}] [start={start}] [end={end}]
  * getClientList [developer={developer}] [start={start}] [end={end}]
  * getService {serviceApiKey}
  * getServiceConfiguration [pretty={true|false}]
@@ -66,6 +69,7 @@ import com.authlete.common.dto.ServiceListResponse;
  * <pre>
  * $ bin/authlete-cli.sh --help
  * $ bin/authlete-cli.sh getClient 4326385670
+ * $ bin/authlete-cli.sh getClientAuthorizationList subject=authlete_5526908833
  * $ bin/authlete-cli.sh getClientList developer=authlete_5526908833
  * $ bin/authlete-cli.sh getService 5526908833
  * $ bin/authlete-cli.sh getServiceConfiguration pretty=true
@@ -105,6 +109,7 @@ public class CLI
             "\n\n" +
             "API NAME AND ARGUMENTS:\n\n" +
             "  getClient {clientId}\n" +
+            "  getClientAuthorizationList subject={subject} [developer={developer}] [start={start}] [end={end}]\n" +
             "  getClientList [developer={developer}] [start={start}] [end={end}]\n" +
             "  getService {serviceApiKey}\n" +
             "  getServiceConfiguration [pretty={true|false}]\n" +
@@ -116,6 +121,7 @@ public class CLI
             "EXAMPLES:\n\n" +
             "  $ bin/authlete-cli.sh --help\n" +
             "  $ bin/authlete-cli.sh getClient 4326385670\n" +
+            "  $ bin/authlete-cli.sh getClientAuthorizationList subject=authlete_5526908833\n" +
             "  $ bin/authlete-cli.sh getClientList developer=authlete_5526908833\n" +
             "  $ bin/authlete-cli.sh getService 5526908833\n" +
             "  $ bin/authlete-cli.sh getServiceConfiguration pretty=true\n" +
@@ -233,6 +239,7 @@ public class CLI
     private static enum ApiName
     {
         GET_CLIENT("getClient"),
+        GET_CLIENT_AUTHORIZATION_LIST("getClientAuthorizationList"),
         GET_CLIENT_LIST("getClientList"),
         GET_SERVICE("getService"),
         GET_SERVICE_CONFIGURATION("getServiceConfiguration"),
@@ -327,6 +334,10 @@ public class CLI
         {
             case GET_CLIENT:
                 executeGetClientApi(api, settings);
+                break;
+
+            case GET_CLIENT_AUTHORIZATION_LIST:
+                executeGetClientAuthorizationListApi(api, settings);
                 break;
 
             case GET_CLIENT_LIST:
@@ -524,6 +535,49 @@ public class CLI
 
         // Dump the client information.
         System.out.println(Utils.toJson(client, true));
+    }
+
+
+    private void executeGetClientAuthorizationListApi(AuthleteApi api, Settings settings)
+    {
+        // Request parameters for /api/client/authorization/get/list API.
+        ClientAuthorizationGetListRequest request = new ClientAuthorizationGetListRequest();
+
+        // Request parameter: subject (mandatory)
+        String subject = settings.parameters.get("subject");
+        if (subject == null || subject.length() == 0)
+        {
+            showErrorAndExit("getClientAuthorizationList requires a 'subject' value.");
+            return;
+        }
+        request.setSubject(subject);
+
+        // Request parameter: developer (optional)
+        if (settings.parameters.containsKey("developer"))
+        {
+            request.setDeveloper(settings.parameters.get("developer"));
+        }
+
+        // Request parameter: start (optional)
+        if (settings.parameters.containsKey("start"))
+        {
+            request.setStart(getIntegerOrExitIfNeeded(settings.parameters, "start", 0));
+        }
+
+        // Request parameter: end (optional)
+        if (settings.parameters.containsKey("end"))
+        {
+            request.setStart(getIntegerOrExitIfNeeded(settings.parameters, "end", 5));
+        }
+
+        verbose(settings,
+                "Calling getClientAuthorizationList(request) (subject=%s, developer=%s, start=%d, end=%d)",
+                request.getSubject(), request.getDeveloper(), request.getStart(), request.getEnd());
+
+        AuthorizedClientListResponse response = api.getClientAuthorizationList(request);
+
+        // Dump the list.
+        System.out.println(Utils.toJson(response, true));
     }
 
 
