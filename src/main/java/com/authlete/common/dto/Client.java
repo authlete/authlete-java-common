@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /*
@@ -78,6 +78,12 @@ public class Client implements Serializable
      * Client ID.
      */
     private long clientId;
+
+
+    /**
+     * Alias of Client ID.
+     */
+    private String clientIdAlias;
 
 
     /**
@@ -338,6 +344,39 @@ public class Client implements Serializable
     public Client setClientId(long clientId)
     {
         this.clientId = clientId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the alias of the client ID.
+     *
+     * @return
+     *         The alias of the client ID. This may be {@code null}.
+     *
+     * @since 2.1
+     */
+    public String getClientIdAlias()
+    {
+        return clientIdAlias;
+    }
+
+
+    /**
+     * Set the alias of the client ID.
+     *
+     * @param alias
+     *         The alias of the client ID.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.1
+     */
+    public Client setClientIdAlias(String alias)
+    {
+        this.clientIdAlias = alias;
 
         return this;
     }
