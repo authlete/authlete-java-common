@@ -22,7 +22,10 @@ import com.authlete.common.dto.AuthorizationIssueRequest;
 import com.authlete.common.dto.AuthorizationIssueResponse;
 import com.authlete.common.dto.AuthorizationRequest;
 import com.authlete.common.dto.AuthorizationResponse;
+import com.authlete.common.dto.AuthorizedClientListResponse;
 import com.authlete.common.dto.Client;
+import com.authlete.common.dto.ClientAuthorizationGetListRequest;
+import com.authlete.common.dto.ClientAuthorizationUpdateRequest;
 import com.authlete.common.dto.ClientListResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
 import com.authlete.common.dto.IntrospectionRequest;
@@ -803,4 +806,54 @@ public interface AuthleteApi
      * @since 1.40
      */
     void deleteGrantedScopes(long clientId, String subject);
+
+
+    /**
+     * Delete all existing access tokens issued to the client application
+     * by the end-user.
+     *
+     * @param clientId
+     *         The ID of the target client application.
+     *
+     * @param subject
+     *         The subject (= unique identifier) of the end-user.
+     *         Must not be {@code null}.
+     *
+     * @since 2.1
+     */
+    void deleteClientAuthorization(long clientId, String subject) throws AuthleteApiException;
+
+
+    /**
+     * Get a list of client applications authorized by the end-user.
+     *
+     * @param request
+     *         Conditions to query the list. The {@code subject} property
+     *         (= the unique identifier of the end-user) in the request
+     *         must not be {@code null}.
+     *
+     * @return
+     *         A list of client applications that have been authorized
+     *         by the end-user.
+     *
+     * @since 2.1
+     */
+    AuthorizedClientListResponse getClientAuthorizationList(ClientAuthorizationGetListRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Update attributes of all existing access tokens issued to the
+     * client application by the end-user.
+     *
+     * @param clientId
+     *         The ID of the target client application.
+     *
+     * @param request
+     *         The subject (= unique identifier) of the end-user and new attribute
+     *         values of access tokens. The {@code subject} property in the request
+     *         must not be {@code null}.
+     *
+     * @since 2.1
+     */
+    void updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request) throws AuthleteApiException;
 }
