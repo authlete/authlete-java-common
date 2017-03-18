@@ -1,6 +1,40 @@
 CHANGES
 =======
 
+2.1 (2017-03-18)
+----------------
+
+- `AuthleteApi` interface
+    * Added `deleteClientAuthorization(long, String)` method.
+    * Added `getClientAuthorizationList(ClientAuthorizationGetListRequest)` method.
+    * Added `updateClientAuthorization(long, ClientAuthorizationUpdateRequest)` method.
+
+- `AuthleteApiImpl` class
+    * Implemented newly-added methods of `AuthleteApi` interface.
+    * Fixed a bug where `Content-Type:application/json` was not set for POST requests.
+
+- `Service` class
+    * Added `idTokenSignatureKeyId` property.
+    * Added `idTokenEncryptionKeyId` property.
+    * Added `userInfoSignatureKeyId` property.
+    * Added `userInfoEncryptionKeyId` property.
+
+- `Client` class
+    * Added `clientIdAlias` property.
+
+- `ClientAuthorizationUpdateRequest` class
+    * Added `ClientAuthorizationUpdateRequest(String, String[])` constructor.
+
+- `ClientAuthorizationDeleteRequest` class
+    * Newly added.
+
+- `ClientAuthorizationGetListRequest` class
+    * Newly added.
+
+- `CLI` class
+    * Supported `getClientAuthorizationList` API.
+
+
 2.0 (2017-02-27)
 ----------------
 

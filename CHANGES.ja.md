@@ -1,6 +1,40 @@
 変更点
 ======
 
+2.1 (2017 年 3 月 18 日)
+------------------------
+
+- `AuthleteApi` インターフェース
+    * `deleteClientAuthorization(long, String)` メソッドを追加。
+    * `getClientAuthorizationList(ClientAuthorizationGetListRequest)` メソッドを追加。
+    * `updateClientAuthorization(long, ClientAuthorizationUpdateRequest)` メソッドを追加。
+
+- `AuthleteApiImpl` クラス
+    * `AuthleteApi` インターフェースに新規追加されたメソッドを実装。
+    * POST リクエスト時に `Content-Type:application/json` が設定されていない不具合を修正。
+
+- `Service` クラス
+    * `idTokenSignatureKeyId` プロパティーを追加。
+    * `idTokenEncryptionKeyId` プロパティーを追加。
+    * `userInfoSignatureKeyId` プロパティーを追加。
+    * `userInfoEncryptionKeyId` プロパティーを追加。
+
+- `Client` クラス
+    * `clientIdAlias` プロパティーを追加。
+
+- `ClientAuthorizationUpdateRequest` クラス
+    * `ClientAuthorizationUpdateRequest(String, String[])` コンストラクタを追加。
+
+- `ClientAuthorizationDeleteRequest` クラス
+    * 新規追加。
+
+- `ClientAuthorizationGetListRequest` クラス
+    * 新規追加。
+
+- `CLI` クラス
+    * `getClientAuthorizationList` API をサポート。
+
+
 2.0 (2017 年 2 月 27 日)
 ------------------------
 

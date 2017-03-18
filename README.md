@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.0</version>
+    <version>2.1</version>
 </dependency>
 ```
 
@@ -241,6 +241,12 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
     - `getGrantedScopes(long clientId, String subject)`
     - `deleteGrantedScopes(long clientId, String subject)`
+
+  13. Methods for Authorization Management on a User-Client Combination Basis
+
+    - `deleteClientAuthorization(long clientId)`
+    - `getClientAuthorizationList(ClientAuthorizationGetListRequest request)`
+    - `updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request)`
 
 
 Examples

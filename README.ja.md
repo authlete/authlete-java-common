@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.0</version>
+    <version>2.1</version>
 </dependency>
 ```
 
@@ -232,6 +232,12 @@ authlete-java-common ライブラリのバージョン 2.0 以降には、`HttpU
 
     - `getGrantedScopes(long clientId, String subject)`
     - `deleteGrantedScopes(long clientId, String subject)`
+
+  13. ユーザー・クライアント単位の認可管理に関するメソッド群
+
+    - `deleteClientAuthorization(long clientId)`
+    - `getClientAuthorizationList(ClientAuthorizationGetListRequest request)`
+    - `updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request)`
 
 
 例
