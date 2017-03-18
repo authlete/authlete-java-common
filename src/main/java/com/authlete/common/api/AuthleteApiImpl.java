@@ -555,6 +555,9 @@ class AuthleteApiImpl implements AuthleteApi
 
     private static void writeRequestBody(HttpURLConnection con, Object requestBody) throws AuthleteApiException
     {
+        // Set 'Content-Type' to send JSON.
+        con.setRequestProperty("Content-Type", "application/json");
+
         // Use the connection as an output stream.
         con.setDoOutput(true);
 
