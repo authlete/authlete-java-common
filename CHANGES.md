@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+2.2 (2017-04-02)
+----------------
+
+- `Service` class
+    * Added `clientIdAliasEnabled` property.
+
+- `Client` class
+    * Added `clientIdAliasEnabled` property.
+
+
 2.1 (2017-03-18)
 ----------------
 
