@@ -47,7 +47,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /*
@@ -84,6 +84,12 @@ public class Client implements Serializable
      * Alias of Client ID.
      */
     private String clientIdAlias;
+
+
+    /**
+     * True when the client ID alias is enabled.
+     */
+    private boolean clientIdAliasEnabled;
 
 
     /**
@@ -352,6 +358,13 @@ public class Client implements Serializable
     /**
      * Get the alias of the client ID.
      *
+     * <p>
+     * Note that the client ID alias is recognized only when this
+     * client's {@code clientIdAliasEnabled} property is {@code true}
+     * AND the {@link Service service}'s {@code clientIdAliasEnabled}
+     * property is also {@code true}.
+     * </p>
+     *
      * @return
      *         The alias of the client ID. This may be {@code null}.
      *
@@ -366,6 +379,13 @@ public class Client implements Serializable
     /**
      * Set the alias of the client ID.
      *
+     * <p>
+     * Note that the client ID alias is recognized only when this
+     * client's {@code clientIdAliasEnabled} property is {@code true}
+     * AND the {@link Service service}'s {@code clientIdAliasEnabled}
+     * property is also {@code true}.
+     * </p>
+     *
      * @param alias
      *         The alias of the client ID.
      *
@@ -377,6 +397,59 @@ public class Client implements Serializable
     public Client setClientIdAlias(String alias)
     {
         this.clientIdAlias = alias;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the client ID alias
+     * is enabled or not.
+     *
+     * <p>
+     * Note that {@link Service} class also has
+     * {@code clientIdAliasEnabled} property. If the service's
+     * {@code clientIdAliasEnabled} property is {@code false},
+     * the client ID alias of this client is not recognized even
+     * if this client's {@code clientIdAliasEnabled} property is
+     * {@code true}.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the client ID alias is enabled.
+     *
+     * @since 2.2
+     */
+    public boolean isClientIdAliasEnabled()
+    {
+        return clientIdAliasEnabled;
+    }
+
+
+    /**
+     * Enable/disable the client ID alias.
+     *
+     * <p>
+     * Note that {@link Service} class also has
+     * {@code clientIdAliasEnabled} property. If the service's
+     * {@code clientIdAliasEnabled} property is {@code false},
+     * the client ID alias of this client is not recognized even
+     * if this client's {@code clientIdAliasEnabled} property is
+     * {@code true}.
+     * </p>
+     *
+     * @param enabled
+     *         {@code true} to enable the client ID alias.
+     *         {@code false} to disable it.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.2
+     */
+    public Client setClientIdAliasEnabled(boolean enabled)
+    {
+        this.clientIdAliasEnabled = enabled;
 
         return this;
     }
