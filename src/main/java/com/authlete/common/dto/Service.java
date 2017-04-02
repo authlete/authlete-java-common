@@ -44,7 +44,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 13L;
+    private static final long serialVersionUID = 14L;
 
 
     /*
@@ -128,6 +128,7 @@ public class Service implements Serializable
     private boolean refreshTokenKept;
     private boolean errorDescriptionOmitted;
     private boolean errorUriOmitted;
+    private boolean clientIdAliasEnabled;
 
 
     /**
@@ -2108,6 +2109,51 @@ public class Service implements Serializable
     public Service setErrorUriOmitted(boolean omitted)
     {
         this.errorUriOmitted = omitted;
+
+        return this;
+    }
+
+
+
+    /**
+     * Get the flag which indicates whether the 'Client ID Alias' feature
+     * is enabled or not.
+     *
+     * @return
+     *         {@code true} if the 'Client ID Alias' feature is enabled.
+     *         {@code false} if the feature is disabled.
+     *
+     * @since 2.2
+     */
+    public boolean isClientIdAliasEnabled()
+    {
+        return clientIdAliasEnabled;
+    }
+
+
+    /**
+     * Enable/disable the 'Client ID Alias' feature.
+     *
+     * <p>
+     * When a new client is created, Authlete generates a numeric value
+     * and assigns it as a client ID to the newly created client. In
+     * addition to the client ID, each client can have a client ID alias.
+     * The client ID alias is, however, recognized only when this property
+     * ({@code clientIdAliasEnabled}) is {@code true}.
+     * </p>
+     *
+     * @param enabled
+     *         {@code true} to enable the 'Client ID Alias' feature.
+     *         {@code false} to disable it.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.2
+     */
+    public Service setClientIdAliasEnabled(boolean enabled)
+    {
+        this.clientIdAliasEnabled = enabled;
 
         return this;
     }
