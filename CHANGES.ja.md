@@ -1,6 +1,20 @@
 変更点
 ======
 
+2.3 (2017 年 4 月 6 日)
+-----------------------
+
+- `AuthorizationResponse` クラス
+    * `clientIdAliasUsed` プロパティーを追加。
+
+- `IntrospectionResponse` クラス
+    * `clientIdAlias` プロパティーを追加。
+    * `clientIdAliasUsed` プロパティーを追加。
+
+- `TokenCreateRequest` クラス
+    * `clientIdAliasUsed` プロパティーを追加。
+
+
 2.2 (2017 年 4 月 2 日)
 -----------------------
 

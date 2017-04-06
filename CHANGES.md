@@ -1,6 +1,20 @@
 CHANGES
 =======
 
+2.3 (2017-04-06)
+----------------
+
+- `AuthorizationResponse` class
+    * Added `clientIdAliasUsed` property.
+
+- `IntrospectionResponse` class
+    * Added `clientIdAlias` property.
+    * Added `clientIdAliasUsed` property.
+
+- `TokenCreateRequest` class
+    * Added `clientIdAliasUsed` property.
+
+
 2.2 (2017-04-02)
 ----------------
 
