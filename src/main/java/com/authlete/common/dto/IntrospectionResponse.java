@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -198,7 +198,7 @@ package com.authlete.common.dto;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -246,7 +246,7 @@ public class IntrospectionResponse extends ApiResponse
     private static final String SUMMARY_FORMAT
         = "action=%s, clientId=%d, subject=%s, existent=%s, "
         + "usable=%s, sufficient=%s, refreshable=%s, expiresAt=%d, "
-        + "scopes=%s, properties=%s";
+        + "scopes=%s, properties=%s, clientIdAlias=%s, clientIdAliasUsed=%s";
 
 
     /**
@@ -314,6 +314,20 @@ public class IntrospectionResponse extends ApiResponse
      * Extra properties associated with the access token.
      */
     private Property[] properties;
+
+
+    /**
+     * The client ID alias when the authorization request or the token request for
+     * the access token was made.
+     */
+    private String clientIdAlias;
+
+
+    /**
+     * Flag which indicates whether the client ID alias was used when the authorization
+     * request or the token request for the access token was made.
+     */
+    private boolean clientIdAliasUsed;
 
 
     /**
@@ -575,7 +589,76 @@ public class IntrospectionResponse extends ApiResponse
         return String.format(SUMMARY_FORMAT,
                 action, clientId, subject, existent, usable,
                 sufficient, refreshable, expiresAt,
-                buildScopes(), buildProperties());
+                buildScopes(), buildProperties(),
+                clientIdAlias, clientIdAliasUsed);
+    }
+
+
+    /**
+     * Get the client ID alias when the authorization request or the token
+     * request for the access token was made. Note that this value may be
+     * different from the current client ID alias.
+     *
+     * @return
+     *         The client ID alias when the authorization request or the
+     *         token request for the access token was made.
+     *
+     * @since 2.3
+     */
+    public String getClientIdAlias()
+    {
+        return clientIdAlias;
+    }
+
+
+    /**
+     * Set the client ID alias when the authorization request or the token
+     * request for the access token was made.
+     *
+     * @param alias
+     *         The client ID alias.
+     *
+     * @since 2.3
+     */
+    public void setClientIdAlias(String alias)
+    {
+        this.clientIdAlias = alias;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the client ID alias was used
+     * when the authorization request or the token request for the access
+     * token was made.
+     *
+     * @return
+     *         {@code true} if the client ID alias was used when the
+     *         authorization request or the token request for the access
+     *         token was made.
+     *
+     * @since 2.3
+     */
+    public boolean isClientIdAliasUsed()
+    {
+        return clientIdAliasUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the client ID alias was used
+     * when the authorization request or the token request for the access
+     * token was made.
+     *
+     * @param used
+     *         {@code true} if the client ID alias was used when the
+     *         authorization request or the token request for the access
+     *         token was made.
+     *
+     * @since 2.3
+     */
+    public void setClientIdAliasUsed(boolean used)
+    {
+        this.clientIdAliasUsed = used;
     }
 
 
