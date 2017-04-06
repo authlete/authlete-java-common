@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -760,7 +760,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /**
@@ -820,6 +820,7 @@ public class AuthorizationResponse extends ApiResponse
         = "ticket=%s, action=%s, serviceNumber=%d, clientNumber=%d, clientId=%d, "
         + "clientSecret=%s, clientType=%s, developer=%s, display=%s, maxAge=%d, "
         + "scopes=%s, uiLocales=%s, claimsLocales=%s, claims=%s, acrEssential=%s, "
+        + "clientIdAliasUsed=%s, "
         + "acrs=%s, subject=%s, loginHint=%s, lowestPrompt=%s, prompts=%s";
 
 
@@ -839,6 +840,7 @@ public class AuthorizationResponse extends ApiResponse
     private String[] claimsLocales;
     private String[] claims;
     private boolean acrEssential;
+    private boolean clientIdAliasUsed;
     private String[] acrs;
     private String subject;
     private String loginHint;
@@ -1129,6 +1131,32 @@ public class AuthorizationResponse extends ApiResponse
 
 
     /**
+     * Get the flag which indicates whether the value of the {@code client_id}
+     * request parameter included in the authorization request is the client
+     * ID alias or the original numeric client ID.
+     *
+     * @since 2.3
+     */
+    public boolean isClientIdAliasUsed()
+    {
+        return clientIdAliasUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the value of the {@code client_id}
+     * request parameter included in the authorization request is the client
+     * ID alias or the original numeric client ID.
+     *
+     * @since 2.3
+     */
+    public void setClientIdAliasUsed(boolean used)
+    {
+        clientIdAliasUsed = used;
+    }
+
+
+    /**
      * Get the list of ACRs (Authentication Context Class References)
      * requested by the client application. The value come from (1)
      * {@code "acr"} claim in {@code "claims"} request parameter, (2)
@@ -1335,6 +1363,7 @@ public class AuthorizationResponse extends ApiResponse
                 join(claimsLocales),
                 join(claims),
                 acrEssential,
+                clientIdAliasUsed,
                 join(acrs),
                 subject,
                 loginHint,
