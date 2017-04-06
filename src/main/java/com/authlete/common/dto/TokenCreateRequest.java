@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2016 Authlete, Inc.
+ * Copyright (C) 2015-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -111,6 +111,30 @@ import com.authlete.common.types.GrantType;
  * </p>
  * </dd>
  *
+ * <dt><b><code>clientIdAliasUsed</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * A boolean request parameter which indicates whether to emulate that the client
+ * ID alias is used instead of the original numeric client ID when a new access
+ * token is created.
+ * </p>
+ * <p>
+ * This has an effect only on the value of the {@code aud} claim in a response from
+ * <a href="http://openid.net/specs/openid-connect-core-1_0.html#UserInfo">UserInfo
+ * endpoint</a>. When you access the UserInfo endpoint (which is expected to be
+ * implemented using Authlete's {@code /api/auth/userinfo} API and {@code
+ * /api/auth/userinfo/issue} API) with an access token which has been created using
+ * Authlete's {@code /api/auth/token/create} API with this property ({@code
+ * clientIdAliasUsed}) true, the client ID alias is used as the value of the {@code
+ * aud} claim in a response from the UserInfo endpoint.
+ * </p>
+ * <p>
+ * Note that if a client ID alias is not assigned to the client when Authlete's
+ * {@code /api/auth/token/create} API is called, this property ({@code
+ * clientIdAliasUsed}) has no effect (it is always regarded as {@code false}).
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -122,7 +146,7 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     private GrantType grantType;
@@ -132,6 +156,7 @@ public class TokenCreateRequest implements Serializable
     private long accessTokenDuration;
     private long refreshTokenDuration;
     private Property[] properties;
+    private boolean clientIdAliasUsed;
 
 
     /**
@@ -400,6 +425,77 @@ public class TokenCreateRequest implements Serializable
     public TokenCreateRequest setProperties(Property[] properties)
     {
         this.properties = properties;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether to emulate that the client ID alias is used
+     * instead of the original numeric client ID when a new access token is created.
+     *
+     * <p>
+     * This has an effect only on the value of the {@code aud} claim in a response from
+     * <a href="http://openid.net/specs/openid-connect-core-1_0.html#UserInfo">UserInfo
+     * endpoint</a>. When you access the UserInfo endpoint (which is expected to be
+     * implemented using Authlete's {@code /api/auth/userinfo} API and {@code
+     * /api/auth/userinfo/issue} API) with an access token which has been created using
+     * Authlete's {@code /api/auth/token/create} API with this property ({@code
+     * clientIdAliasUsed}) true, the client ID alias is used as the value of the {@code
+     * aud} claim in a response from the UserInfo endpoint.
+     * </p>
+     *
+     * <p>
+     * Note that if a client ID alias is not assigned to the client when Authlete's
+     * {@code /api/auth/token/create} API is called, this property ({@code
+     * clientIdAliasUsed}) has no effect (it is always regarded as {@code false}).
+     * </p>
+     *
+     * @return
+     *         {@code true} to emulate that the client ID alias is used when a new
+     *         access token is created.
+     *
+     * @since 2.3
+     */
+    public boolean isClientIdAliasUsed()
+    {
+        return clientIdAliasUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether to emulate that the client ID alias is used
+     * instead of the original numeric client ID when a new access token is created.
+     *
+     * <p>
+     * This has an effect only on the value of the {@code aud} claim in a response from
+     * <a href="http://openid.net/specs/openid-connect-core-1_0.html#UserInfo">UserInfo
+     * endpoint</a>. When you access the UserInfo endpoint (which is expected to be
+     * implemented using Authlete's {@code /api/auth/userinfo} API and {@code
+     * /api/auth/userinfo/issue} API) with an access token which has been created using
+     * Authlete's {@code /api/auth/token/create} API with this property ({@code
+     * clientIdAliasUsed}) true, the client ID alias is used as the value of the {@code
+     * aud} claim in a response from the UserInfo endpoint.
+     * </p>
+     *
+     * <p>
+     * Note that if a client ID alias is not assigned to the client when Authlete's
+     * {@code /api/auth/token/create} API is called, this property ({@code
+     * clientIdAliasUsed}) has no effect (it is always regarded as {@code false}).
+     * </p>
+     *
+     * @param used
+     *         {@code true} to emulate that the client ID alias is used when a new
+     *         access token is created.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.3
+     */
+    public TokenCreateRequest setClientIdAliasUsed(boolean used)
+    {
+        this.clientIdAliasUsed = used;
 
         return this;
     }
