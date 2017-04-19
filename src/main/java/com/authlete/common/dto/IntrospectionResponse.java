@@ -15,6 +15,7 @@
  */
 package com.authlete.common.dto;
 
+import com.authlete.common.util.Utils;
 
 /**
  * Response from Authlete's {@code /auth/introspection} API.
@@ -198,7 +199,7 @@ package com.authlete.common.dto;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /**
@@ -589,7 +590,8 @@ public class IntrospectionResponse extends ApiResponse
         return String.format(SUMMARY_FORMAT,
                 action, clientId, subject, existent, usable,
                 sufficient, refreshable, expiresAt,
-                buildScopes(), buildProperties(),
+                Utils.join(scopes, " "),
+                Utils.stringifyProperties(properties),
                 clientIdAlias, clientIdAliasUsed);
     }
 
@@ -659,66 +661,5 @@ public class IntrospectionResponse extends ApiResponse
     public void setClientIdAliasUsed(boolean used)
     {
         this.clientIdAliasUsed = used;
-    }
-
-
-    private String buildScopes()
-    {
-        if (scopes == null)
-        {
-            return null;
-        }
-
-        StringBuilder sb = new StringBuilder();
-
-        for (String scope : scopes)
-        {
-            sb.append(scope);
-            sb.append(' ');
-        }
-
-        if (0 < scopes.length)
-        {
-            // Remove the last space.
-            sb.setLength(sb.length() - 1);
-        }
-
-        return sb.toString();
-    }
-
-
-    private String buildProperties()
-    {
-        if (properties == null)
-        {
-            return null;
-        }
-
-        StringBuilder sb = new StringBuilder();
-
-        for (Property property : properties)
-        {
-            if (property == null)
-            {
-                continue;
-            }
-
-            sb.append(property.getKey());
-            sb.append("=");
-            sb.append(property.getValue());
-            sb.append(",");
-        }
-
-        if (0 < sb.length())
-        {
-            // Remove the last comma.
-            sb.setLength(sb.length() - 1);
-        }
-
-        // Enclose with square brackets.
-        sb.insert(0, "[");
-        sb.append("]");
-
-        return sb.toString();
     }
 }
