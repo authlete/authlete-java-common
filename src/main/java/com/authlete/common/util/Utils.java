@@ -17,6 +17,8 @@ package com.authlete.common.util;
 
 
 import com.authlete.common.dto.Property;
+import com.authlete.common.dto.Scope;
+import com.authlete.common.types.Prompt;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -205,5 +207,67 @@ public class Utils
         sb.append("]");
 
         return sb.toString();
+    }
+
+
+    /**
+     * Stringify an array of {@link Prompt}.
+     *
+     * @param prompts
+     *         An array of {@link Prompt}. If {@code null} is given,
+     *         {@code null} is returned.
+     *
+     * @return
+     *         A string containing lower-case prompt names using
+     *         white spaces as the delimiter.
+     *
+     * @since 2.5
+     */
+    public static String stringifyPrompts(Prompt[] prompts)
+    {
+        if (prompts == null)
+        {
+            return null;
+        }
+
+        String[] array = new String[prompts.length];
+
+        for (int i = 0; i < prompts.length; ++i)
+        {
+            array[i] = (prompts[i] == null) ? null : prompts[i].name().toLowerCase();
+        }
+
+        return join(array, " ");
+    }
+
+
+    /**
+     * Generate a list of scope names.
+     *
+     * @param scopes
+     *         An array of {@link Scope}. If {@code null} is given,
+     *         {@code null} is returned.
+     *
+     * @return
+     *         A string containing scope names using white spaces as
+     *         the delimiter.
+     *
+     * @since 2.5
+     */
+    public static String stringifyScopeNames(Scope[] scopes)
+    {
+        if (scopes == null)
+        {
+            return null;
+        }
+
+        String[] array = new String[scopes.length];
+
+        for (int i = 0; i < scopes.length; ++i)
+        {
+            array[i] = (scopes[i] == null) ? null : scopes[i].getName();
+        }
+
+        return join(array, " ");
     }
 }
