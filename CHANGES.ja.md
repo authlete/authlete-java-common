@@ -1,6 +1,20 @@
 変更点
 ======
 
+2.5 (2017 年 4 月 19 日)
+------------------------
+
+- `UserInfoResponse` クラス
+    * `properties` プロパティーを追加。
+    * `clientIdAlias` プロパティーを追加。
+    * `clientIdAilasUsed` プロパティーを追加。
+
+- `Utils` クラス
+    * `stringifyPrompts(Prompt[])` メソッドを追加。
+    * `stringifyProperties(Property[])` メソッドを追加。
+    * `stringifyScopeNames(Scope[])` メソッドを追加。
+
+
 2.4 (2017 年 4 月 19 日)
 ------------------------
 

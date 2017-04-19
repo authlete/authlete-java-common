@@ -1,6 +1,20 @@
 CHANGES
 =======
 
+2.5 (2017-04-19)
+----------------
+
+- `UserInfoResponse` class
+    * Added `properties` property.
+    * Added `clientIdAlias` property.
+    * Added `clientIdAilasUsed` property.
+
+- `Utils` class
+    * Added `stringifyPrompts(Prompt[])` method.
+    * Added `stringifyProperties(Property[])` method.
+    * Added `stringifyScopeNames(Scope[])` method.
+
+
 2.4 (2017-04-19)
 ----------------
 
