@@ -760,7 +760,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -1358,69 +1358,17 @@ public class AuthorizationResponse extends ApiResponse
                 (client != null ? client.getDeveloper() : null),
                 display,
                 maxAge,
-                listScopeNames(scopes),
-                join(uiLocales),
-                join(claimsLocales),
-                join(claims),
+                Utils.stringifyScopeNames(scopes),
+                Utils.join(uiLocales, " "),
+                Utils.join(claimsLocales, " "),
+                Utils.join(claims, " "),
                 acrEssential,
                 clientIdAliasUsed,
-                join(acrs),
+                Utils.join(acrs, " "),
                 subject,
                 loginHint,
                 lowestPrompt,
-                listPrompts(prompts)
+                Utils.stringifyPrompts(prompts)
                 );
-    }
-
-
-    private String listScopeNames(Scope[] scopes)
-    {
-        if (scopes == null)
-        {
-            return null;
-        }
-
-        if (scopes.length == 0)
-        {
-            return "";
-        }
-
-        StringBuilder sb = new StringBuilder();
-
-        for (Scope scope : scopes)
-        {
-            sb.append(scope.getName());
-            sb.append(" ");
-        }
-
-        // Remove the last " ".
-        sb.setLength(sb.length() - 1);
-
-        return sb.toString();
-    }
-
-
-    private String listPrompts(Prompt[] prompts)
-    {
-        if (prompts == null)
-        {
-            return null;
-        }
-
-        String[] array = new String[prompts.length];
-
-        for (int i = 0; i < prompts.length; ++i)
-        {
-            array[i] = (prompts[i] == null) ? null
-                     : prompts[i].name().toLowerCase();
-        }
-
-        return join(array);
-    }
-
-
-    private String join(String[] strings)
-    {
-        return Utils.join(strings, " ");
     }
 }
