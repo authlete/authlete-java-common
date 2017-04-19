@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Authlete, Inc.
+ * Copyright (C) 2015-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -232,7 +232,7 @@ import com.authlete.common.util.Utils;
  */
 public class UserInfoResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -282,7 +282,7 @@ public class UserInfoResponse extends ApiResponse
 
     private static final String SUMMARY_FORMAT
         = "action=%s, clientId=%d, subject=%s, scopes=%s, claims=%s, "
-        + "accessToken=%s"
+        + "accessToken=%s, properties=%s, clientIdAlias=%s, clientIdAliasUsed=%s"
         ;
 
 
@@ -326,6 +326,26 @@ public class UserInfoResponse extends ApiResponse
      * Entity body of the response to the client.
      */
     private String responseContent;
+
+
+    /**
+     * Extra properties associated with the access token.
+     */
+    private Property[] properties;
+
+
+    /**
+     * The client ID alias when the authorization request for
+     * the access token was made.
+     */
+    private String clientIdAlias;
+
+
+    /**
+     * Flag which indicates whether the client ID alias was used
+     * when the authorization request for the access token was made.
+     */
+    private boolean clientIdAliasUsed;
 
 
     /**
@@ -473,12 +493,105 @@ public class UserInfoResponse extends ApiResponse
     public String summarize()
     {
         return String.format(SUMMARY_FORMAT,
-            action, clientId, subject, join(scopes), join(claims), token);
+            action, clientId, subject,
+            Utils.join(scopes, " "),
+            Utils.join(claims, " "),
+            token,
+            Utils.stringifyProperties(properties),
+            clientIdAlias,
+            clientIdAliasUsed);
     }
 
 
-    private String join(String[] strings)
+    /**
+     * Get the extra properties associated with the access token.
+     *
+     * @return
+     *         Extra properties. This method returns {@code null} when
+     *         no extra property is associated with the access token.
+     *
+     * @since 2.5
+     */
+    public Property[] getProperties()
     {
-        return Utils.join(strings, " ");
+        return properties;
+    }
+
+
+    /**
+     * Set the extra properties associated with the access token.
+     *
+     * @param properties
+     *         Extra properties.
+     *
+     * @since 2.5
+     */
+    public void setProperties(Property[] properties)
+    {
+        this.properties = properties;
+    }
+
+
+    /**
+     * Get the client ID alias when the authorization request for the access
+     * token was made. Note that this value may be different from the current
+     * client ID alias.
+     *
+     * @return
+     *         The client ID alias when the authorization request for the
+     *         access token was made.
+     *
+     * @since 2.5
+     */
+    public String getClientIdAlias()
+    {
+        return clientIdAlias;
+    }
+
+
+    /**
+     * Set the client ID alias when the authorization request for the access
+     * token was made.
+     *
+     * @param alias
+     *         The client ID alias.
+     *
+     * @since 2.5
+     */
+    public void setClientIdAlias(String alias)
+    {
+        this.clientIdAlias = alias;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the client ID alias was used
+     * when the authorization request for the access token was made.
+     *
+     * @return
+     *         {@code true} if the client ID alias was used when the
+     *         authorization request for the access token was made.
+     *
+     * @since 2.5
+     */
+    public boolean isClientIdAliasUsed()
+    {
+        return clientIdAliasUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the client ID alias was used
+     * when the authorization request for the access token was made.
+     *
+     * @param used
+     *         {@code true} if the client ID alias was used when the
+     *         authorization request for the access token was made.
+     *
+     * @since 2.5
+     */
+    public void setClientIdAliasUsed(boolean used)
+    {
+        this.clientIdAliasUsed = used;
     }
 }
