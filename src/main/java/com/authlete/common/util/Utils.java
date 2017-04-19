@@ -16,6 +16,7 @@
 package com.authlete.common.util;
 
 
+import com.authlete.common.dto.Property;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -154,5 +155,55 @@ public class Utils
     public static <T> T fromJson(String json, Class<T> klass)
     {
         return GSON.fromJson(json, klass);
+    }
+
+
+    /**
+     * Stringify an array of {@link Property}.
+     *
+     * @param properties
+     *         An array of {@link Property}. If {@code null} is given,
+     *         {@code null} is returned.
+     *
+     * @return
+     *         A formatted string containing the information about
+     *         the given properties. If the {@code properties} parameter
+     *         is {@code null}, {@code null} is returned.
+     *
+     * @since 2.5
+     */
+    public static String stringifyProperties(Property[] properties)
+    {
+        if (properties == null)
+        {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Property property : properties)
+        {
+            if (property == null)
+            {
+                continue;
+            }
+
+            sb.append(property.getKey());
+            sb.append("=");
+            sb.append(property.getValue());
+            sb.append(",");
+        }
+
+        if (0 < sb.length())
+        {
+            // Remove the last comma.
+            sb.setLength(sb.length() - 1);
+        }
+
+        // Enclose with square brackets.
+        sb.insert(0, "[");
+        sb.append("]");
+
+        return sb.toString();
     }
 }
