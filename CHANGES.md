@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+2.6 (2017-06-10)
+----------------
+
+- `TokenCreateRequst` class
+    * Added `accessToken` property.
+    * Added `refreshToken` property.
+
+
 2.5 (2017-04-19)
 ----------------
 
