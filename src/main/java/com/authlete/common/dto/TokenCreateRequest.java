@@ -146,7 +146,7 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     private GrantType grantType;
@@ -157,6 +157,8 @@ public class TokenCreateRequest implements Serializable
     private long refreshTokenDuration;
     private Property[] properties;
     private boolean clientIdAliasUsed;
+    private String accessToken;
+    private String refreshToken;
 
 
     /**
@@ -496,6 +498,146 @@ public class TokenCreateRequest implements Serializable
     public TokenCreateRequest setClientIdAliasUsed(boolean used)
     {
         this.clientIdAliasUsed = used;
+
+        return this;
+    }
+
+
+    /**
+     * Get the access token.
+     *
+     * <p>
+     * When this method returns a non-null value, the implementation of
+     * {@code /api/auth/token/create} uses the value instead of generating
+     * a new one. See the description of {@link #setAccessToken(String)}
+     * for details.
+     * </p>
+     *
+     * @return
+     *         The value of the access token. In normal cases, {@code null}
+     *         is returned.
+     *
+     * @see #setAccessToken(String)
+     *
+     * @since 2.6
+     */
+    public String getAccessToken()
+    {
+        return accessToken;
+    }
+
+
+    /**
+     * Set the access token.
+     *
+     * <p>
+     * The {@code /api/auth/token/create} API generates an access token.
+     * Therefore, callers of the API do not have to specify values of
+     * newly created access tokens. However, in some cases, for example,
+     * if you want to migrate existing access tokens from an old system
+     * to Authlete, you may want to specify values of access tokens.
+     * In such a case, you can specify the value of a newly created
+     * access token by passing a non-null value as the value of
+     * {@code accessToken} request parameter. The implementation of the
+     * {@code /api/auth/token/create} uses the value of the {@code
+     * accessToken} request parameter instead of generating a new value
+     * when the request parameter holds a non-null value.
+     * </p>
+     *
+     * <p>
+     * Note that if the hash value of the specified access token already
+     * exists in Authlete's database, the access token cannot be inserted
+     * and the {@code /api/auth/token/create} API will report an error.
+     * </p>
+     *
+     * @param accessToken
+     *         The value of the access token. If a non-null value is
+     *         specified, the implementation of {@code /api/auth/token/create}
+     *         API will use the value instead of generating a new one.
+     *
+     *         Because Authlete does not store the value of the access
+     *         token into its database (Authlete stores the hash value
+     *         of the access token only), any value is accepted as the
+     *         value of this {@code accessToken} request parameter.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.6
+     */
+    public TokenCreateRequest setAccessToken(String accessToken)
+    {
+        this.accessToken = accessToken;
+
+        return this;
+    }
+
+
+    /**
+     * Get the refresh token.
+     *
+     * <p>
+     * When this method returns a non-null value, the implementation of
+     * {@code /api/auth/token/create} uses the value instead of generating
+     * a new one. See the description of {@link #setRefreshToken(String)}
+     * for details.
+     * </p>
+     *
+     * @return
+     *         The value of the refresh token. In normal cases, {@code null}
+     *         is returned.
+     *
+     * @see #setRefreshToken(String)
+     *
+     * @since 2.6
+     */
+    public String getRefreshToken()
+    {
+        return refreshToken;
+    }
+
+
+    /**
+     * Set the refresh token.
+     *
+     * <p>
+     * The {@code /api/auth/token/create} API may generate a refresh token.
+     * Therefore, callers of the API do not have to specify values of
+     * newly created refresh tokens. However, in some cases, for example,
+     * if you want to migrate existing refresh tokens from an old system
+     * to Authlete, you may want to specify values of refresh tokens.
+     * In such a case, you can specify the value of a newly created
+     * refresh token by passing a non-null value as the value of
+     * {@code refreshToken} request parameter. The implementation of the
+     * {@code /api/auth/token/create} uses the value of the {@code
+     * refreshToken} request parameter instead of generating a new value
+     * when the request parameter holds a non-null value.
+     * </p>
+     *
+     * <p>
+     * Note that if the hash value of the specified refresh token already
+     * exists in Authlete's database, the refresh token cannot be inserted
+     * and the {@code /api/auth/token/create} API will report an error.
+     * </p>
+     *
+     * @param refreshToken
+     *         The value of the refresh token. If a non-null value is
+     *         specified, the implementation of {@code /api/auth/token/create}
+     *         API will use the value instead of generating a new one.
+     *
+     *         Because Authlete does not store the value of the refresh
+     *         token into its database (Authlete stores the hash value
+     *         of the refresh token only), any value is accepted as the
+     *         value of this {@code refreshToken} request parameter.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.6
+     */
+    public TokenCreateRequest setRefreshToken(String refreshToken)
+    {
+        this.refreshToken = refreshToken;
 
         return this;
     }
