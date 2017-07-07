@@ -1,2 +1,6 @@
 target/
 authlete.properties
+.settings
+.project
+.classpath
+
