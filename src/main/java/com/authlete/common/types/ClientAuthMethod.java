@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -112,7 +112,21 @@ public enum ClientAuthMethod
      * Authorization Grants</a> [OAuth.Assertions].
      * </p>
      */
-    PRIVATE_KEY_JWT((short)4, "private_key_jwt")
+    PRIVATE_KEY_JWT((short)4, "private_key_jwt"),
+
+
+    /**
+     * {@code "tls_client_auth"} (5).
+     *
+     * <p>
+     * Clients authenticate with the Authorization Server using
+     * X.509 certificates as defined in <i>"Mutual TLS Profiles
+     * for OAuth Clients"</i>.
+     * </p>
+     *
+     * @since 2.7
+     */
+    TLS_CLIENT_AUTH((short)5, "tls_client_auth"),
     ;
 
 
