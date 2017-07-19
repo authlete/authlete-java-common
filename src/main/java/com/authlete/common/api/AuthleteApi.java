@@ -34,6 +34,8 @@ import com.authlete.common.dto.RevocationRequest;
 import com.authlete.common.dto.RevocationResponse;
 import com.authlete.common.dto.Service;
 import com.authlete.common.dto.ServiceListResponse;
+import com.authlete.common.dto.StandardIntrospectionRequest;
+import com.authlete.common.dto.StandardIntrospectionResponse;
 import com.authlete.common.dto.TokenCreateRequest;
 import com.authlete.common.dto.TokenCreateResponse;
 import com.authlete.common.dto.TokenFailRequest;
@@ -205,6 +207,21 @@ public interface AuthleteApi
      *         Response from the API.
      */
     IntrospectionResponse introspection(IntrospectionRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/introspection/standard} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.7
+     */
+    StandardIntrospectionResponse standardIntrospection(
+            StandardIntrospectionRequest request) throws AuthleteApiException;
 
 
     /**

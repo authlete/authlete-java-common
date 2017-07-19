@@ -50,6 +50,8 @@ import com.authlete.common.dto.RevocationRequest;
 import com.authlete.common.dto.RevocationResponse;
 import com.authlete.common.dto.Service;
 import com.authlete.common.dto.ServiceListResponse;
+import com.authlete.common.dto.StandardIntrospectionRequest;
+import com.authlete.common.dto.StandardIntrospectionResponse;
 import com.authlete.common.dto.TokenCreateRequest;
 import com.authlete.common.dto.TokenCreateResponse;
 import com.authlete.common.dto.TokenFailRequest;
@@ -101,6 +103,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String AUTH_USERINFO_API_PATH                 = "/api/auth/userinfo";
     private static final String AUTH_USERINFO_ISSUE_API_PATH           = "/api/auth/userinfo/issue";
     private static final String AUTH_INTROSPECTION_API_PATH            = "/api/auth/introspection";
+    private static final String AUTH_INTROSPECTION_STANDARD_API_PATH   = "/api/auth/introspection/standard";
     private static final String SERVICE_CONFIGURATION_API_PATH         = "/api/service/configuration";
     private static final String SERVICE_CREATE_API_PATH                = "/api/service/create";
     private static final String SERVICE_DELETE_API_PATH                = "/api/service/delete/%d";
@@ -892,6 +895,15 @@ class AuthleteApiImpl implements AuthleteApi
     {
         return callServicePostApi(
                 AUTH_INTROSPECTION_API_PATH, request, IntrospectionResponse.class);
+    }
+
+
+    @Override
+    public StandardIntrospectionResponse standardIntrospection(
+            StandardIntrospectionRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                AUTH_INTROSPECTION_STANDARD_API_PATH, request, StandardIntrospectionResponse.class);
     }
 
 
