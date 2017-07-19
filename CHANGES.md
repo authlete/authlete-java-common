@@ -1,6 +1,24 @@
 CHANGES
 =======
 
+2.7 (2017-07-20)
+----------------
+
+- `AuthleteApi` interface
+    * Added `standardIntrospection(StandardIntrospectionRequest)` method.
+
+- `Client` class
+    * Added `tlsClientAuthSubjectDn` property.
+    * Added `tlsClientAuthRootDn` property.
+
+- `ClientAuthMethod` enum
+    * Added `TLS_CLIENT_AUTH`.
+
+- New classes
+    * `StandardIntrospectionRequest` class
+    * `StandardIntrospectionResponse` class
+
+
 2.6 (2017-06-10)
 ----------------
 

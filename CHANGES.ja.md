@@ -1,6 +1,24 @@
 変更点
 ======
 
+2.7 (2017 年 7 月 20 日)
+------------------------
+
+- `AuthleteApi` インターフェース
+    * `standardIntrospection(StandardIntrospectionRequest)` メソッドを追加。
+
+- `Client` クラス
+    * `tlsClientAuthSubjectDn` プロパティーを追加。
+    * `tlsClientAuthRootDn` プロパティーを追加。
+
+- `ClientAuthMethod` 列挙
+    * `TLS_CLIENT_AUTH` を追加。
+
+- 新しいクラス
+    * `StandardIntrospectionRequest` クラス
+    * `StandardIntrospectionResponse` クラス
+
+
 2.6 (2017 年 6 月 10 日)
 ------------------------
 

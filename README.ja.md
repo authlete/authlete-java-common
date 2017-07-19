@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.6</version>
+    <version>2.7</version>
 </dependency>
 ```
 
@@ -197,6 +197,7 @@ authlete-java-common ライブラリのバージョン 2.0 以降には、`HttpU
   5. アクセストークンの情報取得のためのメソッド群
 
     - `introspection(IntrospectionRequest)`
+    - `standardIntrospection(StandardIntrospectionRequest)`
 
   6. アクセストークン取り消しエンドポイント実装のためのメソッド群
 
