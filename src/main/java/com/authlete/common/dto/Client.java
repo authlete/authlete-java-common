@@ -47,7 +47,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /*
@@ -213,8 +213,6 @@ public class Client implements Serializable
 
 
     private SubjectType subjectType;
-
-
     private JWSAlg idTokenSignAlg;
     private JWEAlg idTokenEncryptionAlg;
     private JWEEnc idTokenEncryptionEnc;
@@ -235,8 +233,9 @@ public class Client implements Serializable
     private TaggedValue[] descriptions;
     private long createdAt;
     private long modifiedAt;
-
     private ClientExtension extension;
+    private String tlsClientAuthSubjectDn;
+    private String tlsClientAuthRootDn;
 
 
     /**
@@ -1843,6 +1842,106 @@ public class Client implements Serializable
     public Client setExtension(ClientExtension extension)
     {
         this.extension = extension;
+
+        return this;
+    }
+
+
+    /**
+     * Get the string representation of the expected subject
+     * distinguished name of the certificate this client will
+     * use in mutual TLS authentication.
+     *
+     * <p>
+     * See {@code tls_client_auth_subject_dn} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @return
+     *         The expected subject distinguished name of the
+     *         client certificate.
+     *
+     * @since 2.7
+     */
+    public String getTlsClientAuthSubjectDn()
+    {
+        return tlsClientAuthSubjectDn;
+    }
+
+
+    /**
+     * Set the string representation of the expected subject
+     * distinguished name of the certificate this client will
+     * use in mutual TLS authentication.
+     *
+     * <p>
+     * See {@code tls_client_auth_subject_dn} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @param name
+     *         The expected subject distinguished name of the
+     *         client certificate.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.7
+     */
+    public Client setTlsClientAuthSubjectDn(String name)
+    {
+        this.tlsClientAuthSubjectDn = name;
+
+        return this;
+    }
+
+
+    /**
+     * Get the string representation of the expected distinguished
+     * name of the root issuer of the client certificate.
+     *
+     * <p>
+     * See {@code tls_client_auth_root_dn} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @return
+     *         The expected subject distinguished name of the
+     *         root issuer of the client certificate.
+     *
+     * @since 2.7
+     */
+    public String getTlsClientAuthRootDn()
+    {
+        return tlsClientAuthRootDn;
+    }
+
+
+    /**
+     * Set the string representation of the expected distinguished
+     * name of the root issuer of the client certificate.
+     *
+     * <p>
+     * See {@code tls_client_auth_root_dn} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @param name
+     *         The expected subject distinguished name of the
+     *         root issuer of the client certificate.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.7
+     */
+    public Client setTlsClientAuthRootDn(String name)
+    {
+        this.tlsClientAuthRootDn = name;
 
         return this;
     }
