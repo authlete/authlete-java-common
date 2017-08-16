@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 package com.authlete.common.dto;
+
+
+import com.authlete.common.types.GrantType;
+import com.authlete.common.util.Utils;
 
 
 /**
@@ -250,7 +254,7 @@ package com.authlete.common.dto;
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -301,7 +305,9 @@ public class TokenResponse extends ApiResponse
         = "action=%s, username=%s, password=%s, ticket=%s, responseContent=%s, "
         + "accessToken=%s, accessTokenExpiresAt=%d, accessTokenDuration=%d, "
         + "refreshToken=%s, refreshTokenExpiresAt=%d, refreshTokenDuration=%d, "
-        + "idToken=%s";
+        + "idToken=%s, grantType=%s, "
+        + "clientId=%d, clientIdAlias=%s, clientIdAliasUsed=%s, "
+        + "subject=%s, scopes=%s, properties=%s";
 
 
     private Action action;
@@ -316,6 +322,13 @@ public class TokenResponse extends ApiResponse
     private long refreshTokenExpiresAt;
     private long refreshTokenDuration;
     private String idToken;
+    private GrantType grantType;
+    private long clientId;
+    private String clientIdAlias;
+    private boolean clientIdAliasUsed;
+    private String subject;
+    private String[] scopes;
+    private Property[] properties;
 
 
     /**
@@ -460,7 +473,9 @@ public class TokenResponse extends ApiResponse
                 action, username, password, ticket, responseContent,
                 accessToken, accessTokenExpiresAt, accessTokenDuration,
                 refreshToken, refreshTokenExpiresAt, refreshTokenDuration,
-                idToken);
+                idToken, grantType, clientId, clientIdAlias, clientIdAliasUsed,
+                subject, Utils.join(scopes, " "),
+                Utils.stringifyProperties(properties));
     }
 
 
@@ -681,5 +696,203 @@ public class TokenResponse extends ApiResponse
     public void setIdToken(String idToken)
     {
         this.idToken = idToken;
+    }
+
+
+    /**
+     * Get the grant type of the token request.
+     *
+     * @since 2.8
+     */
+    public GrantType getGrantType()
+    {
+        return grantType;
+    }
+
+
+    /**
+     * Set the grant type of the token request.
+     *
+     * @param grantType
+     *         Grant type of the token request.
+     *
+     * @since 2.8
+     */
+    public void setGrantType(GrantType grantType)
+    {
+        this.grantType = grantType;
+    }
+
+
+    /**
+     * Get the client ID.
+     *
+     * @since 2.8
+     */
+    public long getClientId()
+    {
+        return clientId;
+    }
+
+
+    /**
+     * Set the client ID.
+     *
+     * @since 2.8
+     */
+    public void setClientId(long clientId)
+    {
+        this.clientId = clientId;
+    }
+
+
+    /**
+     * Get the client ID alias when the token request was made.
+     *
+     * <p>
+     * If the client did not have an alias, this method returns
+     * {@code null}. Also, if the token request was invalid and
+     * it failed to identify a client, this method returns
+     * {@code null}.
+     * </p>
+     *
+     * @return
+     *         The client ID alias.
+     *
+     * @since 2.8
+     */
+    public String getClientIdAlias()
+    {
+        return clientIdAlias;
+    }
+
+
+    /**
+     * Set the client ID alias when the token request was made.
+     *
+     * @param alias
+     *         The client ID alias.
+     *
+     * @since 2.8
+     */
+    public void setClientIdAlias(String alias)
+    {
+        this.clientIdAlias = alias;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the client ID alias was used
+     * when the token request was made.
+     *
+     * @return
+     *         {@code true} if the client ID alias was used when the token
+     *         request was made.
+     *
+     * @since 2.8
+     */
+    public boolean isClientIdAliasUsed()
+    {
+        return clientIdAliasUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the client ID alias was used
+     * when the token request was made.
+     *
+     * @param used
+     *         {@code true} if the client ID alias was used when the token
+     *         request was made.
+     *
+     * @since 2.8
+     */
+    public void setClientIdAliasUsed(boolean used)
+    {
+        this.clientIdAliasUsed = used;
+    }
+
+
+    /**
+     * Get the subject (= resource owner's ID) of the access token.
+     *
+     * <p>
+     * Even if an access token has been issued by the call of
+     * {@code /api/auth/token} API, this method returns {@code null}
+     * if the flow of the token request was <a href=
+     * "http://tools.ietf.org/html/rfc6749#section-4.4">Client
+     * Credentials Flow</a> ({@code grant_type=client_credentials})
+     * because it means the access token is not associated with any
+     * specific end-user.
+     * </p>
+     *
+     * @since 2.8
+     */
+    public String getSubject()
+    {
+        return subject;
+    }
+
+
+    /**
+     * Set the subject (= resource owner's ID) of the access token.
+     *
+     * @since 2.8
+     */
+    public void setSubject(String subject)
+    {
+        this.subject = subject;
+    }
+
+
+    /**
+     * Get the scopes covered by the access token.
+     *
+     * @since 2.8
+     */
+    public String[] getScopes()
+    {
+        return scopes;
+    }
+
+
+    /**
+     * Set the scopes covered by the access token.
+     *
+     * @since 2.8
+     */
+    public void setScopes(String[] scopes)
+    {
+        this.scopes = scopes;
+    }
+
+
+    /**
+     * Get the extra properties associated with the access token.
+     * This method returns {@code null} when no extra property is
+     * associated with the issued access token.
+     *
+     * @return
+     *         Extra properties associated with the issued access token.
+     *
+     * @since 2.8
+     */
+    public Property[] getProperties()
+    {
+        return properties;
+    }
+
+
+    /**
+     * Set the extra properties associated with the access token.
+     *
+     * @param properties
+     *         Extra properties.
+     *
+     * @since 2.8
+     */
+    public void setProperties(Property[] properties)
+    {
+        this.properties = properties;
     }
 }
