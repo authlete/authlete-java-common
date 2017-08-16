@@ -1,6 +1,27 @@
 CHANGES
 =======
 
+2.8 (2017-08-16)
+----------------
+
+- `TokenResponse` class
+    * Added `grantType` property.
+    * Added `clientId` property.
+    * Added `clientIdAlias` property.
+    * Added `clientIdAliasUsed` property.
+    * Added `subject` property.
+    * Added `scopes` property.
+    * Added `properties` property.
+
+- `TokenIssueResponse` class
+    * Added `clientId` property.
+    * Added `clientIdAlias` property.
+    * Added `clientIdAliasUsed` property.
+    * Added `subject` property.
+    * Added `scopes` property.
+    * Added `properties` property.
+
+
 2.7 (2017-07-20)
 ----------------
 

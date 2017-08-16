@@ -1,6 +1,27 @@
 変更点
 ======
 
+2.8 (2017 年 8 月 16 日)
+------------------------
+
+- `TokenResponse` クラス
+    * `grantType` プロパティーを追加。
+    * `clientId` プロパティーを追加。
+    * `clientIdAlias` プロパティーを追加。
+    * `clientIdAliasUsed` プロパティーを追加。
+    * `subject` プロパティーを追加。
+    * `scopes` プロパティーを追加。
+    * `properties` プロパティーを追加。
+
+- `TokenIssueResponse` クラス
+    * `clientId` プロパティーを追加。
+    * `clientIdAlias` プロパティーを追加。
+    * `clientIdAliasUsed` プロパティーを追加。
+    * `subject` プロパティーを追加。
+    * `scopes` プロパティーを追加。
+    * `properties` プロパティーを追加。
+
+
 2.7 (2017 年 7 月 20 日)
 ------------------------
 
