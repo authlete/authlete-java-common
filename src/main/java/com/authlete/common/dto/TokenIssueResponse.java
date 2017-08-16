@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 package com.authlete.common.dto;
+
+
+import com.authlete.common.util.Utils;
 
 
 /**
@@ -99,7 +102,7 @@ package com.authlete.common.dto;
  */
 public class TokenIssueResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -127,7 +130,9 @@ public class TokenIssueResponse extends ApiResponse
     private static final String SUMMARY_FORMAT
         = "action=%s, responseContent=%s, "
         + "accessToken=%s, accessTokenExpiresAt=%d, accessTokenDuration=%d, "
-        + "refreshToken=%s, refreshTokenExpiresAt=%d, refreshTokenDuration=%d";
+        + "refreshToken=%s, refreshTokenExpiresAt=%d, refreshTokenDuration=%d, "
+        + "clientId=%d, clientIdAlias=%s, clientIdAliasUsed=%s, subject=%s, "
+        + "scopes=%s, properties=%s";
 
 
     /**
@@ -143,6 +148,12 @@ public class TokenIssueResponse extends ApiResponse
     private String refreshToken;
     private long refreshTokenExpiresAt;
     private long refreshTokenDuration;
+    private long clientId;
+    private String clientIdAlias;
+    private boolean clientIdAliasUsed;
+    private String subject;
+    private String[] scopes;
+    private Property[] properties;
 
 
     /**
@@ -190,7 +201,9 @@ public class TokenIssueResponse extends ApiResponse
     {
         return String.format(SUMMARY_FORMAT, action, responseContent,
                 accessToken, accessTokenExpiresAt, accessTokenDuration,
-                refreshToken, refreshTokenExpiresAt, refreshTokenDuration);
+                refreshToken, refreshTokenExpiresAt, refreshTokenDuration,
+                clientId, clientIdAlias, clientIdAliasUsed, subject,
+                Utils.join(scopes, " "), Utils.stringifyProperties(properties));
     }
 
 
@@ -381,5 +394,166 @@ public class TokenIssueResponse extends ApiResponse
     public void setRefreshTokenDuration(long duration)
     {
         this.refreshTokenDuration = duration;
+    }
+
+
+    /**
+     * Get the client ID.
+     *
+     * @since 2.8
+     */
+    public long getClientId()
+    {
+        return clientId;
+    }
+
+
+    /**
+     * Set the client ID.
+     *
+     * @since 2.8
+     */
+    public void setClientId(long clientId)
+    {
+        this.clientId = clientId;
+    }
+
+
+    /**
+     * Get the client ID alias.
+     *
+     * <p>
+     * If the client did not have an alias, this method returns
+     * {@code null}.
+     * </p>
+     *
+     * @return
+     *         The client ID alias.
+     *
+     * @since 2.8
+     */
+    public String getClientIdAlias()
+    {
+        return clientIdAlias;
+    }
+
+
+    /**
+     * Set the client ID alias.
+     *
+     * @param alias
+     *         The client ID alias.
+     *
+     * @since 2.8
+     */
+    public void setClientIdAlias(String alias)
+    {
+        this.clientIdAlias = alias;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the client ID alias was used
+     * when the token request was made.
+     *
+     * @return
+     *         {@code true} if the client ID alias was used when the token
+     *         request was made.
+     *
+     * @since 2.8
+     */
+    public boolean isClientIdAliasUsed()
+    {
+        return clientIdAliasUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the client ID alias was used
+     * when the token request was made.
+     *
+     * @param used
+     *         {@code true} if the client ID alias was used when the token
+     *         request was made.
+     *
+     * @since 2.8
+     */
+    public void setClientIdAliasUsed(boolean used)
+    {
+        this.clientIdAliasUsed = used;
+    }
+
+
+    /**
+     * Get the subject (= resource owner's ID) of the access token.
+     *
+     * @since 2.8
+     */
+    public String getSubject()
+    {
+        return subject;
+    }
+
+
+    /**
+     * Set the subject (= resource owner's ID).
+     *
+     * @since 2.8
+     */
+    public void setSubject(String subject)
+    {
+        this.subject = subject;
+    }
+
+
+    /**
+     * Get the scopes covered by the access token.
+     *
+     * @since 2.8
+     */
+    public String[] getScopes()
+    {
+        return scopes;
+    }
+
+
+    /**
+     * Set the scopes covered by the access token.
+     *
+     * @since 2.8
+     */
+    public void setScopes(String[] scopes)
+    {
+        this.scopes = scopes;
+    }
+
+
+    /**
+     * Get the extra properties associated with the access token.
+     * This method returns {@code null} when no extra property is
+     * associated with the issued access token.
+     *
+     * @return
+     *         Extra properties associated with the issued access token.
+     *
+     * @since 2.8
+     */
+    public Property[] getProperties()
+    {
+        return properties;
+    }
+
+
+    /**
+     * Set the extra properties associated with the access token.
+     *
+     * @param properties
+     *         Extra properties.
+     *
+     * @since 2.8
+     */
+    public void setProperties(Property[] properties)
+    {
+        this.properties = properties;
     }
 }
