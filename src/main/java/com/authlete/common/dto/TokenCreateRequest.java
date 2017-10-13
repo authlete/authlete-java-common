@@ -135,6 +135,56 @@ import com.authlete.common.types.GrantType;
  * </p>
  * </dd>
  *
+ * <dt><b><code>accessToken</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the new access token.
+ * </p>
+ * <p>
+ * The {@code /api/auth/token/create} API generates an access token.
+ * Therefore, callers of the API do not have to specify values of
+ * newly created access tokens. However, in some cases, for example,
+ * if you want to migrate existing access tokens from an old system
+ * to Authlete, you may want to specify values of access tokens.
+ * In such a case, you can specify the value of a newly created
+ * access token by passing a non-null value as the value of
+ * {@code accessToken} request parameter. The implementation of the
+ * {@code /api/auth/token/create} uses the value of the {@code
+ * accessToken} request parameter instead of generating a new value
+ * when the request parameter holds a non-null value.
+ * </p>
+ * <p>
+ * Note that if the hash value of the specified access token already
+ * exists in Authlete's database, the access token cannot be inserted
+ * and the {@code /api/auth/token/create} API will report an error.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>refreshToken</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the new refresh token.
+ * </p>
+ * <p>
+ * The {@code /api/auth/token/create} API may generate a refresh token.
+ * Therefore, callers of the API do not have to specify values of
+ * newly created refresh tokens. However, in some cases, for example,
+ * if you want to migrate existing refresh tokens from an old system
+ * to Authlete, you may want to specify values of refresh tokens.
+ * In such a case, you can specify the value of a newly created
+ * refresh token by passing a non-null value as the value of
+ * {@code refreshToken} request parameter. The implementation of the
+ * {@code /api/auth/token/create} uses the value of the {@code
+ * refreshToken} request parameter instead of generating a new value
+ * when the request parameter holds a non-null value.
+ * </p>
+ *
+ * <p>
+ * Note that if the hash value of the specified refresh token already
+ * exists in Authlete's database, the refresh token cannot be inserted
+ * and the {@code /api/auth/token/create} API will report an error.
+ * </p>
+ *
  * </dl>
  * </blockquote>
  *
