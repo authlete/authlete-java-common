@@ -129,6 +129,7 @@ class AuthleteApiImpl implements AuthleteApi
     private final String mBaseUrl;
     private final BasicCredentials mServiceOwnerCredentials;
     private final BasicCredentials mServiceCredentials;
+    private final Settings mSettings;
 
 
     /**
@@ -152,6 +153,7 @@ class AuthleteApiImpl implements AuthleteApi
         mServiceOwnerCredentials = createServiceOwnerCredentials(configuration);
         mServiceCredentials      = createServiceCredentials(configuration);
         mBaseUrl                 = createBaseUrl(configuration);
+        mSettings                = new Settings();
     }
 
 
@@ -383,7 +385,8 @@ class AuthleteApiImpl implements AuthleteApi
             Object requestBody, Class<TResponse> responseClass) throws AuthleteApiException
     {
         // Create a connection to the Authlete API.
-        HttpURLConnection con = createConnection(method, credentials, mBaseUrl, path, queryParams);
+        HttpURLConnection con = createConnection(
+                method, credentials, mBaseUrl, path, queryParams, mSettings);
 
         try
         {
@@ -400,12 +403,14 @@ class AuthleteApiImpl implements AuthleteApi
 
     private static HttpURLConnection createConnection(
             HttpMethod method, BasicCredentials credentials,
-            String baseUrl, String path, Map<String, String> queryParams) throws AuthleteApiException
+            String baseUrl, String path, Map<String, String> queryParams,
+            Settings settings) throws AuthleteApiException
     {
         try
         {
             // Open a connection to the Authlete API.
-            return openConnection(method, credentials, baseUrl, path, queryParams);
+            return openConnection(
+                    method, credentials, baseUrl, path, queryParams, settings);
         }
         catch (Throwable cause)
         {
@@ -417,7 +422,8 @@ class AuthleteApiImpl implements AuthleteApi
 
     private static HttpURLConnection openConnection(
             HttpMethod method, BasicCredentials credentials, String baseUrl,
-            String path, Map<String, String> queryParams) throws IOException
+            String path, Map<String, String> queryParams,
+            Settings settings) throws IOException
     {
         // URL of an Authlete API.
         URL url = buildUrl(baseUrl, path, queryParams);
@@ -436,6 +442,9 @@ class AuthleteApiImpl implements AuthleteApi
 
         // Expect a response body.
         con.setDoInput(true);
+
+        // Set a connection timeout in milliseconds.
+        con.setConnectTimeout(settings.getConnectionTimeout());
 
         return con;
     }
@@ -1223,5 +1232,12 @@ class AuthleteApiImpl implements AuthleteApi
         callServicePostApi(
                 String.format(CLIENT_AUTHORIZATION_UPDATE_API_PATH, clientId),
                 request, ApiResponse.class);
+    }
+
+
+    @Override
+    public Settings getSettings()
+    {
+        return mSettings;
     }
 }

@@ -873,4 +873,17 @@ public interface AuthleteApi
      * @since 2.1
      */
     void updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Get the reference to the settings of this {@code AuthleteApi}
+     * implementation.
+     *
+     * @return
+     *         The reference to the settings of this {@code AuthleteApi}
+     *         implementation.
+     *
+     * @since 2.9
+     */
+    Settings getSettings();
 }
