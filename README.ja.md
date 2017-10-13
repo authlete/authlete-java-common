@@ -176,6 +176,14 @@ AuthleteApi api = ...;
 Settings settings = api.getSettings();
 
 // 接続タイムアウト値をミリ秒単位で設定する。
+//
+// 注意：
+//   JAX-RS Client API では接続タイムアウトの設定方法が標準化されていません。
+//   そのため、AuthleteApi の実装として authlete-java-jaxrs が使用されていて、
+//   かつ authlete-java-jaxrs の setConnectionTimeout() の実装がサポートして
+//   いない JAX-RS Client 実装が使われている場合、setConnectionTimeout() の
+//   設定は効きません。詳細は authlete-java-jaxrs の README を参照してください。
+//
 settings.setConnectionTimeout(5000);
 ```
 
