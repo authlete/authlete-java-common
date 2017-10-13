@@ -175,8 +175,7 @@ follows.
 the version 2.9. By configuring the instance returned by the method, you can
 change behaviours of the implementation of `AuthleteApi` interface.
 
-Examples
---------
+*Examples*
 
 ```java
 // An implementation of AuthleteApi interface.
@@ -270,9 +269,7 @@ Methods in `AuthleteApi` interface can be divided into some categories.
     - `getClientAuthorizationList(ClientAuthorizationGetListRequest request)`
     - `updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request)`
 
-
-Examples
---------
+*Examples*
 
 The following code snippet is an example to get the list of your existing
 services. Each service corresponds to an authorization server.

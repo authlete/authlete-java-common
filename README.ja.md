@@ -166,8 +166,7 @@ authlete-java-common ライブラリのバージョン 2.0 以降には、`HttpU
 このメソッドが返す `Settings` インスタンスの設定を変更することにより、`AuthleteApi`
 インターフェースの実装の動作を変更することができます。
 
-例
---
+*例*
 
 ```java
 // AuthleteApi インターフェースの実装
@@ -261,9 +260,7 @@ settings.setConnectionTimeout(5000);
     - `getClientAuthorizationList(ClientAuthorizationGetListRequest request)`
     - `updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request)`
 
-
-例
---
+*例*
 
 次のコードは既存のサービスのリストを取得する例です。
 各サービスは一つの認可サーバーに対応します。
