@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.8</version>
+    <version>2.9</version>
 </dependency>
 ```
 
@@ -158,6 +158,27 @@ authlete-java-common ライブラリのバージョン 2.0 以降には、`HttpU
   2. `com.authlete.common.api.AuthleteApiImpl` (in authlete-java-common)
 
 `AuthleteApiFactory` は上記の順番で実装を検索しにいきます。
+
+
+### AuthleteApi の設定
+
+バージョン 2.9 で `AuthleteApi` に `getSettings()` メソッドが追加されました。
+このメソッドが返す `Settings` インスタンスの設定を変更することにより、`AuthleteApi`
+インターフェースの実装の動作を変更することができます。
+
+例
+--
+
+```java
+// AuthleteApi インターフェースの実装
+AuthleteApi api = ...;
+
+// AuthleteApi 実装の設定を保持するインスタンスを取得する。
+Settings settings = api.getSettings();
+
+// 接続タイムアウト値をミリ秒単位で設定する。
+settings.setConnectionTimeout(5000);
+```
 
 
 #### AuthleteApi メソッドのカテゴリー

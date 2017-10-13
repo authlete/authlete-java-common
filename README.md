@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.8</version>
+    <version>2.9</version>
 </dependency>
 ```
 
@@ -167,6 +167,27 @@ follows.
   2. `com.authlete.common.api.AuthleteApiImpl` (in authlete-java-common)
 
 `AuthleteApiFactory` checks existence of the above classes in this order.
+
+
+#### AuthleteApi Settings
+
+`getSettings()` method of `AuthleteApi` interface has been available since
+the version 2.9. By configuring the instance returned by the method, you can
+change behaviours of the implementation of `AuthleteApi` interface.
+
+Examples
+--------
+
+```java
+// An implementation of AuthleteApi interface.
+AuthleteApi api = ...;
+
+// Get the instance which holds settings of the AuthleteApi implementation.
+Settings settings = api.getSettings();
+
+// Set a connection timeout in milliseconds.
+settings.setConnectionTimeout(5000);
+```
 
 
 #### AuthleteApi Method Categories

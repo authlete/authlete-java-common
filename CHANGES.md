@@ -1,7 +1,17 @@
 CHANGES
 =======
 
-2.8 (2017-08-16)
+2.9 (2017-10-13)
+----------------
+
+- `AuthleteApi` interface
+    * Added `getSettings()` method.
+
+- New classes
+    * `Settings` class.
+
+
+2.8 (2017-10-13)
 ----------------
 
 - `TokenResponse` class
