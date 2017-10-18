@@ -47,6 +47,18 @@ public class Settings
      * Set the timeout value in milliseconds for socket connection.
      * A timeout of zero is interpreted as an infinite timeout.
      *
+     * <p>
+     * JAX-RS Client API has not standardized the way to set a
+     * connection timeout value. Therefore, if <a href=
+     * "https://github.com/authlete/authlete-java-jaxrs"
+     * >authlete-java-jaxrs</a> is used as {@link AuthleteApi}
+     * implementation and if the JAX-RS Client implementation
+     * is not supported by the implementation of {@code
+     * setConnectionTimeout()} of authlete-java-jaxrs, the value
+     * given to {@code setConnectionTimeout()} won't have any
+     * effect. See README in authlete-java-jaxrs for details.
+     * </p>
+     *
      * @param timeout
      *         The connection timeout value in milliseconds.
      *
@@ -85,6 +97,19 @@ public class Settings
 
     /**
      * Set the read timeout in milliseconds.
+     * A timeout of zero is interpreted as an infinite timeout.
+     *
+     * <p>
+     * JAX-RS Client API has not standardized the way to set
+     * a read timeout value. Therefore, if <a href=
+     * "https://github.com/authlete/authlete-java-jaxrs"
+     * >authlete-java-jaxrs</a> is used as {@link AuthleteApi}
+     * implementation and if the JAX-RS Client implementation
+     * is not supported by the implementation of {@code
+     * setReadTimeout()} of authlete-java-jaxrs, the value
+     * given to {@code setReadTimeout()} won't have any effect.
+     * See README in authlete-java-jaxrs for details.
+     * </p>
      *
      * @param timeout
      *         The read timeout in milliseconds.
