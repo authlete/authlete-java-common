@@ -446,6 +446,9 @@ class AuthleteApiImpl implements AuthleteApi
         // Set a connection timeout in milliseconds.
         con.setConnectTimeout(settings.getConnectionTimeout());
 
+        // Set a read timeout in milliseconds.
+        con.setReadTimeout(settings.getReadTimeout());
+
         return con;
     }
 

@@ -27,6 +27,7 @@ package com.authlete.common.api;
 public class Settings
 {
     private int connectionTimeout;
+    private int readTimeout;
 
 
     /**
@@ -63,6 +64,44 @@ public class Settings
         }
 
         this.connectionTimeout = timeout;
+
+        return this;
+    }
+
+
+    /**
+     * Get the read timeout in milliseconds.
+     *
+     * @return
+     *         The read timeout in milliseconds.
+     *
+     * @since 2.10
+     */
+    public int getReadTimeout()
+    {
+        return readTimeout;
+    }
+
+
+    /**
+     * Set the read timeout in milliseconds.
+     *
+     * @param timeout
+     *         The read timeout in milliseconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.10
+     */
+    public Settings setReadTimeout(int timeout)
+    {
+        if (timeout < 0)
+        {
+            throw new IllegalArgumentException("timeout value cannot be negative.");
+        }
+
+        this.readTimeout = timeout;
 
         return this;
     }
