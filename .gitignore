@@ -3,4 +3,4 @@ authlete.properties
 .settings
 .project
 .classpath
-
+.DS_Store
