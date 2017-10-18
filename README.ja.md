@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.9</version>
+    <version>2.10</version>
 </dependency>
 ```
 
@@ -185,6 +185,17 @@ Settings settings = api.getSettings();
 //   設定は効きません。詳細は authlete-java-jaxrs の README を参照してください。
 //
 settings.setConnectionTimeout(5000);
+
+// リードタイムアウト値をミリ秒単位で設定する。
+//
+// 注意：
+//   JAX-RS Client API ではリードタイムアウトの設定方法が標準化されていません。
+//   そのため、AuthleteApi の実装として authlete-java-jaxrs が使用されていて、
+//   かつ authlete-java-jaxrs の setReadTimeout() の実装がサポートしていない
+//   JAX-RS Client 実装が使われている場合、setReadTimeout() の設定は効きません。
+//   詳細は authlete-java-jaxrs の README を参照してください。
+//
+settings.setReadTimeout(5000);
 ```
 
 

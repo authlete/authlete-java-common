@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+2.10 (2017-10-18)
+-----------------
+
+- `Settings` class
+    * Added `getReadTimeout()` method.
+    * Added `setReadTimeout(int)` method.
+
+
 2.9 (2017-10-13)
 ----------------
 
