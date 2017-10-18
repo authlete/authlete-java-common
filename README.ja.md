@@ -178,22 +178,24 @@ Settings settings = api.getSettings();
 // 接続タイムアウト値をミリ秒単位で設定する。
 //
 // 注意：
-//   JAX-RS Client API では接続タイムアウトの設定方法が標準化されていません。
-//   そのため、AuthleteApi の実装として authlete-java-jaxrs が使用されていて、
-//   かつ authlete-java-jaxrs の setConnectionTimeout() の実装がサポートして
-//   いない JAX-RS Client 実装が使われている場合、setConnectionTimeout() の
-//   設定は効きません。詳細は authlete-java-jaxrs の README を参照してください。
+//   Java EE 8 の一部となっている JAX-RS API 2.1 より前は、接続タイムアウトを
+//   設定する方法が標準化されていません。 そのため、AuthleteApi の実装として
+//   authlete-java-jaxrs が使用されていて、かつ authlete-java-jaxrs の
+//   setConnectionTimeout() の実装がサポートしていない JAX-RS Client 実装が
+//   使われている場合、setConnectionTimeout() の設定は効きません。詳細は
+//   authlete-java-jaxrs の README を参照してください。
 //
 settings.setConnectionTimeout(5000);
 
 // リードタイムアウト値をミリ秒単位で設定する。
 //
 // 注意：
-//   JAX-RS Client API ではリードタイムアウトの設定方法が標準化されていません。
-//   そのため、AuthleteApi の実装として authlete-java-jaxrs が使用されていて、
-//   かつ authlete-java-jaxrs の setReadTimeout() の実装がサポートしていない
-//   JAX-RS Client 実装が使われている場合、setReadTimeout() の設定は効きません。
-//   詳細は authlete-java-jaxrs の README を参照してください。
+//   Java EE 8 の一部となっている JAX-RS API 2.1 より前は、リードタイムアウトを
+//   設定する方法が標準化されていません。 そのため、AuthleteApi の実装として
+//   authlete-java-jaxrs が使用されていて、かつ authlete-java-jaxrs の
+//   setReadTimeout() の実装がサポートしていない JAX-RS Client 実装が使われて
+//   いる場合、setReadTimeout() の設定は効きません。 詳細は authlete-java-jaxrs
+//   の README を参照してください。
 //
 settings.setReadTimeout(5000);
 ```
