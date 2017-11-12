@@ -47,7 +47,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /*
@@ -235,7 +235,6 @@ public class Client implements Serializable
     private long modifiedAt;
     private ClientExtension extension;
     private String tlsClientAuthSubjectDn;
-    private String tlsClientAuthRootDn;
 
 
     /**
@@ -1893,55 +1892,6 @@ public class Client implements Serializable
     public Client setTlsClientAuthSubjectDn(String name)
     {
         this.tlsClientAuthSubjectDn = name;
-
-        return this;
-    }
-
-
-    /**
-     * Get the string representation of the expected distinguished
-     * name of the root issuer of the client certificate.
-     *
-     * <p>
-     * See {@code tls_client_auth_root_dn} in <i>"2.3. Dynamic
-     * Client Registration"</i> in <i>"Mutual TLS Profiles for
-     * OAuth Clients"</i> for details.
-     * </p>
-     *
-     * @return
-     *         The expected subject distinguished name of the
-     *         root issuer of the client certificate.
-     *
-     * @since 2.7
-     */
-    public String getTlsClientAuthRootDn()
-    {
-        return tlsClientAuthRootDn;
-    }
-
-
-    /**
-     * Set the string representation of the expected distinguished
-     * name of the root issuer of the client certificate.
-     *
-     * <p>
-     * See {@code tls_client_auth_root_dn} in <i>"2.3. Dynamic
-     * Client Registration"</i> in <i>"Mutual TLS Profiles for
-     * OAuth Clients"</i> for details.
-     * </p>
-     *
-     * @param name
-     *         The expected subject distinguished name of the
-     *         root issuer of the client certificate.
-     *
-     * @return
-     *         {@code this} object.
-     *
-     * @since 2.7
-     */
-    public Client setTlsClientAuthRootDn(String name)
-    {
-        this.tlsClientAuthRootDn = name;
 
         return this;
     }
