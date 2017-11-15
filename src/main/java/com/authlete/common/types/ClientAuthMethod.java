@@ -127,6 +127,20 @@ public enum ClientAuthMethod
      * @since 2.7
      */
     TLS_CLIENT_AUTH((short)5, "tls_client_auth"),
+
+
+    /**
+     * {@code "self_signed_tls_client_auth"} (6).
+     *
+     * <p>
+     * Clients authenticate with the Authorization Server using
+     * self-signed certificates as defined in <i>"Mutual TLS Profiles
+     * for OAuth Clients"</i>.
+     * </p>
+     *
+     * @since 2.11
+     */
+    SELF_SIGNED_TLS_CLIENT_AUTH((short)6, "self_signed_tls_client_auth"),
     ;
 
 
