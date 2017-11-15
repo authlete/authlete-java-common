@@ -43,6 +43,9 @@ import com.authlete.common.dto.ClientAuthorizationDeleteRequest;
 import com.authlete.common.dto.ClientAuthorizationGetListRequest;
 import com.authlete.common.dto.ClientAuthorizationUpdateRequest;
 import com.authlete.common.dto.ClientListResponse;
+import com.authlete.common.dto.ClientSecretRefreshResponse;
+import com.authlete.common.dto.ClientSecretUpdateRequest;
+import com.authlete.common.dto.ClientSecretUpdateResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
 import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
@@ -115,6 +118,8 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String CLIENT_DELETE_API_PATH                 = "/api/client/delete/%d";
     private static final String CLIENT_GET_API_PATH                    = "/api/client/get/%d";
     private static final String CLIENT_GET_LIST_API_PATH               = "/api/client/get/list";
+    private static final String CLIENT_SECRET_REFRESH_API_PATH         = "/api/client/secret/refresh/%s";
+    private static final String CLIENT_SECRET_UPDATE_API_PATH          = "/api/client/secret/update/%s";
     private static final String CLIENT_UPDATE_API_PATH                 = "/api/client/update/%d";
     private static final String REQUESTABLE_SCOPES_DELETE_API_PATH     = "/api/client/extension/requestable_scopes/delete/%d";
     private static final String REQUESTABLE_SCOPES_GET_API_PATH        = "/api/client/extension/requestable_scopes/get/%d";
@@ -1235,6 +1240,48 @@ class AuthleteApiImpl implements AuthleteApi
         callServicePostApi(
                 String.format(CLIENT_AUTHORIZATION_UPDATE_API_PATH, clientId),
                 request, ApiResponse.class);
+    }
+
+
+    @Override
+    public ClientSecretRefreshResponse refreshClientSecret(
+            long clientId) throws AuthleteApiException
+    {
+        return refreshClientSecret(String.valueOf(clientId));
+    }
+
+
+    @Override
+    public ClientSecretRefreshResponse refreshClientSecret(
+            String clientIdentifier) throws AuthleteApiException
+    {
+        return callServiceGetApi(
+                String.format(CLIENT_SECRET_REFRESH_API_PATH, clientIdentifier),
+                ClientSecretRefreshResponse.class);
+    }
+
+
+    @Override
+    public ClientSecretUpdateResponse updateClientSecret(
+            long clientId, String clientSecret) throws AuthleteApiException
+    {
+        return updateClientSecret(String.valueOf(clientId), clientSecret);
+    }
+
+
+    @Override
+    public ClientSecretUpdateResponse updateClientSecret(
+            String clientIdentifier, String clientSecret) throws AuthleteApiException
+    {
+        // Prepare a request body. setClientSecret(String) method
+        // throws IllegalArgumentException if the given client secret
+        // does not comply with the format.
+        ClientSecretUpdateRequest request
+            = new ClientSecretUpdateRequest().setClientSecret(clientSecret);
+
+        return callServicePostApi(
+                String.format(CLIENT_SECRET_UPDATE_API_PATH, clientIdentifier),
+                request, ClientSecretUpdateResponse.class);
     }
 
 
