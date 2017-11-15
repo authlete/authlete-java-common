@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,6 +74,10 @@ public class AuthorizationFailRequest implements Serializable
          * for {@code prompt} request parameter.
          * </p>
          *
+         * <p>
+         * Using this reason will result in {@code error=login_required}.
+         * </p>
+         *
          * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
          *      >OpenID Connect Core 1.0, 3.1.2.1. Authentication Request</a>
          */
@@ -98,6 +102,10 @@ public class AuthorizationFailRequest implements Serializable
          * See <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
          * >"OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata"</a>
          * for {@code default_max_age} configuration parameter.
+         * </p>
+         *
+         * <p>
+         * Using this reason will result in {@code error=login_required}.
          * </p>
          *
          * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
@@ -127,6 +135,10 @@ public class AuthorizationFailRequest implements Serializable
          * for {@code default_max_age} configuration parameter.
          * </p>
          *
+         * <p>
+         * Using this reason will result in {@code error=login_required}.
+         * </p>
+         *
          * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
          *      >OpenID Connect Core 1.0, 3.1.2.1. Authentication Request</a>
          *
@@ -140,6 +152,10 @@ public class AuthorizationFailRequest implements Serializable
          * a specific value for {@code sub} claim, but the current end-user
          * (in the case of {@code prompt=none}) or the end-user after the
          * authentication is different from the specified value.
+         *
+         * <p>
+         * Using this reason will result in {@code error=login_required}.
+         * </p>
          */
         DIFFERENT_SUBJECT,
 
@@ -148,17 +164,29 @@ public class AuthorizationFailRequest implements Serializable
          * {@code "acr"} claim in {@code "claims"} request parameter and
          * the claim was marked as essential, but the ACR performed for the
          * end-user does not match any one of the requested ACRs.
+         *
+         * <p>
+         * Using this reason will result in {@code error=login_required}.
+         * </p>
          */
         ACR_NOT_SATISFIED,
 
         /**
          * The end-user denied the authorization request from the client
          * application.
+         *
+         * <p>
+         * Using this reason will result in {@code error=access_denied}.
+         * </p>
          */
         DENIED,
 
         /**
          * Server error.
+         *
+         * <p>
+         * Using this reason will result in {@code error=login_required}.
+         * </p>
          *
          * @since 1.3
          */
@@ -167,9 +195,47 @@ public class AuthorizationFailRequest implements Serializable
         /**
          * The end-user was not authenticated.
          *
+         * <p>
+         * Using this reason will result in {@code error=login_required}.
+         * </p>
+         *
          * @since 1.3
          */
-        NOT_AUTHENTICATED
+        NOT_AUTHENTICATED,
+
+        /**
+         * The authorization server cannot obtain an account selection choice
+         * made by the end-user.
+         *
+         * <p>
+         * Using this reason will result in {@code error=account_selection_required}.
+         * </p>
+         *
+         * @since 2.11
+         */
+        ACCOUNT_SELECTION_REQUIRED,
+
+        /**
+         * The authorization server cannot obtain consent from the end-user.
+         *
+         * <p>
+         * Using this reason will result in {@code error=consent_required}.
+         * </p>
+         *
+         * @since 2.11
+         */
+        CONSENT_REQUIRED,
+
+        /**
+         * The authorization server needs interaction with the end-user.
+         *
+         * <p>
+         * Using this reason will result in {@code error=interaction_required}.
+         * </p>
+         *
+         * @since 2.11
+         */
+        INTERACTION_REQUIRED,
     }
 
 
