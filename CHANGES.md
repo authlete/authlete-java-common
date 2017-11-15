@@ -1,6 +1,36 @@
 CHANGES
 =======
 
+2.11 (2017-11-16)
+-----------------
+
+- `AuthleteApi` interface
+    * Added `refreshClientSecret(long)` method.
+    * Added `refreshClientSecret(String)` method.
+    * Added `updateClientSecret(long, String)` method.
+    * Added `updateClientSecret(String, String)` method.
+
+- `AuthorizationFailRequest.Reason` enum
+    * Added `ACCOUNT_SELECTION_REQUIRED`.
+    * Added `CONSENT_REQUIRED`.
+    * Added `INTERACTION_REQUIRED`.
+
+- `AuthorizationResponse` class
+    * Updated the JavaDoc.
+    * Marked `getLowestPrompt()` method as 'deprecated'.
+
+- `Client` class
+    * Removed `tlsClientAuthRootDn` property.
+
+- `ClientAuthMethod` enum
+    * Added `SELF_SIGNED_TLS_CLIENT_AUTH`.
+
+- New classes
+    * `ClientSecretRefreshResponse` class.
+    * `ClientSecretUpdateRequest` class.
+    * `ClientSecretUpdateResponse` class.
+
+
 2.10 (2017-10-18)
 -----------------
 

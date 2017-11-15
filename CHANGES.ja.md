@@ -1,6 +1,36 @@
 変更点
 ======
 
+2.11 (2017 年 11 月 16 日)
+--------------------------
+
+- `AuthleteApi` インターフェース
+    * `refreshClientSecret(long)` メソッドを追加。
+    * `refreshClientSecret(String)` メソッドを追加。
+    * `updateClientSecret(long, String)` メソッドを追加。
+    * `updateClientSecret(String, String)` メソッドを追加。
+
+- `AuthorizationFailRequest.Reason` 列挙型
+    * `ACCOUNT_SELECTION_REQUIRED` を追加。
+    * `CONSENT_REQUIRED` を追加。
+    * `INTERACTION_REQUIRED` を追加。
+
+- `AuthorizationResponse` クラス
+    * JavaDoc を更新。
+    * `getLowestPrompt()` メソッドを非推奨とマーク。
+
+- `Client` クラス
+    * `tlsClientAuthRootDn` プロパティーを削除。
+
+- `ClientAuthMethod` 列挙型
+    * `SELF_SIGNED_TLS_CLIENT_AUTH` を追加。
+
+- 新しいクラス
+    * `ClientSecretRefreshResponse` クラス
+    * `ClientSecretUpdateRequest` クラス
+    * `ClientSecretUpdateResponse` クラス
+
+
 2.10 (2017 年 10 月 18 日)
 --------------------------
 
@@ -50,7 +80,7 @@
     * `tlsClientAuthSubjectDn` プロパティーを追加。
     * `tlsClientAuthRootDn` プロパティーを追加。
 
-- `ClientAuthMethod` 列挙
+- `ClientAuthMethod` 列挙型
     * `TLS_CLIENT_AUTH` を追加。
 
 - 新しいクラス

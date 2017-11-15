@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.10</version>
+    <version>2.11</version>
 </dependency>
 ```
 
@@ -234,6 +234,10 @@ settings.setReadTimeout(5000);
     - `getClientList()`
     - `getClientList(int start, int end)`
     - `updateClient(Client)`
+    - `refreshClientSecret(long)`
+    - `refreshClientSecret(String)`
+    - `updateClientSecret(long, String)`
+    - `updateClientSecret(String, String)`
 
   5. アクセストークンの情報取得のためのメソッド群
 
@@ -312,6 +316,7 @@ ServiceListResponse response = api.getServiceList();
 - [authlete-java-jaxrs][7] - JAX-RS (Java) 用 Authlete ライブラリ
 - [java-oauth-server][6] - 認可サーバー実装
 - [java-resource-server][9] - リソースサーバー実装
+- [OAuth 2.0 / OIDC 実装の新アーキテクチャー][10] - Authlete アーキテクチャー解説
 
 
 コンタクト
@@ -334,3 +339,4 @@ ServiceListResponse response = api.getServiceList();
 [7]: https://github.com/authlete/authlete-java-jaxrs
 [8]: http://authlete.github.io/authlete-java-common/
 [9]: https://github.com/authlete/java-resource-server
+[10]: https://qiita.com/TakahikoKawasaki/items/b2a4fc39e0c1a1949aab

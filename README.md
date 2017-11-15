@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.10</version>
+    <version>2.11</version>
 </dependency>
 ```
 
@@ -246,6 +246,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
     - `getClientList()`
     - `getClientList(int start, int end)`
     - `updateClient(Client)`
+    - `refreshClientSecret(long)`
+    - `refreshClientSecret(String)`
+    - `updateClientSecret(long, String)`
+    - `updateClientSecret(String, String)`
 
   5. Methods for Access Token Introspection
 
@@ -324,6 +328,7 @@ See Also
 - [authlete-java-jaxrs][7] - Authlete Library for JAX-RS (Java)
 - [java-oauth-server][6] - Authorization Server Implementation
 - [java-resource-server][9] - Resource Server Implementation
+- [New Architecture of OAuth 2.0 and OpenID Connect Implementation][10] - Explanation about Authlete Architecture
 
 
 Contact
@@ -347,3 +352,4 @@ Contact
 [7]: https://github.com/authlete/authlete-java-jaxrs
 [8]: http://authlete.github.io/authlete-java-common/
 [9]: https://github.com/authlete/java-resource-server
+[10]: https://medium.com/@darutk/new-architecture-of-oauth-2-0-and-openid-connect-implementation-18f408f9338d
