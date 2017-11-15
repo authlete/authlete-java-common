@@ -25,10 +25,16 @@ import com.authlete.common.util.Utils;
  * Response from Authlete's {@code /auth/authorization} API.
  *
  * <p>
+ * Note: In the description below, <i>"authorization server"</i>
+ * is always used even where <i>"OpenID provider"</i> should be
+ * used.
+ * </p>
+ *
+ * <p>
  * Authlete's {@code /auth/authorization} API returns
- * JSON which can be mapped to this class. The service implementation should
- * retrieve the value of {@code "action"} from the response and take the
- * following steps according to the value.
+ * JSON which can be mapped to this class. The authorization server
+ * implementation should retrieve the value of {@code "action"} from
+ * the response and take the following steps according to the value.
  * </p>
  *
  * <dl>
@@ -36,18 +42,18 @@ import com.authlete.common.util.Utils;
  * <dd>
  * <p>
  * When the value of {@code "action"} is {@code "INTERNAL_SERVER_ERROR"},
- * it means that the request from the service implementation was wrong or
- * that an error occurred in Authlete.
+ * it means that the request from the authorization server implementation
+ * was wrong or that an error occurred in Authlete.
  * </p>
  *
  * <p>
- * In either case, from the viewpoint of the client application, it is an
- * error on the server side. Therefore, the service implementation should
- * generate a response to the client application with the HTTP status of
- * {@code "500 Internal Server Error"}. Authlete recommends {@code
- * "application/json"} as the content type although OAuth 2.0 specification
- * does not mention the format of the error response when the redirect URI
- * is not usable.
+ * In either case, from the viewpoint of the client application, it
+ * is an error on the server side. Therefore, the authorization server
+ * implementation should generate a response to the client application
+ * with the HTTP status of {@code "500 Internal Server Error"}. Authlete
+ * recommends {@code "application/json"} as the content type although
+ * OAuth 2.0 specification does not mention the format of the error
+ * response when the redirect URI is not usable.
  * </p>
  *
  * <p>
@@ -56,8 +62,8 @@ import com.authlete.common.util.Utils;
  * </p>
  *
  * <p>
- * The following illustrates the response which the service implementation
- * should generate and return to the client application.
+ * The following illustrates the response which the authorization server
+ * implementation should generate and return to the client application.
  * </p>
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
@@ -90,8 +96,8 @@ import com.authlete.common.util.Utils;
  * </p>
  *
  * <p>
- * The following illustrates the response which the service implementation
- * should generate and return to the client application.
+ * The following illustrates the response which the authorization server
+ * implementation should generate and return to the client application.
  * </p>
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
@@ -125,8 +131,8 @@ import com.authlete.common.util.Utils;
  * </p>
  *
  * <p>
- * The following illustrates the response which the service implementation
- * should generate and return to the client application.
+ * The following illustrates the response which the authorization server
+ * implementation should generate and return to the client application.
  * </p>
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
@@ -144,7 +150,9 @@ import com.authlete.common.util.Utils;
  * that the request from the client application is invalid but the
  * redirect URI to which the error should be reported has been determined,
  * and that the request contains {@code response_mode=form_post} as is
- * defined in <i>"OAuth 2.0 Form Post Response Mode"</i>.
+ * defined in <i>"<a href=
+ * 'https://openid.net/specs/oauth-v2-form-post-response-mode-1_0.html'
+ * >OAuth 2.0 Form Post Response Mode</a>"</i>.
  * </p>
  *
  * <p>
@@ -160,8 +168,8 @@ import com.authlete.common.util.Utils;
  * </p>
  *
  * <p>
- * The following illustrates the response which the service implementation
- * should generate and return to the client application.
+ * The following illustrates the response which the authorization server
+ * implementation should generate and return to the client application.
  * </p>
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
@@ -179,13 +187,13 @@ import com.authlete.common.util.Utils;
  * <p>
  * When the value of {@code "action"} is {@code "NO_INTERACTION"}, it means
  * that the request from the client application has no problem and requires
- * the service to process the request without displaying any authentication
- * or consent user interface pages. Put simply, the request contains
- * {@code prompt=none}.
+ * the authorization server to process the request without displaying any
+ * user interface for authentication and/or consent. This happens when the
+ * request contains {@code prompt=none}.
  * </p>
  *
  * <p>
- * The service must follow the following steps.
+ * The authorization server implementation must follow the following steps.
  * </p>
  *
  * <blockquote>
@@ -193,7 +201,7 @@ import com.authlete.common.util.Utils;
  *   <li>
  *     <p><b>[END-USER AUTHENTICATION]</b>
  *     Check whether an end-user has already logged in. If an end-user has
- *     logged in, go to the next step. Otherwise, call Authlete's
+ *     logged in, go to the next step ([MAX_AGE]). Otherwise, call Authlete's
  *     {@code /auth/authorization/fail} API with {@code reason=}{@link
  *     AuthorizationFailRequest.Reason#NOT_LOGGED_IN NOT_LOGGED_IN} and use
  *     the response from the API to generate a response to the client
@@ -215,12 +223,13 @@ import com.authlete.common.util.Utils;
  *         <p>
  *         Get the time at which the end-user was authenticated. Note that
  *         this value is not managed by Authlete, meaning that it is expected
- *         that the service implementation manages the value. If the service
- *         implementation does not manage authentication time of end-users,
- *         call Authlete's {@code /auth/authorization/fail} API with {@code
- *         reason=}{@link AuthorizationFailRequest.Reason#MAX_AGE_NOT_SUPPORTED
- *         MAX_AGE_NOT_SUPPORTED} and use the response from the API to generate
- *         a response to the client application.
+ *         that the authorization server implementation manages the value.
+ *         If the authorization server implementation does not manage
+ *         authentication time of end-users, call Authlete's {@code
+ *         /auth/authorization/fail} API with {@code reason=}{@link
+ *         AuthorizationFailRequest.Reason#MAX_AGE_NOT_SUPPORTED
+ *         MAX_AGE_NOT_SUPPORTED} and use the response from the API to
+ *         generate a response to the client application.
  *         </p>
  *         <br/>
  *       <li>
@@ -253,7 +262,8 @@ import com.authlete.common.util.Utils;
  *     <ol style="list-style-type: lower-roman;">
  *       <li>
  *         <p>
- *         Compare the value of the requested subject to the current end-user.
+ *         Compare the value of the requested subject to the subject (= unique
+ *         user ID) of the current end-user.
  *         </p>
  *         <br/>
  *       <li>
@@ -281,13 +291,14 @@ import com.authlete.common.util.Utils;
  *     </p>
  *     <br/>
  *     <p>
- *     It is ensured that all the ACRs are supported by the service implementation.
- *     In other words, it is ensured that all the ACRs are listed in the {@code
- *     "acr_values_supported"} configuration parameter of the service implementation.
+ *     It is ensured that all the ACRs returned by {@link #getAcrs()} method
+ *     are supported by the authorization server implementation. In other words,
+ *     it is ensured that all the ACRs are listed in the {@code
+ *     "acr_values_supported"} configuration parameter of the authorization server.
  *     </p>
  *     <br/>
  *     <p>
- *     If the value of ACRs is {@code null}, go to the next step ([ISSUE]).
+ *     If the value of ACRs is {@code null}, go to the next step ([SCOPES]).
  *     Otherwise, follow the sub steps described below.
  *     </p>
  *     <br/>
@@ -295,16 +306,16 @@ import com.authlete.common.util.Utils;
  *       <li>
  *         <p>
  *         Get the ACR performed for the authentication of the current end-user.
- *         Note that this value is managed not by Authlete but by the service
- *         implementation. (If the service implementation cannot handle ACRs,
- *         it should not have listed ACRs as {@code "acr_values_supported"}.)
+ *         Note that this value is managed not by Authlete but by the authorization
+ *         server implementation. (If the authorization server implementation cannot
+ *         handle ACRs, it should not have listed ACRs as {@code "acr_values_supported"}.)
  *         </p>
  *         <br/>
  *       <li>
  *         <p>
  *         Compare the ACR value obtained in the above step to each element in
  *         the ACR array obtained by {@link #getAcrs()} method in the listed order.
- *         If the ACR value was found in the array, go to the next step ([ISSUE]).
+ *         If the ACR value was found in the array, go to the next step ([SCOPES]).
  *         </p>
  *         <br/>
  *       <li>
@@ -313,22 +324,45 @@ import com.authlete.common.util.Utils;
  *         for the authentication of the current end-user did not match any one
  *         of the ACRs requested by the client application), check whether one
  *         of the requested ACRs must be satisfied or not by calling {@link
- *         #isAcrEssential()} method. If this method returns {@code true}, call
- *         Authlete's {@code /auth/authorization/fail} API with {@code reason=}{@link
- *         AuthorizationFailRequest.Reason#ACR_NOT_SATISFIED ACR_NOT_SATISFIED}
- *         and use the response from the API to generate a response to the client
- *         application. Otherwise, go to the next step ([ISSUE]).
+ *         #isAcrEssential()} method. If {@link #isAcrEssential()} returns
+ *         {@code true}, call Authlete's {@code /auth/authorization/fail} API
+ *         with {@code reason=}{@link AuthorizationFailRequest.Reason#ACR_NOT_SATISFIED
+ *         ACR_NOT_SATISFIED} and use the response from the API to generate a
+ *         response to the client application. Otherwise, go to the next step
+ *         ([SCOPES]).
  *         </p>
  *     </ol>
+ *     <br/>
+ *   <li>
+ *     <p><b>[SCOPES]</b>
+ *     Get the scopes by {@link #getScopes()}. If the array contains a scope
+ *     which has not been granted to the client application by the end-user
+ *     in the past, call Authlete's {@code /auth/authorization/fail} API with
+ *     {@code reason=}{@link AuthorizationFailRequest.Reason#CONSENT_REQUIRED
+ *     CONSENT_REQUIRED} and use the response from the API to generate a
+ *     response to the client application. Otherwise, go to the next step
+ *     ([ISSUE]).
+ *     </p>
+ *     <br/>
+ *     <p>
+ *     Note that Authlete provides APIs to manage records of granted scopes
+ *     ({@code /api/client/granted_scopes/*} APIs), but the APIs work only
+ *     in the case the Authlete server you use is a dedicated Authlete server
+ *     (contact <a href="mailto:sales@authlete.com">sales@authlete.com</a>
+ *     for details). In other words, the APIs of the shared Authlete server
+ *     are disabled intentionally (in order to prevent garbage data from
+ *     being accumulated) and they return {@code 403 Forbidden}.
+ *     </p>
  *     <br/>
  *   <li>
  *     <p><b>[ISSUE]</b>
  *     If all the above steps succeeded, the last step is to issue an authorization
  *     code, an ID token and/or an access token. (There is a special case. When
- *     {@code response_type=none}, nothing is issued.) It is performed by calling
- *     Authlete's {@code /auth/authorization/issue} API. The API requires the
- *     following parameters, which is represented as {@link AuthorizationIssueRequest}.
- *     Prepare these parameters and call the {@code /auth/authorization/issue} API.
+ *     {@code response_type=none}, nothing is issued.) The last step can be
+ *     performed by calling Authlete's {@code /auth/authorization/issue} API.
+ *     The API requires the following parameters, which are represented as
+ *     properties of {@link AuthorizationIssueRequest} class. Prepare these
+ *     parameters and call the {@code /auth/authorization/issue} API.
  *     </p>
  *     <br/>
  *     <ul>
@@ -343,10 +377,10 @@ import com.authlete.common.util.Utils;
  *         <p><b>[subject]</b> (required)
  *           This parameter represents the unique identifier of the current end-user.
  *           It is often called "user ID" and it may or may not be visible to the user.
- *           In any case, it is a number or a string assigned to an end-user by the
- *           service implementation. Authlete does not care about the format of the
- *           value of {@code subject}, but it must consist of only ASCII letters
- *           and its length must be equal to or less than 100.
+ *           In any case, it is a number or a string assigned to an end-user by your
+ *           service. Authlete does not care about the format of the value of {@code
+ *           subject}, but it must consist of only ASCII letters and its length must
+ *           be equal to or less than 100.
  *         </p>
  *         <br/>
  *         <p>
@@ -366,6 +400,7 @@ import com.authlete.common.util.Utils;
  *           >8. Subject Identifier Types</a> of OpenID Connect Core 1.0 for
  *           details about subject types.
  *         </p>
+ *         <br/>
  *         <p>
  *           You can use the <code>sub</code> request parameter to adjust the value
  *           of the <code>sub</code> claim in an ID token. See the description of the
@@ -398,14 +433,15 @@ import com.authlete.common.util.Utils;
  *         <p><b>[claims]</b> (optional)
  *           This parameter represents claims of the end-user. "Claims" here
  *           are pieces of information about the end-user such as {@code "name"},
- *           {@code "email"} and {@code "birthdate"}. The service implementation
- *           is required to gather claims of the end-user, format the claim values
- *           into a JSON and set the JSON string as the value of this parameter.
+ *           {@code "email"} and {@code "birthdate"}. The authorization server
+ *           implementation is required to gather claims of the end-user, format
+ *           the claim values into a JSON and set the JSON string as the value
+ *           of this parameter.
  *         </p>
  *         <br/>
  *         <p>
- *           The claims which the service implementation is required to gather
- *           can be obtained by {@link #getClaims()} method.
+ *           The claims which the authorization server implementation is required
+ *           to gather can be obtained by {@link #getClaims()} method.
  *         </p>
  *         <br/>
  *         <p>
@@ -424,14 +460,14 @@ import com.authlete.common.util.Utils;
  *           {@link #getClaimsLocales()} lists the end-user's preferred languages
  *           and scripts for claim values, ordered by preference. When {@link
  *           #getClaimsLocales()} returns a non-empty array, its elements should
- *           be taken into account when the service implementation gathers claim
- *           values. Especially, note the excerpt below from
+ *           be taken into account when the authorization server implementation
+ *           gathers claim values. Especially, note the excerpt below from
  *           <a href="http://openid.net/specs/openid-connect-core-1_0.html#ClaimsLanguagesAndScripts"
  *           >5.2. Claims Languages and Scripts</a> of OpenID Connect Core 1.0.
  *         </p>
  *         <blockquote>
  *           <p>
- *             <i>"When the OP determines, either through the claims_locales
+ *             <i>"When the OP determines, either through the {@code claims_locales}
  *             parameter, or by other means, that the End-User and Client are
  *             requesting Claims in only one set of languages and scripts, it
  *             is RECOMMENDED that OPs return Claims without language tags
@@ -448,8 +484,8 @@ import com.authlete.common.util.Utils;
  *         <p>
  *           See <a href="http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
  *           >5.1. Standard Claims</a> of OpenID Connect Core 1.0 for claim names
- *           and their value formats. Note (1) that the service implementation may
- *           support its special claims
+ *           and their value formats. Note (1) that the authorization server
+ *           implementation may support its special claims
  *           (<a href="http://openid.net/specs/openid-connect-core-1_0.html#AdditionalClaims"
  *           >5.1.2. Additional Claims</a>) and (2) that claim names may be followed
  *           by a language tag
@@ -462,17 +498,20 @@ import com.authlete.common.util.Utils;
  *         <p>
  *           The claim values in this parameter will be embedded in an ID token.
  *         </p>
+ *         <br/>
  *       </li>
  *       <li>
  *         <p><b>[properties]</b> (optional)
  *           Extra properties to associate with an access token and/or an authorization
  *           code that may be issued by this request. Note that <code>properties</code>
- *           parameter is accepted only when Content-Type of the request is
- *           <code>application/json</code>, so don't use
- *           <code>application/x-www-form-urlencoded</code> See <a href=
+ *           parameter is accepted only when Content-Type of the request to Authlete's
+ *           {@code /auth/authorization/issue} is <code>application/json</code>, so
+ *           don't use <code>application/x-www-form-urlencoded</code> if you want to
+ *           use this request parameter. See <a href=
  *           "https://www.authlete.com/documents/definitive_guide/extra_properties"
  *           >Extra Properties</a> for details.
  *         </p>
+ *         <br/>
  *       </li>
  *       <li>
  *         <p><b>[scopes]</b> (optional)
@@ -482,15 +521,17 @@ import com.authlete.common.util.Utils;
  *           case of an empty array, the specified scopes will replace the original scopes
  *           contained in the original authorization request.
  *         </p>
+ *         <br/>
  *         <p>
  *           Even scopes that are not included in the original authorization request
- *           can be specified. However, as an exception, <code>"openid"</code> scope
- *           is ignored on the server side if it is not included in the original request.
- *           It is because the existence of <code>"openid"</code> scope considerably
- *           changes the validation steps and because adding <code>"openid"</code>
- *           triggers generation of an ID token (although the client application has not
- *           requested it) and the behavior is a major violation against the specification.
+ *           can be specified. However, as an exception, {@code "openid"} scope is
+ *           ignored on Authlete server side if it is not included in the original
+ *           request. It is because the existence of {@code "openid"} scope considerably
+ *           changes the validation steps and because adding {@code "openid"} triggers
+ *           generation of an ID token (although the client application has not requested
+ *           it) and the behavior is a major violation against the specification.
  *         </p>
+ *         <br/>
  *         <p>
  *           If you add <code>"offline_access"</code> scope although it is not included
  *           in the original request, keep in mind that the specification requires explicit
@@ -504,9 +545,16 @@ import com.authlete.common.util.Utils;
  *           {@code /auth/authorization/issue} API does not perform such checking if
  *           <code>"offline_access"</code> scope is added via this scopes parameter.
  *         </p>
+ *         <br/>
  *       </li>
  *       <li>
  *         <p><b>[sub]</b> (optional)
+ *           The value of the {@code sub} claim in an ID token which may be issued.
+ *           If the value of this request parameter is not empty, it is used as the
+ *           value of the {@code sub} claim. Otherwise, the value of the {@code subject}
+ *           request parameter is used as the value of the {@code sub} claim. The main
+ *           purpose of this parameter is to hide the actual value of the subject from
+ *           client applications.
  *         </p>
  *       </li>
  *     </ul>
@@ -527,35 +575,37 @@ import com.authlete.common.util.Utils;
  * <p>
  * When the value of {@code "action"} is {@code "INTERACTION"}, it means
  * that the request from the client application has no problem and requires
- * the service to process the request with user interaction by an HTML form.
+ * the authorization server to process the request with user interaction by
+ * an HTML form.
  * </p>
  * <p>
  * The purpose of the UI displayed to the end-user is to ask the end-user
  * to grant authorization to a client application. The items described
- * below are some points which the service implementation should take into
- * account when it builds the UI.
+ * below are some points which the authorization server implementation
+ * should take into account when it builds the UI.
  * </p>
  *
  * <blockquote>
  * <ol>
  *   <li>
  *     <p><b>[DISPLAY MODE]</b>
- *       {@code AuthorizationResponse} contains {@code display} parameter.
+ *       {@code AuthorizationResponse} contains {@code "display"} parameter.
  *       The value can be obtained by {@link #getDisplay()} method and is
  *       one of {@link Display#PAGE PAGE} (default), {@link Display#POPUP
  *       POPUP}, {@link Display#TOUCH TOUCH} and {@link Display#WAP WAP}.
- *       The meanings of the values are described in
- *       <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+ *       The meanings of the values are described in <a href=
+ *       "http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
  *       >3.1.2.1. Authentication Request</a> of OpenID Connect Core 1.0.
- *       Basically, the service implementation should display the UI which
- *       is suitable for the display mode, but it is okay for the service
- *       implementation to <i>"attempt to detect the capabilities of the
- *       User Agent and present an appropriate display."</i>
+ *       Basically, the authorization server implementation should display
+ *       the UI which is suitable for the display mode, but it is okay for
+ *       the authorization server implementation to <i>"attempt to detect
+ *       the capabilities of the User Agent and present an appropriate
+ *       display."</i>
  *     </p>
  *     <br/>
  *     <p>
  *       It is ensured that the value returned by {@link #getDisplay()} is
- *       one of the supported displays which are specified by {@code
+ *       one of the supported display values which are specified by {@code
  *       "display_values_supported"} configuration parameter of the service.
  *     </p>
  *     <br/>
@@ -565,8 +615,8 @@ import com.authlete.common.util.Utils;
  *       {@code AuthorizationResponse} contains {@code "ui_locales"} parameter.
  *       The value can be obtained by {@link #getUiLocales()} and it is an
  *       array of language tag values (such as {@code "fr-CA"} and {@code
- *       "en"}) ordered by preference. The service implementation should
- *       display the UI in one of the language listed in the {@code
+ *       "en"}) ordered by preference. The authorization server implementation
+ *       should display the UI in one of the language listed in the {@code
  *       "ui_locales"} parameter when possible.
  *     </p>
  *     <br/>
@@ -580,9 +630,9 @@ import com.authlete.common.util.Utils;
  *
  *   <li>
  *     <p><b>[CLIENT INFORMATION]</b>
- *       The service implementation should show the end-user information
- *       about the client application. The information can be obtained by
- *       {@link #getClient()} method.
+ *       The authorization server implementation should show the end-user
+ *       information about the client application. The information can be
+ *       obtained by {@link #getClient()} method.
  *     </p>
  *     <br/>
  *
@@ -591,8 +641,29 @@ import com.authlete.common.util.Utils;
  *       A client application requires authorization for specific permissions.
  *       In OAuth 2.0 specification, "scope" is a technical term which represents
  *       a permission. {@link #getScopes()} method returns scopes requested by
- *       the client application. The service implementation should show the
- *       end-user the scopes.
+ *       the client application. The authorization server implementation should
+ *       show the end-user the scopes.
+ *     </p>
+ *     <br/>
+ *     <p>
+ *       The authorization server implementation may choose not to show scopes
+ *       to which the end-user has given consent in the past. To put it the
+ *       other way around, the authorization server implementation may show
+ *       only the scopes to which the end-user has not given consent yet.
+ *       However, if the value returned from {@link #getPrompts()} contains
+ *       {@link Prompt#CONSENT CONSENT}, the authorization server implementation
+ *       has to obtain explicit consent from the end-user even if the end-user
+ *       has given consent to all the requested scopes in the past.
+ *     </p>
+ *     <br/>
+ *     <p>
+ *       Note that Authlete provides APIs to manage records of granted scopes
+ *       ({@code /api/client/granted_scopes/*} APIs), but the APIs work only
+ *       in the case the Authlete server you use is a dedicated Authlete server
+ *       (contact <a href="mailto:sales@authlete.com">sales@authlete.com</a>
+ *       for details). In other words, the APIs of the shared Authlete server
+ *       are disabled intentionally (in order to prevent garbage data from
+ *       being accumulated) and they return {@code 403 Forbidden}.
  *     </p>
  *     <br/>
  *     <p>
@@ -604,99 +675,112 @@ import com.authlete.common.util.Utils;
  *
  *   <li>
  *     <p><b>[END-USER AUTHENTICATION]</b>
- *       Necessarily, the end-user must be authenticated (= must login the
+ *       Necessarily, the end-user must be authenticated (= must login your
  *       service) before granting authorization to the client application.
  *       Simply put, a login form is expected to be displayed for end-user
- *       authentication. The service implementation must follow the steps
- *       described below to comply with OpenID Connect. (Or just always
- *       show a login form if it's too much of a bother.)
+ *       authentication. The authorization server implementation must follow
+ *       the steps described below to comply with OpenID Connect. (Or just
+ *       always show a login form if it's too much of a bother to follow
+ *       the steps below.)
  *     </p>
  *     <br/>
  *     <ol style="list-style-type: lower-roman;">
  *       <li>
  *         <p>
- *           Get the value of {@link #getLowestPrompt()}. The value is one
- *           of {@link Prompt#LOGIN LOGIN}, {@link Prompt#CONSENT CONSENT}
- *           and {@link Prompt#SELECT_ACCOUNT}.
- *           The meanings of the values are described in
+ *           Get the value of {@link #getPrompts()}. It corresponds to the
+ *           value of the {@code prompt} request parameter. Details of the
+ *           request parameter are described in
  *           <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
  *           >3.1.2.1. Authentication Request</a> of OpenID Connect Core 1.0.
- *           Note that <code>prompts</code> response parameter has been included
- *           in the response since August, 2016. So, you may refer to the parameter
- *           directly for better control (especially if the logic here does not
- *           meet your requirements).
  *         </p>
  *         <br/>
+ *       </li>
  *       <li>
  *         <p>
- *           When the value of the lowest prompt is {@link Prompt#SELECT_ACCOUNT
- *           SELECT_ACCOUNT}, display a form to let the end-user select one of
- *           his/her accounts for login. If {@link #getSubject()} returns a
- *           non-null value, it is the end-user ID that the client application
- *           expects, so it should be used to determine the value of the login ID
- *           (Note that a subject and a login ID are not necessarily equal).
- *           If {@link #getSubject()} returns null, the value returned by
- *           {@link #getLoginHint()} may be set to the input field.
+ *           If the value returned from {@link #getPrompts()} contains
+ *           {@link Prompt#SELECT_ACCOUNT SELECT_ACCOUNT}, display a form
+ *           to urge the end-user to select one of his/her accounts for login.
+ *           If {@link #getSubject()} returns a non-null value, it is the
+ *           end-user ID that the client application expects, so the value
+ *           should be used to determine the value of the login ID. Note
+ *           that a subject and a login ID are not necessarily equal. If
+ *           {@link #getSubject()} returns null, the value returned by
+ *           {@link #getLoginHint()} should be referred to as a hint to
+ *           determine the value of the login ID. {@link #getLoginHint()}
+ *           method simply returns the value of the {@code login_hint}
+ *           request parameter.
  *         </p>
  *         <br/>
+ *       </li>
  *       <li>
  *         <p>
- *           Otherwise, when the value of the lowest prompt is {@link Prompt#LOGIN
- *           LOGIN}, display a form to let the end-user login. If {@link
- *           #getSubject()} returns a non-null value, it is the end-user ID
- *           that the client application expects, so it should be set to the
- *           input field for the login ID.
- *           If {@link #getSubject()} returns null, the value returned by
- *           {@link #getLoginHint()} may be set to the input field.
+ *           If the value returned from {@link #getPrompts()} contains
+ *           {@link Prompt#LOGIN LOGIN}, display a form to urge the end-user
+ *           to login even if the end-user has already logged in. If {@link
+ *           #getSubject()} returns a non-null value, it is the end-user
+ *           ID that the client application expects, so the value should
+ *           be used to determine the value of the login ID. Note that a
+ *           subject and a login ID are not necessarily equal. If {@link
+ *           #getSubject()} returns null, the value returned by {@link
+ *           #getLoginHint()} should be referred to as a hint to determine
+ *           the value of the login ID. {@link #getLoginHint()} method
+ *           simply returns the value of the {@code login_hint} request
+ *           parameter.
  *         </p>
  *         <br/>
+ *       </li>
  *       <li>
  *         <p>
- *           Otherwise, when the value of the lowest prompt is {@link Prompt#CONSENT
- *           CONSENT}, the service implementation can omit a login form and
- *           use the end-user who has currently logged in the service if all
- *           the conditions described below are satisfied. If any one of the
- *           conditions is not satisfied, show a login form to authenticate
- *           the end-user.
+ *           If the value returned from {@link #getPrompts()} does not
+ *           contain {@link Prompt#LOGIN LOGIN}, the authorization server
+ *           implementation does not have to authenticate the end-user
+ *           if all the conditions described below are satisfied. If
+ *           any one of the conditions is not satisfied, show a login
+ *           form to authenticate the end-user.
  *         </p>
  *         <br/>
  *         <ul>
  *           <li>
  *             <p>
- *               An end-user has already logged in the service.
+ *               An end-user has already logged in your service.
  *             </p>
  *             <br/>
  *           <li>
  *             <p>
- *               The login ID of the current end-user matches the value returned
- *               by {@link #getSubject()}. This check should be performed only
- *               when {@link #getSubject()} returns a non-null value.
+ *               The login ID of the current end-user matches the value
+ *               returned by {@link #getSubject()}. This check is required
+ *               only when {@link #getSubject()} returns a non-null value.
  *             </p>
  *             <br/>
  *           <li>
  *             <p>
- *               The max age, which is the number of seconds obtained by {@link
- *               #getMaxAge()} method, has not passed since the current end-user
- *               logged in the service. This check should be performed only when
- *               {@link #getMaxAge()} returns a non-zero value.
+ *               The max age, which is the number of seconds obtained by
+ *               {@link #getMaxAge()} method, has not passed since the
+ *               current end-user logged in your service. This check is
+ *               required only when {@link #getMaxAge()} returns a
+ *               non-zero value.
  *             </p>
  *             <br/>
  *             <p>
- *               If the service implementation does not manage authentication time
- *               of end-users (= cannot know when end-users logged in) and if
- *               {@link #getMaxAge()} returns a non-zero value, a login form
- *               should be displayed.
+ *               If the authorization server implementation does not manage
+ *               authentication time of end-users (= if the authorization
+ *               server implementation cannot know when end-users logged in)
+ *               and if {@link #getMaxAge()} returns a non-zero value, a
+ *               login form should be displayed.
  *             </p>
  *             <br/>
+ *           </li>
  *           <li>
  *             <p>
  *               The ACR (Authentication Context Class Reference) of the
  *               authentication performed for the current end-user satisfies
- *               one of the ACRs listed by {@link #getAcrs()}. This check should
- *               be performed only when {@link #getAcrs()} returns a non-empty
+ *               one of the ACRs listed by {@link #getAcrs()}. This check is
+ *               required only when {@link #getAcrs()} returns a non-empty
  *               array.
  *             </p>
+ *           </li>
  *         </ul>
+ *       </li>
  *     </ol>
  *     <br/>
  *     <p>
@@ -721,8 +805,8 @@ import com.authlete.common.util.Utils;
  * <p>
  * When the subject returned by {@link #getSubject()} method is not {@code null},
  * the end-user authentication must be performed for the subject, meaning that
- * the service implementation should repeatedly show a login form until the
- * subject is successfully authenticated.
+ * the authorization server implementation should repeatedly show a login form
+ * until the subject is successfully authenticated.
  * </p>
  *
  * <p>
@@ -736,11 +820,12 @@ import com.authlete.common.util.Utils;
  *
  * <p>
  * When the end-user chose to grant authorization to the client application,
- * the service implementation has to issue an authorization code, an ID token,
- * and/or an access token to the client application. (There is a special case.
- * When {@code response_type=none}, nothing is issued.) It is performed by
- * calling Authlete's {@code /auth/authorization/issue} API. Read [ISSUE]
- * written above in the description for the case of {@code action=NO_INTERACTION}.
+ * the authorization server implementation has to issue an authorization code,
+ * an ID token, and/or an access token to the client application. (There is a
+ * special case. When {@code response_type=none}, nothing is issued.) Issuing
+ * the tokens can be performed by calling Authlete's {@code /auth/authorization/issue}
+ * API. Read [ISSUE] written above in the description for the case of {@code
+ * action=NO_INTERACTION}.
  * </p>
  * </dd>
  * </dl>
@@ -760,7 +845,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     /**
@@ -1246,9 +1331,16 @@ public class AuthorizationResponse extends ApiResponse
      * parameter, this method returns {@link Prompt#CONSENT CONSENT} as
      * the default value.
      *
+     * <p>
+     * This method is deprecated. Use {@link #getPrompts()} instead.
+     * </p>
+     *
      * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
      *      >OpenID Connect Core 1.0, 3.1.2.1. Authentication Request</a>
+     *
+     * @deprecated
      */
+    @Deprecated
     public Prompt getLowestPrompt()
     {
         return lowestPrompt;
