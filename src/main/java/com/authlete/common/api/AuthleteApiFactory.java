@@ -54,7 +54,7 @@ public class AuthleteApiFactory
     /**
      * The default {@link AuthleteApi} instance.
      */
-    private static AuthleteApi sDefaultApi;
+    private static volatile AuthleteApi sDefaultApi;
 
 
     private AuthleteApiFactory()
