@@ -121,7 +121,7 @@ file loading.
 
 #### AuthletePropertiesConfiguration
 
-Among the three implementations of `AuthleteConfiguration` interface, this secion
+Among the three implementations of `AuthleteConfiguration` interface, this section
 explains `AuthletePropertiesConfiguration` class.
 
 `AuthletePropertiesConfiguration` class provides a mechanism to use a properties
