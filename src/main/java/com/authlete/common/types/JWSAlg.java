@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ import java.util.EnumSet;
 /**
  * {@code "alg"} (Algorithm) Header Parameter Values for JWS.
  *
- * @see <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-26#section-3.1"
- *      >JSON Web Algorithms (JWA), 3.1. "alg" (Algorithm) Header Parameter Values for JWS</a>
+ * @see <a href="https://tools.ietf.org/html/rfc7518#section-3.1"
+ *      >RFC 7518, 3.1. "alg" (Algorithm) Header Parameter Values for JWS</a>
  *
  * @author Takahiko Kawasaki
  */

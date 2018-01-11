@@ -66,7 +66,7 @@ public class TokenFailRequest implements Serializable
 
         /**
          * The resource owner's credentials ({@code username} and
-         * {@code password}) contained in the token request (whose
+         * {@code password}) contained in the token request whose
          * flow is <a href="http://tools.ietf.org/html/rfc6749#section-4.3">
          * "Resource Owner Password Credentials"</a>) are invalid.
          */

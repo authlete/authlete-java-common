@@ -142,7 +142,7 @@ public class ClientAuthorizationUpdateRequest implements Serializable
 
 
     /**
-     * Set a new set of scopes assigned to exiting access tokens.
+     * Set a new set of scopes assigned to existing access tokens.
      *
      * <p>
      * If {@code null} is given, the scope set associated with existing access tokens

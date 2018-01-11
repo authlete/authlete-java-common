@@ -100,8 +100,9 @@ public class ClientListResponse implements Serializable
     /**
      * Get the end index (exclusive) for the result set of the query.
      * It is the value contained in the original request (= the value
-     * of {@code 'end'} parameter), or the default value used by Authlete
-     * server if the original request did not contain the parameter.
+     * of {@code 'end'} parameter), or the default value defined in
+     * Authlete server if the original request did not contain the
+     * parameter.
      *
      * @return
      *         The end index for the result set of the query.

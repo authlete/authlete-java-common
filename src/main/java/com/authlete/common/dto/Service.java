@@ -899,7 +899,7 @@ public class Service implements Serializable
 
 
     /**
-     * Get the URI of that this OpenID Provider provides to the person
+     * Get the URI that this OpenID Provider provides to the person
      * registering the client to read about the OP's requirements on
      * how the Relying Party can use the data provided by the OP.
      *
@@ -913,7 +913,7 @@ public class Service implements Serializable
 
 
     /**
-     * Set the URI of that this OpenID Provider provides to the person
+     * Set the URI that this OpenID Provider provides to the person
      * registering the client to read about the OP's requirements on
      * how the Relying Party can use the data provided by the OP.
      *
@@ -1926,7 +1926,7 @@ public class Service implements Serializable
      * by <a href="https://tools.ietf.org/html/rfc6749#section-4.1"
      * >Authorization Code Flow</a>. See <a href=
      * "https://tools.ietf.org/html/rfc7636">RFC 7636</a> (Proof Key
-     * for Code Exchange by OAuth Public Clients</a> for details.
+     * for Code Exchange by OAuth Public Clients) for details.
      *
      * @return
      *         {@code true} if PKCE is always required for authorization

@@ -166,19 +166,19 @@ package com.authlete.common.dto;
  * <dd>
  * <p>
  * When the value of {@code "action"} is {@code "JSON"}, it means that the
- * access token which the client application presented is valid and an ID
- * token was successfully generated in the format of JSON.
+ * access token which the client application presented is valid and a userinfo
+ * response was successfully generated in the format of JSON.
  * </p>
  *
  * <p>
  * The <a href="http://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
  * >UserInfo Endpoint</a> of your service is expected to generate a response
  * to the client application. The content type of the response must be {@code
- * "application/json"} and the response body must be an ID token in JSON format.
+ * "application/json"}.
  * </p>
  *
  * <p>
- * {@link #getResponseContent()} returns the ID token in JSON format when
+ * {@link #getResponseContent()} returns a userinfo response in JSON format when
  * {@code "action"} is {@code "JSON"}, so a response to the client can be
  * built like below.
  * </p>
@@ -196,8 +196,9 @@ package com.authlete.common.dto;
  * <dd>
  * <p>
  * When the value of {@code "action"} is {@code "JWT"}, it means that the
- * access token which the client application presented is valid and an ID
- * token was successfully generated in the format of JWT (JSON Web Token)
+ * access token which the client application presented is valid and a
+ * userinfo response was successfully generated in the format of JWT
+ * (JSON Web Token)
  * (<a href="https://tools.ietf.org/html/rfc7519">RFC 7519</a>).
  * </p>
  *
@@ -205,11 +206,11 @@ package com.authlete.common.dto;
  * The <a href="http://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
  * >UserInfo Endpoint</a> of your service is expected to generate a response
  * to the client application. The content type of the response must be {@code
- * "application/jwt"} and the response body must be an ID token in JWT format.
+ * "application/jwt"}.
  * </p>
  *
  * <p>
- * {@link #getResponseContent()} returns the ID token in JWT format when
+ * {@link #getResponseContent()} returns a userinfo response in JWT format when
  * {@code "action"} is {@code "JWT"}, so a response to the client can be
  * built like below.
  * </p>
@@ -267,16 +268,16 @@ public class UserInfoIssueResponse extends ApiResponse
         FORBIDDEN,
 
         /**
-         * The access token was valid and an ID token was generated
-         * successfully in JSON format. The service implementation
+         * The access token was valid and a userinfo response was
+         * generated successfully in JSON format. The service implementation
          * should return {@code "200 OK"} to the client application
          * with the content type {@code "application/json;charset=UTF-8"}.
          */
         JSON,
 
         /**
-         * The access token was valid and an ID token was generated
-         * successfully in JWT format. The service implementation
+         * The access token was valid and a userinfo response token was
+         * generated successfully in JWT format. The service implementation
          * should return {@code "200 OK"} to the client application
          * with the content type {@code "application/jwt"}.
          */

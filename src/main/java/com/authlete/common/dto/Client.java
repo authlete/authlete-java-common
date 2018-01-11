@@ -296,10 +296,10 @@ public class Client implements Serializable
 
 
     /**
-     * Get the developer unique ID assigned by the service.
+     * Get the unique ID of the developer of this client application.
      *
      * @return
-     *         THe developer unique ID.
+     *         The developer unique ID.
      */
     public String getDeveloper()
     {
@@ -308,7 +308,7 @@ public class Client implements Serializable
 
 
     /**
-     * Set the developer unique ID assigned by the service.
+     * Set the unique ID of the developer of this client application.
      *
      * @param developer
      *         The developer unique ID.
@@ -1577,7 +1577,7 @@ public class Client implements Serializable
 
     /**
      * Get the default list of authentication context class references.
-     * This property corresponds to <code>default_max_age</code> in <a href=
+     * This property corresponds to <code>default_acr_values</code> in <a href=
      * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
      * >Client Metadata</a>.
      *

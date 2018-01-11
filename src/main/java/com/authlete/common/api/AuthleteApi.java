@@ -453,7 +453,7 @@ public interface AuthleteApi
      * >OpenID Connect Discovery 1.0</a>.
      *
      * <p>
-     * This method is an alias of {@link #getService(long)
+     * This method is an alias of {@link #getServiceConfiguration(long)
      * getServiceConfiguration}{@code (true)}.
      * </p>
      *

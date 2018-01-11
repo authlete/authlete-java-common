@@ -518,7 +518,7 @@ import com.authlete.common.util.Utils;
  *           Scopes to associate with an access token and/or an authorization code.
  *           If this parameter is null, the scopes specified in the original authorization
  *           request from the client application are used. In other cases, including the
- *           case of an empty array, the specified scopes will replace the original scopes
+ *           case of an empty array, the specified scopes will replace the scopes
  *           contained in the original authorization request.
  *         </p>
  *         <br/>
@@ -794,7 +794,7 @@ import com.authlete.common.util.Utils;
  *     <p><b>[GRANT/DENY BUTTONS]</b>
  *       The end-user is supposed to choose either (1) to grant authorization
  *       to the client application or (2) to deny the authorization request.
- *       The UI must have UI components to accept the judgment by the user.
+ *       The UI must have UI components to accept the decision by the user.
  *       Usually, a button to grant authorization and a button to deny the
  *       request are provided.
  *     </p>

@@ -191,8 +191,8 @@ import com.authlete.common.util.Utils;
  *
  * <p>
  * Then, call Authlete's {@code /auth/userinfo/issue} API with the collected
- * information and the access token in order to make Authlete generate an
- * ID token. See the descriptions of {@link com.authlete.common.dto.UserInfoIssueRequest
+ * information and the access token in order to make Authlete generate a userinfo
+ * response. See the descriptions of {@link com.authlete.common.dto.UserInfoIssueRequest
  * UserInfoIssueRequest} and {@link com.authlete.common.dto.UserInfoIssueResponse
  * UserInfoIssueResponse} for details about {@code /auth/userinfo/issue} API.
  * </p>
@@ -422,7 +422,7 @@ public class UserInfoResponse extends ApiResponse
 
     /**
      * Get the list of claims that the client application requests
-     * to be embedded in the ID token. The value comes from
+     * to be embedded in the userinfo response. The value comes from
      * {@code "scope"} and {@code "claims"} request parameters of
      * the original authorization request.
      *

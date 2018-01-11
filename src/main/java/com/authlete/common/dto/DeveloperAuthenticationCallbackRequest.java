@@ -27,7 +27,7 @@ import com.authlete.common.types.Sns;
  * When a client application developer needs to be authenticated at
  * the Client Application Developer Console (which Authlete provides
  * for client application developers on behalf of the service),
- * Authlete makes an <strong>developer authentication callback request
+ * Authlete makes a <strong>developer authentication callback request
  * </strong> to the developer authentication callback endpoint of the
  * service. This class represents the format of the request.
  * </p>

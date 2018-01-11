@@ -61,7 +61,7 @@ package com.authlete.common.dto;
  * </p>
  *
  * <p>
- * The following illustrate the response which the service implementation
+ * The following illustrates the response which the service implementation
  * should generate and return to the client application.
  * </p>
  *
@@ -159,7 +159,7 @@ package com.authlete.common.dto;
  * <p>
  * When the value of {@code "action"} is {@code "OK"}, it means that
  * the request from the client application is valid and the presented
- * token has been revoked successfully or if the client submitted an
+ * token has been revoked successfully or that the client submitted an
  * invalid token. Note that invalid tokens do not cause an error. See
  * <a href="https://tools.ietf.org/html/rfc7009#section-2.2">2.2.
  * Revocation Response</a> for details.

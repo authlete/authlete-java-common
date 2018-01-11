@@ -95,7 +95,7 @@ public class AuthorizationFailRequest implements Serializable
          * <p>
          * See <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
          * >"OpenID Connect Core 1.0, 3.1.2.1. Authentication Request"</a>
-         * for {@code prompt} request parameter.
+         * for {@code max_age} request parameter.
          * </p>
          *
          * <p>

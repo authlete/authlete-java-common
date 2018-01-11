@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2017 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,36 +22,39 @@ import java.util.EnumSet;
 /**
  * {@code "enc"} (Encryption Algorithm) Header Parameter Values for JWE.
  *
- * @see <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-26#section-5.1"
- *      >JSON Web Algorithms (JWA), 5.1. "enc" (Encryption Algorithm) Header Parameter Values for JWE</a>
+ * @see <a href="https://tools.ietf.org/html/rfc7518#section-5.1"
+ *      >RFC 7518, 5.1. "enc" (Encryption Algorithm) Header Parameter Values for JWE</a>
  *
  * @author Takahiko Kawasaki
  */
 public enum JWEEnc
 {
     /**
-     * {@code "A128CBC-HS256"} (1); AES_128_CBC_HMAC_SHA_256 authenticated
-     * encryption algorithm as defined in
-     * <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-26#section-5.2.3"
-     * >Section 5&#46;2&#46;3</a>.
+     * {@code "A128CBC-HS256"} (1);
+     * Algorithm defined in <a href=
+     * "https://tools.ietf.org/html/rfc7518#section-5.2.3"
+     * >5&#46;2&#46;3&#46; AES_128_CBC_HMAC_SHA_256</a>
+     * in RFC 7518.
      */
     A128CBC_HS256((short)1, "A128CBC-HS256"),
 
 
     /**
-     * {@code "A192CBC-HS384"} (2); AES_192_CBC_HMAC_SHA_384 authenticated
-     * encryption algorithm as defined in
-     * <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-26#section-5.2.4"
-     * >Section 5&#46;2&#46;4</a>.
+     * {@code "A192CBC-HS384"} (2);
+     * Algorithm defined in <a href=
+     * "https://tools.ietf.org/html/rfc7518#section-5.2.4"
+     * >5&#46;2&#46;4&#46; AES_192_CBC_HMAC_SHA_384</a>
+     * in RFC 7518.
      */
     A192CBC_HS384((short)2, "A192CBC-HS384"),
 
 
     /**
-     * {@code "A256CBC-HS512"} (3); AES_256_CBC_HMAC_SHA_512 authenticated
-     * encryption algorithm as defined in
-     * <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-26#section-5.2.5"
-     * >Section 5&#46;2&#46;5</a>.
+     * {@code "A256CBC-HS512"} (3);
+     * Algorithm defined in <a href=
+     * "https://tools.ietf.org/html/rfc7518#section-5.2.5"
+     * >5&#46;2&#46;5&#46; AES_256_CBC_HMAC_SHA_512</a>
+     * in RFC 7518.
      */
     A256CBC_HS512((short)3, "A256CBC-HS512"),
 

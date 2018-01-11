@@ -45,13 +45,13 @@ import com.authlete.common.web.URLCoder;
  * <dd>
  * <p>
  * The client ID extracted from {@code Authorization} header of
- * the token request from the client application.
+ * the revocation request from the client application.
  * </p>
  * <p>
  * If the token revocation endpoint of the service implementation
  * supports Basic Authentication as a means of
  * <a href="http://tools.ietf.org/html/rfc6749#section-2.3">client
- * authentication</a>, and the request from the client application
+ * authentication</a>, and if the request from the client application
  * contained its client ID in {@code Authorization} header, the
  * value should be extracted and set to this parameter.
  * </p>
@@ -61,13 +61,13 @@ import com.authlete.common.web.URLCoder;
  * <dd>
  * <p>
  * The client secret extracted from {@code Authorization} header
- * of the token request from the client application.
+ * of the revocation request from the client application.
  * </p>
  * <p>
  * If the token revocation endpoint of the service implementation
  * supports Basic Authentication as a means of
  * <a href="http://tools.ietf.org/html/rfc6749#section-2.3">client
- * authentication</a>, and the request from the client application
+ * authentication</a>, and if the request from the client application
  * contained its client secret in {@code Authorization} header, the
  * value should be extracted and set to this parameter.
  * </p>
@@ -76,7 +76,7 @@ import com.authlete.common.web.URLCoder;
  * </blockquote>
  *
  * <p>
- * An entity body of a token revocation request may contain the client
+ * The entity body of a token revocation request may contain the client
  * ID ({@code client_id}) and the client secret ({@code client_secret})
  * along with other request parameters as described in
  * <a href="http://tools.ietf.org/html/rfc6749#section-2.3.1"
@@ -90,7 +90,7 @@ import com.authlete.common.web.URLCoder;
  * <p>
  * When the presented token is an access token, the implementation
  * revokes the access token and its associated refresh token, too.
- * Likewise, the presented token is a refresh token, the implementation
+ * Likewise, if the presented token is a refresh token, the implementation
  * revokes the refresh token and its associated access token. Note that,
  * however, other access tokens and refresh tokens are not revoked
  * even though their associated client application, subject and grant
