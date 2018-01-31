@@ -207,51 +207,51 @@ settings.setReadTimeout(5000);
 
   1. 認可エンドポイント実装のためのメソッド群
 
-    - `authorization(AuthorizationRequest)`
-    - `authorizationFail(AuthorizationFailRequest)`
-    - `authorizationIssue(AuthorizationIssueRequest)`
+    - `authorization(AuthorizationRequest request)`
+    - `authorizationFail(AuthorizationFailRequest request)`
+    - `authorizationIssue(AuthorizationIssueRequest request)`
 
   2. トークンエンドポイント実装のためのメソッド群
 
-    - `token(TokenRequest)`
-    - `tokenFail(TokenFailRequest)`
-    - `tokenIssue(TokenIssueRequest)`
+    - `token(TokenRequest request)`
+    - `tokenFail(TokenFailRequest request)`
+    - `tokenIssue(TokenIssueRequest request)`
 
   3. サービス管理のためのメソッド群
 
-    - `createService(Service)`
+    - `createService(Service service)`
     - `deleteService(long serviceApiKey)`
     - `getService(long serviceApiKey)`
     - `getServiceList()`
     - `getServiceList(int start, int end)`
-    - `updateService(Service)`
+    - `updateService(Service service)`
 
   4. クライアントアプリケーション管理のためのメソッド群
 
-    - `createClient(Client)`
+    - `createClient(Client client)`
     - `deleteClient(long clientId)`
     - `getClient(long clientId)`
     - `getClientList()`
     - `getClientList(int start, int end)`
-    - `updateClient(Client)`
-    - `refreshClientSecret(long)`
-    - `refreshClientSecret(String)`
-    - `updateClientSecret(long, String)`
-    - `updateClientSecret(String, String)`
+    - `updateClient(Client client)`
+    - `refreshClientSecret(long clientId)`
+    - `refreshClientSecret(String clientIdentifier)`
+    - `updateClientSecret(long clientId, String clientSecret)`
+    - `updateClientSecret(String clientIdentifier, String clientSecret)`
 
   5. アクセストークンの情報取得のためのメソッド群
 
-    - `introspection(IntrospectionRequest)`
-    - `standardIntrospection(StandardIntrospectionRequest)`
+    - `introspection(IntrospectionRequest request)`
+    - `standardIntrospection(StandardIntrospectionRequest request)`
 
   6. アクセストークン取り消しエンドポイント実装のためのメソッド群
 
-    - `revocation(RevocationRequest)`
+    - `revocation(RevocationRequest request)`
 
   7. ユーザー情報エンドポイント実装のためのメソッド群
 
-    - `userinfo(UserInfoRequest)`
-    - `userinfoIssue(UserInfoIssueRequest)`
+    - `userinfo(UserInfoRequest request)`
+    - `userinfoIssue(UserInfoIssueRequest request)`
 
   8. JWK セットエンドポイント実装のためのメソッド群
 
@@ -265,8 +265,8 @@ settings.setReadTimeout(5000);
 
   10. トークン操作のためのメソッド群
 
-    - `tokenCreate(TokenCreateRequest)`
-    - `tokenUpdate(TokenUpdateRequest)`
+    - `tokenCreate(TokenCreateRequest request)`
+    - `tokenUpdate(TokenUpdateRequest request)`
 
   11. クライアント毎の要求可能スコープ群に関するメソッド群 (非推奨; Client API で代替可能)
 
