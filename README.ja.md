@@ -281,7 +281,7 @@ settings.setReadTimeout(5000);
 
   13. ユーザー・クライアント単位の認可管理に関するメソッド群
 
-    - `deleteClientAuthorization(long clientId)`
+    - `deleteClientAuthorization(long clientId, String subject)`
     - `getClientAuthorizationList(ClientAuthorizationGetListRequest request)`
     - `updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request)`
 

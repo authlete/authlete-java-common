@@ -293,7 +293,7 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
   13. Methods for Authorization Management on a User-Client Combination Basis
 
-    - `deleteClientAuthorization(long clientId)`
+    - `deleteClientAuthorization(long clientId, String subject)`
     - `getClientAuthorizationList(ClientAuthorizationGetListRequest request)`
     - `updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request)`
 
