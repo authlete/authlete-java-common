@@ -219,51 +219,51 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
   1. Methods for Authorization Endpoint Implementation
 
-    - `authorization(AuthorizationRequest)`
-    - `authorizationFail(AuthorizationFailRequest)`
-    - `authorizationIssue(AuthorizationIssueRequest)`
+    - `authorization(AuthorizationRequest request)`
+    - `authorizationFail(AuthorizationFailRequest request)`
+    - `authorizationIssue(AuthorizationIssueRequest request)`
 
   2. Methods for Token Endpoint Implementation
 
-    - `token(TokenRequest)`
-    - `tokenFail(TokenFailRequest)`
-    - `tokenIssue(TokenIssueRequest)`
+    - `token(TokenRequest request)`
+    - `tokenFail(TokenFailRequest request)`
+    - `tokenIssue(TokenIssueRequest request)`
 
   3. Methods for Service Management
 
-    - `createService(Service)`
+    - `createService(Service service)`
     - `deleteService(long serviceApiKey)`
     - `getService(long serviceApiKey)`
     - `getServiceList()`
     - `getServiceList(int start, int end)`
-    - `updateService(Service)`
+    - `updateService(Service service)`
 
   4. Methods for Client Application Management
 
-    - `createClient(Client)`
+    - `createClient(Client client)`
     - `deleteClient(long clientId)`
     - `getClient(long clientId)`
     - `getClientList()`
     - `getClientList(int start, int end)`
-    - `updateClient(Client)`
-    - `refreshClientSecret(long)`
-    - `refreshClientSecret(String)`
-    - `updateClientSecret(long, String)`
-    - `updateClientSecret(String, String)`
+    - `updateClient(Client client)`
+    - `refreshClientSecret(long clientId)`
+    - `refreshClientSecret(String clientIdentifier)`
+    - `updateClientSecret(long clientId, String clientSecret)`
+    - `updateClientSecret(String clientIdentifier, String clientSecret)`
 
   5. Methods for Access Token Introspection
 
-    - `introspection(IntrospectionRequest)`
-    - `standardIntrospection(StandardIntrospectionRequest)`
+    - `introspection(IntrospectionRequest request)`
+    - `standardIntrospection(StandardIntrospectionRequest request)`
 
   6. Methods for Revocation Endpoint Implementation
 
-    - `revocation(RevocationRequest)`
+    - `revocation(RevocationRequest request)`
 
   7. Methods for User Info Endpoint Implementation
 
-    - `userinfo(UserInfoRequest)`
-    - `userinfoIssue(UserInfoIssueRequest)`
+    - `userinfo(UserInfoRequest request)`
+    - `userinfoIssue(UserInfoIssueRequest request)`
 
   8. Methods for JWK Set Endpoint Implementation
 
@@ -277,8 +277,8 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
   10. Methods for Token Operations
 
-    - `tokenCreate(TokenCreateRequest)`
-    - `tokenUpdate(TokenUpdateRequest)`
+    - `tokenCreate(TokenCreateRequest request)`
+    - `tokenUpdate(TokenUpdateRequest request)`
 
   11. Methods for Requestable Scopes per Client (deprecated; Client APIs suffice)
 
