@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,6 +72,14 @@ import com.authlete.common.web.URLCoder;
  * </p>
  * </dd>
  *
+ * <dt><b><code>clientCertificate</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The client certificate from the MTLS of the token request from
+ * the client application.
+ * </p>
+ * </dd>
+ *
  * <dt><b><code>properties</code></b> (OPTIONAL)</dt>
  * <dd>
  * Extra properties to associate with an access token. Note that
@@ -95,8 +103,6 @@ import com.authlete.common.web.URLCoder;
  * /auth/token} API generates an error (it's not a service error but
  * a client error).
  * </p>
- *
- * @author Takahiko Kawasaki
  */
 public class TokenRequest implements Serializable
 {
@@ -120,12 +126,12 @@ public class TokenRequest implements Serializable
      */
     private String clientSecret;
 
-    
+
     /**
      * Client certificate (used in MTLS auth).
      */
     private String clientCertificate;
-    
+
 
     /**
      * Extra properties to associate with an access token.
@@ -227,8 +233,10 @@ public class TokenRequest implements Serializable
 
 
     /**
-     * Get the client certificate from the MTLS of the token 
+     * Get the client certificate from the MTLS of the token
      * request from the client application.
+     *
+     * @since 2.12
      */
     public String getClientCertificate()
     {
@@ -239,11 +247,13 @@ public class TokenRequest implements Serializable
     /**
      * Set the client certificate from the MTLS of the token
      * request from the client application.
+     *
+     * @since 2.12
      */
     public TokenRequest setClientCertificate(String clientCertificate)
     {
         this.clientCertificate = clientCertificate;
-        
+
         return this;
     }
 
