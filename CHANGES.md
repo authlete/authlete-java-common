@@ -1,6 +1,36 @@
 CHANGES
 =======
 
+2.12 (2018-03-03)
+-----------------
+
+- `JWSAlg` enum
+    * Added `isSymmetric(JWSAlg)` method.
+    * Added `isAsymmetric(JWSAlg)` method.
+
+- `Scope` class
+    * Added `getAttributes()` method.
+    * Added `setAttributes(Pair[])` method.
+    * Added `setAttributes(Iterable<Pair>)` method.
+
+- `Service` class
+    * Added `getSupportedServiceProfiles()` method.
+    * Added `setSupportedServiceProfiles(ServiceProfile[])` method.
+    * Added `setSupportedServiceProfiles(Iterable<ServiceProfile>)` method.
+    * Added `supports(ServiceProfile)` method.
+    * Added `supportsAll(ServiceProfile...)` method.
+    * Added `supportsAll(Iterable<ServiceProfile>)` method.
+    * Added `supportsAny(ServiceProfile...)` method.
+    * Added `supportsAny(Iterable<ServiceProfile>)` method.
+
+- `TokenRequest` class
+    * Added `getClientCertificate()` method.
+    * Added `setClientCertificate(String)` method.
+
+- New enum
+    * `ServiceProfie`
+
+
 2.11 (2017-11-16)
 -----------------
 

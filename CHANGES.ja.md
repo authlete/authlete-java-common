@@ -1,6 +1,36 @@
 変更点
 ======
 
+2.12 (2018 年 03 月 03 日)
+--------------------------
+
+- `JWSAlg` 列挙型
+    * `isSymmetric(JWSAlg)` メソッドを追加。
+    * `isAsymmetric(JWSAlg)` メソッドを追加。
+
+- `Scope` クラス
+    * `getAttributes()` メソッドを追加。
+    * `setAttributes(Pair[])` メソッドを追加。
+    * `setAttributes(Iterable<Pair>)` メソッドを追加。
+
+- `Service` クラス
+    * `getSupportedServiceProfiles()` メソッドを追加。
+    * `setSupportedServiceProfiles(ServiceProfile[])` メソッドを追加。
+    * `setSupportedServiceProfiles(Iterable<ServiceProfile>)` メソッドを追加。
+    * `supports(ServiceProfile)` メソッドを追加。
+    * `supportsAll(ServiceProfile...)` メソッドを追加。
+    * `supportsAll(Iterable<ServiceProfile>)` メソッドを追加。
+    * `supportsAny(ServiceProfile...)` メソッドを追加。
+    * `supportsAny(Iterable<ServiceProfile>)` メソッドを追加。
+
+- `TokenRequest` クラス
+    * `getClientCertificate()` メソッドを追加。
+    * `setClientCertificate(String)` メソッドを追加。
+
+- 新しい列挙型
+    * `ServiceProfie`
+
+
 2.11 (2017 年 11 月 16 日)
 --------------------------
 
