@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -453,7 +453,7 @@ public interface AuthleteApi
      * >OpenID Connect Discovery 1.0</a>.
      *
      * <p>
-     * This method is an alias of {@link #getServiceConfiguration(long)
+     * This method is an alias of {@link #getServiceConfiguration(boolean)
      * getServiceConfiguration}{@code (true)}.
      * </p>
      *
