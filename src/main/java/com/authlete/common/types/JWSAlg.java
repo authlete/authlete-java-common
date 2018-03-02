@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,6 @@ import java.util.EnumSet;
  *
  * @see <a href="https://tools.ietf.org/html/rfc7518#section-3.1"
  *      >RFC 7518, 3.1. "alg" (Algorithm) Header Parameter Values for JWS</a>
- *
- * @author Takahiko Kawasaki
  */
 public enum JWSAlg
 {
@@ -250,7 +248,21 @@ public enum JWSAlg
             return new JWSAlg[size];
         }
     }
-    
+
+
+    /**
+     * Check if the given JWS algorithm is a symmetric one.
+     *
+     * @param alg
+     *     JWS algorithm.
+     *
+     * @return
+     *     {@code true} if the given JWS algorithm is symmetric.
+     *     To be concrete, {@code true} is returned when {@code alg}
+     *     is {@link #HS256}, {@link #HS384} or {@link #HS512}.
+     *
+     * @since 2.12
+     */
     public static boolean isSymmetric(JWSAlg alg)
     {
         return alg != null &&
@@ -258,7 +270,23 @@ public enum JWSAlg
                         || alg.equals(JWSAlg.HS384)
                         || alg.equals(JWSAlg.HS512));
     }
-    
+
+
+    /**
+     * Check if the given JWS algorithm is an asymmetric one.
+     *
+     * @param alg
+     *     JWS algorithm.
+     *
+     * @return
+     *     {@code true} if the given JWS algorithm is asymmetric.
+     *     To be concrete, {@code true} is returned when {@code alg} is
+     *     {@link #RS256}, {@link #RS384}, {@link #RS512},
+     *     {@link #PS256}, {@link #PS384}, {@link #PS512},
+     *     {@link #ES256}, {@link #ES384} or {@link #ES512}.
+     *
+     * @since 2.12
+     */
     public static boolean isAsymmetric(JWSAlg alg)
     {
         return alg != null &&
@@ -272,5 +300,4 @@ public enum JWSAlg
                         || alg.equals(JWSAlg.ES384)
                         || alg.equals(JWSAlg.ES512));
     }
-    
 }
