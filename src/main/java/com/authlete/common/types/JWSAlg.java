@@ -250,4 +250,27 @@ public enum JWSAlg
             return new JWSAlg[size];
         }
     }
+    
+    public static boolean isSymmetric(JWSAlg alg)
+    {
+        return alg != null &&
+                (alg.equals(JWSAlg.HS256)
+                        || alg.equals(JWSAlg.HS384)
+                        || alg.equals(JWSAlg.HS512));
+    }
+    
+    public static boolean isAsymmetric(JWSAlg alg)
+    {
+        return alg != null &&
+                (alg.equals(JWSAlg.RS256)
+                        || alg.equals(JWSAlg.RS384)
+                        || alg.equals(JWSAlg.RS512)
+                        || alg.equals(JWSAlg.PS256)
+                        || alg.equals(JWSAlg.PS384)
+                        || alg.equals(JWSAlg.PS512)
+                        || alg.equals(JWSAlg.ES256)
+                        || alg.equals(JWSAlg.ES384)
+                        || alg.equals(JWSAlg.ES512));
+    }
+    
 }
