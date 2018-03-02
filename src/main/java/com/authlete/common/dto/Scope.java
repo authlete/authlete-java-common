@@ -17,7 +17,9 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 
 /**
@@ -228,6 +230,54 @@ public class Scope implements Serializable
     public Scope setAttributes(Pair[] attributes)
     {
         this.attributes = attributes;
+
+        return this;
+    }
+
+
+    /**
+     * Set attributes.
+     *
+     * @param attributes
+     *         Attributes.
+     *
+     * @return
+     *     {@code this} object.
+     *
+     * @since 2.12
+     */
+    public Scope setAttributes(Iterable<Pair> attributes)
+    {
+        if (attributes == null)
+        {
+            this.attributes = null;
+
+            return this;
+        }
+
+        List<Pair> list = new ArrayList<Pair>();
+
+        for (Pair attribute : attributes)
+        {
+            if (attribute == null || attribute.getKey() == null)
+            {
+                continue;
+            }
+
+            list.add(attribute);
+        }
+
+        int size = list.size();
+
+        if (size == 0)
+        {
+            this.attributes = null;
+
+            return this;
+        }
+
+        Pair[] array = new Pair[size];
+        this.attributes = list.toArray(array);
 
         return this;
     }
