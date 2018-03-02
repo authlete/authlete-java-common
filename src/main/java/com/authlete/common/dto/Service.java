@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,14 @@ package com.authlete.common.dto;
 
 import java.io.Serializable;
 import java.net.URI;
+import java.util.Set;
+import java.util.TreeSet;
 import com.authlete.common.types.ClaimType;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.Display;
 import com.authlete.common.types.GrantType;
 import com.authlete.common.types.ResponseType;
+import com.authlete.common.types.ServiceProfile;
 import com.authlete.common.types.Sns;
 
 
@@ -39,12 +42,10 @@ import com.authlete.common.types.Sns;
  *
  * @see <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
  *      >OpenID Connect Discovery 1.0</a>
- *
- * @author Takahiko Kawasaki
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 15L;
+    private static final long serialVersionUID = 16L;
 
 
     /*
@@ -129,6 +130,7 @@ public class Service implements Serializable
     private boolean errorDescriptionOmitted;
     private boolean errorUriOmitted;
     private boolean clientIdAliasEnabled;
+    private ServiceProfile[] supportedServiceProfiles;
 
 
     /**
@@ -2266,5 +2268,259 @@ public class Service implements Serializable
         this.userInfoSignatureKeyId = keyId;
 
         return this;
+    }
+
+
+    /**
+     * Get the supported service profiles.
+     *
+     * @return
+     *         Supported service profiles.
+     *
+     * @since 2.12
+     */
+    public ServiceProfile[] getSupportedServiceProfiles()
+    {
+        return supportedServiceProfiles;
+    }
+
+
+    /**
+     * Set the supported service profiles.
+     *
+     * @param profiles
+     *         Supported service profiles.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.12
+     */
+    public Service setSupportedServiceProfiles(ServiceProfile[] profiles)
+    {
+        this.supportedServiceProfiles = profiles;
+
+        return this;
+    }
+
+
+    /**
+     * Set the supported service profiles.
+     *
+     * @param profiles
+     *         Supported service profiles.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.12
+     */
+    public Service setSupportedServiceProfiles(Iterable<ServiceProfile> profiles)
+    {
+        if (profiles == null)
+        {
+            this.supportedServiceProfiles = null;
+
+            return this;
+        }
+
+        Set<ServiceProfile> set = new TreeSet<ServiceProfile>();
+
+        for (ServiceProfile profile : profiles)
+        {
+            if (profile != null)
+            {
+                set.add(profile);
+            }
+        }
+
+        int size = set.size();
+
+        if (size == 0)
+        {
+            this.supportedServiceProfiles = null;
+
+            return this;
+        }
+
+        ServiceProfile[] array = new ServiceProfile[size];
+        this.supportedServiceProfiles = set.toArray(array);
+
+        return this;
+    }
+
+
+    /**
+     * Check if this service supports the specified profile.
+     *
+     * If {@code null} is given, {@code false} is returned.
+     * If the supported service profiles are not set to this service,
+     * {@code false} is returned.
+     *
+     * @param profile
+     *         A service profile.
+     *
+     * @return
+     *         {@code true} if this service supports the service profile.
+     *
+     * @since 2.12
+     */
+    public boolean supports(ServiceProfile profile)
+    {
+        if (profile == null)
+        {
+            return false;
+        }
+
+        if (supportedServiceProfiles == null)
+        {
+            return false;
+        }
+
+        for (ServiceProfile supportedProfile : supportedServiceProfiles)
+        {
+            if (supportedProfile == profile)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Check if this service supports all the specified service profiles.
+     *
+     * If {@code null} is given, {@code true} is returned.
+     * If an empty array is given, {@code true} is returned.
+     *
+     * @param profiles
+     *         Service profiles.
+     *
+     * @return
+     *         {@code true} if this service supports all the specified
+     *         service profiles.
+     *
+     * @since 2.12
+     */
+    public boolean supportsAll(ServiceProfile... profiles)
+    {
+        if (profiles == null)
+        {
+            return true;
+        }
+
+        for (ServiceProfile profile : profiles)
+        {
+            if (supports(profile) == false)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    /**
+     * Check if this service supports all the specified service profiles.
+     *
+     * If {@code null} is given, {@code true} is returned.
+     * If an empty collection is given, {@code true} is returned.
+     *
+     * @param profiles
+     *         Service profiles.
+     *
+     * @return
+     *         {@code true} if this service supports all the specified
+     *         service profiles.
+     *
+     * @since 2.12
+     */
+    public boolean supportsAll(Iterable<ServiceProfile> profiles)
+    {
+        if (profiles == null)
+        {
+            return true;
+        }
+
+        for (ServiceProfile profile : profiles)
+        {
+            if (supports(profile) == false)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    /**
+     * Check if this service any of the specified service profiles.
+     *
+     * If {@code null} is given, {@code false} is returned.
+     * If an empty array is given, {@code false} is returned.
+     *
+     * @param profiles
+     *         Service profiles.
+     *
+     * @return
+     *         {@code true} if this service supports any of the specified
+     *         service profiles.
+     *
+     * @since 2.12
+     */
+    public boolean supportsAny(ServiceProfile... profiles)
+    {
+        if (profiles == null)
+        {
+            return false;
+        }
+
+        for (ServiceProfile profile : profiles)
+        {
+            if (supports(profile))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Check if this service any of the specified service profiles.
+     *
+     * If {@code null} is given, {@code false} is returned.
+     * If an empty collection is given, {@code false} is returned.
+     *
+     * @param profiles
+     *         Service profiles.
+     *
+     * @return
+     *         {@code true} if this service supports any of the specified
+     *         service profiles.
+     *
+     * @since 2.12
+     */
+    public boolean supportsAny(Iterable<ServiceProfile> profiles)
+    {
+        if (profiles == null)
+        {
+            return false;
+        }
+
+        for (ServiceProfile profile : profiles)
+        {
+            if (supports(profile))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
