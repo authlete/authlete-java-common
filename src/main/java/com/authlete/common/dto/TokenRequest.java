@@ -100,7 +100,7 @@ import com.authlete.common.web.URLCoder;
  */
 public class TokenRequest implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
