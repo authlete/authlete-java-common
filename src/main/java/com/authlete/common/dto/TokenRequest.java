@@ -120,6 +120,12 @@ public class TokenRequest implements Serializable
      */
     private String clientSecret;
 
+    
+    /**
+     * Client certificate (used in MTLS auth).
+     */
+    private String clientCertificate;
+    
 
     /**
      * Extra properties to associate with an access token.
@@ -216,6 +222,28 @@ public class TokenRequest implements Serializable
     {
         this.clientSecret = clientSecret;
 
+        return this;
+    }
+
+
+    /**
+     * Get the client certificate from the MTLS of the token 
+     * request from the client application.
+     */
+    public String getClientCertificate()
+    {
+        return clientCertificate;
+    }
+
+
+    /**
+     * Set the client certificate from the MTLS of the token
+     * request from the client application.
+     */
+    public TokenRequest setClientCertificate(String clientCertificate)
+    {
+        this.clientCertificate = clientCertificate;
+        
         return this;
     }
 
