@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import java.util.Comparator;
  */
 public class Scope implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /*
@@ -62,6 +62,12 @@ public class Scope implements Serializable
      * Descriptions for various languages.
      */
     private TaggedValue[] descriptions;
+
+
+    /**
+     * Attributes of this scope.
+     */
+    private Pair[] attributes;
 
 
     /**
@@ -189,6 +195,39 @@ public class Scope implements Serializable
     public Scope setDescriptions(TaggedValue[] descriptions)
     {
         this.descriptions = descriptions;
+
+        return this;
+    }
+
+
+    /**
+     * Get attributes.
+     *
+     * @return
+     *         Attributes.
+     *
+     * @since 2.12
+     */
+    public Pair[] getAttributes()
+    {
+        return attributes;
+    }
+
+
+    /**
+     * Set attributes.
+     *
+     * @param attributes
+     *         Attributes.
+     *
+     * @return
+     *     {@code this} object.
+     *
+     * @since 2.12
+     */
+    public Scope setAttributes(Pair[] attributes)
+    {
+        this.attributes = attributes;
 
         return this;
     }
