@@ -235,6 +235,7 @@ public class Client implements Serializable
     private long modifiedAt;
     private ClientExtension extension;
     private String tlsClientAuthSubjectDn;
+    private boolean mutualTlsSenderConstrainedAccessTokens;
 
 
     /**
@@ -1893,6 +1894,30 @@ public class Client implements Serializable
     {
         this.tlsClientAuthSubjectDn = name;
 
+        return this;
+    }
+
+
+    /**
+     * Does this client use MTLS sender-constrained access tokens?
+     * 
+     * @return the mutualTlsSenderConstrainedAccessToken
+     */
+    public boolean isMutualTlsSenderConstrainedAccessTokens()
+    {
+        return mutualTlsSenderConstrainedAccessTokens;
+    }
+
+
+    /**
+     * Set whether this client uses MTLS constrained access tokens or not.
+     * 
+     * @param mutualTlsSenderConstrainedAccessToken the mutualTlsSenderConstrainedAccessToken to set
+     */
+    public Client setMutualTlsSenderConstrainedAccessTokens(boolean mutualTlsSenderConstrainedAccessToken)
+    {
+        this.mutualTlsSenderConstrainedAccessTokens = mutualTlsSenderConstrainedAccessToken;
+        
         return this;
     }
 }
