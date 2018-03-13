@@ -24,6 +24,7 @@ import com.authlete.common.types.ClaimType;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.Display;
 import com.authlete.common.types.GrantType;
+import com.authlete.common.types.JWSAlg;
 import com.authlete.common.types.ResponseType;
 import com.authlete.common.types.ServiceProfile;
 import com.authlete.common.types.Sns;
@@ -88,6 +89,8 @@ public class Service implements Serializable
     private URI authorizationEndpoint;
     private URI tokenEndpoint;
     private URI revocationEndpoint;
+    private ClientAuthMethod[] supportedRevocationAuthMethods;
+    private JWSAlg[] supportedRevocationAuthSigningAlgorithms;
     private URI userInfoEndpoint;
     private URI jwksUri;
     private String jwks;
@@ -436,6 +439,80 @@ public class Service implements Serializable
     public URI getRevocationEndpoint()
     {
         return revocationEndpoint;
+    }
+
+
+    /**
+     * Get client authentication methods supported at the revocation endpoint.
+     *
+     * @return
+     *         Client authentication methods supported at the revocation endpoint.
+     *
+     * @since 2.13
+     */
+    public ClientAuthMethod[] getSupportedRevocationAuthMethods()
+    {
+        return supportedRevocationAuthMethods;
+    }
+
+
+    /**
+     * Set client authentication methods supported at the revocation endpoint.
+     *
+     * @param methods
+     *         Client authentication methods.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.13
+     */
+    public Service setSupportedRevocationAuthMethods(ClientAuthMethod[] methods)
+    {
+        this.supportedRevocationAuthMethods = methods;
+
+        return this;
+    }
+
+
+    /**
+     * Get JWS signing algorithms ({@code "alg"} values) supported by the
+     * revocation endpoint for the signature on the JWT used to authenticate
+     * the client at the revocation endpoint for the {@code "private_key_jwt"}
+     * and {@code "client_secret_jwt"} authentication methods.
+     *
+     * @return
+     *         JWS signing algorithms supported for {@code "private_key_jwt"}
+     *         and {@code "client_secret_jwt"} at the revocation endpoint.
+     *
+     * @since 2.13
+     */
+    public JWSAlg[] getSupportedRevocationAuthSigningAlgorithms()
+    {
+        return supportedRevocationAuthSigningAlgorithms;
+    }
+
+
+    /**
+     * Set JWS signing algorithms ({@code "alg"} values) supported by the
+     * revocation endpoint for the signature on the JWT used to authenticate
+     * the client at the revocation endpoint for the {@code "private_key_jwt"}
+     * and {@code "client_secret_jwt"} authentication methods.
+     *
+     * @param algorithms
+     *         JWS signing algorithms supported for {@code "private_key_jwt"}
+     *         and {@code "client_secret_jwt"} at the revocation endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.13
+     */
+    public Service setSupportedRevocationAuthSigningAlgorithms(JWSAlg[] algorithms)
+    {
+        this.supportedRevocationAuthSigningAlgorithms = algorithms;
+
+        return this;
     }
 
 
@@ -2530,8 +2607,8 @@ public class Service implements Serializable
      * Does this service support issuing sender-constrained MTLS access tokens?
      *
      * @return
-     *     {@code true} if this service supports issuing sender-constrained
-     *     MTLS access tokens.
+     *         {@code true} if this service supports issuing sender-constrained
+     *         MTLS access tokens.
      *
      * @since 2.13
      */
@@ -2545,7 +2622,10 @@ public class Service implements Serializable
      * Enable or disable support for sender-constrained MTLS access tokens.
      *
      * @param enabled
-     *     {@code true} to enable sender-constrained MTLS access tokens.
+     *         {@code true} to enable sender-constrained MTLS access tokens.
+     *
+     * @return
+     *         {@code this} object.
      *
      * @since 2.13
      */
