@@ -137,6 +137,7 @@ public class Service implements Serializable
     private boolean mutualTlsSenderConstrainedAccessTokens;
     private URI introspectionEndpoint;
     private ClientAuthMethod[] supportedIntrospectionAuthMethods;
+    private JWSAlg[] supportedIntrospectionAuthSigningAlgorithms;
 
 
     /**
@@ -2704,6 +2705,47 @@ public class Service implements Serializable
     public Service setSupportedIntrospectionAuthMethods(ClientAuthMethod[] methods)
     {
         this.supportedIntrospectionAuthMethods = methods;
+
+        return this;
+    }
+
+
+    /**
+     * Get JWS signing algorithms ({@code "alg"} values) supported by the
+     * introspection endpoint for the signature on the JWT used to authenticate
+     * the client at the introspection endpoint for the {@code "private_key_jwt"}
+     * and {@code "client_secret_jwt"} authentication methods.
+     *
+     * @return
+     *         JWS signing algorithms supported for {@code "private_key_jwt"}
+     *         and {@code "client_secret_jwt"} at the introspection endpoint.
+     *
+     * @since 2.13
+     */
+    public JWSAlg[] getSupportedIntrospectionAuthSigningAlgorithms()
+    {
+        return supportedIntrospectionAuthSigningAlgorithms;
+    }
+
+
+    /**
+     * Set JWS signing algorithms ({@code "alg"} values) supported by the
+     * introspection endpoint for the signature on the JWT used to authenticate
+     * the client at the introspection endpoint for the {@code "private_key_jwt"}
+     * and {@code "client_secret_jwt"} authentication methods.
+     *
+     * @param algorithms
+     *         JWS signing algorithms supported for {@code "private_key_jwt"}
+     *         and {@code "client_secret_jwt"} at the introspection endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.13
+     */
+    public Service setSupportedIntrospectionAuthSigningAlgorithms(JWSAlg[] algorithms)
+    {
+        this.supportedIntrospectionAuthSigningAlgorithms = algorithms;
 
         return this;
     }
