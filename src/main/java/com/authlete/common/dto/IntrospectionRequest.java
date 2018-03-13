@@ -45,6 +45,16 @@ import java.io.Serializable;
  * </p>
  * </dd>
  * </dl>
+ * 
+ * <dt><b><code>clientCertificate</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The certificate presented by the client, used to validate MTLS 
+ * sender constrained access tokens. 
+ * </p>
+ * </dd>
+ * </dl>
+ * 
  * </blockquote>
  *
  * @author Takahiko Kawasaki
@@ -151,7 +161,9 @@ public class IntrospectionRequest implements Serializable
      * Get the client certificate, used to validate binding against
      * access tokens using the MTLS sender confirmation method.
      * 
-     * @return the clientCertificate
+     * @return the certificate in PEM format
+     * 
+     * @since 2.14
      */
     public String getClientCertificate()
     {
@@ -163,7 +175,9 @@ public class IntrospectionRequest implements Serializable
      * Set the client certificate, used to validate binding against
      * access tokens using the MTLS sender confirmation method.
      * 
-     * @param clientCertificate the clientCertificate to set
+     * @param clientCertificate the certificate in PEM format
+     * 
+     * @since 2.14
      */
     public IntrospectionRequest setClientCertificate(String clientCertificate)
     {
