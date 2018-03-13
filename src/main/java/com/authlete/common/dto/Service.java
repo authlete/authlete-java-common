@@ -2528,8 +2528,12 @@ public class Service implements Serializable
 
     /**
      * Does this service support issuing sender-constrained MTLS access tokens?
-     * 
-     * @return the mutualTlsSenderConstrainedAccessToken
+     *
+     * @return
+     *     {@code true} if this service supports issuing sender-constrained
+     *     MTLS access tokens.
+     *
+     * @since 2.13
      */
     public boolean isMutualTlsSenderConstrainedAccessTokens()
     {
@@ -2539,13 +2543,16 @@ public class Service implements Serializable
 
     /**
      * Enable or disable support for sender-constrained MTLS access tokens.
-     * 
-     * @param mutualTlsSenderConstrainedAccessToken the mutualTlsSenderConstrainedAccessToken to set
+     *
+     * @param enabled
+     *     {@code true} to enable sender-constrained MTLS access tokens.
+     *
+     * @since 2.13
      */
-    public Service setMutualTlsSenderConstrainedAccessTokens(boolean mutualTlsSenderConstrainedAccessToken)
+    public Service setMutualTlsSenderConstrainedAccessTokens(boolean enabled)
     {
-        this.mutualTlsSenderConstrainedAccessTokens = mutualTlsSenderConstrainedAccessToken;
-        
+        this.mutualTlsSenderConstrainedAccessTokens = enabled;
+
         return this;
     }
 }
