@@ -51,8 +51,8 @@ Don't forget to add `@since {version}` to JavaDoc if you added new methods,
 classes and enums.
 
 
-Generate Package
-----------------
+Generate and Release Package
+----------------------------
 
     $ mvn clean
     $ mvn release:prepare
