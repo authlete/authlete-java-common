@@ -135,6 +135,7 @@ public class Service implements Serializable
     private boolean clientIdAliasEnabled;
     private ServiceProfile[] supportedServiceProfiles;
     private boolean mutualTlsSenderConstrainedAccessTokens;
+    private URI introspectionEndpoint;
 
 
     /**
@@ -2632,6 +2633,43 @@ public class Service implements Serializable
     public Service setMutualTlsSenderConstrainedAccessTokens(boolean enabled)
     {
         this.mutualTlsSenderConstrainedAccessTokens = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the introspection endpoint.
+     *
+     * @return
+     *         The URI of the introspection endpoint.
+     *
+     * @since 2.13
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc7662">RFC 7662: OAuth 2.0 Token Introspection</a>
+     */
+    public URI getIntrospectionEndpoint()
+    {
+        return introspectionEndpoint;
+    }
+
+
+    /**
+     * Set the URI of the introspection endpoint.
+     *
+     * @param endpoint
+     *         The URI of the introspection endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.13
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc7662">RFC 7662: OAuth 2.0 Token Introspection</a>
+     */
+    public Service setIntrospectionEndpoint(URI endpoint)
+    {
+        this.introspectionEndpoint = endpoint;
 
         return this;
     }
