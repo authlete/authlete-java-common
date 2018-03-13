@@ -1,8 +1,8 @@
 How To Release
 ==============
 
-0. One-Time Setup
------------------
+One-Time Setup
+--------------
 
 Import Authlete's private key.
 
@@ -39,8 +39,8 @@ Edit `~/.m2/settings.xml` for automated signing and releasing.
     </settings>
 
 
-1. Update Documents
--------------------
+Update Documents
+----------------
 
 Update version numbers hard-coded in `README.md`, `README.ja.md` and
 `src/main/java/com/authlete/common/package-info.java`.
@@ -51,16 +51,16 @@ Don't forget to add `@since {version}` to JavaDoc if you added new methods,
 classes and enums.
 
 
-2. Generate Package
--------------------
+Generate Package
+----------------
 
     $ mvn clean
     $ mvn release:prepare
     $ mvn release:perform
 
 
-3. Publish JavaDoc
-------------------
+Publish JavaDoc
+---------------
 
     $ mkdir -p ../docs
     $ cd ../docs
