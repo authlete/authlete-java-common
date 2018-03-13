@@ -136,6 +136,7 @@ public class Service implements Serializable
     private ServiceProfile[] supportedServiceProfiles;
     private boolean mutualTlsSenderConstrainedAccessTokens;
     private URI introspectionEndpoint;
+    private ClientAuthMethod[] supportedIntrospectionAuthMethods;
 
 
     /**
@@ -2670,6 +2671,39 @@ public class Service implements Serializable
     public Service setIntrospectionEndpoint(URI endpoint)
     {
         this.introspectionEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get client authentication methods supported at the introspection endpoint.
+     *
+     * @return
+     *         Client authentication methods supported at the introspection endpoint.
+     *
+     * @since 2.13
+     */
+    public ClientAuthMethod[] getSupportedIntrospectionAuthMethods()
+    {
+        return supportedIntrospectionAuthMethods;
+    }
+
+
+    /**
+     * Set client authentication methods supported at the introspection endpoint.
+     *
+     * @param methods
+     *         Client authentication methods.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.13
+     */
+    public Service setSupportedIntrospectionAuthMethods(ClientAuthMethod[] methods)
+    {
+        this.supportedIntrospectionAuthMethods = methods;
 
         return this;
     }
