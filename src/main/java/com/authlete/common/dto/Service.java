@@ -46,7 +46,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 17L;
+    private static final long serialVersionUID = 18L;
 
 
     /*
