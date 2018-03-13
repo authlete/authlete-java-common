@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1900,8 +1900,12 @@ public class Client implements Serializable
 
     /**
      * Does this client use MTLS sender-constrained access tokens?
-     * 
-     * @return the mutualTlsSenderConstrainedAccessToken
+     *
+     * @return
+     *         {@code true} if this client uses MTLS sender-constrained
+     *         access tokens.
+     *
+     * @since 2.13
      */
     public boolean isMutualTlsSenderConstrainedAccessTokens()
     {
@@ -1910,14 +1914,22 @@ public class Client implements Serializable
 
 
     /**
-     * Set whether this client uses MTLS constrained access tokens or not.
-     * 
-     * @param mutualTlsSenderConstrainedAccessToken the mutualTlsSenderConstrainedAccessToken to set
+     * Set whether this client uses MTLS sender-constrained access tokens
+     * or not.
+     *
+     * @param use
+     *         {@code true} to indicate that this client uses MTLS
+     *         sender-constrained access tokens.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.13
      */
-    public Client setMutualTlsSenderConstrainedAccessTokens(boolean mutualTlsSenderConstrainedAccessToken)
+    public Client setMutualTlsSenderConstrainedAccessTokens(boolean use)
     {
-        this.mutualTlsSenderConstrainedAccessTokens = mutualTlsSenderConstrainedAccessToken;
-        
+        this.mutualTlsSenderConstrainedAccessTokens = use;
+
         return this;
     }
 }
