@@ -333,10 +333,10 @@ public class IntrospectionResponse extends ApiResponse
 
     
     /**
-     * Confirmation hash for MTLS-bound access tokens. Currently only the s256 
+     * Confirmation hash for MTLS-bound access tokens. Currently only the S256 
      * type is supported and is assumed.
      */
-    private String s256Confirmation;
+    private String certificateThumbprint;
     
     /**
      * Get the next action the service implementation should take.
@@ -600,7 +600,7 @@ public class IntrospectionResponse extends ApiResponse
                 Utils.join(scopes, " "),
                 Utils.stringifyProperties(properties),
                 clientIdAlias, clientIdAliasUsed,
-                s256Confirmation);
+                certificateThumbprint);
     }
 
 
@@ -673,24 +673,33 @@ public class IntrospectionResponse extends ApiResponse
 
 
     /**
-     * Get the confirmation value, used in MTLS bound access tokens.
+     * Get the client certificate thumbprint used to validate the access token.
      * 
-     * @return the cnf
+     * @return the certificate thumbprint, calculated as the
+     *              SHA256 hash of the DER-encoded certificate
+     *              value.
+     * 
+     * @since 2.14
      */
-    public String getS256Confirmation()
+    public String getCertificateThumbprint()
     {
-        return s256Confirmation;
+        return certificateThumbprint;
     }
 
 
     /**
-     * Set the confirmation value, used in MTLS bound access tokens.
-     *
-     * @param cnf the cnf to set
+     * Set the client certificate thumbprint used to validate the access token.
+     * 
+     * @param thumbprint 
+     *          the certificate thumbprint, calculated as the
+     *          SHA256 hash of the DER-encoded certificate
+     *          value.
+     * 
+     * @since 2.14
      */
-    public void setS256Confirmation(String cnf)
+    public void setCertificateThumbprint(String thumbprint)
     {
-        this.s256Confirmation = cnf;
+        this.certificateThumbprint = thumbprint;
     }
 
 }
