@@ -1,6 +1,28 @@
 変更点
 ======
 
+2.13 (2018 年 03 月 13 日)
+--------------------------
+
+- `Client` クラス
+    * `isMutualTlsSenderConstrainedAccessTokens()` メソッドを追加。
+    * `setMutualTlsSenderConstrainedAccessTokens(boolean)` メソッドを追加。
+
+- `Service` クラス
+    * `isMutualTlsSenderConstrainedAccessTokens()` メソッドを追加。
+    * `setMutualTlsSenderConstrainedAccessTokens(boolean)` メソッドを追加。
+    * `getSupportedRevocationAuthMethods()` メソッドを追加。
+    * `setSupportedRevocationAuthMethods()` メソッドを追加。
+    * `getSupportedRevocationAuthSigningAlgorithms()` メソッドを追加。
+    * `setSupportedRevocationAuthSigningAlgorithms(JWSAlg[])` メソッドを追加。
+    * `getIntrospectionEndpoint()` メソッドを追加。
+    * `setIntrospectionEndpoint()` メソッドを追加。
+    * `getSupportedIntrospectionAuthMethods()` メソッドを追加。
+    * `setSupportedIntrospectionAuthMethods()` メソッドを追加。
+    * `getSupportedIntrospectionAuthSigningAlgorithms()` メソッドを追加。
+    * `setSupportedIntrospectionAuthSigningAlgorithms(JWSAlg[])` メソッドを追加。
+
+
 2.12 (2018 年 03 月 03 日)
 --------------------------
 

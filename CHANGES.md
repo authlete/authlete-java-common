@@ -1,6 +1,28 @@
 CHANGES
 =======
 
+2.13 (2018-03-13)
+-----------------
+
+- `Client` class
+    * Added `isMutualTlsSenderConstrainedAccessTokens()` method.
+    * Added `setMutualTlsSenderConstrainedAccessTokens(boolean)` method.
+
+- `Service` class
+    * Added `isMutualTlsSenderConstrainedAccessTokens()` method.
+    * Added `setMutualTlsSenderConstrainedAccessTokens(boolean)` method.
+    * Added `getSupportedRevocationAuthMethods()` method.
+    * Added `setSupportedRevocationAuthMethods()` method.
+    * Added `getSupportedRevocationAuthSigningAlgorithms()` method.
+    * Added `setSupportedRevocationAuthSigningAlgorithms(JWSAlg[])` method.
+    * Added `getIntrospectionEndpoint()` method.
+    * Added `setIntrospectionEndpoint()` method.
+    * Added `getSupportedIntrospectionAuthMethods()` method.
+    * Added `setSupportedIntrospectionAuthMethods()` method.
+    * Added `getSupportedIntrospectionAuthSigningAlgorithms()` method.
+    * Added `setSupportedIntrospectionAuthSigningAlgorithms(JWSAlg[])` method.
+
+
 2.12 (2018-03-03)
 -----------------
 
