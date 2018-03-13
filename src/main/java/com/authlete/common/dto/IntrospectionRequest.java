@@ -51,12 +51,13 @@ import java.io.Serializable;
  */
 public class IntrospectionRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     private String token;
     private String[] scopes;
     private String subject;
+    private String clientCertificate;
 
 
     /**
@@ -142,6 +143,32 @@ public class IntrospectionRequest implements Serializable
     {
         this.subject = subject;
 
+        return this;
+    }
+
+
+    /**
+     * Get the client certificate, used to validate binding against
+     * access tokens using the MTLS sender confirmation method.
+     * 
+     * @return the clientCertificate
+     */
+    public String getClientCertificate()
+    {
+        return clientCertificate;
+    }
+
+
+    /**
+     * Set the client certificate, used to validate binding against
+     * access tokens using the MTLS sender confirmation method.
+     * 
+     * @param clientCertificate the clientCertificate to set
+     */
+    public IntrospectionRequest setClientCertificate(String clientCertificate)
+    {
+        this.clientCertificate = clientCertificate;
+        
         return this;
     }
 }

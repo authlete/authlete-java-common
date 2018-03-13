@@ -199,7 +199,7 @@ import com.authlete.common.util.Utils;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -247,7 +247,8 @@ public class IntrospectionResponse extends ApiResponse
     private static final String SUMMARY_FORMAT
         = "action=%s, clientId=%d, subject=%s, existent=%s, "
         + "usable=%s, sufficient=%s, refreshable=%s, expiresAt=%d, "
-        + "scopes=%s, properties=%s, clientIdAlias=%s, clientIdAliasUsed=%s";
+        + "scopes=%s, properties=%s, clientIdAlias=%s, clientIdAliasUsed=%s, "
+        + "confirmation=%s";
 
 
     /**
@@ -330,7 +331,13 @@ public class IntrospectionResponse extends ApiResponse
      */
     private boolean clientIdAliasUsed;
 
-
+    
+    /**
+     * Confirmation hash for MTLS-bound access tokens. Currently only the s256 
+     * type is supported and is assumed.
+     */
+    private String s256Confirmation;
+    
     /**
      * Get the next action the service implementation should take.
      */
@@ -592,7 +599,8 @@ public class IntrospectionResponse extends ApiResponse
                 sufficient, refreshable, expiresAt,
                 Utils.join(scopes, " "),
                 Utils.stringifyProperties(properties),
-                clientIdAlias, clientIdAliasUsed);
+                clientIdAlias, clientIdAliasUsed,
+                s256Confirmation);
     }
 
 
@@ -662,4 +670,27 @@ public class IntrospectionResponse extends ApiResponse
     {
         this.clientIdAliasUsed = used;
     }
+
+
+    /**
+     * Get the confirmation value, used in MTLS bound access tokens.
+     * 
+     * @return the cnf
+     */
+    public String getS256Confirmation()
+    {
+        return s256Confirmation;
+    }
+
+
+    /**
+     * Set the confirmation value, used in MTLS bound access tokens.
+     *
+     * @param cnf the cnf to set
+     */
+    public void setS256Confirmation(String cnf)
+    {
+        this.s256Confirmation = cnf;
+    }
+
 }
