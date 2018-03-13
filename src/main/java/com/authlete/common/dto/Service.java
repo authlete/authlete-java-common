@@ -45,7 +45,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 16L;
+    private static final long serialVersionUID = 17L;
 
 
     /*
@@ -131,6 +131,7 @@ public class Service implements Serializable
     private boolean errorUriOmitted;
     private boolean clientIdAliasEnabled;
     private ServiceProfile[] supportedServiceProfiles;
+    private boolean mutualTlsSenderConstrainedAccessTokens;
 
 
     /**
@@ -2522,5 +2523,29 @@ public class Service implements Serializable
         }
 
         return false;
+    }
+
+
+    /**
+     * Does this service support issuing sender-constrained MTLS access tokens?
+     * 
+     * @return the mutualTlsSenderConstrainedAccessToken
+     */
+    public boolean isMutualTlsSenderConstrainedAccessTokens()
+    {
+        return mutualTlsSenderConstrainedAccessTokens;
+    }
+
+
+    /**
+     * Enable or disable support for sender-constrained MTLS access tokens.
+     * 
+     * @param mutualTlsSenderConstrainedAccessToken the mutualTlsSenderConstrainedAccessToken to set
+     */
+    public Service setMutualTlsSenderConstrainedAccessTokens(boolean mutualTlsSenderConstrainedAccessToken)
+    {
+        this.mutualTlsSenderConstrainedAccessTokens = mutualTlsSenderConstrainedAccessToken;
+        
+        return this;
     }
 }
