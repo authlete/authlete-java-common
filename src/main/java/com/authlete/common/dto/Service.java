@@ -2607,11 +2607,11 @@ public class Service implements Serializable
 
 
     /**
-     * Does this service support issuing sender-constrained MTLS access tokens?
+     * Does this service support issuing MTLS sender-constrained access tokens?
      *
      * @return
-     *         {@code true} if this service supports issuing sender-constrained
-     *         MTLS access tokens.
+     *         {@code true} if this service supports issuing MTLS
+     *         sender-constrained access tokens.
      *
      * @since 2.13
      */
@@ -2622,10 +2622,10 @@ public class Service implements Serializable
 
 
     /**
-     * Enable or disable support for sender-constrained MTLS access tokens.
+     * Enable or disable support for MTLS sender-constrained access tokens.
      *
      * @param enabled
-     *         {@code true} to enable sender-constrained MTLS access tokens.
+     *         {@code true} to enable MTLS sender-constrained access tokens.
      *
      * @return
      *         {@code this} object.
