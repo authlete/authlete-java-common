@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Authlete, Inc.
+ * Copyright (C) 2015-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ package com.authlete.common.dto;
  * Note that OpenID Connect Core 1.0 requires that an error response from
  * UserInfo endpoint comply with RFC 6750. See <a href=
  * "http://openid.net/specs/openid-connect-core-1_0.html#UserInfoError"
- * >5.3.3. UserInfo Response</a> for details.
+ * >5.3.3. UserInfo Error Response</a> for details.
  * </p>
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
@@ -89,7 +89,7 @@ package com.authlete.common.dto;
  * Note that OpenID Connect Core 1.0 requires that an error response from
  * UserInfo endpoint comply with RFC 6750. See <a href=
  * "http://openid.net/specs/openid-connect-core-1_0.html#UserInfoError"
- * >5.3.3. UserInfo Response</a> for details.
+ * >5.3.3. UserInfo Error Response</a> for details.
  * </p>
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
@@ -121,7 +121,7 @@ package com.authlete.common.dto;
  * Note that OpenID Connect Core 1.0 requires that an error response from
  * UserInfo endpoint comply with RFC 6750. See <a href=
  * "http://openid.net/specs/openid-connect-core-1_0.html#UserInfoError"
- * >5.3.3. UserInfo Response</a> for details.
+ * >5.3.3. UserInfo Error Response</a> for details.
  * </p>
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
@@ -152,7 +152,7 @@ package com.authlete.common.dto;
  * Note that OpenID Connect Core 1.0 requires that an error response from
  * UserInfo endpoint comply with RFC 6750. See <a href=
  * "http://openid.net/specs/openid-connect-core-1_0.html#UserInfoError"
- * >5.3.3. UserInfo Response</a> for details.
+ * >5.3.3. UserInfo Error Response</a> for details.
  * </p>
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
