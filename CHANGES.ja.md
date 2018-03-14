@@ -1,6 +1,18 @@
 変更点
 ======
 
+2.14 (2018 年 03 月 14 日)
+--------------------------
+
+- `IntrospectionRequest` クラス
+    * `getClientCertificate()` メソッドを追加。
+    * `setClientCertificate(String)` メソッドを追加。
+
+- `IntrospectionResponse` クラス
+    * `getCertificateThumbprint()` メソッドを追加。
+    * `setCertificateThumbprint(String)` メソッドを追加。
+
+
 2.13 (2018 年 03 月 13 日)
 --------------------------
 
