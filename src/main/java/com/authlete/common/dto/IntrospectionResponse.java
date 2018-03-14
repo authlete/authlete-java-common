@@ -331,13 +331,13 @@ public class IntrospectionResponse extends ApiResponse
      */
     private boolean clientIdAliasUsed;
 
-    
+
     /**
-     * Confirmation hash for MTLS-bound access tokens. Currently only the S256 
+     * Confirmation hash for MTLS-bound access tokens. Currently only the S256
      * type is supported and is assumed.
      */
     private String certificateThumbprint;
-    
+
     /**
      * Get the next action the service implementation should take.
      */
@@ -674,11 +674,11 @@ public class IntrospectionResponse extends ApiResponse
 
     /**
      * Get the client certificate thumbprint used to validate the access token.
-     * 
-     * @return the certificate thumbprint, calculated as the
-     *              SHA256 hash of the DER-encoded certificate
-     *              value.
-     * 
+     *
+     * @return
+     *         The certificate thumbprint, calculated as the SHA256 hash
+     *         of the DER-encoded certificate value.
+     *
      * @since 2.14
      */
     public String getCertificateThumbprint()
@@ -689,17 +689,15 @@ public class IntrospectionResponse extends ApiResponse
 
     /**
      * Set the client certificate thumbprint used to validate the access token.
-     * 
-     * @param thumbprint 
-     *          the certificate thumbprint, calculated as the
-     *          SHA256 hash of the DER-encoded certificate
-     *          value.
-     * 
+     *
+     * @param thumbprint
+     *         The certificate thumbprint, calculated as the SHA256 hash
+     *         of the DER-encoded certificate value.
+     *
      * @since 2.14
      */
     public void setCertificateThumbprint(String thumbprint)
     {
         this.certificateThumbprint = thumbprint;
     }
-
 }
