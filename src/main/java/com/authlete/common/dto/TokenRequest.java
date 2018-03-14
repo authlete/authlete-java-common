@@ -128,7 +128,7 @@ public class TokenRequest implements Serializable
 
 
     /**
-     * Client certificate (used in MTLS auth).
+     * Client certificate (used in MTLS auth and bound access tokens).
      */
     private String clientCertificate;
 
