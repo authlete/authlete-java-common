@@ -5,12 +5,12 @@ CHANGES
 --------------------------
 
 - `IntrospectionRequest` class
-    * Added `getClientCertificate()`.
-    * Added `setClientCertificate(String)`.
+    * Added `getClientCertificate()` method.
+    * Added `setClientCertificate(String)` method.
 
 - `IntrospectionResponse` class
-    * Added `getCertificateThumbprint()`.
-    * Added `setCertificateThumbprint(String)`.
+    * Added `getCertificateThumbprint()` method.
+    * Added `setCertificateThumbprint(String)` method.
 
 
 2.13 (2018-03-13)
