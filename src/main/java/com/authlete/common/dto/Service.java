@@ -46,7 +46,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 18L;
+    private static final long serialVersionUID = 19L;
 
 
     /*
@@ -138,6 +138,8 @@ public class Service implements Serializable
     private URI introspectionEndpoint;
     private ClientAuthMethod[] supportedIntrospectionAuthMethods;
     private JWSAlg[] supportedIntrospectionAuthSigningAlgorithms;
+    private boolean mutualTlsValidatePkiCertChain;
+    private String[] trustedRootCertificates;
 
 
     /**
@@ -2746,6 +2748,80 @@ public class Service implements Serializable
     public Service setSupportedIntrospectionAuthSigningAlgorithms(JWSAlg[] algorithms)
     {
         this.supportedIntrospectionAuthSigningAlgorithms = algorithms;
+
+        return this;
+    }
+
+
+    /**
+     * Determine whether this service validates certificate chains during PKI-based
+     * client mutual TLS authentication.
+     * 
+     * @return
+     *          {@code true} if this service requires clients using PKI MTLS
+     *          to present their certificate chain to the API during authentication,
+     *          {@code false} otherwise.
+     *          
+     * @since 2.15
+     */
+    public boolean isMutualTlsValidatePkiCertChain()
+    {
+        return mutualTlsValidatePkiCertChain;
+    }
+
+
+    /**
+     * Set whether this service validates certificate chains during PKI-based
+     * client mutual TLS authentication.
+     * 
+     * @param mutualTlsValidatePkiCertChain
+     *          {@code true} if this service requires clients using PKI MTLS
+     *          to present their certificate chain to the API during authentication,
+     *          {@code false} otherwise.
+     *          
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.15
+     */
+    public Service setMutualTlsValidatePkiCertChain(boolean mutualTlsValidatePkiCertChain)
+    {
+        this.mutualTlsValidatePkiCertChain = mutualTlsValidatePkiCertChain;
+        
+        return this;
+    }
+
+
+    /**
+     * Get the list of root certificates trusted by this service for PKI-based
+     * client mutual TLS authentication.
+     * 
+     * @return
+     *          The list of root certificates trusted by this service in PEM format.
+     *
+     * @since 2.15
+     */
+    public String[] getTrustedRootCertificates()
+    {
+        return trustedRootCertificates;
+    }
+
+
+    /**
+     * Get the list of root certificates trusted by this service for PKI-based
+     * client mutual TLS authentication.
+     * 
+     * @param trustedRootCertificates
+     *          The list of root certificates trusted by this service in PEM format.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.15
+     */
+    public Service setTrustedRootCertificates(String[] trustedRootCertificates)
+    {
+        this.trustedRootCertificates = trustedRootCertificates;
 
         return this;
     }
