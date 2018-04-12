@@ -1,6 +1,20 @@
 CHANGES
 =======
 
+2.15 (2018-04-12)
+--------------------------
+
+- `Service` class
+    * Added `isMutualTlsValidatePkiCertChain()` method.
+    * Added `setMutualTlsValidatePkiCertChain(boolean)` method.
+    * Added `getTrustedRootCertificates()` method.
+    * Added `setTrustedRootCertificates(String[])` method.
+
+- `TokenRequest` class
+    * Added `getClientCertificatePath()` method.
+    * Added `setClientCertificatePath(String[])` method.
+
+
 2.14 (2018-03-14)
 --------------------------
 

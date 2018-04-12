@@ -1,6 +1,20 @@
 変更点
 ======
 
+2.15 (2018 年 04 月 12 日)
+--------------------------
+
+- `Service` クラス
+    * `isMutualTlsValidatePkiCertChain()` メソッドを追加。
+    * `setMutualTlsValidatePkiCertChain(boolean)` メソッドを追加。
+    * `getTrustedRootCertificates()` メソッドを追加。
+    * `setTrustedRootCertificates(String[])` メソッドを追加。
+
+- `TokenRequest` クラス
+    * `getClientCertificatePath()` メソッドを追加。
+    * `setClientCertificatePath(String[])` メソッドを追加。
+
+
 2.14 (2018 年 03 月 14 日)
 --------------------------
 

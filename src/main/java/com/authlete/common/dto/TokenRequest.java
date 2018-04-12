@@ -416,7 +416,7 @@ public class TokenRequest implements Serializable
      * Get the certificate path presented by the client during
      * client authentication. These certificates are strings in
      * PEM format. 
-
+     *
      * @param clientCertificatePath the clientCertificatePath
      * 
      * @return
