@@ -106,7 +106,7 @@ import com.authlete.common.web.URLCoder;
  */
 public class TokenRequest implements Serializable
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -132,6 +132,12 @@ public class TokenRequest implements Serializable
      */
     private String clientCertificate;
 
+    
+    /**
+     * Client certificate path (used in PKI-based MTLS auth when
+     * certificates are validated by the Authlete service).
+     */
+    private String[] clientCertificatePath;
 
     /**
      * Extra properties to associate with an access token.
@@ -387,6 +393,41 @@ public class TokenRequest implements Serializable
     {
         this.properties = properties;
 
+        return this;
+    }
+
+
+    /**
+     * Get the certificate path presented by the client during
+     * client authentication. These certificates are strings in
+     * PEM format. 
+     * 
+     * @return the clientCertificatePath
+     * 
+     * @since 2.15
+     */
+    public String[] getClientCertificatePath()
+    {
+        return clientCertificatePath;
+    }
+
+
+    /**
+     * Get the certificate path presented by the client during
+     * client authentication. These certificates are strings in
+     * PEM format. 
+
+     * @param clientCertificatePath the clientCertificatePath
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.15
+     */
+    public TokenRequest setClientCertificatePath(String[] clientCertificatePath)
+    {
+        this.clientCertificatePath = clientCertificatePath;
+        
         return this;
     }
 }
