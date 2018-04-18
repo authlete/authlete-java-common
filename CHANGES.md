@@ -2,14 +2,14 @@ CHANGES
 =======
 
 2.16 (2018-04-18)
---------------------------
+-----------------
 - `JWSAlg` enum
     * Added `isSymmetric()` method.
     * Added `isAsymmetric()` method.
 
 
 2.15 (2018-04-12)
---------------------------
+-----------------
 
 - `Service` class
     * Added `isMutualTlsValidatePkiCertChain()` method.
@@ -23,7 +23,7 @@ CHANGES
 
 
 2.14 (2018-03-14)
---------------------------
+-----------------
 
 - `IntrospectionRequest` class
     * Added `getClientCertificate()` method.
