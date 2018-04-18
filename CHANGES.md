@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+2.16 (2018-04-18)
+--------------------------
+- `JWSAlg` enum
+    * Added `isSymmetric()` method.
+    * Added `isAsymmetric()` method.
+
+
 2.15 (2018-04-12)
 --------------------------
 
