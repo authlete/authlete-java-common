@@ -254,21 +254,32 @@ public enum JWSAlg
      * Check if the given JWS algorithm is a symmetric one.
      *
      * @param alg
-     *     JWS algorithm.
+     *         JWS algorithm.
      *
      * @return
-     *     {@code true} if the given JWS algorithm is symmetric.
-     *     To be concrete, {@code true} is returned when {@code alg}
-     *     is {@link #HS256}, {@link #HS384} or {@link #HS512}.
+     *         {@code true} if the given JWS algorithm is symmetric.
+     *         To be concrete, {@code true} is returned when {@code alg}
+     *         is {@link #HS256}, {@link #HS384} or {@link #HS512}.
      *
      * @since 2.12
      */
     public static boolean isSymmetric(JWSAlg alg)
     {
-        return alg != null &&
-                (alg.equals(JWSAlg.HS256)
-                        || alg.equals(JWSAlg.HS384)
-                        || alg.equals(JWSAlg.HS512));
+        if (alg == null)
+        {
+            return false;
+        }
+
+        switch (alg)
+        {
+            case HS256:
+            case HS384:
+            case HS512:
+                return true;
+
+            default:
+                return false;
+        }
     }
 
 
@@ -276,28 +287,73 @@ public enum JWSAlg
      * Check if the given JWS algorithm is an asymmetric one.
      *
      * @param alg
-     *     JWS algorithm.
+     *         JWS algorithm.
      *
      * @return
-     *     {@code true} if the given JWS algorithm is asymmetric.
-     *     To be concrete, {@code true} is returned when {@code alg} is
-     *     {@link #RS256}, {@link #RS384}, {@link #RS512},
-     *     {@link #PS256}, {@link #PS384}, {@link #PS512},
-     *     {@link #ES256}, {@link #ES384} or {@link #ES512}.
+     *         {@code true} if the given JWS algorithm is asymmetric.
+     *         To be concrete, {@code true} is returned when {@code alg} is
+     *         {@link #RS256}, {@link #RS384}, {@link #RS512},
+     *         {@link #PS256}, {@link #PS384}, {@link #PS512},
+     *         {@link #ES256}, {@link #ES384} or {@link #ES512}.
      *
      * @since 2.12
      */
     public static boolean isAsymmetric(JWSAlg alg)
     {
-        return alg != null &&
-                (alg.equals(JWSAlg.RS256)
-                        || alg.equals(JWSAlg.RS384)
-                        || alg.equals(JWSAlg.RS512)
-                        || alg.equals(JWSAlg.PS256)
-                        || alg.equals(JWSAlg.PS384)
-                        || alg.equals(JWSAlg.PS512)
-                        || alg.equals(JWSAlg.ES256)
-                        || alg.equals(JWSAlg.ES384)
-                        || alg.equals(JWSAlg.ES512));
+        if (alg == null)
+        {
+            return false;
+        }
+
+        switch (alg)
+        {
+            case RS256:
+            case RS384:
+            case RS512:
+            case PS256:
+            case PS384:
+            case PS512:
+            case ES256:
+            case ES384:
+            case ES512:
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
+
+    /**
+     * Check if this algorithm is a symmetric one.
+     *
+     * @return
+     *         {@code true} if this algorithm is symmetric.
+     *         To be concrete, {@code true} is returned when {@code alg}
+     *         is {@link #HS256}, {@link #HS384} or {@link #HS512}.
+     *
+     * @since 2.16
+     */
+    public boolean isSymmetric()
+    {
+        return isSymmetric(this);
+    }
+
+
+    /**
+     * Check if this algorithm is an asymmetric one.
+     *
+     * @return
+     *         {@code true} if this algorithm is asymmetric.
+     *         To be concrete, {@code true} is returned when this is
+     *         {@link #RS256}, {@link #RS384}, {@link #RS512},
+     *         {@link #PS256}, {@link #PS384}, {@link #PS512},
+     *         {@link #ES256}, {@link #ES384} or {@link #ES512}.
+     *
+     * @since 2.16
+     */
+    public boolean isAsymmetric()
+    {
+        return isAsymmetric(this);
     }
 }
