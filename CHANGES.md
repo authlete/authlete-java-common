@@ -1,6 +1,19 @@
 CHANGES
 =======
 
+2.17 (2018-04-18)
+-----------------
+
+- `JWEAlg` enum
+    * Added `getName()` method.
+
+- `JWEEnc` enum
+    * Added `getName()` method.
+
+- `JWSAlg` enum
+    * Added `getName()` method.
+
+
 2.16 (2018-04-18)
 -----------------
 - `JWSAlg` enum
