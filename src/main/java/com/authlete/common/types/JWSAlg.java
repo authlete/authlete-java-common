@@ -125,6 +125,26 @@ public enum JWSAlg
 
 
     /**
+     * Get the name of this algorithm.
+     *
+     * One of the values listed in the table in
+     * <a href="https://tools.ietf.org/html/rfc7518#section-3.1">3.1.
+     * "alg" (Algorithm) Header Parameter Values for JWS</a> of
+     * <a href="https://tools.ietf.org/html/rfc7518">RFC 7518</a>
+     * is returned.
+     *
+     * @return
+     *         The name of this algorithm.
+     *
+     * @since 2.17
+     */
+    public String getName()
+    {
+        return mString;
+    }
+
+
+    /**
      * Get the integer representation of this enum instance.
      */
     public short getValue()
