@@ -235,6 +235,12 @@ public interface AuthleteApi
      * @return
      *         Information about a newly created service.
      */
+    Service createService(Service service) throws AuthleteApiException;
+
+
+    /**
+     * @deprecated Use correctly spelled {@link #createService(Service)}.
+     */
     Service createServie(Service service) throws AuthleteApiException;
 
 

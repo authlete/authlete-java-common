@@ -925,10 +925,17 @@ class AuthleteApiImpl implements AuthleteApi
 
 
     @Override
-    public Service createServie(Service service) throws AuthleteApiException
+    public Service createService(Service service) throws AuthleteApiException
     {
         return callServiceOwnerPostApi(
                 SERVICE_CREATE_API_PATH, service, Service.class);
+    }
+
+
+    @Override
+    public Service createServie(Service service) throws AuthleteApiException
+    {
+        return createService(service);
     }
 
 
