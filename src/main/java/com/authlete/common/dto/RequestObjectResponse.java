@@ -1,9 +1,10 @@
 package com.authlete.common.dto;
 
+
 public class RequestObjectResponse extends ApiResponse
 {
-
     private static final long serialVersionUID = 1L;
+
 
     /**
      * The next action the service implementation should take.
@@ -14,25 +15,31 @@ public class RequestObjectResponse extends ApiResponse
          * The client has made a poorly formatted request.
          */
         BAD_REQUEST,
-        
+
         /**
          * The request object has been accepted and stored as a request URI
          * attached to this client.
          */
-        OK
+        OK,
+
+        /**
+         * There was an internal server error.
+         */
+        INTERNAL_SERVER_ERROR,
+
     }
-    
-    private static final String SUMMARY_FORMAT
-        = "action=%s, responseContent=%s, "
-        + "expiration=%d, requestUri=%s";
 
 
-    
+    private static final String SUMMARY_FORMAT = "action=%s, responseContent=%s, "
+            + "expiration=%d, requestUri=%s";
+
+
     private Action action;
     private String responseContent;
     private long expiration;
     private String requestUri;
-    
+
+
     /**
      * Get the next action that the service implementation should take.
      */
@@ -49,7 +56,8 @@ public class RequestObjectResponse extends ApiResponse
     {
         this.action = action;
     }
-    
+
+
     /**
      * Get the response content which can be used as the entity body
      * of the response returned to the client application.
@@ -80,7 +88,8 @@ public class RequestObjectResponse extends ApiResponse
 
 
     /**
-     * @param expiration the expiration to set
+     * @param expiration
+     *            the expiration to set
      */
     public void setExpiration(long expiration)
     {
@@ -98,13 +107,15 @@ public class RequestObjectResponse extends ApiResponse
 
 
     /**
-     * @param requestUri the requestUri to set
+     * @param requestUri
+     *            the requestUri to set
      */
     public void setRequestUri(String requestUri)
     {
         this.requestUri = requestUri;
     }
-    
+
+
     /**
      * Get the summary of this instance.
      */
@@ -114,5 +125,4 @@ public class RequestObjectResponse extends ApiResponse
                 action, responseContent,
                 expiration, requestUri);
     }
-
 }

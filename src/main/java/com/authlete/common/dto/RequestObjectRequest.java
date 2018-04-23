@@ -1,6 +1,8 @@
 package com.authlete.common.dto;
 
+
 import java.io.Serializable;
+
 
 /**
  * Request to Authlete's /auth/requestobject API.
@@ -17,6 +19,7 @@ public class RequestObjectRequest implements Serializable
      */
     private String body;
 
+
     /**
      * Get the value of the HTTP message body sent to the
      * request object endpoint. This consists entirely of a
@@ -24,7 +27,7 @@ public class RequestObjectRequest implements Serializable
      * (JWS) representing the client's request object.
      * 
      * @return
-     *          The body string.
+     *         The body string.
      * 
      * @since 2.XX
      */
@@ -33,6 +36,7 @@ public class RequestObjectRequest implements Serializable
         return body;
     }
 
+
     /**
      * Get the value of the HTTP message body sent to the
      * request object endpoint. This consists entirely of a
@@ -40,18 +44,17 @@ public class RequestObjectRequest implements Serializable
      * (JWS) representing the client's request object.
      * 
      * @param body
-     *          The body string.
-     *          
+     *            The body string.
+     * 
      * @return
-     *          this object
-     *          
+     *         this object
+     * 
      * @since 2.XX
      */
     public RequestObjectRequest setBody(String body)
     {
         this.body = body;
-        
+
         return this;
     }
-    
 }
