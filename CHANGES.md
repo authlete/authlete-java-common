@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+2.18 (2018-05-09)
+-----------------
+
+- `AuthleteApi` interface
+    * Added `createService(Service)` method.
+    * Marked `createServie(Service)` method as deprecated.
+
+
 2.17 (2018-04-18)
 -----------------
 
