@@ -1,8 +1,8 @@
 CHANGES
 =======
 
-Unreleased
-----------
+2.19 (2018-05-10)
+-----------------
 
 - `Client` class
     * Added `isTlsClientCertificateBoundAccessTokens()` method.

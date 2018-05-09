@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.18</version>
+    <version>2.19</version>
 </dependency>
 ```
 
