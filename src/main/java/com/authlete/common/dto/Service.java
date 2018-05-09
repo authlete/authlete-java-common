@@ -46,7 +46,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 19L;
+    private static final long serialVersionUID = 20L;
 
 
     /*
@@ -134,7 +134,7 @@ public class Service implements Serializable
     private boolean errorUriOmitted;
     private boolean clientIdAliasEnabled;
     private ServiceProfile[] supportedServiceProfiles;
-    private boolean mutualTlsSenderConstrainedAccessTokens;
+    private boolean tlsClientCertificateBoundAccessTokens;
     private URI introspectionEndpoint;
     private ClientAuthMethod[] supportedIntrospectionAuthMethods;
     private JWSAlg[] supportedIntrospectionAuthSigningAlgorithms;
@@ -2609,34 +2609,34 @@ public class Service implements Serializable
 
 
     /**
-     * Does this service support issuing MTLS sender-constrained access tokens?
+     * Does this service support issuing TLS client certificate bound access tokens?
      *
      * @return
-     *         {@code true} if this service supports issuing MTLS
-     *         sender-constrained access tokens.
+     *         {@code true} if this service supports issuing TLS client 
+     *         certificate bound access tokens.
      *
-     * @since 2.13
+     * @since 2.19
      */
-    public boolean isMutualTlsSenderConstrainedAccessTokens()
+    public boolean isTlsClientCertificateBoundAccessTokens()
     {
-        return mutualTlsSenderConstrainedAccessTokens;
+        return tlsClientCertificateBoundAccessTokens;
     }
 
 
     /**
-     * Enable or disable support for MTLS sender-constrained access tokens.
+     * Enable or disable support for TLS client certificate bound access tokens.
      *
      * @param enabled
-     *         {@code true} to enable MTLS sender-constrained access tokens.
+     *         {@code true} to enable TLS client certificate bound access tokens.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 2.13
+     * @since 2.19
      */
-    public Service setMutualTlsSenderConstrainedAccessTokens(boolean enabled)
+    public Service setTlsClientCertificateBoundAccessTokens(boolean enabled)
     {
-        this.mutualTlsSenderConstrainedAccessTokens = enabled;
+        this.tlsClientCertificateBoundAccessTokens = enabled;
 
         return this;
     }
