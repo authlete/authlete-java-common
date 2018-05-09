@@ -47,7 +47,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 8L;
+    private static final long serialVersionUID = 9L;
 
 
     /*
@@ -235,7 +235,7 @@ public class Client implements Serializable
     private long modifiedAt;
     private ClientExtension extension;
     private String tlsClientAuthSubjectDn;
-    private boolean mutualTlsSenderConstrainedAccessTokens;
+    private boolean tlsClientCertificateBoundAccessTokens;
 
 
     /**
@@ -1899,36 +1899,36 @@ public class Client implements Serializable
 
 
     /**
-     * Does this client use MTLS sender-constrained access tokens?
+     * Does this client use TLS client certificate bound access tokens?
      *
      * @return
-     *         {@code true} if this client uses MTLS sender-constrained
+     *         {@code true} if this client uses TLS client certificate bound
      *         access tokens.
      *
-     * @since 2.13
+     * @since 2.19
      */
-    public boolean isMutualTlsSenderConstrainedAccessTokens()
+    public boolean isTlsClientCertificateBoundAccessTokens()
     {
-        return mutualTlsSenderConstrainedAccessTokens;
+        return tlsClientCertificateBoundAccessTokens;
     }
 
 
     /**
-     * Set whether this client uses MTLS sender-constrained access tokens
+     * Set whether this client uses TLS client certificate bound access tokens
      * or not.
      *
      * @param use
-     *         {@code true} to indicate that this client uses MTLS
-     *         sender-constrained access tokens.
+     *         {@code true} to indicate that this client uses TLS client 
+     *         certificate bound access tokens.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 2.13
+     * @since 2.19
      */
-    public Client setMutualTlsSenderConstrainedAccessTokens(boolean use)
+    public Client setTlsClientCertificateBoundAccessTokens(boolean use)
     {
-        this.mutualTlsSenderConstrainedAccessTokens = use;
+        this.tlsClientCertificateBoundAccessTokens = use;
 
         return this;
     }
