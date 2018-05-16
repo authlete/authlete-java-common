@@ -47,7 +47,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 9L;
+    private static final long serialVersionUID = 10L;
 
 
     /*
@@ -236,6 +236,7 @@ public class Client implements Serializable
     private ClientExtension extension;
     private String tlsClientAuthSubjectDn;
     private boolean tlsClientCertificateBoundAccessTokens;
+    private String selfSignedCertificateKeyId;
 
 
     /**
@@ -1918,7 +1919,7 @@ public class Client implements Serializable
      * or not.
      *
      * @param use
-     *         {@code true} to indicate that this client uses TLS client 
+     *         {@code true} to indicate that this client uses TLS client
      *         certificate bound access tokens.
      *
      * @return
@@ -1929,6 +1930,54 @@ public class Client implements Serializable
     public Client setTlsClientCertificateBoundAccessTokens(boolean use)
     {
         this.tlsClientCertificateBoundAccessTokens = use;
+
+        return this;
+    }
+
+
+    /**
+     * Get the key ID of a JWK containing a self-signed certificate of this client.
+     *
+     * <p>
+     * See <i>"2.2. Self-Signed Certificate Mutual TLS OAuth Client Authentication
+     * Method"</i> in <i>"OAuth 2.0 Mutual TLS Client Authentication and Certificate
+     * Bound Access Tokens"</i> for details.
+     * </p>
+     *
+     * @return
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @since 2.20
+     */
+    public String getSelfSignedCertificateKeyId()
+    {
+        return selfSignedCertificateKeyId;
+    }
+
+
+    /**
+     * Set the key ID of a JWK containing a self-signed certificate of this client.
+     * Unless this value is set to {@code null}, Authlete uses this value to look
+     * up the corresponding JWK for client authenticaiton using mutual TLS utilizing
+     * self-signed certificates.
+     *
+     * <p>
+     * See <i>"2.2. Self-Signed Certificate Mutual TLS OAuth Client Authentication
+     * Method"</i> in <i>"OAuth 2.0 Mutual TLS Client Authentication and Certificate
+     * Bound Access Tokens"</i> for details.
+     * </p>
+     *
+     * @param keyId
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.20
+     */
+    public Client setSelfSignedCertificateKeyId(String keyId)
+    {
+        this.selfSignedCertificateKeyId = keyId;
 
         return this;
     }
