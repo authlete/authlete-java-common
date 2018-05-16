@@ -236,7 +236,7 @@ public class Client implements Serializable
     private ClientExtension extension;
     private String tlsClientAuthSubjectDn;
     private boolean tlsClientCertificateBoundAccessTokens;
-    private String keyIdOfJwkContainingSelfSignedCertificate;
+    private String selfSignedCertificateKeyId;
 
 
     /**
@@ -1949,9 +1949,9 @@ public class Client implements Serializable
      *
      * @since 2.20
      */
-    public String getKeyIdOfJwkContainingSelfSignedCertificate()
+    public String getSelfSignedCertificateKeyId()
     {
-        return keyIdOfJwkContainingSelfSignedCertificate;
+        return selfSignedCertificateKeyId;
     }
 
 
@@ -1975,9 +1975,9 @@ public class Client implements Serializable
      *
      * @since 2.20
      */
-    public Client setKeyIdOfJwkContainingSelfSignedCertificate(String keyId)
+    public Client setSelfSignedCertificateKeyId(String keyId)
     {
-        this.keyIdOfJwkContainingSelfSignedCertificate = keyId;
+        this.selfSignedCertificateKeyId = keyId;
 
         return this;
     }
