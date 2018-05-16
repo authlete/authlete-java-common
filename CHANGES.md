@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+2.20 (2018-05-16)
+-----------------
+
+- `Client` class
+    * Added `getSelfSignedCertificateKeyId()` method.
+    * Added `setSelfSignedCertificateKeyId(String)` method.
+
+
 2.19 (2018-05-10)
 -----------------
 

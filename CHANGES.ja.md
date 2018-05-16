@@ -1,6 +1,14 @@
 変更点
 ======
 
+2.20 (2018 年 05 月 16 日)
+-----------------
+
+- `Client` クラス
+    * `getSelfSignedCertificateKeyId()` メソッドを追加。
+    * `setSignedCertificateKeyId(String)` メソッドを追加。
+
+
 2.19 (2018 年 05 月 10 日)
 --------------------------
 
