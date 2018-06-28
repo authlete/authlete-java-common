@@ -1958,7 +1958,7 @@ public class Client implements Serializable
     /**
      * Set the key ID of a JWK containing a self-signed certificate of this client.
      * Unless this value is set to {@code null}, Authlete uses this value to look
-     * up the corresponding JWK for client authenticaiton using mutual TLS utilizing
+     * up the corresponding JWK for client authentication using mutual TLS utilizing
      * self-signed certificates.
      *
      * <p>
