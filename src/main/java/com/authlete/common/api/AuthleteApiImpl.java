@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Authlete, Inc.
+ * Copyright (C) 2017-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,6 +43,8 @@ import com.authlete.common.dto.ClientAuthorizationDeleteRequest;
 import com.authlete.common.dto.ClientAuthorizationGetListRequest;
 import com.authlete.common.dto.ClientAuthorizationUpdateRequest;
 import com.authlete.common.dto.ClientListResponse;
+import com.authlete.common.dto.ClientRegistrationRequest;
+import com.authlete.common.dto.ClientRegistrationResponse;
 import com.authlete.common.dto.ClientSecretRefreshResponse;
 import com.authlete.common.dto.ClientSecretUpdateRequest;
 import com.authlete.common.dto.ClientSecretUpdateResponse;
@@ -115,6 +117,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String SERVICE_JWKS_GET_API_PATH              = "/api/service/jwks/get";
     private static final String SERVICE_UPDATE_API_PATH                = "/api/service/update/%d";
     private static final String CLIENT_CREATE_API_PATH                 = "/api/client/create";
+    private static final String CLIENT_REGISTER_API_PATH               = "/api/client/register";
     private static final String CLIENT_DELETE_API_PATH                 = "/api/client/delete/%d";
     private static final String CLIENT_GET_API_PATH                    = "/api/client/get/%d";
     private static final String CLIENT_GET_LIST_API_PATH               = "/api/client/get/list";
@@ -1023,6 +1026,15 @@ class AuthleteApiImpl implements AuthleteApi
     {
         return callServicePostApi(
                 CLIENT_CREATE_API_PATH, client, Client.class);
+    }
+
+
+    @Override
+    public ClientRegistrationResponse registerClient(
+            ClientRegistrationRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                CLIENT_REGISTER_API_PATH, request, ClientRegistrationResponse.class);
     }
 
 

@@ -27,6 +27,8 @@ import com.authlete.common.dto.Client;
 import com.authlete.common.dto.ClientAuthorizationGetListRequest;
 import com.authlete.common.dto.ClientAuthorizationUpdateRequest;
 import com.authlete.common.dto.ClientListResponse;
+import com.authlete.common.dto.ClientRegistrationRequest;
+import com.authlete.common.dto.ClientRegistrationResponse;
 import com.authlete.common.dto.ClientSecretRefreshResponse;
 import com.authlete.common.dto.ClientSecretUpdateResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
@@ -241,6 +243,7 @@ public interface AuthleteApi
     /**
      * @deprecated Use correctly spelled {@link #createService(Service)}.
      */
+    @Deprecated
     Service createServie(Service service) throws AuthleteApiException;
 
 
@@ -511,6 +514,24 @@ public interface AuthleteApi
      *         Information about a newly created client.
      */
     Client createClient(Client client) throws AuthleteApiException;
+
+
+    /**
+     * Register a client (= call Authlete's {@code /client/register} API).
+     *
+     * This method can be used to implement a client registration endpoint
+     * that complies with <a href="https://tools.ietf.org/html/rfc7591">RFC 7591</a>
+     * (OAuth 2.0 Dynamic Client Registration Protocol).
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.22
+     */
+    ClientRegistrationResponse registerClient(ClientRegistrationRequest request) throws AuthleteApiException;
 
 
     /**
