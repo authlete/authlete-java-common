@@ -132,12 +132,13 @@ public class TokenRequest implements Serializable
      */
     private String clientCertificate;
 
-    
+
     /**
      * Client certificate path (used in PKI-based MTLS auth when
      * certificates are validated by the Authlete service).
      */
     private String[] clientCertificatePath;
+
 
     /**
      * Extra properties to associate with an access token.
@@ -400,10 +401,10 @@ public class TokenRequest implements Serializable
     /**
      * Get the certificate path presented by the client during
      * client authentication. These certificates are strings in
-     * PEM format. 
-     * 
+     * PEM format.
+     *
      * @return the clientCertificatePath
-     * 
+     *
      * @since 2.15
      */
     public String[] getClientCertificatePath()
@@ -415,10 +416,10 @@ public class TokenRequest implements Serializable
     /**
      * Get the certificate path presented by the client during
      * client authentication. These certificates are strings in
-     * PEM format. 
+     * PEM format.
      *
      * @param clientCertificatePath the clientCertificatePath
-     * 
+     *
      * @return
      *         {@code this} object.
      *
@@ -427,7 +428,7 @@ public class TokenRequest implements Serializable
     public TokenRequest setClientCertificatePath(String[] clientCertificatePath)
     {
         this.clientCertificatePath = clientCertificatePath;
-        
+
         return this;
     }
 }

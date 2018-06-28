@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,9 @@
  */
 package com.authlete.common.dto;
 
+
 import com.authlete.common.util.Utils;
+
 
 /**
  * Response from Authlete's {@code /auth/introspection} API.
@@ -337,6 +339,7 @@ public class IntrospectionResponse extends ApiResponse
      * type is supported and is assumed.
      */
     private String certificateThumbprint;
+
 
     /**
      * Get the next action the service implementation should take.
