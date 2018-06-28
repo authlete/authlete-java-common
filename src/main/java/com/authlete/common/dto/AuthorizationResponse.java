@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -845,7 +845,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 8L;
+    private static final long serialVersionUID = 9L;
 
 
     /**
@@ -931,6 +931,7 @@ public class AuthorizationResponse extends ApiResponse
     private String loginHint;
     private Prompt lowestPrompt;
     private Prompt[] prompts;
+    private String requestObjectPayload;
     private String responseContent;
     private String ticket;
 
@@ -1387,6 +1388,39 @@ public class AuthorizationResponse extends ApiResponse
     public void setPrompts(Prompt[] prompts)
     {
         this.prompts = prompts;
+    }
+
+
+    /**
+     * Get the payload part of the request object.
+     *
+     * <p>
+     * This method returns {@code null} if the authorization request does not
+     * include a request object.
+     * </p>
+     *
+     * @return
+     *         The payload part of the request object in JSON format.
+     *
+     * @since 2.22
+     */
+    public String getRequestObjectPayload()
+    {
+        return requestObjectPayload;
+    }
+
+
+    /**
+     * Set the payload part of the request object.
+     *
+     * @param payload
+     *         The payload part of the request object in JSON format.
+     *
+     * @since 2.22
+     */
+    public void setRequestObjectPayload(String payload)
+    {
+        this.requestObjectPayload = payload;
     }
 
 
