@@ -1,6 +1,24 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `registerClient(ClientRegistrationRequest)` メソッドを追加。
+
+- `AuthorizationResponse` クラス
+    * `getRequestObjectPayload()` メソッドを追加。
+    * `setRequestObjectPayload(String)` メソッドを追加。
+
+- `ErrorCode` 列挙型
+    * `invalid_redirect_uri` を追加。
+    * `invalid_client_metadata` を追加。
+    * `invalid_software_statement` を追加。
+    * `unapproved_software_statement` を追加。
+
+- 新しいクラス
+    * `ClientRegistrationRequest`
+    * `ClientRegistrationResponse`
+
+
 2.21 (2018 年 06 月 12 日)
 -----------------
 

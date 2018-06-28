@@ -1,6 +1,24 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `registerClient(ClientRegistrationRequest)` method.
+
+- `AuthorizationResponse` class
+    * Added `getRequestObjectPayload()` method.
+    * Added `setRequestObjectPayload(String)` method.
+
+- `ErrorCode` enum
+    * Added `invalid_redirect_uri`.
+    * Added `invalid_client_metadata`.
+    * Added `invalid_software_statement`.
+    * Added `unapproved_software_statement`.
+
+- New classes
+    * `ClientRegistrationRequest`
+    * `ClientRegistrationResponse`
+
+
 2.21 (2018-06-12)
 -----------------
 
