@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,9 @@ package com.authlete.common.types;
  *
  * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthError"
  *      >OpenID Connect Core 1.0, 3.1.2.6. Authorization Error Response</a>
+ *
+ * @see <a href="https://tools.ietf.org/html/rfc7591#section-3.2.2"
+ *      >RFC 7591, 3.2.2. Client Registration Error Response</a>
  *
  * @author Takahiko Kawasaki
  */
@@ -153,6 +156,7 @@ public enum ErrorCode
      */
     invalid_token,
 
+
     /**
      * The Authorization Server requires End-User authentication.
      * This error MAY be returned when the {@code prompt} parameter
@@ -225,6 +229,68 @@ public enum ErrorCode
      * The authorization server does not support obtaining an
      * authorization code or an access token using this method.
      */
-    unsupported_response_type
+    unsupported_response_type,
+
+
+    /**
+     * The value of one or more redirect URIs is invalid.
+     *
+     * <p>
+     * See "<a href=
+     * "https://tools.ietf.org/html/rfc7591#section-3.2.2">3.2.2.
+     * Client Registration Error Response</a>" in <a href=
+     * "https://tools.ietf.org/html/rfc7591">RFC 7591</a> for details.
+     * </p>
+     *
+     * @since 2.22
+     */
+    invalid_redirect_uri,
+
+
+    /**
+     * The value of one of the client metadata fields is invalid and the
+     * server has rejected the client registration request.
+     *
+     * <p>
+     * See "<a href=
+     * "https://tools.ietf.org/html/rfc7591#section-3.2.2">3.2.2.
+     * Client Registration Error Response</a>" in <a href=
+     * "https://tools.ietf.org/html/rfc7591">RFC 7591</a> for details.
+     * </p>
+     *
+     * @since 2.22
+     */
+    invalid_client_metadata,
+
+
+    /**
+     * The software statement presented is invalid.
+     *
+     * <p>
+     * See "<a href=
+     * "https://tools.ietf.org/html/rfc7591#section-3.2.2">3.2.2.
+     * Client Registration Error Response</a>" in <a href=
+     * "https://tools.ietf.org/html/rfc7591">RFC 7591</a> for details.
+     * </p>
+     *
+     * @since 2.22
+     */
+    invalid_software_statement,
+
+
+    /**
+     * The software statement presented is not approved for use by this
+     * authorization server.
+     *
+     * <p>
+     * See "<a href=
+     * "https://tools.ietf.org/html/rfc7591#section-3.2.2">3.2.2.
+     * Client Registration Error Response</a>" in <a href=
+     * "https://tools.ietf.org/html/rfc7591">RFC 7591</a> for details.
+     * </p>
+     *
+     * @since 2.22
+     */
+    unapproved_software_statement,
     ;
 }
