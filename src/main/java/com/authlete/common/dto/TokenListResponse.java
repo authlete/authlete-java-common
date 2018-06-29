@@ -266,8 +266,8 @@ public class TokenListResponse implements Serializable
      * Get the list of access tokens that match the query conditions.
      *
      * @return
-     *         List of clients, or {@code null} when no access tokens matched the
-     *         query conditions.
+     *         List of access tokens, or {@code null} when no access tokens matched
+     *         the query conditions.
      */
     public AccessToken[] getAccessTokens()
     {
@@ -279,8 +279,8 @@ public class TokenListResponse implements Serializable
      * Set the list of access tokens that match the query conditions.
      *
      * @param clients
-     *         List of clients, or {@code null} when no access tokens matched the
-     *         query conditions.
+     *         List of access tokens, or {@code null} when no access tokens matched
+     *         the query conditions.
      *
      * @return
      *         {@code this} object.

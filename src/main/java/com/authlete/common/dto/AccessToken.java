@@ -38,7 +38,7 @@ public class AccessToken implements Serializable
     private long accessTokenExpiresAt;
     private long refreshTokenExpiresAt;
     private long createdAt;
-    private long lastUsedAt;
+    private long lastRefreshedAt;
     private Property[] properties;
 
 
@@ -72,10 +72,10 @@ public class AccessToken implements Serializable
 
 
     /**
-     * Get the hash of the refresh token.
+     * Get the hash of the refresh token. {@code null} may be returned.
      *
      * @return
-     *         The hash of the refresh token.
+     *         The hash of the refresh token or {@code null}.
      */
     public String getRefreshTokenHash()
     {
@@ -131,9 +131,15 @@ public class AccessToken implements Serializable
 
     /**
      * Get the subject (= unique user ID) associated with the access token.
+     * {@code null} is returned if the access token was created using the
+     * <a href="https://tools.ietf.org/html/rfc6749#section-1.3.4"> Client Credentials</a>
+     * flow.
      *
      * @return
-     *         The subject (= unique user ID) associated with the access token.
+     *         The subject (= unique user ID) associated with the access token or
+     *         {@code null} if the access token was created using the
+     *         <a href="https://tools.ietf.org/html/rfc6749#section-1.3.4"> Client Credentials</a>
+     *         flow.
      */
     public String getSubject()
     {
@@ -159,10 +165,12 @@ public class AccessToken implements Serializable
 
 
     /**
-     * Get the grant type of the access token when the access token was generated.
+     * Get the grant type of the access token when the access token was created.
+     * Note that the value of the grant type is not changed when the access token
+     * is refreshed using the refresh token.
      *
      * @return
-     *         The grant type of the access token when the access token was generated.
+     *         The grant type of the access token when the access token was created.
      */
     public GrantType getGrantType()
     {
@@ -171,10 +179,10 @@ public class AccessToken implements Serializable
 
 
     /**
-     * Set the grant type of the access token when the access token was generated..
+     * Set the grant type of the access token when the access token was created.
      *
      * @param grantType
-     *         The grant type of the access token when the access token was generated..
+     *         The grant type of the access token when the access token was created.
      *
      * @return
      *         {@code this} object.
@@ -217,7 +225,7 @@ public class AccessToken implements Serializable
 
 
     /**
-     * Set the timestamp at which the access token will expire.
+     * Get the timestamp at which the access token will expire.
      *
      * @return
      *         The expiration timestamp in milliseconds since the Unix epoch (1970-01-01).
@@ -246,8 +254,8 @@ public class AccessToken implements Serializable
 
 
     /**
-     * Set the timestamp at which the refresh token will expire. This method may
-     * return {@code null}.
+     * Get the timestamp at which the refresh token will expire. {@code 0} is
+     * returned if {@link #getRefreshTokenHash()} returns {@code null}.
      *
      * @return
      *         The expiration timestamp in milliseconds since the Unix epoch (1970-01-01).
@@ -276,11 +284,13 @@ public class AccessToken implements Serializable
 
 
     /**
-     * Get the timestamp at which the access token was created.
+     * Get the timestamp at which the access token was first created. Note
+     * that the value of the timestamp is not changed when the access token is
+     * refreshed with the refresh token.
      *
      * @return
-     *         The creation timestamp in milliseconds since the Unix epoch (1970-01-01).
-     *
+     *         The timestamp at which the access token was first created in
+     *         milliseconds since the Unix epoch (1970-01-01).
      */
     public long getCreatedAt()
     {
@@ -289,10 +299,11 @@ public class AccessToken implements Serializable
 
 
     /**
-     * Set the timestamp at which the access token was created.
+     * Set the timestamp at which the access token was first created.
      *
      * @param createdAt
-     *         The creation timestamp in milliseconds since the Unix epoch (1970-01-01).
+     *         The timestamp at which the access token was first created in
+     *         milliseconds since the Unix epoch (1970-01-01).
      *
      * @return
      *         {@code this} object.
@@ -306,31 +317,34 @@ public class AccessToken implements Serializable
 
 
     /**
-     * Get the timestamp at which the access token was last used.
+     * Get the timestamp at which the access token was last refreshed using the
+     * refresh token. {@code 0} is returned if it has never been refreshed.
      *
      * @return
-     *         The timestamp at which the acccess token was last used in milliseconds
-     *         since the Unix epoch (1970-01-01).
+     *         The timestamp at which the access token was last refreshed using
+     *         the refreshed token in milliseconds since the Unix epoch (1970-01-01).
+     *         {@code 0} is returned if it has never been refreshed.
      */
-    public long getLastUsedAt()
+    public long getLastRefreshedAt()
     {
-        return lastUsedAt;
+        return lastRefreshedAt;
     }
 
 
     /**
-     * Set the timestamp at which the access token was last used.
+     * Set the timestamp at which the access token was last refreshed using the
+     * refresh token.
      *
-     * @param lastUsedAt
-     *         The timestamp at which the acccess token was last used in milliseconds
-     *         since the Unix epoch (1970-01-01).
+     * @param lastRefreshedAt
+     *         The timestamp at which the access token was last refreshed using
+     *         the refreshed token in milliseconds since the Unix epoch (1970-01-01).
      *
      * @return
      *         {@code this} object.
      */
-    public AccessToken setLastUsedAt(long lastUsedAt)
+    public AccessToken setLastRefreshedAt(long lastRefreshedAt)
     {
-        this.lastUsedAt = lastUsedAt;
+        this.lastRefreshedAt = lastRefreshedAt;
 
         return this;
     }
