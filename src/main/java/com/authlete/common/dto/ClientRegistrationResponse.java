@@ -162,9 +162,7 @@ public class ClientRegistrationResponse extends ApiResponse
 
     private Action action;
     private String responseContent;
-    private long clientId;
-    private String clientSecret;
-    private long clientIdIssuedAt;
+    private Client client;
 
 
     /**
@@ -220,101 +218,41 @@ public class ClientRegistrationResponse extends ApiResponse
 
 
     /**
-     * Get the client ID of the newly registered client application.
+     * Get the information about the client which has been registered
+     * successfully.
      *
      * <p>
-     * This corresponds to {@code "client_id"} defined in "<a href=
-     * "https://tools.ietf.org/html/rfc7591#section-3.2.1">3.2.1. Client
-     * Information Response</a>" of <a href=
-     * "https://tools.ietf.org/html/rfc7591">RFC 7591</a>.
-     * </p>
-     *
-     * @return
-     *         The client ID.
-     */
-    public long getClientId()
-    {
-        return clientId;
-    }
-
-
-    /**
-     * Set the client ID of the newly registered client application.
-     *
-     * @param clientId
-     *         The client ID.
-     */
-    public void setClientId(long clientId)
-    {
-        this.clientId = clientId;
-    }
-
-
-    /**
-     * Get the client secret of the newly registered client application.
-     *
-     * <p>
-     * This corresponds to {@code "client_secret"} defined in "<a href=
-     * "https://tools.ietf.org/html/rfc7591#section-3.2.1">3.2.1. Client
-     * Information Response</a>" of <a href=
+     * The values returned from {@link Client#getClientId() getClientId()},
+     * {@link Client#getClientSecret() getClientSecret()} and {@link
+     * Client#getCreatedAt() getCreatedAt()} of the object returned from
+     * this method correspond to {@code client_id}, {@code client_secret}
+     * and {@code client_id_issued_at} in <a href=
      * "https://tools.ietf.org/html/rfc7591">RFC 7591</a>.
      * </p>
      *
      * <p>
-     * Note that Authlete generates a client secret regardless of whether
-     * the client type is confidential or public.
+     * As the client secret never expires in the current implementation of
+     * Authlete, the {@link Client} class does not have a property which
+     * corresponds to {@code client_secret_expires_at}.
      * </p>
      *
      * @return
-     *         The client secret.
+     *         The information about the newly registered client.
      */
-    public String getClientSecret()
+    public Client getClient()
     {
-        return clientSecret;
+        return client;
     }
 
 
     /**
-     * Set the client secret of the newly registered client application.
+     * Set the information about the newly registered client.
      *
-     * @param clientSecret
-     *         The client secret.
+     * @param client
+     *         The information about the newly registered client.
      */
-    public void setClientSecret(String clientSecret)
+    public void setClient(Client client)
     {
-        this.clientSecret = clientSecret;
-    }
-
-
-    /**
-     * Get the time at which the client identifier was issued. The time is
-     * represented as the number of seconds since the Unix epoch (1970-Jan-1).
-     *
-     * <p>
-     * This corresponds to {@code "client_id_issued_at"} defined in "<a href=
-     * "https://tools.ietf.org/html/rfc7591#section-3.2.1">3.2.1. Client
-     * Information Response</a>" of <a href=
-     * "https://tools.ietf.org/html/rfc7591">RFC 7591</a>.
-     * </p>
-     *
-     * @return
-     *         The time at which the client identifier was issued.
-     */
-    public long getClientIdIssuedAt()
-    {
-        return clientIdIssuedAt;
-    }
-
-
-    /**
-     * Set the time at which the client identifier was issued. The time is
-     * represented as the number of seconds since the Unix epoch (1970-Jan-1).
-     *
-     * @param issuedAt
-     *         The time at which the client identifier was issued.
-     */
-    public void setClientIdIssuedAt(long issuedAt)
-    {
-        this.clientIdIssuedAt = issuedAt;
+        this.client = client;
     }
 }
