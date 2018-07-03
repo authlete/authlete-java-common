@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.22 (2018 年 07 月 03 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `registerClient(ClientRegistrationRequest)` メソッドを追加。
 
@@ -15,19 +18,21 @@
     * `unapproved_software_statement` を追加。
 
 - 新しいクラス
+    * `AccessToken`
     * `ClientRegistrationRequest`
     * `ClientRegistrationResponse`
+    * `TokenListResponse`
 
 
 2.21 (2018 年 06 月 12 日)
------------------
+--------------------------
 
 - 新しい列挙型
     * `HokMethod`
 
 
 2.20 (2018 年 05 月 16 日)
------------------
+--------------------------
 
 - `Client` クラス
     * `getSelfSignedCertificateKeyId()` メソッドを追加。

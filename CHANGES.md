@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.22 (2018-07-03)
+-----------------
+
 - `AuthleteApi` interface
     * Added `registerClient(ClientRegistrationRequest)` method.
 
@@ -15,8 +18,10 @@ CHANGES
     * Added `unapproved_software_statement`.
 
 - New classes
+    * `AccessToken`
     * `ClientRegistrationRequest`
     * `ClientRegistrationResponse`
+    * `TokenListResponse`
 
 
 2.21 (2018-06-12)
