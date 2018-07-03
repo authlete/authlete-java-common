@@ -1,4 +1,5 @@
-/* Copyright (C) 2018 Authlete, Inc.
+/*
+ * Copyright (C) 2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -132,13 +133,13 @@ public class AccessToken implements Serializable
     /**
      * Get the subject (= unique user ID) associated with the access token.
      * {@code null} is returned if the access token was created using the
-     * <a href="https://tools.ietf.org/html/rfc6749#section-1.3.4">Client Credentials</a>
+     * <a href="https://tools.ietf.org/html/rfc6749#section-4.4">Client Credentials</a>
      * flow.
      *
      * @return
      *         The subject (= unique user ID) associated with the access token or
      *         {@code null} if the access token was created using the
-     *         <a href="https://tools.ietf.org/html/rfc6749#section-1.3.4">Client Credentials</a>
+     *         <a href="https://tools.ietf.org/html/rfc6749#section-4.4">Client Credentials</a>
      *         flow.
      */
     public String getSubject()
