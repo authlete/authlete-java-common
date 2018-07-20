@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.22</version>
+    <version>2.23</version>
 </dependency>
 ```
 
@@ -296,6 +296,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
     - `deleteClientAuthorization(long clientId, String subject)`
     - `getClientAuthorizationList(ClientAuthorizationGetListRequest request)`
     - `updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request)`
+
+  14. Methods for JOSE
+
+    - `verifyJose(JoseVerifyRequest)`
 
 *Examples*
 

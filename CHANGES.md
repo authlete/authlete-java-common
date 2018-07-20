@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+2.23 (2018-07-20)
+-----------------
+
+- `AuthleteApi` interface
+    * Added `verifyJose(JoseVerifyRequest)` method.
+
+- New classes
+    * `JoseVerifyRequest`
+    * `JoseVerifyResponse`
+
+
 2.22 (2018-07-03)
 -----------------
 

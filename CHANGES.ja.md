@@ -1,6 +1,17 @@
 変更点
 ======
 
+2.23 (2018 年 07 月 20 日)
+--------------------------
+
+- `AuthleteApi` インターフェース
+    * `verifyJose(JoseVerifyRequest)` メソッドを追加。
+
+- 新しいクラス
+    * `JoseVerifyRequest`
+    * `JoseVerifyResponse`
+
+
 2.22 (2018 年 07 月 03 日)
 --------------------------
 
