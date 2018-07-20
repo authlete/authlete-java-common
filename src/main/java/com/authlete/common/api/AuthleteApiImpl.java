@@ -51,6 +51,8 @@ import com.authlete.common.dto.ClientSecretUpdateResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
 import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
+import com.authlete.common.dto.JoseVerifyRequest;
+import com.authlete.common.dto.JoseVerifyResponse;
 import com.authlete.common.dto.RevocationRequest;
 import com.authlete.common.dto.RevocationResponse;
 import com.authlete.common.dto.Service;
@@ -132,6 +134,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String CLIENT_AUTHORIZATION_DELETE_API_PATH   = "/api/client/authorization/delete/%d";
     private static final String CLIENT_AUTHORIZATION_GET_LIST_API_PATH = "/api/client/authorization/get/list";
     private static final String CLIENT_AUTHORIZATION_UPDATE_API_PATH   = "/api/client/authorization/update/%d";
+    private static final String JOSE_VERIFY_API_PATH                   = "/api/jose/verify";
 
 
     private final String mBaseUrl;
@@ -1308,5 +1311,13 @@ class AuthleteApiImpl implements AuthleteApi
     public Settings getSettings()
     {
         return mSettings;
+    }
+
+
+    @Override
+    public JoseVerifyResponse verifyJose(JoseVerifyRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                JOSE_VERIFY_API_PATH, request, JoseVerifyResponse.class);
     }
 }

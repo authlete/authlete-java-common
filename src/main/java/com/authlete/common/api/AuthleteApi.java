@@ -34,6 +34,8 @@ import com.authlete.common.dto.ClientSecretUpdateResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
 import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
+import com.authlete.common.dto.JoseVerifyRequest;
+import com.authlete.common.dto.JoseVerifyResponse;
 import com.authlete.common.dto.RevocationRequest;
 import com.authlete.common.dto.RevocationResponse;
 import com.authlete.common.dto.Service;
@@ -1003,4 +1005,18 @@ public interface AuthleteApi
      * @since 2.9
      */
     Settings getSettings();
+
+
+    /**
+     * Verify a JOSE object.
+     *
+     * @param request
+     *         A request to Authlete's {@code /api/jose/verify} API.
+     *
+     * @return
+     *         A response from Authlete's {@code /api/jose/verify} API.
+     *
+     * @since 2.23
+     */
+    JoseVerifyResponse verifyJose(JoseVerifyRequest request) throws AuthleteApiException;
 }
