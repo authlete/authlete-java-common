@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+2.24 (2018-08-06)
+-----------------
+
+- `Client` class
+    * Added `getSoftwareId()` method.
+    * Added `setSoftwareId(String)` method.
+    * Added `getSoftwareVersion()` method.
+    * Added `setSoftwareVersion(String)` method.
+
+
 2.23 (2018-07-20)
 -----------------
 

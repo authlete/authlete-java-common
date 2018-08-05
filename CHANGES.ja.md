@@ -1,6 +1,16 @@
 変更点
 ======
 
+2.24 (2018 年 08 月 06 日)
+--------------------------
+
+- `Client` クラス
+    * `getSoftwareId()` メソッドを追加。
+    * `setSoftwareId(String)` メソッドを追加。
+    * `getSoftwareVersion()` メソッドを追加。
+    * `setSoftwareVersion(String)` メソッドを追加。
+
+
 2.23 (2018 年 07 月 20 日)
 --------------------------
 
