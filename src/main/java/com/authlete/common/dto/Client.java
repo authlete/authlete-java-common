@@ -47,7 +47,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 10L;
+    private static final long serialVersionUID = 11L;
 
 
     /*
@@ -237,6 +237,8 @@ public class Client implements Serializable
     private String tlsClientAuthSubjectDn;
     private boolean tlsClientCertificateBoundAccessTokens;
     private String selfSignedCertificateKeyId;
+    private String softwareId;
+    private String softwareVersion;
 
 
     /**
@@ -1978,6 +1980,106 @@ public class Client implements Serializable
     public Client setSelfSignedCertificateKeyId(String keyId)
     {
         this.selfSignedCertificateKeyId = keyId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the unique identifier string assigned by the client developer or
+     * software publisher used by registration endpoints to identify the client
+     * software to be dynamically registered.
+     *
+     * <p>
+     * This property corresponds to the {@code software_id} metadata defined in
+     * <a href="https://tools.ietf.org/html/rfc7591#section-2">2. Client
+     * Metadata</a> of <a href="https://tools.ietf.org/html/rfc7591">RFC 7591</a>
+     * (OAuth 2.0 Dynamic Client Registration Protocol).
+     * </p>
+     *
+     * @return
+     *         The unique identifier of the client software.
+     *
+     * @since 2.24
+     */
+    public String getSoftwareId()
+    {
+        return softwareId;
+    }
+
+
+    /**
+     * Set a unique identifier string assigned by the client developer or
+     * software publisher used by registration endpoints to identify the client
+     * software to be dynamically registered.
+     *
+     * <p>
+     * This property corresponds to the {@code software_id} metadata defined in
+     * <a href="https://tools.ietf.org/html/rfc7591#section-2">2. Client
+     * Metadata</a> of <a href="https://tools.ietf.org/html/rfc7591">RFC 7591</a>
+     * (OAuth 2.0 Dynamic Client Registration Protocol).
+     * </p>
+     *
+     * @param softwareId
+     *         A unique identifier of the client software.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.24
+     */
+    public Client setSoftwareId(String softwareId)
+    {
+        this.softwareId = softwareId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the version identifier string for the client software identified by
+     * the software ID.
+     *
+     * <p>
+     * This property corresponds to the {@code software_version} metadata
+     * defined in <a href="https://tools.ietf.org/html/rfc7591#section-2">2.
+     * Client Metadata</a> of <a href="https://tools.ietf.org/html/rfc7591"
+     * >RFC 7591</a> (OAuth 2.0 Dynamic Client Registration Protocol).
+     * </p>
+     *
+     * @return
+     *         The version of the client software.
+     *
+     * @since 2.24
+     */
+    public String getSoftwareVersion()
+    {
+        return softwareVersion;
+    }
+
+
+    /**
+     * Set a version identifier string for the client software identified by
+     * the software ID.
+     *
+     * <p>
+     * This property corresponds to the {@code software_version} metadata
+     * defined in <a href="https://tools.ietf.org/html/rfc7591#section-2">2.
+     * Client Metadata</a> of <a href="https://tools.ietf.org/html/rfc7591"
+     * >RFC 7591</a> (OAuth 2.0 Dynamic Client Registration Protocol).
+     * </p>
+     *
+     * @param softwareVersion
+     *         A version of the client software.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.24
+     */
+    public Client setSoftwareVersion(String softwareVersion)
+    {
+        this.softwareVersion = softwareVersion;
 
         return this;
     }
