@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+2.26 (2018-08-28)
+-----------------
+
+- `Service` class
+    * Added `getSupportedTokenAuthSigningAlgorithms()` method.
+    * Added `setSupportedTokenAuthSigningAlgorithms(JWSAlg[])` method.
+
+
 2.25 (2018-08-28)
 -----------------
 
@@ -154,13 +162,13 @@ CHANGES
     * Added `isMutualTlsSenderConstrainedAccessTokens()` method.
     * Added `setMutualTlsSenderConstrainedAccessTokens(boolean)` method.
     * Added `getSupportedRevocationAuthMethods()` method.
-    * Added `setSupportedRevocationAuthMethods()` method.
+    * Added `setSupportedRevocationAuthMethods(ClientAuthMethod[])` method.
     * Added `getSupportedRevocationAuthSigningAlgorithms()` method.
     * Added `setSupportedRevocationAuthSigningAlgorithms(JWSAlg[])` method.
     * Added `getIntrospectionEndpoint()` method.
-    * Added `setIntrospectionEndpoint()` method.
+    * Added `setIntrospectionEndpoint(URI)` method.
     * Added `getSupportedIntrospectionAuthMethods()` method.
-    * Added `setSupportedIntrospectionAuthMethods()` method.
+    * Added `setSupportedIntrospectionAuthMethods(ClientAuthMethod[])` method.
     * Added `getSupportedIntrospectionAuthSigningAlgorithms()` method.
     * Added `setSupportedIntrospectionAuthSigningAlgorithms(JWSAlg[])` method.
 

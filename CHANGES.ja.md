@@ -1,6 +1,14 @@
 変更点
 ======
 
+2.26 (2018 年 08 月 28 日)
+--------------------------
+
+- `Service` クラス
+    * `getSupportedTokenAuthSigningAlgorithms()` メソッドを追加。
+    * `setSupportedTokenAuthSigningAlgorithms(JWSAlg[])` メソッドを追加。
+
+
 2.25 (2018 年 08 月 28 日)
 --------------------------
 
@@ -155,13 +163,13 @@
     * `isMutualTlsSenderConstrainedAccessTokens()` メソッドを追加。
     * `setMutualTlsSenderConstrainedAccessTokens(boolean)` メソッドを追加。
     * `getSupportedRevocationAuthMethods()` メソッドを追加。
-    * `setSupportedRevocationAuthMethods()` メソッドを追加。
+    * `setSupportedRevocationAuthMethods(ClientAuthMethod[])` メソッドを追加。
     * `getSupportedRevocationAuthSigningAlgorithms()` メソッドを追加。
     * `setSupportedRevocationAuthSigningAlgorithms(JWSAlg[])` メソッドを追加。
     * `getIntrospectionEndpoint()` メソッドを追加。
-    * `setIntrospectionEndpoint()` メソッドを追加。
+    * `setIntrospectionEndpoint(URI)` メソッドを追加。
     * `getSupportedIntrospectionAuthMethods()` メソッドを追加。
-    * `setSupportedIntrospectionAuthMethods()` メソッドを追加。
+    * `setSupportedIntrospectionAuthMethods(ClientAuthMethod[])` メソッドを追加。
     * `getSupportedIntrospectionAuthSigningAlgorithms()` メソッドを追加。
     * `setSupportedIntrospectionAuthSigningAlgorithms(JWSAlg[])` メソッドを追加。
 
