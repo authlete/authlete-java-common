@@ -499,6 +499,15 @@ import com.authlete.common.util.Utils;
  *           The claim values in this parameter will be embedded in an ID token.
  *         </p>
  *         <br/>
+ *         <p>
+ *           {@link #getIdTokenClaims()} is available since version 2.25. The method
+ *           returns the value of the {@code "id_token"} property in the {@code "claims"}
+ *           request parameter or in the {@code "claims"} property in a request object.
+ *           The value returned from the method should be considered when you prepare
+ *           claim values. See the description of the method for details. Note that,
+ *           however, old Authlete servers don't support this response parameter.
+ *         </p>
+ *         <br/>
  *       </li>
  *       <li>
  *         <p><b>[properties]</b> (optional)
@@ -932,6 +941,8 @@ public class AuthorizationResponse extends ApiResponse
     private Prompt lowestPrompt;
     private Prompt[] prompts;
     private String requestObjectPayload;
+    private String idTokenClaims;
+    private String userInfoClaims;
     private String responseContent;
     private String ticket;
 
@@ -1421,6 +1432,190 @@ public class AuthorizationResponse extends ApiResponse
     public void setRequestObjectPayload(String payload)
     {
         this.requestObjectPayload = payload;
+    }
+
+
+    /**
+     * Get the value of the {@code "id_token"} property in the {@code "claims"}
+     * request parameter or in the {@code "claims"} property in a request object.
+     *
+     * <p>
+     * A client application may request certain claims be embedded in an ID
+     * token or in a response from the UserInfo endpoint. There are several
+     * ways. Including the {@code claims} request parameter and including the
+     * {@code claims} property in a request object are such examples. In both
+     * the cases, the value of the {@code claims} parameter/property is JSON.
+     * Its format is described in <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
+     * >5.5. Requesting Claims using the "claims" Request Parameter</a> of
+     * <a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID
+     * Connect Core 1.0</a>.
+     * </p>
+     *
+     * <p>
+     * The following is an excerpt from the specification. You can find
+     * {@code "userinfo"} and {@code "id_token"} are top-level properties.
+     * </p>
+     *
+     * <pre>
+     * {
+     *  "userinfo":
+     *   {
+     *    "given_name": {"essential": true},
+     *    "nickname": null,
+     *    "email": {"essential": true},
+     *    "email_verified": {"essential": true},
+     *    "picture": null,
+     *    "http://example.info/claims/groups": null
+     *  },
+     * "id_token":
+     *  {
+     *   "auth_time": {"essential": true},
+     *   "acr": {"values": ["urn:mace:incommon:iap:silver"] }
+     *  }
+     * }
+     * </pre>
+     *
+     * <p>
+     * This method ({@code getIdTokenClaims()}) returns the value of the
+     * {@code "id_token"} property in JSON format. For example, if the
+     * JSON above is included in an authorization request, this method
+     * returns JSON equivalent to the following.
+     * </p>
+     *
+     * <pre>
+     *  {
+     *   "auth_time": {"essential": true},
+     *   "acr": {"values": ["urn:mace:incommon:iap:silver"] }
+     *  }
+     * </pre>
+     *
+     * <p>
+     * Note that if a request object is given and it contains the
+     * {@code claims} property and if the {@code claims} request
+     * parameter is also given, this method returns the value in
+     * the former.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code "id_token"} property in the
+     *         {@code "claims"} in JSON format.
+     *
+     * @since 2.25
+     */
+    public String getIdTokenClaims()
+    {
+        return idTokenClaims;
+    }
+
+
+    /**
+     * Set the value of the {@code "id_token"} property in the {@code "claims"}
+     * request parameter or in the {@code "claims"} property in a request object.
+     *
+     * @param idTokenClaims
+     *         The value of the {@code "id_token"} property in the
+     *         {@code "claims"} in JSON format.
+     *
+     * @since 2.25
+     */
+    public void setIdTokenClaims(String idTokenClaims)
+    {
+        this.idTokenClaims = idTokenClaims;
+    }
+
+
+    /**
+     * Get the value of the {@code "userinfo"} property in the {@code "claims"}
+     * request parameter or in the {@code "claims"} property in a request object.
+     *
+     * <p>
+     * A client application may request certain claims be embedded in an ID
+     * token or in a response from the UserInfo endpoint. There are several
+     * ways. Including the {@code claims} request parameter and including the
+     * {@code claims} property in a request object are such examples. In both
+     * the cases, the value of the {@code claims} parameter/property is JSON.
+     * Its format is described in <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
+     * >5.5. Requesting Claims using the "claims" Request Parameter</a> of
+     * <a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID
+     * Connect Core 1.0</a>.
+     * </p>
+     *
+     * <p>
+     * The following is an excerpt from the specification. You can find
+     * {@code "userinfo"} and {@code "id_token"} are top-level properties.
+     * </p>
+     *
+     * <pre>
+     * {
+     *  "userinfo":
+     *   {
+     *    "given_name": {"essential": true},
+     *    "nickname": null,
+     *    "email": {"essential": true},
+     *    "email_verified": {"essential": true},
+     *    "picture": null,
+     *    "http://example.info/claims/groups": null
+     *  },
+     * "id_token":
+     *  {
+     *   "auth_time": {"essential": true},
+     *   "acr": {"values": ["urn:mace:incommon:iap:silver"] }
+     *  }
+     * }
+     * </pre>
+     *
+     * <p>
+     * This method ({@code getUserInfoClaims()}) returns the value of the
+     * {@code "userinfo"} property in JSON format. For example, if the
+     * JSON above is included in an authorization request, this method
+     * returns JSON equivalent to the following.
+     * </p>
+     *
+     * <pre>
+     *   {
+     *    "given_name": {"essential": true},
+     *    "nickname": null,
+     *    "email": {"essential": true},
+     *    "email_verified": {"essential": true},
+     *    "picture": null,
+     *    "http://example.info/claims/groups": null
+     *  }
+     * </pre>
+     *
+     * <p>
+     * Note that if a request object is given and it contains the
+     * {@code claims} property and if the {@code claims} request
+     * parameter is also given, this method returns the value in
+     * the former.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code "userinfo"} property in the
+     *         {@code "claims"} in JSON format.
+     *
+     * @since 2.25
+     */
+    public String getUserInfoClaims()
+    {
+        return userInfoClaims;
+    }
+
+
+    /**
+     * Set the value of the {@code "userinfo"} property in the {@code "claims"}
+     * request parameter or in the {@code "claims"} property in a request object.
+     *
+     * @param userInfoClaims
+     *         The value of the {@code "userinfo"} property in the
+     *         {@code "claims"} in JSON format.
+     *
+     * @since 2.25
+     */
+    public void setUserInfoClaims(String userInfoClaims)
+    {
+        this.userInfoClaims = userInfoClaims;
     }
 
 
