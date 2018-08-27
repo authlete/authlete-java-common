@@ -854,7 +854,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 9L;
+    private static final long serialVersionUID = 10L;
 
 
     /**
