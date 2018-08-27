@@ -46,7 +46,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 20L;
+    private static final long serialVersionUID = 21L;
 
 
     /*
@@ -100,6 +100,7 @@ public class Service implements Serializable
     private GrantType[] supportedGrantTypes;
     private String[] supportedAcrs;
     private ClientAuthMethod[] supportedTokenAuthMethods;
+    private JWSAlg[] supportedTokenAuthSigningAlgorithms;
     private Display[] supportedDisplays;
     private ClaimType[] supportedClaimTypes;
     private String[] supportedClaims;
@@ -798,6 +799,47 @@ public class Service implements Serializable
     public Service setSupportedTokenAuthMethods(ClientAuthMethod[] methods)
     {
         this.supportedTokenAuthMethods = methods;
+
+        return this;
+    }
+
+
+    /**
+     * Get JWS signing algorithms ({@code "alg"} values) supported by the
+     * token endpoint for the signature on the JWT used to authenticate
+     * the client at the token endpoint for the {@code "private_key_jwt"}
+     * and {@code "client_secret_jwt"} authentication methods.
+     *
+     * @return
+     *         JWS signing algorithms supported for {@code "private_key_jwt"}
+     *         and {@code "client_secret_jwt"} at the token endpoint.
+     *
+     * @since 2.26
+     */
+    public JWSAlg[] getSupportedTokenAuthSigningAlgorithms()
+    {
+        return supportedTokenAuthSigningAlgorithms;
+    }
+
+
+    /**
+     * Set JWS signing algorithms ({@code "alg"} values) supported by the
+     * token endpoint for the signature on the JWT used to authenticate
+     * the client at the token endpoint for the {@code "private_key_jwt"}
+     * and {@code "client_secret_jwt"} authentication methods.
+     *
+     * @param algorithms
+     *         JWS signing algorithms supported for {@code "private_key_jwt"}
+     *         and {@code "client_secret_jwt"} at the token endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.26
+     */
+    public Service setSupportedTokenAuthSigningAlgorithms(JWSAlg[] algorithms)
+    {
+        this.supportedTokenAuthSigningAlgorithms = algorithms;
 
         return this;
     }
@@ -2612,7 +2654,7 @@ public class Service implements Serializable
      * Does this service support issuing TLS client certificate bound access tokens?
      *
      * @return
-     *         {@code true} if this service supports issuing TLS client 
+     *         {@code true} if this service supports issuing TLS client
      *         certificate bound access tokens.
      *
      * @since 2.19
@@ -2756,12 +2798,12 @@ public class Service implements Serializable
     /**
      * Determine whether this service validates certificate chains during PKI-based
      * client mutual TLS authentication.
-     * 
+     *
      * @return
      *          {@code true} if this service requires clients using PKI MTLS
      *          to present their certificate chain to the API during authentication,
      *          {@code false} otherwise.
-     *          
+     *
      * @since 2.15
      */
     public boolean isMutualTlsValidatePkiCertChain()
@@ -2773,12 +2815,12 @@ public class Service implements Serializable
     /**
      * Set whether this service validates certificate chains during PKI-based
      * client mutual TLS authentication.
-     * 
+     *
      * @param mutualTlsValidatePkiCertChain
      *          {@code true} if this service requires clients using PKI MTLS
      *          to present their certificate chain to the API during authentication,
      *          {@code false} otherwise.
-     *          
+     *
      * @return
      *         {@code this} object.
      *
@@ -2787,7 +2829,7 @@ public class Service implements Serializable
     public Service setMutualTlsValidatePkiCertChain(boolean mutualTlsValidatePkiCertChain)
     {
         this.mutualTlsValidatePkiCertChain = mutualTlsValidatePkiCertChain;
-        
+
         return this;
     }
 
@@ -2795,7 +2837,7 @@ public class Service implements Serializable
     /**
      * Get the list of root certificates trusted by this service for PKI-based
      * client mutual TLS authentication.
-     * 
+     *
      * @return
      *          The list of root certificates trusted by this service in PEM format.
      *
@@ -2810,7 +2852,7 @@ public class Service implements Serializable
     /**
      * Get the list of root certificates trusted by this service for PKI-based
      * client mutual TLS authentication.
-     * 
+     *
      * @param trustedRootCertificates
      *          The list of root certificates trusted by this service in PEM format.
      *
