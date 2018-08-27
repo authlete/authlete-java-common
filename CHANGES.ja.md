@@ -1,6 +1,19 @@
 変更点
 ======
 
+2.25 (2018 年 08 月 28 日)
+--------------------------
+
+- `AuthorizationResponse` クラス
+    * `getIdTokenClaims()` メソッドを追加。
+    * `setIdTokenClaims(String)` メソッドを追加。
+    * `getUserInfoClaims()` メソッドを追加。
+    * `setUserInfoClaims(String)` メソッドを追加。
+
+- `ServiceProfile` 列挙型
+    * `OPEN_BANKING` を追加。
+
+
 2.24 (2018 年 08 月 06 日)
 --------------------------
 

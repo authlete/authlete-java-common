@@ -1,6 +1,19 @@
 CHANGES
 =======
 
+2.25 (2018-08-28)
+-----------------
+
+- `AuthorizationResponse` class
+    * Added `getIdTokenClaims()` method.
+    * Added `setIdTokenClaims(String)` method.
+    * Added `getUserInfoClaims()` method.
+    * Added `setUserInfoClaims(String)` method.
+
+- `ServiceProfile` enum
+    * Added `OPEN_BANKING`.
+
+
 2.24 (2018-08-06)
 -----------------
 
