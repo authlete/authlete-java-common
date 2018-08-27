@@ -27,11 +27,21 @@ import java.util.EnumSet;
 public enum ServiceProfile
 {
     /**
-     * <a href="https://openid.net/wg/fapi/">Financial API</a>.
+     * <a href="https://openid.net/wg/fapi/">Financial-grade API</a>.
      *
      * {@code "fapi"} (1)
      */
     FAPI((short)1, "fapi"),
+
+
+    /**
+     * <a href="https://www.openbanking.org.uk/">Open Banking</a>.
+     *
+     * {@code "openbanking"} (2)
+     *
+     * @since 2.25
+     */
+    OPEN_BANKING((short)2, "openbanking"),
     ;
 
 
