@@ -24,7 +24,6 @@ import com.authlete.common.types.ClaimType;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.Display;
 import com.authlete.common.types.GrantType;
-import com.authlete.common.types.JWSAlg;
 import com.authlete.common.types.ResponseType;
 import com.authlete.common.types.ServiceProfile;
 import com.authlete.common.types.Sns;
@@ -46,7 +45,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 21L;
+    private static final long serialVersionUID = 22L;
 
 
     /*
@@ -90,7 +89,6 @@ public class Service implements Serializable
     private URI tokenEndpoint;
     private URI revocationEndpoint;
     private ClientAuthMethod[] supportedRevocationAuthMethods;
-    private JWSAlg[] supportedRevocationAuthSigningAlgorithms;
     private URI userInfoEndpoint;
     private URI jwksUri;
     private String jwks;
@@ -100,7 +98,6 @@ public class Service implements Serializable
     private GrantType[] supportedGrantTypes;
     private String[] supportedAcrs;
     private ClientAuthMethod[] supportedTokenAuthMethods;
-    private JWSAlg[] supportedTokenAuthSigningAlgorithms;
     private Display[] supportedDisplays;
     private ClaimType[] supportedClaimTypes;
     private String[] supportedClaims;
@@ -138,7 +135,6 @@ public class Service implements Serializable
     private boolean tlsClientCertificateBoundAccessTokens;
     private URI introspectionEndpoint;
     private ClientAuthMethod[] supportedIntrospectionAuthMethods;
-    private JWSAlg[] supportedIntrospectionAuthSigningAlgorithms;
     private boolean mutualTlsValidatePkiCertChain;
     private String[] trustedRootCertificates;
 
@@ -482,47 +478,6 @@ public class Service implements Serializable
 
 
     /**
-     * Get JWS signing algorithms ({@code "alg"} values) supported by the
-     * revocation endpoint for the signature on the JWT used to authenticate
-     * the client at the revocation endpoint for the {@code "private_key_jwt"}
-     * and {@code "client_secret_jwt"} authentication methods.
-     *
-     * @return
-     *         JWS signing algorithms supported for {@code "private_key_jwt"}
-     *         and {@code "client_secret_jwt"} at the revocation endpoint.
-     *
-     * @since 2.13
-     */
-    public JWSAlg[] getSupportedRevocationAuthSigningAlgorithms()
-    {
-        return supportedRevocationAuthSigningAlgorithms;
-    }
-
-
-    /**
-     * Set JWS signing algorithms ({@code "alg"} values) supported by the
-     * revocation endpoint for the signature on the JWT used to authenticate
-     * the client at the revocation endpoint for the {@code "private_key_jwt"}
-     * and {@code "client_secret_jwt"} authentication methods.
-     *
-     * @param algorithms
-     *         JWS signing algorithms supported for {@code "private_key_jwt"}
-     *         and {@code "client_secret_jwt"} at the revocation endpoint.
-     *
-     * @return
-     *         {@code this} object.
-     *
-     * @since 2.13
-     */
-    public Service setSupportedRevocationAuthSigningAlgorithms(JWSAlg[] algorithms)
-    {
-        this.supportedRevocationAuthSigningAlgorithms = algorithms;
-
-        return this;
-    }
-
-
-    /**
      * Set the URI of the token revocation endpoint.
      *
      * @param endpoint
@@ -799,47 +754,6 @@ public class Service implements Serializable
     public Service setSupportedTokenAuthMethods(ClientAuthMethod[] methods)
     {
         this.supportedTokenAuthMethods = methods;
-
-        return this;
-    }
-
-
-    /**
-     * Get JWS signing algorithms ({@code "alg"} values) supported by the
-     * token endpoint for the signature on the JWT used to authenticate
-     * the client at the token endpoint for the {@code "private_key_jwt"}
-     * and {@code "client_secret_jwt"} authentication methods.
-     *
-     * @return
-     *         JWS signing algorithms supported for {@code "private_key_jwt"}
-     *         and {@code "client_secret_jwt"} at the token endpoint.
-     *
-     * @since 2.26
-     */
-    public JWSAlg[] getSupportedTokenAuthSigningAlgorithms()
-    {
-        return supportedTokenAuthSigningAlgorithms;
-    }
-
-
-    /**
-     * Set JWS signing algorithms ({@code "alg"} values) supported by the
-     * token endpoint for the signature on the JWT used to authenticate
-     * the client at the token endpoint for the {@code "private_key_jwt"}
-     * and {@code "client_secret_jwt"} authentication methods.
-     *
-     * @param algorithms
-     *         JWS signing algorithms supported for {@code "private_key_jwt"}
-     *         and {@code "client_secret_jwt"} at the token endpoint.
-     *
-     * @return
-     *         {@code this} object.
-     *
-     * @since 2.26
-     */
-    public Service setSupportedTokenAuthSigningAlgorithms(JWSAlg[] algorithms)
-    {
-        this.supportedTokenAuthSigningAlgorithms = algorithms;
 
         return this;
     }
@@ -2749,47 +2663,6 @@ public class Service implements Serializable
     public Service setSupportedIntrospectionAuthMethods(ClientAuthMethod[] methods)
     {
         this.supportedIntrospectionAuthMethods = methods;
-
-        return this;
-    }
-
-
-    /**
-     * Get JWS signing algorithms ({@code "alg"} values) supported by the
-     * introspection endpoint for the signature on the JWT used to authenticate
-     * the client at the introspection endpoint for the {@code "private_key_jwt"}
-     * and {@code "client_secret_jwt"} authentication methods.
-     *
-     * @return
-     *         JWS signing algorithms supported for {@code "private_key_jwt"}
-     *         and {@code "client_secret_jwt"} at the introspection endpoint.
-     *
-     * @since 2.13
-     */
-    public JWSAlg[] getSupportedIntrospectionAuthSigningAlgorithms()
-    {
-        return supportedIntrospectionAuthSigningAlgorithms;
-    }
-
-
-    /**
-     * Set JWS signing algorithms ({@code "alg"} values) supported by the
-     * introspection endpoint for the signature on the JWT used to authenticate
-     * the client at the introspection endpoint for the {@code "private_key_jwt"}
-     * and {@code "client_secret_jwt"} authentication methods.
-     *
-     * @param algorithms
-     *         JWS signing algorithms supported for {@code "private_key_jwt"}
-     *         and {@code "client_secret_jwt"} at the introspection endpoint.
-     *
-     * @return
-     *         {@code this} object.
-     *
-     * @since 2.13
-     */
-    public Service setSupportedIntrospectionAuthSigningAlgorithms(JWSAlg[] algorithms)
-    {
-        this.supportedIntrospectionAuthSigningAlgorithms = algorithms;
 
         return this;
     }
