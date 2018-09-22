@@ -34,20 +34,23 @@ import com.authlete.common.types.SubjectType;
  *
  * <p>
  * Some properties correspond to the ones listed in <a href=
- * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+ * "https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
  * >Client Metadata</a> in <a href=
- * "http://openid.net/specs/openid-connect-registration-1_0.html"
+ * "https://openid.net/specs/openid-connect-registration-1_0.html"
  * >OpenID Connect Dynamic Client Registration 1.0</a>.
  * </p>
  *
- * @see <a href="http://openid.net/specs/openid-connect-registration-1_0.html"
+ * @see <a href="https://openid.net/specs/openid-connect-registration-1_0.html"
  *      >OpenID Connect Dynamic Client Registration 1.0</a>
+ *
+ * @see <a href="https://openid.net/specs/openid-financial-api-jarm.html"
+ *      >Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
  *
  * @author Takahiko Kawasaki
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 11L;
+    private static final long serialVersionUID = 12L;
 
 
     /*
@@ -239,6 +242,9 @@ public class Client implements Serializable
     private String selfSignedCertificateKeyId;
     private String softwareId;
     private String softwareVersion;
+    private JWSAlg authorizationSignAlg;
+    private JWEAlg authorizationEncryptionAlg;
+    private JWEEnc authorizationEncryptionEnc;
 
 
     /**
@@ -2080,6 +2086,147 @@ public class Client implements Serializable
     public Client setSoftwareVersion(String softwareVersion)
     {
         this.softwareVersion = softwareVersion;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWS {@code alg} algorithm for signing the authorization response.
+     * This property corresponds to {@code authorization_signed_response_alg} in
+     * <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
+     * >5. Client Metadata</a> of <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html"
+     * >Financial-grade API: JWT Secured Authorization Response Mode for
+     * OAuth 2.0 (JARM)</a>.
+     *
+     * @return
+     *         The JWS {@code alg} algorithm for signing the authorization response.
+     *
+     * @since 2.27
+     */
+    public JWSAlg getAuthorizationSignAlg()
+    {
+        return authorizationSignAlg;
+    }
+
+
+    /**
+     * Set the JWS {@code alg} algorithm for signing the authorization response.
+     * This property corresponds to {@code authorization_signed_response_alg} in
+     * <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
+     * >5. Client Metadata</a> of <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html"
+     * >Financial-grade API: JWT Secured Authorization Response Mode for
+     * OAuth 2.0 (JARM)</a>.
+     *
+     * @param alg
+     *         The JWS {@code alg} algorithm for signing the authorization response.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.27
+     */
+    public Client setAuthorizationSignAlg(JWSAlg alg)
+    {
+        this.authorizationSignAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWE {@code alg} algorithm for encrypting the authorization response.
+     * This property corresponds to {@code authorization_encrypted_response_alg} in
+     * <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
+     * >5. Client Metadata</a> of <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html"
+     * >Financial-grade API: JWT Secured Authorization Response Mode for
+     * OAuth 2.0 (JARM)</a>.
+     *
+     * @return
+     *         The JWE {@code alg} algorithm for encrypting the authorization response.
+     *
+     * @since 2.27
+     */
+    public JWEAlg getAuthorizationEncryptionAlg()
+    {
+        return authorizationEncryptionAlg;
+    }
+
+
+    /**
+     * Set the JWE {@code alg} algorithm for encrypting the authorization response.
+     * This property corresponds to {@code authorization_encrypted_response_alg} in
+     * <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
+     * >5. Client Metadata</a> of <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html"
+     * >Financial-grade API: JWT Secured Authorization Response Mode for
+     * OAuth 2.0 (JARM)</a>.
+     *
+     * @param alg
+     *         The JWE {@code alg} algorithm for encrypting the authorization response.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.27
+     */
+    public Client setAuthorizationEncryptionAlg(JWEAlg alg)
+    {
+        this.authorizationEncryptionAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWE {@code enc} algorithm for encrypting the authorization response.
+     * This property corresponds to {@code authorization_encrypted_response_enc} in
+     * <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
+     * >5. Client Metadata</a> of <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html"
+     * >Financial-grade API: JWT Secured Authorization Response Mode for
+     * OAuth 2.0 (JARM)</a>.
+     *
+     * @return
+     *         The JWE {@code enc} algorithm for encrypting the authorization response.
+     *
+     * @since 2.27
+     */
+    public JWEEnc getAuthorizationEncryptionEnc()
+    {
+        return authorizationEncryptionEnc;
+    }
+
+
+    /**
+     * Set the JWE {@code enc} algorithm for encrypting the authorization response.
+     * This property corresponds to {@code authorization_encrypted_response_enc} in
+     * <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
+     * >5. Client Metadata</a> of <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html"
+     * >Financial-grade API: JWT Secured Authorization Response Mode for
+     * OAuth 2.0 (JARM)</a>.
+     *
+     * @param enc
+     *         The JWE {@code enc} algorithm for encrypting the authorization response.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.27
+     */
+    public Client setAuthorizationEncryptionEnc(JWEEnc enc)
+    {
+        this.authorizationEncryptionEnc = enc;
 
         return this;
     }
