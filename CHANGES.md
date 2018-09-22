@@ -1,6 +1,36 @@
 CHANGES
 =======
 
+2.27 (2018-09-22)
+-----------------
+
+- `Client` class
+    * Added `getAuthorizationSignAlg()` method.
+    * Added `setAuthorizationSignAlg(JWSAlg)` method.
+    * Added `getAuthorizationEncryptionAlg()` method.
+    * Added `setAuthorizationEncryptionAlg(JWEAlg)` method.
+    * Added `getAuthorizationEncryptionEnc()` method.
+    * Added `setAuthorizationEncryptionEnc(JWEEnc)` method.
+
+- `ResponseMode` enum
+    * Added `JWT`.
+    * Added `QUERY_JWT`.
+    * Added `FRAGMENT_JWT`.
+    * Added `FORM_POST_JWT`.
+    * Added `isJwtRequired()` method.
+    * Added `isQueryRequired()` method.
+    * Added `isFragmentRequired()` method.
+    * Added `isFormPostRequired()` method.
+
+- `Service` class
+    * Removed `getSupportedIntrospectionAuthSigningAlgorithms()` method which was added in version 2.13.
+    * Removed `setSupportedIntrospectionAuthSigningAlgorithms(JWSAlg[])` method which was added in version 2.13.
+    * Removed `getSupportedRevocationAuthSigningAlgorithms()` method which was added in version 2.13.
+    * Removed `setSupportedRevocationAuthSigningAlgorithms(JWSAlg[])` method which was added in version 2.13.
+    * Removed `getSupportedTokenAuthSigningAlgorithms()` method which was added in version 2.26.
+    * Removed `setSupportedTokenAuthSigningAlgorithms(JWSAlg[])` method which was added in version 2.26.
+
+
 2.26 (2018-08-28)
 -----------------
 

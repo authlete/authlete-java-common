@@ -1,6 +1,36 @@
 変更点
 ======
 
+2.27 (2018 年 09 月 22 日)
+--------------------------
+
+- `Client` クラス
+    * `getAuthorizationSignAlg()` メソッドを追加。
+    * `setAuthorizationSignAlg(JWSAlg)` メソッドを追加。
+    * `getAuthorizationEncryptionAlg()` メソッドを追加。
+    * `setAuthorizationEncryptionAlg(JWEAlg)` メソッドを追加。
+    * `getAuthorizationEncryptionEnc()` メソッドを追加。
+    * `setAuthorizationEncryptionEnc(JWEEnc)` メソッドを追加。
+
+- `ResponseMode` 列挙型
+    * `JWT` を追加。
+    * `QUERY_JWT` を追加。
+    * `FRAGMENT_JWT` を追加。
+    * `FORM_POST_JWT` を追加。
+    * `isJwtRequired()` メソッドを追加。
+    * `isQueryRequired()` メソッドを追加。
+    * `isFragmentRequired()` メソッドを追加。
+    * `isFormPostRequired()` メソッドを追加。
+
+- `Service` クラス
+    * バージョン 2.13 で追加された `getSupportedIntrospectionAuthSigningAlgorithms()` メソッドを削除。
+    * バージョン 2.13 で追加された `setSupportedIntrospectionAuthSigningAlgorithms(JWSAlg[])` メソッドを削除。
+    * バージョン 2.13 で追加された `getSupportedRevocationAuthSigningAlgorithms()` メソッドを削除。
+    * バージョン 2.13 で追加された `setSupportedRevocationAuthSigningAlgorithms(JWSAlg[])` メソッドを削除。
+    * バージョン 2.26 で追加された `getSupportedTokenAuthSigningAlgorithms()` メソッドを削除。
+    * バージョン 2.26 で追加された `setSupportedTokenAuthSigningAlgorithms(JWSAlg[])` メソッドを削除。
+
+
 2.26 (2018 年 08 月 28 日)
 --------------------------
 
