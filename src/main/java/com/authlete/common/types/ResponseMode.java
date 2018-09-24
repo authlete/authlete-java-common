@@ -291,6 +291,138 @@ public enum ResponseMode
 
 
     /**
+     * Get the {@code ResponseMode} instance corresponding to this instance
+     * that requires JWT.
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <thead style="background-color: orange;">
+     *     <tr>
+     *       <td>{@code this} instance</td>
+     *       <td>returned instance</td>
+     *     </tr>
+     *   </thead>
+     *   <tbody>
+     *     <tr>
+     *       <td>{@link #QUERY}</td>
+     *       <td>{@link #QUERY_JWT}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #FRAGMENT}</td>
+     *       <td>{@link #FRAGMENT_JWT}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #FORM_POST}</td>
+     *       <td>{@link #FORM_POST_JWT}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #JWT}</td>
+     *       <td>{@link #JWT}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #QUERY_JWT}</td>
+     *       <td>{@link #QUERY_JWT}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #FRAGMENT_JWT}</td>
+     *       <td>{@link #FRAGMENT_JWT}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #FORM_POST_JWT}</td>
+     *       <td>{@link #FORM_POST_JWT}</td>
+     *     </tr>
+     *   </tbody>
+     * </table>
+     * </blockquote>
+     * <br/>
+     *
+     * @return
+     *         The {@code ResponseMode} instance corresponding to this instance
+     *         that requires JWT.
+     *
+     * @since 2.28
+     */
+    public ResponseMode withJwt()
+    {
+        if (isJwtRequired())
+        {
+            return this;
+        }
+
+        return getByValue((short)(mValue | 0x4));
+    }
+
+
+    /**
+     * Get the {@code ResponseMode} instance corresponding to this instance
+     * that does not require JWT. Note that if this instance is {@link #JWT},
+     * this method returns {@code null}.
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <thead style="background-color: orange;">
+     *     <tr>
+     *       <td>{@code this} instance</td>
+     *       <td>returned instance</td>
+     *     </tr>
+     *   </thead>
+     *   <tbody>
+     *     <tr>
+     *       <td>{@link #QUERY}</td>
+     *       <td>{@link #QUERY}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #FRAGMENT}</td>
+     *       <td>{@link #FRAGMENT}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #FORM_POST}</td>
+     *       <td>{@link #FORM_POST}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #JWT}</td>
+     *       <td>{@code null}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #QUERY_JWT}</td>
+     *       <td>{@link #QUERY}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #FRAGMENT_JWT}</td>
+     *       <td>{@link #FRAGMENT}</td>
+     *     </tr>
+     *     <tr>
+     *       <td>{@link #FORM_POST_JWT}</td>
+     *       <td>{@link #FORM_POST}</td>
+     *     </tr>
+     *   </tbody>
+     * </table>
+     * </blockquote>
+     * <br/>
+     *
+     * @return
+     *         The {@code ResponseMode} instance corresponding to this instance
+     *         that does not require JWT.
+     *
+     * @since 2.28
+     */
+    public ResponseMode withoutJwt()
+    {
+        if (this == JWT)
+        {
+            return null;
+        }
+
+        if (isJwtRequired() == false)
+        {
+            return this;
+        }
+
+        return getByValue((short)(mValue & 0x3));
+    }
+
+
+    /**
      * Convert {@code String} to {@code ResponseMode}.
      *
      * @param responseMode
