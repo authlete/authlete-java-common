@@ -349,7 +349,7 @@ public enum JWSAlg
      *
      * @return
      *         {@code true} if this algorithm is symmetric.
-     *         To be concrete, {@code true} is returned when {@code alg}
+     *         To be concrete, {@code true} is returned when this is
      *         is {@link #HS256}, {@link #HS384} or {@link #HS512}.
      *
      * @since 2.16
