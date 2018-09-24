@@ -278,4 +278,123 @@ public enum JWEAlg
             return new JWEAlg[size];
         }
     }
+
+
+    /**
+     * Check if the given JWE algorithm is a symmetric one.
+     *
+     * @param alg
+     *         JWE algorithm.
+     *
+     * @return
+     *         {@code true} if the given JWE algorithm is symmetric.
+     *         To be concrete, {@code true} is returned when {@code alg} is
+     *         {@link #A128KW}, {@link #A192KW}, {@link #A256KW},
+     *         {@link #DIR}, {@link #A128GCMKW}, {@link #A192GCMKW},
+     *         {@link #A256GCMKW}, {@link #PBES2_HS256_A128KW},
+     *         {@link #PBES2_HS384_A192KW}, or {@link #PBES2_HS512_A256KW}.
+     *
+     * @since 2.28
+     */
+    public static boolean isSymmetric(JWEAlg alg)
+    {
+        if (alg == null)
+        {
+            return false;
+        }
+
+        switch (alg)
+        {
+            case A128KW:
+            case A192KW:
+            case A256KW:
+            case DIR:
+            case A128GCMKW:
+            case A192GCMKW:
+            case A256GCMKW:
+            case PBES2_HS256_A128KW:
+            case PBES2_HS384_A192KW:
+            case PBES2_HS512_A256KW:
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
+
+    /**
+     * Check if the given JWE algorithm is an asymmetric one.
+     *
+     * @param alg
+     *         JWE algorithm.
+     *
+     * @return
+     *         {@code true} if the given JWE algorithm is asymmetric.
+     *         To be concrete, {@code true} is returned when {@code alg} is
+     *         {@link #RSA1_5}, {@link #RSA_OAEP}, {@link #RSA_OAEP_256},
+     *         {@link #ECDH_ES}, {@link #ECDH_ES_A128KW},
+     *         {@link #ECDH_ES_A192KW}, or {@link #ECDH_ES_A256KW}.
+     *
+     * @since 2.28
+     */
+    public static boolean isAsymmetric(JWEAlg alg)
+    {
+        if (alg == null)
+        {
+            return false;
+        }
+
+        switch (alg)
+        {
+            case RSA1_5:
+            case RSA_OAEP:
+            case RSA_OAEP_256:
+            case ECDH_ES:
+            case ECDH_ES_A128KW:
+            case ECDH_ES_A192KW:
+            case ECDH_ES_A256KW:
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
+
+    /**
+     * Check if this algorithm is a symmetric one.
+     *
+     * @return
+     *         {@code true} if this algorithm is symmetric.
+     *         To be concrete, {@code true} is returned when this is
+     *         {@link #A128KW}, {@link #A192KW}, {@link #A256KW},
+     *         {@link #DIR}, {@link #A128GCMKW}, {@link #A192GCMKW},
+     *         {@link #A256GCMKW}, {@link #PBES2_HS256_A128KW},
+     *         {@link #PBES2_HS384_A192KW}, or {@link #PBES2_HS512_A256KW}.
+     *
+     * @since 2.28
+     */
+    public boolean isSymmetric()
+    {
+        return isSymmetric(this);
+    }
+
+
+    /**
+     * Check if this algorithm is an asymmetric one.
+     *
+     * @return
+     *         {@code true} if this algorithm is asymmetric.
+     *         To be concrete, {@code true} is returned when this is
+     *         {@link #RSA1_5}, {@link #RSA_OAEP}, {@link #RSA_OAEP_256},
+     *         {@link #ECDH_ES}, {@link #ECDH_ES_A128KW},
+     *         {@link #ECDH_ES_A192KW}, or {@link #ECDH_ES_A256KW}.
+     *
+     * @since 2.28
+     */
+    public boolean isAsymmetric()
+    {
+        return isAsymmetric(this);
+    }
 }
