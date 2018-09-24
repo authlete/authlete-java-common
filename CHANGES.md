@@ -1,6 +1,26 @@
 CHANGES
 =======
 
+2.28 (2018-09-25)
+-----------------
+
+- `JWEAlg` enum
+    * Added `isSymmetric(JWEAlg)` static method.
+    * Added `isSymmetric()` instance method.
+    * Added `isAsymmetric(JWEAlg)` static method.
+    * Added `isAsymmetric()` instance method.
+
+- `ResponseMode` enum
+    * Added `withJwt()` method.
+    * Added `withoutJwt()` method.
+
+- `Service` class
+    * Added `getAuthorizationResponseDuration()` method.
+    * Added `setAuthorizationResponseDuration(long)` method.
+    * Added `getAuthorizationSignatureKeyId()` method.
+    * Added `setAuthorizationSignatureKeyId(String)` method.
+
+
 2.27 (2018-09-22)
 -----------------
 

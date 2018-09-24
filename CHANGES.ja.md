@@ -1,6 +1,26 @@
 変更点
 ======
 
+2.28 (2018 年 09 月 25 日)
+--------------------------
+
+- `JWEAlg` 列挙型
+    * `isSymmetric(JWEAlg)` スタティックメソッドを追加。
+    * `isSymmetric()` インスタンスメソッドを追加。
+    * `isAsymmetric(JWEAlg)` スタティックメソッドを追加。
+    * `isAsymmetric()` インスタンスメソッドを追加。
+
+- `ResponseMode` 列挙型
+    * `withJwt()` メソッドを追加。
+    * `withoutJwt()` メソッドを追加。
+
+- `Service` クラス
+    * `getAuthorizationResponseDuration()` メソッドを追加。
+    * `setAuthorizationResponseDuration(long)` メソッドを追加。
+    * `getAuthorizationSignatureKeyId()` メソッドを追加。
+    * `setAuthorizationSignatureKeyId(String)` メソッドを追加。
+
+
 2.27 (2018 年 09 月 22 日)
 --------------------------
 
