@@ -45,7 +45,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 22L;
+    private static final long serialVersionUID = 23L;
 
 
     /*
@@ -173,11 +173,30 @@ public class Service implements Serializable
 
 
     /**
+     * Duration of authorization response JWTs.
+     *
+     * @since 2.28
+     */
+    private long authorizationResponseDuration;
+
+
+    /**
      * Metadata.
      *
      * @since 1.39
      */
     private Pair[] metadata;
+
+
+    /**
+     * Key ID to identify a JWK used for signing authorization responses using an
+     * asymmetric key. Regarding "signing the authorization response", see <a href=
+     * "https://openid.net/specs/openid-financial-api-jarm.html">Financial-grade API:
+     * JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
+     *
+     * @since 2.28
+     */
+    private String authorizationSignatureKeyId;
 
 
     /**
@@ -1177,6 +1196,61 @@ public class Service implements Serializable
 
 
     /**
+     * Get the duration of authorization response JWTs.
+     *
+     * <p>
+     * <a href="https://openid.net/specs/openid-financial-api-jarm.html"
+     * >Financial-grade API: JWT Secured Authorization Response Mode for
+     * OAuth 2.0 (JARM)</a> defines new values for the {@code response_mode}
+     * request parameter. They are {@code query.jwt}, {@code fragment.jwt},
+     * {@code form_post.jwt} and {@code jwt}. If one of them is specified
+     * as the response mode, response parameters from the authorization
+     * endpoint will be packed into a JWT. This property is used to compute
+     * the value of the {@code exp} claim of the JWT.
+     * </p>
+     *
+     * @return
+     *         The duration of authorization response JWTs in seconds.
+     *
+     * @since 2.28
+     */
+    public long getAuthorizationResponseDuration()
+    {
+        return authorizationResponseDuration;
+    }
+
+
+    /**
+     * Set the duration of authorization response JWTs.
+     *
+     * <p>
+     * <a href="https://openid.net/specs/openid-financial-api-jarm.html"
+     * >Financial-grade API: JWT Secured Authorization Response Mode for
+     * OAuth 2.0 (JARM)</a> defines new values for the {@code response_mode}
+     * request parameter. They are {@code query.jwt}, {@code fragment.jwt},
+     * {@code form_post.jwt} and {@code jwt}. If one of them is specified
+     * as the response mode, response parameters from the authorization
+     * endpoint will be packed into a JWT. This property is used to compute
+     * the value of the {@code exp} claim of the JWT.
+     * </p>
+     *
+     * @param duration
+     *         The duration of authorization response JWTs in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.28
+     */
+    public Service setAuthorizationResponseDuration(long duration)
+    {
+        this.authorizationResponseDuration = duration;
+
+        return this;
+    }
+
+
+    /**
      * Get the URI of the authentication callback endpoint.
      *
      * @return
@@ -2139,7 +2213,6 @@ public class Service implements Serializable
     }
 
 
-
     /**
      * Get the flag which indicates whether the 'Client ID Alias' feature
      * is enabled or not.
@@ -2179,6 +2252,66 @@ public class Service implements Serializable
     public Service setClientIdAliasEnabled(boolean enabled)
     {
         this.clientIdAliasEnabled = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get the key ID to identify a JWK used for signing authorization
+     * responses using an asymmetric key.
+     *
+     * <p>
+     * <a href="https://openid.net/specs/openid-financial-api-jarm.html"
+     * >Financial-grade API: JWT Secured Authorization Response Mode for OAuth
+     * 2.0 (JARM)</a> has added new values for the {@code response_mode}
+     * request parameter. They are {@code query.jwt}, {@code fragment.jwt},
+     * {@code form_post.jwt} and {@code jwt}. If one of them is used, response
+     * parameters returned from the authorization endpoint will be packed into
+     * a JWT. The JWT is always signed. For the signature of the JWT, Authlete
+     * Server has to pick up one JWK from the service's JWK Set.
+     * </p>
+     *
+     * <p>
+     * Authlete Server searches the JWK Set for a JWK which satisfies
+     * conditions for authorization response signature. If the number of JWK
+     * candidates which satisfy the conditions is 1, there is no problem. On
+     * the other hand, if there exist multiple candidates, a <a href=
+     * "https://tools.ietf.org/html/rfc7517#section-4.5">Key ID</a> is needed
+     * to be specified so that Authlete Server can pick up one JWK from among
+     * the JWK candidates. This property exists to specify the key ID.
+     * </p>
+     *
+     * @return
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @since 2.28
+     */
+    public String getAuthorizationSignatureKeyId()
+    {
+        return authorizationSignatureKeyId;
+    }
+
+
+    /**
+     * Set the key ID to identify a JWK used for signing authorization responses
+     * using an asymmetric key.
+     *
+     * <p>
+     * See the description of {@link #getAuthorizationSignatureKeyId()} for details.
+     * </p>
+     *
+     * @param keyId
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.28
+     */
+    public Service setAuthorizationSignatureKeyId(String keyId)
+    {
+        this.authorizationSignatureKeyId = keyId;
 
         return this;
     }
