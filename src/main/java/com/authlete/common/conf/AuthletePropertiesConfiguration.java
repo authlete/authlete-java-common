@@ -231,6 +231,8 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
     private static final String PROPERTY_KEY_SERVICE_OWNER_API_SECRET = "service_owner.api_secret";
 
 
+    private static final String PROPERTY_KEY_SERVICE_OWNER_ACCESS_TOKEN = "service_owner.access_token";
+    
     /**
      * Property key to specify the service API key
      * ({@code service.api_key}).
@@ -252,6 +254,8 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
     private static final String PROPERTY_KEY_SERVICE_API_SECRET = "service.api_secret";
 
 
+    private static final String PROPERTY_KEY_SERVICE_ACCESS_TOKEN = "service.access_token";
+    
     /**
      * The default value of the base URL ({@code https://api.authlete.com}).
      */
@@ -287,6 +291,9 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      */
     private String mServiceApiSecret;
 
+    private String mServiceAccessToken;
+    private String mServiceOwnerAccessToken;
+    
 
     /**
      * Constructor with a pair of secret key and initial vector to decode
@@ -504,6 +511,10 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
         {
             mServiceApiSecret = props.getString(PROPERTY_KEY_SERVICE_API_SECRET);
         }
+        
+        mServiceAccessToken = props.getString(PROPERTY_KEY_SERVICE_ACCESS_TOKEN);
+        mServiceOwnerAccessToken = props.getString(PROPERTY_KEY_SERVICE_OWNER_ACCESS_TOKEN);
+        
     }
 
 
@@ -632,5 +643,19 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
     public String getServiceApiSecret()
     {
         return mServiceApiSecret;
+    }
+
+
+    @Override
+    public String getServiceAccessToken()
+    {
+        return mServiceAccessToken;
+    }
+
+
+    @Override
+    public String getServiceOwnerAccessToken()
+    {
+        return mServiceOwnerAccessToken;
     }
 }
