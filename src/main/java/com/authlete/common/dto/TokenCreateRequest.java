@@ -209,6 +209,7 @@ public class TokenCreateRequest implements Serializable
     private boolean clientIdAliasUsed;
     private String accessToken;
     private String refreshToken;
+    private boolean accessTokenExpires;
 
 
     /**
@@ -689,6 +690,19 @@ public class TokenCreateRequest implements Serializable
     {
         this.refreshToken = refreshToken;
 
+        return this;
+    }
+
+
+    public boolean isAccessTokenExpires()
+    {
+        return accessTokenExpires;
+    }
+
+
+    public TokenCreateRequest setAccessTokenExpires(boolean accessTokenExpires)
+    {
+        this.accessTokenExpires = accessTokenExpires;
         return this;
     }
 }
