@@ -315,7 +315,7 @@ public class TokenUpdateRequest implements Serializable
      *         The flag which indicates whether this request updates the expiration
      *         date of the access token based on scope update or not.
      *
-     * @since 2.6
+     * @since 2.29
      */
     public boolean getUpdateTokenExpiresAtOnScopeUpdate()
     {
@@ -334,7 +334,7 @@ public class TokenUpdateRequest implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 2.6
+     * @since 2.29
      */
     public TokenUpdateRequest setUpdateTokenExpiresAtOnScopeUpdate(boolean updateAccessTokenExpiresAtOnScopeUpdate)
     {
