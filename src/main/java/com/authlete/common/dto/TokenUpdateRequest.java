@@ -78,13 +78,14 @@ import java.io.Serializable;
  */
 public class TokenUpdateRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     private String accessToken;
     private long accessTokenExpiresAt;
     private String[] scopes;
     private Property[] properties;
+    private boolean updateAccessTokenExpiresAtOnScopeUpdate;
 
 
     /**
@@ -213,6 +214,131 @@ public class TokenUpdateRequest implements Serializable
     public TokenUpdateRequest setProperties(Property[] properties)
     {
         this.properties = properties;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether this request updates the expiration
+     * date of the access token based on scope update. More specifically, an update
+     * on the expiration date of the access token is performed when all of the
+     * following conditions are satisfied.
+     *
+     * <ol>
+     * <li>The <code>accessTokenExpiresAt</code> parameter is not included in the
+     *     request or its value is <code>0</code> (or negative).
+     * <li>The scopes linked to the access token are changed by the <code>scopes</code>
+     *     parameter in the request.
+     * <li>Any of the new scopes to be linked to the access token has one or more
+     *     attributes specifying access token duration.
+     * </ol>
+     *
+     * See the following example for more details.
+     *
+     * <p>
+     * <b>Example 1.</b>
+     *
+     * <p>
+     * Let's say we send the following request to {@code /auth/token/update} API
+     * </p>
+     *
+     * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
+     * {
+     *   "accessToken" : "JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs",
+     *   "scopes" : ["read_profile"]
+     * }</pre>
+     *
+     * <p>
+     * and <code>"read_profile"</code> have the following attributes.
+     * </p>
+     *
+     * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
+     * {
+     *   "key" : "access_token.duraiton",
+     *   "value" : "10000"
+     * }</pre>
+     *
+     * <p>
+     * In this case, the API evaluates <code>"10000"</code> as new duration of
+     * the access token (in seconds) and updates the expiration date of the access
+     * token using the duration.
+     * </p>
+     *
+     * <p>
+     * When multiple access token duration values are found in the attributes of
+     * the specified scopes, the smallest value among them is used as follows.
+     * </p>
+     *
+     * <b>Example 2.</b>
+     *
+     * <p>
+     * Let's say we send the following request to {@code /auth/token/update} API
+     * </p>
+     *
+     * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
+     * {
+     *   "accessToken" : "JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs",
+     *   "scopes" : ["read_profile", "write_profile"]
+     * }</pre>
+     *
+     * <p>
+     * and <code>"read_profile"</code> have the following attributes
+     * </p>
+     *
+     * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
+     * {
+     *   "key" : "access_token.duraiton",
+     *   "value" : "10000"
+     * }</pre>
+     *
+     * <p>
+     * and <code>"write_profile"</code> have the following attributes.
+     * </p>
+     *
+     * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
+     * {
+     *   "key" : "access_token.duraiton",
+     *   "value" : "5000"
+     * }</pre>
+     *
+     * <p>
+     * In this case, the API evaluates <code>"10000"</code> and <code>"5000"</code>
+     * as candidate values for new duration of the access token (in seconds) and
+     * choose the smallest value of them (i.e. "5000" is adopted) and updates the
+     * expiration date of the access token using the duration.
+     * </p>
+     *
+     * </p>
+     *
+     * @return
+     *         The flag which indicates whether this request updates the expiration
+     *         date of the access token based on scope update or not.
+     *
+     * @since 2.6
+     */
+    public boolean getUpdateTokenExpiresAtOnScopeUpdate()
+    {
+        return updateAccessTokenExpiresAtOnScopeUpdate;
+    }
+
+
+    /**
+     * Set the flag which indicates whether this request updates the expiration
+     * date of the access token based on scope update.
+     *
+     * @param updateAccessTokenExpiresAtOnScopeUpdate
+     *         The flag which indicates whether this request updates the expiration
+     *         date of the access token based on scope update or not.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.6
+     */
+    public TokenUpdateRequest setUpdateTokenExpiresAtOnScopeUpdate(boolean updateAccessTokenExpiresAtOnScopeUpdate)
+    {
+        this.updateAccessTokenExpiresAtOnScopeUpdate = updateAccessTokenExpiresAtOnScopeUpdate;
 
         return this;
     }
