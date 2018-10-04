@@ -294,7 +294,7 @@ public class TokenUpdateRequest implements Serializable
      *
      * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
      * {
-     *   "key" : "access_token.duraiton",
+     *   "key" : "access_token.duration",
      *   "value" : "10000"
      * }</pre>
      *
@@ -322,7 +322,7 @@ public class TokenUpdateRequest implements Serializable
      *
      * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
      * {
-     *   "key" : "access_token.duraiton",
+     *   "key" : "access_token.duration",
      *   "value" : "10000"
      * }</pre>
      *
@@ -332,7 +332,7 @@ public class TokenUpdateRequest implements Serializable
      *
      * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
      * {
-     *   "key" : "access_token.duraiton",
+     *   "key" : "access_token.duration",
      *   "value" : "5000"
      * }</pre>
      *
