@@ -148,7 +148,7 @@ public class Service implements Serializable
     /**
      * Access token type.
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6749#section-7.1"
+     * @see <a href="https://tools.ietf.org/html/rfc6749#section-7.1"
      *      >RFC 6749 (OAuth 2.0), 7.1. Access Token Types</a>
      */
     private String accessTokenType;
@@ -1058,13 +1058,13 @@ public class Service implements Serializable
      * @return
      *         The access token type.
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6749#section-7.1"
+     * @see <a href="https://tools.ietf.org/html/rfc6749#section-7.1"
      *      >RFC 6749 (OAuth 2.0), 7.1. Access Token Types</a>
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6749#section-5.1"
+     * @see <a href="https://tools.ietf.org/html/rfc6749#section-5.1"
      *      >RFC 6749 (OAuth 2.0), 5.1. Successful Response</a>
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6750"
+     * @see <a href="https://tools.ietf.org/html/rfc6750"
      *      >RFC 6750 (OAuth 2.0 Bearer Token Usage)</a>
      */
     public String getAccessTokenType()
@@ -1083,13 +1083,13 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6749#section-7.1"
+     * @see <a href="https://tools.ietf.org/html/rfc6749#section-7.1"
      *      >RFC 6749 (OAuth 2.0), 7.1. Access Token Types</a>
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6749#section-5.1"
+     * @see <a href="https://tools.ietf.org/html/rfc6749#section-5.1"
      *      >RFC 6749 (OAuth 2.0), 5.1. Successful Response</a>
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6750"
+     * @see <a href="https://tools.ietf.org/html/rfc6750"
      *      >RFC 6750 (OAuth 2.0 Bearer Token Usage)</a>
      */
     public Service setAccessTokenType(String type)
@@ -1107,7 +1107,7 @@ public class Service implements Serializable
      * @return
      *         The duration of access tokens in seconds.
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6749#section-5.1"
+     * @see <a href="https://tools.ietf.org/html/rfc6749#section-5.1"
      *      >RFC 6749 (OAuth 2.0), 5.1. Successful Response</a>
      */
     public long getAccessTokenDuration()
@@ -1126,7 +1126,7 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6749#section-5.1"
+     * @see <a href="https://tools.ietf.org/html/rfc6749#section-5.1"
      *      >RFC 6749 (OAuth 2.0), 5.1. Successful Response</a>
      */
     public Service setAccessTokenDuration(long duration)
@@ -1745,7 +1745,7 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag to indicate whether the direct authorization endpoint
+     * Get the flag which indicates whether the direct authorization endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/authorization/direct/{serviceApiKey}</code>
      *
@@ -1761,7 +1761,7 @@ public class Service implements Serializable
 
 
     /**
-     * Set the flag to indicate whether the direct authorization endpoint
+     * Set the flag which indicates whether the direct authorization endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/authorization/direct/{serviceApiKey}</code>
      *
@@ -1782,7 +1782,7 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag to indicate whether the direct token endpoint
+     * Get the flag which indicates whether the direct token endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/token/direct/{serviceApiKey}</code>
      *
@@ -1798,7 +1798,7 @@ public class Service implements Serializable
 
 
     /**
-     * Set the flag to indicate whether the direct token endpoint
+     * Set the flag which indicates whether the direct token endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/token/direct/{serviceApiKey}</code>
      *
@@ -1819,7 +1819,7 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag to indicate whether the direct revocation endpoint
+     * Get the flag which indicates whether the direct revocation endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/revocation/direct/{serviceApiKey}</code>
      *
@@ -1835,7 +1835,7 @@ public class Service implements Serializable
 
 
     /**
-     * Set the flag to indicate whether the direct revocation endpoint
+     * Set the flag which indicates whether the direct revocation endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/revocation/direct/{serviceApiKey}</code>
      *
@@ -1856,7 +1856,7 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag to indicate whether the direct userinfo endpoint
+     * Get the flag which indicates whether the direct userinfo endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/userinfo/direct/{serviceApiKey}</code>
      *
@@ -1872,7 +1872,7 @@ public class Service implements Serializable
 
 
     /**
-     * Set the flag to indicate whether the direct userinfo endpoint
+     * Set the flag which indicates whether the direct userinfo endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/userinfo/direct/{serviceApiKey}</code>
      *
@@ -1893,7 +1893,7 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag to indicate whether the direct jwks endpoint
+     * Get the flag which indicates whether the direct jwks endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/service/jwks/get/direct/{serviceApiKey}</code>
      *
@@ -1909,7 +1909,7 @@ public class Service implements Serializable
 
 
     /**
-     * Set the flag to indicate whether the direct jwks endpoint
+     * Set the flag which indicates whether the direct jwks endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/service/jwks/get/direct/{serviceApiKey}</code>
      *
@@ -1930,7 +1930,7 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag to indicate whether the direct introspection endpoint
+     * Get the flag which indicates whether the direct introspection endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/introspection/direct/{serviceApiKey}</code>
      *
@@ -1946,7 +1946,7 @@ public class Service implements Serializable
 
 
     /**
-     * Set the flag to indicate whether the direct introspection endpoint
+     * Set the flag which indicates whether the direct introspection endpoint
      * is enabled or not. The path of the endpoint is
      * <code>/api/auth/introspection/direct/{serviceApiKey}</code>
      *
@@ -1967,7 +1967,7 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag to indicate whether the number of access tokens
+     * Get the flag which indicates whether the number of access tokens
      * per subject (and per client) is at most one or can be more.
      *
      * <p>
@@ -1999,7 +1999,7 @@ public class Service implements Serializable
 
 
     /**
-     * Set the flag to indicate whether the number of access tokens
+     * Set the flag which indicates whether the number of access tokens
      * per subject (and per client) is at most one or can be more.
      *
      * <p>
@@ -2036,7 +2036,7 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag to indicate whether the use of Proof Key for Code
+     * Get the flag which indicates whether the use of Proof Key for Code
      * Exchange (PKCE) is always required for authorization requests
      * by <a href="https://tools.ietf.org/html/rfc6749#section-4.1"
      * >Authorization Code Flow</a>. See <a href=
@@ -2058,7 +2058,7 @@ public class Service implements Serializable
 
 
     /**
-     * Set the flag to indicate whether the use of Proof Key for Code
+     * Set the flag which indicates whether the use of Proof Key for Code
      * Exchange (PKCE) is always required for authorization requests
      * by <a href="https://tools.ietf.org/html/rfc6749#section-4.1"
      * >Authorization Code Flow</a>. See <a href=
@@ -2083,11 +2083,11 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag to indicate whether a refresh token remains unchanged
+     * Get the flag which indicates whether a refresh token remains valid
      * or gets renewed after its use.
      *
      * @return
-     *         {@code true} if a refresh token remains unchanged after its use.
+     *         {@code true} if a refresh token remains valid after its use.
      *         {@code false} if a new refresh token is issued after its use.
      *
      * @since 1.33
@@ -2099,7 +2099,7 @@ public class Service implements Serializable
 
 
     /**
-     * Set the flag to indicate whether a refresh token remains unchanged
+     * Set the flag which indicates whether a refresh token remains valid
      * or gets renewed after its use.
      *
      * @param kept
@@ -2120,11 +2120,11 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag to indicate whether the {@code error_description} response
-     * parameter is omitted.
+     * Get the flag which indicates whether the {@code error_description}
+     * response parameter is omitted.
      *
      * <p>
-     * According to RFC 6749, an authorization server may include the {@code
+     * According to RFC 6749, authorization servers may include the {@code
      * error_description} response parameter in error responses. When this
      * {@code errorDescriptionOmitted} property is {@code true}, Authlete does
      * not embed the {@code error_description} response parameter in error
@@ -2167,11 +2167,11 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag to indicate whether the {@code error_uri} response
+     * Get the flag which indicates whether the {@code error_uri} response
      * parameter is omitted.
      *
      * <p>
-     * According to RFC 6749, an authorization server may include the
+     * According to RFC 6749, authorization servers may include the
      * {@code error_uri} response parameter in error responses. When
      * this {@code errorUriOmitted} property is {@code true}, Authlete
      * does not embed the {@code error_uri} response parameter in error
@@ -2326,7 +2326,7 @@ public class Service implements Serializable
      * contain 0 or more JWKs (See <a href="https://tools.ietf.org/html/rfc7517"
      * >RFC 7517</a> for details about JWK). Authlete Server has to pick up
      * one JWK for signature from the JWK Set when it generates an ID token
-     * and signature using an asymmetric key is required. Authlete Server
+     * and signature using an asymmetric key. Authlete Server
      * searches the registered JWK Set for a JWK which satisfies conditions
      * for ID token signature. If the number of JWK candidates which satisfy
      * the conditions is 1, there is no problem. On the other hand, if there
@@ -2339,7 +2339,7 @@ public class Service implements Serializable
      * <p>
      * This {@code idTokenSignatureKeyId} property exists for the purpose
      * described above. For key rotation (OpenID Connect Core 1.0, <a href=
-     * "http://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys"
+     * "https://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys"
      * >10.1.1. Rotation of Asymmetric Signing Keys</a>), this mechanism is
      * needed.
      * </p>
@@ -2389,7 +2389,7 @@ public class Service implements Serializable
      * >RFC 7517</a> for details about JWK). Authlete Server has to pick up
      * one JWK for signature from the JWK Set when it is required to sign
      * user info (which is returned from <a href=
-     * "http://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
+     * "https://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
      * >UserInfo Endpoint</a>) using an asymmetric key. Authlete Server
      * searches the registered JWK Set for a JWK which satisfies conditions
      * for user info signature. If the number of JWK candidates which satisfy
@@ -2403,7 +2403,7 @@ public class Service implements Serializable
      * <p>
      * This {@code userInfoSignatureKeyId} property exists for the purpose
      * described above. For key rotation (OpenID Connect Core 1.0, <a href=
-     * "http://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys"
+     * "https://openid.net/specs/openid-connect-core-1_0.html#RotateSigKeys"
      * >10.1.1. Rotation of Asymmetric Signing Keys</a>), this mechanism is
      * needed.
      * </p>

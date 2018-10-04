@@ -1547,14 +1547,14 @@ public class Client implements Serializable
 
 
     /**
-     * Get the flag to indicate whether this client requires <code>auth_time</code>
+     * Get the flag which indicates whether this client requires <code>auth_time</code>
      * claim to be embedded in the ID token. This property corresponds to
      * <code>require_auth_time</code> in <a href=
      * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
      * >Client Metadata</a>.
      *
      * @return
-     *         The flag to indicate whether this client requires <code>auth_time</code>
+     *         The flag which indicates whether this client requires <code>auth_time</code>
      *         claim to be embedded in the ID token.
      */
     public boolean isAuthTimeRequired()
@@ -1564,14 +1564,14 @@ public class Client implements Serializable
 
 
     /**
-     * Set the flag to indicate whether this client requires <code>auth_time</code>
+     * Set the flag which indicates whether this client requires <code>auth_time</code>
      * claim to be embedded in the ID token. This property corresponds to
      * <code>require_auth_time</code> in <a href=
      * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
      * >Client Metadata</a>.
      *
      * @param required
-     *         The flag to indicate whether this client requires <code>auth_time</code>
+     *         The flag which indicates whether this client requires <code>auth_time</code>
      *         claim to be embedded in the ID token.
      *
      * @return
@@ -1588,7 +1588,7 @@ public class Client implements Serializable
     /**
      * Get the default list of authentication context class references.
      * This property corresponds to <code>default_acr_values</code> in <a href=
-     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * "https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
      * >Client Metadata</a>.
      *
      * @return
@@ -1603,7 +1603,7 @@ public class Client implements Serializable
     /**
      * Set the default list of authentication context class references.
      * This property corresponds to <code>default_max_age</code> in <a href=
-     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * "https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
      * >Client Metadata</a>.
      *
      * <p>
@@ -1628,7 +1628,7 @@ public class Client implements Serializable
     /**
      * Get the URL that can initiate a login for this client application.
      * This property corresponds to <code>initiate_login_uri</code> in <a href=
-     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * "https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
      * >Client Metadata</a>.
      *
      * @return
@@ -1643,7 +1643,7 @@ public class Client implements Serializable
     /**
      * Set the URL that can initiate a login for this client application.
      * This property corresponds to <code>initiate_login_uri</code> in <a href=
-     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * "https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
      * >Client Metadata</a>.
      *
      * @param uri
@@ -1663,7 +1663,7 @@ public class Client implements Serializable
     /**
      * Get the request URIs that this client declares it may use. This property
      * corresponds to <code>request_uris</code> in <a href=
-     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * "https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
      * >Client Metadata</a>.
      *
      * @return
@@ -1678,7 +1678,7 @@ public class Client implements Serializable
     /**
      * Set the request URIs that this client declares it may use. This property
      * corresponds to <code>request_uris</code> in <a href=
-     * "http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * "https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
      * >Client Metadata</a>.
      *
      * @param uris
@@ -2092,7 +2092,7 @@ public class Client implements Serializable
 
 
     /**
-     * Get the JWS {@code alg} algorithm for signing the authorization response.
+     * Get the JWS {@code alg} algorithm for signing authorization responses.
      * This property corresponds to {@code authorization_signed_response_alg} in
      * <a href=
      * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
@@ -2102,7 +2102,7 @@ public class Client implements Serializable
      * OAuth 2.0 (JARM)</a>.
      *
      * @return
-     *         The JWS {@code alg} algorithm for signing the authorization response.
+     *         The JWS {@code alg} algorithm for signing authorization responses.
      *
      * @since 2.27
      */
@@ -2113,7 +2113,7 @@ public class Client implements Serializable
 
 
     /**
-     * Set the JWS {@code alg} algorithm for signing the authorization response.
+     * Set the JWS {@code alg} algorithm for signing authorization responses.
      * This property corresponds to {@code authorization_signed_response_alg} in
      * <a href=
      * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
@@ -2123,7 +2123,7 @@ public class Client implements Serializable
      * OAuth 2.0 (JARM)</a>.
      *
      * @param alg
-     *         The JWS {@code alg} algorithm for signing the authorization response.
+     *         The JWS {@code alg} algorithm for signing authorization responses.
      *
      * @return
      *         {@code this} object.
@@ -2139,7 +2139,7 @@ public class Client implements Serializable
 
 
     /**
-     * Get the JWE {@code alg} algorithm for encrypting the authorization response.
+     * Get the JWE {@code alg} algorithm for encrypting authorization responses.
      * This property corresponds to {@code authorization_encrypted_response_alg} in
      * <a href=
      * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
@@ -2149,7 +2149,7 @@ public class Client implements Serializable
      * OAuth 2.0 (JARM)</a>.
      *
      * @return
-     *         The JWE {@code alg} algorithm for encrypting the authorization response.
+     *         The JWE {@code alg} algorithm for encrypting authorization responses.
      *
      * @since 2.27
      */
@@ -2160,7 +2160,7 @@ public class Client implements Serializable
 
 
     /**
-     * Set the JWE {@code alg} algorithm for encrypting the authorization response.
+     * Set the JWE {@code alg} algorithm for encrypting authorization responses.
      * This property corresponds to {@code authorization_encrypted_response_alg} in
      * <a href=
      * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
@@ -2170,7 +2170,7 @@ public class Client implements Serializable
      * OAuth 2.0 (JARM)</a>.
      *
      * @param alg
-     *         The JWE {@code alg} algorithm for encrypting the authorization response.
+     *         The JWE {@code alg} algorithm for encrypting authorization responses.
      *
      * @return
      *         {@code this} object.
@@ -2186,7 +2186,7 @@ public class Client implements Serializable
 
 
     /**
-     * Get the JWE {@code enc} algorithm for encrypting the authorization response.
+     * Get the JWE {@code enc} algorithm for encrypting authorization responses.
      * This property corresponds to {@code authorization_encrypted_response_enc} in
      * <a href=
      * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
@@ -2196,7 +2196,7 @@ public class Client implements Serializable
      * OAuth 2.0 (JARM)</a>.
      *
      * @return
-     *         The JWE {@code enc} algorithm for encrypting the authorization response.
+     *         The JWE {@code enc} algorithm for encrypting authorization responses.
      *
      * @since 2.27
      */
@@ -2207,7 +2207,7 @@ public class Client implements Serializable
 
 
     /**
-     * Set the JWE {@code enc} algorithm for encrypting the authorization response.
+     * Set the JWE {@code enc} algorithm for encrypting authorization responses.
      * This property corresponds to {@code authorization_encrypted_response_enc} in
      * <a href=
      * "https://openid.net/specs/openid-financial-api-jarm.html#client-metadata"
@@ -2217,7 +2217,7 @@ public class Client implements Serializable
      * OAuth 2.0 (JARM)</a>.
      *
      * @param enc
-     *         The JWE {@code enc} algorithm for encrypting the authorization response.
+     *         The JWE {@code enc} algorithm for encrypting authorization responses.
      *
      * @return
      *         {@code this} object.
