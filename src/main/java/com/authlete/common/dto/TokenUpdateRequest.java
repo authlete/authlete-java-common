@@ -67,6 +67,16 @@ import java.io.Serializable;
  * are not changed.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>updateAccessTokenExpiresAtOnScopeUpdate</code></b></dt>
+ * <dd>
+ * <p>
+ * A boolean request parameter which indicates whether the API attempts to update
+ * the expiration date of the access token when the scopes linked to the access
+ * token are changed by this request. The default value is {@code false}. For more
+ * details, see the description of {@link #setUpdateTokenExpiresAtOnScopeUpdate(boolean) setUpdateTokenExpiresAtOnScopeUpdate(boolean)}.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
@@ -220,21 +230,50 @@ public class TokenUpdateRequest implements Serializable
 
 
     /**
-     * Get the flag which indicates whether this request updates the expiration
-     * date of the access token based on scope update. More specifically, an update
-     * on the expiration date of the access token is performed when all of the
-     * following conditions are satisfied.
+     * Get the flag which indicates whether {@code /auth/token/update} API attempts
+     * to update the expiration date of the access token when the scopes linked to
+     * the access token are changed by this request.
+     *
+     * @return
+     *         The flag which indicates whether {@code /auth/token/update} API
+     *         attempts to update the expiration date of the access token when
+     *         the scopes linked to the access token are changed by this request.
+     *
+     * @since 2.29
+     */
+    public boolean getUpdateTokenExpiresAtOnScopeUpdate()
+    {
+        return updateAccessTokenExpiresAtOnScopeUpdate;
+    }
+
+
+    /**
+     * Set the flag which indicates whether {@code /auth/token/update} API attempts
+     * to update the expiration date of the access token when the scopes linked to
+     * the access token are changed by this request. This request parameter is optional
+     * and its default value is {@code false}. If this request parameter is set
+     * to {@code true} and all of the following conditions are satisfied, the API
+     * performs an update on the expiration date of the access token even if the
+     * <code>accessTokenExpiresAt</code> request parameter is not explicitly specified
+     * in the request.
      *
      * <ol>
-     * <li>The <code>accessTokenExpiresAt</code> parameter is not included in the
-     *     request or its value is <code>0</code> (or negative).
+     * <li>The <code>accessTokenExpiresAt</code> request parameter is not included
+     * in the request or its value is <code>0</code> (or negative).
      * <li>The scopes linked to the access token are changed by the <code>scopes</code>
-     *     parameter in the request.
+     *     request parameter in the request.
      * <li>Any of the new scopes to be linked to the access token has one or more
      *     attributes specifying access token duration.
      * </ol>
      *
-     * See the following example for more details.
+     * <p>
+     * When multiple access token duration values are found in the attributes of
+     * the specified scopes, the smallest value among them is used.
+     * </p>
+     *
+     * <p>
+     * For more details, see the following examples.
+     * </p>
      *
      * <p>
      * <b>Example 1.</b>
@@ -250,7 +289,7 @@ public class TokenUpdateRequest implements Serializable
      * }</pre>
      *
      * <p>
-     * and <code>"read_profile"</code> have the following attributes.
+     * and <code>"read_profile"</code> has the following attributes.
      * </p>
      *
      * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
@@ -260,14 +299,9 @@ public class TokenUpdateRequest implements Serializable
      * }</pre>
      *
      * <p>
-     * In this case, the API evaluates <code>"10000"</code> as new duration of
-     * the access token (in seconds) and updates the expiration date of the access
-     * token using the duration.
-     * </p>
-     *
-     * <p>
-     * When multiple access token duration values are found in the attributes of
-     * the specified scopes, the smallest value among them is used as follows.
+     * In this case, the API evaluates <code>"10000"</code> as a new value of the
+     * duration of the access token (in seconds) and updates the expiration date
+     * of the access token using the duration.
      * </p>
      *
      * <b>Example 2.</b>
@@ -283,7 +317,7 @@ public class TokenUpdateRequest implements Serializable
      * }</pre>
      *
      * <p>
-     * and <code>"read_profile"</code> have the following attributes
+     * and <code>"read_profile"</code> has the following attributes
      * </p>
      *
      * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
@@ -293,7 +327,7 @@ public class TokenUpdateRequest implements Serializable
      * }</pre>
      *
      * <p>
-     * and <code>"write_profile"</code> have the following attributes.
+     * and <code>"write_profile"</code> has the following attributes.
      * </p>
      *
      * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
@@ -305,31 +339,14 @@ public class TokenUpdateRequest implements Serializable
      * <p>
      * In this case, the API evaluates <code>"10000"</code> and <code>"5000"</code>
      * as candidate values for new duration of the access token (in seconds) and
-     * choose the smallest value of them (i.e. "5000" is adopted) and updates the
+     * chooses the smallest value of them (i.e. "5000" is adopted) and updates the
      * expiration date of the access token using the duration.
      * </p>
      *
-     * </p>
-     *
-     * @return
-     *         The flag which indicates whether this request updates the expiration
-     *         date of the access token based on scope update or not.
-     *
-     * @since 2.29
-     */
-    public boolean getUpdateTokenExpiresAtOnScopeUpdate()
-    {
-        return updateAccessTokenExpiresAtOnScopeUpdate;
-    }
-
-
-    /**
-     * Set the flag which indicates whether this request updates the expiration
-     * date of the access token based on scope update.
-     *
      * @param updateAccessTokenExpiresAtOnScopeUpdate
-     *         The flag which indicates whether this request updates the expiration
-     *         date of the access token based on scope update or not.
+     *         The flag which indicates whether {@code /auth/token/update} API
+     *         attempts to update the expiration date of the access token when
+     *         the scopes linked to the access token are changed by this request.
      *
      * @return
      *         {@code this} object.
