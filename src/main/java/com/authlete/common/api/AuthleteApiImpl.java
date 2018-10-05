@@ -65,6 +65,7 @@ import com.authlete.common.dto.TokenFailRequest;
 import com.authlete.common.dto.TokenFailResponse;
 import com.authlete.common.dto.TokenIssueRequest;
 import com.authlete.common.dto.TokenIssueResponse;
+import com.authlete.common.dto.TokenListResponse;
 import com.authlete.common.dto.TokenRequest;
 import com.authlete.common.dto.TokenResponse;
 import com.authlete.common.dto.TokenUpdateRequest;
@@ -106,6 +107,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String AUTH_TOKEN_FAIL_API_PATH               = "/api/auth/token/fail";
     private static final String AUTH_TOKEN_ISSUE_API_PATH              = "/api/auth/token/issue";
     private static final String AUTH_TOKEN_UPDATE_API_PATH             = "/api/auth/token/update";
+    private static final String AUTH_TOKEN_GET_LIST_API_PATH           = "/api/auth/token/get/list";
     private static final String AUTH_REVOCATION_API_PATH               = "/api/auth/revocation";
     private static final String AUTH_USERINFO_API_PATH                 = "/api/auth/userinfo";
     private static final String AUTH_USERINFO_ISSUE_API_PATH           = "/api/auth/userinfo/issue";
@@ -886,6 +888,45 @@ class AuthleteApiImpl implements AuthleteApi
     {
         return callServicePostApi(
                 AUTH_TOKEN_UPDATE_API_PATH, request, TokenUpdateResponse.class);
+    }
+
+
+    @Override
+    public TokenListResponse getTokenList() throws AuthleteApiException
+    {
+        return callServiceGetApi(
+                AUTH_TOKEN_GET_LIST_API_PATH, TokenListResponse.class);
+    }
+
+
+    @Override
+    public TokenListResponse getTokenList(String clientIdentifier, String subject) throws AuthleteApiException
+    {
+        return callServiceGetApi(
+                AUTH_TOKEN_GET_LIST_API_PATH,
+                buildMap("clientIdentifier", clientIdentifier, "subject", subject),
+                TokenListResponse.class);
+    }
+
+
+    @Override
+    public TokenListResponse getTokenList(int start, int end) throws AuthleteApiException
+    {
+        return callServiceGetApi(
+                AUTH_TOKEN_GET_LIST_API_PATH,
+                buildMap("start", start, "end", end),
+                TokenListResponse.class);
+    }
+
+
+    @Override
+    public TokenListResponse getTokenList(String clientIdentifier, String subject,
+            int start, int end) throws AuthleteApiException
+    {
+        return callServiceGetApi(
+                AUTH_TOKEN_GET_LIST_API_PATH,
+                buildMap("clientIdentifier", clientIdentifier, "subject", subject, "start", start, "end", end),
+                TokenListResponse.class);
     }
 
 

@@ -48,6 +48,7 @@ import com.authlete.common.dto.TokenFailRequest;
 import com.authlete.common.dto.TokenFailResponse;
 import com.authlete.common.dto.TokenIssueRequest;
 import com.authlete.common.dto.TokenIssueResponse;
+import com.authlete.common.dto.TokenListResponse;
 import com.authlete.common.dto.TokenRequest;
 import com.authlete.common.dto.TokenResponse;
 import com.authlete.common.dto.TokenUpdateRequest;
@@ -138,7 +139,6 @@ public interface AuthleteApi
      */
     TokenFailResponse tokenFail(TokenFailRequest request) throws AuthleteApiException;
 
-
     /**
      * Call Authlete's {@code /auth/token/issue} API.
      *
@@ -163,6 +163,201 @@ public interface AuthleteApi
      * @since 1.34
      */
     TokenUpdateResponse tokenUpdate(TokenUpdateRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Get the list of access tokens that are associated with the
+     * service
+     * (= call Authlete's {@code /auth/token/get/list} API).
+     *
+     * <p>
+     * This method uses the default range to limit the result set
+     * of the query. Use {@link #getTokenList(int, int)}
+     * to specify the range explicitly.
+     * </p>
+     *
+     * @return
+     *         The list of access tokens.
+     *
+     * @since 2.29
+     */
+    TokenListResponse getTokenList() throws AuthleteApiException;
+
+
+    /**
+     * Get the list of access tokens
+     * (= call Authlete's {@code /auth/token/get/list} API with
+     * {@code clientIdentifier} and {@code subject}).
+     *
+     * <p>
+     * When both {@code clientIdentifier} and {@code subject} are
+     * {@code null}, the list of access tokens that are associated
+     * with the service is returned.
+     * </p>
+     *
+     * <p>
+     * When {@code clientIdentifier} is {@code null} but the {@code subject}
+     * is not {@code null}, the list of access tokens that are associated
+     * with the subject is returned.
+     * </p>
+     *
+     * <p>
+     * When {@code clientIdentifier} is not {@code null} but the
+     * {@code subject} is {@code null}, the list of access tokens
+     * that are associated with the client application is returned.
+     * </p>
+     *
+     * <p>
+     * When neither {@code clientIdentifier} nor {@code subject} is
+     * {@code null}, the list of access tokens that are associated
+     * with the client application and the subject is returned.
+     * </p>
+     *
+     * <p>
+     * This method uses the default range to limit the result set
+     * of the query. Use {@link #getTokenList(String, String, int, int)}
+     * to specify the range explicitly.
+     * </p>
+     *
+     * @param clientIdentifier
+     *         The identifier of the client (client ID or client ID alias)
+     *         associated with the targeted access tokens, or {@code null}.
+     *
+     * @param subject
+     *         The subject of the targeted access tokens, or {@code null}.
+     *
+     * @return
+     *         The list of access tokens.
+     *
+     * @since 2.29
+     */
+    TokenListResponse getTokenList(String clientIdentifier, String subject) throws AuthleteApiException;
+
+
+    /**
+     * Get the list of access tokens that are associated with the
+     * service
+     * (= call Authlete's {@code /auth/token/get/list} API
+     * with {@code start} and {@code end} parameters).
+     *
+     * <p>
+     * The pair of {@code start} and {@code end} parameters denotes
+     * the range of the result set of the query. For example, if
+     * {@code start} is 5 and {@code end} is 7, the pair makes a
+     * range from 5 (inclusive) to 7 (exclusive) and the response
+     * will contain (at most) 2 pieces of access token information,
+     * i.e., information about the 6th and the 7th access tokens (the
+     * index starts from 0).
+     * </p>
+     *
+     * <p>
+     * If {@code end - start} is equal to or less than 0, {@link
+     * TokenListResponse#getAccessTokens() getAccessTokens()} method
+     * of the response returns {@code null}. But even in such a case,
+     * {@link TokenListResponse#getTotalCount() getTotalCount()}
+     * method returns the total count. In other words, if you want
+     * to get just the total count, you can write the code as
+     * shown below.
+     * </p>
+     *
+     * <pre>
+     * int totalCount = api.{@link #getTokenList(int, int)
+     * getTokenList(0, 0)}.{@link TokenListResponse#getTotalCount()
+     * getTotalCount()};
+     * </pre>
+     *
+     * @param start
+     *         The start index (inclusive) of the result set of the query.
+     *         Must not be negative.
+     *
+     * @param end
+     *         The end index (exclusive) of the result set of the query.
+     *         Must not be negative.
+     *
+     * @return
+     *         The list of access tokens.
+     *
+     * @since 2.29
+     */
+    TokenListResponse getTokenList(int start, int end) throws AuthleteApiException;
+
+
+    /**
+     * Get the list of access tokens
+     * (= call Authlete's {@code /auth/token/get/list} API with {@code clientIdentifier},
+     * {@code subject}, {@code start} and {@code end} parameters).
+     *
+     * <p>
+     * When both {@code clientIdentifier} and {@code subject} are
+     * {@code null}, the list of access tokens that are associated
+     * with the service is returned.
+     * </p>
+     *
+     * <p>
+     * When {@code clientIdentifier} is {@code null} but the {@code subject}
+     * is not {@code null}, the list of access tokens that are associated
+     * with the subject is returned.
+     * </p>
+     *
+     * <p>
+     * When {@code clientIdentifier} is not {@code null} but the
+     * {@code subject} is {@code null}, the list of access tokens
+     * that are associated with the client application is returned.
+     * </p>
+     *
+     * <p>
+     * When neither {@code clientIdentifier} nor {@code subject} is
+     * {@code null}, the list of access tokens that are associated
+     * with the client application and the subject is returned.
+     * </p>
+     *
+     * <p>
+     * The pair of {@code start} and {@code end} parameters denotes
+     * the range of the result set of the query. For example, if
+     * {@code start} is 5 and {@code end} is 7, the pair makes a
+     * range from 5 (inclusive) to 7 (exclusive) and the response
+     * will contain (at most) 2 pieces of access token information,
+     * i.e., information about the 6th and the 7th access tokens (the
+     * index starts from 0).
+     * </p>
+     *
+     * <p>
+     * If {@code end - start} is equal to or less than 0, {@link
+     * TokenListResponse#getAccessTokens() getAccessTokens()} method
+     * of the response returns {@code null}. But even in such a case,
+     * {@link TokenListResponse#getTotalCount() getTotalCount()}
+     * method returns the total count. In other words, if you want
+     * to get just the total count, you can write the code as
+     * shown below.
+     * </p>
+     *
+     * <pre>
+     * int totalCount = api.{@link #getTokenList(String, String, int, int)
+     * getTokenList(clientIdentifier, subject, 0, 0)}.{@link TokenListResponse#getTotalCount()
+     * getTotalCount()};
+     * </pre>
+     *
+     * @param clientIdentifier
+     *         The identifier of the client (client ID or client ID alias)
+     *         associated with the targeted access tokens, or {@code null}.
+     *
+     * @param subject
+     *         The subject of the targeted access tokens, or {@code null}.
+     *
+     * @param start
+     *         The start index (inclusive) of the result set of the query.
+     *         Must not be negative.
+     *
+     * @param end
+     *         The end index (exclusive) of the result set of the query.
+     *         Must not be negative.
+     *
+     * @return
+     *         The list of access tokens.
+     *
+     * @since 2.29
+     */
+    TokenListResponse getTokenList(String clientIdentifier, String subject, int start, int end) throws AuthleteApiException;
 
 
     /**
