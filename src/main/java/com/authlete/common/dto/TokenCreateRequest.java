@@ -196,7 +196,7 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     private GrantType grantType;
@@ -209,7 +209,7 @@ public class TokenCreateRequest implements Serializable
     private boolean clientIdAliasUsed;
     private String accessToken;
     private String refreshToken;
-    private boolean accessTokenExpires;
+    private boolean accessTokenExpires = true;
 
 
     /**
@@ -693,13 +693,47 @@ public class TokenCreateRequest implements Serializable
         return this;
     }
 
-
+    /**
+     * Get whether the access token expires or not. By default, all access tokens
+     * expire after a period of time determined by their service. If this flag
+     * is set to {@code false} then the access token will not automatically
+     * expire and must be revoked or deleted manually at the service.
+     * 
+     * If this field is set to {@code false}, the accessTokenExpiresAt and 
+     * accessTokenDuration values are ignored.
+     *
+     * @return
+     *          {@code true} if the access token expires (default)
+     *          {@code false} if the access token does not expire
+     *
+     * @since 2.30
+     *
+     */
     public boolean isAccessTokenExpires()
     {
         return accessTokenExpires;
     }
 
 
+    /**
+     * Set whether the access token expires or not. By default, all access tokens
+     * expire after a period of time determined by their service. If this flag
+     * is set to {@code false} then the access token will not automatically
+     * expire and must be revoked or deleted manually at the service.
+     * 
+     * If this field is set to {@code false}, the accessTokenExpiresAt and 
+     * accessTokenDuration values are ignored.
+     *
+     * @param accessTokenExpires
+     *          {@code true} if the access token expires (default)
+     *          {@code false} if the access token does not expire
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.30
+     *
+     */
     public TokenCreateRequest setAccessTokenExpires(boolean accessTokenExpires)
     {
         this.accessTokenExpires = accessTokenExpires;
