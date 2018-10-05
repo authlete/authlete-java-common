@@ -68,13 +68,13 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
- * <dt><b><code>updateAccessTokenExpiresAtOnScopeUpdate</code></b></dt>
+ * <dt><b><code>accessTokenExpiresAtUpdatedOnScopeUpdate</code></b></dt>
  * <dd>
  * <p>
  * A boolean request parameter which indicates whether the API attempts to update
  * the expiration date of the access token when the scopes linked to the access
  * token are changed by this request. The default value is {@code false}. For more
- * details, see the description of {@link #setUpdateTokenExpiresAtOnScopeUpdate(boolean) setUpdateTokenExpiresAtOnScopeUpdate(boolean)}.
+ * details, see the description of {@link #setAccessTokenExpiresAtUpdatedOnScopeUpdate(boolean) setAccessTokenExpiresAtUpdatedOnScopeUpdate(boolean)}.
  * </p>
  * </dd>
  * </dl>
@@ -95,7 +95,7 @@ public class TokenUpdateRequest implements Serializable
     private long accessTokenExpiresAt;
     private String[] scopes;
     private Property[] properties;
-    private boolean updateAccessTokenExpiresAtOnScopeUpdate;
+    private boolean accessTokenExpiresAtUpdatedOnScopeUpdate;
 
 
     /**
@@ -241,9 +241,9 @@ public class TokenUpdateRequest implements Serializable
      *
      * @since 2.29
      */
-    public boolean getUpdateTokenExpiresAtOnScopeUpdate()
+    public boolean isAccessTokenExpiresAtUpdatedOnScopeUpdate()
     {
-        return updateAccessTokenExpiresAtOnScopeUpdate;
+        return accessTokenExpiresAtUpdatedOnScopeUpdate;
     }
 
 
@@ -343,7 +343,7 @@ public class TokenUpdateRequest implements Serializable
      * expiration date of the access token using the duration.
      * </p>
      *
-     * @param updateAccessTokenExpiresAtOnScopeUpdate
+     * @param updated
      *         The flag which indicates whether {@code /auth/token/update} API
      *         attempts to update the expiration date of the access token when
      *         the scopes linked to the access token are changed by this request.
@@ -353,9 +353,9 @@ public class TokenUpdateRequest implements Serializable
      *
      * @since 2.29
      */
-    public TokenUpdateRequest setUpdateTokenExpiresAtOnScopeUpdate(boolean updateAccessTokenExpiresAtOnScopeUpdate)
+    public TokenUpdateRequest setAccessTokenExpiresAtUpdatedOnScopeUpdate(boolean updated)
     {
-        this.updateAccessTokenExpiresAtOnScopeUpdate = updateAccessTokenExpiresAtOnScopeUpdate;
+        this.accessTokenExpiresAtUpdatedOnScopeUpdate = updated;
 
         return this;
     }
