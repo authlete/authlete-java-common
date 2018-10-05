@@ -1,6 +1,20 @@
 変更点
 ======
 
+2.29 (2018 年 10 月 05 日)
+--------------------------
+
+- `AuthleteApi` インターフェース
+    * `getTokenList()` メソッドを追加。
+    * `getTokenList(String, String)` メソッドを追加。
+    * `getTokenList(int, int)` メソッドを追加。
+    * `getTokenList(String, String, int, int)` メソッドを追加。
+
+- `TokenUpdateRequest` クラス
+    * `isAccessTokenExpiresAtUpdatedOnScopeUpdate()` メソッドを追加。
+    * `setAccessTokenExpiresAtUpdatedOnScopeUpdate(boolean)` メソッドを追加。
+
+
 2.28 (2018 年 09 月 25 日)
 --------------------------
 

@@ -1,6 +1,20 @@
 CHANGES
 =======
 
+2.29 (2018-10-05)
+-----------------
+
+- `AuthleteApi` interface
+    * Added `getTokenList()` method.
+    * Added `getTokenList(String, String)` method.
+    * Added `getTokenList(int, int)` method.
+    * Added `getTokenList(String, String, int, int)` method.
+
+- `TokenUpdateRequest` class
+    * Added `isAccessTokenExpiresAtUpdatedOnScopeUpdate()` method.
+    * Added `setAccessTokenExpiresAtUpdatedOnScopeUpdate(boolean)` method.
+
+
 2.28 (2018-09-25)
 -----------------
 
