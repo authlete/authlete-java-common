@@ -47,13 +47,13 @@ package com.authlete.common.conf;
  */
 public class AuthleteEnvConfiguration implements AuthleteConfiguration
 {
-    private static final String ENV_KEY_BASE_URL                 = "AUTHLETE_BASE_URL";
-    private static final String ENV_KEY_SERVICE_OWNER_API_KEY    = "AUTHLETE_SERVICEOWNER_APIKEY";
-    private static final String ENV_KEY_SERVICE_OWNER_API_SECRET = "AUTHLETE_SERVICEOWNER_APISECRET";
-    private static final String ENV_KEY_SERVICE_API_KEY          = "AUTHLETE_SERVICE_APIKEY";
-    private static final String ENV_KEY_SERVICE_API_SECRET       = "AUTHLETE_SERVICE_APISECRET";
+    private static final String ENV_KEY_BASE_URL                   = "AUTHLETE_BASE_URL";
+    private static final String ENV_KEY_SERVICE_OWNER_API_KEY      = "AUTHLETE_SERVICEOWNER_APIKEY";
+    private static final String ENV_KEY_SERVICE_OWNER_API_SECRET   = "AUTHLETE_SERVICEOWNER_APISECRET";
+    private static final String ENV_KEY_SERVICE_API_KEY            = "AUTHLETE_SERVICE_APIKEY";
+    private static final String ENV_KEY_SERVICE_API_SECRET         = "AUTHLETE_SERVICE_APISECRET";
     private static final String ENV_KEY_SERVICE_OWNER_ACCESS_TOKEN = "AUTHLETE_SERVICEOWNER_ACCESSTOKEN";
-    private static final String ENV_KEY_SERVICE_ACCESS_TOKEN = "AUTHLETE_SERVICE_ACCESSTOKEN";
+    private static final String ENV_KEY_SERVICE_ACCESS_TOKEN       = "AUTHLETE_SERVICE_ACCESSTOKEN";
 
 
     @Override

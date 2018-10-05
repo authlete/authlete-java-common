@@ -246,7 +246,7 @@ public class TokenUpdateRequest implements Serializable
     {
         return accessTokenExpiresAtUpdatedOnScopeUpdate;
     }
-    
+
     /**
      * Set the flag which indicates whether {@code /auth/token/update} API attempts
      * to update the expiration date of the access token when the scopes linked to
@@ -366,14 +366,14 @@ public class TokenUpdateRequest implements Serializable
      * is set to {@code false} then the access token will not automatically
      * expire and must be revoked or deleted manually at the service.
      *
-     * If this field is set to {@code false}, the accessTokenExpiresAt and 
-     * value is ignored. If this field is set to {@code true}, the 
+     * If this field is set to {@code false}, the accessTokenExpiresAt and
+     * value is ignored. If this field is set to {@code true}, the
      * accessTokenExpiresAt field is processed normally.
      *
      * @return
      *          {@code true} if the access token expires (default)
      *          {@code false} if the access token does not expire
-     *          
+     *
      * @since 2.30
      */
     public boolean isAccessTokenExpires()
@@ -387,9 +387,9 @@ public class TokenUpdateRequest implements Serializable
      * expire after a period of time determined by their service. If this flag
      * is set to {@code false} then the access token will not automatically
      * expire and must be revoked or deleted manually at the service.
-     * 
-     * If this field is set to {@code false}, the accessTokenExpiresAt and 
-     * value is ignored. If this field is set to {@code true}, the 
+     *
+     * If this field is set to {@code false}, the accessTokenExpiresAt and
+     * value is ignored. If this field is set to {@code true}, the
      * accessTokenExpiresAt field is processed normally.
      *
      * @param accessTokenExpires
@@ -404,7 +404,7 @@ public class TokenUpdateRequest implements Serializable
     public TokenUpdateRequest setAccessTokenExpires(boolean accessTokenExpires)
     {
         this.accessTokenExpires = accessTokenExpires;
-        
+
         return this;
     }
 }
