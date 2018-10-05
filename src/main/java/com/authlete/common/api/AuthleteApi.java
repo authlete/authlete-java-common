@@ -187,7 +187,7 @@ public interface AuthleteApi
     /**
      * Get the list of access tokens
      * (= call Authlete's {@code /auth/token/get/list} API with
-     * {@code clientIdentifier} and {@code developer}).
+     * {@code clientIdentifier} and {@code subject}).
      *
      * <p>
      * When both {@code clientIdentifier} and {@code subject} are
@@ -285,7 +285,7 @@ public interface AuthleteApi
     /**
      * Get the list of access tokens
      * (= call Authlete's {@code /auth/token/get/list} API with {@code clientIdentifier},
-     * {@code developer}, {@code start} and {@code end} parameters).
+     * {@code subject}, {@code start} and {@code end} parameters).
      *
      * <p>
      * When both {@code clientIdentifier} and {@code subject} are
