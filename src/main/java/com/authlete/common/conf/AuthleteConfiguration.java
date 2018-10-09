@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,6 @@ package com.authlete.common.conf;
 
 /**
  * Authlete configuration.
- *
- * @author Takahiko Kawasaki
  */
 public interface AuthleteConfiguration
 {
@@ -42,6 +40,12 @@ public interface AuthleteConfiguration
 
 
     /**
+     * Get the service owner API access token
+     */
+    String getServiceOwnerAccessToken();
+
+
+    /**
      * Get the service API key.
      */
     String getServiceApiKey();
@@ -51,15 +55,10 @@ public interface AuthleteConfiguration
      * Get the service API secret.
      */
     String getServiceApiSecret();
-    
+
+
     /**
      * Get the service API access token
      */
     String getServiceAccessToken();
-    
-    /**
-     * Get the service owner API access token
-     */
-    String getServiceOwnerAccessToken();
-    
 }

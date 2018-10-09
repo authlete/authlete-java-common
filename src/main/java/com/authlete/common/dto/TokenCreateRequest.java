@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2017 Authlete, Inc.
+ * Copyright (C) 2015-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -184,13 +184,27 @@ import com.authlete.common.types.GrantType;
  * exists in Authlete's database, the refresh token cannot be inserted
  * and the {@code /api/auth/token/create} API will report an error.
  * </p>
+ * </dd>
  *
+ * <dt><b><code>accessTokenPersistent</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * A boolean request parameter which indicates whether the access token
+ * expires or not. By default, all access tokens expire after a period of
+ * time determined by their service. If this request parameter is {@code true}
+ * then the access token will not automatically expire and must be revoked
+ * or deleted manually at the service.
+ * </p>
+ *
+ * <p>
+ * If this request parameter is {@code true}, the {@code accessTokenDuration}
+ * request parameter is ignored.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
  * @see TokenCreateResponse
- *
- * @author Takahiko Kawasaki
  *
  * @since 1.13
  */
@@ -693,21 +707,23 @@ public class TokenCreateRequest implements Serializable
         return this;
     }
 
+
     /**
      * Get whether the access token expires or not. By default, all access tokens
-     * expire after a period of time determined by their service. If this flag
-     * is set to {@code true} then the access token will not automatically
+     * expire after a period of time determined by their service. If this request
+     * parameter is {@code true} then the access token will not automatically
      * expire and must be revoked or deleted manually at the service.
-     * 
-     * If this field is set to {@code true}, the accessTokenExpiresAt and 
-     * accessTokenDuration values are ignored.
+     *
+     * <p>
+     * If this request parameter is {@code true}, the {@code accessTokenDuration}
+     * request parameter is ignored.
+     * </p>
      *
      * @return
-     *          {@code false} if the access token expires (default)
-     *          {@code true} if the access token does not expire
+     *         {@code false} if the access token expires (default).
+     *         {@code true} if the access token does not expire.
      *
      * @since 2.30
-     *
      */
     public boolean isAccessTokenPersistent()
     {
@@ -717,26 +733,28 @@ public class TokenCreateRequest implements Serializable
 
     /**
      * Set whether the access token expires or not. By default, all access tokens
-     * expire after a period of time determined by their service. If this flag
-     * is set to {@code true} then the access token will not automatically
+     * expire after a period of time determined by their service. If this request
+     * parameter is {@code true} then the access token will not automatically
      * expire and must be revoked or deleted manually at the service.
-     * 
-     * If this field is set to {@code true}, the accessTokenExpiresAt and 
-     * accessTokenDuration values are ignored.
      *
-     * @param accessTokenPersistent
-     *          {@code false} if the access token expires (default)
-     *          {@code true} if the access token does not expire
+     * <p>
+     * If this request parameter is {@code true}, the {@code accessTokenDuration}
+     * request parameter is ignored.
+     * </p>
+     *
+     * @param persistent
+     *         {@code false} to make the access token expire (default).
+     *         {@code true} to make the access token be persistent.
      *
      * @return
      *         {@code this} object.
      *
      * @since 2.30
-     *
      */
-    public TokenCreateRequest setAccessTokenPersistent(boolean accessTokenPersistent)
+    public TokenCreateRequest setAccessTokenPersistent(boolean persistent)
     {
-        this.accessTokenPersistent = accessTokenPersistent;
+        this.accessTokenPersistent = persistent;
+
         return this;
     }
 }

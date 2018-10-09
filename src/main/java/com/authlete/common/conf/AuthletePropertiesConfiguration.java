@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -159,8 +159,6 @@ import com.neovisionaries.security.AESCipher;
  * as the name of the configuration file and search the file system and then
  * the classpath for the file.
  * </p>
- *
- * @author Takahiko Kawasaki
  */
 public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 {
@@ -226,13 +224,18 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
     /**
      * Property key to specify the service owner API secret
-     * ({@code service_owner.api_secret.encrypted}).
+     * ({@code service_owner.api_secret}).
      */
     private static final String PROPERTY_KEY_SERVICE_OWNER_API_SECRET = "service_owner.api_secret";
 
 
+    /**
+     * Property key to specify the service owner access token
+     * ({@code service_owner.access_token}).
+     */
     private static final String PROPERTY_KEY_SERVICE_OWNER_ACCESS_TOKEN = "service_owner.access_token";
-    
+
+
     /**
      * Property key to specify the service API key
      * ({@code service.api_key}).
@@ -249,13 +252,18 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
     /**
      * Property key to specify the service API secret
-     * ({@code service.api_secret.encrypted}).
+     * ({@code service.api_secret}).
      */
     private static final String PROPERTY_KEY_SERVICE_API_SECRET = "service.api_secret";
 
 
+    /**
+     * Property key to specify the service access token
+     * ({@code service.access_token}).
+     */
     private static final String PROPERTY_KEY_SERVICE_ACCESS_TOKEN = "service.access_token";
-    
+
+
     /**
      * The default value of the base URL ({@code https://api.authlete.com}).
      */
@@ -281,6 +289,12 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
 
     /**
+     * Service owner access token.
+     */
+    private String mServiceOwnerAccessToken;
+
+
+    /**
      * Service API key.
      */
     private String mServiceApiKey;
@@ -291,9 +305,12 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      */
     private String mServiceApiSecret;
 
+
+    /**
+     * Service access token.
+     */
     private String mServiceAccessToken;
-    private String mServiceOwnerAccessToken;
-    
+
 
     /**
      * Constructor with a pair of secret key and initial vector to decode
@@ -511,10 +528,9 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
         {
             mServiceApiSecret = props.getString(PROPERTY_KEY_SERVICE_API_SECRET);
         }
-        
+
         mServiceAccessToken = props.getString(PROPERTY_KEY_SERVICE_ACCESS_TOKEN);
         mServiceOwnerAccessToken = props.getString(PROPERTY_KEY_SERVICE_OWNER_ACCESS_TOKEN);
-        
     }
 
 
@@ -626,6 +642,13 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
     }
 
 
+    @Override
+    public String getServiceOwnerAccessToken()
+    {
+        return mServiceOwnerAccessToken;
+    }
+
+
     /**
      * Get the service API key.
      */
@@ -650,12 +673,5 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
     public String getServiceAccessToken()
     {
         return mServiceAccessToken;
-    }
-
-
-    @Override
-    public String getServiceOwnerAccessToken()
-    {
-        return mServiceOwnerAccessToken;
     }
 }

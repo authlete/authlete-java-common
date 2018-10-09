@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,8 +42,6 @@ package com.authlete.common.conf;
  *   <dd><p>The API secret of the service.</p></dd>
  * </dl>
  * </blockquote>
- *
- * @author Takahiko Kawasaki
  */
 public class AuthleteEnvConfiguration implements AuthleteConfiguration
 {
@@ -78,6 +76,13 @@ public class AuthleteEnvConfiguration implements AuthleteConfiguration
 
 
     @Override
+    public String getServiceOwnerAccessToken()
+    {
+        return get(ENV_KEY_SERVICE_OWNER_ACCESS_TOKEN);
+    }
+
+
+    @Override
     public String getServiceApiKey()
     {
         return get(ENV_KEY_SERVICE_API_KEY);
@@ -91,12 +96,6 @@ public class AuthleteEnvConfiguration implements AuthleteConfiguration
     }
 
 
-    private String get(String key)
-    {
-        return System.getenv(key);
-    }
-
-
     @Override
     public String getServiceAccessToken()
     {
@@ -104,9 +103,8 @@ public class AuthleteEnvConfiguration implements AuthleteConfiguration
     }
 
 
-    @Override
-    public String getServiceOwnerAccessToken()
+    private String get(String key)
     {
-        return get(ENV_KEY_SERVICE_OWNER_ACCESS_TOKEN);
+        return System.getenv(key);
     }
 }

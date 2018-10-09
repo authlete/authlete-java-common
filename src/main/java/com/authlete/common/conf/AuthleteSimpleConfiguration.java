@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,6 @@ package com.authlete.common.conf;
 
 /**
  * POJO implementation of {@link AuthleteConfiguration}.
- *
- * @author Takahiko Kawasaki
  */
 public class AuthleteSimpleConfiguration implements AuthleteConfiguration
 {
@@ -105,6 +103,32 @@ public class AuthleteSimpleConfiguration implements AuthleteConfiguration
 
 
     @Override
+    public String getServiceOwnerAccessToken()
+    {
+        return serviceOwnerAccessToken;
+    }
+
+
+    /**
+     * Set the access token of the service owner.
+     *
+     * @param accessToken
+     *         The access token of the service owner.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.30
+     */
+    public AuthleteSimpleConfiguration setServiceOwnerAccessToken(String accessToken)
+    {
+        this.serviceOwnerAccessToken = accessToken;
+
+        return this;
+    }
+
+
+    @Override
     public String getServiceApiKey()
     {
         return serviceApiKey;
@@ -153,31 +177,27 @@ public class AuthleteSimpleConfiguration implements AuthleteConfiguration
 
 
     @Override
-    public String getServiceOwnerAccessToken()
-    {
-        return serviceOwnerAccessToken;
-    }
-
-
-    public AuthleteSimpleConfiguration setServiceOwnerAccessToken(String serviceOwnerAccessToken)
-    {
-        this.serviceOwnerAccessToken = serviceOwnerAccessToken;
-        return this;
-    }
-
-
-    @Override
     public String getServiceAccessToken()
     {
         return serviceAccessToken;
     }
 
 
-    public AuthleteSimpleConfiguration setServiceAccessToken(String serviceAccessToken)
+    /**
+     * Set the access token of the service.
+     *
+     * @param accessToken
+     *         The access token of the service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.30
+     */
+    public AuthleteSimpleConfiguration setServiceAccessToken(String accessToken)
     {
-        this.serviceAccessToken = serviceAccessToken;
-        
+        this.serviceAccessToken = accessToken;
+
         return this;
     }
-    
 }

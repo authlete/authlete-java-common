@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Authlete, Inc.
+ * Copyright (C) 2016-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,8 +81,6 @@ import java.io.Serializable;
  * </blockquote>
  *
  * @see TokenUpdateResponse
- *
- * @author Takahiko Kawasaki
  *
  * @since 1.34
  */
@@ -247,6 +245,7 @@ public class TokenUpdateRequest implements Serializable
         return accessTokenExpiresAtUpdatedOnScopeUpdate;
     }
 
+
     /**
      * Set the flag which indicates whether {@code /auth/token/update} API attempts
      * to update the expiration date of the access token when the scopes linked to
@@ -360,19 +359,22 @@ public class TokenUpdateRequest implements Serializable
         return this;
     }
 
+
     /**
      * Get whether the access token expires or not. By default, all access tokens
-     * expire after a period of time determined by their service. If this flag
-     * is set to {@code false} then the access token will not automatically
+     * expire after a period of time determined by their service. If this request
+     * parameter is {@code true} then the access token will not automatically
      * expire and must be revoked or deleted manually at the service.
      *
-     * If this field is set to {@code false}, the accessTokenExpiresAt and
-     * value is ignored. If this field is set to {@code true}, the
-     * accessTokenExpiresAt field is processed normally.
+     * <p>
+     * If this request parameter is {@code true}, the {@code accessTokenExpiresAt}
+     * request parameter is ignored. If this request parameter is {@code false},
+     * the {@code accessTokenExpiresAt} request parameter is processed normally.
+     * </p>
      *
      * @return
-     *          {@code false} if the access token expires (default)
-     *          {@code true} if the access token does not expire
+     *         {@code false} if the access token expires (default).
+     *         {@code true} if the access token does not expire.
      *
      * @since 2.30
      */
@@ -384,26 +386,28 @@ public class TokenUpdateRequest implements Serializable
 
     /**
      * Set whether the access token expires or not. By default, all access tokens
-     * expire after a period of time determined by their service. If this flag
-     * is set to {@code false} then the access token will not automatically
+     * expire after a period of time determined by their service. If this request
+     * parameter is {@code true} then the access token will not automatically
      * expire and must be revoked or deleted manually at the service.
      *
-     * If this field is set to {@code false}, the accessTokenExpiresAt and
-     * value is ignored. If this field is set to {@code true}, the
-     * accessTokenExpiresAt field is processed normally.
+     * <p>
+     * If this request parameter is {@code true}, the {@code accessTokenExpiresAt}
+     * request parameter is ignored. If this request parameter is {@code false},
+     * the {@code accessTokenExpiresAt} request parameter is processed normally.
+     * </p>
      *
-     * @param accessTokenPersistent
-     *          {@code false} if the access token expires (default)
-     *          {@code true} if the access token does not expire
+     * @param persistent
+     *         {@code false} to make the access token expire (default).
+     *         {@code true} to make the access token be persistent.
      *
      * @return
      *         {@code this} object.
      *
      * @since 2.30
      */
-    public TokenUpdateRequest setAccessTokenPersistent(boolean accessTokenPersistent)
+    public TokenUpdateRequest setAccessTokenPersistent(boolean persistent)
     {
-        this.accessTokenPersistent = accessTokenPersistent;
+        this.accessTokenPersistent = persistent;
 
         return this;
     }
