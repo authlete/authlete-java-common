@@ -96,7 +96,7 @@ public class TokenUpdateRequest implements Serializable
     private String[] scopes;
     private Property[] properties;
     private boolean accessTokenExpiresAtUpdatedOnScopeUpdate;
-    private boolean accessTokenExpires = true;
+    private boolean accessTokenPersistent;
 
 
     /**
@@ -371,14 +371,14 @@ public class TokenUpdateRequest implements Serializable
      * accessTokenExpiresAt field is processed normally.
      *
      * @return
-     *          {@code true} if the access token expires (default)
-     *          {@code false} if the access token does not expire
+     *          {@code false} if the access token expires (default)
+     *          {@code true} if the access token does not expire
      *
      * @since 2.30
      */
-    public boolean isAccessTokenExpires()
+    public boolean isAccessTokenPersistent()
     {
-        return accessTokenExpires;
+        return accessTokenPersistent;
     }
 
 
@@ -392,18 +392,18 @@ public class TokenUpdateRequest implements Serializable
      * value is ignored. If this field is set to {@code true}, the
      * accessTokenExpiresAt field is processed normally.
      *
-     * @param accessTokenExpires
-     *          {@code true} if the access token expires (default)
-     *          {@code false} if the access token does not expire
+     * @param accessTokenPersistent
+     *          {@code false} if the access token expires (default)
+     *          {@code true} if the access token does not expire
      *
      * @return
      *         {@code this} object.
      *
      * @since 2.30
      */
-    public TokenUpdateRequest setAccessTokenExpires(boolean accessTokenExpires)
+    public TokenUpdateRequest setAccessTokenPersistent(boolean accessTokenPersistent)
     {
-        this.accessTokenExpires = accessTokenExpires;
+        this.accessTokenPersistent = accessTokenPersistent;
 
         return this;
     }

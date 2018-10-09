@@ -209,7 +209,7 @@ public class TokenCreateRequest implements Serializable
     private boolean clientIdAliasUsed;
     private String accessToken;
     private String refreshToken;
-    private boolean accessTokenExpires = true;
+    private boolean accessTokenPersistent;
 
 
     /**
@@ -696,37 +696,37 @@ public class TokenCreateRequest implements Serializable
     /**
      * Get whether the access token expires or not. By default, all access tokens
      * expire after a period of time determined by their service. If this flag
-     * is set to {@code false} then the access token will not automatically
+     * is set to {@code true} then the access token will not automatically
      * expire and must be revoked or deleted manually at the service.
      * 
-     * If this field is set to {@code false}, the accessTokenExpiresAt and 
+     * If this field is set to {@code true}, the accessTokenExpiresAt and 
      * accessTokenDuration values are ignored.
      *
      * @return
-     *          {@code true} if the access token expires (default)
-     *          {@code false} if the access token does not expire
+     *          {@code false} if the access token expires (default)
+     *          {@code true} if the access token does not expire
      *
      * @since 2.30
      *
      */
-    public boolean isAccessTokenExpires()
+    public boolean isAccessTokenPersistent()
     {
-        return accessTokenExpires;
+        return accessTokenPersistent;
     }
 
 
     /**
      * Set whether the access token expires or not. By default, all access tokens
      * expire after a period of time determined by their service. If this flag
-     * is set to {@code false} then the access token will not automatically
+     * is set to {@code true} then the access token will not automatically
      * expire and must be revoked or deleted manually at the service.
      * 
-     * If this field is set to {@code false}, the accessTokenExpiresAt and 
+     * If this field is set to {@code true}, the accessTokenExpiresAt and 
      * accessTokenDuration values are ignored.
      *
-     * @param accessTokenExpires
-     *          {@code true} if the access token expires (default)
-     *          {@code false} if the access token does not expire
+     * @param accessTokenPersistent
+     *          {@code false} if the access token expires (default)
+     *          {@code true} if the access token does not expire
      *
      * @return
      *         {@code this} object.
@@ -734,9 +734,9 @@ public class TokenCreateRequest implements Serializable
      * @since 2.30
      *
      */
-    public TokenCreateRequest setAccessTokenExpires(boolean accessTokenExpires)
+    public TokenCreateRequest setAccessTokenPersistent(boolean accessTokenPersistent)
     {
-        this.accessTokenExpires = accessTokenExpires;
+        this.accessTokenPersistent = accessTokenPersistent;
         return this;
     }
 }
