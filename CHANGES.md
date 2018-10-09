@@ -1,6 +1,22 @@
 CHANGES
 =======
 
+2.30 (2018-10-10)
+-----------------
+
+- `AuthleteConfiguration` interface
+    * Added `getServiceAccessToken()` method.
+    * Added `getServiceOwnerAccessToken()` method.
+
+- `TokenCreateRequest` class
+    * Added `isAccessTokenPersistent()` method.
+    * Added `setAccessTokenPersistent(boolean)` method.
+
+- `TokenUpdateRequest` class
+    * Added `isAccessTokenPersistent()` method.
+    * Added `setAccessTokenPersistent(boolean)` method.
+
+
 2.29 (2018-10-05)
 -----------------
 

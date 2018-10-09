@@ -1,6 +1,22 @@
 変更点
 ======
 
+2.30 (2018 年 10 月 10 日)
+--------------------------
+
+- `AuthleteConfiguration` インターフェース
+    * `getServiceAccessToken()` メソッドを追加。
+    * `getServiceOwnerAccessToken()` メソッドを追加。
+
+- `TokenCreateRequest` クラス
+    * `isAccessTokenPersistent()` メソッドを追加。
+    * `setAccessTokenPersistent(boolean)` メソッドを追加。
+
+- `TokenUpdateRequest` クラス
+    * `isAccessTokenPersistent()` メソッドを追加。
+    * `setAccessTokenPersistent(boolean)` メソッドを追加。
+
+
 2.29 (2018 年 10 月 05 日)
 --------------------------
 

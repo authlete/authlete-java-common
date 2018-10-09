@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.29</version>
+    <version>2.30</version>
 </dependency>
 ```
 
@@ -243,6 +243,10 @@ settings.setReadTimeout(5000);
 
     - `introspection(IntrospectionRequest request)`
     - `standardIntrospection(StandardIntrospectionRequest request)`
+    - `getTokenList()`
+    - `getTokenList(String clientIdentifier, String subject)`
+    - `getTokenList(int start, int end)`
+    - `getTokenList(String clientIdentifier, String subject, int start, int end)`
 
   6. アクセストークン取り消しエンドポイント実装のためのメソッド群
 

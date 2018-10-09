@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.29</version>
+    <version>2.30</version>
 </dependency>
 ```
 
@@ -255,6 +255,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
     - `introspection(IntrospectionRequest request)`
     - `standardIntrospection(StandardIntrospectionRequest request)`
+    - `getTokenList()`
+    - `getTokenList(String clientIdentifier, String subject)`
+    - `getTokenList(int start, int end)`
+    - `getTokenList(String clientIdentifier, String subject, int start, int end)`
 
   6. Methods for Revocation Endpoint Implementation
 
