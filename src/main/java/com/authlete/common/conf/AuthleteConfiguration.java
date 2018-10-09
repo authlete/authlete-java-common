@@ -51,4 +51,15 @@ public interface AuthleteConfiguration
      * Get the service API secret.
      */
     String getServiceApiSecret();
+    
+    /**
+     * Get the service API access token
+     */
+    String getServiceAccessToken();
+    
+    /**
+     * Get the service owner API access token
+     */
+    String getServiceOwnerAccessToken();
+    
 }

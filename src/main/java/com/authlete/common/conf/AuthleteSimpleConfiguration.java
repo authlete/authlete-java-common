@@ -26,8 +26,10 @@ public class AuthleteSimpleConfiguration implements AuthleteConfiguration
     private String baseUrl;
     private String serviceOwnerApiKey;
     private String serviceOwnerApiSecret;
+    private String serviceOwnerAccessToken;
     private String serviceApiKey;
     private String serviceApiSecret;
+    private String serviceAccessToken;
 
 
     @Override
@@ -148,4 +150,34 @@ public class AuthleteSimpleConfiguration implements AuthleteConfiguration
 
         return this;
     }
+
+
+    @Override
+    public String getServiceOwnerAccessToken()
+    {
+        return serviceOwnerAccessToken;
+    }
+
+
+    public AuthleteSimpleConfiguration setServiceOwnerAccessToken(String serviceOwnerAccessToken)
+    {
+        this.serviceOwnerAccessToken = serviceOwnerAccessToken;
+        return this;
+    }
+
+
+    @Override
+    public String getServiceAccessToken()
+    {
+        return serviceAccessToken;
+    }
+
+
+    public AuthleteSimpleConfiguration setServiceAccessToken(String serviceAccessToken)
+    {
+        this.serviceAccessToken = serviceAccessToken;
+        
+        return this;
+    }
+    
 }
