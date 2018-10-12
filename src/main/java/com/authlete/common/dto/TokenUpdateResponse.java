@@ -122,12 +122,13 @@ public class TokenUpdateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 1L;
-    private static final String SUMMARY_FORMAT = "action=%s, accessToken=%s, accessTokenExpiresAt=%d, scopes=%s";
+    private static final long serialVersionUID = 2L;
+    private static final String SUMMARY_FORMAT = "action=%s, accessToken=%s, accessTokenExpiresAt=%d, scopes=%s, tokenType=%s";
 
 
     private Action action;
     private String accessToken;
+    private String tokenType;
     private long accessTokenExpiresAt;
     private String[] scopes;
     private Property[] properties;
@@ -283,10 +284,43 @@ public class TokenUpdateResponse extends ApiResponse
 
 
     /**
+     * Get the token type associated with the access token.
+     * 
+     * @return 
+     *          Token type. (example: Bearer)
+     *
+     * @since 2.XX
+     */
+    public String getTokenType()
+    {
+        return tokenType;
+    }
+
+
+    /**
+     * Get the token type associated with the access token.
+     * 
+     * @param tokenType
+     *          Token type. (example: Bearer)
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public TokenUpdateResponse setTokenType(String tokenType)
+    {
+        this.tokenType = tokenType;
+        
+        return this;
+    }
+
+
+    /**
      * Get the summary of this instance.
      */
     public String summarize()
     {
-        return String.format(SUMMARY_FORMAT, action, accessToken, accessTokenExpiresAt, Utils.join(scopes, " "));
+        return String.format(SUMMARY_FORMAT, action, accessToken, accessTokenExpiresAt, Utils.join(scopes, " "), tokenType);
     }
 }
