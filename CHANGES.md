@@ -1,6 +1,20 @@
 CHANGES
 =======
 
+2.31 (2018-10-19)
+-----------------
+
+- `TokenUpdateRequest` class
+    * Added `getAccessTokenHash()` method.
+    * Added `setAccessTokenHash(String)` method.
+    * Added `isAccessTokenValueUpdated()` method.
+    * Added `setAccessTokenValueUpdated(boolean)` method.
+
+- `TokenUpdateResponse` class
+    * Added `getTokenType()` method.
+    * Added `setTokenType(String)` method.
+
+
 2.30 (2018-10-10)
 -----------------
 

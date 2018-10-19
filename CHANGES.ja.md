@@ -1,6 +1,20 @@
 変更点
 ======
 
+2.31 (2018 年 10 月 19 日)
+--------------------------
+
+- `TokenUpdateRequest` クラス
+    * `getAccessTokenHash()` メソッドを追加。
+    * `setAccessTokenHash(String)` メソッドを追加。
+    * `isAccessTokenValueUpdated()` メソッドを追加。
+    * `setAccessTokenValueUpdated(boolean)` メソッドを追加。
+
+- `TokenUpdateResponse` クラス
+    * `getTokenType()` メソッドを追加。
+    * `setTokenType(String)` メソッドを追加。
+
+
 2.30 (2018 年 10 月 10 日)
 --------------------------
 
