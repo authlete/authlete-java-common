@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Authlete, Inc.
+ * Copyright (C) 2016-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -123,7 +123,8 @@ public class TokenUpdateResponse extends ApiResponse
 
 
     private static final long serialVersionUID = 2L;
-    private static final String SUMMARY_FORMAT = "action=%s, accessToken=%s, accessTokenExpiresAt=%d, scopes=%s, tokenType=%s";
+    private static final String SUMMARY_FORMAT =
+            "action=%s, accessToken=%s, accessTokenExpiresAt=%d, scopes=%s, tokenType=%s";
 
 
     private Action action;
@@ -285,11 +286,11 @@ public class TokenUpdateResponse extends ApiResponse
 
     /**
      * Get the token type associated with the access token.
-     * 
-     * @return 
-     *          Token type. (example: Bearer)
      *
-     * @since 2.XX
+     * @return
+     *         Token type. (example: Bearer)
+     *
+     * @since 2.31
      */
     public String getTokenType()
     {
@@ -298,20 +299,20 @@ public class TokenUpdateResponse extends ApiResponse
 
 
     /**
-     * Get the token type associated with the access token.
-     * 
+     * Set the token type associated with the access token.
+     *
      * @param tokenType
-     *          Token type. (example: Bearer)
+     *         Token type. (example: Bearer)
      *
      * @return
      *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.31
      */
     public TokenUpdateResponse setTokenType(String tokenType)
     {
         this.tokenType = tokenType;
-        
+
         return this;
     }
 
@@ -321,6 +322,7 @@ public class TokenUpdateResponse extends ApiResponse
      */
     public String summarize()
     {
-        return String.format(SUMMARY_FORMAT, action, accessToken, accessTokenExpiresAt, Utils.join(scopes, " "), tokenType);
+        return String.format(SUMMARY_FORMAT, action, accessToken,
+                accessTokenExpiresAt, Utils.join(scopes, " "), tokenType);
     }
 }
