@@ -23,6 +23,8 @@ import com.authlete.common.dto.AuthorizationIssueResponse;
 import com.authlete.common.dto.AuthorizationRequest;
 import com.authlete.common.dto.AuthorizationResponse;
 import com.authlete.common.dto.AuthorizedClientListResponse;
+import com.authlete.common.dto.BackchannelAuthenticationRequest;
+import com.authlete.common.dto.BackchannelAuthenticationResponse;
 import com.authlete.common.dto.Client;
 import com.authlete.common.dto.ClientAuthorizationGetListRequest;
 import com.authlete.common.dto.ClientAuthorizationUpdateRequest;
@@ -1214,4 +1216,19 @@ public interface AuthleteApi
      * @since 2.23
      */
     JoseVerifyResponse verifyJose(JoseVerifyRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/backchannel/authentication} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.32
+     */
+    BackchannelAuthenticationResponse backchannelAuthentication(
+            BackchannelAuthenticationRequest request) throws AuthleteApiException;
 }

@@ -38,6 +38,8 @@ import com.authlete.common.dto.AuthorizationIssueResponse;
 import com.authlete.common.dto.AuthorizationRequest;
 import com.authlete.common.dto.AuthorizationResponse;
 import com.authlete.common.dto.AuthorizedClientListResponse;
+import com.authlete.common.dto.BackchannelAuthenticationRequest;
+import com.authlete.common.dto.BackchannelAuthenticationResponse;
 import com.authlete.common.dto.Client;
 import com.authlete.common.dto.ClientAuthorizationDeleteRequest;
 import com.authlete.common.dto.ClientAuthorizationGetListRequest;
@@ -137,6 +139,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String CLIENT_AUTHORIZATION_GET_LIST_API_PATH = "/api/client/authorization/get/list";
     private static final String CLIENT_AUTHORIZATION_UPDATE_API_PATH   = "/api/client/authorization/update/%d";
     private static final String JOSE_VERIFY_API_PATH                   = "/api/jose/verify";
+    private static final String BC_AUTHENTICATION_API_PATH             = "/api/backchannel/authentication";
 
 
     private final String mBaseUrl;
@@ -1360,5 +1363,14 @@ class AuthleteApiImpl implements AuthleteApi
     {
         return callServicePostApi(
                 JOSE_VERIFY_API_PATH, request, JoseVerifyResponse.class);
+    }
+
+
+    @Override
+    public BackchannelAuthenticationResponse backchannelAuthentication(
+            BackchannelAuthenticationRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                BC_AUTHENTICATION_API_PATH, request, BackchannelAuthenticationResponse.class);
     }
 }

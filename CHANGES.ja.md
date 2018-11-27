@@ -1,6 +1,38 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `backchannelAuthentication(BackchannelAuthenticationRequest)` メソッドを追加。
+
+- `Client` クラス
+    * `getBcDeliveryMode()` メソッドを追加。
+    * `setBcDeliveryMode(DeliveryMode)` メソッドを追加。
+    * `getBcNotificationEndpoint()` メソッドを追加。
+    * `setBcNotificationEndpoint(URI)` メソッドを追加。
+    * `getBcRequestSignAlg()` メソッドを追加。
+    * `setBcRequestSignAlg(JWSAlg)` メソッドを追加。
+
+- `GrantType` 列挙型
+    * `BACKCHANNEL_REQUEST` を追加。
+
+- `Service` クラス
+    * `getSupportedBackchannelTokenDeliveryModes()` メソッドを追加。
+    * `setSupportedBackchannelTokenDeliveryModes(DeliveryMode[])` メソッドを追加。
+    * `getBackchannelAuthenticationEndpoint()` メソッドを追加。
+    * `setBackchannelAuthenticationEndpoint(URI)` メソッドを追加。
+    * `getAllowableClockSkew()` メソッドを追加。
+    * `setAllowableClockSkew(int)` メソッドを追加。
+
+
+- 新しい列挙型
+    * `DeliveryMode`
+    * `UserIdentificationHintType`
+
+- 新しいクラス
+    * `BackchannelAuthenticationRequest`
+    * `BackchannelAuthenticationResponse`
+
+
 2.31 (2018 年 10 月 19 日)
 --------------------------
 

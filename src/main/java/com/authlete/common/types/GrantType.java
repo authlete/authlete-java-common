@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2018 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -86,7 +86,21 @@ public enum GrantType
      * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#RefreshTokens"
      *      >OpenID Connect Core 1.0, 12. Using Refresh Tokens</a>
      */
-    REFRESH_TOKEN((short)5, "refresh_token")
+    REFRESH_TOKEN((short)5, "refresh_token"),
+
+
+    /**
+     * {@code "urn:openid:paras:modrna:grant-type:backchannel_request"} (6),
+     * a {@code grant_type} to request an ID token, an access token, and
+     * optionally a refresh token, using the CIBA flow.
+     *
+     * <p>
+     * CIBA is short for Client Initiated Backchannel Authentication.
+     * </p>
+     *
+     * @since 2.32
+     */
+    BACKCHANNEL_REQUEST((short)6, "urn:openid:paras:modrna:grant-type:backchannel_request"),
     ;
 
 

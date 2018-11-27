@@ -1,6 +1,37 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `backchannelAuthentication(BackchannelAuthenticationRequest)` method.
+
+- `Client` class
+    * Added `getBcDeliveryMode()` method.
+    * Added `setBcDeliveryMode(DeliveryMode)` method.
+    * Added `getBcNotificationEndpoint()` method.
+    * Added `setBcNotificationEndpoint(URI)` method.
+    * Added `getBcRequestSignAlg()` method.
+    * Added `setBcRequestSignAlg(JWSAlg)` method.
+
+- `GrantType` enum
+    * Added `BACKCHANNEL_REQUEST`.
+
+- `Service` class
+    * Added `getSupportedBackchannelTokenDeliveryModes()` method.
+    * Added `setSupportedBackchannelTokenDeliveryModes(DeliveryMode[])` method.
+    * Added `getBackchannelAuthenticationEndpoint()` method.
+    * Added `setBackchannelAuthenticationEndpoint(URI)` method.
+    * Added `getAllowableClockSkew()` method.
+    * Added `setAllowableClockSkew(int)` method.
+
+- New enums
+    * `DeliveryMode`
+    * `UserIdentificationHintType`
+
+- New classes
+    * `BackchannelAuthenticationRequest`
+    * `BackchannelAuthenticationResponse`
+
+
 2.31 (2018-10-19)
 -----------------
 

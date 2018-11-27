@@ -19,6 +19,7 @@ package com.authlete.common.dto;
 import java.io.Serializable;
 import java.net.URI;
 import com.authlete.common.types.ApplicationType;
+import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.ClientType;
 import com.authlete.common.types.GrantType;
@@ -50,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 12L;
+    private static final long serialVersionUID = 13L;
 
 
     /*
@@ -245,6 +246,9 @@ public class Client implements Serializable
     private JWSAlg authorizationSignAlg;
     private JWEAlg authorizationEncryptionAlg;
     private JWEEnc authorizationEncryptionEnc;
+    private DeliveryMode bcDeliveryMode;
+    private URI bcNotificationEndpoint;
+    private JWSAlg bcRequestSignAlg;
 
 
     /**
@@ -2227,6 +2231,142 @@ public class Client implements Serializable
     public Client setAuthorizationEncryptionEnc(JWEEnc enc)
     {
         this.authorizationEncryptionEnc = enc;
+
+        return this;
+    }
+
+
+    /**
+     * Get the backchannel token delivery mode. This property corresponds
+     * to the {@code backchannel_token_delivery_mode} metadata.
+     *
+     * <p>
+     * The backchannel token delivery mode is defined in the specification
+     * of the CIBA (Client Initiated Backchannel Authentication).
+     * </p>
+     *
+     * @return
+     *         The backchannel token delivery mode.
+     *
+     *　@since 2.32
+     */
+    public DeliveryMode getBcDeliveryMode()
+    {
+        return bcDeliveryMode;
+    }
+
+
+    /**
+     * Set the backchannel token delivery mode. This property corresponds
+     * to the {@code backchannel_token_delivery_mode} metadata.
+     *
+     * <p>
+     * The backchannel token delivery mode is defined in the specification
+     * of CIBA (Client Initiated Backchannel Authentication).
+     * </p>
+     *
+     * @param mode
+     *         The backchannel token delivery mode.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.32
+     */
+    public Client setBcDeliveryMode(DeliveryMode mode)
+    {
+        this.bcDeliveryMode = mode;
+
+        return this;
+    }
+
+
+    /**
+     * Get the backchannel client notification endpoint. This property
+     * corresponds to the {@code backchannel_client_notification_endpoint}
+     * metadata.
+     *
+     * <p>
+     * The backchannel client notification endpoint is defined in the
+     * specification of CIBA (Client Initiated Backchannel Authentication).
+     * </p>
+     *
+     * @return
+     *         The backchannel client notification endpoint.
+     *
+     *　@since 2.32
+     */
+    public URI getBcNotificationEndpoint()
+    {
+        return bcNotificationEndpoint;
+    }
+
+
+    /**
+     * Set the backchannel client notification endpoint. This property
+     * corresponds to the {@code backchannel_client_notification_endpoint}
+     * metadata.
+     *
+     * <p>
+     * The backchannel client notification endpoint is defined in the
+     * specification of CIBA (Client Initiated Backchannel Authentication).
+     * </p>
+     *
+     * @param endpoint
+     *         The backchannel client notification endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     *　@since 2.32
+     */
+    public Client setBcNotificationEndpoint(URI endpoint)
+    {
+        this.bcNotificationEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the signature algorithm of the request to the backchannel
+     * authentication endpoint. This property corresponds to the
+     * {@code backchannel_authentication_request_signing_alg} metadata.
+     *
+     * @return
+     *         The signature algorithm of the request to the backchannel
+     *         authentication endpoint.
+     *
+     * @since 2.32
+     */
+    public JWSAlg getBcRequestSignAlg()
+    {
+        return bcRequestSignAlg;
+    }
+
+
+    /**
+     * Set the signature algorithm of the request to the backchannel
+     * authentication endpoint. This property corresponds to the
+     * {@code backchannel_authentication_request_signing_alg} metadata.
+     *
+     * <p>
+     * The specification of CIBA (Client Initiated Backchannel Authentication)
+     * allows asymmetric algorithms only.
+     * </p>
+     *
+     * @param alg
+     *         The signature algorithm of the request to the backchannel
+     *         authentication endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     *　@since 2.32
+     */
+    public Client setBcRequestSignAlg(JWSAlg alg)
+    {
+        this.bcRequestSignAlg = alg;
 
         return this;
     }

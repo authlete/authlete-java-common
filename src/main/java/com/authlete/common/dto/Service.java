@@ -22,6 +22,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import com.authlete.common.types.ClaimType;
 import com.authlete.common.types.ClientAuthMethod;
+import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.Display;
 import com.authlete.common.types.GrantType;
 import com.authlete.common.types.ResponseType;
@@ -45,7 +46,7 @@ import com.authlete.common.types.Sns;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 23L;
+    private static final long serialVersionUID = 24L;
 
 
     /*
@@ -213,6 +214,32 @@ public class Service implements Serializable
      * @since 2.1
      */
     private String userInfoSignatureKeyId;
+
+
+    /**
+     * Supported backchannel token delivery modes. This property corresponds
+     * to the {@code backchannel_token_delivery_modes_supported} metadata.
+     *
+     * @since 2.32
+     */
+    private DeliveryMode[] supportedBackchannelTokenDeliveryModes;
+
+
+    /**
+     * The backchannel authentication endpoint. This property corresponds to
+     * the {@code backchannel_authentication_endpoint} metadata.
+     *
+     * @since 2.32
+     */
+    private URI backchannelAuthenticationEndpoint;
+
+
+    /**
+     * The allowable clock skew between the server and clients.
+     *
+     * @since 2.32
+     */
+    private int allowableClockSkew;
 
 
     /**
@@ -2870,6 +2897,140 @@ public class Service implements Serializable
     public Service setTrustedRootCertificates(String[] trustedRootCertificates)
     {
         this.trustedRootCertificates = trustedRootCertificates;
+
+        return this;
+    }
+
+
+    /**
+     * Get the supported backchannel token delivery modes. This property
+     * corresponds to the {@code backchannel_token_delivery_modes_supported}
+     * metadata.
+     *
+     * <p>
+     * Backchannel token delivery modes are defined in the specification of
+     * CIBA (Client Initiated Backchannel Authentication).
+     * </p>
+     *
+     * @return
+     *         Supported backchannel token delivery modes.
+     *
+     * @since 2.32
+     */
+    public DeliveryMode[] getSupportedBackchannelTokenDeliveryModes()
+    {
+        return supportedBackchannelTokenDeliveryModes;
+    }
+
+
+    /**
+     * Get the supported backchannel token delivery modes. This property
+     * corresponds to the {@code backchannel_token_delivery_modes_supported}
+     * metadata.
+     *
+     * <p>
+     * Backchannel token delivery modes are defined in the specification of
+     * CIBA (Client Initiated Backchannel Authentication).
+     * </p>
+     *
+     * @param modes
+     *         Supported backchannel token delivery modes.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.32
+     */
+    public Service setSupportedBackchannelTokenDeliveryModes(DeliveryMode[] modes)
+    {
+        this.supportedBackchannelTokenDeliveryModes = modes;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the backchannel authentication endpoint.
+     *
+     * <p>
+     * Backchannel authentication endpoint is defined in the specification of
+     * CIBA (Client Initiated Backchannel Authentication).
+     * </p>
+     *
+     * @return
+     *         The URI of the backchannel authentication endpoint.
+     *
+     * @since 2.32
+     */
+    public URI getBackchannelAuthenticationEndpoint()
+    {
+        return backchannelAuthenticationEndpoint;
+    }
+
+
+    /**
+     * Set the URI of the backchannel authentication endpoint.
+     *
+     * <p>
+     * Backchannel authentication endpoint is defined in the specification of
+     * CIBA (Client Initiated Backchannel Authentication).
+     * </p>
+     *
+     * @param endpoint
+     *         The URI of the backchannel authentication endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.32
+     */
+    public Service setBackchannelAuthenticationEndpoint(URI endpoint)
+    {
+        this.backchannelAuthenticationEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the allowable clock skew between the server and clients in seconds.
+     *
+     * <p>
+     * The clock skew is taken into consideration when time-related claims in
+     * a JWT (e.g. {@code "exp"}, {@code "iat"}, {@code "nbf"}) are verified.
+     * </p>
+     *
+     * @return
+     *         Allowable clock skew in seconds.
+     *
+     * @since 2.32
+     */
+    public int getAllowableClockSkew()
+    {
+        return allowableClockSkew;
+    }
+
+
+    /**
+     * Set the allowable clock skew between the server and clients in seconds.
+     *
+     * <p>
+     * The clock skew is taken into consideration when time-related claims in
+     * a JWT (e.g. {@code "exp"}, {@code "iat"}, {@code "nbf"}) are verified.
+     * </p>
+     *
+     * @param seconds
+     *         Allowable clock skew in seconds. Must be in between 0 and
+     *         65,535.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.32
+     */
+    public Service setAllowableClockSkew(int seconds)
+    {
+        this.allowableClockSkew = seconds;
 
         return this;
     }
