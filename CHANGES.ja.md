@@ -11,6 +11,11 @@
     * `setBcNotificationEndpoint(URI)` メソッドを追加。
     * `getBcRequestSignAlg()` メソッドを追加。
     * `setBcRequestSignAlg(JWSAlg)` メソッドを追加。
+    * `isBcUserCodeRequired()` メソッドを追加。
+    * `setBcUserCodeRequired(boolean)` メソッドを追加。
+
+- `ErrorCode` 列挙型
+    * `missing_user_code` を追加。
 
 - `GrantType` 列挙型
     * `BACKCHANNEL_REQUEST` を追加。
@@ -20,9 +25,10 @@
     * `setSupportedBackchannelTokenDeliveryModes(DeliveryMode[])` メソッドを追加。
     * `getBackchannelAuthenticationEndpoint()` メソッドを追加。
     * `setBackchannelAuthenticationEndpoint(URI)` メソッドを追加。
+    * `isBackchannelUserCodeParameterSupported()` メソッドを追加。
+    * `setBackchannelUserCodeParameterSupported(boolean)` メソッドを追加。
     * `getAllowableClockSkew()` メソッドを追加。
     * `setAllowableClockSkew(int)` メソッドを追加。
-
 
 - 新しい列挙型
     * `DeliveryMode`

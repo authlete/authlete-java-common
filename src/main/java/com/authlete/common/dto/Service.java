@@ -235,6 +235,14 @@ public class Service implements Serializable
 
 
     /**
+     * Boolean flag which indicates whether "user code" is supported at the
+     * backchannel authentication endpoint. This property corresponds to the
+     * {@code backchannel_user_code_parameter_supported} metadada.
+     */
+    private boolean backchannelUserCodeParameterSupported;
+
+
+    /**
      * The allowable clock skew between the server and clients.
      *
      * @since 2.32
@@ -2987,6 +2995,47 @@ public class Service implements Serializable
     public Service setBackchannelAuthenticationEndpoint(URI endpoint)
     {
         this.backchannelAuthenticationEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the boolean flag which indicates whether the {@code "user_code"}
+     * request parameter is supported at the backchannel authentication
+     * endpoint. This property corresponds to the
+     * {@code backchannel_user_code_parameter_supported} metadata.
+     *
+     * @return
+     *         {@code true} if the {@code "user_code"} request parameter is
+     *         supported at the backchannel authentication endpoint.
+     *
+     * @since 2.32
+     */
+    public boolean isBackchannelUserCodeParameterSupported()
+    {
+        return backchannelUserCodeParameterSupported;
+    }
+
+
+    /**
+     * Set the boolean flag which indicates whether the {@code "user_code"}
+     * request parameter is supported at the backchannel authentication
+     * endpoint. This property corresponds to the
+     * {@code backchannel_user_code_parameter_supported} metadata.
+     *
+     * @param supported
+     *         {@code true} to indicate that the {@code "user_code"} request
+     *         parameter is supported.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.32
+     */
+    public Service setBackchannelUserCodeParameterSupported(boolean supported)
+    {
+        this.backchannelUserCodeParameterSupported = supported;
 
         return this;
     }

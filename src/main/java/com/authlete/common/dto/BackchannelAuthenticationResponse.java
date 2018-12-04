@@ -57,6 +57,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     private String hint;
     private String sub;
     private String bindingMessage;
+    private String userCode;
     private String[] warnings;
     private String ticket;
 
@@ -592,6 +593,37 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     public BackchannelAuthenticationResponse setSub(String sub)
     {
         this.sub = sub;
+
+        return this;
+    }
+
+
+    /**
+     * Get the user code included in the backchannel authentication request.
+     * It is the value of the {@code "user_code"} request parameter.
+     *
+     * @return
+     *         The user code.
+     */
+    public String getUserCode()
+    {
+        return userCode;
+    }
+
+
+    /**
+     * Set the user code included in the backchannel authentication request.
+     * It is the value of the {@code "user_code"} request parameter.
+     *
+     * @param userCode
+     *         The user code.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public BackchannelAuthenticationResponse setUserCode(String userCode)
+    {
+        this.userCode = userCode;
 
         return this;
     }

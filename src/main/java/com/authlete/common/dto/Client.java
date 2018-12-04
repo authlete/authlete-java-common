@@ -249,6 +249,7 @@ public class Client implements Serializable
     private DeliveryMode bcDeliveryMode;
     private URI bcNotificationEndpoint;
     private JWSAlg bcRequestSignAlg;
+    private boolean bcUserCodeRequired;
 
 
     /**
@@ -2367,6 +2368,47 @@ public class Client implements Serializable
     public Client setBcRequestSignAlg(JWSAlg alg)
     {
         this.bcRequestSignAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the boolean flag which indicates whether a user code is required
+     * when this client makes a backchannel authentication request. This
+     * property corresponds to the {@code backchannel_user_code_parameter}
+     * metadata.
+     *
+     * @return
+     *         {@code true} if a user code is required when this client
+     *         makes a backchannel authentication request.
+     *
+     * @since 2.32
+     */
+    public boolean isBcUserCodeRequired()
+    {
+        return bcUserCodeRequired;
+    }
+
+
+    /**
+     * Set the boolean flag which indicates whether a user code is required
+     * when this client makes a backchannel authentication request. This
+     * property corresponds to the {@code backchannel_user_code_parameter}
+     * metadata.
+     *
+     * @param required
+     *         {@code true} to indicate that a user code is required when
+     *         this client makes a backchannel authentication request.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.32
+     */
+    public Client setBcUserCodeRequired(boolean required)
+    {
+        this.bcUserCodeRequired = required;
 
         return this;
     }

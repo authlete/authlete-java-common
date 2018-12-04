@@ -292,5 +292,13 @@ public enum ErrorCode
      * @since 2.22
      */
     unapproved_software_statement,
+
+
+    /**
+     * A user code is not included in the backchannel authentication request.
+     *
+     * @since 2.32
+     */
+    missing_user_code,
     ;
 }

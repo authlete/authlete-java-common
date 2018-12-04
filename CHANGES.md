@@ -11,6 +11,11 @@ CHANGES
     * Added `setBcNotificationEndpoint(URI)` method.
     * Added `getBcRequestSignAlg()` method.
     * Added `setBcRequestSignAlg(JWSAlg)` method.
+    * Added `isBcUserCodeRequired()` method.
+    * Added `setBcUserCodeRequired(boolean)` method.
+
+- `ErrorCode` enum
+    * Added `missing_user_code`.
 
 - `GrantType` enum
     * Added `BACKCHANNEL_REQUEST`.
@@ -20,6 +25,8 @@ CHANGES
     * Added `setSupportedBackchannelTokenDeliveryModes(DeliveryMode[])` method.
     * Added `getBackchannelAuthenticationEndpoint()` method.
     * Added `setBackchannelAuthenticationEndpoint(URI)` method.
+    * Added `isBackchannelUserCodeParameterSupported()` method.
+    * Added `setBackchannelUserCodeParameterSupported(boolean)` method.
     * Added `getAllowableClockSkew()` method.
     * Added `setAllowableClockSkew(int)` method.
 
