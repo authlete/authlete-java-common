@@ -38,6 +38,10 @@ import com.authlete.common.dto.AuthorizationIssueResponse;
 import com.authlete.common.dto.AuthorizationRequest;
 import com.authlete.common.dto.AuthorizationResponse;
 import com.authlete.common.dto.AuthorizedClientListResponse;
+import com.authlete.common.dto.BackchannelAuthenticationFailRequest;
+import com.authlete.common.dto.BackchannelAuthenticationFailResponse;
+import com.authlete.common.dto.BackchannelAuthenticationIssueRequest;
+import com.authlete.common.dto.BackchannelAuthenticationIssueResponse;
 import com.authlete.common.dto.BackchannelAuthenticationRequest;
 import com.authlete.common.dto.BackchannelAuthenticationResponse;
 import com.authlete.common.dto.Client;
@@ -140,6 +144,8 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String CLIENT_AUTHORIZATION_UPDATE_API_PATH   = "/api/client/authorization/update/%d";
     private static final String JOSE_VERIFY_API_PATH                   = "/api/jose/verify";
     private static final String BC_AUTHENTICATION_API_PATH             = "/api/backchannel/authentication";
+    private static final String BC_AUTHENTICATION_FAIL_API_PATH        = "/api/backchannel/authentication/fail";
+    private static final String BC_AUTHENTICATION_ISSUE_API_PATH       = "/api/backchannel/authentication/issue";
 
 
     private final String mBaseUrl;
@@ -1371,6 +1377,27 @@ class AuthleteApiImpl implements AuthleteApi
             BackchannelAuthenticationRequest request) throws AuthleteApiException
     {
         return callServicePostApi(
-                BC_AUTHENTICATION_API_PATH, request, BackchannelAuthenticationResponse.class);
+                BC_AUTHENTICATION_API_PATH, request,
+                BackchannelAuthenticationResponse.class);
+    }
+
+
+    @Override
+    public BackchannelAuthenticationIssueResponse backchannelAuthenticationIssue(
+            BackchannelAuthenticationIssueRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                BC_AUTHENTICATION_ISSUE_API_PATH, request,
+                BackchannelAuthenticationIssueResponse.class);
+    }
+
+
+    @Override
+    public BackchannelAuthenticationFailResponse backchannelAuthenticationFail(
+            BackchannelAuthenticationFailRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                BC_AUTHENTICATION_FAIL_API_PATH, request,
+                BackchannelAuthenticationFailResponse.class);
     }
 }

@@ -3,6 +3,8 @@
 
 - `AuthleteApi` インターフェース
     * `backchannelAuthentication(BackchannelAuthenticationRequest)` メソッドを追加。
+    * `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)` メソッドを追加。
+    * `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)` メソッドを追加。
 
 - `Client` クラス
     * `getBcDeliveryMode()` メソッドを追加。
@@ -37,6 +39,10 @@
 - 新しいクラス
     * `BackchannelAuthenticationRequest`
     * `BackchannelAuthenticationResponse`
+    * `BackchannelAuthenticationIssueRequest`
+    * `BackchannelAuthenticationIssueResponse`
+    * `BackchannelAuthenticationFailRequest`
+    * `BackchannelAuthenticationFailResponse`
 
 
 2.31 (2018 年 10 月 19 日)

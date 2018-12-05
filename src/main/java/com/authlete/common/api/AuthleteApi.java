@@ -23,6 +23,10 @@ import com.authlete.common.dto.AuthorizationIssueResponse;
 import com.authlete.common.dto.AuthorizationRequest;
 import com.authlete.common.dto.AuthorizationResponse;
 import com.authlete.common.dto.AuthorizedClientListResponse;
+import com.authlete.common.dto.BackchannelAuthenticationFailRequest;
+import com.authlete.common.dto.BackchannelAuthenticationFailResponse;
+import com.authlete.common.dto.BackchannelAuthenticationIssueRequest;
+import com.authlete.common.dto.BackchannelAuthenticationIssueResponse;
 import com.authlete.common.dto.BackchannelAuthenticationRequest;
 import com.authlete.common.dto.BackchannelAuthenticationResponse;
 import com.authlete.common.dto.Client;
@@ -1231,4 +1235,34 @@ public interface AuthleteApi
      */
     BackchannelAuthenticationResponse backchannelAuthentication(
             BackchannelAuthenticationRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/backchannel/authentication/issue} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.32
+     */
+    BackchannelAuthenticationIssueResponse backchannelAuthenticationIssue(
+            BackchannelAuthenticationIssueRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/backchannel/authentication/fail} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.32
+     */
+    BackchannelAuthenticationFailResponse backchannelAuthenticationFail(
+            BackchannelAuthenticationFailRequest request) throws AuthleteApiException;
 }

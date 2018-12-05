@@ -3,6 +3,8 @@ CHANGES
 
 - `AuthleteApi` interface
     * Added `backchannelAuthentication(BackchannelAuthenticationRequest)` method.
+    * Added `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)` method.
+    * Added `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)` method.
 
 - `Client` class
     * Added `getBcDeliveryMode()` method.
@@ -37,6 +39,10 @@ CHANGES
 - New classes
     * `BackchannelAuthenticationRequest`
     * `BackchannelAuthenticationResponse`
+    * `BackchannelAuthenticationIssueRequest`
+    * `BackchannelAuthenticationIssueResponse`
+    * `BackchannelAuthenticationFailRequest`
+    * `BackchannelAuthenticationFailResponse`
 
 
 2.31 (2018-10-19)
