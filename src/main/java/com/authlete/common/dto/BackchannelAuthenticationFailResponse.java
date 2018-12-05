@@ -70,10 +70,10 @@ public class BackchannelAuthenticationFailResponse extends ApiResponse
 
 
         /**
-         * The ticket included in the API call is wrong. It does not exist or
+         * The ticket included in the API call is invalid. It does not exist or
          * has expired.
          */
-        BAD_TICKET,
+        INVALID_TICKET,
     }
 
 
