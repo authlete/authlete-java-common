@@ -102,8 +102,8 @@ public class BackchannelAuthenticationFailRequest implements Serializable
 
     private String ticket;
     private Reason reason;
-    private String description;
-    private URI uri;
+    private String errorDescription;
+    private URI errorUri;
 
 
     /**
@@ -178,9 +178,9 @@ public class BackchannelAuthenticationFailRequest implements Serializable
      * @return
      *         The description of the error.
      */
-    public String getDescription()
+    public String getErrorDescription()
     {
-        return description;
+        return errorDescription;
     }
 
 
@@ -199,9 +199,9 @@ public class BackchannelAuthenticationFailRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public BackchannelAuthenticationFailRequest setDescription(String description)
+    public BackchannelAuthenticationFailRequest setErrorDescription(String description)
     {
-        this.description = description;
+        this.errorDescription = description;
 
         return this;
     }
@@ -215,9 +215,9 @@ public class BackchannelAuthenticationFailRequest implements Serializable
      * @return
      *         The URI of a document which describes the error in detail.
      */
-    public URI getUri()
+    public URI getErrorUri()
     {
-        return uri;
+        return errorUri;
     }
 
 
@@ -237,9 +237,9 @@ public class BackchannelAuthenticationFailRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public BackchannelAuthenticationFailRequest setUri(URI uri)
+    public BackchannelAuthenticationFailRequest setErrorUri(URI uri)
     {
-        this.uri = uri;
+        this.errorUri = uri;
 
         return this;
     }
