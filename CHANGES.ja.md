@@ -5,6 +5,7 @@
     * `backchannelAuthentication(BackchannelAuthenticationRequest)` メソッドを追加。
     * `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)` メソッドを追加。
     * `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)` メソッドを追加。
+    * `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)` メソッドを追加。
 
 - `Client` クラス
     * `getBcDeliveryMode()` メソッドを追加。
@@ -43,6 +44,8 @@
     * `BackchannelAuthenticationIssueResponse`
     * `BackchannelAuthenticationFailRequest`
     * `BackchannelAuthenticationFailResponse`
+    * `BackchannelAuthenticationCompleteRequest`
+    * `BackchannelAuthenticationCompleteResponse`
 
 
 2.31 (2018 年 10 月 19 日)

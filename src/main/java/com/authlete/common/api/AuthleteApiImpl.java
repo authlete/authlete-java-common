@@ -38,6 +38,8 @@ import com.authlete.common.dto.AuthorizationIssueResponse;
 import com.authlete.common.dto.AuthorizationRequest;
 import com.authlete.common.dto.AuthorizationResponse;
 import com.authlete.common.dto.AuthorizedClientListResponse;
+import com.authlete.common.dto.BackchannelAuthenticationCompleteRequest;
+import com.authlete.common.dto.BackchannelAuthenticationCompleteResponse;
 import com.authlete.common.dto.BackchannelAuthenticationFailRequest;
 import com.authlete.common.dto.BackchannelAuthenticationFailResponse;
 import com.authlete.common.dto.BackchannelAuthenticationIssueRequest;
@@ -144,6 +146,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String CLIENT_AUTHORIZATION_UPDATE_API_PATH   = "/api/client/authorization/update/%d";
     private static final String JOSE_VERIFY_API_PATH                   = "/api/jose/verify";
     private static final String BC_AUTHENTICATION_API_PATH             = "/api/backchannel/authentication";
+    private static final String BC_AUTHENTICATION_COMPLETE_API_PATH    = "/api/backchannel/authentication/complete";
     private static final String BC_AUTHENTICATION_FAIL_API_PATH        = "/api/backchannel/authentication/fail";
     private static final String BC_AUTHENTICATION_ISSUE_API_PATH       = "/api/backchannel/authentication/issue";
 
@@ -1399,5 +1402,15 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 BC_AUTHENTICATION_FAIL_API_PATH, request,
                 BackchannelAuthenticationFailResponse.class);
+    }
+
+
+    @Override
+    public BackchannelAuthenticationCompleteResponse backchannelAuthenticationComplete(
+            BackchannelAuthenticationCompleteRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                BC_AUTHENTICATION_COMPLETE_API_PATH, request,
+                BackchannelAuthenticationCompleteResponse.class);
     }
 }

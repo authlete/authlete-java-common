@@ -23,6 +23,8 @@ import com.authlete.common.dto.AuthorizationIssueResponse;
 import com.authlete.common.dto.AuthorizationRequest;
 import com.authlete.common.dto.AuthorizationResponse;
 import com.authlete.common.dto.AuthorizedClientListResponse;
+import com.authlete.common.dto.BackchannelAuthenticationCompleteRequest;
+import com.authlete.common.dto.BackchannelAuthenticationCompleteResponse;
 import com.authlete.common.dto.BackchannelAuthenticationFailRequest;
 import com.authlete.common.dto.BackchannelAuthenticationFailResponse;
 import com.authlete.common.dto.BackchannelAuthenticationIssueRequest;
@@ -1265,4 +1267,19 @@ public interface AuthleteApi
      */
     BackchannelAuthenticationFailResponse backchannelAuthenticationFail(
             BackchannelAuthenticationFailRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/backchannel/authentication/complete} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.32
+     */
+    BackchannelAuthenticationCompleteResponse backchannelAuthenticationComplete(
+            BackchannelAuthenticationCompleteRequest request) throws AuthleteApiException;
 }

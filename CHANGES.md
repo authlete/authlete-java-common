@@ -5,6 +5,7 @@ CHANGES
     * Added `backchannelAuthentication(BackchannelAuthenticationRequest)` method.
     * Added `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)` method.
     * Added `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)` method.
+    * Added `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)` method.
 
 - `Client` class
     * Added `getBcDeliveryMode()` method.
@@ -43,6 +44,8 @@ CHANGES
     * `BackchannelAuthenticationIssueResponse`
     * `BackchannelAuthenticationFailRequest`
     * `BackchannelAuthenticationFailResponse`
+    * `BackchannelAuthenticationCompleteRequest`
+    * `BackchannelAuthenticationCompleteResponse`
 
 
 2.31 (2018-10-19)
