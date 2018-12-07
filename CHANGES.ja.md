@@ -30,6 +30,10 @@
     * `setBackchannelAuthenticationEndpoint(URI)` メソッドを追加。
     * `isBackchannelUserCodeParameterSupported()` メソッドを追加。
     * `setBackchannelUserCodeParameterSupported(boolean)` メソッドを追加。
+    * `getBackchannelAuthReqIdDuration()` メソッドを追加。
+    * `setBackchannelAuthReqIdDuration(int)` メソッドを追加。
+    * `getBackchannelPollingInterval()` メソッドを追加。
+    * `setBackchannelPollingInterval(int)` メソッドを追加。
     * `getAllowableClockSkew()` メソッドを追加。
     * `setAllowableClockSkew(int)` メソッドを追加。
 

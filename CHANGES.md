@@ -30,6 +30,10 @@ CHANGES
     * Added `setBackchannelAuthenticationEndpoint(URI)` method.
     * Added `isBackchannelUserCodeParameterSupported()` method.
     * Added `setBackchannelUserCodeParameterSupported(boolean)` method.
+    * Added `getBackchannelAuthReqIdDuration()` method.
+    * Added `setBackchannelAuthReqIdDuration(int)` method.
+    * Added `getBackchannelPollingInterval()` method.
+    * Added `setBackchannelPollingInterval(int)` method.
     * Added `getAllowableClockSkew()` method.
     * Added `setAllowableClockSkew(int)` method.
 

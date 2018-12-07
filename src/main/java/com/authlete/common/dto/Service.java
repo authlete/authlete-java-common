@@ -237,9 +237,33 @@ public class Service implements Serializable
     /**
      * Boolean flag which indicates whether "user code" is supported at the
      * backchannel authentication endpoint. This property corresponds to the
-     * {@code backchannel_user_code_parameter_supported} metadada.
+     * {@code backchannel_user_code_parameter_supported} metadata.
+     *
+     * @since 2.32
      */
     private boolean backchannelUserCodeParameterSupported;
+
+
+    /**
+     * Duration of backchannel authentication request IDs issued from the
+     * backchannel authentication endpoint in seconds. This is used as the
+     * value of the {@code expires_in} property in responses from the
+     * backchannel authentication endpoint.
+     *
+     * @since 2.32
+     */
+    private int backchannelAuthReqIdDuration;
+
+
+    /**
+     * The minimum interval between polling requests to the token endpoint
+     * from client applications in seconds. This is used as the value of
+     * the {@code interval} property in responses from the backchannel
+     * authentication endpoint.
+     *
+     * @since 2.32
+     */
+    private int backchannelPollingInterval;
 
 
     /**
@@ -3036,6 +3060,87 @@ public class Service implements Serializable
     public Service setBackchannelUserCodeParameterSupported(boolean supported)
     {
         this.backchannelUserCodeParameterSupported = supported;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of backchannel authentication request IDs issued from
+     * the backchannel authentication endpoint in seconds. This is used as the
+     * value of the {@code expires_in} property in responses from the
+     * backchannel authentication endpoint.
+     *
+     * @return
+     *         The duration of backchannel authentication request IDs in
+     *         seconds.
+     *
+     * @since 2.32
+     */
+    public int getBackchannelAuthReqIdDuration()
+    {
+        return backchannelAuthReqIdDuration;
+    }
+
+
+    /**
+     * Set the duration of backchannel authentication request IDs issued from
+     * the backchannel authentication endpoint in seconds. This is used as the
+     * value of the {@code expires_in} property in responses from the
+     * backchannel authentication endpoint.
+     *
+     * @param duration
+     *         The duration of backchannel authentication request IDs in
+     *         seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.32
+     */
+    public Service setBackchannelAuthReqIdDuration(int duration)
+    {
+        this.backchannelAuthReqIdDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the minimum interval between polling requests to the token endpoint
+     * from client applications in seconds. This is used as the value of the
+     * {@code interval} property in responses from the backchannel
+     * authentication endpoint.
+     *
+     * @return
+     *         The minimum interval between polling requests in seconds.
+     *
+     * @since 2.32
+     */
+    public int getBackchannelPollingInterval()
+    {
+        return backchannelPollingInterval;
+    }
+
+
+    /**
+     * Set the minimum interval between polling requests to the token endpoint
+     * from client applications in seconds. This is used as the value of the
+     * {@code interval} property in responses from the backchannel
+     * authentication endpoint.
+     *
+     * @param interval
+     *         The minimum interval between polling requests in seconds.
+     *         Must be in between 0 and 65,535.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.32
+     */
+    public Service setBackchannelPollingInterval(int interval)
+    {
+        this.backchannelPollingInterval = interval;
 
         return this;
     }
