@@ -41,25 +41,66 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
          * The end-user was authenticated and has granted authorization to
          * the client application.
          */
-        AUTHORIZED,
+        AUTHORIZED((short)1),
 
 
         /**
          * The end-user denied the backchannel authentication request.
          */
-        ACCESS_DENIED,
+        ACCESS_DENIED((short)2),
 
 
         /**
          * An error occurred due to the authentication device.
          */
-        AUTHENTICATION_DEVICE_ERROR,
+        AUTHENTICATION_DEVICE_ERROR((short)3),
 
 
         /**
          * An error occurred due to the server.
          */
-        SERVER_ERROR,
+        SERVER_ERROR((short)4),
+        ;
+
+
+        private static final Result[] sValues = values();
+        private final short mValue;
+
+
+        private Result(short value)
+        {
+            mValue = value;
+        }
+
+
+        /**
+         * Get the integer representation of this enum instance.
+         */
+        public short getValue()
+        {
+            return mValue;
+        }
+
+
+        /**
+         * Find an instance of this enum by a value.
+         *
+         * @param value
+         *         The integer representation of the instance to find.
+         *
+         * @return
+         *         An instance of this enum, or {@code null} if not found.
+         */
+        public static Result getByValue(short value)
+        {
+            if (value < 1 || sValues.length < value)
+            {
+                // Not found.
+                return null;
+            }
+
+            return sValues[value - 1];
+        }
     }
 
 
