@@ -90,7 +90,7 @@ public enum GrantType
 
 
     /**
-     * {@code "urn:openid:paras:modrna:grant-type:backchannel_request"} (6),
+     * {@code "urn:openid:params:modrna:grant-type:backchannel_request"} (6),
      * a {@code grant_type} to request an ID token, an access token, and
      * optionally a refresh token, using the CIBA flow.
      *
@@ -100,7 +100,7 @@ public enum GrantType
      *
      * @since 2.32
      */
-    BACKCHANNEL_REQUEST((short)6, "urn:openid:paras:modrna:grant-type:backchannel_request"),
+    BACKCHANNEL_REQUEST((short)6, "urn:openid:params:modrna:grant-type:backchannel_request"),
     ;
 
 
