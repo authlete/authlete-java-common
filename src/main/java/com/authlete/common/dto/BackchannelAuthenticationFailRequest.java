@@ -163,7 +163,7 @@ public class BackchannelAuthenticationFailRequest implements Serializable
 
 
     /**
-     * Get the ticket which is necessary to call Authlete's
+     * Get the ticket which should be deleted on a call of Authlete's
      * {@code /api/backchannel/authentication/fail} API.
      *
      * @return
@@ -176,9 +176,15 @@ public class BackchannelAuthenticationFailRequest implements Serializable
 
 
     /**
-     * Set the ticket which is necessary to call Authlete's
+     * Set the ticket which should be deleted on a call of Authlete's
      * {@code /api/backchannel/authentication/fail} API.
-     * This request parameter is mandatory.
+     *
+     * <p>
+     * This request parameter is not mandatory but optional. If this request
+     * parameter is given and the ticket belongs to the service, the specified
+     * ticket is deleted from the database. Giving this parameter is
+     * recommended to clean up the storage area for the service.
+     * </p>
      *
      * @param ticket
      *         A ticket previously issued by Authlete's
@@ -210,7 +216,12 @@ public class BackchannelAuthenticationFailRequest implements Serializable
 
     /**
      * Set the reason of the failure of the backchannel authentication request.
-     * This request parameter is mandatory.
+     *
+     * <p>
+     * This request parameter is not mandatory but optional. However, giving
+     * this parameter is recommended. If omitted, {@link Reason#SERVER_ERROR
+     * SERVER_ERROR} is used as a reason.
+     * </p>
      *
      * @param reason
      *         The reason of the failure of the backchannel authentication

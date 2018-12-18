@@ -67,13 +67,6 @@ public class BackchannelAuthenticationFailResponse extends ApiResponse
          * </p>
          */
         INTERNAL_SERVER_ERROR,
-
-
-        /**
-         * The ticket included in the API call is invalid. It does not exist or
-         * has expired.
-         */
-        INVALID_TICKET,
     }
 
 
