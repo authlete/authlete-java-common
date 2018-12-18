@@ -62,6 +62,62 @@ public class BackchannelAuthenticationFailRequest implements Serializable
 
 
         /**
+         * The client is not authorized to use the CIBA flow.
+         *
+         * <p>
+         * Note that {@code /api/backchannel/authentication} API does not
+         * return {@code action=USER_IDENTIFICATION} in cases where the client
+         * does not exist or client authentication has failed. Therefore, the
+         * authorization server implementation will never have to call
+         * {@code /api/backchannel/authentication/fail} API with
+         * {@code reason=UNAUTHORIZED} unless the server has intentionally
+         * implemented special rules to reject backchannel authentication
+         * requests based on clients.
+         * </p>
+         *
+         * <p>
+         * Using this reason will result in
+         * {@code "error":"unauthorized_client"}.
+         * </p>
+         */
+        UNAUTHORIZED_CLIENT,
+
+
+        /**
+         * A user code is required but the backchannel authentication request
+         * does not contain it.
+         *
+         * <p>
+         * Note that {@code /api/backchannel/authentication} API does not
+         * return {@code action=USER_IDENTIFICATION} when both the
+         * {@code backchannel_user_code_parameter_supported} metadata of the
+         * server and the {@code backchannel_user_code_parameter} metadata of
+         * the client are {@code true} and the backchannel authentication
+         * request does not include the {@code user_code} request parameter.
+         * In this case, {@code /api/backchannel/authentication} API returns
+         * {@code action=BAD_REQUEST} with JSON containing
+         * {@code "error":"missing_user_code"}.
+         * </p>
+         *
+         * <p>
+         * Therefore, the authorization server implementation will never have
+         * to call {@code /api/backchannel/authentication/fail} API with
+         * {@code reason=MISSING_USER_CODE} unless the server has intentionally
+         * implemented special rules to require a user code even in the case
+         * where the {@code backchannel_user_code_parameter} metadata of the
+         * client which has made the backchannel authentication request is
+         * {@code false}.
+         * </p>
+         *
+         * <p>
+         * Using this reason will result in
+         * {@code "error":"missing_user_code"}.
+         * </p>
+         */
+        MISSING_USER_CODE,
+
+
+        /**
          * The user code provided in the authentication request is invalid.
          *
          * <p>
