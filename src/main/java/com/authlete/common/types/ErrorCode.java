@@ -295,10 +295,95 @@ public enum ErrorCode
 
 
     /**
+     * The provided {@code login_hint_token} has expired.
+     *
+     * <p>
+     * This error code is defined in the CIBA Core specification.
+     * </p>
+     *
+     * @since 2.32
+     */
+    expired_login_hint_token,
+
+
+    /**
+     * The OpenID provider is not able to identify which end-user the client
+     * wished to be authenticated by means of the hint provided in the
+     * request ({@code login_hint_token}, {@code id_token_hint} or
+     * {@code login_hint}).
+     *
+     * <p>
+     * This error code is defined in the CIBA Core specification.
+     * </p>
+     *
+     * @since 2.32
+     */
+    unknown_user_id,
+
+
+    /**
      * A user code is not included in the backchannel authentication request.
+     *
+     * <p>
+     * This error code is defined in the CIBA Core specification.
+     * </p>
      *
      * @since 2.32
      */
     missing_user_code,
+
+
+    /**
+     * The provided user code is invalid.
+     *
+     * <p>
+     * This error code is defined in the CIBA Core specification.
+     * </p>
+     *
+     * @since 2.32
+     */
+    invalid_user_code,
+
+
+    /**
+     * The authorization request is still pending as the end-user hasn't yet
+     * been authenticated.
+     *
+     * <p>
+     * This error code is defined in the CIBA Core specification and the
+     * Device Flow specification.
+     * </p>
+     *
+     * @since 2.32
+     */
+    authorization_pending,
+
+
+    /**
+     * A variant of {@code authorization_pending}, the authorization request
+     * is still pending and polling should continue, but the interval should
+     * be increased.
+     *
+     * <p>
+     * This error code is defined in the CIBA Core specification and the
+     * Device Flow specification.
+     * </p>
+     *
+     * @since 2.32
+     */
+    slow_down,
+
+
+    /**
+     * The token has expired.
+     *
+     * <p>
+     * In the context of CIBA, the token means {@code auth_req_id}. In the
+     * context of Device Flow, the token means {@code device_code}.
+     * </p>
+     *
+     * @since 2.32
+     */
+    expired_token,
     ;
 }

@@ -18,7 +18,13 @@
     * `setBcUserCodeRequired(boolean)` メソッドを追加。
 
 - `ErrorCode` 列挙型
+    * `expired_login_hint_token` を追加。
+    * `unknown_user_id` を追加。
     * `missing_user_code` を追加。
+    * `invalid_user_code` を追加。
+    * `authorization_pending` を追加。
+    * `slow_down` を追加。
+    * `expired_token` を追加。
 
 - `GrantType` 列挙型
     * `BACKCHANNEL_REQUEST` を追加。

@@ -18,7 +18,13 @@ CHANGES
     * Added `setBcUserCodeRequired(boolean)` method.
 
 - `ErrorCode` enum
+    * Added `expired_login_hint_token`.
+    * Added `unknown_user_id`.
     * Added `missing_user_code`.
+    * Added `invalid_user_code`.
+    * Added `authorization_pending`.
+    * Added `slow_down`.
+    * Added `expired_token`.
 
 - `GrantType` enum
     * Added `BACKCHANNEL_REQUEST`.
