@@ -196,6 +196,9 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     private String accessToken;
     private String refreshToken;
     private String idToken;
+    private long accessTokenDuration;
+    private long refreshTokenDuration;
+    private long idTokenDuration;
 
 
     /**
@@ -655,6 +658,96 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     public BackchannelAuthenticationCompleteResponse setIdToken(String idToken)
     {
         this.idToken = idToken;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of the access token in seconds. If an access token has
+     * not been issued, this method returns 0.
+     *
+     * @return
+     *         The duration of the access token in seconds.
+     */
+    public long getAccessTokenDuration()
+    {
+        return accessTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the access token in seconds.
+     *
+     * @param duration
+     *         The duration of the access token in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public BackchannelAuthenticationCompleteResponse setAccessTokenDuration(long duration)
+    {
+        this.accessTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of the refresh token in seconds. If a refresh token has
+     * not been issued, this method returns 0.
+     *
+     * @return
+     *         The duration of the refresh token in seconds.
+     */
+    public long getRefreshTokenDuration()
+    {
+        return refreshTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the refresh token in seconds.
+     *
+     * @param duration
+     *         The duration of the refresh token in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public BackchannelAuthenticationCompleteResponse setRefreshTokenDuration(long duration)
+    {
+        this.refreshTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of the ID token in seconds. If an ID token has not
+     * been issued, this method returns 0.
+     *
+     * @return
+     *         The duration of the ID token in seconds.
+     */
+    public long getIdTokenDuration()
+    {
+        return idTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the ID token in seconds.
+     *
+     * @param duration
+     *         The duration of the ID token in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public BackchannelAuthenticationCompleteResponse setIdTokenDuration(long duration)
+    {
+        this.idTokenDuration = duration;
 
         return this;
     }
