@@ -51,15 +51,9 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
 
 
         /**
-         * An error occurred due to the authentication device.
+         * An error occurred.
          */
-        AUTHENTICATION_DEVICE_ERROR((short)3),
-
-
-        /**
-         * An error occurred due to the server.
-         */
-        SERVER_ERROR((short)4),
+        ERROR((short)3),
         ;
 
 
