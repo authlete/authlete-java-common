@@ -19,12 +19,102 @@ package com.authlete.common.dto;
 /**
  * Response from Authlete's {@code /api/backchannel/authentication/issue} API.
  *
+ * <p>
+ * Authlete's {@code /api/backchannel/authentication/issue} API returns JSON
+ * which can be mapped to this class. The authorization server implementation
+ * should retrieve the value of {@code action} from the response and take the
+ * following steps according to the value.
+ * </p>
+ *
+ * <dl>
+ * <dt><b>{@link Action#OK OK}</b></dt>
+ * <dd>
+ * <p>
+ * When the value of {@code action} is {@code OK}, it means that Authlete has
+ * succeeded in preparing JSON that contains an {@code auth_req_id}. The JSON
+ * should be used as the response body of the response which is returned to
+ * the client from the backchannel authentication endpoint. The
+ * {@link #getResponseContent()} method returns the JSON.
+ * </p>
+ *
+ * <p>
+ * The following illustrates the response which the authorization server
+ * implementation should generate and return to the client application.
+ * </p>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;">
+ * HTTP/1.1 200 OK
+ * Content-Type: application/json
+ * Cache-Control: no-store
+ * Pragma: no-cache
+ *
+ * <i>(The value returned from {@link #getResponseContent()})</i></pre>
+ * <br/>
+ * </dd>
+ *
+ * <dt><b>{@link Action#INTERNAL_SERVER_ERROR INTERNAL_SERVER_ERROR}</b></dt>
+ * <dd>
+ * <p>
+ * When the value of {@code action} is {@code INTERNAL_SERVER_ERROR}, it means
+ * that an error occurred in Authlete.
+ * </p>
+ *
+ * <p>
+ * From a viewpoint of the client application, this is an error on the server
+ * side. Therefore, the authorization server implementation should generate a
+ * response to the client application with {@code 500 Internal Server Error}
+ * and {@code application/json}.
+ * </p>
+ *
+ * <p>
+ * The {@link #getResponseContent()} method returns a JSON string which
+ * describes the error, so it can be used as the entity body of the response.
+ * </p>
+ *
+ * <p>
+ * The following illustrates the response which the authorization server
+ * implementation should generate and return to the client application.
+ * </p>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;">
+ * HTTP/1.1 500 Internal Server Error
+ * Content-Type: application/json
+ * Cache-Control: no-store
+ * Pragma: no-cache
+ *
+ * <i>(The value returned from {@link #getResponseContent()})</i></pre>
+ * <br/>
+ * </dd>
+ *
+ * <dt><b>{@link Action#INVALID_TICKET INVALID_TICKET}</b></dt>
+ * <dd>
+ * <p>
+ * When the value of {@code action} is {@code INVALID_TICKET}, it means that
+ * the ticket included in the API call was invalid. For example, it does not
+ * exist or has expired.
+ * </p>
+ *
+ * <p>
+ * From a viewpoint of the client application, this is an error on the server
+ * side. Therefore, the authorization server implementation should generate a
+ * response to the client application with {@code 500 Internal Server Error}
+ * and {@code application/json}.
+ * </p>
+ *
+ * <p>
+ * You can build an error response in the same way as shown in the description
+ * for the case of {@code INTERNAL_SERVER_ERROR}.
+ * </p>
+ * <br/>
+ * </dd>
+ *
+ * </dl>
+ *
  * @since 2.32
  */
 public class BackchannelAuthenticationIssueResponse extends ApiResponse
 {
     private static final long serialVersionUID = 1L;
-
 
 
     /**

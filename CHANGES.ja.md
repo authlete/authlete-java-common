@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.32 (2018 年 12 月 29 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `backchannelAuthentication(BackchannelAuthenticationRequest)` メソッドを追加。
     * `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)` メソッドを追加。

@@ -25,6 +25,62 @@ import com.authlete.common.util.Utils;
 /**
  * Request to Authlete's {@code /api/backchannel/authentication/complete} API.
  *
+ * <p>
+ * After the implementation of the backchannel authentication endpoint returns
+ * JSON containing an {@code auth_req_id} to the client, the authorization
+ * server starts a background process that communicates with the authentication
+ * device of the end-user. On the authentication device, end-user
+ * authentication is performed and the end-user is asked whether they give
+ * authorization to the client or not. The authorization server will receive
+ * the result of end-user authentication and authorization from the
+ * authentication device.
+ * </p>
+ *
+ * <p>
+ * After the authorization server receives the result from the authentication
+ * device, or even in the case where the server gave up receiving a response
+ * from the authentication device for some reasons, the server should call the
+ * {@code api/backchannel/authentication/complete} API to tell Authlete the
+ * result.
+ * </p>
+ *
+ * <p>
+ * When the end-user was authenticated and authorization was granted to the
+ * client by the end-user, the authorization server should call the API with
+ * {@code result=}{@link Result#AUTHORIZED AUTHORIZED}. In this successful
+ * case, the {@code subject} request parameter is mandatory. If the token
+ * delivery mode is "push", the API will generate an access token, an ID token
+ * and optionally a refresh token. On the other hand, if the token delivery
+ * mode is "poll" or "ping", the API will just update the database record so
+ * that {@code /api/auth/token} API can generate tokens later.
+ * </p>
+ *
+ * <p>
+ * When the authorization server received the decision of the end-user from
+ * the authentication device and it indicates that the end-user has rejected
+ * to give authorization to the client, the authorization server should call
+ * the API with {@code result=}{@link Result#ACCESS_DENIED ACCESS_DENIED}.
+ * In this case, if the token delivery mode is "push", the API will generate
+ * an error response that contains the {@code error} response parameter and
+ * optionally the {@code error_description} and {@code error_uri} response
+ * parameters (if the {@code errorDescription} and {@code errorUri} request
+ * parameters have been given). On the other hand, if the token delivery mode
+ * is "poll" or "ping", the API will just update the database record so that
+ * {@code /api/auth/token} API can generate an error response later. In any
+ * token delivery mode, the value of the {@code error} parameter will become
+ * {@code access_denied}.
+ * </p>
+ *
+ * <p>
+ * When the authorization server could not get the result of end-user
+ * authentication and authorization from the authentication device for some
+ * reasons, the authorization server should call the API with
+ * {@code result=}{@link Result#ERROR ERROR}. In this error case, the API
+ * will behave in the same way as in the case of {@code ACCESS_DENIED}. The
+ * only difference is that {@code server_error} is used as the value of the
+ * {@code error} parameter.
+ * </p>
+ *
  * @since 2.32
  */
 public class BackchannelAuthenticationCompleteRequest implements Serializable
@@ -51,7 +107,15 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
 
 
         /**
-         * An error occurred.
+         * The authorization server could not get the result of end-user
+         * authentication and authorization from the authentication device
+         * for some reasons.
+         *
+         * <p>
+         * For example, the authorization server failed to communicate with
+         * the authentication device due to a network error, the device did
+         * not return a response within a reasonable time, etc.
+         * </p>
          */
         ERROR((short)3),
         ;

@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.32 (2018-12-29)
+-----------------
+
 - `AuthleteApi` interface
     * Added `backchannelAuthentication(BackchannelAuthenticationRequest)` method.
     * Added `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)` method.

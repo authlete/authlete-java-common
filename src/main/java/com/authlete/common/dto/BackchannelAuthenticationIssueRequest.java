@@ -22,6 +22,12 @@ import java.io.Serializable;
 /**
  * Request to Authlete's {@code /api/backchannel/authentication/issue} API.
  *
+ * <p>
+ * The API prepares JSON that contains an {@code auth_req_id}. The JSON should
+ * be used as the response body of the response which is returned to the client
+ * from the backchannel authentication endpoint.
+ * </p>
+ *
  * @since 2.32
  */
 public class BackchannelAuthenticationIssueRequest implements Serializable

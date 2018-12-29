@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.31</version>
+    <version>2.32</version>
 </dependency>
 ```
 
@@ -292,6 +292,13 @@ settings.setReadTimeout(5000);
   14. JOSE に関するメソッド群
 
     - `verifyJose(JoseVerifyRequest)`
+
+  15. CIBA (Client Initiated Backchannel Authentication) に関するメソッド群
+
+    - `backchannelAuthentication(BackchannelAuthenticationRequest)`
+    - `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)`
+    - `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)`
+    - `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)`
 
 *例*
 

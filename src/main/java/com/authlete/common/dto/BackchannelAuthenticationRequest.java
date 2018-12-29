@@ -24,6 +24,15 @@ import com.authlete.common.web.URLCoder;
 /**
  * Request to Authlete's {@code /api/backchannel/authentication} API.
  *
+ * <p>
+ * When the implementation of the backchannel authentication endpoint of the
+ * authorization server receives a backchannel authentication request from a
+ * client application, the first step is to call Authlete's {@code
+ * /api/backchannel/authentication} API. The API will parse the backchannel
+ * authentication request on behalf of the implementation of the backchannel
+ * authentication endpoint.
+ * </p>
+ *
  * <blockquote>
  * <dl>
  *

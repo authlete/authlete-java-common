@@ -23,6 +23,12 @@ import java.net.URI;
 /**
  * Request to Authlete's {@code /api/backchannel/authentication/fail} API.
  *
+ * <p>
+ * The API prepares JSON that contains an {@code error}. The JSON should be
+ * used as the response body of the response which is returned to the client
+ * from the backchannel authentication endpoint.
+ * </p>
+ *
  * @since 2.32
  */
 public class BackchannelAuthenticationFailRequest implements Serializable
