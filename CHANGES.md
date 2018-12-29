@@ -1,6 +1,66 @@
 CHANGES
 =======
 
+2.32 (2018-12-29)
+-----------------
+
+- `AuthleteApi` interface
+    * Added `backchannelAuthentication(BackchannelAuthenticationRequest)` method.
+    * Added `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)` method.
+    * Added `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)` method.
+    * Added `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)` method.
+
+- `Client` class
+    * Added `getBcDeliveryMode()` method.
+    * Added `setBcDeliveryMode(DeliveryMode)` method.
+    * Added `getBcNotificationEndpoint()` method.
+    * Added `setBcNotificationEndpoint(URI)` method.
+    * Added `getBcRequestSignAlg()` method.
+    * Added `setBcRequestSignAlg(JWSAlg)` method.
+    * Added `isBcUserCodeRequired()` method.
+    * Added `setBcUserCodeRequired(boolean)` method.
+
+- `ErrorCode` enum
+    * Added `expired_login_hint_token`.
+    * Added `unknown_user_id`.
+    * Added `missing_user_code`.
+    * Added `invalid_user_code`.
+    * Added `authorization_pending`.
+    * Added `slow_down`.
+    * Added `expired_token`.
+
+- `GrantType` enum
+    * Added `BACKCHANNEL_REQUEST`.
+
+- `Service` class
+    * Added `getSupportedBackchannelTokenDeliveryModes()` method.
+    * Added `setSupportedBackchannelTokenDeliveryModes(DeliveryMode[])` method.
+    * Added `getBackchannelAuthenticationEndpoint()` method.
+    * Added `setBackchannelAuthenticationEndpoint(URI)` method.
+    * Added `isBackchannelUserCodeParameterSupported()` method.
+    * Added `setBackchannelUserCodeParameterSupported(boolean)` method.
+    * Added `getBackchannelAuthReqIdDuration()` method.
+    * Added `setBackchannelAuthReqIdDuration(int)` method.
+    * Added `getBackchannelPollingInterval()` method.
+    * Added `setBackchannelPollingInterval(int)` method.
+    * Added `getAllowableClockSkew()` method.
+    * Added `setAllowableClockSkew(int)` method.
+
+- New enums
+    * `DeliveryMode`
+    * `UserIdentificationHintType`
+
+- New classes
+    * `BackchannelAuthenticationRequest`
+    * `BackchannelAuthenticationResponse`
+    * `BackchannelAuthenticationIssueRequest`
+    * `BackchannelAuthenticationIssueResponse`
+    * `BackchannelAuthenticationFailRequest`
+    * `BackchannelAuthenticationFailResponse`
+    * `BackchannelAuthenticationCompleteRequest`
+    * `BackchannelAuthenticationCompleteResponse`
+
+
 2.31 (2018-10-19)
 -----------------
 

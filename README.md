@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.31</version>
+    <version>2.32</version>
 </dependency>
 ```
 
@@ -304,6 +304,13 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   14. Methods for JOSE
 
     - `verifyJose(JoseVerifyRequest)`
+
+  15. Methods for CIBA (Client Initiated Backchannel Authentication)
+
+    - `backchannelAuthentication(BackchannelAuthenticationRequest)`
+    - `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)`
+    - `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)`
+    - `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)`
 
 *Examples*
 

@@ -1,6 +1,66 @@
 変更点
 ======
 
+2.32 (2018 年 12 月 29 日)
+--------------------------
+
+- `AuthleteApi` インターフェース
+    * `backchannelAuthentication(BackchannelAuthenticationRequest)` メソッドを追加。
+    * `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)` メソッドを追加。
+    * `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)` メソッドを追加。
+    * `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)` メソッドを追加。
+
+- `Client` クラス
+    * `getBcDeliveryMode()` メソッドを追加。
+    * `setBcDeliveryMode(DeliveryMode)` メソッドを追加。
+    * `getBcNotificationEndpoint()` メソッドを追加。
+    * `setBcNotificationEndpoint(URI)` メソッドを追加。
+    * `getBcRequestSignAlg()` メソッドを追加。
+    * `setBcRequestSignAlg(JWSAlg)` メソッドを追加。
+    * `isBcUserCodeRequired()` メソッドを追加。
+    * `setBcUserCodeRequired(boolean)` メソッドを追加。
+
+- `ErrorCode` 列挙型
+    * `expired_login_hint_token` を追加。
+    * `unknown_user_id` を追加。
+    * `missing_user_code` を追加。
+    * `invalid_user_code` を追加。
+    * `authorization_pending` を追加。
+    * `slow_down` を追加。
+    * `expired_token` を追加。
+
+- `GrantType` 列挙型
+    * `BACKCHANNEL_REQUEST` を追加。
+
+- `Service` クラス
+    * `getSupportedBackchannelTokenDeliveryModes()` メソッドを追加。
+    * `setSupportedBackchannelTokenDeliveryModes(DeliveryMode[])` メソッドを追加。
+    * `getBackchannelAuthenticationEndpoint()` メソッドを追加。
+    * `setBackchannelAuthenticationEndpoint(URI)` メソッドを追加。
+    * `isBackchannelUserCodeParameterSupported()` メソッドを追加。
+    * `setBackchannelUserCodeParameterSupported(boolean)` メソッドを追加。
+    * `getBackchannelAuthReqIdDuration()` メソッドを追加。
+    * `setBackchannelAuthReqIdDuration(int)` メソッドを追加。
+    * `getBackchannelPollingInterval()` メソッドを追加。
+    * `setBackchannelPollingInterval(int)` メソッドを追加。
+    * `getAllowableClockSkew()` メソッドを追加。
+    * `setAllowableClockSkew(int)` メソッドを追加。
+
+- 新しい列挙型
+    * `DeliveryMode`
+    * `UserIdentificationHintType`
+
+- 新しいクラス
+    * `BackchannelAuthenticationRequest`
+    * `BackchannelAuthenticationResponse`
+    * `BackchannelAuthenticationIssueRequest`
+    * `BackchannelAuthenticationIssueResponse`
+    * `BackchannelAuthenticationFailRequest`
+    * `BackchannelAuthenticationFailResponse`
+    * `BackchannelAuthenticationCompleteRequest`
+    * `BackchannelAuthenticationCompleteResponse`
+
+
 2.31 (2018 年 10 月 19 日)
 --------------------------
 
