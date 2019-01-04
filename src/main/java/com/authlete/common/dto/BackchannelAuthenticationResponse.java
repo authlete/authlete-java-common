@@ -612,6 +612,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     private String sub;
     private String bindingMessage;
     private String userCode;
+    private boolean userCodeRequired;
     private String[] warnings;
     private String ticket;
 
@@ -1185,6 +1186,50 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     public BackchannelAuthenticationResponse setUserCode(String userCode)
     {
         this.userCode = userCode;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether a user code is required.
+     *
+     * <p>
+     * This method returns {@code true} when both the
+     * {@code backchannel_user_code_parameter} metadata of the client
+     * (= {@link com.authlete.common.dto.Client Client}'s
+     * {@code bcUserCodeRequired} property) and the
+     * {@code backchannel_user_code_parameter_supported} metadata of the
+     * service (= {@link com.authlete.common.dto.Service Service}'s
+     * {@code backchannelUserCodeParameterSupported} property) are
+     * {@code true}.
+     * </p>
+     *
+     * @return
+     *         {@code true} when a user code is required.
+     *
+     * @since 2.33
+     */
+    public boolean isUserCodeRequired()
+    {
+        return userCodeRequired;
+    }
+
+
+    /**
+     * Set the flag which indicates whether a user code is required.
+     *
+     * @param required
+     *         {@code true} to indicate that a user code is required.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.33
+     */
+    public BackchannelAuthenticationResponse setUserCodeRequired(boolean required)
+    {
+        this.userCodeRequired = required;
 
         return this;
     }
