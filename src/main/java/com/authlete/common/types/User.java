@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Authlete, Inc.
+ * Copyright (C) 2016-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,4 +64,19 @@ public interface User
      *         is not available.
      */
     Object getClaim(String claimName, String languageTag);
+
+
+    /**
+     * Get the value of an attribute of the user.
+     *
+     * @param attributeName
+     *         An attribute name.
+     *
+     * @return
+     *         The attribute value. {@code null} if the attribute value of the
+     *         attribute is not available.
+     *
+     * @since 2.33
+     */
+    Object getAttribute(String attributeName);
 }
