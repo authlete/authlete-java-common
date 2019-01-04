@@ -1,6 +1,17 @@
 変更点
 ======
 
+2.33 (2019 年 01 月 04 日)
+--------------------------
+
+- `BackchannelAuthenticationResponse` クラス
+    * `isUserCodeRequired()` メソッドを追加。
+    * `setUserCodeRequired(boolean)` メソッドを追加。
+
+- `User` インターフェース
+    * `getAttribute(String)` メソッドを追加。
+
+
 2.32 (2018 年 12 月 29 日)
 --------------------------
 

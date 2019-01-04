@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+2.33 (2019-01-04)
+-----------------
+
+- `BackchannelAuthenticationResponse` class
+    * Added `isUserCodeRequired()` method.
+    * Added `setUserCodeRequired(boolean)` method.
+
+- `User` interface
+    * Added `getAttribute(String)` method.
+
+
 2.32 (2018-12-29)
 -----------------
 
