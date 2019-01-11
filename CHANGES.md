@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+2.34 (2019-01-12)
+-----------------
+
+- `GrantType` enum
+    * Renamed `BACKCHANNEL_REQUEST` to `CIBA`.
+
+
 2.33 (2019-01-04)
 -----------------
 
