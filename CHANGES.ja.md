@@ -1,6 +1,17 @@
 変更点
 ======
 
+2.35 (2019 年 01 月 12 日)
+--------------------------
+
+- `BackchannelAuthenticationFailRequest.Reason` 列挙型
+    * `INVALID_BINDING_MESSAGE` を追加。
+
+- `BackchannelAuthenticationResponse` クラス
+    * `getRequestedExpiry()` メソッドを追加。
+    * `setRequestedExpiry(int)` メソッドを追加。
+
+
 2.34 (2019 年 01 月 12 日)
 --------------------------
 

@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+2.35 (2019-01-12)
+-----------------
+
+- `BackchannelAuthenticationFailRequest.Reason` enum
+    * Added `INVALID_BINDING_MESSAGE`.
+
+- `BackchannelAuthenticationResponse` class
+    * Added `getRequestedExpiry()` method.
+    * Added `setRequestedExpiry(int)` method.
+
+
 2.34 (2019-01-12)
 -----------------
 
