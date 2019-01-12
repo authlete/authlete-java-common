@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Authlete, Inc.
+ * Copyright (C) 2018-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -334,6 +334,22 @@ import com.authlete.common.types.UserIdentificationHintType;
  *     </td>
  *   </tr>
  *   <tr>
+ *     <td>{@code invalid_binding_message}</td>
+ *     <td>
+ *       <p>
+ *         The authorization server implementation detected that the presented
+ *         binding message is invalid.
+ *       </p>
+ *       <br/>
+ *       <p>
+ *         Note that the format of {@code binding_message} is not described in
+ *         the CIBA Core spec at all and so there is no consensus on how to
+ *         judge whether a binding message is valid or not. It is up to each
+ *         authorization server implementation how to handle binding messages.
+ *       </p>
+ *     </td>
+ *   </tr>
+ *   <tr>
  *     <td>{@code access_denined}</td>
  *     <td>
  *       <p>
@@ -547,7 +563,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  */
 public class BackchannelAuthenticationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -613,6 +629,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     private String bindingMessage;
     private String userCode;
     private boolean userCodeRequired;
+    private int requestedExpiry;
     private String[] warnings;
     private String ticket;
 
@@ -1186,6 +1203,43 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     public BackchannelAuthenticationResponse setUserCode(String userCode)
     {
         this.userCode = userCode;
+
+        return this;
+    }
+
+
+    /**
+     * Get the requested expiry for the authentication request ID
+     * ({@code auth_req_id}). It is the value of the {@code "requested_expiry"}
+     * request parameter.
+     *
+     * @return
+     *         The requested expiry in seconds.
+     *
+     * @since 2.35
+     */
+    public int getRequestedExpiry()
+    {
+        return requestedExpiry;
+    }
+
+
+    /**
+     * Set the requested expiry for the authentication request ID
+     * ({@code auth_req_id}). It is the value of the {@code "requested_expiry"}
+     * request parameter.
+     *
+     * @param seconds
+     *         The requested expiry in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.35
+     */
+    public BackchannelAuthenticationResponse setRequestedExpiry(int seconds)
+    {
+        this.requestedExpiry = seconds;
 
         return this;
     }
