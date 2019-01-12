@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Authlete, Inc.
+ * Copyright (C) 2018-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ import java.net.URI;
  */
 public class BackchannelAuthenticationFailRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -132,6 +132,20 @@ public class BackchannelAuthenticationFailRequest implements Serializable
          * </p>
          */
         INVALID_USER_CODE,
+
+
+        /**
+         * The binding message is invalid or unacceptable for use in the
+         * context of the given request.
+         *
+         * <p>
+         * Using this reason will result in
+         * {@code "error":"invalid_binding_message"}.
+         * </p>
+         *
+         * @since 2.35
+         */
+        INVALID_BINDING_MESSAGE,
 
 
         /**
