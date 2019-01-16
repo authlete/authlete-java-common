@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Authlete, Inc.
+ * Copyright (C) 2018-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -75,17 +75,17 @@ import com.authlete.common.util.Utils;
  * When the authorization server could not get the result of end-user
  * authentication and authorization from the authentication device for some
  * reasons, the authorization server should call the API with
- * {@code result=}{@link Result#ERROR ERROR}. In this error case, the API
- * will behave in the same way as in the case of {@code ACCESS_DENIED}. The
- * only difference is that {@code server_error} is used as the value of the
- * {@code error} parameter.
+ * {@code result=}{@link Result#TRANSACTION_FAILED TRANSACTION_FAILED}. In
+ * this error case, the API will behave in the same way as in the case of
+ * {@code ACCESS_DENIED}. The only difference is that {@code transaction_failed}
+ * is used as the value of the {@code error} parameter.
  * </p>
  *
  * @since 2.32
  */
 public class BackchannelAuthenticationCompleteRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -116,8 +116,14 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
          * the authentication device due to a network error, the device did
          * not return a response within a reasonable time, etc.
          * </p>
+         *
+         * <p>
+         * This result can be used as a generic error.
+         * </p>
+         *
+         * @since 2.36
          */
-        ERROR((short)3),
+        TRANSACTION_FAILED((short)3),
         ;
 
 
