@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -385,5 +385,17 @@ public enum ErrorCode
      * @since 2.32
      */
     expired_token,
+
+
+    /**
+     * The OpenID Provider encountered an unexpected condition that prevented
+     * it from successfully completing the transaction. This general case error
+     * code can be used to inform the Client that the CIBA transaction was
+     * unsuccessful for reasons other than those explicitly defined by
+     * {@code access_denied} and {@code expired_token}.
+     *
+     * @since 2.36
+     */
+    transaction_failed,
     ;
 }
