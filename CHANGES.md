@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+2.36 (2019-01-17)
+-----------------
+
+- `BackchannelAuthenticationCompleteRequest.Result` enum
+    * Renamed `ERROR` to `TRANSACTION_FAILED`.
+
+- `ErrorCode` enum
+    * Added `transaction_failed`.
+
+
 2.35 (2019-01-12)
 -----------------
 

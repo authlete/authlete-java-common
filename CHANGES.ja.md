@@ -1,6 +1,16 @@
 変更点
 ======
 
+2.36 (2019 年 01 月 17 日)
+--------------------------
+
+- `BackchannelAuthenticationCompleteRequest.Result` 列挙型
+    * `ERROR` を `TRANSACTION_FAILED` へ名称変更。
+
+- `ErrorCode` 列挙型
+    * `transaction_failed` を追加。
+
+
 2.35 (2019 年 01 月 12 日)
 --------------------------
 
