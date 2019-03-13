@@ -238,6 +238,7 @@ public class Service implements Serializable
     private ClientAuthMethod[] supportedIntrospectionAuthMethods;
     private boolean mutualTlsValidatePkiCertChain;
     private String[] trustedRootCertificates;
+    private boolean dynamicRegistrationSupported;
 
 
     /**
@@ -3434,4 +3435,37 @@ public class Service implements Serializable
 
         return this;
     }
+
+
+    /**
+     * Get the flag which indicates whether the dynamic client registration is supported.
+     *
+     * @return {@code true} if enabled.
+     *
+     * @since 2.XX
+     */
+    public boolean isDynamicRegistrationSupported()
+    {
+        return dynamicRegistrationSupported;
+    }
+
+
+    /**
+     * Set the flag which indicates whether dynamic client registration is supported.
+     *
+     * @param enabled
+     *            {@code true} to enable dynmic client registration
+     *
+     * @return {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public Service setDynamicRegistrationSupported(boolean enabled)
+    {
+        this.dynamicRegistrationSupported = enabled;
+
+        return this;
+    }
+
+
 }
