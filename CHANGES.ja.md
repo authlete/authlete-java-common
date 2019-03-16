@@ -1,6 +1,36 @@
 変更点
 ======
 
+2.37 (2019 年 03 月 16 日)
+--------------------------
+
+- `AuthorizationIssueResponse` クラス
+    * `getJwtAccessToken()` メソッドを追加。
+    * `setJwtAccessToken(String)` メソッドを追加。
+
+- `BackchannelAuthenticationCompleteResponse` クラス
+    * `getJwtAccessToken()` メソッドを追加。
+    * `setJwtAccessToken(String)` メソッドを追加。
+
+- `Service` クラス
+    * `getAccessTokenSignAlg()` メソッドを追加。
+    * `setAccessTokenSignAlg(JWSAlg)` メソッドを追加。
+    * `getAccessTokenSignatureKeyId()` メソッドを追加。
+    * `setAccessTokenSignatureKeyId(String)` メソッドを追加。
+
+- `TokenIssueResponse` クラス
+    * `getJwtAccessToken()` メソッドを追加。
+    * `setJwtAccessToken(String)` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getJwtAccessToken()` メソッドを追加。
+    * `setJwtAccessToken(String)` メソッドを追加。
+
+- `UserInfoRequest` クラス
+    * `getClientCertificate()` メソッドを追加。
+    * `setClientCertificate(String)` メソッドを追加。
+
+
 2.36 (2019 年 01 月 17 日)
 --------------------------
 

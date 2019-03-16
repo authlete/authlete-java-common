@@ -1,6 +1,36 @@
 CHANGES
 =======
 
+2.37 (2019-03-16)
+-----------------
+
+- `AuthorizationIssueResponse` class
+    * Added `getJwtAccessToken()` method.
+    * Added `setJwtAccessToken(String)` method.
+
+- `BackchannelAuthenticationCompleteResponse` class
+    * Added `getJwtAccessToken()` method.
+    * Added `setJwtAccessToken(String)` method.
+
+- `Service` class
+    * Added `getAccessTokenSignAlg()` method.
+    * Added `setAccessTokenSignAlg(JWSAlg)` method.
+    * Added `getAccessTokenSignatureKeyId()` method.
+    * Added `setAccessTokenSignatureKeyId(String)` method.
+
+- `TokenIssueResponse` class
+    * Added `getJwtAccessToken()` method.
+    * Added `setJwtAccessToken(String)` method.
+
+- `TokenResponse` class
+    * Added `getJwtAccessToken()` method.
+    * Added `setJwtAccessToken(String)` method.
+
+- `UserInfoRequest` class
+    * Added `getClientCertificate()` method.
+    * Added `setClientCertificate(String)` method.
+
+
 2.36 (2019-01-17)
 -----------------
 
