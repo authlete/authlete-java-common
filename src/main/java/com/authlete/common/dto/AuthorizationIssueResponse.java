@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -158,7 +158,7 @@ package com.authlete.common.dto;
  */
 public class AuthorizationIssueResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -197,7 +197,7 @@ public class AuthorizationIssueResponse extends ApiResponse
 
     private static final String SUMMARY_FORMAT
         = "action=%s, responseContent=%s, accessToken=%s, accessTokenExpiresAt=%d, "
-        + "accessTokenDuration=%d, idToken=%s, authorizationCode=%s";
+        + "accessTokenDuration=%d, idToken=%s, authorizationCode=%s, jwtAccessToken=%s";
 
 
     private Action action;
@@ -207,6 +207,7 @@ public class AuthorizationIssueResponse extends ApiResponse
     private long accessTokenDuration;
     private String idToken;
     private String authorizationCode;
+    private String jwtAccessToken;
 
 
     /**
@@ -252,11 +253,19 @@ public class AuthorizationIssueResponse extends ApiResponse
      * {@code response_type} request parameter of the authorization
      * request includes {@code token}.
      *
+     * <p>
+     * If the service is configured to issue JWT-based access tokens,
+     * a JWT-based access token is issued additionally. In the case,
+     * {@link #getJwtAccessToken()} returns the JWT-based access token.
+     * </p>
+     *
      * @return
      *         The newly issued access token. If an access token is
      *         not issued, this method returns {@code null}.
      *
      * @since 1.34
+     *
+     * @see #getJwtAccessToken()
      */
     public String getAccessToken()
     {
@@ -401,12 +410,56 @@ public class AuthorizationIssueResponse extends ApiResponse
 
 
     /**
+     * Get the newly issued access token in JWT format.
+     *
+     * <p>
+     * If the authorization server is configured to issue JWT-based access
+     * tokens (= if {@link Service#getAccessTokenSignAlg()} returns a non-null
+     * value), a JWT-based access token is issued along with the original
+     * random-string one.
+     * </p>
+     *
+     * <p>
+     * Regarding the detailed format of the JWT-based access token, see the
+     * description of the {@link Service} class.
+     * </p>
+     *
+     * @return
+     *         The newly issued access token in JWT format. If the service is
+     *         not configured to issue JWT-based access tokens, this method
+     *         always returns null.
+     *
+     * @see #getAccessToken()
+     *
+     * @since 2.37
+     */
+    public String getJwtAccessToken()
+    {
+        return jwtAccessToken;
+    }
+
+
+    /**
+     * Set the newly issued access token in JWT format.
+     *
+     * @param jwtAccessToken
+     *         The newly issued access token in JWT format.
+     *
+     * @since 2.37
+     */
+    public void setJwtAccessToken(String jwtAccessToken)
+    {
+        this.jwtAccessToken = jwtAccessToken;
+    }
+
+
+    /**
      * Get the summary of this instance.
      */
     public String summarize()
     {
         return String.format(SUMMARY_FORMAT,
                 action, responseContent, accessToken, accessTokenExpiresAt,
-                accessTokenDuration, idToken, authorizationCode);
+                accessTokenDuration, idToken, authorizationCode, jwtAccessToken);
     }
 }

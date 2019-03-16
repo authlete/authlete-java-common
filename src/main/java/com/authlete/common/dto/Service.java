@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.Display;
 import com.authlete.common.types.GrantType;
+import com.authlete.common.types.JWSAlg;
 import com.authlete.common.types.ResponseType;
 import com.authlete.common.types.ServiceProfile;
 import com.authlete.common.types.Sns;
@@ -41,12 +42,111 @@ import com.authlete.common.types.Sns;
  * >OpenID Connect Discovery 1.0</a>
  * </p>
  *
+ * <h3>JWT-based access token</h3>
+ *
+ * <p>
+ * When {@link #getAccessTokenSignAlg()} returns a non-null value, access
+ * tokens issued by this service become JWTs. The value returned by the
+ * method is used as the signature algorithm of the JWTs. When the method
+ * returns null, access tokens issued by this service are random strings as
+ * before.
+ * </p>
+ *
+ * <p>
+ * A JWT-based access token has the following claims.
+ * </p>
+ *
+ * <blockquote>
+ * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+ *   <tr bgcolor="orange">
+ *     <th>claim name</th>
+ *     <th>type</th>
+ *     <th>description</th>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code scope}</td>
+ *     <td>string</td>
+ *     <td>Space-delimited scope names.</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code client_id}</td>
+ *     <td>string</td>
+ *     <td>Client ID.</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code exp}</td>
+ *     <td>integer</td>
+ *     <td>
+ *       Time at which this access token will expire. Seconds since the
+ *       Unix epoch.
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code iat}</td>
+ *     <td>integer</td>
+ *     <td>
+ *       Time at which this access token was issued. Seconds since the Unix
+ *       epoch.
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code sub}</td>
+ *     <td>string</td>
+ *     <td>
+ *       The subject (unique identifier) of the resource owner who approved
+ *       issue of this access token. This claim does not exist or its value
+ *       is null if this access token was issued by resource owner password
+ *       credentials flow.
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code iss}</td>
+ *     <td>string</td>
+ *     <td>The issuer identifier of this service.</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code jti}</td>
+ *     <td>string</td>
+ *     <td>
+ *       The unique identifier of this JWT. The value of this claim itself
+ *       is the random-string version of this access token.
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code cnf}</td>
+ *     <td>object</td>
+ *     <td>
+ *       If this access token is bound to a client certificate, this claim
+ *       is included. The type of its value is object and the sub object
+ *       contains a {@code "x5t#S256"} claim. The value of the {@code
+ *       "x5t#S256"} claim is the X.509 Certificate SHA-256 thumbprint of
+ *       the client certificate. See <i>"3.1. X.509 Certificate Thumbprint
+ *       Confirmation Method for JWT"</i> of <i>"<a href=
+ *       "https://datatracker.ietf.org/doc/draft-ietf-oauth-mtls/?include_text=1"
+ *       >OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound
+ *       Access Tokens</a>"</i> for details.
+ *     </td>
+ *   </tr>
+ * </table>
+ *
+ * <p>
+ * Visible (= not-hidden) extra properties of the access token are embedded
+ * in the JWT as custom claims. Regarding extra properties, see the Authlete
+ * API document.
+ * </p>
+ *
+ * <p>
+ * The feature of JWT-based access token is available since Authlete 2.1.
+ * Access tokens issued by older Authlete versions are always random strings.
+ * </p>
+ * </blockquote>
+ *
  * @see <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
  *      >OpenID Connect Discovery 1.0</a>
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 24L;
+    private static final long serialVersionUID = 25L;
 
 
     /*
@@ -156,6 +256,20 @@ public class Service implements Serializable
 
 
     /**
+     * Signature algorithm of JWT-based access tokens. When this property
+     * is not null, access tokens issued by this service are JWTs. Otherwise,
+     * access tokens are random strings as before.
+     *
+     * <p>
+     * Symmetric algorithms are not supported.
+     * </p>
+     *
+     * @since 2.37
+     */
+    private JWSAlg accessTokenSignAlg;
+
+
+    /**
      * Duration of access tokens in seconds.
      */
     private long accessTokenDuration;
@@ -187,6 +301,15 @@ public class Service implements Serializable
      * @since 1.39
      */
     private Pair[] metadata;
+
+
+    /**
+     * Key ID to identify a JWK used for access token signature using an
+     * asymmetric key.
+     *
+     * @since 2.37
+     */
+    private String accessTokenSignatureKeyId;
 
 
     /**
@@ -1154,6 +1277,71 @@ public class Service implements Serializable
     public Service setAccessTokenType(String type)
     {
         this.accessTokenType = type;
+
+        return this;
+    }
+
+
+    /**
+     * Get the signature algorithm of access tokens.
+     *
+     * <p>
+     * When this method returns null, access tokens issued by this service are
+     * just random strings. On the other hand, when this method returns a
+     * non-null value, access tokens issued by this service are JWTs and the
+     * value returned from this method represents the signature algorithm of
+     * the JWTs. Regarding the format, see the description of this
+     * {@link Service} class.
+     * </p>
+     *
+     * <p>
+     * This feature is available since Authlete 2.1. Access tokens generated
+     * by older Authlete versions are always random strings.
+     * </p>
+     *
+     * @return
+     *         The signature algorithm of JWT-based access tokens. When null
+     *         is returned, access tokens are not JWTs but just random strings.
+     *
+     * @since 2.37
+     */
+    public JWSAlg getAccessTokenSignAlg()
+    {
+        return accessTokenSignAlg;
+    }
+
+
+    /**
+     * Set the signature algorithm of access tokens.
+     *
+     * <p>
+     * When null is set, access tokens issued by this service are just random
+     * strings. On the other hand, when a non-null value is set, access tokens
+     * issued by this service are JWTs and the value set by this method is used
+     * as the signature algorithm of the JWTs. Regarding the format, see the
+     * description of this {@link Service} class.
+     * </p>
+     *
+     * <p>
+     * This feature is available since Authlete 2.1. Access tokens generated
+     * by older Authlete versions are always random strings.
+     * </p>
+     *
+     * @param alg
+     *         The signature algorithm of JWT-based access tokens. When null
+     *         is given, access tokens are not JWTs but just random strings.
+     *         Note that symmetric algorithms ({@link JWSAlg#HS256 HS256},
+     *         {@link JWSAlg#HS384 HS384} and {@link JWSAlg#HS512 HS512})
+     *         are not supported.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.37
+     */
+    public Service setAccessTokenSignAlg(JWSAlg alg)
+    {
+        this.accessTokenSignAlg = alg;
 
         return this;
     }
@@ -2311,6 +2499,64 @@ public class Service implements Serializable
     public Service setClientIdAliasEnabled(boolean enabled)
     {
         this.clientIdAliasEnabled = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get the key ID to identify a JWK used for signing access tokens.
+     *
+     * <p>
+     * A JWK Set can be registered as a property of a Service. A JWK Set can
+     * contain 0 or more JWKs (See <a href="https://tools.ietf.org/html/rfc7517"
+     * >RFC 7517</a> for details about JWK). Authlete Server has to pick up
+     * one JWK for signing from the JWK Set when it generates a JWT-based
+     * access token (see {@link #getAccessTokenSignAlg()} for details about
+     * JWT-based access token). Authlete Server searches the registered JWK Set
+     * for a JWK which satisfies conditions for access token signature. If the
+     * number of JWK candidates which satisfy the conditions is 1, there is no
+     * problem. On the other hand, if there exist multiple candidates, a
+     * <a href="https://tools.ietf.org/html/rfc7517#section-4.5">Key ID</a> is
+     * needed to be specified so that Authlete Server can pick up one JWK from
+     * among the JWK candidates.
+     * </p>
+     *
+     * <p>
+     * This {@code accessTokenSignatureKeyId} property exists for the purpose
+     * described above.
+     * </p>
+     *
+     * @return
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @since 2.37
+     */
+    public String getAccessTokenSignatureKeyId()
+    {
+        return accessTokenSignatureKeyId;
+    }
+
+
+    /**
+     * Set the key ID to identify a JWK used for signing access tokens.
+     *
+     * <p>
+     * See the description of {@link #getAccessTokenSignatureKeyId()} for
+     * details.
+     * </p>
+     *
+     * @param keyId
+     *         A key ID of a JWK. This may be {@code null}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.37
+     */
+    public Service setAccessTokenSignatureKeyId(String keyId)
+    {
+        this.accessTokenSignatureKeyId = keyId;
 
         return this;
     }

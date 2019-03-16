@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -195,6 +195,23 @@ import com.authlete.common.util.Utils;
  * {@code WWW-Authenticate}. However, if the service has selected another
  * different token type, the service has to generate error messages for
  * itself.
+ * </p>
+ *
+ * <h3>JWT-based access token</h3>
+ *
+ * <p>
+ * Since version 2.1, Authlete provides a feature to issue access tokens in
+ * JWT format. This feature can be enabled by setting a non-null value to the
+ * {@code accessTokenSignAlg} property of the service (see the description of
+ * the {@link Service} class for details). {@code /api/auth/introspection} API
+ * can accept access tokens in JWT format. However, note that the API does not
+ * return information contained in a given JWT-based access token but returns
+ * information stored in the database record which corresponds to the given
+ * JWT-based access token. Because attributes of the database record can be
+ * modified after the access token is issued (for example, by using {@code
+ * /api/auth/token/update} API), information returned by {@code
+ * /api/auth/introspection} API and information the given JWT-based access
+ * token holds may be different.
  * </p>
  *
  * @author Takahiko Kawasaki

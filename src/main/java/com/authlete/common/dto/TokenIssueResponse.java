@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -102,7 +102,7 @@ import com.authlete.common.util.Utils;
  */
 public class TokenIssueResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -132,7 +132,7 @@ public class TokenIssueResponse extends ApiResponse
         + "accessToken=%s, accessTokenExpiresAt=%d, accessTokenDuration=%d, "
         + "refreshToken=%s, refreshTokenExpiresAt=%d, refreshTokenDuration=%d, "
         + "clientId=%d, clientIdAlias=%s, clientIdAliasUsed=%s, subject=%s, "
-        + "scopes=%s, properties=%s";
+        + "scopes=%s, properties=%s, jwtAccessToken=%s";
 
 
     /**
@@ -154,6 +154,7 @@ public class TokenIssueResponse extends ApiResponse
     private String subject;
     private String[] scopes;
     private Property[] properties;
+    private String jwtAccessToken;
 
 
     /**
@@ -203,7 +204,8 @@ public class TokenIssueResponse extends ApiResponse
                 accessToken, accessTokenExpiresAt, accessTokenDuration,
                 refreshToken, refreshTokenExpiresAt, refreshTokenDuration,
                 clientId, clientIdAlias, clientIdAliasUsed, subject,
-                Utils.join(scopes, " "), Utils.stringifyProperties(properties));
+                Utils.join(scopes, " "), Utils.stringifyProperties(properties),
+                jwtAccessToken);
     }
 
 
@@ -211,8 +213,16 @@ public class TokenIssueResponse extends ApiResponse
      * Get the newly issued access token. This method returns a non-null
      * value only when {@link #getAction()} returns {@link Action#OK}.
      *
+     * <p>
+     * If the service is configured to issue JWT-based access tokens,
+     * a JWT-based access token is issued additionally. In the case,
+     * {@link #getJwtAccessToken()} returns the JWT-based access token.
+     * </p>
+     *
      * @return
      *         The newly issued access token.
+     *
+     * @see #getJwtAccessToken()
      *
      * @since 1.34
      */
@@ -555,5 +565,49 @@ public class TokenIssueResponse extends ApiResponse
     public void setProperties(Property[] properties)
     {
         this.properties = properties;
+    }
+
+
+    /**
+     * Get the newly issued access token in JWT format.
+     *
+     * <p>
+     * If the authorization server is configured to issue JWT-based access
+     * tokens (= if {@link Service#getAccessTokenSignAlg()} returns a non-null
+     * value), a JWT-based access token is issued along with the original
+     * random-string one.
+     * </p>
+     *
+     * <p>
+     * Regarding the detailed format of the JWT-based access token, see the
+     * description of the {@link Service} class.
+     * </p>
+     *
+     * @return
+     *         The newly issued access token in JWT format. If the service is
+     *         not configured to issue JWT-based access tokens, this method
+     *         always returns null.
+     *
+     * @see #getAccessToken()
+     *
+     * @since 2.37
+     */
+    public String getJwtAccessToken()
+    {
+        return jwtAccessToken;
+    }
+
+
+    /**
+     * Set the newly issued access token in JWT format.
+     *
+     * @param jwtAccessToken
+     *         The newly issued access token in JWT format.
+     *
+     * @since 2.37
+     */
+    public void setJwtAccessToken(String jwtAccessToken)
+    {
+        this.jwtAccessToken = jwtAccessToken;
     }
 }

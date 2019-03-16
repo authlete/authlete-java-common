@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Authlete, Inc.
+ * Copyright (C) 2018-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,7 +139,7 @@ import com.authlete.common.types.DeliveryMode;
  */
 public class BackchannelAuthenticationCompleteResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -199,6 +199,7 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     private long accessTokenDuration;
     private long refreshTokenDuration;
     private long idTokenDuration;
+    private String jwtAccessToken;
 
 
     /**
@@ -748,6 +749,55 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     public BackchannelAuthenticationCompleteResponse setIdTokenDuration(long duration)
     {
         this.idTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the newly issued access token in JWT format.
+     *
+     * <p>
+     * If the authorization server is configured to issue JWT-based access
+     * tokens (= if {@link Service#getAccessTokenSignAlg()} returns a non-null
+     * value), a JWT-based access token is issued along with the original
+     * random-string one.
+     * </p>
+     *
+     * <p>
+     * Regarding the detailed format of the JWT-based access token, see the
+     * description of the {@link Service} class.
+     * </p>
+     *
+     * @return
+     *         The newly issued access token in JWT format. If the service is
+     *         not configured to issue JWT-based access tokens, this method
+     *         always returns null.
+     *
+     * @see #getAccessToken()
+     *
+     * @since 2.37
+     */
+    public String getJwtAccessToken()
+    {
+        return jwtAccessToken;
+    }
+
+
+    /**
+     * Set the newly issued access token in JWT format.
+     *
+     * @param jwtAccessToken
+     *         The newly issued access token in JWT format.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.37
+     */
+    public BackchannelAuthenticationCompleteResponse setJwtAccessToken(String jwtAccessToken)
+    {
+        this.jwtAccessToken = jwtAccessToken;
 
         return this;
     }
