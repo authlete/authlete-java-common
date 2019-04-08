@@ -1,6 +1,20 @@
 CHANGES
 =======
 
+2.38 (2019-04-09)
+-----------------
+
+- `Client` class
+    * Added `getTlsClientAuthSanDns()` method.
+    * Added `setTlsClientAuthSanDns(String)` method.
+    * Added `getTlsClientAuthSanUri()` method.
+    * Added `setTlsClientAuthSanUri(URI)` method.
+    * Added `getTlsClientAuthSanIp()` method.
+    * Added `setTlsClientAuthSanIp(String)` method.
+    * Added `getTlsClientAuthSanEmail()` method.
+    * Added `setTlsClientAuthSanEmail(String)` method.
+
+
 2.37 (2019-03-16)
 -----------------
 

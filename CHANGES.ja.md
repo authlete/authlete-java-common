@@ -1,6 +1,20 @@
 変更点
 ======
 
+2.38 (2019 年 04 月 09 日)
+--------------------------
+
+- `Client` クラス
+    * `getTlsClientAuthSanDns()` メソッドを追加。
+    * `setTlsClientAuthSanDns(String)` メソッドを追加。
+    * `getTlsClientAuthSanUri()` メソッドを追加。
+    * `setTlsClientAuthSanUri(URI)` メソッドを追加。
+    * `getTlsClientAuthSanIp()` メソッドを追加。
+    * `setTlsClientAuthSanIp(String)` メソッドを追加。
+    * `getTlsClientAuthSanEmail()` メソッドを追加。
+    * `setTlsClientAuthSanEmail(String)` メソッドを追加。
+
+
 2.37 (2019 年 03 月 16 日)
 --------------------------
 

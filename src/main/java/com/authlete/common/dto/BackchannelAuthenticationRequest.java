@@ -258,7 +258,7 @@ public class BackchannelAuthenticationRequest implements Serializable
 
 
     /**
-     * Get the client certification used in the TLS connection between the
+     * Get the client certificate used in the TLS connection between the
      * client application and the backchannel authentication endpoint of the
      * OpenID provider.
      *
@@ -272,7 +272,7 @@ public class BackchannelAuthenticationRequest implements Serializable
 
 
     /**
-     * Set the client certification used in the TLS connection between the
+     * Set the client certificate used in the TLS connection between the
      * client application and the backchannel authentication endpoint of the
      * OpenID provider.
      *
