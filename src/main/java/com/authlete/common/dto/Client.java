@@ -51,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 13L;
+    private static final long serialVersionUID = 14L;
 
 
     /*
@@ -239,6 +239,10 @@ public class Client implements Serializable
     private long modifiedAt;
     private ClientExtension extension;
     private String tlsClientAuthSubjectDn;
+    private String tlsClientAuthSanDns;
+    private String tlsClientAuthSanUri;
+    private String tlsClientAuthSanIp;
+    private String tlsClientAuthSanEmail;
     private boolean tlsClientCertificateBoundAccessTokens;
     private String selfSignedCertificateKeyId;
     private String softwareId;
@@ -1907,6 +1911,210 @@ public class Client implements Serializable
     public Client setTlsClientAuthSubjectDn(String name)
     {
         this.tlsClientAuthSubjectDn = name;
+
+        return this;
+    }
+
+
+    /**
+     * Get the string representation of the expected DNS subject
+     * alternative name of the certificate this client will
+     * use in mutual TLS authentication.
+     *
+     * <p>
+     * See {@code tls_client_auth_san_dns} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @return
+     *         The expected DNS subject alternative name of the
+     *         client certificate.
+     *
+     * @since 2.xx
+     */
+    public String getTlsClientAuthSanDns()
+    {
+        return tlsClientAuthSanDns;
+    }
+
+
+    /**
+     * Set the string representation of the expected DNS subject
+     * alternative name of the certificate this client will
+     * use in mutual TLS authentication.
+     *
+     * <p>
+     * See {@code tls_client_auth_san_dns} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @param name
+     *         The expected DNS subject alternative name of the
+     *         client certificate.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.xx
+     */
+    public Client setTlsClientAuthSanDns(String tlsClientAuthSanDns)
+    {
+        this.tlsClientAuthSanDns = tlsClientAuthSanDns;
+
+        return this;
+    }
+
+
+    /**
+     * Get the string representation of the expected URI subject
+     * alternative name of the certificate this client will
+     * use in mutual TLS authentication.
+     *
+     * <p>
+     * See {@code tls_client_auth_san_uri} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @return
+     *         The expected URI subject alternative name of the
+     *         client certificate.
+     *
+     * @since 2.xx
+     */
+    public String getTlsClientAuthSanUri()
+    {
+        return tlsClientAuthSanUri;
+    }
+
+
+    /**
+     * Set the string representation of the expected URI subject
+     * alternative name of the certificate this client will
+     * use in mutual TLS authentication.
+     *
+     * <p>
+     * See {@code tls_client_auth_san_uri} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @param name
+     *         The expected URI subject alternative name of the
+     *         client certificate.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.xx
+     */
+    public Client setTlsClientAuthSanUri(String tlsClientAuthSanUri)
+    {
+        this.tlsClientAuthSanUri = tlsClientAuthSanUri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the string representation of the expected IP address
+     * subject alternative name of the certificate this client will
+     * use in mutual TLS authentication.
+     *
+     * <p>
+     * See {@code tls_client_auth_san_ip} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @return
+     *         The expected IP address subject alternative name of the
+     *         client certificate.
+     *
+     * @since 2.xx
+     */
+    public String getTlsClientAuthSanIp()
+    {
+        return tlsClientAuthSanIp;
+    }
+
+
+    /**
+     * Set the string representation of the expected ip address
+     * subject alternative name of the certificate this client will
+     * use in mutual TLS authentication.
+     *
+     * <p>
+     * See {@code tls_client_auth_san_ip} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @param name
+     *         The expected ip address subject alternative name of the
+     *         client certificate.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.xx
+     */
+    public Client setTlsClientAuthSanIp(String tlsClientAuthSanIp)
+    {
+        this.tlsClientAuthSanIp = tlsClientAuthSanIp;
+
+        return this;
+    }
+
+
+    /**
+     * Get the string representation of the expected email address
+     * subject alternative name of the certificate this client will
+     * use in mutual TLS authentication.
+     *
+     * <p>
+     * See {@code tls_client_auth_san_email} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @return
+     *         The expected email address subject alternative name of the
+     *         client certificate.
+     *
+     * @since 2.xx
+     */
+    public String getTlsClientAuthSanEmail()
+    {
+        return tlsClientAuthSanEmail;
+    }
+
+
+    /**
+     * Set the string representation of the expected email address
+     * subject alternative name of the certificate this client will
+     * use in mutual TLS authentication.
+     *
+     * <p>
+     * See {@code tls_client_auth_san_email} in <i>"2.3. Dynamic
+     * Client Registration"</i> in <i>"Mutual TLS Profiles for
+     * OAuth Clients"</i> for details.
+     * </p>
+     *
+     * @param name
+     *         The expected email address subject alternative name of the
+     *         client certificate.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.xx
+     */
+    public Client setTlsClientAuthSanEmail(String tlsClientAuthSanEmail)
+    {
+        this.tlsClientAuthSanEmail = tlsClientAuthSanEmail;
 
         return this;
     }
