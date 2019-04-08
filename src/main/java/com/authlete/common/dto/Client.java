@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -240,7 +240,7 @@ public class Client implements Serializable
     private ClientExtension extension;
     private String tlsClientAuthSubjectDn;
     private String tlsClientAuthSanDns;
-    private String tlsClientAuthSanUri;
+    private URI tlsClientAuthSanUri;
     private String tlsClientAuthSanIp;
     private String tlsClientAuthSanEmail;
     private boolean tlsClientCertificateBoundAccessTokens;
@@ -1931,7 +1931,7 @@ public class Client implements Serializable
      *         The expected DNS subject alternative name of the
      *         client certificate.
      *
-     * @since 2.xx
+     * @since 2.38
      */
     public String getTlsClientAuthSanDns()
     {
@@ -1957,7 +1957,7 @@ public class Client implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 2.xx
+     * @since 2.38
      */
     public Client setTlsClientAuthSanDns(String tlsClientAuthSanDns)
     {
@@ -1982,9 +1982,9 @@ public class Client implements Serializable
      *         The expected URI subject alternative name of the
      *         client certificate.
      *
-     * @since 2.xx
+     * @since 2.38
      */
-    public String getTlsClientAuthSanUri()
+    public URI getTlsClientAuthSanUri()
     {
         return tlsClientAuthSanUri;
     }
@@ -2008,9 +2008,9 @@ public class Client implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 2.xx
+     * @since 2.38
      */
-    public Client setTlsClientAuthSanUri(String tlsClientAuthSanUri)
+    public Client setTlsClientAuthSanUri(URI tlsClientAuthSanUri)
     {
         this.tlsClientAuthSanUri = tlsClientAuthSanUri;
 
@@ -2033,7 +2033,7 @@ public class Client implements Serializable
      *         The expected IP address subject alternative name of the
      *         client certificate.
      *
-     * @since 2.xx
+     * @since 2.38
      */
     public String getTlsClientAuthSanIp()
     {
@@ -2042,7 +2042,7 @@ public class Client implements Serializable
 
 
     /**
-     * Set the string representation of the expected ip address
+     * Set the string representation of the expected IP address
      * subject alternative name of the certificate this client will
      * use in mutual TLS authentication.
      *
@@ -2053,13 +2053,13 @@ public class Client implements Serializable
      * </p>
      *
      * @param name
-     *         The expected ip address subject alternative name of the
+     *         The expected IP address subject alternative name of the
      *         client certificate.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 2.xx
+     * @since 2.38
      */
     public Client setTlsClientAuthSanIp(String tlsClientAuthSanIp)
     {
@@ -2084,7 +2084,7 @@ public class Client implements Serializable
      *         The expected email address subject alternative name of the
      *         client certificate.
      *
-     * @since 2.xx
+     * @since 2.38
      */
     public String getTlsClientAuthSanEmail()
     {
@@ -2110,7 +2110,7 @@ public class Client implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 2.xx
+     * @since 2.38
      */
     public Client setTlsClientAuthSanEmail(String tlsClientAuthSanEmail)
     {
