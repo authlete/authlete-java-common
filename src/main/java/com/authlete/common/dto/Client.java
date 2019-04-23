@@ -255,6 +255,7 @@ public class Client implements Serializable
     private JWSAlg bcRequestSignAlg;
     private boolean bcUserCodeRequired;
     private boolean dynamicallyRegistered;
+    private String registrationAccessTokenHash;
 
 
     /**
@@ -2659,4 +2660,20 @@ public class Client implements Serializable
 
         return this;
     }
+
+
+    public String getRegistrationAccessTokenHash()
+    {
+        return registrationAccessTokenHash;
+    }
+
+
+    public Client setRegistrationAccessTokenHash(String registrationAccessToken)
+    {
+        this.registrationAccessTokenHash = registrationAccessToken;
+
+        return this;
+    }
+
+
 }
