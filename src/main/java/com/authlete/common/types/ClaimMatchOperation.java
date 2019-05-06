@@ -2,7 +2,7 @@ package com.authlete.common.types;
 
 public enum ClaimMatchOperation
 {
-    PROHIBITED((short)1, "probited"), 
+    PROHIBITED((short) 1, "prohibited"), 
     PRESENT((short)2, "present"), 
     EQUALS((short)3, "equals");
 
