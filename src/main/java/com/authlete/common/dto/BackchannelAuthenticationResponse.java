@@ -271,7 +271,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  *     <td>{@code unauthorized_client}</td>
  *     <td>
  *       <p>
- *         The authorization server implementation has special rules to reject
+ *         The authorization server implementation has custom rules to reject
  *         backchannel authentication requests from some particular clients and
  *         found that the client which has made the backchannel authentication
  *         request is one of the particular clients.
@@ -283,7 +283,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  *         does not exist or client authentication has failed. Therefore, the
  *         authorization server implementation will never have to use the error
  *         code {@code unauthorized_client} unless the server has intentionally
- *         implemented special rules to reject backchannel authentication
+ *         implemented custom rules to reject backchannel authentication
  *         requests based on clients.
  *       </p>
  *     </td>
@@ -292,7 +292,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  *     <td>{@code missing_user_code}</td>
  *     <td>
  *       <p>
- *         The authorization server implementation has special rules to require
+ *         The authorization server implementation has custom rules to require
  *         that a backchannel authentication request include a user code for
  *         some particular users and found that the user identified by the hint
  *         is one of the particular users.
@@ -310,7 +310,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  *         {@code "error":"missing_user_code"}. Therefore, the authorization
  *         server implementation will never have to use the error code
  *         {@code missing_user_code} unless the server has intentionally
- *         implemented special rules to require a user code based on users
+ *         implemented custom rules to require a user code based on users
  *         even in the case where the {@code backchannel_user_code_parameter}
  *         metadata of the client which has made the backchannel authentication
  *         request is {@code false}.
@@ -353,7 +353,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  *     <td>{@code access_denined}</td>
  *     <td>
  *       <p>
- *         The authorization server implementation has special rules to reject
+ *         The authorization server implementation has custom rules to reject
  *         backchannel authentication requests without asking the end-user and
  *         respond to the client as if the end-user had rejected the request in
  *         some particular cases and found that the backchannel authentication
@@ -363,7 +363,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  *       <p>
  *         The authorization server implementation will never have to use the
  *         error code {@code access_denied} at this timing unless the server
- *         has intentionally implemented special rules to reject backchannel
+ *         has intentionally implemented custom rules to reject backchannel
  *         authentication requests without asking the end-user and respond to
  *         the client as if the end-user had rejected the request.
  *       </p>
@@ -547,7 +547,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  *
  * <p>
  * A token request that corresponds to a backchannel authentication request
- * uses {@code urn:openid:params:modrna:grant-type:backchannel_request} as
+ * uses {@code urn:openid:params:grant-type:ciba} as
  * the value of the {@code grant_type} request parameter. Authlete's
  * {@code /api/auth/token} API recognizes the grant type automatically and
  * behaves properly, so the existing token endpoint implementation does not
@@ -603,8 +603,8 @@ public class BackchannelAuthenticationResponse extends ApiResponse
          * The backchannel authentication request was valid. The authorization
          * server implementation is required to (1) identify the subject of the
          * end-user from the given hint, (2) issue {@code auth_req_id} to the
-         * client application, (3) communicate an authentication device of the
-         * end-user to perform end-user authentication and authorization, etc.
+         * client application, (3) communicate with an authentication device of
+         * the end-user to perform end-user authentication and authorization, etc.
          * See the API document of {@link BackchannelAuthenticationResponse}
          * for details.
          */
@@ -967,7 +967,8 @@ public class BackchannelAuthenticationResponse extends ApiResponse
 
     /**
      * Get the client notification token included in the backchannel
-     * authentication request.
+     * authentication request. It is the value of the
+     * {@code client_notification_token} request parameter.
      *
      * <p>
      * When the backchannel token delivery mode is {@code "ping"} or
@@ -987,7 +988,8 @@ public class BackchannelAuthenticationResponse extends ApiResponse
 
     /**
      * Set the client notification token included in the backchannel
-     * authentication request.
+     * authentication request. It is the value of the
+     * {@code client_notification_token} request parameter.
      *
      * <p>
      * When the backchannel token delivery mode is {@code "ping"} or
@@ -1355,9 +1357,8 @@ public class BackchannelAuthenticationResponse extends ApiResponse
 
     /**
      * Get the ticket that is necessary for the implementation of the
-     * backchannel authentication endpoint to call either
-     * {@code /api/backchannel/authentication/issue} API or
-     * {@code /api/backchannel/authentication/fail} API later.
+     * backchannel authentication endpoint to call
+     * {@code /api/backchannel/authentication/*} API.
      *
      * @return
      *         The ticket issued from {@code /api/backchannel/authentication}
@@ -1371,9 +1372,8 @@ public class BackchannelAuthenticationResponse extends ApiResponse
 
     /**
      * Set the ticket that is necessary for the implementation of the
-     * backchannel authentication endpoint to call either
-     * {@code /api/backchannel/authentication/issue} API or
-     * {@code /api/backchannel/authentication/fail} API later.
+     * backchannel authentication endpoint to call
+     * {@code /api/backchannel/authentication/*} API.
      *
      * @param ticket
      *         The ticket issued from {@code /api/backchannel/authentication}

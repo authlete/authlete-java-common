@@ -510,15 +510,16 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
      * Set additional claims which will be embedded in the ID token.
      *
      * <p>
-     * The service implementation is required to retrieve values of requested
-     * claims of the end-user from its database and format them in JSON format.
+     * The authorization server implementation is required to retrieve values
+     * of requested claims of the end-user from its database and format them
+     * in JSON format.
      * </p>
      *
      * <p>
      * For example, if <code>"given_name"</code> claim,
      * <code>"family_name"</code> claim and <code>"email"</code> claim are
-     * requested, the service implementation should generate a JSON object
-     * like the following:
+     * requested, the authorization server implementation should generate
+     * a JSON object like the following:
      * </p>
      *
      * <pre>
@@ -672,7 +673,7 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
      *
      * <p>
      * Note that because the CIBA specification requires {@code "openid"} as a
-     * mandatory scope, {@code "openid"} should always be included.
+     * mandatory scope, {@code "openid"} should be always included.
      * </p>
      *
      * @param scopes
@@ -710,8 +711,8 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
      *
      * <p>
      * If this optional request parameter is given, its value is used as the
-     * value of the {@code error_description} property, but only when the
-     * result is not {@link Result#AUTHORIZED AUTHORIZED}.
+     * value of the {@code error_description} property, but it is used only
+     * when the result is not {@link Result#AUTHORIZED AUTHORIZED}.
      * </p>
      *
      * <p>
@@ -754,8 +755,8 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
      *
      * <p>
      * If this optional request parameter is given, its value is used as the
-     * value of the {@code error_uri} property, but only when the result is
-     * not {@link Result#AUTHORIZED AUTHORIZED}.
+     * value of the {@code error_uri} property, but it is used only when the
+     * result is not {@link Result#AUTHORIZED AUTHORIZED}.
      * </p>
      *
      * @param uri

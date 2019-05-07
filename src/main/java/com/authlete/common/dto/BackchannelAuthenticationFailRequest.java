@@ -42,8 +42,13 @@ public class BackchannelAuthenticationFailRequest implements Serializable
     public enum Reason
     {
         /**
-         * The {@code login_hint_token} provided in the authentication request
-         * is not valid because it has expired.
+         * The {@code login_hint_token} included in the backchannel
+         * authentication request is not valid because it has expired.
+         *
+         * <p>
+         * Note that the CIBA Core specification does not describe the format
+         * of {@code login_hint_token} and how to detect expiration.
+         * </p>
          *
          * <p>
          * Using this reason will result in
@@ -54,10 +59,10 @@ public class BackchannelAuthenticationFailRequest implements Serializable
 
 
         /**
-         * The OpenID provider is not able to identify which end-user the
-         * client wishes to be authenticated by means of the hint provided in
-         * the request ({@code login_hint_token}, {@code id_token_hint} or
-         * {@code login_hint}).
+         * The authorization server is not able to identify which end-user the
+         * client wishes to be authenticated by means of the hint
+         * ({@code login_hint_token}, {@code id_token_hint} or {@code login_hint})
+         * included in the backchannel authentication request.
          *
          * <p>
          * Using this reason will result in
@@ -76,9 +81,9 @@ public class BackchannelAuthenticationFailRequest implements Serializable
          * does not exist or client authentication has failed. Therefore, the
          * authorization server implementation will never have to call
          * {@code /api/backchannel/authentication/fail} API with
-         * {@code reason=UNAUTHORIZED} unless the server has intentionally
-         * implemented special rules to reject backchannel authentication
-         * requests based on clients.
+         * {@code reason=UNAUTHORIZED_CLIENT} unless the server has intentionally
+         * implemented custom rules to reject backchannel authentication
+         * requests from particular clients.
          * </p>
          *
          * <p>
@@ -109,7 +114,7 @@ public class BackchannelAuthenticationFailRequest implements Serializable
          * Therefore, the authorization server implementation will never have
          * to call {@code /api/backchannel/authentication/fail} API with
          * {@code reason=MISSING_USER_CODE} unless the server has intentionally
-         * implemented special rules to require a user code even in the case
+         * implemented custom rules to require a user code even in the case
          * where the {@code backchannel_user_code_parameter} metadata of the
          * client which has made the backchannel authentication request is
          * {@code false}.
@@ -124,7 +129,7 @@ public class BackchannelAuthenticationFailRequest implements Serializable
 
 
         /**
-         * The user code provided in the authentication request is invalid.
+         * The user code included in the authentication request is invalid.
          *
          * <p>
          * Using this reason will result in
@@ -136,7 +141,7 @@ public class BackchannelAuthenticationFailRequest implements Serializable
 
         /**
          * The binding message is invalid or unacceptable for use in the
-         * context of the given request.
+         * context of the given backchannel authentication request.
          *
          * <p>
          * Using this reason will result in
@@ -149,11 +154,15 @@ public class BackchannelAuthenticationFailRequest implements Serializable
 
 
         /**
-         * The resource owner or OpenID provider denied the request. Note that
-         * as the authentication error response is received prior to any user
-         * interaction, such an error would only be received if a resource
-         * owner or OpenID provider had made a decision to deny a certain type
-         * of request or requests from a certain type of client.
+         * The resource owner or the authorization server denied the request.
+         *
+         * <p>
+         * Calling {@code /api/backchannel/authentication/fail} API with this
+         * reason implies that the backchannel authentication endpoint is going
+         * to return an error of {@code access_denied} to the client application
+         * without asking the end-user whether she authorizes or rejects the
+         * request.
+         * </p>
          *
          * <p>
          * Using this reason will result in
