@@ -157,6 +157,27 @@ public class ClientRegistrationResponse extends ApiResponse
          * "201 Created"} to the client application.
          */
         CREATED,
+
+        /**
+         * The request was valid and a client application has been updated
+         * successfully. The endpoint implementation should return {@code
+         * "200 OK"} to the client application.
+         */
+        UPDATED,
+
+        /**
+         * The request was valid and a client application has been deleted
+         * successfully. The endpoint implementation should return {@code
+         * "204 No Content"} to the client application.
+         */
+        DELETED,
+
+        /**
+         * The request was valid and the client application has been returned.
+         * The endpoint implementation should return {@code "200 OK"} to the
+         * client application.
+         */
+        OK
     }
 
 

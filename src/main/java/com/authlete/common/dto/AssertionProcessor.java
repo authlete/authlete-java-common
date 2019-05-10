@@ -10,7 +10,7 @@ public class AssertionProcessor
     private int number;
     private String jwks;
     private AssertionTarget target;
-    private ClaimMatcher[] claimMatchers;
+    private ClaimRule[] claimRules;
     private int serviceNumber;
 
     public String getJwks()
@@ -35,15 +35,15 @@ public class AssertionProcessor
         this.target = target;
         return this;
     }
-    public ClaimMatcher[] getClaimMatchers()
+    public ClaimRule[] getClaimRules()
     {
-        return claimMatchers;
+        return claimRules;
     }
 
 
-    public AssertionProcessor setClaimMatchers(ClaimMatcher[] claimMatchers)
+    public AssertionProcessor setClaimRules(ClaimRule[] claimRules)
     {
-        this.claimMatchers = claimMatchers;
+        this.claimRules = claimRules;
         return this;
     }
 

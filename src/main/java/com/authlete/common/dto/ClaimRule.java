@@ -1,22 +1,22 @@
 package com.authlete.common.dto;
 
-import com.authlete.common.types.ClaimMatchOperation;
+import com.authlete.common.types.ClaimRuleOperation;
 
-public class ClaimMatcher
+public class ClaimRule
 {
 
-    private ClaimMatchOperation operation;
+    private ClaimRuleOperation operation;
     private String claimName;
     private String comparisonValue;
 
 
-    public ClaimMatchOperation getOperation()
+    public ClaimRuleOperation getOperation()
     {
         return operation;
     }
 
 
-    public ClaimMatcher setOperation(ClaimMatchOperation operation)
+    public ClaimRule setOperation(ClaimRuleOperation operation)
     {
         this.operation = operation;
         return this;
@@ -27,7 +27,7 @@ public class ClaimMatcher
     }
 
 
-    public ClaimMatcher setClaimName(String claimName)
+    public ClaimRule setClaimName(String claimName)
     {
         this.claimName = claimName;
         return this;
@@ -38,7 +38,7 @@ public class ClaimMatcher
     }
 
 
-    public ClaimMatcher setComparisonValue(String comparisonValue)
+    public ClaimRule setComparisonValue(String comparisonValue)
     {
         this.comparisonValue = comparisonValue;
         return this;

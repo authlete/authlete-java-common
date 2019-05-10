@@ -1,17 +1,17 @@
 package com.authlete.common.types;
 
-public enum ClaimMatchOperation
+public enum ClaimRuleOperation
 {
     PROHIBITED((short) 1, "prohibited"), 
     PRESENT((short)2, "present"), 
     EQUALS((short)3, "equals");
 
-    private static final ClaimMatchOperation[] sValues = values();
+    private static final ClaimRuleOperation[] sValues = values();
     private final short mValue;
     private final String mString;
 
 
-    private ClaimMatchOperation(short value, String string)
+    private ClaimRuleOperation(short value, String string)
     {
         mValue = value;
         mString = string;
@@ -30,7 +30,7 @@ public enum ClaimMatchOperation
     }
 
 
-    public static ClaimMatchOperation getByValue(short value)
+    public static ClaimRuleOperation getByValue(short value)
     {
         if (value < 1 || sValues.length < value)
         {

@@ -21,10 +21,12 @@ import java.io.Serializable;
 
 
 /**
- * Request to Authlete's {@code /api/client/registration} API.
+ * Request to Authlete's {@code /api/client/registration/} API.
  *
  * <p>
- * The API is used to implement a client registration endpoint that complies with <a href="https://tools.ietf.org/html/rfc7591">RFC 7591</a> (OAuth 2.0 Dynamic Client Registration Protocol).
+ * The API is used to implement a client registration endpoint that complies
+ * with <a href="https://tools.ietf.org/html/rfc7591">RFC 7591</a> (OAuth 2.0 
+ * Dynamic Client Registration Protocol).
  * </p>
  *
  * @since 2.22
@@ -39,6 +41,18 @@ public class ClientRegistrationRequest implements Serializable
      */
     private String json;
 
+
+    /**
+     * The client registration access token. Used only for GET, UPDATE, and
+     * DELETE requests.
+     */
+    private String token;
+
+
+    /**
+     * The client's identifier. Used for GET, UPDATE, and DELETE requests.
+     */
+    private String clientId;
 
     /**
      * Get client metadata in JSON format that complies with <a href=
@@ -68,6 +82,64 @@ public class ClientRegistrationRequest implements Serializable
     public ClientRegistrationRequest setJson(String metadata)
     {
         this.json = metadata;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client registration access token which was passed with
+     * this update request.
+     * 
+     * @return Client registration access token.
+     */
+    public String getToken()
+    {
+        return token;
+    }
+
+
+    /**
+     * Set the client registration access token which was passed with
+     * this update request.
+     * 
+     * @param token
+     *            Client registration access token.
+     * 
+     * @return {@code this} object.
+     */
+    public ClientRegistrationRequest setToken(String token)
+    {
+        this.token = token;
+
+        return this;
+    }
+
+    /**
+     * Get the client's ID. This is usually parsed from the URL of the
+     * management endpoint at the endpoint implementation.
+     * 
+     * @return
+     *         Client ID.
+     */
+    public String getClientId()
+    {
+        return clientId;
+    }
+
+
+    /**
+     * Set the client's ID. This is usually parsed from the URL of the
+     * management endpoint at the endpoint implementation.
+     * 
+     * @param clientId
+     *            Client ID.
+     * 
+     * @return {@code this} object.
+     */
+    public ClientRegistrationRequest setClientId(String clientId)
+    {
+        this.clientId = clientId;
 
         return this;
     }
