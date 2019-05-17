@@ -54,6 +54,7 @@ public class ClientRegistrationRequest implements Serializable
      */
     private String clientId;
 
+
     /**
      * Get client metadata in JSON format that complies with <a href=
      * "https://tools.ietf.org/html/rfc7591">RFC 7591</a> (OAuth 2&#46;0
