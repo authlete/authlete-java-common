@@ -2625,16 +2625,15 @@ public class Client implements Serializable
 
 
     /**
-     * Get the flag which indicates whether a client has been registered
-     * dynamically.
+     * Get the flag which indicates whether this client has been registered dynamically.
      *
      * @param dynamicallyRegistered
      *         {@code true} if the client has been registered dynamically.
-     * 
+     *
      * @return
      *         {@code this} object.
-     *         
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public boolean isDynamicallyRegistered()
     {
@@ -2643,16 +2642,15 @@ public class Client implements Serializable
 
 
     /**
-     * Set the flag which indicates whether a client has been registered
-     * dynamically.
+     * Set the flag which indicates whether this client has been registered dynamically.
      *
      * @param dynamicallyRegistered
      *         {@code true} if the client has been registered dynamically.
-     * 
+     *
      * @return
      *         {@code this} object.
-     *         
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public Client setDynamicallyRegistered(boolean dynamicallyRegistered)
     {
@@ -2662,12 +2660,31 @@ public class Client implements Serializable
     }
 
 
+    /**
+     * Get the hash of the registration access token for this client.
+     *
+     * @return
+     *         The hash of the registration access token for this client.
+     *
+     * @since 2.39
+     */
     public String getRegistrationAccessTokenHash()
     {
         return registrationAccessTokenHash;
     }
 
 
+    /**
+     * Set the hash of the registration access token for this client.
+     *
+     * @param registrationAccessToken
+     *         The hash of the registration access token for this client.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.39
+     */
     public Client setRegistrationAccessTokenHash(String registrationAccessToken)
     {
         this.registrationAccessTokenHash = registrationAccessToken;

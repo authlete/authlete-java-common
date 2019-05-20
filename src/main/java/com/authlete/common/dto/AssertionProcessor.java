@@ -20,11 +20,11 @@ import com.authlete.common.types.AssertionTarget;
 
 
 /**
- * Information about an assertion processor, used by Authlete to allow a
- * service to programmatically check assertions used passed in by clients
- * and resource servers.
+ * Information about an assertion processor, used by Authlete to allow a service
+ * to programmatically check assertions used passed in by clients and resource
+ * servers.
  *
- * @since 2.XX
+ * @since 2.39
  */
 public class AssertionProcessor
 {
@@ -36,13 +36,13 @@ public class AssertionProcessor
 
 
     /**
-     * Get the JSON Web Key set used to check the assertion's
-     * signatures, serialized as a JSON string.
-     * 
+     * Get the JSON Web Key set used to check the assertion's signatures, serialized
+     * as a JSON string.
+     *
      * @return
      *         The JSON Web Key Set
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public String getJwks()
     {
@@ -51,33 +51,34 @@ public class AssertionProcessor
 
 
     /**
-     * Set the JSON Web Key set used to check the assertion's
-     * signatures, serialized as a JSON string.
-     * 
+     * Set the JSON Web Key set used to check the assertion's signatures, serialized
+     * as a JSON string.
+     *
      * @param jwks
-     *            The JSON Web Key Set
+     *         The JSON Web Key Set
      *
      * @return
      *         {@code this} object.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public AssertionProcessor setJwks(String jwks)
     {
         this.jwks = jwks;
+
         return this;
     }
 
 
     /**
-     * Get the part of the service that this assertion processor will
-     * be applied to.
-     * 
+     * Get the part of the service that this assertion processor will be applied
+     * to.
+     *
      * @return
      *         The target assertion. Can not be {@code null} if this processor
      *         is active.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public AssertionTarget getTarget()
     {
@@ -86,21 +87,22 @@ public class AssertionProcessor
 
 
     /**
-     * Set the part of the service that this assertion processor will
-     * be applied to.
-     * 
+     * Set the part of the service that this assertion processor will be applied
+     * to.
+     *
      * @param target
-     *            The target assertion. Can not be {@code null} if this processor
-     *            is active.
-     * 
+     *         The target assertion. Can not be {@code null} if this processor
+     *         is active.
+     *
      * @return
      *         {@code this} object.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public AssertionProcessor setTarget(AssertionTarget target)
     {
         this.target = target;
+
         return this;
     }
 
@@ -108,11 +110,11 @@ public class AssertionProcessor
     /**
      * Get the claim rules that will be applied to any assertions processed by
      * this processor.
-     * 
+     *
      * @return
      *         The array of claim rules.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public ClaimRule[] getClaimRules()
     {
@@ -123,61 +125,63 @@ public class AssertionProcessor
     /**
      * Set the claim rules that will be applied to any assertions processed by
      * this processor.
-     * 
+     *
      * @param claimRules
-     *            The array of claim rules.
-     * 
+     *         The array of claim rules.
+     *
      * @return
      *         {@code this} object.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public AssertionProcessor setClaimRules(ClaimRule[] claimRules)
     {
         this.claimRules = claimRules;
+
         return this;
     }
 
 
     /**
      * Get the number of the service that this assertion processor is attached to.
-     * 
+     *
      * @return
      *         The service number.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public int getServiceNumber()
     {
-        return this.serviceNumber;
+        return serviceNumber;
     }
 
 
     /**
      * Set the number of the service that this assertion processor is attached to.
-     * 
-     * @serviceNumber
-     *                The service number.
-     * 
+     *
+     * @param serviceNumber
+     *         The service number.
+     *
      * @return
      *         {@code this} object.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public AssertionProcessor setServiceNumber(int serviceNumber)
     {
         this.serviceNumber = serviceNumber;
+
         return this;
     }
 
 
     /**
      * Get the object number for this assertion processor.
-     * 
+     *
      * @return
-     *         The number.
-     * 
-     * @since 2.XX
+     *         The number for this assertion processor.
+     *
+     * @since 2.39
      */
     public int getNumber()
     {
@@ -187,18 +191,19 @@ public class AssertionProcessor
 
     /**
      * Get the object number for this assertion processor.
-     * 
+     *
      * @param number
-     *            The number.
-     * 
+     *         The number for this assertion processor.
+     *
      * @return
      *         {@code this} object.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public AssertionProcessor setNumber(int number)
     {
         this.number = number;
+
         return this;
     }
 }

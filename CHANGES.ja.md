@@ -1,6 +1,43 @@
 変更点
 ======
 
+2.39 (2019 年 05 月 20 日)
+-----------------
+
+- `Client` クラス
+    * `isDynamicallyRegistered` メソッドを追加。
+    * `setDynamicallyRegistered(boolean)` メソッドを追加。
+    * `getRegistrationAccessTokenHash` メソッドを追加。
+    * `setRegistrationAccessTokenHash(String)` メソッドを追加。
+
+- `ClientRegistrationRequest` クラス
+    * Removed `getMetadata()` メソッドを追加。
+    * Removed `setMetadata(String)` メソッドを追加。
+    * Added `getJson()` メソッドを追加。
+    * Added `setJson(String)` メソッドを追加。
+    * Added `getToken()` メソッドを追加。
+    * Added `setToken(String)` メソッドを追加。
+    * Added `getClientId` メソッドを追加。
+    * Added `setClientId(String)` メソッドを追加。
+
+- `ClientRegistrationResponse.Action` 列挙型
+    * `UPDATED` を追加。
+    * `DELETED` を追加。
+    * `OK` を追加。
+
+- `Service` クラス
+    * `getRegistrationManagementEndpoint()` メソッドを追加。
+    * `setRegistrationManagementEndpoint(URI)` メソッドを追加。
+
+- 新しい列挙型
+    * `AssertionTarget`
+    * `ClaimRuleOperation`
+
+- 新しいクラス
+    * `AssertionProcessor`
+    * `ClaimRule`
+
+
 2.38 (2019 年 04 月 09 日)
 --------------------------
 

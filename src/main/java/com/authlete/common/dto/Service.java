@@ -818,18 +818,17 @@ public class Service implements Serializable
 
 
     /**
-     * Get the URI of the registration management endpoint. If dynamic
-     * client registration is supported, and this is set, this URI will be
-     * used as the basis of the client's management endpoint by appending
-     * {@code /clientid/} to it as a path element. If this is unset,
-     * the value of {@code registrationEndpoint} will be used as the
-     * URI base instead.
+     * Get the URI of the registration management endpoint. If dynamic client
+     * registration is supported, and this is set, this URI will be used as the
+     * basis of the client's management endpoint by appending {@code /clientid/}
+     * to it as a path element. If this is unset, the value of {@code registrationEndpoint}
+     * will be used as the URI base instead.
      *
      * @return
      *         The base URI of the registration management endpoint.
-     * 
+     *
      * @since
-     *        2.XX
+     *        2.39
      */
     public URI getRegistrationManagementEndpoint()
     {
@@ -838,22 +837,20 @@ public class Service implements Serializable
 
 
     /**
-     * Set the URI of the registration management endpoint. If dynamic
-     * client registration is supported, and this is set, this URI will be
-     * used as the basis of the client's management endpoint by appending
-     * {@code /clientid/} to it as a path element. If this is unset,
-     * the value of {@code registrationEndpoint} will be used as the
-     * URI base instead.
-     *
+     * Set the URI of the registration management endpoint. If dynamic client
+     * registration is supported, and this is set, this URI will be used as the
+     * basis of the client's management endpoint by appending {@code /clientid/}
+     * to it as a path element. If this is unset, the value of {@code registrationEndpoint}
+     * will be used as the URI base instead.
      *
      * @param endpoint
-     *            The base URI of the registration management endpoint.
+     *         The base URI of the registration management endpoint.
      *
      * @return
      *         {@code this} object.
      *
      * @since
-     *        2.XX
+     *        2.39
      */
     public Service setRegistrationManagementEndpoint(URI endpoint)
     {
@@ -3485,11 +3482,13 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag which indicates whether the dynamic client registration is supported.
+     * Get the flag which indicates whether the dynamic client registration is
+     * supported.
      *
-     * @return {@code true} if enabled.
+     * @return
+     *         {@code true} if enabled.
      *
-     * @since 2.XX
+     * @since 2.39
      */
     public boolean isDynamicRegistrationSupported()
     {
@@ -3501,11 +3500,12 @@ public class Service implements Serializable
      * Set the flag which indicates whether dynamic client registration is supported.
      *
      * @param enabled
-     *            {@code true} to enable dynmic client registration
+     *         {@code true} to enable dynmic client registration
      *
-     * @return {@code this} object.
+     * @return
+     *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.39
      */
     public Service setDynamicRegistrationSupported(boolean enabled)
     {

@@ -17,20 +17,18 @@ package com.authlete.common.types;
 
 
 /**
- * The part of the service that an assertion processor will
- * be applied to.
+ * The part of the service that an assertion processor will be applied to.
  *
- * @since 2.XX
+ * @since 2.39
  */
 public enum AssertionTarget
 {
     /**
-     * The assertion processor is used for the OAuth Dynamic Client
-     * Registration protocol's "software_statement" field, which contains
-     * a signed assertion of client attributes.
+     * The assertion processor is used for the OAuth Dynamic Client Registration
+     * protocol's "software_statement" field, which contains a signed assertion
+     * of client attributes.
      */
     CLIENT_REGISTRATION_SOFTWARE_STATEMENT((short) 1, "software_statement")
-
     ;
 
 
@@ -48,11 +46,11 @@ public enum AssertionTarget
 
     /**
      * Get the numerical value for this target.
-     * 
+     *
      * @return
      *         The numerical value for this target.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public short getValue()
     {
@@ -60,14 +58,7 @@ public enum AssertionTarget
     }
 
 
-    /**
-     * Get the string value for this target.
-     * 
-     * @return
-     *         The string value for this target.
-     * 
-     * @since 2.XX
-     */
+    @Override
     public String toString()
     {
         return mString;
@@ -75,16 +66,16 @@ public enum AssertionTarget
 
 
     /**
-     * Get the enum object with the given numerical value,
-     * or {@code null} if not found.
-     * 
+     * Get the enum object with the given numerical value, or {@code null} if not
+     * found.
+     *
      * @param value
-     *            The numerical value to search for.
-     * 
+     *         The numerical value to search for.
+     *
      * @return
      *         The enum object, or {@code null} if not found.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public static AssertionTarget getByValue(short value)
     {

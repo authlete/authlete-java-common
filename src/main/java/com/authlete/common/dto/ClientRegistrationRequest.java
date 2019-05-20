@@ -25,7 +25,7 @@ import java.io.Serializable;
  *
  * <p>
  * The API is used to implement a client registration endpoint that complies
- * with <a href="https://tools.ietf.org/html/rfc7591">RFC 7591</a> (OAuth 2.0 
+ * with <a href="https://tools.ietf.org/html/rfc7591">RFC 7591</a> (OAuth 2.0
  * Dynamic Client Registration Protocol).
  * </p>
  *
@@ -62,6 +62,8 @@ public class ClientRegistrationRequest implements Serializable
      *
      * @return
      *         Client metadata in JSON format.
+     *
+     * @since 2.39
      */
     public String getJson()
     {
@@ -79,6 +81,8 @@ public class ClientRegistrationRequest implements Serializable
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 2.39
      */
     public ClientRegistrationRequest setJson(String metadata)
     {
@@ -89,10 +93,13 @@ public class ClientRegistrationRequest implements Serializable
 
 
     /**
-     * Get the client registration access token which was passed with
-     * this update request.
-     * 
-     * @return Client registration access token.
+     * Get the client registration access token which was passed with this update
+     * request.
+     *
+     * @return
+     *         Client registration access token.
+     *
+     * @since 2.39
      */
     public String getToken()
     {
@@ -101,13 +108,16 @@ public class ClientRegistrationRequest implements Serializable
 
 
     /**
-     * Set the client registration access token which was passed with
-     * this update request.
-     * 
+     * Set the client registration access token which was passed with this update
+     * request.
+     *
      * @param token
-     *            Client registration access token.
-     * 
-     * @return {@code this} object.
+     *         Client registration access token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.39
      */
     public ClientRegistrationRequest setToken(String token)
     {
@@ -116,12 +126,15 @@ public class ClientRegistrationRequest implements Serializable
         return this;
     }
 
+
     /**
-     * Get the client's ID. This is usually parsed from the URL of the
-     * management endpoint at the endpoint implementation.
-     * 
+     * Get the client's ID. This is usually parsed from the URL of the management
+     * endpoint at the endpoint implementation.
+     *
      * @return
      *         Client ID.
+     *
+     * @since 2.39
      */
     public String getClientId()
     {
@@ -130,13 +143,16 @@ public class ClientRegistrationRequest implements Serializable
 
 
     /**
-     * Set the client's ID. This is usually parsed from the URL of the
-     * management endpoint at the endpoint implementation.
-     * 
+     * Set the client's ID. This is usually parsed from the URL of the management
+     * endpoint at the endpoint implementation.
+     *
      * @param clientId
-     *            Client ID.
-     * 
-     * @return {@code this} object.
+     *         Client ID.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.39
      */
     public ClientRegistrationRequest setClientId(String clientId)
     {

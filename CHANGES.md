@@ -1,6 +1,43 @@
 CHANGES
 =======
 
+2.39 (2019-05-20)
+-----------------
+
+- `Client` class
+    * `isDynamicallyRegistered` method.
+    * `setDynamicallyRegistered(boolean)` method.
+    * `getRegistrationAccessTokenHash` method.
+    * `setRegistrationAccessTokenHash(String)` method.
+
+- `ClientRegistrationRequest` class
+    * Removed `getMetadata()` method.
+    * Removed `setMetadata(String)` method.
+    * Added `getJson()` method.
+    * Added `setJson(String)` method.
+    * Added `getToken()` method.
+    * Added `setToken(String)` method.
+    * Added `getClientId` method.
+    * Added `setClientId(String)` method.
+
+- `ClientRegistrationResponse.Action` enum
+    * Added `UPDATED`.
+    * Added `DELETED`.
+    * Added `OK`.
+
+- `Service`
+    * Added `getRegistrationManagementEndpoint()` method.
+    * Added `setRegistrationManagementEndpoint(URI)` method.
+
+- New enums
+    * `AssertionTarget`
+    * `ClaimRuleOperation`
+
+- New classes
+    * `AssertionProcessor`
+    * `ClaimRule`
+
+
 2.38 (2019-04-09)
 -----------------
 

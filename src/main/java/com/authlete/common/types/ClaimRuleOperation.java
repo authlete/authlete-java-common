@@ -19,28 +19,30 @@ package com.authlete.common.types;
 /**
  * The operation that a claim rule will apply to any claims
  * it processes.
- * 
- * @since 2.XX
+ *
+ * @since 2.39
  */
 public enum ClaimRuleOperation
 {
     /**
      * The rule will fail if the claim is present and has a value.
      */
-    PROHIBITED((short) 1, "prohibited"), 
+    PROHIBITED((short) 1, "prohibited"),
+
 
     /**
      * The rule will pass if the claim is present and has a value.
      */
-    PRESENT((short)2, "present"), 
+    PRESENT((short)2, "present"),
+
 
     /**
      * The rule will pass if the claim is present and its value
      * equals the claim rule's comparison value.
      */
     EQUALS((short) 3, "equals")
-
     ;
+
 
     private static final ClaimRuleOperation[] sValues = values();
     private final short mValue;
@@ -56,11 +58,11 @@ public enum ClaimRuleOperation
 
     /**
      * Get the numerical value for this operation.
-     * 
+     *
      * @return
      *         The numerical value for this operation.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public short getValue()
     {
@@ -68,14 +70,7 @@ public enum ClaimRuleOperation
     }
 
 
-    /**
-     * Get the string value for this operation.
-     * 
-     * @return
-     *         The string value for this operation.
-     * 
-     * @since 2.XX
-     */
+    @Override
     public String toString()
     {
         return mString;
@@ -83,16 +78,16 @@ public enum ClaimRuleOperation
 
 
     /**
-     * Get the enum object with the given numerical value,
-     * or {@code null} if not found.
-     * 
+     * Get the enum object with the given numerical value, or {@code null} if not
+     * found.
+     *
      * @param value
-     *            The numerical value to search for.
-     * 
+     *         The numerical value to search for.
+     *
      * @return
      *         The enum object, or {@code null} if not found.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public static ClaimRuleOperation getByValue(short value)
     {

@@ -19,6 +19,11 @@ package com.authlete.common.dto;
 import com.authlete.common.types.ClaimRuleOperation;
 
 
+/**
+ * A rule for processing a claim.
+ *
+ * @since 2.39
+ */
 public class ClaimRule
 {
     private ClaimRuleOperation operation;
@@ -27,13 +32,12 @@ public class ClaimRule
 
 
     /**
-     * Get the operation that this rule will apply to any claims
-     * it processes.
-     * 
+     * Get the operation that this rule will apply to any claims it processes.
+     *
      * @return
      *         The operation.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public ClaimRuleOperation getOperation()
     {
@@ -42,31 +46,31 @@ public class ClaimRule
 
 
     /**
-     * Set the operation that this rule will apply to any claims
-     * it processes.
-     * 
+     * Set the operation that this rule will apply to any claims it processes.
+     *
      * @param operation
-     *            The operation.
-     * 
+     *         The operation.
+     *
      * @return
      *         {@code this} object.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public ClaimRule setOperation(ClaimRuleOperation operation)
     {
         this.operation = operation;
+
         return this;
     }
 
 
     /**
      * Get the name of the claim that this rule applies to.
-     * 
+     *
      * @return
      *         The claim name.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public String getClaimName()
     {
@@ -76,31 +80,32 @@ public class ClaimRule
 
     /**
      * Set the name of the claim that this rule applies to.
-     * 
+     *
      * @param claimName
-     *            The claim name.
-     * 
+     *         The claim name.
+     *
      * @return
      *         {@code this} object.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public ClaimRule setClaimName(String claimName)
     {
         this.claimName = claimName;
+
         return this;
     }
 
 
     /**
-     * Get the value to compare the claim value to, if the
-     * operation is EQUALS. Values are compared based on
-     * their serialization as strings.
-     * 
+     * Get the value to compare the claim value to, if the operation is {@link
+     * ClaimRuleOperation#EQUALS EQUALS}. Values are compared based on their
+     * serialization as strings.
+     *
      * @return
      *         The comparison value, as a string.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public String getComparisonValue()
     {
@@ -109,21 +114,22 @@ public class ClaimRule
 
 
     /**
-     * Get the value to compare the claim value to, if the
-     * operation is EQUALS. Values are compared based on
-     * their serialization as strings.
-     * 
+     * Set the value to compare the claim value to, if the operation is {@link
+     * ClaimRuleOperation#EQUALS EQUALS}. Values are compared based on their
+     * serialization as strings.
+     *
      * @param comparisonValue
-     *            The comparison value, as a string.
-     * 
+     *         The comparison value, as a string.
+     *
      * @return
      *         {@code this} object.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.39
      */
     public ClaimRule setComparisonValue(String comparisonValue)
     {
         this.comparisonValue = comparisonValue;
+
         return this;
     }
 }
