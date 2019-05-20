@@ -194,6 +194,7 @@ public class Service implements Serializable
     private URI jwksUri;
     private String jwks;
     private URI registrationEndpoint;
+    private URI registrationManagementEndpoint;
     private Scope[] supportedScopes;
     private ResponseType[] supportedResponseTypes;
     private GrantType[] supportedGrantTypes;
@@ -238,6 +239,7 @@ public class Service implements Serializable
     private ClientAuthMethod[] supportedIntrospectionAuthMethods;
     private boolean mutualTlsValidatePkiCertChain;
     private String[] trustedRootCertificates;
+    private boolean dynamicRegistrationSupported;
 
 
     /**
@@ -810,6 +812,52 @@ public class Service implements Serializable
     public Service setRegistrationEndpoint(URI endpoint)
     {
         this.registrationEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the registration management endpoint. If dynamic
+     * client registration is supported, and this is set, this URI will be
+     * used as the basis of the client's management endpoint by appending
+     * {@code /clientid/} to it as a path element. If this is unset,
+     * the value of {@code registrationEndpoint} will be used as the
+     * URI base instead.
+     *
+     * @return
+     *         The base URI of the registration management endpoint.
+     * 
+     * @since
+     *        2.XX
+     */
+    public URI getRegistrationManagementEndpoint()
+    {
+        return registrationManagementEndpoint;
+    }
+
+
+    /**
+     * Set the URI of the registration management endpoint. If dynamic
+     * client registration is supported, and this is set, this URI will be
+     * used as the basis of the client's management endpoint by appending
+     * {@code /clientid/} to it as a path element. If this is unset,
+     * the value of {@code registrationEndpoint} will be used as the
+     * URI base instead.
+     *
+     *
+     * @param endpoint
+     *            The base URI of the registration management endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since
+     *        2.XX
+     */
+    public Service setRegistrationManagementEndpoint(URI endpoint)
+    {
+        this.registrationManagementEndpoint = endpoint;
 
         return this;
     }
@@ -3431,6 +3479,37 @@ public class Service implements Serializable
     public Service setAllowableClockSkew(int seconds)
     {
         this.allowableClockSkew = seconds;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the dynamic client registration is supported.
+     *
+     * @return {@code true} if enabled.
+     *
+     * @since 2.XX
+     */
+    public boolean isDynamicRegistrationSupported()
+    {
+        return dynamicRegistrationSupported;
+    }
+
+
+    /**
+     * Set the flag which indicates whether dynamic client registration is supported.
+     *
+     * @param enabled
+     *            {@code true} to enable dynmic client registration
+     *
+     * @return {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public Service setDynamicRegistrationSupported(boolean enabled)
+    {
+        this.dynamicRegistrationSupported = enabled;
 
         return this;
     }

@@ -19,9 +19,9 @@ package com.authlete.common.dto;
 import java.io.Serializable;
 import java.net.URI;
 import com.authlete.common.types.ApplicationType;
-import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.ClientType;
+import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.GrantType;
 import com.authlete.common.types.JWEAlg;
 import com.authlete.common.types.JWEEnc;
@@ -254,6 +254,8 @@ public class Client implements Serializable
     private URI bcNotificationEndpoint;
     private JWSAlg bcRequestSignAlg;
     private boolean bcUserCodeRequired;
+    private boolean dynamicallyRegistered;
+    private String registrationAccessTokenHash;
 
 
     /**
@@ -2617,6 +2619,58 @@ public class Client implements Serializable
     public Client setBcUserCodeRequired(boolean required)
     {
         this.bcUserCodeRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether a client has been registered
+     * dynamically.
+     *
+     * @param dynamicallyRegistered
+     *         {@code true} if the client has been registered dynamically.
+     * 
+     * @return
+     *         {@code this} object.
+     *         
+     * @since 2.XX
+     */
+    public boolean isDynamicallyRegistered()
+    {
+        return dynamicallyRegistered;
+    }
+
+
+    /**
+     * Set the flag which indicates whether a client has been registered
+     * dynamically.
+     *
+     * @param dynamicallyRegistered
+     *         {@code true} if the client has been registered dynamically.
+     * 
+     * @return
+     *         {@code this} object.
+     *         
+     * @since 2.XX
+     */
+    public Client setDynamicallyRegistered(boolean dynamicallyRegistered)
+    {
+        this.dynamicallyRegistered = dynamicallyRegistered;
+
+        return this;
+    }
+
+
+    public String getRegistrationAccessTokenHash()
+    {
+        return registrationAccessTokenHash;
+    }
+
+
+    public Client setRegistrationAccessTokenHash(String registrationAccessToken)
+    {
+        this.registrationAccessTokenHash = registrationAccessToken;
 
         return this;
     }
