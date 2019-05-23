@@ -346,6 +346,19 @@ public enum ErrorCode
 
 
     /**
+     * The binding message is invalid or unacceptable for use in the context
+     * of the given request.
+     *
+     * <p>
+     * This error code is defined in the CIBA Core specification.
+     * </p>
+     *
+     * @since 2.40
+     */
+    invalid_binding_message,
+
+
+    /**
      * The authorization request is still pending as the end-user hasn't yet
      * been authenticated.
      *
