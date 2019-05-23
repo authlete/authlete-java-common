@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+2.40 (2019-05-24)
+-----------------
+
+- `ErrorCode` enum
+    * Added `invalid_binding_message`.
+
+
 2.39 (2019-05-20)
 -----------------
 
