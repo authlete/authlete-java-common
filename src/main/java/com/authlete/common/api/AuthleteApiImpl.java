@@ -129,7 +129,10 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String SERVICE_JWKS_GET_API_PATH              = "/api/service/jwks/get";
     private static final String SERVICE_UPDATE_API_PATH                = "/api/service/update/%d";
     private static final String CLIENT_CREATE_API_PATH                 = "/api/client/create";
-    private static final String CLIENT_REGISTER_API_PATH               = "/api/client/register";
+    private static final String CLIENT_REGISTRATION_API_PATH           = "/api/client/registration";
+    private static final String CLIENT_REGISTRATION_GET_API_PATH       = "/api/client/registration/get";
+    private static final String CLIENT_REGISTRATION_UPDATE_API_PATH    = "/api/client/registration/update";
+    private static final String CLIENT_REGISTRATION_DELETE_API_PATH    = "/api/client/registration/delete";
     private static final String CLIENT_DELETE_API_PATH                 = "/api/client/delete/%d";
     private static final String CLIENT_GET_API_PATH                    = "/api/client/get/%d";
     private static final String CLIENT_GET_LIST_API_PATH               = "/api/client/get/list";
@@ -1090,7 +1093,34 @@ class AuthleteApiImpl implements AuthleteApi
             ClientRegistrationRequest request) throws AuthleteApiException
     {
         return callServicePostApi(
-                CLIENT_REGISTER_API_PATH, request, ClientRegistrationResponse.class);
+                CLIENT_REGISTRATION_API_PATH, request, ClientRegistrationResponse.class);
+    }
+
+
+    @Override
+    public ClientRegistrationResponse dynamicClientGet(
+            ClientRegistrationRequest request)
+    {
+        return callServicePostApi(
+                CLIENT_REGISTRATION_GET_API_PATH, request, ClientRegistrationResponse.class);
+    }
+
+
+    @Override
+    public ClientRegistrationResponse dynamicClientUpdate(
+            ClientRegistrationRequest request)
+    {
+        return callServicePostApi(
+                CLIENT_REGISTRATION_UPDATE_API_PATH, request, ClientRegistrationResponse.class);
+    }
+
+
+    @Override
+    public ClientRegistrationResponse dynamicClientDelete(
+            ClientRegistrationRequest request)
+    {
+        return callServicePostApi(
+                CLIENT_REGISTRATION_DELETE_API_PATH, request, ClientRegistrationResponse.class);
     }
 
 
