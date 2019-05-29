@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -734,9 +734,9 @@ public interface AuthleteApi
      * @return
      *         Response from the API.
      *
-     * @since 2.22
+     * @since 2.41
      */
-    ClientRegistrationResponse registerClient(ClientRegistrationRequest request) throws AuthleteApiException;
+    ClientRegistrationResponse dynamicClientRegister(ClientRegistrationRequest request) throws AuthleteApiException;
 
 
     /**
@@ -753,7 +753,7 @@ public interface AuthleteApi
      * @return
      *         Response from the API.
      *
-     * @since 2.XX
+     * @since 2.41
      */
     ClientRegistrationResponse dynamicClientGet(ClientRegistrationRequest request) throws AuthleteApiException;
 
@@ -772,7 +772,7 @@ public interface AuthleteApi
      * @return
      *         Response from the API.
      *
-     * @since 2.XX
+     * @since 2.41
      */
     ClientRegistrationResponse dynamicClientUpdate(ClientRegistrationRequest request) throws AuthleteApiException;
 
@@ -791,7 +791,7 @@ public interface AuthleteApi
      * @return
      *         Response from the API.
      *
-     * @since 2.XX
+     * @since 2.41
      */
     ClientRegistrationResponse dynamicClientDelete(ClientRegistrationRequest request) throws AuthleteApiException;
 
