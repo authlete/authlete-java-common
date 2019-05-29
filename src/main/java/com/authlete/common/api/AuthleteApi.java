@@ -722,7 +722,7 @@ public interface AuthleteApi
 
 
     /**
-     * Register a client (= call Authlete's {@code /client/register} API).
+     * Register a client (= call Authlete's {@code /client/registration} API).
      *
      * This method can be used to implement a client registration endpoint
      * that complies with <a href="https://tools.ietf.org/html/rfc7591">RFC 7591</a>
@@ -737,6 +737,63 @@ public interface AuthleteApi
      * @since 2.22
      */
     ClientRegistrationResponse registerClient(ClientRegistrationRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Get a dynamically registered client (= call Authlete's
+     * {@code /client/registration/get} API).
+     *
+     * This method can be used to implement a client registration management endpoint
+     * that complies with <a href="https://tools.ietf.org/html/rfc7592">RFC 7592</a>
+     * (OAuth 2.0 Dynamic Client Registration Management Protocol).
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.XX
+     */
+    ClientRegistrationResponse dynamicClientGet(ClientRegistrationRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Update a dynamically registered client (= call Authlete's
+     * {@code /client/registration/update} API).
+     *
+     * This method can be used to implement a client registration management endpoint
+     * that complies with <a href="https://tools.ietf.org/html/rfc7592">RFC 7592</a>
+     * (OAuth 2.0 Dynamic Client Registration Management Protocol).
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.XX
+     */
+    ClientRegistrationResponse dynamicClientUpdate(ClientRegistrationRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Delete a dynamically registered client (= call Authlete's
+     * {@code /client/registration/delete} API).
+     *
+     * This method can be used to implement a client registration management endpoint
+     * that complies with <a href="https://tools.ietf.org/html/rfc7592">RFC 7592</a>
+     * (OAuth 2.0 Dynamic Client Registration Management Protocol).
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.XX
+     */
+    ClientRegistrationResponse dynamicClientDelete(ClientRegistrationRequest request) throws AuthleteApiException;
 
 
     /**
