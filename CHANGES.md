@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+2.41 (2019-05-30)
+-----------------
+
+- `AuthleteApi` interface
+    * Added `dynamicClientDelete(ClientRegistrationRequest)` method.
+    * Added `dynamicClientGet(ClientRegistrationRequest)` method.
+    * Added `dynamicClientRegister(ClientRegistrationRequest)` method.
+    * Added `dynamicClientUpdate(ClientRegistrationRequest)` method.
+    * Removed `registerClient(ClientRegistrationRequest)` method.
+
+
 2.40 (2019-05-24)
 -----------------
 

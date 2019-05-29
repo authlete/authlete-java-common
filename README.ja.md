@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.40</version>
+    <version>2.41</version>
 </dependency>
 ```
 
@@ -299,6 +299,13 @@ settings.setReadTimeout(5000);
     - `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)`
     - `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)`
     - `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)`
+
+16. OpenID Connect Dynamic Client Registration に関するメソッド群
+
+    - `dynamicClientRegister(ClientRegistrationRequest)`
+    - `dynamicClientGet(ClientRegistrationRequest)`
+    - `dynamicClientUpdate(ClientRegistrationRequest)`
+    - `dynamicClientDelete(ClientRegistrationRequest)`
 
 *例*
 

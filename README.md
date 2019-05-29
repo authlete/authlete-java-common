@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.40</version>
+    <version>2.41</version>
 </dependency>
 ```
 
@@ -311,6 +311,13 @@ Methods in `AuthleteApi` interface can be divided into some categories.
     - `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)`
     - `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)`
     - `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)`
+
+  16. Methods for OpenID Connect Dynamic Client Registration
+
+    - `dynamicClientRegister(ClientRegistrationRequest)`
+    - `dynamicClientGet(ClientRegistrationRequest)`
+    - `dynamicClientUpdate(ClientRegistrationRequest)`
+    - `dynamicClientDelete(ClientRegistrationRequest)`
 
 *Examples*
 

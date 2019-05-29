@@ -1,6 +1,17 @@
 変更点
 ======
 
+2.41 (2019 年 05 月 30 日)
+--------------------------
+
+- `AuthleteApi` インターフェース
+    * `dynamicClientDelete(ClientRegistrationRequest)` メソッドを追加。
+    * `dynamicClientGet(ClientRegistrationRequest)` メソッドを追加。
+    * `dynamicClientRegister(ClientRegistrationRequest)` メソッドを追加。
+    * `dynamicClientUpdate(ClientRegistrationRequest)` メソッドを追加。
+    * `registerClient(ClientRegistrationRequest)` メソッドを削除。
+
+
 2.40 (2019 年 05 月 24 日)
 --------------------------
 
