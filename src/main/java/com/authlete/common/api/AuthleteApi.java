@@ -729,7 +729,7 @@ public interface AuthleteApi
      * (OAuth 2.0 Dynamic Client Registration Protocol).
      *
      * @param request
-     *            Request parameters passed to the API.
+     *         Request parameters passed to the API.
      *
      * @return
      *         Response from the API.
@@ -748,7 +748,7 @@ public interface AuthleteApi
      * (OAuth 2.0 Dynamic Client Registration Management Protocol).
      *
      * @param request
-     *            Request parameters passed to the API.
+     *         Request parameters passed to the API.
      *
      * @return
      *         Response from the API.
@@ -767,7 +767,7 @@ public interface AuthleteApi
      * (OAuth 2.0 Dynamic Client Registration Management Protocol).
      *
      * @param request
-     *            Request parameters passed to the API.
+     *         Request parameters passed to the API.
      *
      * @return
      *         Response from the API.
@@ -786,7 +786,7 @@ public interface AuthleteApi
      * (OAuth 2.0 Dynamic Client Registration Management Protocol).
      *
      * @param request
-     *            Request parameters passed to the API.
+     *         Request parameters passed to the API.
      *
      * @return
      *         Response from the API.
