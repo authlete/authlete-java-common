@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -101,6 +101,16 @@ public enum GrantType
      * @since 2.34
      */
     CIBA((short)6, "urn:openid:params:grant-type:ciba"),
+
+
+    /**
+     * {@code "urn:ietf:params:oauth:grant-type:device_code"} (7), a
+     * {@code grant_type} to request an access token and optionally a
+     * refresh token, using Device Flow.
+     *
+     * @since 2.42
+     */
+    DEVICE_CODE((short)7, "urn:ietf:params:oauth:grant-type:device_code"),
     ;
 
 

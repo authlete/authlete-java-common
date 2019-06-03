@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `GrantType` enum
+    * Added `DEVICE_CODE`.
+
+
 2.41 (2019-05-30)
 -----------------
 
