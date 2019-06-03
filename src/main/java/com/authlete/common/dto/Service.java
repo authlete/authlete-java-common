@@ -400,6 +400,15 @@ public class Service implements Serializable
 
 
     /**
+     * The device authorization endpoint. This property corresponds to
+     * the {@code device_authorization_endpoint} metadata.
+     *
+     * @since 2.42
+     */
+    private URI deviceAuthorizationEndpoint;
+
+
+    /**
      * Get the service number.
      *
      * @return
@@ -3510,6 +3519,49 @@ public class Service implements Serializable
     public Service setDynamicRegistrationSupported(boolean enabled)
     {
         this.dynamicRegistrationSupported = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the device authorization endpoint.
+     *
+     * <p>
+     * Device authorization endpoint is defined in the specification of
+     * OAuth 2.0 Device Authorization Grant.
+     * </p>
+     *
+     * @return
+     *         The URI of the device authorization endpoint.
+     *
+     * @since 2.42
+     */
+    public URI getDeviceAuthorizationEndpoint()
+    {
+        return deviceAuthorizationEndpoint;
+    }
+
+
+    /**
+     * Set the URI of the device authorization endpoint.
+     *
+     * <p>
+     * Device authorization endpoint is defined in the specification of
+     * OAuth 2.0 Device Authorization Grant.
+     * </p>
+     *
+     * @param endpoint
+     *         The URI of the device authorization endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.42
+     */
+    public Service setDeviceAuthorizationEndpoint(URI endpoint)
+    {
+        this.deviceAuthorizationEndpoint = endpoint;
 
         return this;
     }

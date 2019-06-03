@@ -4,6 +4,10 @@ CHANGES
 - `GrantType` enum
     * Added `DEVICE_CODE`.
 
+- `Service` class
+    * Added `getDeviceAuthorizationEndpoint()` method.
+    * Added `setDeviceAuthorizationEndpoint(URI)` method.
+
 
 2.41 (2019-05-30)
 -----------------

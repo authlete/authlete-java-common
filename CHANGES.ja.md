@@ -4,6 +4,10 @@
 - `GrantType` 列挙型
     * `DEVICE_CODE` を追加。
 
+- `Service` クラス
+    * `getDeviceAuthorizationEndpoint()` メソッドを追加。
+    * `setDeviceAuthorizationEndpoint(URI)` メソッドを追加。
+
 
 2.41 (2019 年 05 月 30 日)
 --------------------------
