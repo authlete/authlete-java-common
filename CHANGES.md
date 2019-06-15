@@ -15,6 +15,8 @@ CHANGES
 - New classes
     * `DeviceAuthorizationRequest`
     * `DeviceAuthorizationResponse`
+    * `DeviceCompleteRequest`
+    * `DeviceCompleteResponse`
     * `DeviceVerificationRequest`
     * `DeviceVerificationResponse`
 

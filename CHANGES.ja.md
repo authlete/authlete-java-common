@@ -15,6 +15,8 @@
 - 新しいクラス
     * `DeviceAuthorizationRequest`
     * `DeviceAuthorizationResponse`
+    * `DeviceCompleteRequest`
+    * `DeviceCompleteResponse`
     * `DeviceVerificationRequest`
     * `DeviceVerificationResponse`
 
