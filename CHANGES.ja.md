@@ -8,6 +8,10 @@
     * `getDeviceAuthorizationEndpoint()` メソッドを追加。
     * `setDeviceAuthorizationEndpoint(URI)` メソッドを追加。
 
+- 新しいクラス
+    * `DeviceAuthorizationRequest`
+    * `DeviceAuthorizationResponse`
+
 
 2.41 (2019 年 05 月 30 日)
 --------------------------

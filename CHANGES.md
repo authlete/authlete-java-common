@@ -8,6 +8,10 @@ CHANGES
     * Added `getDeviceAuthorizationEndpoint()` method.
     * Added `setDeviceAuthorizationEndpoint(URI)` method.
 
+- New classes
+    * `DeviceAuthorizationRequest`
+    * `DeviceAuthorizationResponse`
+
 
 2.41 (2019-05-30)
 -----------------
