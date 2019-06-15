@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.42 (2019 年 06 月 16 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `deviceAuthorization(DeviceAuthorizationRequest)` メソッドを追加。
     * `deviceComplete(DeviceCompleteRequest)` メソッドを追加。

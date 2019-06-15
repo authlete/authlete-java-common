@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.41</version>
+    <version>2.42</version>
 </dependency>
 ```
 
@@ -319,6 +319,12 @@ Methods in `AuthleteApi` interface can be divided into some categories.
     - `dynamicClientUpdate(ClientRegistrationRequest)`
     - `dynamicClientDelete(ClientRegistrationRequest)`
 
+  17. Methods for Device Flow
+
+    - `deviceAuthorization(DeviceAuthorizationRequest)`
+    - `deviceComplete(DeviceCompleteRequest)`
+    - `deviceVerification(DeviceVerificationRequest)`
+
 *Examples*
 
 The following code snippet is an example to get the list of your existing
@@ -331,6 +337,31 @@ AuthleteApi api = AuthleteApiFactory.getDefaultApi();
 // Get the list of services.
 ServiceListResponse response = api.getServiceList();
 ```
+
+
+Authlete Version
+----------------
+
+Some APIs and features don't work (even if they are defined in the `AuthleteApi`
+interface) if Authlete API server you use doesn't support them. For example,
+CIBA works only in Authlete 2.1 onwards. Please contact us if you want to use
+newer Authlete versions.
+
+Features available in Authlete 2.0 and onwards:
+
+- Financial-grade API (FAPI)
+- OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound Access Tokens (MTLS)
+- JWT-based Client Authentication (RFC 7523)
+- Scope attributes
+- UK Open Banking Security Profile
+
+Features available in Authlete 2.1 and onwards:
+
+- Client Initiated Backchannel Authentication (CIBA)
+- JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)
+- Dynamic Client Registration (RFC 7591 & RFC 7592)
+- OAuth 2.0 Device Authorization Grant (Device Flow)
+- JWT-based Access Token
 
 
 Note

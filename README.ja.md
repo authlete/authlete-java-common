@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.41</version>
+    <version>2.42</version>
 </dependency>
 ```
 
@@ -307,6 +307,12 @@ settings.setReadTimeout(5000);
     - `dynamicClientUpdate(ClientRegistrationRequest)`
     - `dynamicClientDelete(ClientRegistrationRequest)`
 
+17. Device Flow に関するメソッド群
+
+    - `deviceAuthorization(DeviceAuthorizationRequest)`
+    - `deviceComplete(DeviceCompleteRequest)`
+    - `deviceVerification(DeviceVerificationRequest)`
+
 *例*
 
 次のコードは既存のサービスのリストを取得する例です。
@@ -319,6 +325,30 @@ AuthleteApi api = AuthleteApiFactory.getDefaultApi();
 // サービスのリストを取得する。
 ServiceListResponse response = api.getServiceList();
 ```
+
+
+Authlete バージョン
+-------------------
+
+幾つかの API や機能は、使用されている Authlete API サーバーがサポートしていなければ（たとえ
+`AuthleteApi` インターフェースで定義されているとしても）使うことができません。例えば、CIBA は
+Authlete 2.1 以降でのみ機能します。新しい Authlete バージョンを使用されたい場合は、ご連絡ください。
+
+Authlete 2.0 以降で利用できる機能：
+
+- Financial-grade API (FAPI)
+- OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound Access Tokens (MTLS)
+- JWT-based Client Authentication (RFC 7523)
+- Scope attributes
+- UK Open Banking Security Profile
+
+Authlete 2.1 以降で利用できる機能：
+
+- Client Initiated Backchannel Authentication (CIBA)
+- JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)
+- Dynamic Client Registration (RFC 7591 & RFC 7592)
+- OAuth 2.0 Device Authorization Grant (Device Flow)
+- JWT-based Access Token
 
 
 メモ

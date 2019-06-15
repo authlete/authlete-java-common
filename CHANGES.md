@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.42 (2019-06-16)
+-----------------
+
 - `AuthleteApi` interface
     * Added `deviceAuthorization(DeviceAuthorizationRequest)` method.
     * Added `deviceComplete(DeviceCompleteRequest)` method.
