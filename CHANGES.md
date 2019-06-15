@@ -16,6 +16,10 @@ CHANGES
     * Added `setDeviceFlowCodeDuration(int)` method.
     * Added `getDeviceFlowPollingInterval()` method.
     * Added `setDeviceFlowPollingInterval(int)` method.
+    * Added `getDeviceVerificationUri()` method.
+    * Added `setDeviceVerificationUri(URI)` method.
+    * Added `getDeviceVerificationUriComplete()` method.
+    * Added `setDeviceVerificationUriComplete(URI)` method.
 
 - New classes
     * `DeviceAuthorizationRequest`

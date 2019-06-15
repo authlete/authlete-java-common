@@ -16,6 +16,10 @@
     * `setDeviceFlowCodeDuration(int)` メソッドを追加。
     * `getDeviceFlowPollingInterval()` メソッドを追加。
     * `setDeviceFlowPollingInterval(int)` メソッドを追加。
+    * `getDeviceVerificationUri()` メソッドを追加。
+    * `setDeviceVerificationUri(URI)` メソッドを追加。
+    * `getDeviceVerificationUriComplete()` メソッドを追加。
+    * `setDeviceVerificationUriComplete(URI)` メソッドを追加。
 
 - 新しいクラス
     * `DeviceAuthorizationRequest`

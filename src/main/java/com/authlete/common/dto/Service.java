@@ -409,6 +409,23 @@ public class Service implements Serializable
 
 
     /**
+     * The verification URI for the device flow.
+     *
+     * @since 2.42
+     */
+    private URI deviceVerificationUri;
+
+
+    /**
+     * The verification URI for the device flow with a placeholder for a
+     * user code.
+     *
+     * @since 2.42
+     */
+    private URI deviceVerificationUriComplete;
+
+
+    /**
      * Duration of device verification codes and end-user verification codes
      * issued from the device authorization endpoint in seconds. This is used
      * as the value of the {@code expires_in} property in responses from the
@@ -3584,6 +3601,103 @@ public class Service implements Serializable
     public Service setDeviceAuthorizationEndpoint(URI endpoint)
     {
         this.deviceAuthorizationEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the verification URI for the device flow. This URI is used as the
+     * value of the {@code verification_uri} parameter in responses from the
+     * device authorization endpoint.
+     *
+     * @return
+     *         The verification URI.
+     *
+     * @since 2.42
+     */
+    public URI getDeviceVerificationUri()
+    {
+        return deviceVerificationUri;
+    }
+
+
+    /**
+     * Set the verification URI for the device flow. This URI is used as the
+     * value of the {@code verification_uri} parameter in responses from the
+     * device authorization endpoint.
+     *
+     * @param uri
+     *         The verification URI.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.42
+     */
+    public Service setDeviceVerificationUri(URI uri)
+    {
+        this.deviceVerificationUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the verification URI for the device flow with a placeholder for a
+     * user code. This URI is used to build the value of the
+     * {@code verification_uri_complete} parameter in responses from the device
+     * authorization endpoint.
+     *
+     * @return
+     *         The verification URI with a placeholder for a user code.
+     *
+     * @since 2.42
+     */
+    public URI getDeviceVerificationUriComplete()
+    {
+        return deviceVerificationUriComplete;
+    }
+
+
+    /**
+     * Set the verification URI for the device flow with a placeholder for a
+     * user code. This URI is used to build the value of the
+     * {@code verification_uri_complete} parameter in responses from the device
+     * authorization endpoint.
+     *
+     * <p>
+     * It is expected that the URI contains a fixed string {@code USER_CODE}
+     * somewhere as a placeholder for a user code. For example, like the
+     * following.
+     * </p>
+     *
+     * <pre>
+     * https://example.com/device?user_code=USER_CODE
+     * </pre>
+     *
+     * <p>
+     * The fixed string is replaced with an actual user code when Authlete
+     * builds a verification URI with a user code for the
+     * {@code verification_uri_complete} parameter.
+     * </p>
+     *
+     * <p>
+     * If this URI is not set, the {@code verification_uri_complete} parameter
+     * won't appear in device authorization responses.
+     * </p>
+     *
+     * @param uri
+     *         The verification URI with a placeholder for a user code.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.42
+     */
+    public Service setDeviceVerificationUriComplete(URI uri)
+    {
+        this.deviceVerificationUriComplete = uri;
 
         return this;
     }
