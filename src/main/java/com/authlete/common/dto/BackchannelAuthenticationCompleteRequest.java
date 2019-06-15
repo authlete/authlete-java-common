@@ -40,7 +40,7 @@ import com.authlete.common.util.Utils;
  * After the authorization server receives the result from the authentication
  * device, or even in the case where the server gave up receiving a response
  * from the authentication device for some reasons, the server should call the
- * {@code api/backchannel/authentication/complete} API to tell Authlete the
+ * {@code /api/backchannel/authentication/complete} API to tell Authlete the
  * result.
  * </p>
  *
@@ -77,7 +77,7 @@ import com.authlete.common.util.Utils;
  * reasons, the authorization server should call the API with
  * {@code result=}{@link Result#TRANSACTION_FAILED TRANSACTION_FAILED}. In
  * this error case, the API will behave in the same way as in the case of
- * {@code ACCESS_DENIED}. The only difference is that {@code transaction_failed}
+ * {@code ACCESS_DENIED}. The only difference is that {@code expired_token}
  * is used as the value of the {@code error} parameter.
  * </p>
  *
@@ -235,7 +235,7 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
 
 
     /**
-     * The URI of a document which described the error in detail. This property
+     * The URI of a document which describes the error in detail. This property
      * is referred to when the result is not AUTHORIZED.
      */
     private URI errorUri;
