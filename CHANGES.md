@@ -15,6 +15,8 @@ CHANGES
 - New classes
     * `DeviceAuthorizationRequest`
     * `DeviceAuthorizationResponse`
+    * `DeviceVerificationRequest`
+    * `DeviceVerificationResponse`
 
 
 2.41 (2019-05-30)

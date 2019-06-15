@@ -15,6 +15,8 @@
 - 新しいクラス
     * `DeviceAuthorizationRequest`
     * `DeviceAuthorizationResponse`
+    * `DeviceVerificationRequest`
+    * `DeviceVerificationResponse`
 
 
 2.41 (2019 年 05 月 30 日)
