@@ -57,13 +57,13 @@ package com.authlete.common.dto;
  * </p>
  * </dd>
  *
- * <dt><b>{@link Action#INTERNAL_SERVER_ERROR INTERNAL_SERVER_ERROR}</b></dt>
+ * <dt><b>{@link Action#SERVER_ERROR SERVER_ERROR}</b></dt>
  * <dd>
  * <p>
- * When the value of {@code action} is {@code INTERNAL_SERVER_ERROR}, it means
- * that an error occurred on Authlete side. The authorization server
- * implementation should tell the end-user that something wrong happened and
- * urge her to re-initiate a device flow.
+ * When the value of {@code action} is {@code SERVER_ERROR}, it means that an
+ * error occurred on Authlete side. The authorization server implementation
+ * should tell the end-user that something wrong happened and urge her to
+ * re-initiate a device flow.
  * </p>
  * </dd>
  * </dl>
@@ -110,7 +110,7 @@ public class DeviceVerificationResponse extends ApiResponse
          * implementation should tell the end-user that something wrong happened
          * and urge her to re-initiate a device flow.
          */
-        INTERNAL_SERVER_ERROR,
+        SERVER_ERROR,
     }
 
 
