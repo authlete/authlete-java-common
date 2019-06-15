@@ -7,6 +7,10 @@
 - `Service` クラス
     * `getDeviceAuthorizationEndpoint()` メソッドを追加。
     * `setDeviceAuthorizationEndpoint(URI)` メソッドを追加。
+    * `getDeviceFlowCodeDuration()` メソッドを追加。
+    * `setDeviceFlowCodeDuration(int)` メソッドを追加。
+    * `getDeviceFlowPollingInterval()` メソッドを追加。
+    * `setDeviceFlowPollingInterval(int)` メソッドを追加。
 
 - 新しいクラス
     * `DeviceAuthorizationRequest`

@@ -7,6 +7,10 @@ CHANGES
 - `Service` class
     * Added `getDeviceAuthorizationEndpoint()` method.
     * Added `setDeviceAuthorizationEndpoint(URI)` method.
+    * Added `getDeviceFlowCodeDuration()` method.
+    * Added `setDeviceFlowCodeDuration(int)` method.
+    * Added `getDeviceFlowPollingInterval()` method.
+    * Added `setDeviceFlowPollingInterval(int)` method.
 
 - New classes
     * `DeviceAuthorizationRequest`

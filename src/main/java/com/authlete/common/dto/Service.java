@@ -409,6 +409,28 @@ public class Service implements Serializable
 
 
     /**
+     * Duration of device verification codes and end-user verification codes
+     * issued from the device authorization endpoint in seconds. This is used
+     * as the value of the {@code expires_in} property in responses from the
+     * device authorization endpoint.
+     *
+     * @since 2.42
+     */
+    private int deviceFlowCodeDuration;
+
+
+    /**
+     * The minimum interval between polling requests to the token endpoint from
+     * client applications in seconds in device flow. This is used as the value
+     * of the {@code interval} property in responses from the device
+     * authorization endpoint.
+     *
+     * @since 2.42
+     */
+    private int deviceFlowPollingInterval;
+
+
+    /**
      * Get the service number.
      *
      * @return
@@ -3509,7 +3531,7 @@ public class Service implements Serializable
      * Set the flag which indicates whether dynamic client registration is supported.
      *
      * @param enabled
-     *         {@code true} to enable dynmic client registration
+     *         {@code true} to enable dynamic client registration
      *
      * @return
      *         {@code this} object.
@@ -3562,6 +3584,88 @@ public class Service implements Serializable
     public Service setDeviceAuthorizationEndpoint(URI endpoint)
     {
         this.deviceAuthorizationEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of device verification codes and end-user verification
+     * codes issued from the device authorization endpoint in seconds. This is
+     * used as the value of the {@code expires_in} property in responses from
+     * the device authorization endpoint.
+     *
+     * @return
+     *         The duration of device verification codes and end-user
+     *         verification codes in seconds.
+     *
+     * @since 2.42
+     */
+    public int getDeviceFlowCodeDuration()
+    {
+        return deviceFlowCodeDuration;
+    }
+
+
+    /**
+     * Set the duration of device verification codes and end-user verification
+     * codes issued from the device authorization endpoint in seconds. This is
+     * used as the value of the {@code expires_in} property in responses from
+     * the device authorization endpoint.
+     *
+     * @param duration
+     *         The duration of device verification codes and end-user
+     *         verification codes in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.42
+     */
+    public Service setDeviceFlowCodeDuration(int duration)
+    {
+        this.deviceFlowCodeDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the minimum interval between polling requests to the token endpoint
+     * from client applications in seconds in device flow. This is used as the
+     * value of the {@code interval} property in responses from the device
+     * authorization endpoint.
+     *
+     * @return
+     *         The minimum interval between polling requests in seconds in
+     *         device flow.
+     *
+     * @since 2.42
+     */
+    public int getDeviceFlowPollingInterval()
+    {
+        return deviceFlowPollingInterval;
+    }
+
+
+    /**
+     * Set the minimum interval between polling requests to the token endpoint
+     * from client applications in seconds in device flow. This is used as the
+     * value of the {@code interval} property in responses from the device
+     * authorization endpoint.
+     *
+     * @param interval
+     *         The minimum interval between polling requests in seconds in
+     *         device flow. Must be in between 0 and 65,535.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.42
+     */
+    public Service setDeviceFlowPollingInterval(int interval)
+    {
+        this.deviceFlowPollingInterval = interval;
 
         return this;
     }
