@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `deviceAuthorization(DeviceAuthorizationRequest)` メソッドを追加。
+    * `deviceComplete(DeviceCompleteRequest)` メソッドを追加。
+    * `deviceVerification(DeviceVerificationRequest)` メソッドを追加。
+
 - `GrantType` 列挙型
     * `DEVICE_CODE` を追加。
 

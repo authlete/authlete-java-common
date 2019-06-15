@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `deviceAuthorization(DeviceAuthorizationRequest)` method.
+    * Added `deviceComplete(DeviceCompleteRequest)` method.
+    * Added `deviceVerification(DeviceVerificationRequest)` method.
+
 - `GrantType` enum
     * Added `DEVICE_CODE`.
 

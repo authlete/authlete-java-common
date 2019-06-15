@@ -39,6 +39,12 @@ import com.authlete.common.dto.ClientRegistrationRequest;
 import com.authlete.common.dto.ClientRegistrationResponse;
 import com.authlete.common.dto.ClientSecretRefreshResponse;
 import com.authlete.common.dto.ClientSecretUpdateResponse;
+import com.authlete.common.dto.DeviceAuthorizationRequest;
+import com.authlete.common.dto.DeviceAuthorizationResponse;
+import com.authlete.common.dto.DeviceCompleteRequest;
+import com.authlete.common.dto.DeviceCompleteResponse;
+import com.authlete.common.dto.DeviceVerificationRequest;
+import com.authlete.common.dto.DeviceVerificationResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
 import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
@@ -1339,4 +1345,49 @@ public interface AuthleteApi
      */
     BackchannelAuthenticationCompleteResponse backchannelAuthenticationComplete(
             BackchannelAuthenticationCompleteRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/device/authorization} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.42
+     */
+    DeviceAuthorizationResponse deviceAuthorization(
+            DeviceAuthorizationRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/device/complete} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.42
+     */
+    DeviceCompleteResponse deviceComplete(
+            DeviceCompleteRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/device/verification} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.42
+     */
+    DeviceVerificationResponse deviceVerification(
+            DeviceVerificationRequest request) throws AuthleteApiException;
 }
