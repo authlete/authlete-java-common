@@ -29,6 +29,7 @@ import com.authlete.common.types.JWSAlg;
 import com.authlete.common.types.ResponseType;
 import com.authlete.common.types.ServiceProfile;
 import com.authlete.common.types.Sns;
+import com.authlete.common.types.UserCodeCharset;
 
 
 /**
@@ -445,6 +446,22 @@ public class Service implements Serializable
      * @since 2.42
      */
     private int deviceFlowPollingInterval;
+
+
+    /**
+     * Character set for end-user verification codes (user_code) for Device Flow.
+     *
+     * @since 2.43
+     */
+    private UserCodeCharset userCodeCharset;
+
+
+    /**
+     * Length of end-user verification codes (user_code) for Device Flow.
+     *
+     * @since 2.43
+     */
+    private int userCodeLength;
 
 
     /**
@@ -3780,6 +3797,81 @@ public class Service implements Serializable
     public Service setDeviceFlowPollingInterval(int interval)
     {
         this.deviceFlowPollingInterval = interval;
+
+        return this;
+    }
+
+
+    /**
+     * Get the character set for end-user verification codes
+     * ({@code user_code}) for Device Flow.
+     *
+     * @return
+     *         The character set for end-user verification codes
+     *         ({@code user_code}) for Device Flow.
+     *
+     * @since 2.43
+     */
+    public UserCodeCharset getUserCodeCharset()
+    {
+        return userCodeCharset;
+    }
+
+
+    /**
+     * Set the character set for end-user verification codes
+     * ({@code user_code}) for Device Flow.
+     *
+     * @param charset
+     *         The character set for end-user verification codes
+     *         ({@code user_code}) for Device Flow.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.43
+     */
+    public Service setUserCodeCharset(UserCodeCharset charset)
+    {
+        this.userCodeCharset = charset;
+
+        return this;
+    }
+
+
+    /**
+     * Get the length of end-user verification codes ({@code user_code}) for
+     * Device Flow.
+     *
+     * @return
+     *         The length of end-user verification codes ({@code user_code})
+     *         for Device Flow.
+     *
+     * @since 2.43
+     */
+    public int getUserCodeLength()
+    {
+        return userCodeLength;
+    }
+
+
+    /**
+     * Set the length of end-user verification codes ({@code user_code}) for
+     * Device Flow.
+     *
+     * @param length
+     *         The length of end-user verification codes ({@code user_code})
+     *         for Device Flow. The value must not be negative and must not
+     *         be larger than 255.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.43
+     */
+    public Service setUserCodeLength(int length)
+    {
+        this.userCodeLength = length;
 
         return this;
     }

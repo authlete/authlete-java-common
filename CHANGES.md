@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `getUserCodeCharset()` method.
+    * Added `setUserCodeCharset(UserCodeCharset)` method.
+    * Added `getUserCodeLength()` method.
+    * Added `setUserCodeLength(int)` method.
+
 - New enum
     * `UserCodeCharset`
 

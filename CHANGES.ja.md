@@ -1,6 +1,12 @@
 変更点
 ======
 
+- `Service` クラス
+    * `getUserCodeCharset()` メソッドを追加。
+    * `setUserCodeCharset(UserCodeCharset)` メソッドを追加。
+    * `getUserCodeLength()` メソッドを追加。
+    * `setUserCodeLength(int)` メソッドを追加。
+
 - 新しい列挙型
     * `UserCodeCharset`
 
