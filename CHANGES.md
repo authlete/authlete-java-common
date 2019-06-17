@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.43 (2019-06-17)
+-----------------
+
 - `Service` class
     * Added `getUserCodeCharset()` method.
     * Added `setUserCodeCharset(UserCodeCharset)` method.

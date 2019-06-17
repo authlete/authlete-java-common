@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.43 (2019 年 06 月 17 日)
+--------------------------
+
 - `Service` クラス
     * `getUserCodeCharset()` メソッドを追加。
     * `setUserCodeCharset(UserCodeCharset)` メソッドを追加。
