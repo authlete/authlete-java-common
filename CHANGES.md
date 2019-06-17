@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+- New enum
+    * `UserCodeCharset`
+
+- New class
+    * `UserCodeGenerator`
+
+
 2.42 (2019-06-16)
 -----------------
 
