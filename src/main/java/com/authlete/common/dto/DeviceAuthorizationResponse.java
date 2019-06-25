@@ -168,7 +168,7 @@ import java.net.URI;
  */
 public class DeviceAuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -219,6 +219,8 @@ public class DeviceAuthorizationResponse extends ApiResponse
     private boolean clientIdAliasUsed;
     private String clientName;
     private Scope[] scopes;
+    private String[] claimNames;
+    private String[] acrs;
     private String deviceCode;
     private String userCode;
     private URI verificationUri;
@@ -481,6 +483,104 @@ public class DeviceAuthorizationResponse extends ApiResponse
     public DeviceAuthorizationResponse setScopes(Scope[] scopes)
     {
         this.scopes = scopes;
+
+        return this;
+    }
+
+
+    /**
+     * Get the names of the claims which were requested indirectly via some
+     * special scopes. See <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
+     * >5.4. Requesting Claims using Scope Values</a> in <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect
+     * Core 1.0</a> for details.
+     *
+     * <p>
+     * This method always returns {@code null} if the {@code scope} request
+     * parameter of the device authorization request does not include the
+     * {@code openid} scope even if special scopes (such as {@code profile})
+     * are included in the request (unless the {@code openid} scope is included
+     * in the default set of scopes which is used when the {@code scope}
+     * request parameter is omitted).
+     * </p>
+     *
+     * @return
+     *         The names of the requested claims.
+     *
+     * @since 2.44
+     */
+    public String[] getClaimNames()
+    {
+        return claimNames;
+    }
+
+
+    /**
+     * Set the names of the claims which were requested indirectly via some
+     * special scopes.
+     *
+     * @param names
+     *         The names of the requested claims.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.44
+     */
+    public DeviceAuthorizationResponse setClaimNames(String[] names)
+    {
+        this.claimNames = names;
+
+        return this;
+    }
+
+
+    /**
+     * Get the list of ACR values requested by the device authorization
+     * request.
+     *
+     * <p>
+     * Basically, this method returns the value of the {@code "acr_values"}
+     * request parameter in the device authorization request. However,
+     * because unsupported ACR values are dropped on Authlete side, if the
+     * {@code "acr_values"} request parameter contains unrecognized ACR
+     * values, the list returned by this method becomes different from the
+     * value of the {@code "acr_values"} request parameter.
+     * </p>
+     *
+     * <p>
+     * If the request does not include the {@code acr_values} request
+     * parameter, the value of the {@code default_acr_values} client metadata
+     * is used.
+     * </p>
+     *
+     * @return
+     *         The list of requested ACR values.
+     *
+     * @since 2.44
+     */
+    public String[] getAcrs()
+    {
+        return acrs;
+    }
+
+
+    /**
+     * Set the list of ACR values requested by the device authorization
+     * request.
+     *
+     * @param acrs
+     *         The list of requested ACR values.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.44
+     */
+    public DeviceAuthorizationResponse setAcrs(String[] acrs)
+    {
+        this.acrs = acrs;
 
         return this;
     }

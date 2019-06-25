@@ -72,7 +72,7 @@ package com.authlete.common.dto;
  */
 public class DeviceVerificationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -120,6 +120,9 @@ public class DeviceVerificationResponse extends ApiResponse
     private boolean clientIdAliasUsed;
     private String clientName;
     private Scope[] scopes;
+    private String[] claimNames;
+    private String[] acrs;
+    private long expiresAt;
 
 
     /**
@@ -337,6 +340,126 @@ public class DeviceVerificationResponse extends ApiResponse
     public DeviceVerificationResponse setScopes(Scope[] scopes)
     {
         this.scopes = scopes;
+
+        return this;
+    }
+
+
+    /**
+     * Get the names of the claims which were requested indirectly via some
+     * special scopes. See <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
+     * >5.4. Requesting Claims using Scope Values</a> in <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect
+     * Core 1.0</a> for details.
+     *
+     * <p>
+     * This method always returns {@code null} if the {@code scope} request
+     * parameter of the device authorization request does not include the
+     * {@code openid} scope even if special scopes (such as {@code profile})
+     * are included in the request (unless the {@code openid} scope is included
+     * in the default set of scopes which is used when the {@code scope}
+     * request parameter is omitted).
+     * </p>
+     *
+     * @return
+     *         The names of the requested claims.
+     *
+     * @since 2.44
+     */
+    public String[] getClaimNames()
+    {
+        return claimNames;
+    }
+
+
+    /**
+     * Set the names of the claims which were requested indirectly via some
+     * special scopes.
+     *
+     * @param names
+     *         The names of the requested claims.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.44
+     */
+    public DeviceVerificationResponse setClaimNames(String[] names)
+    {
+        this.claimNames = names;
+
+        return this;
+    }
+
+
+    /**
+     * Get the list of ACR values requested by the device authorization
+     * request.
+     *
+     * @return
+     *         The list of requested ACR values.
+     *
+     * @since 2.44
+     */
+    public String[] getAcrs()
+    {
+        return acrs;
+    }
+
+
+    /**
+     * Set the list of ACR values requested by the device authorization
+     * request.
+     *
+     * @param acrs
+     *         The list of requested ACR values.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.44
+     */
+    public DeviceVerificationResponse setAcrs(String[] acrs)
+    {
+        this.acrs = acrs;
+
+        return this;
+    }
+
+
+    /**
+     * Get the date in milliseconds since the Unix epoch (1970-01-01)
+     * at which the user code will expire.
+     *
+     * @return
+     *         The expiration date in milliseconds since the Unix epoch
+     *         (1970-01-01) at which the user code will expire.
+     *
+     * @since 2.44
+     */
+    public long getExpiresAt()
+    {
+        return expiresAt;
+    }
+
+
+    /**
+     * Set the date in milliseconds since the Unix epoch (1970-01-01)
+     * at which the user code will expire.
+     *
+     * @param expiresAt
+     *         The expiration date in milliseconds since the Unix epoch
+     *         (1970-01-01) at which the user code will expire.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.44
+     */
+    public DeviceVerificationResponse setExpiresAt(long expiresAt)
+    {
+        this.expiresAt = expiresAt;
 
         return this;
     }

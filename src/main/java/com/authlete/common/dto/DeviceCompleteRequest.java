@@ -18,6 +18,8 @@ package com.authlete.common.dto;
 
 import java.io.Serializable;
 import java.net.URI;
+import java.util.Map;
+import com.authlete.common.util.Utils;
 
 
 /**
@@ -49,6 +51,13 @@ import java.net.URI;
  * </p>
  *
  * <p>
+ * If the {@code scope} parameter of the device authorization request included
+ * the {@code openid} scope, an ID token is generated. In this case, {@code sub},
+ * {@code authTime}, {@code acr} and {@code claims} request parameters in the
+ * API call to {@code /api/device/complete} affect the ID token.
+ * </p>
+ *
+ * <p>
  * When the authorization server receives the decision of the end-user and it
  * indicates that she has rejected to give authorization to the client, the
  * authorization server should call the API with
@@ -75,7 +84,7 @@ import java.net.URI;
  */
 public class DeviceCompleteRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -165,6 +174,40 @@ public class DeviceCompleteRequest implements Serializable
      * The subject (= unique identifier) of the end-user.
      */
     private String subject;
+
+
+    /**
+     * The value of the {@code sub} claim for the ID token. When this field
+     * is empty, {@code subject} is used as the value of the {@code sub}
+     * claim.
+     *
+     * @since 2.44
+     */
+    private String sub;
+
+
+    /**
+     * The time at which the end-user was authenticated.
+     *
+     * @since 2.44
+     */
+    private long authTime;
+
+
+    /**
+     * The authentication context class reference.
+     *
+     * @since 2.44
+     */
+    private String acr;
+
+
+    /**
+     * Additional claims in JSON format.
+     *
+     * @since 2.44
+     */
+    private String claims;
 
 
     /**
@@ -262,11 +305,21 @@ public class DeviceCompleteRequest implements Serializable
      *
      * <p>
      * This {@code subject} property is used as the value of the subject
-     * associated with the access token which will be issued.
+     * associated with the access token and as the value of the {@code sub}
+     * claim in the ID token.
+     * </p>
+     *
+     * <p>
+     * Note that, if {@link #getSub()} returns a non-empty value, it is used
+     * as the value of the {@code sub} claim in the ID token. However, even
+     * in the case, the value of the subject associated with the access token
+     * is still the value of this {@code subject} property.
      * </p>
      *
      * @return
      *         The subject (= unique identifier) of the end-user.
+     *
+     * @see #getSub()
      */
     public String getSubject()
     {
@@ -282,7 +335,15 @@ public class DeviceCompleteRequest implements Serializable
      *
      * <p>
      * This {@code subject} property is used as the value of the subject
-     * associated with the access token which will be issued.
+     * associated with the access token and as the value of the {@code sub}
+     * claim in the ID token.
+     * </p>
+     *
+     * <p>
+     * Note that, if {@link #getSub()} returns a non-empty value, it is used
+     * as the value of the {@code sub} claim in the ID token. However, even
+     * in the case, the value of the subject associated with the access token
+     * is still the value set by this method.
      * </p>
      *
      * @param subject
@@ -290,10 +351,249 @@ public class DeviceCompleteRequest implements Serializable
      *
      * @return
      *         {@code this} object.
+     *
+     * @see #setSub(String)
      */
     public DeviceCompleteRequest setSubject(String subject)
     {
         this.subject = subject;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the {@code sub} claim that should be used in the ID
+     * token. If this method returns {@code null} or its value is empty, the
+     * value returned by {@link #getSubject()} is used as the value of the
+     * {@code sub} claim. The main purpose of this {@code sub} property is
+     * to hide the actual value of the subject from client applications.
+     *
+     * <p>
+     * Note that the value of the {@code subject} request parameter is used
+     * as the value of the subject associated with the access token regardless
+     * of whether this {@code sub} property is a non-empty value or not. In
+     * other words, this {@code sub} property affects only the {@code sub}
+     * claim in the ID token.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code sub} claim.
+     *
+     * @see #getSubject()
+     *
+     * @since 2.44
+     */
+    public String getSub()
+    {
+        return sub;
+    }
+
+
+    /**
+     * Set the value of the {@code sub} claim that should be used in the ID
+     * token. If this method returns {@code null} or its value is empty, the
+     * value returned by {@link #getSubject()} is used as the value of the
+     * {@code sub} claim. The main purpose of this {@code sub} property is
+     * to hide the actual value of the subject from client applications.
+     *
+     * <p>
+     * Note that the value of the {@code subject} request parameter is used
+     * as the value of the subject associated with the access token regardless
+     * of whether this {@code sub} property is a non-empty value or not. In
+     * other words, this {@code sub} property affects only the {@code sub}
+     * claim in the ID token.
+     * </p>
+     *
+     * @param sub
+     *         The value of the {@code sub} claim.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see #setSubject(String)
+     *
+     * @since 2.44
+     */
+    public DeviceCompleteRequest setSub(String sub)
+    {
+        this.sub = sub;
+
+        return this;
+    }
+
+
+    /**
+     * Get the time at which the end-user was authenticated.
+     *
+     * @return
+     *         The time at which the end-user was authenticated.
+     *         It is the number of seconds since 1970-01-01.
+     *
+     * @since 2.44
+     */
+    public long getAuthTime()
+    {
+        return authTime;
+    }
+
+
+    /**
+     * Set the time at which the end-user was authenticated. When this request
+     * parameter holds a positive number, the {@code auth_time} claim will be
+     * embedded in the ID token.
+     *
+     * @param authTime
+     *         The time at which the end-user was authenticated.
+     *         It is the number of seconds since 1970-01-01.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.44
+     */
+    public DeviceCompleteRequest setAuthTime(long authTime)
+    {
+        this.authTime = authTime;
+
+        return this;
+    }
+
+
+    /**
+     * Get the reference of the authentication context class which the
+     * end-user authentication satisfied.
+     *
+     * @return
+     *         The authentication context class reference.
+     *
+     * @since 2.44
+     */
+    public String getAcr()
+    {
+        return acr;
+    }
+
+
+    /**
+     * Set the reference of the authentication context class which the
+     * end-user authentication satisfied. When this request parameter
+     * holds a non-null value, the {@code acr} claim will be embedded
+     * in the ID token.
+     *
+     * @param acr
+     *         The authentication context class reference.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.44
+     */
+    public DeviceCompleteRequest setAcr(String acr)
+    {
+        this.acr = acr;
+
+        return this;
+    }
+
+
+    /**
+     * Get additional claims which will be embedded in the ID token.
+     *
+     * @return
+     *         Additional claims in JSON format which will be embedded in the
+     *         ID token. See the description of {@link #setClaims(String)} for
+     *         details about the format.
+     *
+     * @see #setClaims(String)
+     *
+     * @since 2.44
+     */
+    public String getClaims()
+    {
+        return claims;
+    }
+
+
+    /**
+     * Set additional claims which will be embedded in the ID token.
+     *
+     * <p>
+     * The authorization server implementation is required to retrieve values
+     * of requested claims of the end-user from its database and format them
+     * in JSON format.
+     * </p>
+     *
+     * <p>
+     * For example, if <code>"given_name"</code> claim,
+     * <code>"family_name"</code> claim and <code>"email"</code> claim are
+     * requested, the authorization server implementation should generate
+     * a JSON object like the following:
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "given_name": "Takahiko",
+     *   "family_name": "Kawasaki",
+     *   "email": "takahiko.kawasaki@example.com"
+     * }
+     * </pre>
+     *
+     * <p>
+     * and set its string representation by this method.
+     * </p>
+     *
+     * <p>
+     * See OpenID Connect Core 1.0, <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+     * >5.1. Standard Claims</a> for further details about the format.
+     * </p>
+     *
+     * @param claims
+     *         Additional claims in JSON format.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+     *      >OpenID Connect Core 1.0, 5.1. Standard Claims</a>
+     *
+     * @since 2.44
+     */
+    public DeviceCompleteRequest setClaims(String claims)
+    {
+        this.claims = claims;
+
+        return this;
+    }
+
+
+    /**
+     * Set additional claims which will be embedded in the ID token.
+     *
+     * <p>
+     * The argument is converted into a JSON string and passed to
+     * {@link #setClaims(String)} method.
+     * </p>
+     *
+     * @param claims
+     *         Additional claims. Keys are claim names.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.44
+     */
+    public DeviceCompleteRequest setClaims(Map<String, Object> claims)
+    {
+        if (claims == null || claims.size() == 0)
+        {
+            this.claims = null;
+        }
+        else
+        {
+            setClaims(Utils.toJson(claims));
+        }
 
         return this;
     }
