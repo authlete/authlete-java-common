@@ -1,6 +1,35 @@
 変更点
 ======
 
+2.44 (2019 年 06 月 26 日)
+--------------------------
+
+- `DeviceAuthorizationResponse` クラス
+    * `getAcrs()` メソッドを追加。
+    * `setAcrs(String[])` メソッドを追加。
+    * `getClaimNames()` メソッドを追加。
+    * `setClaimNames(String[])` メソッドを追加。
+
+- `DeviceCompleteRequest` クラス
+    * `getAcr()` メソッドを追加。
+    * `setAcr(String)` メソッドを追加。
+    * `getAuthTime()` メソッドを追加。
+    * `setAuthTime(long)` メソッドを追加。
+    * `getClaims()` メソッドを追加。
+    * `setClaims(String)` メソッドを追加。
+    * `setClaims(Map)` メソッドを追加。
+    * `getSub()` メソッドを追加。
+    * `setSub(String)` メソッドを追加。
+
+- `DeviceVerificationResponse` クラス
+    * `getAcrs()` メソッドを追加。
+    * `setAcrs(String[])` メソッドを追加。
+    * `getClaimNames()` メソッドを追加。
+    * `setClaimNames(String[])` メソッドを追加。
+    * `getExpiresAt()` メソッドを追加。
+    * `setExpiresAt(long)` メソッドを追加。
+
+
 2.43 (2019 年 06 月 17 日)
 --------------------------
 

@@ -1,6 +1,35 @@
 CHANGES
 =======
 
+2.44 (2019-06-26)
+-----------------
+
+- `DeviceAuthorizationResponse` class
+    * Added `getAcrs()` method.
+    * Added `setAcrs(String[])` method.
+    * Added `getClaimNames()` method.
+    * Added `setClaimNames(String[])` method.
+
+- `DeviceCompleteRequest` class
+    * Added `getAcr()` method.
+    * Added `setAcr(String)` method.
+    * Added `getAuthTime()` method.
+    * Added `setAuthTime(long)` method.
+    * Added `getClaims()` method.
+    * Added `setClaims(String)` method.
+    * Added `setClaims(Map)` method.
+    * Added `getSub()` method.
+    * Added `setSub(String)` method.
+
+- `DeviceVerificationResponse` class
+    * Added `getAcrs()` method.
+    * Added `setAcrs(String[])` method.
+    * Added `getClaimNames()` method.
+    * Added `setClaimNames(String[])` method.
+    * Added `getExpiresAt()` method.
+    * Added `setExpiresAt(long)` method.
+
+
 2.43 (2019-06-17)
 -----------------
 
