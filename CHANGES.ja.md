@@ -1,6 +1,14 @@
 変更点
 ======
 
+2.45 (2019 年 06 月 27 日)
+--------------------------
+
+- `BackchannelAuthenticationResponse` クラス
+    * `getRequestContext()` メソッドを追加。
+    * `setRequestContext(String)` メソッドを追加。
+
+
 2.44 (2019 年 06 月 26 日)
 --------------------------
 

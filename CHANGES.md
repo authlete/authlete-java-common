@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+2.45 (2019-06-27)
+-----------------
+
+- `BackchannelAuthenticationResponse` class
+    * Added `getRequestContext()` method.
+    * Added `setRequestContext(String)` method.
+
+
 2.44 (2019-06-26)
 -----------------
 
