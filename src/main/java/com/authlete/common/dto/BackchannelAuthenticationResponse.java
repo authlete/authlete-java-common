@@ -563,7 +563,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  */
 public class BackchannelAuthenticationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -630,6 +630,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     private String userCode;
     private boolean userCodeRequired;
     private int requestedExpiry;
+    private String requestContext;
     private String[] warnings;
     private String ticket;
 
@@ -1319,6 +1320,45 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     public BackchannelAuthenticationResponse setBindingMessage(String message)
     {
         this.bindingMessage = message;
+
+        return this;
+    }
+
+
+    /**
+     * Get the request context of the backchannel authentication request. It
+     * is the value of the {@code "request_context"} request parameter and its
+     * format is JSON. {@code "request_context"} is a new request parameter
+     * added by FAPI-CIBA profile.
+     *
+     * @return
+     *         The request context in JSON format.
+     *
+     * @since 2.45
+     */
+    public String getRequestContext()
+    {
+        return requestContext;
+    }
+
+
+    /**
+     * Set the request context of the backchannel authentication request. It
+     * is the value of the {@code "request_context"} request parameter and its
+     * format is JSON. {@code "request_context"} is a new request parameter
+     * added by FAPI-CIBA profile.
+     *
+     * @param context
+     *         The request context in JSON format.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.45
+     */
+    public BackchannelAuthenticationResponse setRequestContext(String context)
+    {
+        this.requestContext = context;
 
         return this;
     }
