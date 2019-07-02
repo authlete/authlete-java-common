@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.46 (2019-07-03)
+-----------------
+
 - `Service` class
     * Added `isPkceS256Required()` method.
     * Added `setPkceS256Required(boolean)` method.
