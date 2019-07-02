@@ -1327,9 +1327,16 @@ public class BackchannelAuthenticationResponse extends ApiResponse
 
     /**
      * Get the request context of the backchannel authentication request. It
-     * is the value of the {@code "request_context"} request parameter and its
-     * format is JSON. {@code "request_context"} is a new request parameter
-     * added by FAPI-CIBA profile.
+     * is the value of the {@code "request_context"} claim in the signed
+     * authentication request and its format is JSON. {@code "request_context"}
+     * is a new claim added by the FAPI-CIBA profile.
+     *
+     * <p>
+     * This method returns {@code null} if the backchannel authentication
+     * request does not include a {@code "request"} request parameter or
+     * the JWT specified by the request parameter does not include a
+     * {@code "request_context"} claim.
+     * </p>
      *
      * @return
      *         The request context in JSON format.
@@ -1344,9 +1351,9 @@ public class BackchannelAuthenticationResponse extends ApiResponse
 
     /**
      * Set the request context of the backchannel authentication request. It
-     * is the value of the {@code "request_context"} request parameter and its
-     * format is JSON. {@code "request_context"} is a new request parameter
-     * added by FAPI-CIBA profile.
+     * is the value of the {@code "request_context"} claim in the signed
+     * authentication request and its format is JSON. {@code "request_context"}
+     * is a new claim added by the FAPI-CIBA profile.
      *
      * @param context
      *         The request context in JSON format.
