@@ -147,7 +147,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 25L;
+    private static final long serialVersionUID = 26L;
 
 
     /*
@@ -230,6 +230,7 @@ public class Service implements Serializable
     private boolean directIntrospectionEndpointEnabled;
     private boolean singleAccessTokenPerSubject;
     private boolean pkceRequired;
+    private boolean pkceS256Required;
     private boolean refreshTokenKept;
     private boolean errorDescriptionOmitted;
     private boolean errorUriOmitted;
@@ -462,6 +463,14 @@ public class Service implements Serializable
      * @since 2.43
      */
     private int userCodeLength;
+
+
+    /**
+     * The URI of the request object endpoint.
+     *
+     * @since 2.46
+     */
+    private URI requestObjectEndpoint;
 
 
     /**
@@ -2440,6 +2449,65 @@ public class Service implements Serializable
 
 
     /**
+     * Get the flag which indicates whether {@code S256} is always required
+     * as the code challenge method whenever PKCE (<a href=
+     * "https://tools.ietf.org/html/rfc7636">RFC 7636</a>) is used.
+     *
+     * <p>
+     * If this flag is {@code true}, {@code code_challenge_method=S256} must
+     * be included in the authorization request whenever it includes the
+     * {@code code_challenge} request parameter. Neither omission of the
+     * {@code code_challenge_method} request parameter nor use of {@code plain}
+     * ({@code code_challenge_method=plain}) is allowed.
+     * </p>
+     *
+     * @return
+     *         {@code true} if {@code S256} is always required as the code
+     *         challenge method whenever PKCE is used.
+     *
+     * @since 2.46
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc7636">RFC 7636</a>
+     */
+    public boolean isPkceS256Required()
+    {
+        return pkceS256Required;
+    }
+
+
+    /**
+     * Set the flag which indicates whether {@code S256} is always required
+     * as the code challenge method whenever PKCE (<a href=
+     * "https://tools.ietf.org/html/rfc7636">RFC 7636</a>) is used.
+     *
+     * <p>
+     * If {@code true} is set, {@code code_challenge_method=S256} must be
+     * included in the authorization request whenever it includes the
+     * {@code code_challenge} request parameter. Neither omission of the
+     * {@code code_challenge_method} request parameter nor use of {@code plain}
+     * ({@code code_challenge_method=plain}) is allowed.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require {@code S256} as the code challenge
+     *         method whenever PKCE is used.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.46
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc7636">RFC 7636</a>
+     */
+    public Service setPkceS256Required(boolean required)
+    {
+        this.pkceS256Required = required;
+
+        return this;
+    }
+
+
+    /**
      * Get the flag which indicates whether a refresh token remains valid
      * or gets renewed after its use.
      *
@@ -3872,6 +3940,59 @@ public class Service implements Serializable
     public Service setUserCodeLength(int length)
     {
         this.userCodeLength = length;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the request object endpoint.
+     *
+     * <p>
+     * This property corresponds to the {@code request_object_endpoint}
+     * metadata defined in "<a href=
+     * "https://openid.net/specs/openid-financial-api-part-2-ID2.html#openid-provider-discovery-metadata"
+     * >7.5. OpenID Provider Discovery Metadata</a>" of FAPI Part 2.
+     * </p>
+     *
+     * @return
+     *         The URI of the request object endpoint.
+     *
+     * @since 2.46
+     *
+     * @see <a href="https://openid.net/specs/openid-financial-api-part-2-ID2.html#openid-provider-discovery-metadata"
+     *      >FAPI Part 2, 7.5. OpenID Provider Discovery Metadata</a>
+     */
+    public URI getRequestObjectEndpoint()
+    {
+        return requestObjectEndpoint;
+    }
+
+
+    /**
+     * Set the URI of the request object endpoint.
+     *
+     * <p>
+     * This property corresponds to the {@code request_object_endpoint}
+     * metadata defined in "<a href=
+     * "https://openid.net/specs/openid-financial-api-part-2-ID2.html#openid-provider-discovery-metadata"
+     * >7.5. OpenID Provider Discovery Metadata</a>" of FAPI Part 2.
+     * </p>
+     *
+     * @param endpoint
+     *         The URI of the request object endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.46
+     *
+     * @see <a href="https://openid.net/specs/openid-financial-api-part-2-ID2.html#openid-provider-discovery-metadata"
+     *      >FAPI Part 2, 7.5. OpenID Provider Discovery Metadata</a>
+     */
+    public Service setRequestObjectEndpoint(URI endpoint)
+    {
+        this.requestObjectEndpoint = endpoint;
 
         return this;
     }

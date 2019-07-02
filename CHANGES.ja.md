@@ -1,6 +1,13 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isPkceS256Required()` メソッドを追加。
+    * `setPkceS256Required(boolean)` メソッドを追加。
+    * `getRequestObjectEndpoint()` メソッドを追加。
+    * `setRequestObjectEndpoint(URI)` メソッドを追加。
+
+
 2.45 (2019 年 06 月 27 日)
 --------------------------
 

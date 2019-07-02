@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `isPkceS256Required()` method.
+    * Added `setPkceS256Required(boolean)` method.
+    * Added `getRequestObjectEndpoint()` method.
+    * Added `setRequestObjectEndpoint(URI)` method.
+
+
 2.45 (2019-06-27)
 -----------------
 
