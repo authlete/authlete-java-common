@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.48 (2019-07-03)
+-----------------
+
 - `Service` class
     * Added `isBackchannelBindingMessageRequiredInFapi()` method.
     * Added `setBackchannelBindingMessageRequiredInFapi(boolean)` method.

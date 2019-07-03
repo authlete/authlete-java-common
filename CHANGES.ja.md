@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.48 (2019 年 07 月 03 日)
+--------------------------
+
 - `Service` クラス
     * `isBackchannelBindingMessageRequiredInFapi()` メソッドを追加。
     * `setBackchannelBindingMessageRequiredInFapi(boolean)` メソッドを追加。
