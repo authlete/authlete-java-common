@@ -39,7 +39,7 @@ public enum ClientAuthMethod
      * no Client Secret or other authentication mechanism.
      * </p>
      */
-    NONE((short)0, "none"),
+    NONE((short)0, "none", 0x0),
 
 
     /**
@@ -55,7 +55,7 @@ public enum ClientAuthMethod
      * using the HTTP Basic authentication scheme.
      * </p>
      */
-    CLIENT_SECRET_BASIC((short)1, "client_secret_basic"),
+    CLIENT_SECRET_BASIC((short)1, "client_secret_basic", 0x1),
 
 
     /**
@@ -71,7 +71,7 @@ public enum ClientAuthMethod
      * by including the Client Credentials in the request body.
      * </p>
      */
-    CLIENT_SECRET_POST((short)2, "client_secret_post"),
+    CLIENT_SECRET_POST((short)2, "client_secret_post", 0x1),
 
 
     /**
@@ -95,7 +95,7 @@ public enum ClientAuthMethod
      * Authorization Grants</a> [OAuth.Assertions].
      * </p>
      */
-    CLIENT_SECRET_JWT((short)3, "client_secret_jwt"),
+    CLIENT_SECRET_JWT((short)3, "client_secret_jwt", 0x2),
 
 
     /**
@@ -112,7 +112,7 @@ public enum ClientAuthMethod
      * Authorization Grants</a> [OAuth.Assertions].
      * </p>
      */
-    PRIVATE_KEY_JWT((short)4, "private_key_jwt"),
+    PRIVATE_KEY_JWT((short)4, "private_key_jwt", 0x2),
 
 
     /**
@@ -126,7 +126,7 @@ public enum ClientAuthMethod
      *
      * @since 2.7
      */
-    TLS_CLIENT_AUTH((short)5, "tls_client_auth"),
+    TLS_CLIENT_AUTH((short)5, "tls_client_auth", 0x4),
 
 
     /**
@@ -140,20 +140,27 @@ public enum ClientAuthMethod
      *
      * @since 2.11
      */
-    SELF_SIGNED_TLS_CLIENT_AUTH((short)6, "self_signed_tls_client_auth"),
+    SELF_SIGNED_TLS_CLIENT_AUTH((short)6, "self_signed_tls_client_auth", 0x4),
     ;
+
+
+    private static final int FLAG_SECRET_BASED      = 0x1;
+    private static final int FLAG_JWT_BASED         = 0x2;
+    private static final int FLAG_CERTIFICATE_BASED = 0x4;
 
 
     private static final ClientAuthMethod[] sValues = values();
     private static final Helper sHelper = new Helper(sValues);
     private final short mValue;
     private final String mString;
+    private final int mFlags;
 
 
-    private ClientAuthMethod(short value, String string)
+    private ClientAuthMethod(short value, String string, int flags)
     {
         mValue  = value;
         mString = string;
+        mFlags  = flags;
     }
 
 
@@ -269,5 +276,57 @@ public enum ClientAuthMethod
         {
             return new ClientAuthMethod[size];
         }
+    }
+
+
+    /**
+     * Check if this instance represents a client-secret-based client
+     * authentication method.
+     *
+     * @return
+     *         {@code true} if this instance is either
+     *         {@link ClientAuthMethod#CLIENT_SECRET_BASIC CLIENT_SECRET_BASIC} or
+     *         {@link ClientAuthMethod#CLIENT_SECRET_POST CLIENT_SECRET_POST}.
+     *
+     * @since 2.47
+     */
+    public boolean isSecretBased()
+    {
+        return (mFlags & FLAG_SECRET_BASED) != 0;
+    }
+
+
+    /**
+     * Check if this instance represents a JWT-based client authentication
+     * method.
+     *
+     * @return
+     *         {@code true} if this instance is either
+     *         {@link ClientAuthMethod#CLIENT_SECRET_JWT CLIENT_SECRET_JWT} or
+     *         {@link ClientAuthMethod#PRIVATE_KEY_JWT PRIVATE_KEY_JWT}.
+     *
+     * @since 2.47
+     */
+    public boolean isJwtBased()
+    {
+        return (mFlags & FLAG_JWT_BASED) != 0;
+    }
+
+
+    /**
+     * Check if this instance represents a certificate-based client
+     * authentication method.
+     *
+     * @return
+     *         {@code true} if this instance is either
+     *         {@link ClientAuthMethod#TLS_CLIENT_AUTH TLS_CLIENT_AUTH} or
+     *         {@link ClientAuthMethod#SELF_SIGNED_TLS_CLIENT_AUTH
+     *         SELF_SIGNED_TLS_CLIENT_AUTH}.
+     *
+     * @since 2.47
+     */
+    public boolean isCertificateBased()
+    {
+        return (mFlags & FLAG_CERTIFICATE_BASED) != 0;
     }
 }

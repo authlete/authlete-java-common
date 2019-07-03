@@ -1,6 +1,12 @@
 変更点
 ======
 
+- `ClientAuthMethod` 列挙型
+    * `isSecretBased()` メソッドを追加。
+    * `isJwtBased()` メソッドを追加。
+    * `isCertificateBased()` メソッドを追加。
+
+
 2.46 (2019 年 07 月 03 日)
 --------------------------
 
