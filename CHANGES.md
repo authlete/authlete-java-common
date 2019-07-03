@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.47 (2019-07-03)
+-----------------
+
 - `ClientAuthMethod` enum
     * Added `isSecretBased()` method.
     * Added `isJwtBased()` method.
