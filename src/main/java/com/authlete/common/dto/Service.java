@@ -394,6 +394,17 @@ public class Service implements Serializable
 
 
     /**
+     * Boolean flag which indicates whether the {@code binding_message}
+     * request parameter is always required whenever a backchannel
+     * authentication request is judged as a request for Financial-grade
+     * API.
+     *
+     * @since 2.48
+     */
+    private boolean backchannelBindingMessageRequiredInFapi;
+
+
+    /**
      * The allowable clock skew between the server and clients.
      *
      * @since 2.32
@@ -3565,6 +3576,62 @@ public class Service implements Serializable
     public Service setBackchannelPollingInterval(int interval)
     {
         this.backchannelPollingInterval = interval;
+
+        return this;
+    }
+
+
+    /**
+     * Get the boolean flag which indicates whether the {@code binding_message}
+     * request parameter is always required whenever a backchannel authentication
+     * request is judged as a request for Financial-grade API.
+     *
+     * @return
+     *         {@code true} if the {@code binding_message} request parameter
+     *         is required whenever a backchannel authentication request is
+     *         judged as a request for Financial-grade API.
+     *
+     * @since 2.48
+     */
+    public boolean isBackchannelBindingMessageRequiredInFapi()
+    {
+        return backchannelBindingMessageRequiredInFapi;
+    }
+
+
+    /**
+     * Set the boolean flag which indicates whether the {@code binding_message}
+     * request parameter is always required whenever a backchannel authentication
+     * request is judged as a request for Financial-grade API.
+     *
+     * <p>
+     * The FAPI-CIBA profile requires that the authorization server <i>"shall
+     * ensure unique authorization context exists in the authorization request
+     * or require a {@code binding_message} in the authorization request"</i>
+     * (FAPI-CIBA, 5.2.2, 2). The simplest way to fulfill this requirement is
+     * to set {@code true} to this property.
+     * </p>
+     *
+     * <p>
+     * If {@code false} is set to this property, the {@code binding_message}
+     * request parameter remains optional even in FAPI context, but in exchange,
+     * your authorization server must implement a custom mechanism that ensures
+     * each backchannel authentication request has unique context.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require the {@code binding_message} request
+     *         parameter whenever a backchannel authentication request is
+     *         judged as a request for Financial-grade API.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.48
+     */
+    public Service setBackchannelBindingMessageRequiredInFapi(boolean required)
+    {
+        this.backchannelBindingMessageRequiredInFapi = required;
 
         return this;
     }
