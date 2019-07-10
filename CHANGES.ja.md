@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.49 (2019 年 07 月 10 日)
+--------------------------
+
 - `Service` クラス
     * `getMtlsEndpointAliases()` メソッドを追加。
     * `setMtlsEndpointAliases(NamedUri[])` メソッドを追加。

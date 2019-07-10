@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.49 (2019-07-10)
+-----------------
+
 - `Service` class
     * Added `getMtlsEndpointAliases()` method.
     * Added `setMtlsEndpointAliases(NamedUri[])` method.
