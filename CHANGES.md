@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `getMtlsEndpointAliases()` method.
+    * Added `setMtlsEndpointAliases(NamedUri[])` method.
+
 - New class
     * `NamedUri`
 

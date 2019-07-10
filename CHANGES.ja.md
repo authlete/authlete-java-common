@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `Service` クラス
+    * `getMtlsEndpointAliases()` メソッドを追加。
+    * `setMtlsEndpointAliases(NamedUri[])` メソッドを追加。
+
 - 新しいクラス
     * `NamedUri`
 

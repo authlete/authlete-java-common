@@ -147,7 +147,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 27L;
+    private static final long serialVersionUID = 28L;
 
 
     /*
@@ -482,6 +482,14 @@ public class Service implements Serializable
      * @since 2.46
      */
     private URI requestObjectEndpoint;
+
+
+    /**
+     * MTLS endpoint aliases.
+     *
+     * @since 2.49
+     */
+    private NamedUri[] mtlsEndpointAliases;
 
 
     /**
@@ -4060,6 +4068,71 @@ public class Service implements Serializable
     public Service setRequestObjectEndpoint(URI endpoint)
     {
         this.requestObjectEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the MTLS endpoint aliases.
+     *
+     * <p>
+     * This property corresponds to the {@code mtls_endpoint_aliases} metadata
+     * defined in "5. Metadata for Mutual TLS Endpoint Aliases" of <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-mtls/?include_text=1"
+     * >OAuth 2.0 Mutual TLS Client Authentication and Certificate-Bound Access
+     * Tokens</a>.
+     * </p>
+     *
+     * @return
+     *         MTLS endpoint aliases.
+     *
+     * @since 2.49
+     */
+    public NamedUri[] getMtlsEndpointAliases()
+    {
+        return mtlsEndpointAliases;
+    }
+
+
+    /**
+     * Set the MTLS endpoint aliases.
+     *
+     * <p>
+     * This property corresponds to the {@code mtls_endpoint_aliases} metadata
+     * defined in "5. Metadata for Mutual TLS Endpoint Aliases" of <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-mtls/?include_text=1"
+     * >OAuth 2.0 Mutual TLS Client Authentication and Certificate-Bound Access
+     * Tokens</a>.
+     * </p>
+     *
+     * <p>
+     * The aliases will be embedded in the response from the discovery endpoint
+     * like the following.
+     * </p>
+     *
+     * <pre>
+     * {
+     *     ......,
+     *     "mtls_endpoint_aliases": {
+     *         "token_endpoint":         "https://mtls.example.com/token",
+     *         "revocation_endpoint":    "https://mtls.example.com/revo",
+     *         "introspection_endpoint": "https://mtls.example.com/introspect"
+     *     }
+     * }
+     * </pre>
+     *
+     * @param aliases
+     *         MTLS endpoint aliases.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.49
+     */
+    public Service setMtlsEndpointAliases(NamedUri[] aliases)
+    {
+        this.mtlsEndpointAliases = aliases;
 
         return this;
     }
