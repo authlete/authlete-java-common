@@ -50,6 +50,8 @@ import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
 import com.authlete.common.dto.JoseVerifyRequest;
 import com.authlete.common.dto.JoseVerifyResponse;
+import com.authlete.common.dto.RequestObjectRequest;
+import com.authlete.common.dto.RequestObjectResponse;
 import com.authlete.common.dto.RevocationRequest;
 import com.authlete.common.dto.RevocationResponse;
 import com.authlete.common.dto.Service;
@@ -1390,4 +1392,19 @@ public interface AuthleteApi
      */
     DeviceVerificationResponse deviceVerification(
             DeviceVerificationRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/auth/requestobject} API.
+     *
+     * @param request
+     *            Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.XX
+     */
+    RequestObjectResponse registerRequestObject(
+            RequestObjectRequest request) throws AuthleteApiException;
 }
