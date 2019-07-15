@@ -1,6 +1,11 @@
 package com.authlete.common.dto;
 
 
+/**
+ * Response from Authlete's /auth/requestobject API.
+ *
+ * @since 2.XX
+ */
 public class RequestObjectResponse extends ApiResponse
 {
     private static final long serialVersionUID = 1L;
@@ -42,6 +47,9 @@ public class RequestObjectResponse extends ApiResponse
 
     /**
      * Get the next action that the service implementation should take.
+     *
+     * @return
+     *         The action.
      */
     public Action getAction()
     {
@@ -51,16 +59,27 @@ public class RequestObjectResponse extends ApiResponse
 
     /**
      * Set the next action that the service implementation should take.
+     *
+     * @param action
+     *            The action.
+     *
+     * @return
+     *         {@code this} object.
      */
-    public void setAction(Action action)
+    public RequestObjectResponse setAction(Action action)
     {
         this.action = action;
+
+        return this;
     }
 
 
     /**
      * Get the response content which can be used as the entity body
      * of the response returned to the client application.
+     *
+     * @return
+     *         The response content string.
      */
     public String getResponseContent()
     {
@@ -71,15 +90,27 @@ public class RequestObjectResponse extends ApiResponse
     /**
      * Set the response content which can be used as the entity body
      * of the response returned to the client application.
+     *
+     * @param responseContent
+     *            The response content string.
+     *
+     * @return
+     *         {@code this} object.
      */
-    public void setResponseContent(String responseContent)
+    public RequestObjectResponse setResponseContent(String responseContent)
     {
         this.responseContent = responseContent;
+
+        return this;
     }
 
 
     /**
-     * @return the expiration
+     * Get the expiration date of the stored request object in
+     * seconds since epoch.
+     *
+     * @return
+     *         The expiration date.
      */
     public long getExpiration()
     {
@@ -88,17 +119,31 @@ public class RequestObjectResponse extends ApiResponse
 
 
     /**
+     * Set the expiration date of the stored request object in
+     * seconds since epoch.
+     *
      * @param expiration
-     *            the expiration to set
+     *            The expiration date.
+     *
+     * @return
+     *         {@code this} object.
      */
-    public void setExpiration(long expiration)
+    public RequestObjectResponse setExpiration(long expiration)
     {
         this.expiration = expiration;
+
+        return this;
     }
 
 
     /**
-     * @return the requestUri
+     * Get the request URI created to represent the stored
+     * request object. This can be sent by the client
+     * as the 'request_uri' parameter in an authorization
+     * request.
+     *
+     * @return
+     *         The registered request URI.
      */
     public String getRequestUri()
     {
@@ -107,12 +152,22 @@ public class RequestObjectResponse extends ApiResponse
 
 
     /**
+     * Set the request URI created to represent the stored
+     * request object. This can be sent by the client
+     * as the 'request_uri' parameter in an authorization
+     * request.
+     *
      * @param requestUri
-     *            the requestUri to set
+     *            The registered request URI.
+     *
+     * @return
+     *         {@code this} object.
      */
-    public void setRequestUri(String requestUri)
+    public RequestObjectResponse setRequestUri(String requestUri)
     {
         this.requestUri = requestUri;
+
+        return this;
     }
 
 

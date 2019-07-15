@@ -6,9 +6,8 @@ import java.io.Serializable;
 
 /**
  * Request to Authlete's /auth/requestobject API.
- * 
- * @author jricher
  *
+ * @since 2.XX
  */
 public class RequestObjectRequest implements Serializable
 {
@@ -25,11 +24,9 @@ public class RequestObjectRequest implements Serializable
      * request object endpoint. This consists entirely of a
      * JSON Web Token (JWT) signed with Json Web Signatures
      * (JWS) representing the client's request object.
-     * 
+     *
      * @return
      *         The body string.
-     * 
-     * @since 2.XX
      */
     public String getBody()
     {
@@ -45,11 +42,9 @@ public class RequestObjectRequest implements Serializable
      * 
      * @param body
      *            The body string.
-     * 
+     *
      * @return
-     *         this object
-     * 
-     * @since 2.XX
+     *         {@code this} object.
      */
     public RequestObjectRequest setBody(String body)
     {
