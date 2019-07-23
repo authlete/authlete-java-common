@@ -163,7 +163,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String DEVICE_AUTHORIZATION_API_PATH          = "/api/device/authorization";
     private static final String DEVICE_COMPLETE_API_PATH               = "/api/device/complete";
     private static final String DEVICE_VERIFICATION_API_PATH           = "/api/device/verification";
-    private static final String REQUEST_OBJECT_API_PATH                = "/api/auth/requestobject";
+    private static final String REQUEST_OBJECT_API_PATH                = "/api/requestobject";
 
 
     private final String mBaseUrl;

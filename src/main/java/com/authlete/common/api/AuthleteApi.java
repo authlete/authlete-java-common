@@ -1395,7 +1395,7 @@ public interface AuthleteApi
 
 
     /**
-     * Call Authlete's {@code /api/auth/requestobject} API.
+     * Call Authlete's {@code /api/requestobject} API.
      *
      * @param request
      *            Request parameters passed to the API.
@@ -1403,7 +1403,7 @@ public interface AuthleteApi
      * @return
      *         Response from the API.
      *
-     * @since 2.XX
+     * @since 2.50
      */
     RequestObjectResponse registerRequestObject(
             RequestObjectRequest request) throws AuthleteApiException;
