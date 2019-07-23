@@ -378,7 +378,7 @@ public class RequestObjectResponse extends ApiResponse
      *         The client authentication method that should be performed at
      *         the request object endpoint.
      */
-    public ClientAuthMethod getClientAuthenticationMethod()
+    public ClientAuthMethod getClientAuthMethod()
     {
         return clientAuthMethod;
     }
@@ -395,7 +395,7 @@ public class RequestObjectResponse extends ApiResponse
      * @return
      *         {@code this} object.
      */
-    public RequestObjectResponse setClientAuthenticationMethod(ClientAuthMethod method)
+    public RequestObjectResponse setClientAuthMethod(ClientAuthMethod method)
     {
         this.clientAuthMethod = method;
 
