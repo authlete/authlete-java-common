@@ -1,6 +1,14 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `registerRequestObject(RequestObjectRequest)` メソッドを追加。
+
+- 新しいクラス
+    * `RequestObjectRequest`
+    * `RequestObjectResponse`
+
+
 2.49 (2019 年 07 月 10 日)
 --------------------------
 

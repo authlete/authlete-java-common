@@ -67,6 +67,8 @@ import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
 import com.authlete.common.dto.JoseVerifyRequest;
 import com.authlete.common.dto.JoseVerifyResponse;
+import com.authlete.common.dto.RequestObjectRequest;
+import com.authlete.common.dto.RequestObjectResponse;
 import com.authlete.common.dto.RevocationRequest;
 import com.authlete.common.dto.RevocationResponse;
 import com.authlete.common.dto.Service;
@@ -161,6 +163,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String DEVICE_AUTHORIZATION_API_PATH          = "/api/device/authorization";
     private static final String DEVICE_COMPLETE_API_PATH               = "/api/device/complete";
     private static final String DEVICE_VERIFICATION_API_PATH           = "/api/device/verification";
+    private static final String REQUEST_OBJECT_API_PATH                = "/api/requestobject";
 
 
     private final String mBaseUrl;
@@ -1481,5 +1484,14 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 DEVICE_VERIFICATION_API_PATH, request,
                 DeviceVerificationResponse.class);
+    }
+
+
+    @Override
+    public RequestObjectResponse registerRequestObject(RequestObjectRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                REQUEST_OBJECT_API_PATH, request,
+                RequestObjectResponse.class);
     }
 }
