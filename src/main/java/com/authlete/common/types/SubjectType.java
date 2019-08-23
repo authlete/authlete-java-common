@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,8 +45,11 @@ public enum SubjectType
      * {@code "pairwise"} (2).
      *
      * <p>
-     * This provides a different {@code sub} value to each Client, so as not to
-     * enable Clients to correlate the End-User's activities without permission.
+     * This provides a different {@code sub} value to each sector identifier, so
+     * as not to enable Clients to correlate the End-User's activities without
+     * permission. See <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg">8.1.
+     * Pairwise Identifier Algorithm</a> for details.
      * </p>
      */
     PAIRWISE((short)2, "pairwise")

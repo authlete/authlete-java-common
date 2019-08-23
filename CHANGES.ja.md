@@ -4,6 +4,10 @@
 - `AuthleteApi` インターフェース
     * `registerRequestObject(RequestObjectRequest)` メソッドを追加。
 
+- `Client` クラス
+    * `getSectorIdentifierUri()` メソッドを追加。
+    * `setSectorIdentifierUri(URI)` メソッドを追加。
+
 - 新しいクラス
     * `RequestObjectRequest`
     * `RequestObjectResponse`

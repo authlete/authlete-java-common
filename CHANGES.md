@@ -4,6 +4,10 @@ CHANGES
 - `AuthleteApi` interface
     * Added `registerRequestObject(RequestObjectRequest)` method.
 
+- `Client` class
+    * Added `getSectorIdentifierUri()` method.
+    * Added `setSectorIdentifierUri(URI)` method.
+
 - New classes
     * `RequestObjectRequest`
     * `RequestObjectResponse`

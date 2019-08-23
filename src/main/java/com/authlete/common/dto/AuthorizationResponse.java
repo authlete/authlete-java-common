@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -394,9 +394,10 @@ import com.authlete.common.util.Utils;
  *           value of {@code "sub"} claim. When the value of {@code "subject_type"}
  *           configuration parameter of the client is {@link
  *           com.authlete.common.types.SubjectType#PAIRWISE PAIRWISE}, the value
- *           of {@code "sub"} claim is different from the value specified here,
- *           but {@code PAIRWISE} is not supported by Authlete yet. See
- *           <a href="http://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes"
+ *           of {@code "sub"} claim is different from the value specified here.
+ *           Note that the behavior for {@code PAIRWISE} is not supported by old
+ *           Authlete versions (2.0 and older). See <a href=
+ *           "http://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes"
  *           >8. Subject Identifier Types</a> of OpenID Connect Core 1.0 for
  *           details about subject types.
  *         </p>

@@ -51,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 14L;
+    private static final long serialVersionUID = 15L;
 
 
     /*
@@ -214,6 +214,14 @@ public class Client implements Serializable
      * Sector identifier.
      */
     private URI sectorIdentifier;
+
+
+    /**
+     * Sector identifier URI.
+     *
+     * @since 2.50
+     */
+    private URI sectorIdentifierUri;
 
 
     private SubjectType subjectType;
@@ -1048,11 +1056,42 @@ public class Client implements Serializable
     /**
      * Get the sector identifier.
      *
+     * <p><b>NOTE</b></p>
+     *
+     * <p>
+     * Old Authlete versions (2.0 and older) use this property
+     * ({@code sectorIdentifier}) as the value of the {@code
+     * sector_identifier_uri} client metadata. However, it was wrong.
+     * Consolation is that it won't cause any issue because old Authlete
+     * versions do nothing special for the sector identifier. In other
+     * words, it's because old Authlete versions don't support
+     * {@code subject_type=pairwise}.
+     * </p>
+     *
+     * <p>
+     * Since Authlete 2.1, this property ({@code sectorIdentifier}) has
+     * a different meaning. It holds the sector identifier which is
+     * calculated based on the values of redirect URIs or the sector
+     * identifier URI ({@code sectorIdentifierUri}). How to determine the
+     * value of the sector identifier is described in <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
+     * >8.1. Pairwise Identifier Algorithm</a> of <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect
+     * Core 1.0</a>.
+     * </p>
+     *
+     * <p>
+     * The value of {@code sectorIdentifier} is computed by Authlete, so the
+     * value is included in <i>responses</i> from Authlete. This implies that
+     * it is meaningless to set the value of {@code sectorIdentfier} in
+     * <i>requests</i> to Authlete APIs such as {@code /api/client/update} API.
+     * </p>
+     *
      * @return
      *         The sector identifier.
      *
-     * @see <a href="http://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation"
-     *      >5. "sector_identifier_uri" Validation</a>
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
+     *      >OIDC Core, 8.1. Pairwise Identifier Algorithm</a>
      */
     public URI getSectorIdentifier()
     {
@@ -1063,18 +1102,100 @@ public class Client implements Serializable
     /**
      * Set the sector identifier.
      *
+     * <p><b>NOTE</b></p>
+     *
+     * <p>
+     * Old Authlete versions (2.0 and older) use this property
+     * ({@code sectorIdentifier}) as the value of the {@code
+     * sector_identifier_uri} client metadata. However, it was wrong.
+     * Consolation is that it won't cause any issue because old Authlete
+     * versions do nothing special for the sector identifier. In other
+     * words, it's because old Authlete versions don't support
+     * {@code subject_type=pairwise}.
+     * </p>
+     *
+     * <p>
+     * Since Authlete 2.1, this property ({@code sectorIdentifier}) has
+     * a different meaning. It holds the sector identifier which is
+     * calculated based on the values of redirect URIs or the sector
+     * identifier URI ({@code sectorIdentifierUri}). How to determine the
+     * value of sector identifier is described in <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
+     * >8.1. Pairwise Identifier Algorithm</a> of <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect
+     * Core 1.0</a>.
+     * </p>
+     *
+     * <p>
+     * The value of {@code sectorIdentifier} is computed by Authlete, so the
+     * value is included in <i>responses</i> from Authlete. This implies that
+     * it is meaningless to set the value of {@code sectorIdentfier} in
+     * <i>requests</i> to Authlete APIs such as {@code /api/client/update} API.
+     * </p>
+     *
      * @param sectorIdentifier
      *         The sector identifier.
      *
      * @return
      *         {@code this} object.
      *
-     * @see <a href="http://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation"
-     *      >5. "sector_identifier_uri" Validation</a>
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
+     *      >OIDC Core, 8.1. Pairwise Identifier Algorithm</a>
      */
     public Client setSectorIdentifier(URI sectorIdentifier)
     {
         this.sectorIdentifier = sectorIdentifier;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the sector identifier URI.
+     *
+     * <p>
+     * This represents the {@code sector_identifier_uri} client metadata which
+     * is defined in <a href=
+     * "https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >2. Client Metadata</a> of <a href=
+     * "https://openid.net/specs/openid-connect-registration-1_0.html">OpenID Connect
+     * Dynamic Client Registration 1.0</a>.
+     * </p>
+     *
+     * @return
+     *         The sector identifier URI.
+     *
+     * @since 2.50
+     */
+    public URI getSectorIdentifierUri()
+    {
+        return sectorIdentifierUri;
+    }
+
+
+    /**
+     * Set the value of the sector identifier URI.
+     *
+     * <p>
+     * This represents the {@code sector_identifier_uri} client metadata which
+     * is defined in <a href=
+     * "https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * >2. Client Metadata</a> of <a href=
+     * "https://openid.net/specs/openid-connect-registration-1_0.html">OpenID Connect
+     * Dynamic Client Registration 1.0</a>.
+     * </p>
+     *
+     * @param uri
+     *         The sector identifier URI.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.50
+     */
+    public Client setSectorIdentifierUri(URI uri)
+    {
+        this.sectorIdentifierUri = uri;
 
         return this;
     }
@@ -1096,7 +1217,7 @@ public class Client implements Serializable
 
 
     /**
-     * Set the subject type that thsi client application requests.
+     * Set the subject type that this client application requests.
      *
      * @param subjectType
      *          The subject type.
