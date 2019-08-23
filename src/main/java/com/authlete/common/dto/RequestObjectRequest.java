@@ -34,11 +34,12 @@ import java.io.Serializable;
  * <blockquote>
  * <dl>
  *
- * <dt><b><code>body</code></b> (REQUIRED)</dt>
+ * <dt><b><code>parameters</code></b> (REQUIRED)</dt>
  * <dd>
  * <p>
- * The HTTP message body of the request sent to the request object endpoint.
- * The format is either plain JSON or JWT.
+ * Request parameters that the request object endpoint of the authorization
+ * server implementation received from the client application. Its format is
+ * {@code application/x-www-form-urlencoded}.
  * </p>
  * </dd>
  *
@@ -99,10 +100,9 @@ public class RequestObjectRequest implements Serializable
 
 
     /**
-     * The HTTP message body sent to the request object endpoint.
-     * Its format is either plain JSON or JWT.
+     * Request parameters of a request object request.
      */
-    private String body;
+    private String parameters;
 
 
     /**
@@ -130,31 +130,33 @@ public class RequestObjectRequest implements Serializable
 
 
     /**
-     * Get the value of the HTTP message body sent to the request object
-     * endpoint. Its format is either plain JSON or JWT.
+     * Get the request parameters that the request object endpoint received
+     * from the client application.
      *
      * @return
-     *         The HTTP message body sent to the request object endpoint.
+     *         Request parameters in {@code application/x-www-form-urlencoded}
+     *         format.
      */
-    public String getBody()
+    public String getParameters()
     {
-        return body;
+        return parameters;
     }
 
 
     /**
-     * Set the value of the HTTP message body sent to the request object
-     * endpoint. Its format is either plain JSON or JWT.
+     * Set the request parameters that the request object endpoint received
+     * from the client application.
      *
-     * @param body
-     *         The HTTP message body sent to the request object endpoint.
+     * @param parameters
+     *         Request parameters in {@code application/x-www-form-urlencoded}
+     *         format.
      *
      * @return
      *         {@code this} object.
      */
-    public RequestObjectRequest setBody(String body)
+    public RequestObjectRequest setParameters(String parameters)
     {
-        this.body = body;
+        this.parameters = parameters;
 
         return this;
     }
