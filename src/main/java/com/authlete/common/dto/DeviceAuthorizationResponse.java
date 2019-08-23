@@ -17,6 +17,7 @@ package com.authlete.common.dto;
 
 
 import java.net.URI;
+import com.authlete.common.types.ClientAuthMethod;
 
 
 /**
@@ -168,7 +169,7 @@ import java.net.URI;
  */
 public class DeviceAuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -218,6 +219,7 @@ public class DeviceAuthorizationResponse extends ApiResponse
     private String clientIdAlias;
     private boolean clientIdAliasUsed;
     private String clientName;
+    private ClientAuthMethod clientAuthMethod;
     private Scope[] scopes;
     private String[] claimNames;
     private String[] acrs;
@@ -438,6 +440,48 @@ public class DeviceAuthorizationResponse extends ApiResponse
     public DeviceAuthorizationResponse setClientName(String name)
     {
         this.clientName = name;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client authentication method that should be performed at the
+     * device authorization endpoint.
+     *
+     * <p>
+     * If the client could not be identified by the information in the request,
+     * this method returns {@code null}.
+     * </p>
+     *
+     * @return
+     *         The client authentication method that should be performed at
+     *         the device authorization endpoint.
+     *
+     * @since 2.50
+     */
+    public ClientAuthMethod getClientAuthMethod()
+    {
+        return clientAuthMethod;
+    }
+
+
+    /**
+     * Set the client authentication method that should be performed at the
+     * device authorization endpoint.
+     *
+     * @param method
+     *         The client authentication method that should be performed at
+     *         the device authorization endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.50
+     */
+    public DeviceAuthorizationResponse setClientAuthMethod(ClientAuthMethod method)
+    {
+        this.clientAuthMethod = method;
 
         return this;
     }

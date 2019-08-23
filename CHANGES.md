@@ -8,6 +8,10 @@ CHANGES
     * Added `getSectorIdentifierUri()` method.
     * Added `setSectorIdentifierUri(URI)` method.
 
+- `DeviceAuthorizationResponse` class
+    * `getClientAuthMethod()` method.
+    * `setClientAuthMethod(ClientAuthMethod)` method.
+
 - `TokenResponse` class
     * Added `getClientAuthMethod()` method.
     * Added `setClientAuthMethod(ClientAuthMethod)` method.
