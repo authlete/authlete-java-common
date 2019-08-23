@@ -16,6 +16,7 @@
 package com.authlete.common.dto;
 
 
+import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.GrantType;
 import com.authlete.common.util.Utils;
 
@@ -254,7 +255,7 @@ import com.authlete.common.util.Utils;
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /**
@@ -307,7 +308,8 @@ public class TokenResponse extends ApiResponse
         + "refreshToken=%s, refreshTokenExpiresAt=%d, refreshTokenDuration=%d, "
         + "idToken=%s, grantType=%s, "
         + "clientId=%d, clientIdAlias=%s, clientIdAliasUsed=%s, "
-        + "subject=%s, scopes=%s, properties=%s, jwtAccessToken=%s";
+        + "subject=%s, scopes=%s, properties=%s, jwtAccessToken=%s, "
+        + "clientAuthMethod=%s";
 
 
     private Action action;
@@ -330,6 +332,7 @@ public class TokenResponse extends ApiResponse
     private String[] scopes;
     private Property[] properties;
     private String jwtAccessToken;
+    private ClientAuthMethod clientAuthMethod;
 
 
     /**
@@ -476,7 +479,8 @@ public class TokenResponse extends ApiResponse
                 refreshToken, refreshTokenExpiresAt, refreshTokenDuration,
                 idToken, grantType, clientId, clientIdAlias, clientIdAliasUsed,
                 subject, Utils.join(scopes, " "),
-                Utils.stringifyProperties(properties), jwtAccessToken);
+                Utils.stringifyProperties(properties), jwtAccessToken,
+                clientAuthMethod);
     }
 
 
@@ -947,5 +951,42 @@ public class TokenResponse extends ApiResponse
     public void setJwtAccessToken(String jwtAccessToken)
     {
         this.jwtAccessToken = jwtAccessToken;
+    }
+
+
+    /**
+     * Get the client authentication method that should be performed at the
+     * token endpoint.
+     *
+     * <p>
+     * If the client could not be identified by the information in the request,
+     * this method returns {@code null}.
+     * </p>
+     *
+     * @return
+     *         The client authentication method that should be performed at
+     *         the token endpoint.
+     *
+     * @since 2.50
+     */
+    public ClientAuthMethod getClientAuthMethod()
+    {
+        return clientAuthMethod;
+    }
+
+
+    /**
+     * Set the client authentication method that should be performed at the
+     * token endpoint.
+     *
+     * @param method
+     *         The client authentication method that should be performed at
+     *         the token endpoint.
+     *
+     * @since 2.50
+     */
+    public void setClientAuthMethod(ClientAuthMethod method)
+    {
+        this.clientAuthMethod = method;
     }
 }

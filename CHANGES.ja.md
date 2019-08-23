@@ -8,6 +8,10 @@
     * `getSectorIdentifierUri()` メソッドを追加。
     * `setSectorIdentifierUri(URI)` メソッドを追加。
 
+- `TokenResponse` クラス
+    * `getClientAuthMethod()` メソッドを追加。
+    * `setClientAuthMethod(ClientAuthMethod)` メソッドを追加。
+
 - 新しいクラス
     * `RequestObjectRequest`
     * `RequestObjectResponse`

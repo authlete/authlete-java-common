@@ -8,6 +8,10 @@ CHANGES
     * Added `getSectorIdentifierUri()` method.
     * Added `setSectorIdentifierUri(URI)` method.
 
+- `TokenResponse` class
+    * Added `getClientAuthMethod()` method.
+    * Added `setClientAuthMethod(ClientAuthMethod)` method.
+
 - New classes
     * `RequestObjectRequest`
     * `RequestObjectResponse`
