@@ -16,6 +16,7 @@
 package com.authlete.common.dto;
 
 
+import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.UserIdentificationHintType;
 
@@ -563,7 +564,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  */
 public class BackchannelAuthenticationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -618,6 +619,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     private String clientIdAlias;
     private boolean clientIdAliasUsed;
     private String clientName;
+    private ClientAuthMethod clientAuthMethod;
     private DeliveryMode deliveryMode;
     private Scope[] scopes;
     private String[] claimNames;
@@ -852,6 +854,48 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     public BackchannelAuthenticationResponse setClientName(String name)
     {
         this.clientName = name;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client authentication method that should be performed at the
+     * backchannel authentication endpoint.
+     *
+     * <p>
+     * If the client could not be identified by the information in the request,
+     * this method returns {@code null}.
+     * </p>
+     *
+     * @return
+     *         The client authentication method that should be performed at
+     *         the backchannel authentication endpoint.
+     *
+     * @since 2.50
+     */
+    public ClientAuthMethod getClientAuthMethod()
+    {
+        return clientAuthMethod;
+    }
+
+
+    /**
+     * Set the client authentication method that should be performed at the
+     * backchannel authentication endpoint.
+     *
+     * @param method
+     *         The client authentication method that should be performed at
+     *         the backchannel authentication endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.50
+     */
+    public BackchannelAuthenticationResponse setClientAuthMethod(ClientAuthMethod method)
+    {
+        this.clientAuthMethod = method;
 
         return this;
     }

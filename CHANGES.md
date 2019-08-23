@@ -4,6 +4,10 @@ CHANGES
 - `AuthleteApi` interface
     * Added `registerRequestObject(RequestObjectRequest)` method.
 
+- `BackchannelAuthenticationResponse` class
+    * `getClientAuthMethod()` method.
+    * `setClientAuthMethod(ClientAuthMethod)` method.
+
 - `Client` class
     * Added `getSectorIdentifierUri()` method.
     * Added `setSectorIdentifierUri(URI)` method.
