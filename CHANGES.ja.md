@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.50 (2019 年 08 月 24 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `registerRequestObject(RequestObjectRequest)` メソッドを追加。
 

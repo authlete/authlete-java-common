@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.50 (2019-08-24)
+-----------------
+
 - `AuthleteApi` interface
     * Added `registerRequestObject(RequestObjectRequest)` method.
 
