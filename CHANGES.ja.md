@@ -1,6 +1,10 @@
 変更点
 ======
 
+- 名称変更
+    * `RequestObjectRequest` を `PushedAuthReqRequest` に名称変更。
+    * `RequestObjectResponse` を `PushedAuthReqResponse` に名称変更。
+
 2.50 (2019 年 08 月 24 日)
 --------------------------
 

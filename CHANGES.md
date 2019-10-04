@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- Renaming
+    * Renamed `RequestObjectRequest` to `PushedAuthReqRequest`. 
+    * Renamed `RequestObjectResponse` to `PushedAuthReqResponse`. 
+
+
 2.50 (2019-08-24)
 -----------------
 
