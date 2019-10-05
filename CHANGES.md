@@ -1,9 +1,13 @@
 CHANGES
 =======
 
-- Renaming
-    * Renamed `RequestObjectRequest` to `PushedAuthReqRequest`. 
-    * Renamed `RequestObjectResponse` to `PushedAuthReqResponse`. 
+- `AuthleteApi` interface
+    * Renamed `registerRequestObject(RequestObjectRequest)` to
+      `pushAuthorizationRequest(PushedAuthReqRequest)`.
+
+- New classes
+    * `PushedAuthReqRequest` (renamed from `RequestObjectRequest`)
+    * `PushedAuthReqResponse` (renamed from `RequestObjectResponse`)
 
 
 2.50 (2019-08-24)

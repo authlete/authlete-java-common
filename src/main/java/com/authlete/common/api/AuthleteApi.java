@@ -50,8 +50,8 @@ import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
 import com.authlete.common.dto.JoseVerifyRequest;
 import com.authlete.common.dto.JoseVerifyResponse;
-import com.authlete.common.dto.RequestObjectRequest;
-import com.authlete.common.dto.RequestObjectResponse;
+import com.authlete.common.dto.PushedAuthReqRequest;
+import com.authlete.common.dto.PushedAuthReqResponse;
 import com.authlete.common.dto.RevocationRequest;
 import com.authlete.common.dto.RevocationResponse;
 import com.authlete.common.dto.Service;
@@ -1395,7 +1395,7 @@ public interface AuthleteApi
 
 
     /**
-     * Call Authlete's {@code /api/requestobject} API.
+     * Call Authlete's {@code /api/pushed_auth_req} API.
      *
      * @param request
      *            Request parameters passed to the API.
@@ -1403,8 +1403,8 @@ public interface AuthleteApi
      * @return
      *         Response from the API.
      *
-     * @since 2.50
+     * @since 2.51
      */
-    RequestObjectResponse registerRequestObject(
-            RequestObjectRequest request) throws AuthleteApiException;
+    PushedAuthReqResponse pushAuthorizationRequest(
+            PushedAuthReqRequest request) throws AuthleteApiException;
 }
