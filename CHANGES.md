@@ -5,6 +5,10 @@ CHANGES
     * Renamed `registerRequestObject(RequestObjectRequest)` to
       `pushAuthorizationRequest(PushedAuthReqRequest)`.
 
+- `Service` class
+    * Added `getPushedAuthReqDuration()` method.
+    * Added `setPushedAuthReqDuration(long)` method.
+
 - New classes
     * `PushedAuthReqRequest` (renamed from `RequestObjectRequest`)
     * `PushedAuthReqResponse` (renamed from `RequestObjectResponse`)

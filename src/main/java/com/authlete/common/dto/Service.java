@@ -300,6 +300,14 @@ public class Service implements Serializable
 
 
     /**
+     * Duration of pushed authorization requests.
+     *
+     * @since 2.51
+     */
+    private long pushedAuthReqDuration;
+
+
+    /**
      * Metadata.
      *
      * @since 1.39
@@ -1630,6 +1638,71 @@ public class Service implements Serializable
     public Service setAuthorizationResponseDuration(long duration)
     {
         this.authorizationResponseDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of pushed authorization requests.
+     *
+     * <p>
+     * "OAuth 2.0 Pushed Authorization Requests" defines an endpoint (called
+     * "pushed authorization request endpoint") which client applications can
+     * register authorization requests into and get corresponding URIs (called
+     * "request URIs") from. The issued URIs represent the registered
+     * authorization requests. The client applications can use the URIs as the
+     * value of the {@code request_uri} request parameter in an authorization
+     * request.
+     * </p>
+     *
+     * <p>
+     * The value returned from this method represents the duration of registered
+     * authorization requests and is used as the value of the {@code expires_in}
+     * parameter in responses from the pushed authorization request endpoint.
+     * </p>
+     *
+     * @return
+     *         The duration of pushed authorization requests in seconds.
+     *
+     * @since 2.51
+     */
+    public long getPushedAuthReqDuration()
+    {
+        return pushedAuthReqDuration;
+    }
+
+
+    /**
+     * Set the duration of pushed authorization requests.
+     *
+     * <p>
+     * "OAuth 2.0 Pushed Authorization Requests" defines an endpoint (called
+     * "pushed authorization request endpoint") which client applications can
+     * register authorization requests into and get corresponding URIs (called
+     * "request URIs") from. The issued URIs represent the registered
+     * authorization requests. The client applications can use the URIs as the
+     * value of the {@code request_uri} request parameter in an authorization
+     * request.
+     * </p>
+     *
+     * <p>
+     * The value given to this method represents the duration of registered
+     * authorization requests and is used as the value of the {@code expires_in}
+     * parameter in responses from the pushed authorization request endpoint.
+     * </p>
+     *
+     * @param duration
+     *         The duration of pushed authorization requests.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.51
+     */
+    public Service setPushedAuthReqDuration(long duration)
+    {
+        this.pushedAuthReqDuration = duration;
 
         return this;
     }

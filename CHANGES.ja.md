@@ -5,6 +5,10 @@
     * `registerRequestObject(RequestObjectRequest)` メソッドの名前を
       `pushAuthorizationRequest(PushedAuthReqRequest)` に変更。
 
+- `Service` クラス
+    * `getPushedAuthReqDuration()` メソッドを追加。
+    * `setPushedAuthReqDuration(long)` メソッドを追加。
+
 - 新しいクラス
     * `PushedAuthReqRequest` (`RequestObjectRequest` から名称変更)
     * `PushedAuthReqResponse` (`RequestObjectResponse` から名称変更)
