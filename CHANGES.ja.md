@@ -2,6 +2,8 @@
 ======
 
 - `AuthleteApi` インターフェース
+    * `deleteClient(String)` メソッドを追加。
+    * `getClient(String)` メソッドを追加。
     * `registerRequestObject(RequestObjectRequest)` メソッドの名前を
       `pushAuthorizationRequest(PushedAuthReqRequest)` に変更。
 

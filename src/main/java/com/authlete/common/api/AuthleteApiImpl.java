@@ -141,8 +141,8 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String CLIENT_REGISTRATION_GET_API_PATH       = "/api/client/registration/get";
     private static final String CLIENT_REGISTRATION_UPDATE_API_PATH    = "/api/client/registration/update";
     private static final String CLIENT_REGISTRATION_DELETE_API_PATH    = "/api/client/registration/delete";
-    private static final String CLIENT_DELETE_API_PATH                 = "/api/client/delete/%d";
-    private static final String CLIENT_GET_API_PATH                    = "/api/client/get/%d";
+    private static final String CLIENT_DELETE_API_PATH                 = "/api/client/delete/%s";
+    private static final String CLIENT_GET_API_PATH                    = "/api/client/get/%s";
     private static final String CLIENT_GET_LIST_API_PATH               = "/api/client/get/list";
     private static final String CLIENT_SECRET_REFRESH_API_PATH         = "/api/client/secret/refresh/%s";
     private static final String CLIENT_SECRET_UPDATE_API_PATH          = "/api/client/secret/update/%s";
@@ -1139,6 +1139,13 @@ class AuthleteApiImpl implements AuthleteApi
     @Override
     public void deleteClient(long clientId) throws AuthleteApiException
     {
+        deleteClient(String.valueOf(clientId));
+    }
+
+
+    @Override
+    public void deleteClient(String clientId) throws AuthleteApiException
+    {
         callServiceDeleteApi(
                 String.format(CLIENT_DELETE_API_PATH, clientId));
     }
@@ -1146,6 +1153,13 @@ class AuthleteApiImpl implements AuthleteApi
 
     @Override
     public Client getClient(long clientId) throws AuthleteApiException
+    {
+        return getClient(String.valueOf(clientId));
+    }
+
+
+    @Override
+    public Client getClient(String clientId) throws AuthleteApiException
     {
         return callServiceGetApi(
                 String.format(CLIENT_GET_API_PATH, clientId), Client.class);

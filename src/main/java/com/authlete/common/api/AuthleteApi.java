@@ -814,6 +814,17 @@ public interface AuthleteApi
 
 
     /**
+     * Delete a client (= call Authlete's <code>/client/delete/{clientId}</code> API).
+     *
+     * @param clientId
+     *         Client ID.
+     *
+     * @since 2.51
+     */
+    void deleteClient(String clientId) throws AuthleteApiException;
+
+
+    /**
      * Get a client (= call Authlete's <code>/client/get/{clientId}</code> API).
      *
      * @param clientId
@@ -823,6 +834,20 @@ public interface AuthleteApi
      *         Information about the client.
      */
     Client getClient(long clientId) throws AuthleteApiException;
+
+
+    /**
+     * Get a client (= call Authlete's <code>/client/get/{clientId}</code> API).
+     *
+     * @param clientId
+     *         The client ID.
+     *
+     * @return
+     *         Information about the client.
+     *
+     * @since 2.51
+     */
+    Client getClient(String clientId) throws AuthleteApiException;
 
 
     /**

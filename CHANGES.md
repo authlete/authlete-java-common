@@ -2,6 +2,8 @@ CHANGES
 =======
 
 - `AuthleteApi` interface
+    * Added `deleteClient(String)` method.
+    * Added `getClient(String)` method.
     * Renamed `registerRequestObject(RequestObjectRequest)` to
       `pushAuthorizationRequest(PushedAuthReqRequest)`.
 
