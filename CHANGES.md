@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.51 (2019-10-05)
+-----------------
+
 - `AuthleteApi` interface
     * Added `deleteClient(String)` method.
     * Added `getClient(String)` method.

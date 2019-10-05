@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.50</version>
+    <version>2.51</version>
 </dependency>
 ```
 
@@ -207,111 +207,118 @@ settings.setReadTimeout(5000);
 
   1. 認可エンドポイント実装のためのメソッド群
 
-    - `authorization(AuthorizationRequest request)`
-    - `authorizationFail(AuthorizationFailRequest request)`
-    - `authorizationIssue(AuthorizationIssueRequest request)`
+  - `authorization(AuthorizationRequest request)`
+  - `authorizationFail(AuthorizationFailRequest request)`
+  - `authorizationIssue(AuthorizationIssueRequest request)`
 
   2. トークンエンドポイント実装のためのメソッド群
 
-    - `token(TokenRequest request)`
-    - `tokenFail(TokenFailRequest request)`
-    - `tokenIssue(TokenIssueRequest request)`
+  - `token(TokenRequest request)`
+  - `tokenFail(TokenFailRequest request)`
+  - `tokenIssue(TokenIssueRequest request)`
 
   3. サービス管理のためのメソッド群
 
-    - `createService(Service service)`
-    - `deleteService(long serviceApiKey)`
-    - `getService(long serviceApiKey)`
-    - `getServiceList()`
-    - `getServiceList(int start, int end)`
-    - `updateService(Service service)`
+  - `createService(Service service)`
+  - `deleteService(long serviceApiKey)`
+  - `getService(long serviceApiKey)`
+  - `getServiceList()`
+  - `getServiceList(int start, int end)`
+  - `updateService(Service service)`
 
   4. クライアントアプリケーション管理のためのメソッド群
 
-    - `createClient(Client client)`
-    - `deleteClient(long clientId)`
-    - `getClient(long clientId)`
-    - `getClientList()`
-    - `getClientList(int start, int end)`
-    - `updateClient(Client client)`
-    - `refreshClientSecret(long clientId)`
-    - `refreshClientSecret(String clientIdentifier)`
-    - `updateClientSecret(long clientId, String clientSecret)`
-    - `updateClientSecret(String clientIdentifier, String clientSecret)`
+  - `createClient(Client client)`
+  - `deleteClient(long clientId)`
+  - `deleteClient(String clientId)`
+  - `getClient(long clientId)`
+  - `getClient(String clientId)`
+  - `getClientList()`
+  - `getClientList(int start, int end)`
+  - `updateClient(Client client)`
+  - `refreshClientSecret(long clientId)`
+  - `refreshClientSecret(String clientIdentifier)`
+  - `updateClientSecret(long clientId, String clientSecret)`
+  - `updateClientSecret(String clientIdentifier, String clientSecret)`
 
   5. アクセストークンの情報取得のためのメソッド群
 
-    - `introspection(IntrospectionRequest request)`
-    - `standardIntrospection(StandardIntrospectionRequest request)`
-    - `getTokenList()`
-    - `getTokenList(String clientIdentifier, String subject)`
-    - `getTokenList(int start, int end)`
-    - `getTokenList(String clientIdentifier, String subject, int start, int end)`
+  - `introspection(IntrospectionRequest request)`
+  - `standardIntrospection(StandardIntrospectionRequest request)`
+  - `getTokenList()`
+  - `getTokenList(String clientIdentifier, String subject)`
+  - `getTokenList(int start, int end)`
+  - `getTokenList(String clientIdentifier, String subject, int start, int end)`
 
   6. アクセストークン取り消しエンドポイント実装のためのメソッド群
 
-    - `revocation(RevocationRequest request)`
+  - `revocation(RevocationRequest request)`
 
   7. ユーザー情報エンドポイント実装のためのメソッド群
 
-    - `userinfo(UserInfoRequest request)`
-    - `userinfoIssue(UserInfoIssueRequest request)`
+  - `userinfo(UserInfoRequest request)`
+  - `userinfoIssue(UserInfoIssueRequest request)`
 
   8. JWK セットエンドポイント実装のためのメソッド群
 
-    - `getServiceJwks()`
-    - `getServiceJwks(boolean pretty, boolean includePrivateKeys)`
+  - `getServiceJwks()`
+  - `getServiceJwks(boolean pretty, boolean includePrivateKeys)`
 
   9. OpenID Connect Discovery のためのメソッド群
 
-    - `getServiceConfiguration()`
-    - `getServiceConfiguration(boolean pretty)`
+  - `getServiceConfiguration()`
+  - `getServiceConfiguration(boolean pretty)`
 
   10. トークン操作のためのメソッド群
 
-    - `tokenCreate(TokenCreateRequest request)`
-    - `tokenUpdate(TokenUpdateRequest request)`
+  - `tokenCreate(TokenCreateRequest request)`
+  - `tokenUpdate(TokenUpdateRequest request)`
 
   11. クライアント毎の要求可能スコープ群に関するメソッド群 (非推奨; Client API で代替可能)
 
-    - `getRequestableScopes(long clientId)`
-    - `setRequestableScopes(long clientId, String[] scopes)`
-    - `deleteRequestableScopes(long clientId)`
+  - `getRequestableScopes(long clientId)`
+  - `setRequestableScopes(long clientId, String[] scopes)`
+  - `deleteRequestableScopes(long clientId)`
 
   12. 付与されたスコープの記録に関するメソッド群
 
-    - `getGrantedScopes(long clientId, String subject)`
-    - `deleteGrantedScopes(long clientId, String subject)`
+  - `getGrantedScopes(long clientId, String subject)`
+  - `deleteGrantedScopes(long clientId, String subject)`
 
   13. ユーザー・クライアント単位の認可管理に関するメソッド群
 
-    - `deleteClientAuthorization(long clientId, String subject)`
-    - `getClientAuthorizationList(ClientAuthorizationGetListRequest request)`
-    - `updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request)`
+  - `deleteClientAuthorization(long clientId, String subject)`
+  - `getClientAuthorizationList(ClientAuthorizationGetListRequest request)`
+  - `updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request)`
 
   14. JOSE に関するメソッド群
 
-    - `verifyJose(JoseVerifyRequest)`
+  - `verifyJose(JoseVerifyRequest)`
 
   15. CIBA (Client Initiated Backchannel Authentication) に関するメソッド群
 
-    - `backchannelAuthentication(BackchannelAuthenticationRequest)`
-    - `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)`
-    - `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)`
-    - `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)`
+  - `backchannelAuthentication(BackchannelAuthenticationRequest)`
+  - `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)`
+  - `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)`
+  - `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)`
 
-16. OpenID Connect Dynamic Client Registration に関するメソッド群
+  16. OpenID Connect Dynamic Client Registration に関するメソッド群
 
-    - `dynamicClientRegister(ClientRegistrationRequest)`
-    - `dynamicClientGet(ClientRegistrationRequest)`
-    - `dynamicClientUpdate(ClientRegistrationRequest)`
-    - `dynamicClientDelete(ClientRegistrationRequest)`
+  - `dynamicClientRegister(ClientRegistrationRequest)`
+  - `dynamicClientGet(ClientRegistrationRequest)`
+  - `dynamicClientUpdate(ClientRegistrationRequest)`
+  - `dynamicClientDelete(ClientRegistrationRequest)`
 
-17. Device Flow に関するメソッド群
+  17. Device Flow に関するメソッド群
 
-    - `deviceAuthorization(DeviceAuthorizationRequest)`
-    - `deviceComplete(DeviceCompleteRequest)`
-    - `deviceVerification(DeviceVerificationRequest)`
+  - `deviceAuthorization(DeviceAuthorizationRequest)`
+  - `deviceComplete(DeviceCompleteRequest)`
+  - `deviceVerification(DeviceVerificationRequest)`
+
+  18. Pushed Authorization Requests に関するメソッド群
+
+  - `pushAuthorizationRequest(PushedAuthReqRequest)`
+
 
 *例*
 
@@ -349,6 +356,9 @@ Authlete 2.1 以降で利用できる機能：
 - Dynamic Client Registration (RFC 7591 & RFC 7592)
 - OAuth 2.0 Device Authorization Grant (Device Flow)
 - JWT-based Access Token
+
+詳細情報は [スペックシート](https://www.authlete.com/ja/legal/spec_sheet/)
+を参照してください。
 
 
 メモ

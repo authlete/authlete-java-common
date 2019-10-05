@@ -32,7 +32,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.50</version>
+    <version>2.51</version>
 </dependency>
 ```
 
@@ -219,111 +219,117 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
   1. Methods for Authorization Endpoint Implementation
 
-    - `authorization(AuthorizationRequest request)`
-    - `authorizationFail(AuthorizationFailRequest request)`
-    - `authorizationIssue(AuthorizationIssueRequest request)`
+  - `authorization(AuthorizationRequest request)`
+  - `authorizationFail(AuthorizationFailRequest request)`
+  - `authorizationIssue(AuthorizationIssueRequest request)`
 
   2. Methods for Token Endpoint Implementation
 
-    - `token(TokenRequest request)`
-    - `tokenFail(TokenFailRequest request)`
-    - `tokenIssue(TokenIssueRequest request)`
+  - `token(TokenRequest request)`
+  - `tokenFail(TokenFailRequest request)`
+  - `tokenIssue(TokenIssueRequest request)`
 
   3. Methods for Service Management
 
-    - `createService(Service service)`
-    - `deleteService(long serviceApiKey)`
-    - `getService(long serviceApiKey)`
-    - `getServiceList()`
-    - `getServiceList(int start, int end)`
-    - `updateService(Service service)`
+  - `createService(Service service)`
+  - `deleteService(long serviceApiKey)`
+  - `getService(long serviceApiKey)`
+  - `getServiceList()`
+  - `getServiceList(int start, int end)`
+  - `updateService(Service service)`
 
   4. Methods for Client Application Management
 
-    - `createClient(Client client)`
-    - `deleteClient(long clientId)`
-    - `getClient(long clientId)`
-    - `getClientList()`
-    - `getClientList(int start, int end)`
-    - `updateClient(Client client)`
-    - `refreshClientSecret(long clientId)`
-    - `refreshClientSecret(String clientIdentifier)`
-    - `updateClientSecret(long clientId, String clientSecret)`
-    - `updateClientSecret(String clientIdentifier, String clientSecret)`
+  - `createClient(Client client)`
+  - `deleteClient(long clientId)`
+  - `deleteClient(String clientId)`
+  - `getClient(long clientId)`
+  - `getClient(String clientId)`
+  - `getClientList()`
+  - `getClientList(int start, int end)`
+  - `updateClient(Client client)`
+  - `refreshClientSecret(long clientId)`
+  - `refreshClientSecret(String clientIdentifier)`
+  - `updateClientSecret(long clientId, String clientSecret)`
+  - `updateClientSecret(String clientIdentifier, String clientSecret)`
 
   5. Methods for Access Token Introspection
 
-    - `introspection(IntrospectionRequest request)`
-    - `standardIntrospection(StandardIntrospectionRequest request)`
-    - `getTokenList()`
-    - `getTokenList(String clientIdentifier, String subject)`
-    - `getTokenList(int start, int end)`
-    - `getTokenList(String clientIdentifier, String subject, int start, int end)`
+  - `introspection(IntrospectionRequest request)`
+  - `standardIntrospection(StandardIntrospectionRequest request)`
+  - `getTokenList()`
+  - `getTokenList(String clientIdentifier, String subject)`
+  - `getTokenList(int start, int end)`
+  - `getTokenList(String clientIdentifier, String subject, int start, int end)`
 
   6. Methods for Revocation Endpoint Implementation
 
-    - `revocation(RevocationRequest request)`
+  - `revocation(RevocationRequest request)`
 
   7. Methods for User Info Endpoint Implementation
 
-    - `userinfo(UserInfoRequest request)`
-    - `userinfoIssue(UserInfoIssueRequest request)`
+  - `userinfo(UserInfoRequest request)`
+  - `userinfoIssue(UserInfoIssueRequest request)`
 
   8. Methods for JWK Set Endpoint Implementation
 
-    - `getServiceJwks()`
-    - `getServiceJwks(boolean pretty, boolean includePrivateKeys)`
+  - `getServiceJwks()`
+  - `getServiceJwks(boolean pretty, boolean includePrivateKeys)`
 
   9. Methods for OpenID Connect Discovery
 
-    - `getServiceConfiguration()`
-    - `getServiceConfiguration(boolean pretty)`
+  - `getServiceConfiguration()`
+  - `getServiceConfiguration(boolean pretty)`
 
   10. Methods for Token Operations
 
-    - `tokenCreate(TokenCreateRequest request)`
-    - `tokenUpdate(TokenUpdateRequest request)`
+  - `tokenCreate(TokenCreateRequest request)`
+  - `tokenUpdate(TokenUpdateRequest request)`
 
   11. Methods for Requestable Scopes per Client (deprecated; Client APIs suffice)
 
-    - `getRequestableScopes(long clientId)`
-    - `setRequestableScopes(long clientId, String[] scopes)`
-    - `deleteRequestableScopes(long clientId)`
+  - `getRequestableScopes(long clientId)`
+  - `setRequestableScopes(long clientId, String[] scopes)`
+  - `deleteRequestableScopes(long clientId)`
 
   12. Methods for Records of Granted Scopes
 
-    - `getGrantedScopes(long clientId, String subject)`
-    - `deleteGrantedScopes(long clientId, String subject)`
+  - `getGrantedScopes(long clientId, String subject)`
+  - `deleteGrantedScopes(long clientId, String subject)`
 
   13. Methods for Authorization Management on a User-Client Combination Basis
 
-    - `deleteClientAuthorization(long clientId, String subject)`
-    - `getClientAuthorizationList(ClientAuthorizationGetListRequest request)`
-    - `updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request)`
+  - `deleteClientAuthorization(long clientId, String subject)`
+  - `getClientAuthorizationList(ClientAuthorizationGetListRequest request)`
+  - `updateClientAuthorization(long clientId, ClientAuthorizationUpdateRequest request)`
 
   14. Methods for JOSE
 
-    - `verifyJose(JoseVerifyRequest)`
+  - `verifyJose(JoseVerifyRequest)`
 
   15. Methods for CIBA (Client Initiated Backchannel Authentication)
 
-    - `backchannelAuthentication(BackchannelAuthenticationRequest)`
-    - `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)`
-    - `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)`
-    - `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)`
+  - `backchannelAuthentication(BackchannelAuthenticationRequest)`
+  - `backchannelAuthenticationIssue(BackchannelAuthenticationIssueRequest)`
+  - `backchannelAuthenticationFail(BackchannelAuthenticationFailRequest)`
+  - `backchannelAuthenticationComplete(BackchannelAuthenticationCompleteRequest)`
 
   16. Methods for OpenID Connect Dynamic Client Registration
 
-    - `dynamicClientRegister(ClientRegistrationRequest)`
-    - `dynamicClientGet(ClientRegistrationRequest)`
-    - `dynamicClientUpdate(ClientRegistrationRequest)`
-    - `dynamicClientDelete(ClientRegistrationRequest)`
+  - `dynamicClientRegister(ClientRegistrationRequest)`
+  - `dynamicClientGet(ClientRegistrationRequest)`
+  - `dynamicClientUpdate(ClientRegistrationRequest)`
+  - `dynamicClientDelete(ClientRegistrationRequest)`
 
   17. Methods for Device Flow
 
-    - `deviceAuthorization(DeviceAuthorizationRequest)`
-    - `deviceComplete(DeviceCompleteRequest)`
-    - `deviceVerification(DeviceVerificationRequest)`
+  - `deviceAuthorization(DeviceAuthorizationRequest)`
+  - `deviceComplete(DeviceCompleteRequest)`
+  - `deviceVerification(DeviceVerificationRequest)`
+
+  18. Methods for Pushed Authorization Requests
+
+  - `pushAuthorizationRequest(PushedAuthReqRequest)`
 
 *Examples*
 
@@ -362,6 +368,8 @@ Features available in Authlete 2.1 and onwards:
 - Dynamic Client Registration (RFC 7591 & RFC 7592)
 - OAuth 2.0 Device Authorization Grant (Device Flow)
 - JWT-based Access Token
+
+See [Spec Sheet](https://www.authlete.com/legal/spec_sheet/) for further details.
 
 
 Note
