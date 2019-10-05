@@ -20,11 +20,12 @@ import java.io.Serializable;
 
 
 /**
- * Request to Authlete's {@code /api/requestobject} API.
+ * Request to Authlete's {@code /api/pushed_auth_req} API.
  *
  * <p>
- * The authorization server can implement a request object endpoint which
- * is defined in "Pushed Request Object" by using the Authlete API.
+ * The authorization server can implement a pushed authorization request
+ * endpoint which is defined in "OAuth 2.0 Pushed Authorization Requests"
+ * by using the Authlete API.
  * </p>
  *
  * <p>
@@ -37,9 +38,9 @@ import java.io.Serializable;
  * <dt><b><code>parameters</code></b> (REQUIRED)</dt>
  * <dd>
  * <p>
- * Request parameters that the request object endpoint of the authorization
- * server implementation received from the client application. Its format is
- * {@code application/x-www-form-urlencoded}.
+ * Request parameters that the pushed authorization request endpoint of the
+ * authorization server implementation received from the client application.
+ * Its format is {@code application/x-www-form-urlencoded}.
  * </p>
  * </dd>
  *
@@ -47,14 +48,14 @@ import java.io.Serializable;
  * <dd>
  * <p>
  * The client ID extracted from the {@code Authorization} header of the request
- * to the request object endpoint.
+ * to the pushed authorization request endpoint.
  * </p>
  * <p>
- * If the request object endpoint of the authorization server implementation
- * supports Basic Authentication as a means of client authentication, and the
- * request from the client application contained its client ID in the
- * {@code Authorization} header, the value should be extracted and set to this
- * parameter.
+ * If the pushed authorization request endpoint of the authorization server
+ * implementation supports Basic Authentication as a means of client
+ * authentication, and the request from the client application contained its
+ * client ID in the {@code Authorization} header, the value should be extracted
+ * and set to this parameter.
  * </p>
  * </dd>
  *
@@ -62,14 +63,14 @@ import java.io.Serializable;
  * <dd>
  * <p>
  * The client secret extracted from the {@code Authorization} header of the
- * request to the request object endpoint.
+ * request to the pushed authorization request endpoint.
  * </p>
  * <p>
- * If the request object endpoint of the authorization server implementation
- * supports Basic Authentication as a means of client authentication, and the
- * request from the client application contained its client secret in the
- * {@code Authorization} header, the value should be extracted and set to this
- * parameter.
+ * If the pushed authorization request endpoint of the authorization server
+ * implementation supports Basic Authentication as a means of client
+ * authentication, and the request from the client application contained its
+ * client secret in the {@code Authorization} header, the value should be
+ * extracted and set to this parameter.
  * </p>
  * </dd>
  *
@@ -77,7 +78,8 @@ import java.io.Serializable;
  * <dd>
  * <p>
  * The client certificate used in the TLS connection between the client
- * application and the request object endpoint of the authorization server.
+ * application and the pushed authorization request endpoint of the
+ * authorization server.
  * </p>
  * </dd>
  *
@@ -92,15 +94,16 @@ import java.io.Serializable;
  * </dl>
  * </blockquote>
  *
- * @since 2.50
+ * @since 2.51
  */
-public class RequestObjectRequest implements Serializable
+public class PushedAuthReqRequest implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
 
     /**
-     * Request parameters of a request object request.
+     * Request parameters of the request to the pushed authorization request
+     * endpoint.
      */
     private String parameters;
 
@@ -130,8 +133,8 @@ public class RequestObjectRequest implements Serializable
 
 
     /**
-     * Get the request parameters that the request object endpoint received
-     * from the client application.
+     * Get the request parameters that the pushed authorization request
+     * endpoint received from the client application.
      *
      * @return
      *         Request parameters in {@code application/x-www-form-urlencoded}
@@ -144,8 +147,8 @@ public class RequestObjectRequest implements Serializable
 
 
     /**
-     * Set the request parameters that the request object endpoint received
-     * from the client application.
+     * Set the request parameters that the pushed authorization request
+     * endpoint received from the client application.
      *
      * @param parameters
      *         Request parameters in {@code application/x-www-form-urlencoded}
@@ -154,7 +157,7 @@ public class RequestObjectRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public RequestObjectRequest setParameters(String parameters)
+    public PushedAuthReqRequest setParameters(String parameters)
     {
         this.parameters = parameters;
 
@@ -164,7 +167,7 @@ public class RequestObjectRequest implements Serializable
 
     /**
      * Get the client ID extracted from the {@code Authorization} header of the
-     * request to the request object endpoint.
+     * request to the pushed authorization request endpoint.
      *
      * @return
      *         The client ID.
@@ -177,7 +180,7 @@ public class RequestObjectRequest implements Serializable
 
     /**
      * Set the client ID extracted from the {@code Authorization} header of the
-     * request to the request object endpoint.
+     * request to the pushed authorization request endpoint.
      *
      * @param clientId
      *         The client ID.
@@ -185,7 +188,7 @@ public class RequestObjectRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public RequestObjectRequest setClientId(String clientId)
+    public PushedAuthReqRequest setClientId(String clientId)
     {
         this.clientId = clientId;
 
@@ -195,7 +198,7 @@ public class RequestObjectRequest implements Serializable
 
     /**
      * Get the client secret extracted from the {@code Authorization} header of
-     * the request to the request object endpoint.
+     * the request to the pushed authorization request endpoint.
      *
      * @return
      *         The client secret.
@@ -208,7 +211,7 @@ public class RequestObjectRequest implements Serializable
 
     /**
      * Set the client secret extracted from the {@code Authorization} header of
-     * the request to the request object endpoint.
+     * the request to the pushed authorization request endpoint.
      *
      * @param clientSecret
      *         The client secret.
@@ -216,7 +219,7 @@ public class RequestObjectRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public RequestObjectRequest setClientSecret(String clientSecret)
+    public PushedAuthReqRequest setClientSecret(String clientSecret)
     {
         this.clientSecret = clientSecret;
 
@@ -226,7 +229,7 @@ public class RequestObjectRequest implements Serializable
 
     /**
      * Get the client certificate used in the TLS connection between the client
-     * application and the request object endpoint.
+     * application and the pushed authorization request endpoint.
      *
      * @return
      *         The client certificate.
@@ -239,7 +242,7 @@ public class RequestObjectRequest implements Serializable
 
     /**
      * Set the client certificate used in the TLS connection between the client
-     * application and the request object endpoint.
+     * application and the pushed authorization request endpoint.
      *
      * @param certificate
      *         The client certificate.
@@ -247,7 +250,7 @@ public class RequestObjectRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public RequestObjectRequest setClientCertificate(String certificate)
+    public PushedAuthReqRequest setClientCertificate(String certificate)
     {
         this.clientCertificate = certificate;
 
@@ -279,7 +282,7 @@ public class RequestObjectRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public RequestObjectRequest setClientCertificatePath(String[] path)
+    public PushedAuthReqRequest setClientCertificatePath(String[] path)
     {
         this.clientCertificatePath = path;
 

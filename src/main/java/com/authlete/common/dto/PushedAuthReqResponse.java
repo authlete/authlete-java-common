@@ -21,10 +21,10 @@ import com.authlete.common.types.ClientAuthMethod;
 
 
 /**
- * Response from Authlete's {@code /api/requestobject} API.
+ * Response from Authlete's {@code /api/pushed_auth_req} API.
  *
  * <p>
- * Authlete's {@code /api/requestobject} API returns JSON which can be mapped
+ * Authlete's {@code /api/pushed_auth_req} API returns JSON which can be mapped
  * to this class. The authorization server implementation should retrieve the
  * value of {@code action} from the response and take the following steps
  * according to the value.
@@ -35,7 +35,7 @@ import com.authlete.common.types.ClientAuthMethod;
  * <dd>
  * <p>
  * When the value of {@code action} is {@code CREATED}, it means that the
- * request object has been registered successfully.
+ * authorization request has been registered successfully.
  * </p>
  *
  * <p>
@@ -132,7 +132,8 @@ import com.authlete.common.types.ClientAuthMethod;
  * <dd>
  * <p>
  * When the value of {@code action} is {@code FORBIDDEN}, it means that the
- * client application is not allowed to use the request object endpoint.
+ * client application is not allowed to use the pushed authorization request
+ * endpoint.
  * </p>
  *
  * <p>
@@ -164,7 +165,7 @@ import com.authlete.common.types.ClientAuthMethod;
  * <dd>
  * <p>
  * When the value of {@code action} is {@code PAYLOAD_TOO_LARGE}, it means that
- * the size of the request object is too large.
+ * the size of the pushed authorization request is too large.
  * </p>
  *
  * <p>
@@ -234,51 +235,51 @@ import com.authlete.common.types.ClientAuthMethod;
  * </dd>
  *
  * </dl>
- * @since 2.50
+ * @since 2.51
  */
-public class RequestObjectResponse extends ApiResponse
+public class PushedAuthReqResponse extends ApiResponse
 {
     private static final long serialVersionUID = 1L;
 
 
     /**
-     * The next action the service implementation should take.
+     * The next action the authorization server should take.
      */
     public static enum Action
     {
         /**
-         * The request object has been registered successfully. The request
-         * object endpoint should return {@code 201 Created} to the client
+         * The pushed authorization request has been registered successfully.
+         * The endpoint should return {@code 201 Created} to the client
          * application.
          */
         CREATED,
 
 
         /**
-         * The request is invalid. The request object endpoint should return
-         * {@code 400 Bad Request} to the client application.
+         * The request is invalid. The pushed authorization request endpoint
+         * should return {@code 400 Bad Request} to the client application.
          */
         BAD_REQUEST,
 
 
         /**
-         * The client authentication at the request object endpoint failed.
-         * The request object endpoint should return {@code 401 Unauthorized}
+         * The client authentication at the pushed authorization request
+         * endpoint failed. The endpoint should return {@code 401 Unauthorized}
          * to the client application.
          */
         UNAUTHORIZED,
 
 
         /**
-         * The client application is not allowed to use the request object
-         * endpoint. The request object endpoint should return
+         * The client application is not allowed to use the pushed
+         * authorization request endpoint. The endpoint should return
          * {@code 403 Forbidden} to the client application.
          */
         FORBIDDEN,
 
 
         /**
-         * The size of the request object is too large. The request object
+         * The size of the pushed authorization request is too large. The
          * endpoint should return {@code 413 Payload Too Large} to the client
          * application.
          */
@@ -287,9 +288,10 @@ public class RequestObjectResponse extends ApiResponse
 
         /**
          * The API call was wrong or an error occurred on Authlete side. The
-         * request object endpoint should return {@code 500 Internal Server
-         * Error} to the client application. However, it is up to the
-         * authorization server's policy whether to return {@code 500} actually.
+         * pushed authorization request endpoint should return
+         * {@code 500 Internal Server Error} to the client application.
+         * However, it is up to the authorization server's policy whether to
+         * return {@code 500} actually.
          */
         INTERNAL_SERVER_ERROR,
     }
@@ -306,7 +308,7 @@ public class RequestObjectResponse extends ApiResponse
 
 
     /**
-     * Get the next action that the service implementation should take.
+     * Get the next action that the authorization server should take.
      *
      * @return
      *         The action.
@@ -318,7 +320,7 @@ public class RequestObjectResponse extends ApiResponse
 
 
     /**
-     * Set the next action that the service implementation should take.
+     * Set the next action that the authorization server should take.
      *
      * @param action
      *            The action.
@@ -326,7 +328,7 @@ public class RequestObjectResponse extends ApiResponse
      * @return
      *         {@code this} object.
      */
-    public RequestObjectResponse setAction(Action action)
+    public PushedAuthReqResponse setAction(Action action)
     {
         this.action = action;
 
@@ -357,7 +359,7 @@ public class RequestObjectResponse extends ApiResponse
      * @return
      *         {@code this} object.
      */
-    public RequestObjectResponse setResponseContent(String responseContent)
+    public PushedAuthReqResponse setResponseContent(String responseContent)
     {
         this.responseContent = responseContent;
 
@@ -367,7 +369,7 @@ public class RequestObjectResponse extends ApiResponse
 
     /**
      * Get the client authentication method that should be performed at the
-     * request object endpoint.
+     * pushed authorization request endpoint.
      *
      * <p>
      * If the client could not be identified by the information in the request,
@@ -376,7 +378,7 @@ public class RequestObjectResponse extends ApiResponse
      *
      * @return
      *         The client authentication method that should be performed at
-     *         the request object endpoint.
+     *         the pushed authorization request endpoint.
      */
     public ClientAuthMethod getClientAuthMethod()
     {
@@ -386,16 +388,16 @@ public class RequestObjectResponse extends ApiResponse
 
     /**
      * Set the client authentication method that should be performed at the
-     * request object endpoint.
+     * pushed authorization request endpoint.
      *
      * @param method
      *         The client authentication method that should be performed at
-     *         the request object endpoint.
+     *         the pushed authorization request endpoint.
      *
      * @return
      *         {@code this} object.
      */
-    public RequestObjectResponse setClientAuthMethod(ClientAuthMethod method)
+    public PushedAuthReqResponse setClientAuthMethod(ClientAuthMethod method)
     {
         this.clientAuthMethod = method;
 
@@ -404,9 +406,9 @@ public class RequestObjectResponse extends ApiResponse
 
 
     /**
-     * Get the request URI created to represent the stored request object.
-     * This can be sent by the client as the 'request_uri' parameter in an
-     * authorization request.
+     * Get the request URI created to represent the pushed authorization
+     * request. This can be sent by the client as the 'request_uri' parameter
+     * in an authorization request.
      *
      * @return
      *         The registered request URI.
@@ -418,7 +420,8 @@ public class RequestObjectResponse extends ApiResponse
 
 
     /**
-     * Set the request URI created to represent the stored request object.
+     * Set the request URI created to represent the pushed authorization
+     * request.
      *
      * @param uri
      *            The registered request URI.
@@ -426,7 +429,7 @@ public class RequestObjectResponse extends ApiResponse
      * @return
      *         {@code this} object.
      */
-    public RequestObjectResponse setRequestUri(URI uri)
+    public PushedAuthReqResponse setRequestUri(URI uri)
     {
         this.requestUri = uri;
 
