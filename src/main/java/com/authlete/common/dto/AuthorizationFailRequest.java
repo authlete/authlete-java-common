@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,6 +61,10 @@ public class AuthorizationFailRequest implements Serializable
     {
         /**
          * Unknown reason.
+         *
+         * <p>
+         * Using this reason will result in {@code error=server_error}.
+         * </p>
          */
         UNKNOWN,
 
@@ -185,7 +189,7 @@ public class AuthorizationFailRequest implements Serializable
          * Server error.
          *
          * <p>
-         * Using this reason will result in {@code error=login_required}.
+         * Using this reason will result in {@code error=server_error}.
          * </p>
          *
          * @since 1.3

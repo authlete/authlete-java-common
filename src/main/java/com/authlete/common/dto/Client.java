@@ -1059,7 +1059,7 @@ public class Client implements Serializable
      * <p><b>NOTE</b></p>
      *
      * <p>
-     * Old Authlete versions (2.0 and older) use this property
+     * Authlete 2.1 and older versions use this property
      * ({@code sectorIdentifier}) as the value of the {@code
      * sector_identifier_uri} client metadata. However, it was wrong.
      * Consolation is that it won't cause any issue because old Authlete
@@ -1069,7 +1069,7 @@ public class Client implements Serializable
      * </p>
      *
      * <p>
-     * Since Authlete 2.1, this property ({@code sectorIdentifier}) has
+     * Since Authlete 2.2, this property ({@code sectorIdentifier}) has
      * a different meaning. It holds the sector identifier which is
      * calculated based on the values of redirect URIs or the sector
      * identifier URI ({@code sectorIdentifierUri}). How to determine the
@@ -1105,7 +1105,7 @@ public class Client implements Serializable
      * <p><b>NOTE</b></p>
      *
      * <p>
-     * Old Authlete versions (2.0 and older) use this property
+     * Authlete 2.1 and older versions use this property
      * ({@code sectorIdentifier}) as the value of the {@code
      * sector_identifier_uri} client metadata. However, it was wrong.
      * Consolation is that it won't cause any issue because old Authlete
@@ -1115,7 +1115,7 @@ public class Client implements Serializable
      * </p>
      *
      * <p>
-     * Since Authlete 2.1, this property ({@code sectorIdentifier}) has
+     * Since Authlete 2.2, this property ({@code sectorIdentifier}) has
      * a different meaning. It holds the sector identifier which is
      * calculated based on the values of redirect URIs or the sector
      * identifier URI ({@code sectorIdentifierUri}). How to determine the

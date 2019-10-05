@@ -395,8 +395,8 @@ import com.authlete.common.util.Utils;
  *           configuration parameter of the client is {@link
  *           com.authlete.common.types.SubjectType#PAIRWISE PAIRWISE}, the value
  *           of {@code "sub"} claim is different from the value specified here.
- *           Note that the behavior for {@code PAIRWISE} is not supported by old
- *           Authlete versions (2.0 and older). See <a href=
+ *           Note that the behavior for {@code PAIRWISE} is not supported by
+ *           Authlete 2.1 and older versions. See <a href=
  *           "http://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes"
  *           >8. Subject Identifier Types</a> of OpenID Connect Core 1.0 for
  *           details about subject types.
