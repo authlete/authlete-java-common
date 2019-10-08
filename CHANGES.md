@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+2.53 (2019-10-08)
+-----------------
+
+- Just releasing again without any changes.
+
+
 2.52 (2019-10-08)
 -----------------
 
