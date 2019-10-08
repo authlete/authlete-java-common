@@ -485,11 +485,11 @@ public class Service implements Serializable
 
 
     /**
-     * The URI of the request object endpoint.
+     * The URI of the pushed authorization request endpoint.
      *
-     * @since 2.46
+     * @since 2.52
      */
-    private URI requestObjectEndpoint;
+    private URI pushedAuthReqEndpoint;
 
 
     /**
@@ -4094,53 +4094,53 @@ public class Service implements Serializable
 
 
     /**
-     * Get the URI of the request object endpoint.
+     * Get the URI of the pushed authorization request endpoint.
      *
      * <p>
-     * This property corresponds to the {@code request_object_endpoint}
+     * This property corresponds to the {@code pushed_authorization_request_endpoint}
      * metadata defined in "<a href=
-     * "https://openid.net/specs/openid-financial-api-part-2-ID2.html#openid-provider-discovery-metadata"
-     * >7.5. OpenID Provider Discovery Metadata</a>" of FAPI Part 2.
+     * "https://tools.ietf.org/html/draft-lodderstedt-oauth-par-00"
+     * >5. Authorization Server Metadata</a>" of OAuth 2.0 Pushed Authorization Requests.
      * </p>
      *
      * @return
-     *         The URI of the request object endpoint.
+     *         The URI of the pushed authorization request endpoint.
      *
-     * @since 2.46
+     * @since 2.52
      *
-     * @see <a href="https://openid.net/specs/openid-financial-api-part-2-ID2.html#openid-provider-discovery-metadata"
-     *      >FAPI Part 2, 7.5. OpenID Provider Discovery Metadata</a>
+     * @see <a href="https://tools.ietf.org/html/draft-lodderstedt-oauth-par-00#section-5"
+     *      >OAuth 2.0 Pushed Authorization Requests, 5. Authorization Server Metadata</a>
      */
-    public URI getRequestObjectEndpoint()
+    public URI getPushedAuthReqEndpoint()
     {
-        return requestObjectEndpoint;
+        return pushedAuthReqEndpoint;
     }
 
 
     /**
-     * Set the URI of the request object endpoint.
+     * Set the URI of the pushed authorization request endpoint.
      *
      * <p>
-     * This property corresponds to the {@code request_object_endpoint}
+     * This property corresponds to the {@code pushed_authorization_request_endpoint}
      * metadata defined in "<a href=
-     * "https://openid.net/specs/openid-financial-api-part-2-ID2.html#openid-provider-discovery-metadata"
-     * >7.5. OpenID Provider Discovery Metadata</a>" of FAPI Part 2.
+     * "https://tools.ietf.org/html/draft-lodderstedt-oauth-par-00"
+     * >5. Authorization Server Metadata</a>" of OAuth 2.0 Pushed Authorization Requests.
      * </p>
      *
      * @param endpoint
-     *         The URI of the request object endpoint.
+     *            The URI of the pushed authorization request endpoint.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 2.46
+     * @since 2.52
      *
-     * @see <a href="https://openid.net/specs/openid-financial-api-part-2-ID2.html#openid-provider-discovery-metadata"
-     *      >FAPI Part 2, 7.5. OpenID Provider Discovery Metadata</a>
+     * @see <a href="https://tools.ietf.org/html/draft-lodderstedt-oauth-par-00#section-5"
+     *      >OAuth 2.0 Pushed Authorization Requests, 5. Authorization Server Metadata</a>
      */
-    public Service setRequestObjectEndpoint(URI endpoint)
+    public Service setPushedAuthReqEndpoint(URI endpoint)
     {
-        this.requestObjectEndpoint = endpoint;
+        this.pushedAuthReqEndpoint = endpoint;
 
         return this;
     }
