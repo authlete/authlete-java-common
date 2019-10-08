@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+2.52 (2019-10-08)
+-----------------
+
+- `Service` class
+    * Added `getPushedAuthReqEndpoint()` method.
+    * Added `setPushedAuthReqEndpoint(URI)` method.
+    * Removed `getRequestObjectEndpoint()` method.
+    * Removed `setRequestObjectEndpoint(URI)` method.
+
+
 2.51 (2019-10-05)
 -----------------
 

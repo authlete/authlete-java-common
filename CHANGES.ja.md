@@ -1,6 +1,16 @@
 変更点
 ======
 
+2.52 (2019 年 10 月 08 日)
+--------------------------
+
+- `Service` クラス
+    * `getPushedAuthReqEndpoint()` メソッドを追加。
+    * `setPushedAuthReqEndpoint(URI)` メソッドを追加。
+    * `getRequestObjectEndpoint()` メソッドを削除。
+    * `setRequestObjectEndpoint(URI)` メソッドを削除。
+
+
 2.51 (2019 年 10 月 05 日)
 --------------------------
 
