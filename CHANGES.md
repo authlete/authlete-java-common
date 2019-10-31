@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.55 (2019-10-31)
+-----------------
+
 - `Client` class
     * Added `getAuthorizationDataTypes()` method.
     * Added `setAuthorizationDataTypes(String[])` method.

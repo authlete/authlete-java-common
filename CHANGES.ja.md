@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.55 (2019 年 10 月 31 日)
+--------------------------
+
 - `Client` クラス
     * `getAuthorizationDataTypes()` メソッドを追加。
     * `setAuthorizationDataTypes(String[])` メソッドを追加。
