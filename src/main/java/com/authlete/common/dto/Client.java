@@ -51,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 15L;
+    private static final long serialVersionUID = 16L;
 
 
     /*
@@ -264,6 +264,7 @@ public class Client implements Serializable
     private boolean bcUserCodeRequired;
     private boolean dynamicallyRegistered;
     private String registrationAccessTokenHash;
+    private String[] authorizationDataTypes;
 
 
     /**
@@ -2809,6 +2810,51 @@ public class Client implements Serializable
     public Client setRegistrationAccessTokenHash(String registrationAccessToken)
     {
         this.registrationAccessTokenHash = registrationAccessToken;
+
+        return this;
+    }
+
+
+    /**
+     * Get the data types that this client may use as values of the
+     * {@code "type"} field in {@code "authorization_details"}.
+     *
+     * <p>
+     * This property corresponds to the {@code "authorization_data_types"}
+     * metadata. See "OAuth 2.0 Rich Authorization Requests" (RAR) for details.
+     * </p>
+     *
+     * @return
+     *         Data types used in {@code "authorization_details"}.
+     *
+     * @since 2.55
+     */
+    public String[] getAuthorizationDataTypes()
+    {
+        return authorizationDataTypes;
+    }
+
+
+    /**
+     * Set the data types that this client may use as values of the
+     * {@code "type"} field in {@code "authorization_details"}.
+     *
+     * <p>
+     * This property corresponds to the {@code "authorization_data_types"}
+     * metadata. See "OAuth 2.0 Rich Authorization Requests" (RAR) for details.
+     * </p>
+     *
+     * @param types
+     *         Data types used in {@code "authorization_details"}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.55
+     */
+    public Client setAuthorizationDataTypes(String[] types)
+    {
+        this.authorizationDataTypes = types;
 
         return this;
     }

@@ -147,7 +147,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 30L;
+    private static final long serialVersionUID = 31L;
 
 
     /*
@@ -498,6 +498,12 @@ public class Service implements Serializable
      * @since 2.49
      */
     private NamedUri[] mtlsEndpointAliases;
+
+
+    /**
+     * Supported data types for {@code "authorization_details"}.
+     */
+    private String[] supportedAuthorizationDataTypes;
 
 
     /**
@@ -4206,6 +4212,53 @@ public class Service implements Serializable
     public Service setMtlsEndpointAliases(NamedUri[] aliases)
     {
         this.mtlsEndpointAliases = aliases;
+
+        return this;
+    }
+
+
+    /**
+     * Get the supported data types that can be used as values of the
+     * {@code "type"} field in {@code "authorization_details"}.
+     *
+     * <p>
+     * This property corresponds to the
+     * {@code "authorization_data_types_supported"} metadata.
+     * See "OAuth 2.0 Rich Authorization Requests" (RAR) for details.
+     * </p>
+     *
+     * @return
+     *         Supported data types.
+     *
+     * @since 2.55
+     */
+    public String[] getSupportedAuthorizationDataTypes()
+    {
+        return supportedAuthorizationDataTypes;
+    }
+
+
+    /**
+     * Set the supported data types that can be used as values of the
+     * {@code "type"} field in {@code "authorization_details"}.
+     *
+     * <p>
+     * This property corresponds to the
+     * {@code "authorization_data_types_supported"} metadata.
+     * See "OAuth 2.0 Rich Authorization Requests" (RAR) for details.
+     * </p>
+     *
+     * @param types
+     *         Supported data types.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.55
+     */
+    public Service setSupportedAuthorizationDataTypes(String[] types)
+    {
+        this.supportedAuthorizationDataTypes = types;
 
         return this;
     }

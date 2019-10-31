@@ -1,6 +1,15 @@
 変更点
 ======
 
+- `Client` クラス
+    * `getAuthorizationDataTypes()` メソッドを追加。
+    * `setAuthorizationDataTypes(String[])` メソッドを追加。
+
+- `Service` クラス
+    * `getSupportedAuthorizationDataTypes()` メソッドを追加。
+    * `setSupportedAuthorizationDataTypes(String[])` メソッドを追加。
+
+
 2.54 (2019 年 10 月 08 日)
 --------------------------
 
