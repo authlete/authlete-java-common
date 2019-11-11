@@ -564,7 +564,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  */
 public class BackchannelAuthenticationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -633,6 +633,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     private boolean userCodeRequired;
     private int requestedExpiry;
     private String requestContext;
+    private AuthzDetailsElement[] authorizationDetails;
     private String[] warnings;
     private String ticket;
 
@@ -1410,6 +1411,43 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     public BackchannelAuthenticationResponse setRequestContext(String context)
     {
         this.requestContext = context;
+
+        return this;
+    }
+
+
+    /**
+     * Get the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @return
+     *         Authorization details.
+     *
+     * @since 2.56
+     */
+    public AuthzDetailsElement[] getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    /**
+     * Set the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @param elements
+     *         Authorization details.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.56
+     */
+    public BackchannelAuthenticationResponse setAuthorizationDetails(AuthzDetailsElement[] elements)
+    {
+        this.authorizationDetails = elements;
 
         return this;
     }

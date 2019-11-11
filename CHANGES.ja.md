@@ -1,6 +1,38 @@
 変更点
 ======
 
+- `AuthorizationResponse` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetailsElement[])` メソッドを追加。
+
+- `BackchannelAuthenticationCompleteResponse` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetailsElement[])` メソッドを追加。
+
+- `BackchannelAuthenticationResponse` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetailsElement[])` メソッドを追加。
+
+- `DeviceVerificationResponse` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetailsElement[])` メソッドを追加。
+
+- `IntrospectionResponse` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetailsElement[])` メソッドを追加。
+
+- `TokenIssueResponse` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetailsElement[])` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetailsElement[])` メソッドを追加。
+
+- 新しいクラス
+    * `AuthzDetailsElement`
+
+
 2.55 (2019 年 10 月 31 日)
 --------------------------
 

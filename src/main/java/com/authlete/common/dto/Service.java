@@ -128,6 +128,15 @@ import com.authlete.common.types.UserCodeCharset;
  *       Access Tokens</a>"</i> for details.
  *     </td>
  *   </tr>
+ *   <tr>
+ *     <td>{@code authorization_details}</td>
+ *     <td>array</td>
+ *     <td>
+ *       If this access token has been generated with {@code authorization_details},
+ *       this claim is included. See <i>"OAuth 2.0 Rich Authorization Requests"</i>
+ *       for details about {@code authorization_details}.
+ *     </td>
+ *   </tr>
  * </table>
  *
  * <p>

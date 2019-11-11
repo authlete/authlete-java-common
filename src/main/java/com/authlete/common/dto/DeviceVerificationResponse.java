@@ -72,7 +72,7 @@ package com.authlete.common.dto;
  */
 public class DeviceVerificationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -123,6 +123,7 @@ public class DeviceVerificationResponse extends ApiResponse
     private String[] claimNames;
     private String[] acrs;
     private long expiresAt;
+    private AuthzDetailsElement[] authorizationDetails;
 
 
     /**
@@ -460,6 +461,43 @@ public class DeviceVerificationResponse extends ApiResponse
     public DeviceVerificationResponse setExpiresAt(long expiresAt)
     {
         this.expiresAt = expiresAt;
+
+        return this;
+    }
+
+
+    /**
+     * Get the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @return
+     *         Authorization details.
+     *
+     * @since 2.56
+     */
+    public AuthzDetailsElement[] getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    /**
+     * Set the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @param elements
+     *         Authorization details.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.56
+     */
+    public DeviceVerificationResponse setAuthorizationDetails(AuthzDetailsElement[] elements)
+    {
+        this.authorizationDetails = elements;
 
         return this;
     }

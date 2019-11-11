@@ -255,7 +255,7 @@ import com.authlete.common.util.Utils;
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -333,6 +333,7 @@ public class TokenResponse extends ApiResponse
     private Property[] properties;
     private String jwtAccessToken;
     private ClientAuthMethod clientAuthMethod;
+    private AuthzDetailsElement[] authorizationDetails;
 
 
     /**
@@ -988,5 +989,45 @@ public class TokenResponse extends ApiResponse
     public void setClientAuthMethod(ClientAuthMethod method)
     {
         this.clientAuthMethod = method;
+    }
+
+
+    /**
+     * Get the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * <p>
+     * When the {@code action} (= the value returned from {@link #getAction()}
+     * is {@link Action#PASSWORD PASSWORD}, this method returns an array that
+     * represents the {@code authorization_details} request parameter included
+     * in the token request. In other successful cases, this method returns the
+     * authorization details associated with the issued access token.
+     * </p>
+     *
+     * @return
+     *         Authorization details.
+     *
+     * @since 2.56
+     */
+    public AuthzDetailsElement[] getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    /**
+     * Set the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @param elements
+     *         Authorization details.
+     *
+     * @since 2.56
+     */
+    public void setAuthorizationDetails(AuthzDetailsElement[] elements)
+    {
+        this.authorizationDetails = elements;
     }
 }

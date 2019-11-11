@@ -218,7 +218,7 @@ import com.authlete.common.util.Utils;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     /**
@@ -356,6 +356,13 @@ public class IntrospectionResponse extends ApiResponse
      * type is supported and is assumed.
      */
     private String certificateThumbprint;
+
+
+    /**
+     * The content of the {@code "authorization_details"} request parameter which was
+     * included in the request that obtained the token.
+     */
+    private AuthzDetailsElement[] authorizationDetails;
 
 
     /**
@@ -719,5 +726,37 @@ public class IntrospectionResponse extends ApiResponse
     public void setCertificateThumbprint(String thumbprint)
     {
         this.certificateThumbprint = thumbprint;
+    }
+
+
+    /**
+     * Get the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @return
+     *         Authorization details.
+     *
+     * @since 2.56
+     */
+    public AuthzDetailsElement[] getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    /**
+     * Set the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @param elements
+     *         Authorization details.
+     *
+     * @since 2.56
+     */
+    public void setAuthorizationDetails(AuthzDetailsElement[] elements)
+    {
+        this.authorizationDetails = elements;
     }
 }

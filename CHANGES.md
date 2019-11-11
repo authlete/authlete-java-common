@@ -1,6 +1,38 @@
 CHANGES
 =======
 
+- `AuthorizationResponse` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetailsElement[])` method.
+
+- `BackchannelAuthenticationCompleteResponse` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetailsElement[])` method.
+
+- `BackchannelAuthenticationResponse` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetailsElement[])` method.
+
+- `DeviceVerificationResponse` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetailsElement[])` method.
+
+- `IntrospectionResponse` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetailsElement[])` method.
+
+- `TokenIssueResponse` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetailsElement[])` method.
+
+- `TokenResponse` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetailsElement[])` method.
+
+- New classes
+    * `AuthzDetailsElement`
+
+
 2.55 (2019-10-31)
 -----------------
 
