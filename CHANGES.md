@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.56 (2019-11-11)
+-----------------
+
 - `AuthorizationResponse` class
     * Added `getAuthorizationDetails()` method.
     * Added `setAuthorizationDetails(AuthzDetailsElement[])` method.

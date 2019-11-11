@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.56 (2019 年 11 月 11 日)
+--------------------------
+
 - `AuthorizationResponse` クラス
     * `getAuthorizationDetails()` メソッドを追加。
     * `setAuthorizationDetails(AuthzDetailsElement[])` メソッドを追加。
