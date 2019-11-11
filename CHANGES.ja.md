@@ -17,6 +17,9 @@
     * `getAuthorizationDetails()` メソッドを追加。
     * `setAuthorizationDetails(AuthzDetailsElement[])` メソッドを追加。
 
+- `ErrorCode` 列挙型
+    * `invalid_authorization_details` を追加。
+
 - `IntrospectionResponse` クラス
     * `getAuthorizationDetails()` メソッドを追加。
     * `setAuthorizationDetails(AuthzDetailsElement[])` メソッドを追加。

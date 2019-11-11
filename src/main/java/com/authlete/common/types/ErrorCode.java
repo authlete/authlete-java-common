@@ -410,5 +410,15 @@ public enum ErrorCode
      * @since 2.36
      */
     transaction_failed,
+
+
+    /**
+     * The {@code type} field of one or more elements in the
+     * {@code authorization_details} request parameter is not supported.
+     * Details are defined in <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @since 2.56
+     */
+    invalid_authorization_details,
     ;
 }

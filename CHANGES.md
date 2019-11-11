@@ -17,6 +17,9 @@ CHANGES
     * Added `getAuthorizationDetails()` method.
     * Added `setAuthorizationDetails(AuthzDetailsElement[])` method.
 
+- `ErrorCode` enum
+    * Added `invalid_authorization_details`.
+
 - `IntrospectionResponse` class
     * Added `getAuthorizationDetails()` method.
     * Added `setAuthorizationDetails(AuthzDetailsElement[])` method.
