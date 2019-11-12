@@ -1,13 +1,16 @@
 CHANGES
 =======
 
-- `AuthzDetailsElement`
+- `AuthzDetailsElement` class
     * Added `fromJson(String)` method.
     * Added `toJson()` method.
 
 - New classes
+    * `AuthzDetails`
+    * `AuthzDetailsDeserializer`
     * `AuthzDetailsElementDeserializer`
     * `AuthzDetailsElementSerializer`
+    * `AuthzDetailsSerializer`
     * `BaseJsonDeserializer`
     * `BaseJsonSerializer`
 

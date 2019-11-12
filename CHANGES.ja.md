@@ -6,8 +6,11 @@
     * `toJson()` メソッドを追加。
 
 - 新しいクラス
+    * `AuthzDetails`
+    * `AuthzDetailsDeserializer`
     * `AuthzDetailsElementDeserializer`
     * `AuthzDetailsElementSerializer`
+    * `AuthzDetailsSerializer`
     * `BaseJsonDeserializer`
     * `BaseJsonSerializer`
 
