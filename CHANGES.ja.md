@@ -1,9 +1,30 @@
 変更点
 ======
 
+- `AuthorizationResponse` クラス
+    * `authorizationDetails` の型を `AuthzDetailsElement[]` から `AuthzDetails` へ変更。
+
 - `AuthzDetailsElement` クラス
     * `fromJson(String)` メソッドを追加。
     * `toJson()` メソッドを追加。
+
+- `BackchannelAuthenticationCompleteResponse` クラス
+    * `authorizationDetails` の型を `AuthzDetailsElement[]` から `AuthzDetails` へ変更。
+
+- `BackchannelAuthenticationResponse` クラス
+    * `authorizationDetails` の型を `AuthzDetailsElement[]` から `AuthzDetails` へ変更。
+
+- `DeviceVerificationResponse` クラス
+    * `authorizationDetails` の型を `AuthzDetailsElement[]` から `AuthzDetails` へ変更。
+
+- `IntrospectionResponse` クラス
+    * `authorizationDetails` の型を `AuthzDetailsElement[]` から `AuthzDetails` へ変更。
+
+- `TokenIssueResponse` クラス
+    * `authorizationDetails` の型を `AuthzDetailsElement[]` から `AuthzDetails` へ変更。
+
+- `TokenResponse` クラス
+    * `authorizationDetails` の型を `AuthzDetailsElement[]` から `AuthzDetails` へ変更。
 
 - 新しいクラス
     * `AuthzDetails`

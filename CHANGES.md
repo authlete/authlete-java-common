@@ -1,9 +1,30 @@
 CHANGES
 =======
 
+- `AuthorizationResponse` class
+    * Change the type of `authorizationDetails` from `AuthzDetailsElement[]` to `AuthzDetails`.
+
 - `AuthzDetailsElement` class
     * Added `fromJson(String)` method.
     * Added `toJson()` method.
+
+- `BackchannelAuthenticationCompleteResponse` class
+    * Changed the type of `authorizationDetails` from `AuthzDetailsElement[]` to `AuthzDetails`.
+
+- `BackchannelAuthenticationResponse` class
+    * Changed the type of `authorizationDetails` from `AuthzDetailsElement[]` to `AuthzDetails`.
+
+- `DeviceVerificationResponse` class
+    * Changed the type of `authorizationDetails` from `AuthzDetailsElement[]` to `AuthzDetails`.
+
+- `IntrospectionResponse` class
+    * Changed the type of `authorizationDetails` from `AuthzDetailsElement[]` to `AuthzDetails`.
+
+- `TokenIssueResponse` class
+    * Changed the type of `authorizationDetails` from `AuthzDetailsElement[]` to `AuthzDetails`.
+
+- `TokenResponse` class
+    * Changed the type of `authorizationDetails` from `AuthzDetailsElement[]` to `AuthzDetails`.
 
 - New classes
     * `AuthzDetails`

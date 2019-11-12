@@ -139,7 +139,7 @@ import com.authlete.common.types.DeliveryMode;
  */
 public class BackchannelAuthenticationCompleteResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -200,7 +200,7 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     private long refreshTokenDuration;
     private long idTokenDuration;
     private String jwtAccessToken;
-    private AuthzDetailsElement[] authorizationDetails;
+    private AuthzDetails authorizationDetails;
 
 
     /**
@@ -814,7 +814,7 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
      *
      * @since 2.56
      */
-    public AuthzDetailsElement[] getAuthorizationDetails()
+    public AuthzDetails getAuthorizationDetails()
     {
         return authorizationDetails;
     }
@@ -825,7 +825,7 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
      * {@code "authorization_details"} request parameter which is defined in
      * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
      *
-     * @param elements
+     * @param details
      *         Authorization details.
      *
      * @return
@@ -833,9 +833,9 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
      *
      * @since 2.56
      */
-    public BackchannelAuthenticationCompleteResponse setAuthorizationDetails(AuthzDetailsElement[] elements)
+    public BackchannelAuthenticationCompleteResponse setAuthorizationDetails(AuthzDetails details)
     {
-        this.authorizationDetails = elements;
+        this.authorizationDetails = details;
 
         return this;
     }

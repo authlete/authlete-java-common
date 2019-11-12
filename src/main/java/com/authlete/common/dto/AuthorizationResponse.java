@@ -855,7 +855,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 11L;
+    private static final long serialVersionUID = 12L;
 
 
     /**
@@ -944,7 +944,7 @@ public class AuthorizationResponse extends ApiResponse
     private String requestObjectPayload;
     private String idTokenClaims;
     private String userInfoClaims;
-    private AuthzDetailsElement[] authorizationDetails;
+    private AuthzDetails authorizationDetails;
     private String responseContent;
     private String ticket;
 
@@ -1631,7 +1631,7 @@ public class AuthorizationResponse extends ApiResponse
      *
      * @since 2.56
      */
-    public AuthzDetailsElement[] getAuthorizationDetails()
+    public AuthzDetails getAuthorizationDetails()
     {
         return authorizationDetails;
     }
@@ -1642,14 +1642,14 @@ public class AuthorizationResponse extends ApiResponse
      * {@code "authorization_details"} request parameter which is defined in
      * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
      *
-     * @param elements
+     * @param details
      *         Authorization details.
      *
      * @since 2.56
      */
-    public void setAuthorizationDetails(AuthzDetailsElement[] elements)
+    public void setAuthorizationDetails(AuthzDetails details)
     {
-        this.authorizationDetails = elements;
+        this.authorizationDetails = details;
     }
 
 
