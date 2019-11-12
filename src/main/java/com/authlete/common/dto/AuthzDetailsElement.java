@@ -19,6 +19,7 @@ package com.authlete.common.dto;
 import java.io.Serializable;
 import java.util.Map;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 /**
@@ -304,5 +305,83 @@ public class AuthzDetailsElement implements Serializable
         }
 
         return new Gson().fromJson(otherFields, Map.class);
+    }
+
+
+    /**
+     * Convert this instance into a JSON string.
+     *
+     * <p>
+     * "Other fields" (the string returned from {@link #getOtherFields()} are
+     * expanded into the output JSON.
+     * </p>
+     *
+     * @return
+     *         A JSON string that represents this instance.
+     *
+     * @since 2.57
+     */
+    public String toJson()
+    {
+        return createSerializer().toJson(this);
+    }
+
+
+    /**
+     * Build an {@code AuthzDetailsElement} instance from a JSON string.
+     *
+     * <p>
+     * The following is an example of input JSON.
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "type"      : "my_type",
+     *   "locations" : ["loc0", "loc1"],
+     *   "actions"   : ["act0", "act1"],
+     *   "identifier": "my_id",
+     *   "prop0"     : "a",
+     *   "prop1"     : ["b", "c"],
+     *   "prop2"     : {
+     *     "sub0": "d",
+     *     "sub1": ["e", "f"]
+     *   }
+     * }
+     * </pre>
+     *
+     * @param json
+     *         A JSON string.
+     *
+     * @return
+     *         An {@code AuthzDetailsElement} instance built from the input JSON.
+     *
+     * @since 2.57
+     */
+    public static AuthzDetailsElement fromJson(String json)
+    {
+        if (json == null)
+        {
+            return null;
+        }
+
+        return createDeserializer().fromJson(json,  AuthzDetailsElement.class);
+    }
+
+
+    private static Gson createSerializer()
+    {
+        return new GsonBuilder()
+            .registerTypeAdapter(
+                AuthzDetailsElement.class, new AuthzDetailsElementSerializer())
+            .create();
+    }
+
+
+    private static Gson createDeserializer()
+    {
+        return new GsonBuilder()
+            .registerTypeAdapter(
+                AuthzDetailsElement.class, new AuthzDetailsElementDeserializer())
+            .create();
     }
 }

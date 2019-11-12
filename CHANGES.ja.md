@@ -1,6 +1,17 @@
 変更点
 ======
 
+- `AuthzDetailsElement` クラス
+    * `fromJson(String)` メソッドを追加。
+    * `toJson()` メソッドを追加。
+
+- 新しいクラス
+    * `AuthzDetailsElementDeserializer`
+    * `AuthzDetailsElementSerializer`
+    * `BaseJsonDeserializer`
+    * `BaseJsonSerializer`
+
+
 2.56 (2019 年 11 月 11 日)
 --------------------------
 
