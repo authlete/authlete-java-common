@@ -23,7 +23,8 @@ import com.google.gson.GsonBuilder;
 
 
 /**
- * Element in {@code authorization_details}.
+ * A class that represents an element in {@code authorization_details}
+ * which is defined in <i>"OAuth 2&#x002E;0 Rich Authorization Requests"</i>.
  *
  * @since 2.56
  */
@@ -364,10 +365,13 @@ public class AuthzDetailsElement implements Serializable
             return null;
         }
 
-        return createDeserializer().fromJson(json,  AuthzDetailsElement.class);
+        return createDeserializer().fromJson(json, AuthzDetailsElement.class);
     }
 
 
+    /**
+     * Create a serializer for {@link AuthzDetailsElement}.
+     */
     private static Gson createSerializer()
     {
         return new GsonBuilder()
@@ -377,6 +381,9 @@ public class AuthzDetailsElement implements Serializable
     }
 
 
+    /**
+     * Create a deserializer for {@link AuthzDetailsElement}.
+     */
     private static Gson createDeserializer()
     {
         return new GsonBuilder()
