@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.57 (2019 年 11 月 12 日)
+--------------------------
+
 - `AuthorizationResponse` クラス
     * `authorizationDetails` の型を `AuthzDetailsElement[]` から `AuthzDetails` へ変更。
 

@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.57 (2019-11-12)
+-----------------
+
 - `AuthorizationResponse` class
     * Change the type of `authorizationDetails` from `AuthzDetailsElement[]` to `AuthzDetails`.
 
