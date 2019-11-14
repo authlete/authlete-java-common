@@ -18,6 +18,7 @@ package com.authlete.common.dto;
 
 import org.junit.Test;
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import com.neovisionaries.security.Digest;
 import static org.junit.Assert.*;
 import java.io.IOException;
@@ -310,5 +311,12 @@ public class AuthzDetailsElementTest
         prop1.add("b");
         prop1.add("c");
         assertEquals(prop1, map.get("prop1"));
+    }
+
+
+    @Test(expected = JsonParseException.class)
+    public void test06()
+    {
+        deserialize("{\"locations\":false}");
     }
 }

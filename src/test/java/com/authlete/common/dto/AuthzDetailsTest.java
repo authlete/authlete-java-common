@@ -19,6 +19,7 @@ package com.authlete.common.dto;
 import org.junit.Test;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
 import static org.junit.Assert.*;
 import java.util.Map;
 
@@ -163,5 +164,12 @@ public class AuthzDetailsTest
         assertEquals("typ1", elements[1].getType());
 
         assertNull(elements[2]);
+    }
+
+
+    @Test(expected = JsonParseException.class)
+    public void test05()
+    {
+        deserialize("{}");
     }
 }
