@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `DeviceAuthorizationResponse` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetails)` method.
+
+
 2.57 (2019-11-12)
 -----------------
 

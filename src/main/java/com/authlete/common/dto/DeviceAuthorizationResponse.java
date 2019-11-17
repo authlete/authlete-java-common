@@ -169,7 +169,7 @@ import com.authlete.common.types.ClientAuthMethod;
  */
 public class DeviceAuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -229,6 +229,7 @@ public class DeviceAuthorizationResponse extends ApiResponse
     private URI verificationUriComplete;
     private int expiresIn;
     private int interval;
+    private AuthzDetails authorizationDetails;
     private String[] warnings;
 
 
@@ -854,6 +855,43 @@ public class DeviceAuthorizationResponse extends ApiResponse
     public DeviceAuthorizationResponse setWarnings(String[] warnings)
     {
         this.warnings = warnings;
+
+        return this;
+    }
+
+
+    /**
+     * Get the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @return
+     *         Authorization details.
+     *
+     * @since 2.58
+     */
+    public AuthzDetails getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    /**
+     * Set the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @param details
+     *         Authorization details.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.58
+     */
+    public DeviceAuthorizationResponse setAuthorizationDetails(AuthzDetails details)
+    {
+        this.authorizationDetails = details;
 
         return this;
     }
