@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.58 (2019 年 11 月 19 日)
+--------------------------
+
 - `DeviceAuthorizationResponse` クラス
     * `getAuthorizationDetails()` メソッドを追加。
     * `setAuthorizationDetails(AuthzDetails)` メソッドを追加。
