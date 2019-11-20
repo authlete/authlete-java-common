@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.60 (2019-11-21)
+-----------------
+
 - `ClientExtension` class
     * Changed the type of `accessTokenDuration` from `int` to `long`.
     * Changed the type of `refreshTokenDuration` from `int` to `long`.

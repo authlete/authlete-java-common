@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.60 (2019 年 11 月 21 日)
+--------------------------
+
 - `ClientExtension` クラス
     * `accessTokenDuration` の型を `int` から `long` に変更。
     * `refreshTokenDuration` の型を `int` から `long` に変更。
