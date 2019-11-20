@@ -1,6 +1,13 @@
 変更点
 ======
 
+- `ClientExtension` クラス
+    * `getAccessTokenDuration()` メソッドを追加。
+    * `setAccessTokenDuration(int)` メソッドを追加。
+    * `getRefreshTokenDuration()` メソッドを追加。
+    * `setRefreshTokenDuration(int)` メソッドを追加。
+
+
 2.58 (2019 年 11 月 19 日)
 --------------------------
 

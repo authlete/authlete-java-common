@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Authlete, Inc.
+ * Copyright (C) 2017-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,11 +45,13 @@ import java.util.Set;
  */
 public class ClientExtension implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     private boolean requestableScopesEnabled;
     private String[] requestableScopes;
+    private int accessTokenDuration;
+    private int refreshTokenDuration;
 
 
     /**
@@ -185,6 +187,132 @@ public class ClientExtension implements Serializable
         {
             scopes.toArray(this.requestableScopes);
         }
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the duration of access tokens per client in seconds.
+     *
+     * <p>
+     * In normal cases, the value of the {@link Service service}'s
+     * {@code accessTokenDuration} property is used as the duration of access
+     * tokens issued by the service. However, if this {@code accessTokenDuration}
+     * property holds a non-zero positive number and its value is less than the
+     * duration configured by the service, the value is used as the duration of
+     * access tokens issued to the client application.
+     * </p>
+     *
+     * <p>
+     * Note that the duration of access tokens can be controlled by the scope
+     * attribute {@code "access_token.duration"}, too. Authlete chooses the
+     * minimum value among the candidates.
+     * </p>
+     *
+     * @return
+     *         The duration of access tokens per client in seconds.
+     *
+     * @since 2.59
+     */
+    public int getAccessTokenDuration()
+    {
+        return accessTokenDuration;
+    }
+
+
+    /**
+     * Set the value of the duration of access tokens per client in seconds.
+     *
+     * <p>
+     * In normal cases, the value of the {@link Service service}'s
+     * {@code accessTokenDuration} property is used as the duration of access
+     * tokens issued by the service. However, if this {@code accessTokenDuration}
+     * property holds a non-zero positive number and its value is less than the
+     * duration configured by the service, the value is used as the duration of
+     * access tokens issued to the client application.
+     * </p>
+     *
+     * <p>
+     * Note that the duration of access tokens can be controlled by the scope
+     * attribute {@code "access_token.duration"}, too. Authlete chooses the
+     * minimum value among the candidates.
+     * </p>
+     *
+     * @param duration
+     *         The duration of access tokens per client in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.59
+     */
+    public ClientExtension setAccessTokenDuration(int duration)
+    {
+        this.accessTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the duration of refresh tokens per client in seconds.
+     *
+     * <p>
+     * In normal cases, the value of the {@link Service service}'s
+     * {@code refreshTokenDuration} property is used as the duration of refresh
+     * tokens issued by the service. However, if this {@code refreshTokenDuration}
+     * property holds a non-zero positive number and its value is less than the
+     * duration configured by the service, the value is used as the duration of
+     * refresh tokens issued to the client application.
+     * </p>
+     *
+     * <p>
+     * Note that the duration of refresh tokens can be controlled by the scope
+     * attribute {@code "refresh_token.duration"}, too. Authlete chooses the
+     * minimum value among the candidates.
+     * </p>
+     *
+     * @return
+     *         The duration of refresh tokens per client in seconds.
+     *
+     * @since 2.59
+     */
+    public int getRefreshTokenDuration()
+    {
+        return refreshTokenDuration;
+    }
+
+
+    /**
+     * Set the value of the duration of refresh tokens per client in seconds.
+     *
+     * <p>
+     * In normal cases, the value of the {@link Service service}'s
+     * {@code refreshTokenDuration} property is used as the duration of refresh
+     * tokens issued by the service. However, if this {@code refreshTokenDuration}
+     * property holds a non-zero positive number and its value is less than the
+     * duration configured by the service, the value is used as the duration of
+     * refresh tokens issued to the client application.
+     * </p>
+     *
+     * <p>
+     * Note that the duration of refresh tokens can be controlled by the scope
+     * attribute {@code "refresh_token.duration"}, too. Authlete chooses the
+     * minimum value among the candidates.
+     * </p>
+     *
+     * @param duration
+     *         The duration of refresh tokens per client in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.59
+     */
+    public ClientExtension setRefreshTokenDuration(int duration)
+    {
+        this.refreshTokenDuration = duration;
 
         return this;
     }

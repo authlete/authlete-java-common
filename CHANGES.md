@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+- `ClientExtension` class
+    * Added `getAccessTokenDuration()` method.
+    * Added `setAccessTokenDuration(int)` method.
+    * Added `getRefreshTokenDuration()` method.
+    * Added `setRefreshTokenDuration(int)` method.
+
+
 2.58 (2019-11-19)
 -----------------
 
