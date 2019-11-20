@@ -45,13 +45,13 @@ import java.util.Set;
  */
 public class ClientExtension implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     private boolean requestableScopesEnabled;
     private String[] requestableScopes;
-    private int accessTokenDuration;
-    private int refreshTokenDuration;
+    private long accessTokenDuration;
+    private long refreshTokenDuration;
 
 
     /**
@@ -215,7 +215,7 @@ public class ClientExtension implements Serializable
      *
      * @since 2.59
      */
-    public int getAccessTokenDuration()
+    public long getAccessTokenDuration()
     {
         return accessTokenDuration;
     }
@@ -247,7 +247,7 @@ public class ClientExtension implements Serializable
      *
      * @since 2.59
      */
-    public ClientExtension setAccessTokenDuration(int duration)
+    public ClientExtension setAccessTokenDuration(long duration)
     {
         this.accessTokenDuration = duration;
 
@@ -278,7 +278,7 @@ public class ClientExtension implements Serializable
      *
      * @since 2.59
      */
-    public int getRefreshTokenDuration()
+    public long getRefreshTokenDuration()
     {
         return refreshTokenDuration;
     }
@@ -310,7 +310,7 @@ public class ClientExtension implements Serializable
      *
      * @since 2.59
      */
-    public ClientExtension setRefreshTokenDuration(int duration)
+    public ClientExtension setRefreshTokenDuration(long duration)
     {
         this.refreshTokenDuration = duration;
 
