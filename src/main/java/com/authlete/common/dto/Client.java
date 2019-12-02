@@ -211,9 +211,11 @@ public class Client implements Serializable
 
 
     /**
-     * Sector identifier.
+     * Calculated sector identifier host component
+     * 
+     * @since 2.XX
      */
-    private URI sectorIdentifier;
+    private String derivedSectorIdentifier;
 
 
     /**
@@ -1056,98 +1058,32 @@ public class Client implements Serializable
 
     /**
      * Get the sector identifier.
-     *
-     * <p><b>NOTE</b></p>
-     *
-     * <p>
-     * Authlete 2.1 and older versions use this property
-     * ({@code sectorIdentifier}) as the value of the {@code
-     * sector_identifier_uri} client metadata. However, it was wrong.
-     * Consolation is that it won't cause any issue because old Authlete
-     * versions do nothing special for the sector identifier. In other
-     * words, it's because old Authlete versions don't support
-     * {@code subject_type=pairwise}.
-     * </p>
-     *
-     * <p>
-     * Since Authlete 2.2, this property ({@code sectorIdentifier}) has
-     * a different meaning. It holds the sector identifier which is
-     * calculated based on the values of redirect URIs or the sector
-     * identifier URI ({@code sectorIdentifierUri}). How to determine the
-     * value of the sector identifier is described in <a href=
-     * "https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
-     * >8.1. Pairwise Identifier Algorithm</a> of <a href=
-     * "https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect
-     * Core 1.0</a>.
-     * </p>
-     *
-     * <p>
-     * The value of {@code sectorIdentifier} is computed by Authlete, so the
-     * value is included in <i>responses</i> from Authlete. This implies that
-     * it is meaningless to set the value of {@code sectorIdentfier} in
-     * <i>requests</i> to Authlete APIs such as {@code /api/client/update} API.
-     * </p>
+     * 
+     * @deprecated Since Authlete 2.2. Use {@link Client#getSectorIdentifierUri()} instead.
      *
      * @return
      *         The sector identifier.
-     *
-     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
-     *      >OIDC Core, 8.1. Pairwise Identifier Algorithm</a>
      */
     public URI getSectorIdentifier()
     {
-        return sectorIdentifier;
+        return this.getSectorIdentifierUri();
     }
 
 
     /**
      * Set the sector identifier.
      *
-     * <p><b>NOTE</b></p>
-     *
-     * <p>
-     * Authlete 2.1 and older versions use this property
-     * ({@code sectorIdentifier}) as the value of the {@code
-     * sector_identifier_uri} client metadata. However, it was wrong.
-     * Consolation is that it won't cause any issue because old Authlete
-     * versions do nothing special for the sector identifier. In other
-     * words, it's because old Authlete versions don't support
-     * {@code subject_type=pairwise}.
-     * </p>
-     *
-     * <p>
-     * Since Authlete 2.2, this property ({@code sectorIdentifier}) has
-     * a different meaning. It holds the sector identifier which is
-     * calculated based on the values of redirect URIs or the sector
-     * identifier URI ({@code sectorIdentifierUri}). How to determine the
-     * value of sector identifier is described in <a href=
-     * "https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
-     * >8.1. Pairwise Identifier Algorithm</a> of <a href=
-     * "https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect
-     * Core 1.0</a>.
-     * </p>
-     *
-     * <p>
-     * The value of {@code sectorIdentifier} is computed by Authlete, so the
-     * value is included in <i>responses</i> from Authlete. This implies that
-     * it is meaningless to set the value of {@code sectorIdentfier} in
-     * <i>requests</i> to Authlete APIs such as {@code /api/client/update} API.
-     * </p>
+     * @deprecated Since Authlete 2.2. Use {@link Client#setSectorIdentifierUri(URI)} instead.
      *
      * @param sectorIdentifier
-     *         The sector identifier.
+     *            The sector identifier.
      *
      * @return
      *         {@code this} object.
-     *
-     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
-     *      >OIDC Core, 8.1. Pairwise Identifier Algorithm</a>
      */
     public Client setSectorIdentifier(URI sectorIdentifier)
     {
-        this.sectorIdentifier = sectorIdentifier;
-
-        return this;
+        return this.setSectorIdentifierUri(sectorIdentifier);
     }
 
 
@@ -1198,6 +1134,51 @@ public class Client implements Serializable
     {
         this.sectorIdentifierUri = uri;
 
+        return this;
+    }
+
+
+    /**
+     * Get the sector identifier host component as derived from either the
+     * {@code sector_identifier_uri} or the registered {@code request_uri}.
+     * If no {@code sector_identifier_uri} is registered and multiple
+     * {@code request_uri}s are also registered, this value is undefined
+     * and the field returns {@code null}.
+     *
+     * @return The derived sector identifier, if available, or {@code null} otherwise.
+     * 
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
+     *      >OIDC Core, 8.1. Pairwise Identifier Algorithm</a>
+     *
+     * @since 2.XX
+     */
+    public String getDerivedSectorIdentifier()
+    {
+        return derivedSectorIdentifier;
+    }
+
+
+    /**
+     * Set the sector identifier host component as derived from either the
+     * {@code sector_identifier_uri} or the registered {@code request_uri}.
+     * If no {@code sector_identifier_uri} is registered and multiple
+     * {@code request_uri}s are also registered, this value is undefined
+     * and the field is {@code null}.
+     *
+     * @param derivedSectorIdentifier
+     *            The derived sector identifier, if available, or {@code null} otherwise.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
+     *      >OIDC Core, 8.1. Pairwise Identifier Algorithm</a>
+     *
+     * @since 2.XX
+     */
+    public Client setDerivedSectorIdentifier(String derivedSectorIdentifier)
+    {
+        this.derivedSectorIdentifier = derivedSectorIdentifier;
         return this;
     }
 
