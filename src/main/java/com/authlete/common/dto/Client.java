@@ -46,12 +46,10 @@ import com.authlete.common.types.SubjectType;
  *
  * @see <a href="https://openid.net/specs/openid-financial-api-jarm.html"
  *      >Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
- *
- * @author Takahiko Kawasaki
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 16L;
+    private static final long serialVersionUID = 17L;
 
 
     /*
@@ -212,8 +210,8 @@ public class Client implements Serializable
 
     /**
      * Calculated sector identifier host component
-     * 
-     * @since 2.XX
+     *
+     * @since 2.61
      */
     private String derivedSectorIdentifier;
 
@@ -1058,12 +1056,13 @@ public class Client implements Serializable
 
     /**
      * Get the sector identifier.
-     * 
+     *
      * @deprecated Since Authlete 2.2. Use {@link Client#getSectorIdentifierUri()} instead.
      *
      * @return
      *         The sector identifier.
      */
+    @Deprecated
     public URI getSectorIdentifier()
     {
         return this.getSectorIdentifierUri();
@@ -1076,11 +1075,12 @@ public class Client implements Serializable
      * @deprecated Since Authlete 2.2. Use {@link Client#setSectorIdentifierUri(URI)} instead.
      *
      * @param sectorIdentifier
-     *            The sector identifier.
+     *         The sector identifier.
      *
      * @return
      *         {@code this} object.
      */
+    @Deprecated
     public Client setSectorIdentifier(URI sectorIdentifier)
     {
         return this.setSectorIdentifierUri(sectorIdentifier);
@@ -1145,12 +1145,13 @@ public class Client implements Serializable
      * {@code redirect_uri}s are also registered, this value is undefined
      * and the field returns {@code null}.
      *
-     * @return The derived sector identifier, if available, or {@code null} otherwise.
-     * 
+     * @return
+     *         The derived sector identifier, if available, or {@code null} otherwise.
+     *
      * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
      *      >OIDC Core, 8.1. Pairwise Identifier Algorithm</a>
      *
-     * @since 2.XX
+     * @since 2.61
      */
     public String getDerivedSectorIdentifier()
     {
@@ -1166,7 +1167,7 @@ public class Client implements Serializable
      * and the field is {@code null}.
      *
      * @param derivedSectorIdentifier
-     *            The derived sector identifier, if available, or {@code null} otherwise.
+     *         The derived sector identifier, if available, or {@code null} otherwise.
      *
      * @return
      *         {@code this} object.
@@ -1174,11 +1175,12 @@ public class Client implements Serializable
      * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg"
      *      >OIDC Core, 8.1. Pairwise Identifier Algorithm</a>
      *
-     * @since 2.XX
+     * @since 2.61
      */
     public Client setDerivedSectorIdentifier(String derivedSectorIdentifier)
     {
         this.derivedSectorIdentifier = derivedSectorIdentifier;
+
         return this;
     }
 

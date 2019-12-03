@@ -1,6 +1,19 @@
 CHANGES
 =======
 
+2.61 (2019-12-03)
+-----------------
+
+- `Client` class
+    * Added `getDerivedSectorIdentifier()` method.
+    * Added `setDerivedSectorIdentifier(String)` method.
+    * Marked `getSectorIdentifier()` method as deprecated.
+      The method became an alias of `getSectorIdentifierUri()` method.
+    * Marked `setSectorIdentifier(URI)` method as deprecated.
+      The method became an alias of `setSectorIdentifierUri(URI)` method.
+    * Removed the private field `sectorIdentifier`.
+
+
 2.60 (2019-11-21)
 -----------------
 

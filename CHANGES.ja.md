@@ -1,6 +1,19 @@
 変更点
 ======
 
+2.61 (2019 年 12 月 03 日)
+--------------------------
+
+- `Client` クラス
+    * `getDerivedSectorIdentifier()` メソッドを追加。
+    * `setDerivedSectorIdentifier(String)` メソッドを追加。
+    * `getSectorIdentifier()` メソッドを非推奨 (deprecated) に変更。
+      当メソッドを `getSectorIdentifierUri()` メソッドの別名に変更。
+    * `setSectorIdentifier(URI)` メソッドを非推奨 (deprecated) に変更。
+      当メソッドを `setSectorIdentifierUri(URI)` メソッドの別名に変更。
+    * プライベートフィールド `sectorIdentifier` を削除。
+
+
 2.60 (2019 年 11 月 21 日)
 --------------------------
 
