@@ -1140,9 +1140,9 @@ public class Client implements Serializable
 
     /**
      * Get the sector identifier host component as derived from either the
-     * {@code sector_identifier_uri} or the registered {@code request_uri}.
+     * {@code sector_identifier_uri} or the registered {@code redirect_uri}.
      * If no {@code sector_identifier_uri} is registered and multiple
-     * {@code request_uri}s are also registered, this value is undefined
+     * {@code redirect_uri}s are also registered, this value is undefined
      * and the field returns {@code null}.
      *
      * @return The derived sector identifier, if available, or {@code null} otherwise.
@@ -1160,9 +1160,9 @@ public class Client implements Serializable
 
     /**
      * Set the sector identifier host component as derived from either the
-     * {@code sector_identifier_uri} or the registered {@code request_uri}.
+     * {@code sector_identifier_uri} or the registered {@code redirect_uri}.
      * If no {@code sector_identifier_uri} is registered and multiple
-     * {@code request_uri}s are also registered, this value is undefined
+     * {@code redirect_uri}s are also registered, this value is undefined
      * and the field is {@code null}.
      *
      * @param derivedSectorIdentifier
