@@ -16,6 +16,7 @@
 package com.authlete.common.dto;
 
 
+import java.net.URI;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.UserIdentificationHintType;
@@ -564,7 +565,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  */
 public class BackchannelAuthenticationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -633,6 +634,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     private boolean userCodeRequired;
     private int requestedExpiry;
     private String requestContext;
+    private URI[] resources;
     private AuthzDetails authorizationDetails;
     private String[] warnings;
     private String ticket;
@@ -1411,6 +1413,45 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     public BackchannelAuthenticationResponse setRequestContext(String context)
     {
         this.requestContext = context;
+
+        return this;
+    }
+
+
+    /**
+     * Get the resources specified by the {@code resource} request parameters
+     * or by the {@code resource} property in the request object. If both are
+     * given, the values in the request object take precedence.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @return
+     *         Target resources.
+     *
+     * @since 2.62
+     */
+    public URI[] getResources()
+    {
+        return resources;
+    }
+
+
+    /**
+     * Set the resources specified by the {@code resource} request parameters
+     * or by the {@code resource} property in the request object. If both are
+     * given, the values in the request object should be set.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @param resources
+     *         Target resources.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.62
+     */
+    public BackchannelAuthenticationResponse setResources(URI[] resources)
+    {
+        this.resources = resources;
 
         return this;
     }

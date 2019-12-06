@@ -139,7 +139,7 @@ import com.authlete.common.types.DeliveryMode;
  */
 public class BackchannelAuthenticationCompleteResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -200,6 +200,7 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     private long refreshTokenDuration;
     private long idTokenDuration;
     private String jwtAccessToken;
+    private URI[] resources;
     private AuthzDetails authorizationDetails;
 
 
@@ -799,6 +800,47 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     public BackchannelAuthenticationCompleteResponse setJwtAccessToken(String jwtAccessToken)
     {
         this.jwtAccessToken = jwtAccessToken;
+
+        return this;
+    }
+
+
+    /**
+     * Get the resources specified by the {@code resource} request parameters
+     * or by the {@code resource} property in the request object in the
+     * preceding backchannel authentication request. If both are given, the
+     * values in the request object take precedence.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @return
+     *         Target resources.
+     *
+     * @since 2.62
+     */
+    public URI[] getResources()
+    {
+        return resources;
+    }
+
+
+    /**
+     * Set the resources specified by the {@code resource} request parameters
+     * or by the {@code resource} property in the request object in the
+     * preceding backchannel authentication request. If both are given, the
+     * values in the request object should be set.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @param resources
+     *         Target resources.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.62
+     */
+    public BackchannelAuthenticationCompleteResponse setResources(URI[] resources)
+    {
+        this.resources = resources;
 
         return this;
     }

@@ -16,6 +16,7 @@
 package com.authlete.common.dto;
 
 
+import java.net.URI;
 import com.authlete.common.types.Display;
 import com.authlete.common.types.Prompt;
 import com.authlete.common.util.Utils;
@@ -855,7 +856,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 12L;
+    private static final long serialVersionUID = 13L;
 
 
     /**
@@ -944,6 +945,7 @@ public class AuthorizationResponse extends ApiResponse
     private String requestObjectPayload;
     private String idTokenClaims;
     private String userInfoClaims;
+    private URI[] resources;
     private AuthzDetails authorizationDetails;
     private String responseContent;
     private String ticket;
@@ -1618,6 +1620,40 @@ public class AuthorizationResponse extends ApiResponse
     public void setUserInfoClaims(String userInfoClaims)
     {
         this.userInfoClaims = userInfoClaims;
+    }
+
+
+    /**
+     * Get the resources specified by the {@code resource} request parameters
+     * or by the {@code resource} property in the request object. If both are
+     * given, the values in the request object take precedence.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @return
+     *         Target resources.
+     *
+     * @since 2.62
+     */
+    public URI[] getResources()
+    {
+        return resources;
+    }
+
+
+    /**
+     * Set the resources specified by the {@code resource} request parameters
+     * or by the {@code resource} property in the request object. If both are
+     * given, the values in the request object should be set.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @param resources
+     *         Target resources.
+     *
+     * @since 2.62
+     */
+    public void setResources(URI[] resources)
+    {
+        this.resources = resources;
     }
 
 

@@ -16,6 +16,7 @@
 package com.authlete.common.dto;
 
 
+import java.net.URI;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.GrantType;
 import com.authlete.common.util.Utils;
@@ -255,7 +256,7 @@ import com.authlete.common.util.Utils;
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 8L;
+    private static final long serialVersionUID = 9L;
 
 
     /**
@@ -333,6 +334,7 @@ public class TokenResponse extends ApiResponse
     private Property[] properties;
     private String jwtAccessToken;
     private ClientAuthMethod clientAuthMethod;
+    private URI[] resources;
     private AuthzDetails authorizationDetails;
 
 
@@ -989,6 +991,36 @@ public class TokenResponse extends ApiResponse
     public void setClientAuthMethod(ClientAuthMethod method)
     {
         this.clientAuthMethod = method;
+    }
+
+
+    /**
+     * Get the resources specified by the {@code resource} request parameters.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @return
+     *         Target resources.
+     *
+     * @since 2.62
+     */
+    public URI[] getResources()
+    {
+        return resources;
+    }
+
+
+    /**
+     * Set the resources specified by the {@code resource} request parameters.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @param resources
+     *         Target resources.
+     *
+     * @since 2.62
+     */
+    public void setResources(URI[] resources)
+    {
+        this.resources = resources;
     }
 
 

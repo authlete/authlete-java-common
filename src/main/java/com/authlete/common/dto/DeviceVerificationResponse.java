@@ -15,6 +15,7 @@
  */
 package com.authlete.common.dto;
 
+import java.net.URI;
 
 /**
  * Response from Authlete's {@code /api/device/verification} API.
@@ -72,7 +73,7 @@ package com.authlete.common.dto;
  */
 public class DeviceVerificationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -123,6 +124,7 @@ public class DeviceVerificationResponse extends ApiResponse
     private String[] claimNames;
     private String[] acrs;
     private long expiresAt;
+    private URI[] resources;
     private AuthzDetails authorizationDetails;
 
 
@@ -461,6 +463,43 @@ public class DeviceVerificationResponse extends ApiResponse
     public DeviceVerificationResponse setExpiresAt(long expiresAt)
     {
         this.expiresAt = expiresAt;
+
+        return this;
+    }
+
+
+    /**
+     * Get the resources specified by the {@code resource} request parameters
+     * in the preceding device authorization request.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @return
+     *         Target resources.
+     *
+     * @since 2.62
+     */
+    public URI[] getResources()
+    {
+        return resources;
+    }
+
+
+    /**
+     * Set the resources specified by the {@code resource} request parameters
+     * in the preceding device authorization request.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @param resources
+     *         Target resources.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.62
+     */
+    public DeviceVerificationResponse setResources(URI[] resources)
+    {
+        this.resources = resources;
 
         return this;
     }

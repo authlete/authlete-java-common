@@ -1,8 +1,36 @@
 変更点
 ======
 
+- `AuthorizationResponse` クラス
+    * `getResources()` メソッドを追加。
+    * `setResources(URI)` メソッドを追加。
+
+- `BackchannelAuthenticationCompleteResponse` クラス
+    * `getResources()` メソッドを追加。
+    * `setResources(URI)` メソッドを追加。
+
+- `BackchannelAuthenticationResponse` クラス
+    * `getResources()` メソッドを追加。
+    * `setResources(URI)` メソッドを追加。
+
+- `DeviceAuthorizationResponse` クラス
+    * `getResources()` メソッドを追加。
+    * `setResources(URI)` メソッドを追加。
+
+- `DeviceVerificationResponse` クラス
+    * `getResources()` メソッドを追加。
+    * `setResources(URI)` メソッドを追加。
+
 - `ErrorCode` 列挙型
     * `invalid_target` を追加。
+
+- `IntrospectionResponse` クラス
+    * `getResources()` メソッドを追加。
+    * `setResources(URI)` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getResources()` メソッドを追加。
+    * `setResources(URI)` メソッドを追加。
 
 
 2.61 (2019 年 12 月 03 日)

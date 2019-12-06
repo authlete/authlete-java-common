@@ -169,7 +169,7 @@ import com.authlete.common.types.ClientAuthMethod;
  */
 public class DeviceAuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -229,6 +229,7 @@ public class DeviceAuthorizationResponse extends ApiResponse
     private URI verificationUriComplete;
     private int expiresIn;
     private int interval;
+    private URI[] resources;
     private AuthzDetails authorizationDetails;
     private String[] warnings;
 
@@ -855,6 +856,41 @@ public class DeviceAuthorizationResponse extends ApiResponse
     public DeviceAuthorizationResponse setWarnings(String[] warnings)
     {
         this.warnings = warnings;
+
+        return this;
+    }
+
+
+    /**
+     * Get the resources specified by the {@code resource} request parameters.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @return
+     *         Target resources.
+     *
+     * @since 2.62
+     */
+    public URI[] getResources()
+    {
+        return resources;
+    }
+
+
+    /**
+     * Set the resources specified by the {@code resource} request parameters.
+     * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+     *
+     * @param resources
+     *         Target resources.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.62
+     */
+    public DeviceAuthorizationResponse setResources(URI[] resources)
+    {
+        this.resources = resources;
 
         return this;
     }

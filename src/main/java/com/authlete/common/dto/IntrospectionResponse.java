@@ -16,6 +16,7 @@
 package com.authlete.common.dto;
 
 
+import java.net.URI;
 import com.authlete.common.util.Utils;
 
 
@@ -218,7 +219,7 @@ import com.authlete.common.util.Utils;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 9L;
+    private static final long serialVersionUID = 10L;
 
 
     /**
@@ -356,6 +357,12 @@ public class IntrospectionResponse extends ApiResponse
      * type is supported and is assumed.
      */
     private String certificateThumbprint;
+
+
+    /**
+     * The target resources of the access token.
+     */
+    private URI[] resources;
 
 
     /**
@@ -726,6 +733,38 @@ public class IntrospectionResponse extends ApiResponse
     public void setCertificateThumbprint(String thumbprint)
     {
         this.certificateThumbprint = thumbprint;
+    }
+
+
+    /**
+     * Get the target resources. This represents the resources specified by
+     * the {@code resource} request parameters or by the {@code resource}
+     * property in the request object.
+     *
+     * @return
+     *         Target resources.
+     *
+     * @since 2.62
+     */
+    public URI[] getResources()
+    {
+        return resources;
+    }
+
+
+    /**
+     * Set the target resources. This represents the resources specified by
+     * the {@code resource} request parameters or by the {@code resource}
+     * property in the request object.
+     *
+     * @param resources
+     *         Target resources.
+     *
+     * @since 2.62
+     */
+    public void setResources(URI[] resources)
+    {
+        this.resources = resources;
     }
 
 
