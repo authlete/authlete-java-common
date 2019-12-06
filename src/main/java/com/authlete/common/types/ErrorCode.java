@@ -420,5 +420,17 @@ public enum ErrorCode
      * @since 2.56
      */
     invalid_authorization_details,
+
+
+    /**
+     * The requested resource is invalid, missing, unknown, or malformed.
+     *
+     * <p>
+     * See "Resource Indicators for OAuth 2.0" for details.
+     * </p>
+     *
+     * @since 2.62
+     */
+    invalid_target,
     ;
 }
