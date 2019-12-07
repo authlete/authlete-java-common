@@ -352,6 +352,32 @@ import com.authlete.common.types.UserIdentificationHintType;
  *     </td>
  *   </tr>
  *   <tr>
+ *     <td>{@code invalid_target}</td>
+ *     <td>
+ *       <p>
+ *         The authorization server implementation rejects the requested target
+ *         resources.
+ *       </p>
+ *       <br/>
+ *       <p>
+ *         The error code {@code "invalid_target"} is from <i>"Resource Indicators
+ *         for OAuth 2.0"</i>. The specification defines the {@code "resource"}
+ *         request parameter. By using the parameter, client applications can
+ *         request target resources that should be bound to the access token being
+ *         issued. If the authorization server wants to reject the request, call
+ *         {@code /api/backchannel/authentication/fail} API with
+ *         {@code INVALID_TARGET}.
+ *       </p>
+ *       <br/>
+ *       <p>
+ *         Note that <i>"Resource Indicators for OAuth 2.0"</i> is supported since
+ *         Authlete 2.2. Older versions don't recognize the {@code resource} request
+ *         parameter, so {@link #getResources()} always returns null if the Authlete
+ *         server you are using is older than 2.2.
+ *       </p>
+ *     </td>
+ *   </tr>
+ *   <tr>
  *     <td>{@code access_denined}</td>
  *     <td>
  *       <p>

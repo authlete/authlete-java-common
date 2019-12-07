@@ -342,7 +342,7 @@ import com.authlete.common.util.Utils;
  *     {@code reason=}{@link AuthorizationFailRequest.Reason#CONSENT_REQUIRED
  *     CONSENT_REQUIRED} and use the response from the API to generate a
  *     response to the client application. Otherwise, go to the next step
- *     ([ISSUE]).
+ *     ([RESOURCES]).
  *     </p>
  *     <br/>
  *     <p>
@@ -353,6 +353,22 @@ import com.authlete.common.util.Utils;
  *     for details). In other words, the APIs of the shared Authlete server
  *     are disabled intentionally (in order to prevent garbage data from
  *     being accumulated) and they return {@code 403 Forbidden}.
+ *     </p>
+ *     <br/>
+ *   <li>
+ *     <p><b>[RESOURCES]</b>
+ *     Get the requested target resources by {@link #getResources()}. The array
+ *     represents the values of the {@code resource} request parameters. If you
+ *     want to reject the request, call Authlete's {@code /auth/authorization/fail}
+ *     API with {@code reason=}{@link AuthorizationFailRequest.Reason#INVALID_TARGET
+ *     INVALID_TARGET} and use the response from the API to generate a response
+ *     to the client application. Otherwise, go to the next step ([ISSUE]).
+ *     </p>
+ *     <br/>
+ *     <p>
+ *     See "Resource Indicators for OAuth 2.0" for details. Note that the
+ *     specification is supported since Authlete 2.2. If the Authlete server you
+ *     are using is older than 2.2, {@code getResources()} always returns null.
  *     </p>
  *     <br/>
  *   <li>
@@ -681,6 +697,22 @@ import com.authlete.common.util.Utils;
  *       It is ensured that scopes returned by {@link #getScopes()} are
  *       contained in the list of supported scopes which are specified by
  *       {@code "scopes_supported"} configuration parameter of the service.
+ *     </p>
+ *     <br/>
+ *
+ *   <li>
+ *     <p><b>[AUTHORIZATION DETAILS]</b>
+ *       The authorization server implementation should show the end-user
+ *       "authorization details" if the request includes it.
+ *       {@link #getAuthorizationDetails()} returns the content of the
+ *       {@code authorization_details} request parameter.
+ *     </p>
+ *     <br/>
+ *     <p>
+ *       See "OAuth 2.0 Rich Authorization Requests" for details. Note that the
+ *       specification is supported since Authlete 2.2. If the Authlete server
+ *       you are using is older than 2.2, {@code getAuthorizationDetails()}
+ *       always returns null.
  *     </p>
  *     <br/>
  *
