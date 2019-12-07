@@ -154,6 +154,20 @@ public class BackchannelAuthenticationFailRequest implements Serializable
 
 
         /**
+         * The requested resource is invalid, missing, unknown, or malformed.
+         * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+         *
+         * <p>
+         * Using this reason will result in
+         * {@code "error":"invalid_target"}.
+         * </p>
+         *
+         * @since 2.62
+         */
+        INVALID_TARGET,
+
+
+        /**
          * The resource owner or the authorization server denied the request.
          *
          * <p>
@@ -182,19 +196,6 @@ public class BackchannelAuthenticationFailRequest implements Serializable
          * </p>
          */
         SERVER_ERROR,
-
-        /**
-         * The requested resource is invalid, missing, unknown, or malformed.
-         * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
-         *
-         * <p>
-         * Using this reason will result in
-         * {@code "error":"invalid_target"}.
-         * </p>
-         *
-         * @since 2.62
-         */
-        INVALID_TARGET,
     }
 
 
