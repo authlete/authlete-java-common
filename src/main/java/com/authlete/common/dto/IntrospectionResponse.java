@@ -360,9 +360,15 @@ public class IntrospectionResponse extends ApiResponse
 
 
     /**
-     * The target resources of the access token.
+     * The target resources specified by the initial request.
      */
     private URI[] resources;
+
+
+    /**
+     * The target resources of the access token.
+     */
+    private URI[] accessTokenResources;
 
 
     /**
@@ -741,8 +747,14 @@ public class IntrospectionResponse extends ApiResponse
      * the {@code resource} request parameters or by the {@code resource}
      * property in the request object.
      *
+     * <p>
+     * See "Resource Indicators for OAuth 2.0" for details.
+     * </p>
+     *
      * @return
      *         Target resources.
+     *
+     * @see #getAccessTokenResources()
      *
      * @since 2.62
      */
@@ -760,11 +772,74 @@ public class IntrospectionResponse extends ApiResponse
      * @param resources
      *         Target resources.
      *
+     * @see #setAccessTokenResources(URI[])
+     *
      * @since 2.62
      */
     public void setResources(URI[] resources)
     {
         this.resources = resources;
+    }
+
+
+    /**
+     * Get the target resources of the access token.
+     *
+     * <p>
+     * The target resources returned by this method may be the same as or
+     * different from the ones returned by {@link #getResources()}.
+     * </p>
+     *
+     * <p>
+     * In some flows, the initial request and the subsequent token request
+     * are sent to different endpoints. Example flows are the Authorization
+     * Code Flow, the Refresh Token Flow, the CIBA Ping Mode, the CIBA Poll
+     * Mode and the Device Flow. In these flows, not only the initial request
+     * but also the subsequent token request can include the {@code resource}
+     * request parameters. The purpose of the {@code resource} request
+     * parameters in the token request is to narrow the range of the target
+     * resources from the original set of target resources requested by the
+     * preceding initial request. If narrowing down is performed, the target
+     * resources returned by {@link #getResources()} and the ones returned by
+     * this method are different. This method returns the narrowed set of
+     * target resources.
+     * </p>
+     *
+     * <p>
+     * See "Resource Indicators for OAuth 2.0" for details.
+     * </p>
+     *
+     * @return
+     *         The target resources of the access token.
+     *
+     * @see #getResources()
+     *
+     * @since 2.62
+     */
+    public URI[] getAccessTokenResources()
+    {
+        return accessTokenResources;
+    }
+
+
+    /**
+     * Set the target resources of the access token.
+     *
+     * <p>
+     * See the description of {@link #getAccessTokenResources()} for details
+     * about the target resources of the access token.
+     * </p>
+     *
+     * @param resources
+     *         The target resources of the access token.
+     *
+     * @see #setResources(URI[])
+     *
+     * @since 2.62
+     */
+    public void setAccessTokenResources(URI[] resources)
+    {
+        this.accessTokenResources = resources;
     }
 
 

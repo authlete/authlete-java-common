@@ -3,34 +3,38 @@ CHANGES
 
 - `AuthorizationResponse` class
     * Added `getResources()` method.
-    * Added `setResources(URI)` method.
+    * Added `setResources(URI[])` method.
 
 - `BackchannelAuthenticationCompleteResponse` class
     * Added `getResources()` method.
-    * Added `setResources(URI)` method.
+    * Added `setResources(URI[])` method.
 
 - `BackchannelAuthenticationResponse` class
     * Added `getResources()` method.
-    * Added `setResources(URI)` method.
+    * Added `setResources(URI[])` method.
 
 - `DeviceAuthorizationResponse` class
     * Added `getResources()` method.
-    * Added `setResources(URI)` method.
+    * Added `setResources(URI[])` method.
 
 - `DeviceVerificationResponse` class
     * Added `getResources()` method.
-    * Added `setResources(URI)` method.
+    * Added `setResources(URI[])` method.
 
 - `ErrorCode` enum
     * Added `invalid_target`.
 
 - `IntrospectionResponse` class
+    * Added `getAccessTokenResources()` method.
+    * Added `setAccessTokenResources(URI[])` method.
     * Added `getResources()` method.
-    * Added `setResources(URI)` method.
+    * Added `setResources(URI[])` method.
 
 - `TokenResponse` class
+    * Added `getAccessTokenResources()` method.
+    * Added `setAccessTokenResources(URI[])` method.
     * Added `getResources()` method.
-    * Added `setResources(URI)` method.
+    * Added `setResources(URI[])` method.
 
 
 2.61 (2019-12-03)
