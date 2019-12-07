@@ -30,6 +30,10 @@ CHANGES
     * Added `getResources()` method.
     * Added `setResources(URI[])` method.
 
+- `TokenIssueResponse` class
+    * Added `getAccessTokenResources()` method.
+    * Added `setAccessTokenResources(URI[])` method.
+
 - `TokenResponse` class
     * Added `getAccessTokenResources()` method.
     * Added `setAccessTokenResources(URI[])` method.

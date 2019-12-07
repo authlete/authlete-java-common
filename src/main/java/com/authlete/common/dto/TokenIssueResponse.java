@@ -16,6 +16,7 @@
 package com.authlete.common.dto;
 
 
+import java.net.URI;
 import com.authlete.common.util.Utils;
 
 
@@ -102,7 +103,7 @@ import com.authlete.common.util.Utils;
  */
 public class TokenIssueResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -155,6 +156,7 @@ public class TokenIssueResponse extends ApiResponse
     private String[] scopes;
     private Property[] properties;
     private String jwtAccessToken;
+    private URI[] accessTokenResources;
     private AuthzDetails authorizationDetails;
 
 
@@ -610,6 +612,42 @@ public class TokenIssueResponse extends ApiResponse
     public void setJwtAccessToken(String jwtAccessToken)
     {
         this.jwtAccessToken = jwtAccessToken;
+    }
+
+
+    /**
+     * Get the target resources of the access token.
+     *
+     * <p>
+     * See "Resource Indicators for OAuth 2.0" for details.
+     * </p>
+     *
+     * @return
+     *         The target resources of the access token.
+     *
+     * @since 2.62
+     */
+    public URI[] getAccessTokenResources()
+    {
+        return accessTokenResources;
+    }
+
+
+    /**
+     * Set the target resources of the access token.
+     *
+     * <p>
+     * See "Resource Indicators for OAuth 2.0" for details.
+     * </p>
+     *
+     * @param resources
+     *         The target resources of the access token.
+     *
+     * @since 2.62
+     */
+    public void setAccessTokenResources(URI[] resources)
+    {
+        this.accessTokenResources = resources;
     }
 
 

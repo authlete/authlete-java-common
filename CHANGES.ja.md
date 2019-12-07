@@ -30,6 +30,10 @@
     * `getResources()` メソッドを追加。
     * `setResources(URI[])` メソッドを追加。
 
+- `TokeIssuenResponse` クラス
+    * `getAccessTokenResources()` メソッドを追加。
+    * `setAccessTokenResources(URI[])` メソッドを追加。
+
 - `TokenResponse` クラス
     * `getAccessTokenResources()` メソッドを追加。
     * `setAccessTokenResources(URI[])` メソッドを追加。
