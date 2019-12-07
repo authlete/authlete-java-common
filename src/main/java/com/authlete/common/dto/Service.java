@@ -129,12 +129,21 @@ import com.authlete.common.types.UserCodeCharset;
  *     </td>
  *   </tr>
  *   <tr>
+ *     <td>{@code aud}</td>
+ *     <td>array</td>
+ *     <td>
+ *       If this access token has been generated with target resources, this
+ *       claim is included. See <i>"Resource Indicators for OAuth 2.0"</i>
+ *       for details.
+ *     </td>
+ *   </tr>
+ *   <tr>
  *     <td>{@code authorization_details}</td>
  *     <td>array</td>
  *     <td>
  *       If this access token has been generated with {@code authorization_details},
  *       this claim is included. See <i>"OAuth 2.0 Rich Authorization Requests"</i>
- *       for details about {@code authorization_details}.
+ *       for details.
  *     </td>
  *   </tr>
  * </table>
@@ -148,6 +157,19 @@ import com.authlete.common.types.UserCodeCharset;
  * <p>
  * The feature of JWT-based access token is available since Authlete 2.1.
  * Access tokens issued by older Authlete versions are always random strings.
+ * </p>
+ *
+ * <p>
+ * <i>"Resource Indicators for OAuth 2.0"</i> is supported since Authlete 2.2.
+ * The {@code resource} request parameter given to older Authlete versions is
+ * just ignored, so JWT-based access tokens won't include the {@code aud} claim.
+ * </p>
+ *
+ * <p>
+ * <i>"OAuth 2.0 Rich Authorization Requests"</i> is supported since Authlete 2.2.
+ * The {@code authorization_details} request parameter given to older Authlete
+ * versions is just ignored, so JWT-based access tokens won't include the
+ * {@code authorization_details} claim.
  * </p>
  * </blockquote>
  *
