@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.62 (2019 年 12 月 07 日)
+--------------------------
+
 - `AuthorizationFailRequest.Reason` 列挙型
     * `INVALID_TARGET` を追加。
 

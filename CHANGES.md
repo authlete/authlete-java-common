@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.62 (2019-12-07)
+-----------------
+
 - `AuthorizationFailRequest.Reason` enum
     * Added `INVALID_TARGET`.
 
