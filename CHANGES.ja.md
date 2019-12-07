@@ -1,6 +1,9 @@
 変更点
 ======
 
+- `AuthorizationFailRequest.Reason` 列挙型
+    * `INVALID_TARGET` を追加。
+
 - `AuthorizationResponse` クラス
     * `getResources()` メソッドを追加。
     * `setResources(URI[])` メソッドを追加。
@@ -8,6 +11,9 @@
 - `BackchannelAuthenticationCompleteResponse` クラス
     * `getResources()` メソッドを追加。
     * `setResources(URI[])` メソッドを追加。
+
+- `BackchannelAuthenticationFailRequest.Reason` 列挙型
+    * `INVALID_TARGET` を追加。
 
 - `BackchannelAuthenticationResponse` クラス
     * `getResources()` メソッドを追加。
@@ -29,6 +35,9 @@
     * `setAccessTokenResources(URI[])` メソッドを追加。
     * `getResources()` メソッドを追加。
     * `setResources(URI[])` メソッドを追加。
+
+- `TokenFailRequest.Reason` 列挙型
+    * `INVALID_TARGET` を追加。
 
 - `TokeIssuenResponse` クラス
     * `getAccessTokenResources()` メソッドを追加。

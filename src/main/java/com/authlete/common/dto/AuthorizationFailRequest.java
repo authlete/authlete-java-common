@@ -51,7 +51,7 @@ import java.io.Serializable;
  */
 public class AuthorizationFailRequest implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -240,6 +240,18 @@ public class AuthorizationFailRequest implements Serializable
          * @since 2.11
          */
         INTERACTION_REQUIRED,
+
+        /**
+         * The requested resource is invalid, missing, unknown, or malformed.
+         * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+         *
+         * <p>
+         * Using this reason will result in {@code error=invalid_target}.
+         * </p>
+         *
+         * @since 2.62
+         */
+        INVALID_TARGET,
     }
 
 

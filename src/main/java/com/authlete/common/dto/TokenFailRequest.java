@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2019 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ import java.io.Serializable;
  */
 public class TokenFailRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -61,6 +61,11 @@ public class TokenFailRequest implements Serializable
     {
         /**
          * Unknown reason.
+         *
+         * <p>
+         * Using this reason will result in
+         * {@code "error":"server_error"}.
+         * </p>
          */
         UNKNOWN,
 
@@ -69,8 +74,26 @@ public class TokenFailRequest implements Serializable
          * {@code password}) contained in the token request whose
          * flow is <a href="http://tools.ietf.org/html/rfc6749#section-4.3">
          * "Resource Owner Password Credentials"</a>) are invalid.
+         *
+         * <p>
+         * Using this reason will result in
+         * {@code "error":"invalid_request"}.
+         * </p>
          */
-        INVALID_RESOURCE_OWNER_CREDENTIALS
+        INVALID_RESOURCE_OWNER_CREDENTIALS,
+
+        /**
+         * The requested resource is invalid, missing, unknown, or malformed.
+         * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+         *
+         * <p>
+         * Using this reason will result in
+         * {@code "error":"invalid_target"}.
+         * </p>
+         *
+         * @since 2.62
+         */
+        INVALID_TARGET,
     }
 
 

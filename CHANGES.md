@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+- `AuthorizationFailRequest.Reason` enum
+    * Added `INVALID_TARGET`.
+
 - `AuthorizationResponse` class
     * Added `getResources()` method.
     * Added `setResources(URI[])` method.
@@ -8,6 +11,9 @@ CHANGES
 - `BackchannelAuthenticationCompleteResponse` class
     * Added `getResources()` method.
     * Added `setResources(URI[])` method.
+
+- `BackchannelAuthenticationFailRequest.Reason` enum
+    * Added `INVALID_TARGET`.
 
 - `BackchannelAuthenticationResponse` class
     * Added `getResources()` method.
@@ -29,6 +35,9 @@ CHANGES
     * Added `setAccessTokenResources(URI[])` method.
     * Added `getResources()` method.
     * Added `setResources(URI[])` method.
+
+- `TokenFailRequest.Reason` enum
+    * Added `INVALID_TARGET`.
 
 - `TokenIssueResponse` class
     * Added `getAccessTokenResources()` method.
