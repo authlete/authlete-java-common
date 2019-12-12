@@ -178,7 +178,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 31L;
+    private static final long serialVersionUID = 32L;
 
 
     /*
