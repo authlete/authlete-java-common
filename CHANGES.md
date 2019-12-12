@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `AuthorizationResponse` class
+    * Added `getPurpose()` method.
+    * Added `setPurpose(String)` method.
+
 - `Service` class
     * Added `getSupportedTrustFrameworks()` method.
     * Added `setSupportedTrustFrameworks(String[])` method.

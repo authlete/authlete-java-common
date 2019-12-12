@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `AuthorizationResponse` クラス
+    * `getPurpose()` メソッドを追加。
+    * `setPurpose(String)` メソッドを追加。
+
 - `Service` クラス
     * `getSupportedTrustFrameworks()` メソッドを追加。
     * `setSupportedTrustFrameworks(String[])` メソッドを追加。

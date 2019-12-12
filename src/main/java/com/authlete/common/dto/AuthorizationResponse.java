@@ -717,6 +717,24 @@ import com.authlete.common.util.Utils;
  *     <br/>
  *
  *   <li>
+ *     <p><b>[PURPOSE]</b>
+ *       The authorization server implementation must show the value of the
+ *       {@code purpose} request parameter if it supports <a href=
+ *       "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+ *       >OpenID Connect for Identity Assurance 1.0</a>. See <a href=
+ *       "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.8"
+ *       >8. Transaction-specific Purpose</a> in the specification for details.
+ *     </p>
+ *     <br/>
+ *     <p>
+ *       {@link #getPurpose()} returns the value of the {@code purpose} request
+ *       parameter. However, if the Authlete server you are using does not support
+ *       OpenID Connect for Identity Assurance 1.0 (in other words, if the Authlete
+ *       server is older than 2.2), {@code getPurpose()} always returns null.
+ *     </p>
+ *     <br/>
+ *
+ *   <li>
  *     <p><b>[END-USER AUTHENTICATION]</b>
  *       Necessarily, the end-user must be authenticated (= must login your
  *       service) before granting authorization to the client application.
@@ -888,7 +906,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 13L;
+    private static final long serialVersionUID = 14L;
 
 
     /**
@@ -979,6 +997,7 @@ public class AuthorizationResponse extends ApiResponse
     private String userInfoClaims;
     private URI[] resources;
     private AuthzDetails authorizationDetails;
+    private String purpose;
     private String responseContent;
     private String ticket;
 
@@ -1718,6 +1737,81 @@ public class AuthorizationResponse extends ApiResponse
     public void setAuthorizationDetails(AuthzDetails details)
     {
         this.authorizationDetails = details;
+    }
+
+
+    /**
+     * Get the value of the {@code purpose} request parameter.
+     *
+     * <p>
+     * The {@code purpose} request parameter is defined in <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.8"
+     * >8. Transaction-specific Purpose</a> of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> as follows:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * {@code purpose} OPTIONAL. String describing the purpose for obtaining
+     * certain user data from the OP. The purpose MUST NOT be shorter than 3
+     * characters and MUST NOT be longer than 300 characters. If these rules
+     * are violated, the authentication request MUST fail and the OP returns
+     * an error {@code invalid_request} to the RP.
+     * </p>
+     * </blockquote>
+     *
+     * <p>
+     * NOTE: This method works only when Authlete server you are using supports
+     * OpenID Connect for Identity Assurance 1.0.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code purpose} request parameter.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.8"
+     *      >OpenID Connect for Identity Assurance 1.0, 8. Transaction-specific Purpose</a>
+     *
+     * @since 2.63
+     */
+    public String getPurpose()
+    {
+        return purpose;
+    }
+
+
+    /**
+     * Set the value of the {@code purpose} request parameter.
+     *
+     * <p>
+     * The {@code purpose} request parameter is defined in <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.8"
+     * >8. Transaction-specific Purpose</a> of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> as follows:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * {@code purpose} OPTIONAL. String describing the purpose for obtaining
+     * certain user data from the OP. The purpose MUST NOT be shorter than 3
+     * characters and MUST NOT be longer than 300 characters. If these rules
+     * are violated, the authentication request MUST fail and the OP returns
+     * an error {@code invalid_request} to the RP.
+     * </p>
+     * </blockquote>
+     *
+     * @param purpose
+     *         The value of the {@code purpose} request parameter.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.8"
+     *      >OpenID Connect for Identity Assurance 1.0, 8. Transaction-specific Purpose</a>
+     *
+     * @since 2.63
+     */
+    public void setPurpose(String purpose)
+    {
+        this.purpose = purpose;
     }
 
 
