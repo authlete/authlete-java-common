@@ -538,6 +538,51 @@ public class Service implements Serializable
 
 
     /**
+     * Supported trust frameworks. This corresponds to
+     * {@code trust_frameworks_supported}.
+     *
+     * @since 2.63
+     */
+    private String[] supportedTrustFrameworks;
+
+
+    /**
+     * Supported evidence. This corresponds to
+     * {@code evidence_supported}.
+     *
+     * @since 2.63
+     */
+    private String[] supportedEvidence;
+
+
+    /**
+     * Supported ID documents. This corresponds to
+     * {@code id_documents_supported}.
+     *
+     * @since 2.63
+     */
+    private String[] supportedIdentityDocuments;
+
+
+    /**
+     * Supported verification methods. This corresponds to
+     * {@code id_documents_verification_methods_supported}.
+     *
+     * @since 2.63
+     */
+    private String[] supportedVerificationMethods;
+
+
+    /**
+     * Supported verified claims. This corresponds to
+     * {@code claims_in_verified_claims_supported}.
+     *
+     * @since 2.63
+     */
+    private String[] supportedVerifiedClaims;
+
+
+    /**
      * Get the service number.
      *
      * @return
@@ -4290,6 +4335,231 @@ public class Service implements Serializable
     public Service setSupportedAuthorizationDataTypes(String[] types)
     {
         this.supportedAuthorizationDataTypes = types;
+
+        return this;
+    }
+
+
+    /**
+     * Get trust frameworks supported by this service.
+     * This corresponds to the {@code trust_frameworks_supported} <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
+     * >metadata</a>.
+     *
+     * @return
+     *         Trust frameworks supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.1"
+     *      >OpenID Connect for Identity Assurance 1.0, 11.1. Trust Frameworks</a>
+     *
+     * @since 2.63
+     */
+    public String[] getSupportedTrustFrameworks()
+    {
+        return supportedTrustFrameworks;
+    }
+
+
+    /**
+     * Set trust frameworks supported by this service.
+     * This corresponds to the {@code trust_frameworks_supported} <a href=
+     * https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
+     * >metadata</a>.
+     *
+     * @param frameworks
+     *         Trust frameworks supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.1"
+     *      >OpenID Connect for Identity Assurance 1.0, 11.1. Trust Frameworks</a>
+     *
+     * @since 2.63
+     */
+    public Service setSupportedTrustFrameworks(String[] frameworks)
+    {
+        this.supportedTrustFrameworks = frameworks;
+
+        return this;
+    }
+
+
+    /**
+     * Get evidence supported by this service.
+     * This corresponds to the {@code evidence_supported} <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
+     * >metadata</a>.
+     *
+     * @return
+     *         Evidence supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.4.1.1"
+     *      >OpenID Connect for Identity Assurance 1.0, 4.1.1. Evidence</a>
+     *
+     * @since 2.63
+     */
+    public String[] getSupportedEvidence()
+    {
+        return supportedEvidence;
+    }
+
+
+    /**
+     * Set evidence supported by this service.
+     * This corresponds to the {@code evidence_supported} <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
+     * >metadata</a>.
+     *
+     * @param evidence
+     *         Evidence supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.4.1.1"
+     *      >OpenID Connect for Identity Assurance 1.0, 4.1.1. Evidence</a>
+     *
+     * @since 2.63
+     */
+    public Service setSupportedEvidence(String[] evidence)
+    {
+        this.supportedEvidence = evidence;
+
+        return this;
+    }
+
+
+    /**
+     * Get identity documents supported by this service.
+     * This corresponds to the {@code id_documents_supported} <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
+     * >metadata</a>.
+     *
+     * @return
+     *         Identity documents supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.2"
+     *      >OpenID Connect for Identity Assurance 1.0, 11.2. Identity Documents</a>
+     *
+     * @since 2.63
+     */
+    public String[] getSupportedIdentityDocuments()
+    {
+        return supportedIdentityDocuments;
+    }
+
+
+    /**
+     * Set identity documents supported by this service.
+     * This corresponds to the {@code id_documents_supported} <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
+     * >metadata</a>.
+     *
+     * @param documents
+     *         Identity documents supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.2"
+     *      >OpenID Connect for Identity Assurance 1.0, 11.2. Identity Documents</a>
+     *
+     * @since 2.63
+     */
+    public Service setSupportedIdentityDocuments(String[] documents)
+    {
+        this.supportedIdentityDocuments = documents;
+
+        return this;
+    }
+
+
+    /**
+     * Get verification methods supported by this service.
+     * This corresponds to the {@code id_documents_verification_methods_supported}
+     * <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
+     * >metadata</a>.
+     *
+     * @return
+     *         Verification methods supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.3"
+     *      >OpenID Connect for Identity Assurance 1.0, 11.3. Verification Methods</a>
+     *
+     * @since 2.63
+     */
+    public String[] getSupportedVerificationMethods()
+    {
+        return supportedVerificationMethods;
+    }
+
+
+    /**
+     * Set verification methods supported by this service.
+     * This corresponds to the {@code id_documents_verification_methods_supported}
+     * <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
+     * >metadata</a>.
+     *
+     * @param methods
+     *         Verification methods supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.3"
+     *      >OpenID Connect for Identity Assurance 1.0, 11.3. Verification Methods</a>
+     *
+     * @since 2.63
+     */
+    public Service setSupportedVerificationMethods(String[] methods)
+    {
+        this.supportedVerificationMethods = methods;
+
+        return this;
+    }
+
+
+    /**
+     * Get verified claims supported by this service.
+     * This corresponds to the {@code claims_in_verified_claims_supported}
+     * <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
+     * >metadata</a>.
+     *
+     * @return
+     *         Verified claims supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.3.1"
+     *      >OpenID Connect for Identity Assurance 1.0, 3.1. Additional Claims about End-Users</a>
+     *
+     * @since 2.63
+     */
+    public String[] getSupportedVerifiedClaims()
+    {
+        return supportedVerifiedClaims;
+    }
+
+
+    /**
+     * Set verified claims supported by this service.
+     * This corresponds to the {@code claims_in_verified_claims_supported}
+     * <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
+     * >metadata</a>.
+     *
+     * @param claims
+     *         Verified claims supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.3.1"
+     *      >OpenID Connect for Identity Assurance 1.0, 3.1. Additional Claims about End-Users</a>
+     *
+     * @since 2.63
+     */
+    public Service setSupportedVerifiedClaims(String[] claims)
+    {
+        this.supportedVerifiedClaims = claims;
 
         return this;
     }

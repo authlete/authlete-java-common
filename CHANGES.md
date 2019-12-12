@@ -1,6 +1,18 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `getSupportedTrustFrameworks()` method.
+    * Added `setSupportedTrustFrameworks(String[])` method.
+    * Added `getSupportedEvidence()` method.
+    * Added `setSupportedEvidence(String[])` method.
+    * Added `getSupportedIdentityDocuments()` method.
+    * Added `setSupportedIdentityDocuments(String[])` method.
+    * Added `getSupportedVerificationMethods()` method.
+    * Added `setSupportedVerificationMethods(String[])` method.
+    * Added `getSupportedVerifiedClaims()` method.
+    * Added `setSupportedVerifiedClaims(String[])` method.
+
 - New packages
     * `com.authlete.common.assurance.constraint`
 

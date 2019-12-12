@@ -1,6 +1,18 @@
 変更点
 ======
 
+- `Service` クラス
+    * `getSupportedTrustFrameworks()` メソッドを追加。
+    * `setSupportedTrustFrameworks(String[])` メソッドを追加。
+    * `getSupportedEvidence()` メソッドを追加。
+    * `setSupportedEvidence(String[])` メソッドを追加。
+    * `getSupportedIdentityDocuments()` メソッドを追加。
+    * `setSupportedIdentityDocuments(String[])` メソッドを追加。
+    * `getSupportedVerificationMethods()` メソッドを追加。
+    * `setSupportedVerificationMethods(String[])` メソッドを追加。
+    * `getSupportedVerifiedClaims()` メソッドを追加。
+    * `setSupportedVerifiedClaims(String[])` メソッドを追加。
+
 - 新しいパッケージ
     * `com.authlete.common.assurance.constraint`
 
