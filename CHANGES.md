@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- New packages
+    * `com.authlete.common.assurance.constraint`
+
+
 2.62 (2019-12-07)
 -----------------
 
