@@ -17,6 +17,10 @@
     * `getSupportedVerifiedClaims()` メソッドを追加。
     * `setSupportedVerifiedClaims(String[])` メソッドを追加。
 
+- `UserInfoResponse` クラス
+    * `getVerifiedClaims()` メソッドを追加。
+    * `setVerifiedClaims(String)` メソッドを追加。
+
 - 新しいパッケージ
     * `com.authlete.common.assurance`
     * `com.authlete.common.assurance.constraint`

@@ -17,6 +17,10 @@ CHANGES
     * Added `getSupportedVerifiedClaims()` method.
     * Added `setSupportedVerifiedClaims(String[])` method.
 
+- `UserInfoResponse` class
+    * Added `getVerifiedClaims()` method.
+    * Added `setVerifiedClaims(String)` method.
+
 - New packages
     * `com.authlete.common.assurance`
     * `com.authlete.common.assurance.constraint`

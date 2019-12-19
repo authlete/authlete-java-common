@@ -349,6 +349,13 @@ public class UserInfoResponse extends ApiResponse
 
 
     /**
+     * JSON that represents {@code claims/userinfo/verified_claims}
+     * in the authorization request.
+     */
+    private String verifiedClaims;
+
+
+    /**
      * Get the next action the service implementation should take.
      */
     public Action getAction()
@@ -593,5 +600,41 @@ public class UserInfoResponse extends ApiResponse
     public void setClientIdAliasUsed(boolean used)
     {
         this.clientIdAliasUsed = used;
+    }
+
+
+    /**
+     * Get the JSON that represents {@code userinfo/verified_claims} in
+     * the {@code claims} request parameter of the authorization request.
+     *
+     * @return
+     *         JSON that represents {@code userinfo/verified_claims}.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 2.63
+     */
+    public String getVerifiedClaims()
+    {
+        return verifiedClaims;
+    }
+
+
+    /**
+     * Set the JSON that represents {@code userinfo/verified_claims} in
+     * the {@code claims} request parameter of the authorization request.
+     *
+     * @param verifiedClaims
+     *         JSON that represents {@code userinfo/verified_claims}.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 2.63
+     */
+    public void setVerifiedClaims(String verifiedClaims)
+    {
+        this.verifiedClaims = verifiedClaims;
     }
 }
