@@ -18,6 +18,7 @@
     * `setSupportedVerifiedClaims(String[])` メソッドを追加。
 
 - 新しいパッケージ
+    * `com.authlete.common.assurance`
     * `com.authlete.common.assurance.constraint`
 
 

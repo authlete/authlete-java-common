@@ -18,6 +18,7 @@ CHANGES
     * Added `setSupportedVerifiedClaims(String[])` method.
 
 - New packages
+    * `com.authlete.common.assurance`
     * `com.authlete.common.assurance.constraint`
 
 
