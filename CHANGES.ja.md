@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.64 (2019 年 12 月 20 日)
+--------------------------
+
 - `UserInfoResponse` クラス
     * `getUserInfoClaims()` メソッドを追加。
     * `setUserInfoClaims(String)` メソッドを追加。

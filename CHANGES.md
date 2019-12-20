@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.64 (2019-12-20)
+-----------------
+
 - `UserInfoResponse` class
     * Added `getUserInfoClaims()` method.
     * Added `setUserInfoClaims(String)` method.
