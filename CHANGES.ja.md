@@ -1,6 +1,13 @@
 変更点
 ======
 
+- `UserInfoResponse` クラス
+    * `getUserInfoClaims()` メソッドを追加。
+    * `setUserInfoClaims(String)` メソッドを追加。
+    * `getVerifiedClaims()` メソッドを削除。
+    * `setVerifiedClaims(String)` メソッドを削除。
+
+
 2.63 (2019 年 12 月 20 日)
 --------------------------
 

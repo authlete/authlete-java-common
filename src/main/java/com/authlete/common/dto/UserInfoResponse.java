@@ -349,10 +349,9 @@ public class UserInfoResponse extends ApiResponse
 
 
     /**
-     * JSON that represents {@code claims/userinfo/verified_claims}
-     * in the authorization request.
+     * "userinfo" in "claims" of an authorization request.
      */
-    private String verifiedClaims;
+    private String userInfoClaims;
 
 
     /**
@@ -604,37 +603,97 @@ public class UserInfoResponse extends ApiResponse
 
 
     /**
-     * Get the JSON that represents {@code userinfo/verified_claims} in
-     * the {@code claims} request parameter of the authorization request.
+     * Get the value of the {@code "userinfo"} property in the {@code "claims"}
+     * request parameter or in the {@code "claims"} property in an authorization
+     * request object.
+     *
+     * <p>
+     * A client application may request certain claims be embedded in an ID
+     * token or in a response from the UserInfo endpoint. There are several
+     * ways. Including the {@code claims} request parameter and including the
+     * {@code claims} property in a request object are such examples. In both
+     * the cases, the value of the {@code claims} parameter/property is JSON.
+     * Its format is described in <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
+     * >5.5. Requesting Claims using the "claims" Request Parameter</a> of
+     * <a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID
+     * Connect Core 1.0</a>.
+     * </p>
+     *
+     * <p>
+     * The following is an excerpt from the specification. You can find
+     * {@code "userinfo"} and {@code "id_token"} are top-level properties.
+     * </p>
+     *
+     * <pre>
+     * {
+     *  "userinfo":
+     *   {
+     *    "given_name": {"essential": true},
+     *    "nickname": null,
+     *    "email": {"essential": true},
+     *    "email_verified": {"essential": true},
+     *    "picture": null,
+     *    "http://example.info/claims/groups": null
+     *  },
+     * "id_token":
+     *  {
+     *   "auth_time": {"essential": true},
+     *   "acr": {"values": ["urn:mace:incommon:iap:silver"] }
+     *  }
+     * }
+     * </pre>
+     *
+     * <p>
+     * This method ({@code getUserInfoClaims()}) returns the value of the
+     * {@code "userinfo"} property in JSON format. For example, if the
+     * JSON above is included in an authorization request, this method
+     * returns JSON equivalent to the following.
+     * </p>
+     *
+     * <pre>
+     *   {
+     *    "given_name": {"essential": true},
+     *    "nickname": null,
+     *    "email": {"essential": true},
+     *    "email_verified": {"essential": true},
+     *    "picture": null,
+     *    "http://example.info/claims/groups": null
+     *  }
+     * </pre>
+     *
+     * <p>
+     * Note that if a request object is given and it contains the
+     * {@code claims} property and if the {@code claims} request
+     * parameter is also given, this method returns the value in
+     * the former.
+     * </p>
      *
      * @return
-     *         JSON that represents {@code userinfo/verified_claims}.
+     *         The value of the {@code "userinfo"} property in the
+     *         {@code "claims"} in JSON format.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
-     *      >OpenID Connect for Identity Assurance 1.0</a>
-     *
-     * @since 2.63
+     * @since 2.64
      */
-    public String getVerifiedClaims()
+    public String getUserInfoClaims()
     {
-        return verifiedClaims;
+        return userInfoClaims;
     }
 
 
     /**
-     * Set the JSON that represents {@code userinfo/verified_claims} in
-     * the {@code claims} request parameter of the authorization request.
+     * Set the value of the {@code "userinfo"} property in the {@code "claims"}
+     * request parameter or in the {@code "claims"} property in an authorization
+     * request object.
      *
-     * @param verifiedClaims
-     *         JSON that represents {@code userinfo/verified_claims}.
+     * @param userInfoClaims
+     *         The value of the {@code "userinfo"} property in the
+     *         {@code "claims"} in JSON format.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
-     *      >OpenID Connect for Identity Assurance 1.0</a>
-     *
-     * @since 2.63
+     * @since 2.64
      */
-    public void setVerifiedClaims(String verifiedClaims)
+    public void setUserInfoClaims(String userInfoClaims)
     {
-        this.verifiedClaims = verifiedClaims;
+        this.userInfoClaims = userInfoClaims;
     }
 }

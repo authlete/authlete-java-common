@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+- `UserInfoResponse` class
+    * Added `getUserInfoClaims()` method.
+    * Added `setUserInfoClaims(String)` method.
+    * Removed `getVerifiedClaims()` method.
+    * Removed `setVerifiedClaims(String)` method.
+
+
 2.63 (2019-12-20)
 -----------------
 
