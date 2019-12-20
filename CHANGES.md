@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.63 (2019-12-20)
+-----------------
+
 - `AuthorizationResponse` class
     * Added `getPurpose()` method.
     * Added `setPurpose(String)` method.

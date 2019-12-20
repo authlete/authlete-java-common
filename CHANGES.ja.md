@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.63 (2019 年 12 月 20 日)
+--------------------------
+
 - `AuthorizationResponse` クラス
     * `getPurpose()` メソッドを追加。
     * `setPurpose(String)` メソッドを追加。
