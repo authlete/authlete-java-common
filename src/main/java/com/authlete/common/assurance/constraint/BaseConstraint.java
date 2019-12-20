@@ -17,6 +17,10 @@
 package com.authlete.common.assurance.constraint;
 
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+
 /**
  * The base class for classes that represent constraints in
  * {@code verified_claims}.
@@ -73,5 +77,79 @@ public class BaseConstraint implements Constraint
     public void setNull(boolean isNull)
     {
         this.isNull = isNull;
+    }
+
+
+    /**
+     * Create a {@code Map} instance that represents this object in the way
+     * conforming to the structure defined in <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.5"
+     * >5. Requesting Verified Claims</a> of OpenID Connect for Identity Assurance 1.0.
+     *
+     * @return
+     *         A {@code Map} instance that represents this object.
+     *         If {@link #exists()} returns {@code false} or {@link #isNull()}
+     *         returns {@code true}, this method returns null.
+     */
+    public Map<String, Object> toMap()
+    {
+        if (!exists || isNull)
+        {
+            return null;
+        }
+
+        return new LinkedHashMap<String, Object>();
+    }
+
+
+    static void addIfAvailable(Map<String, Object> map, String name, BaseConstraint constraint)
+    {
+        if (constraint != null && constraint.exists())
+        {
+            map.put(name, constraint.toMap());
+        }
+    }
+
+
+    /**
+     * Convert this object into JSON in the way conforming to the structure
+     * defined in <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.5"
+     * >5. Requesting Verified Claims</a> of OpenID Connect for Identity Assurance 1.0.
+     *
+     * <p>
+     * This method is an alias of {@link #toJson(boolean) toJson}{@code (false)}.
+     * </p>
+     *
+     * @return
+     *         JSON that represents this object. If {@link #toMap()} returns
+     *         null, this method returns {@code "null"} (a {@code String}
+     *         instance which consists of {@code 'n'}, {@code 'u'}, {@code 'l'}
+     *         and {@code 'l'}).
+     */
+    public String toJson()
+    {
+        return Helper.toJson(toMap());
+    }
+
+
+    /**
+     * Convert this object into JSON in the way conforming to the structure
+     * defined in <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.5"
+     * >5. Requesting Verified Claims</a> of OpenID Connect for Identity Assurance 1.0.
+     *
+     * @param pretty
+     *         {@code true} to make the output more human-readable.
+     *
+     * @return
+     *         JSON that represents this object. If {@link #toMap()} returns
+     *         null, this method returns {@code "null"} (a {@code String}
+     *         instance which consists of {@code 'n'}, {@code 'u'}, {@code 'l'}
+     *         and {@code 'l'}).
+     */
+    public String toJson(boolean pretty)
+    {
+        return Helper.toJson(toMap(), pretty);
     }
 }

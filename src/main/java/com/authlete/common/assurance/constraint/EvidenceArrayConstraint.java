@@ -91,9 +91,9 @@ implements Constraint
      *         the key is {@code "evidence"}.
      *
      * @return
-     *         An {@code EvidenceArrayConstraint} that represents {@code "evidence"}.
-     *         Even if the map does not contain the given key, an instance of
-     *         {@code EvidenceArrayConstraint} is returned.
+     *         An {@code EvidenceArrayConstraint} instance that represents
+     *         {@code "evidence"}. Even if the map does not contain the given
+     *         key, an instance of {@code EvidenceArrayConstraint} is returned.
      *
      * @throws ConstraintException
      *         The structure of the map does not conform to the specification
@@ -122,17 +122,84 @@ implements Constraint
             return;
         }
 
-        if (!(object instanceof List))
-        {
-            throw new ConstraintException("'" + key + "' is not an array.");
-        }
-
-        List<?> list = (List<?>)object;
+        List<?> list = Helper.ensureList(object, key);
         int size = list.size();
 
         for (int i = 0; i < size; ++i)
         {
             instance.add(EvidenceConstraint.extract(list, i, key));
         }
+    }
+
+
+    /**
+     * Create a {@code List} instance that represents this object in the way
+     * conforming to the structure defined in <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.5"
+     * >5. Requesting Verified Claims</a> of OpenID Connect for Identity Assurance 1.0.
+     *
+     * @return
+     *         A {@code List} instance that represents this object.
+     *         If {@link #exists()} returns {@code false} or {@link #isNull()}
+     *         returns {@code true}, this method returns null.
+     */
+    public List<Map<String, Object>> toList()
+    {
+        if (!exists || isNull)
+        {
+            return null;
+        }
+
+        List<Map<String, Object>> list = new ArrayList<Map<String,Object>>(size());
+
+        for (EvidenceConstraint constraint : this)
+        {
+            list.add(constraint.toMap());
+        }
+
+        return list;
+    }
+
+
+    /**
+     * Convert this object into JSON in the way conforming to the structure
+     * defined in <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.5"
+     * >5. Requesting Verified Claims</a> of OpenID Connect for Identity Assurance 1.0.
+     *
+     * <p>
+     * This method is an alias of {@link #toJson(boolean) toJson}{@code (false)}.
+     * </p>
+     *
+     * @return
+     *         JSON that represents this object. If {@link #toList()} returns
+     *         null, this method returns {@code "null"} (a {@code String}
+     *         instance which consists of {@code 'n'}, {@code 'u'}, {@code 'l'}
+     *         and {@code 'l'}).
+     */
+    public String toJson()
+    {
+        return Helper.toJson(toList());
+    }
+
+
+    /**
+     * Convert this object into JSON in the way conforming to the structure
+     * defined in <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.5"
+     * >5. Requesting Verified Claims</a> of OpenID Connect for Identity Assurance 1.0.
+     *
+     * @param pretty
+     *         {@code true} to make the output more human-readable.
+     *
+     * @return
+     *         JSON that represents this object. If {@link #toList()} returns
+     *         null, this method returns {@code "null"} (a {@code String}
+     *         instance which consists of {@code 'n'}, {@code 'u'}, {@code 'l'}
+     *         and {@code 'l'}).
+     */
+    public String toJson(boolean pretty)
+    {
+        return Helper.toJson(toList(), pretty);
     }
 }

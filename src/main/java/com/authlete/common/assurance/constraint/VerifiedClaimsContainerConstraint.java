@@ -66,8 +66,8 @@ public class VerifiedClaimsContainerConstraint extends BaseConstraint
      *         A map that represents a constraint which includes {@code "verified_claims"}.
      *
      * @return
-     *         A {@code VerifiedClaimsContainerConstraint} that represents a constraint
-     *         which includes {@code "verified_claims"}.
+     *         A {@code VerifiedClaimsContainerConstraint} instance that
+     *         represents a constraint which includes {@code "verified_claims"}.
      *
      * @throws ConstraintException
      *         The structure of the map does not conform to the specification
@@ -129,5 +129,21 @@ public class VerifiedClaimsContainerConstraint extends BaseConstraint
         Map<?,?> map = (Map<?,?>)new Gson().fromJson(json, Map.class);
 
         return extract(map);
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        addIfAvailable(map, "verified_claims", verifiedClaims);
+
+        return map;
     }
 }

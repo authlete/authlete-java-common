@@ -31,6 +31,7 @@ import java.util.Map;
 public class VerifiedClaimConstraint extends LeafConstraint
 {
     private String purpose;
+    private boolean purposeExists;
 
 
     /**
@@ -67,9 +68,9 @@ public class VerifiedClaimConstraint extends LeafConstraint
      *         The key that identifies the object in the map.
      *
      * @return
-     *         A {@code VerifiedClaimConstraint} that represents a constraint.
-     *         Even if the map does not contain the given key, an instance of
-     *         {@code VerifiedClaimConstraint} is returned.
+     *         A {@code VerifiedClaimConstraint} instance that represents a
+     *         constraint. Even if the map does not contain the given key, an
+     *         instance of {@code VerifiedClaimConstraint} is returned.
      *
      * @throws ConstraintException
      *         The structure of the map does not conform to the specification
@@ -95,15 +96,40 @@ public class VerifiedClaimConstraint extends LeafConstraint
             return;
         }
 
-        if (!(object instanceof Map))
-        {
-            throw new ConstraintException("'" + key + "' is not an object.");
-        }
-
-        Map<?,?> map = (Map<?,?>)object;
+        Map<?,?> map = Helper.ensureMap(object, key);
 
         LeafConstraint.fill(instance, map, key);
 
-        instance.purpose = extractString(map, "purpose");
+        fillPurpose(instance, map);
+    }
+
+
+    private static void fillPurpose(VerifiedClaimConstraint instance, Map<?,?> map)
+    {
+        instance.purposeExists = map.containsKey("purpose");
+
+        if (instance.purposeExists)
+        {
+            instance.purpose = extractString(map, "purpose");
+        }
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        if (purposeExists)
+        {
+            map.put("purpose", purpose);
+        }
+
+        return map;
     }
 }

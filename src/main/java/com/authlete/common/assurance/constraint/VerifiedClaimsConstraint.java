@@ -134,9 +134,10 @@ public class VerifiedClaimsConstraint extends BaseConstraint
      *         the key is {@code "verified_claims"}.
      *
      * @return
-     *         A {@code VerifiedClaimsConstraint} that represents {@code "verified_claims"}.
-     *         Even if the map does not contain the given key, an instance of
-     *         {@code VerifiedClaimsConstraint} is returned.
+     *         A {@code VerifiedClaimsConstraint} instance that represents
+     *         {@code "verified_claims"}. Even if the map does not contain the
+     *         given key, an instance of {@code VerifiedClaimsConstraint} is
+     *         returned.
      *
      * @throws ConstraintException
      *         The structure of the map does not conform to the specification
@@ -165,14 +166,30 @@ public class VerifiedClaimsConstraint extends BaseConstraint
             return;
         }
 
-        if (!(object instanceof Map))
-        {
-            throw new ConstraintException("'" + key + "' is not an object.");
-        }
-
-        Map<?,?> map = (Map<?,?>)object;
+        Map<?,?> map = Helper.ensureMap(object, key);
 
         instance.verification = VerificationConstraint.extract(map, "verification");
         instance.claims       = ClaimsConstraint.extract(map, "claims");
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        addIfAvailable(map, "verification", verification);
+
+        if (claims != null && claims.exists())
+        {
+            map.put("claims", claims.toMap());
+        }
+
+        return map;
     }
 }

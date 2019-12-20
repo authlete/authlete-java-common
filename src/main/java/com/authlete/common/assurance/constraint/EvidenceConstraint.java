@@ -42,6 +42,33 @@ public class EvidenceConstraint extends BaseConstraint
             new String[] { "provider", "date" };
 
 
+    private LeafConstraint type;
+
+
+    /**
+     * Get the constraint for {@code type}.
+     *
+     * @return
+     *         The constraint for {@code type}.
+     */
+    public LeafConstraint getType()
+    {
+        return type;
+    }
+
+
+    /**
+     * Set the constraint for {@code type}.
+     *
+     * @param constraint
+     *         The constraint for {@code type}.
+     */
+    public void setType(LeafConstraint constraint)
+    {
+        this.type = constraint;
+    }
+
+
     /**
      * Create an instance of a subclass of {@code EvidenceConstraint} from
      * an object in the given list.
@@ -67,21 +94,13 @@ public class EvidenceConstraint extends BaseConstraint
      */
     public static EvidenceConstraint extract(List<?> list, int index, String key) throws ConstraintException
     {
+        String label = String.format("%s[%d]", key, index);
+
         Object object = list.get(index);
 
-        if (object == null)
-        {
-            throw new ConstraintException(
-                    String.format("'%s[%d]' is null.", key, index));
-        }
+        Helper.ensureNotNull(object, label);
 
-        if (!(object instanceof Map))
-        {
-            throw new ConstraintException(
-                    String.format("'%s[%d]' is not an object.", key, index));
-        }
-
-        Map<?,?> map = (Map<?,?>)object;
+        Map<?,?> map = Helper.ensureMap(object, label);
 
         Class<? extends EvidenceConstraint> klass = guess(map, key, index);
 
@@ -129,8 +148,7 @@ public class EvidenceConstraint extends BaseConstraint
             return UtilityBillConstraint.class;
         }
 
-        throw new ConstraintException(
-                String.format("'%s[%d]' is not a known evidence.", key, index));
+        throw Helper.exception("'%s[%d]' is not a known evidence.", key, index);
     }
 
 
@@ -166,8 +184,7 @@ public class EvidenceConstraint extends BaseConstraint
             return UtilityBillConstraint.class;
         }
 
-        throw new ConstraintException(
-                String.format("The type of '%s[%d]' is unknown.", key, index));
+        throw Helper.exception("The type of '%s[%d]' is unknown.", key, index);
     }
 
 
@@ -182,5 +199,27 @@ public class EvidenceConstraint extends BaseConstraint
         }
 
         return false;
+    }
+
+
+    static void fill(EvidenceConstraint instance, Map<?,?> map)
+    {
+        instance.type = LeafConstraint.extract(map, "type");
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        addIfAvailable(map, "type", type);
+
+        return map;
     }
 }

@@ -30,35 +30,10 @@ import java.util.Map;
  */
 public class IDDocumentConstraint extends EvidenceConstraint
 {
-    private LeafConstraint type;
     private LeafConstraint method;
     private VerifierConstraint verifier;
     private TimeConstraint time;
     private DocumentConstraint document;
-
-
-    /**
-     * Get the constraint for {@code type}.
-     *
-     * @return
-     *         The constraint for {@code type}.
-     */
-    public LeafConstraint getType()
-    {
-        return type;
-    }
-
-
-    /**
-     * Set the constraint for {@code type}.
-     *
-     * @param constraint
-     *         The constraint for {@code type}.
-     */
-    public void setType(LeafConstraint constraint)
-    {
-        this.type = constraint;
-    }
 
 
     /**
@@ -164,7 +139,8 @@ public class IDDocumentConstraint extends EvidenceConstraint
      *         A map that represents {@code "id_document"}.
      *
      * @return
-     *         An {@code IDDocumentConstraint} that represents {@code "id_document"}.
+     *         An {@code IDDocumentConstraint} instance that represents
+     *         {@code "id_document"}.
      *
      * @throws ConstraintException
      *         The structure of the map does not conform to the specification
@@ -184,10 +160,30 @@ public class IDDocumentConstraint extends EvidenceConstraint
 
     private static void fill(IDDocumentConstraint instance, Map<?,?> map)
     {
-        instance.type     = LeafConstraint.extract(    map, "type");
+        EvidenceConstraint.fill(instance, map);
+
         instance.method   = LeafConstraint.extract(    map, "method");
         instance.verifier = VerifierConstraint.extract(map, "verifier");
         instance.time     = TimeConstraint.extract    (map, "time");
         instance.document = DocumentConstraint.extract(map, "document");
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        addIfAvailable(map, "method",   method);
+        addIfAvailable(map, "verifier", verifier);
+        addIfAvailable(map, "time",     time);
+        addIfAvailable(map, "document", document);
+
+        return map;
     }
 }

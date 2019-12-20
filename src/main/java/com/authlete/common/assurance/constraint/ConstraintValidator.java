@@ -143,7 +143,7 @@ public class ConstraintValidator
             //   Note: If the claims sub-element is empty or contains a Claim
             //   not fulfilling the requirements defined in Section 4.2, the
             //   OP will abort the transaction with an invalid_request error.
-            throw new ConstraintException("'claims' is empty.");
+            throw Helper.exception("'claims' is empty.");
         }
 
         // For each claim.
@@ -212,14 +212,14 @@ public class ConstraintValidator
 
         if (len < PURPOSE_LEN_MIN)
         {
-            throw new ConstraintException(
-                    String.format("The purpose of '%s' is shorter than %d.", key, PURPOSE_LEN_MIN));
+            throw Helper.exception(
+                    "The purpose of '%s' is shorter than %d.", key, PURPOSE_LEN_MIN);
         }
 
         if (PURPOSE_LEN_MAX < len)
         {
-            throw new ConstraintException(
-                    String.format("The purpose of '%s' is longer than %d.", key, PURPOSE_LEN_MAX));
+            throw Helper.exception(
+                    "The purpose of '%s' is longer than %d.", key, PURPOSE_LEN_MAX);
         }
     }
 }

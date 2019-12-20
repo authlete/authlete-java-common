@@ -28,6 +28,7 @@ import java.util.Map;
 public class TimeConstraint extends LeafConstraint
 {
     private long maxAge;
+    private boolean maxAgeExists;
 
 
     /**
@@ -64,7 +65,7 @@ public class TimeConstraint extends LeafConstraint
      *         The key that identifies the object in the map.
      *
      * @return
-     *         A {@code TimeConstraint} that represents a constraint.
+     *         A {@code TimeConstraint} instance that represents a constraint.
      *         Even if the map does not contain the given key, an instance of
      *         {@code TimeConstraint} is returned.
      *
@@ -95,38 +96,48 @@ public class TimeConstraint extends LeafConstraint
             return;
         }
 
-        if (!(object instanceof Map))
-        {
-            throw new ConstraintException("'" + key + "' is not an object.");
-        }
-
-        Map<?,?> map = (Map<?,?>)object;
+        Map<?,?> map = Helper.ensureMap(object, key);
 
         LeafConstraint.fill(instance, map, key);
 
-        instance.maxAge = extractLong(map, "max_age");
+        fillMaxAge(instance, map);
+    }
+
+
+    private static void fillMaxAge(TimeConstraint instance, Map<?,?> map)
+    {
+        instance.maxAgeExists = map.containsKey("max_age");
+
+        if (instance.maxAgeExists)
+        {
+            instance.maxAge = extractLong(map, "max_age");
+        }
     }
 
 
     private static long extractLong(Map<?,?> map, String key)
     {
-        if (map.containsKey(key) == false)
-        {
-            return 0;
-        }
-
         Object value = map.get(key);
 
-        if (value == null)
+        return Helper.ensureLong(value, key);
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
         {
-            return 0;
+            return null;
         }
 
-        if (!(value instanceof Number))
+        if (maxAgeExists)
         {
-            throw new ConstraintException("'" + key + "' is not a number.");
+            map.put("max_age", Long.valueOf(maxAge));
         }
 
-        return ((Number)value).longValue();
+        return map;
     }
 }

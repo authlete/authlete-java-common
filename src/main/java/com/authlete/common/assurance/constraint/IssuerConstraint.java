@@ -94,9 +94,9 @@ public class IssuerConstraint extends BaseConstraint
      *         the key is {@code "issuer"}.
      *
      * @return
-     *         An {@code IssuerConstraint} that represents {@code "issuer"}.
-     *         Even if the map does not contain the given key, an instance of
-     *         {@code IssuerConstraint} is returned.
+     *         An {@code IssuerConstraint} instance that represents
+     *         {@code "issuer"}. Even if the map does not contain the given
+     *         key, an instance of {@code IssuerConstraint} is returned.
      *
      * @throws ConstraintException
      *         The structure of the map does not conform to the specification
@@ -125,14 +125,26 @@ public class IssuerConstraint extends BaseConstraint
             return;
         }
 
-        if (!(object instanceof Map))
-        {
-            throw new ConstraintException("'" + key + "' is not an object.");
-        }
-
-        Map<?,?> map = (Map<?,?>)object;
+        Map<?,?> map = Helper.ensureMap(object, key);
 
         instance.name    = LeafConstraint.extract(map, "name");
         instance.country = LeafConstraint.extract(map, "country");
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        addIfAvailable(map, "name",    name);
+        addIfAvailable(map, "country", country);
+
+        return map;
     }
 }

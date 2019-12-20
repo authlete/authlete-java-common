@@ -18,6 +18,7 @@ package com.authlete.common.assurance.constraint;
 
 
 import static org.junit.Assert.*;
+import java.io.IOException;
 import org.junit.Test;
 import com.authlete.common.assurance.constraint.ClaimsConstraint;
 import com.authlete.common.assurance.constraint.EvidenceArrayConstraint;
@@ -30,6 +31,7 @@ import com.authlete.common.assurance.constraint.UtilityBillConstraint;
 import com.authlete.common.assurance.constraint.VerificationConstraint;
 import com.authlete.common.assurance.constraint.VerifiedClaimsConstraint;
 import com.authlete.common.assurance.constraint.VerifiedClaimsContainerConstraint;
+import com.neovisionaries.security.Digest;
 
 
 public class VerifiedClaimsContainerConstraintTest
@@ -46,15 +48,33 @@ public class VerifiedClaimsContainerConstraintTest
     }
 
 
-    private static VerificationConstraint toVerification(String json)
+    private static void compareJson(String expectedJson, BaseConstraint constraint)
     {
-        return toVerifiedClaims(json).getVerification();
+        String actualJson = constraint.toJson(true);
+
+        String expectedDigest = digestJson(expectedJson);
+        String actualDigest   = digestJson(actualJson);
+
+        if (!actualDigest.equals(expectedDigest))
+        {
+            System.out.format("Expected JSON:\n%s\n", expectedJson);
+            System.out.format("Actual JSON:\n%s\n", actualJson);
+        }
+
+        assertEquals(expectedDigest, actualDigest);
     }
 
 
-    private static ClaimsConstraint toClaims(String json)
+    private static String digestJson(String json)
     {
-        return toVerifiedClaims(json).getClaims();
+        try
+        {
+            return Digest.getInstanceSHA256().updateJson(json).digestAsString();
+        }
+        catch (IOException e)
+        {
+            return null;
+        }
     }
 
 
@@ -71,6 +91,8 @@ public class VerifiedClaimsContainerConstraintTest
         assertFalse(container.isNull());
 
         assertFalse(container.getVerifiedClaims().exists());
+
+        compareJson(json, container);
     }
 
 
@@ -82,10 +104,13 @@ public class VerifiedClaimsContainerConstraintTest
                 "  \"verified_claims\":null",
                 "}");
 
-        VerifiedClaimsConstraint verifiedClaims = toVerifiedClaims(json);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        VerifiedClaimsConstraint verifiedClaims = container.getVerifiedClaims();
 
         assertTrue(verifiedClaims.exists());
         assertTrue(verifiedClaims.isNull());
+
+        compareJson(json, container);
     }
 
 
@@ -98,13 +123,16 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        VerifiedClaimsConstraint verifiedClaims = toVerifiedClaims(json);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        VerifiedClaimsConstraint verifiedClaims = container.getVerifiedClaims();
 
         assertTrue (verifiedClaims.exists());
         assertFalse(verifiedClaims.isNull());
 
         assertFalse(verifiedClaims.getVerification().exists());
         assertFalse(verifiedClaims.getClaims().exists());
+
+        compareJson(json, container);
     }
 
 
@@ -118,10 +146,14 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        VerificationConstraint verification = toVerification(json);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        VerificationConstraint verification =
+                container.getVerifiedClaims().getVerification();
 
         assertTrue(verification.exists());
         assertTrue(verification.isNull());
+
+        compareJson(json, container);
     }
 
 
@@ -136,7 +168,9 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        VerificationConstraint verification = toVerification(json);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        VerificationConstraint verification =
+                container.getVerifiedClaims().getVerification();
 
         assertTrue( verification.exists());
         assertFalse(verification.isNull());
@@ -145,6 +179,8 @@ public class VerifiedClaimsContainerConstraintTest
         assertFalse(verification.getTime().exists());
         assertFalse(verification.getVerificationProcess().exists());
         assertFalse(verification.getEvidence().exists());
+
+        compareJson(json, container);
     }
 
 
@@ -158,10 +194,13 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        ClaimsConstraint claims = toClaims(json);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        ClaimsConstraint claims = container.getVerifiedClaims().getClaims();
 
         assertTrue(claims.exists());
         assertTrue(claims.isNull());
+
+        compareJson(json, container);
     }
 
 
@@ -176,10 +215,13 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        ClaimsConstraint claims = toClaims(json);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        ClaimsConstraint claims = container.getVerifiedClaims().getClaims();
 
         assertTrue( claims.exists());
         assertFalse(claims.isNull());
+
+        compareJson(json, container);
     }
 
 
@@ -198,7 +240,9 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        VerificationConstraint verification = toVerification(json);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        VerificationConstraint verification =
+                container.getVerifiedClaims().getVerification();
 
         assertTrue(verification.getTrustFramework().exists());
         assertTrue(verification.getTrustFramework().isNull());
@@ -211,6 +255,8 @@ public class VerifiedClaimsContainerConstraintTest
 
         assertTrue(verification.getEvidence().exists());
         assertTrue(verification.getEvidence().isNull());
+
+        compareJson(json, container);
     }
 
 
@@ -233,7 +279,9 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        VerificationConstraint verification = toVerification(json);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        VerificationConstraint verification =
+                container.getVerifiedClaims().getVerification();
 
         assertTrue( verification.getTrustFramework().exists());
         assertFalse(verification.getTrustFramework().isNull());
@@ -246,6 +294,8 @@ public class VerifiedClaimsContainerConstraintTest
 
         assertTrue( verification.getEvidence().exists());
         assertFalse(verification.getEvidence().isNull());
+
+        compareJson(json, container);
     }
 
 
@@ -265,11 +315,15 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        LeafConstraint trustFramework = toVerification(json).getTrustFramework();
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        LeafConstraint trustFramework =
+                container.getVerifiedClaims().getVerification().getTrustFramework();
 
         assertTrue(trustFramework.isEssential());
         assertEquals("de_aml", trustFramework.getValue());
         assertArrayEquals(new String[]{"eidas_ial_substantial","eidas_ial_high"}, trustFramework.getValues());
+
+        compareJson(json, container);
     }
 
 
@@ -290,12 +344,16 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        TimeConstraint time = toVerification(json).getTime();
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        TimeConstraint time =
+                container.getVerifiedClaims().getVerification().getTime();
 
         assertTrue(time.isEssential());
         assertEquals("time", time.getValue());
         assertArrayEquals(new String[]{"time0","time1"}, time.getValues());
         assertEquals(12345, time.getMaxAge());
+
+        compareJson(json, container);
     }
 
 
@@ -315,11 +373,15 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        LeafConstraint process = toVerification(json).getVerificationProcess();
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        LeafConstraint process =
+                container.getVerifiedClaims().getVerification().getVerificationProcess();
 
         assertTrue(process.isEssential());
         assertEquals("process", process.getValue());
         assertArrayEquals(new String[]{"process0","process1"}, process.getValues());
+
+        compareJson(json, container);
     }
 
 
@@ -357,7 +419,9 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        EvidenceArrayConstraint array = toVerification(json).getEvidence();
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        EvidenceArrayConstraint array =
+                container.getVerifiedClaims().getVerification().getEvidence();
 
         assertTrue(array.exists());
         assertEquals(1, array.size());
@@ -395,6 +459,8 @@ public class VerifiedClaimsContainerConstraintTest
         assertTrue(idDocument.getTime().exists());
         assertEquals("time", idDocument.getTime().getValue());
         assertEquals(12345, idDocument.getTime().getMaxAge());
+
+        compareJson(json, container);
     }
 
 
@@ -423,7 +489,9 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        EvidenceArrayConstraint array = toVerification(json).getEvidence();
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        EvidenceArrayConstraint array =
+                container.getVerifiedClaims().getVerification().getEvidence();
 
         assertTrue(array.exists());
         assertEquals(1, array.size());
@@ -452,6 +520,8 @@ public class VerifiedClaimsContainerConstraintTest
         // qes/created_at
         assertTrue(qes.getCreatedAt().exists());
         assertNull(qes.getCreatedAt().getValue());
+
+        compareJson(json, container);
     }
 
 
@@ -487,7 +557,9 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        EvidenceArrayConstraint array = toVerification(json).getEvidence();
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        EvidenceArrayConstraint array =
+                container.getVerifiedClaims().getVerification().getEvidence();
 
         assertTrue(array.exists());
         assertEquals(1, array.size());
@@ -526,6 +598,8 @@ public class VerifiedClaimsContainerConstraintTest
 
         // utility_bill/date
         assertTrue(utilityBill.getDate().exists());
+
+        compareJson(json, container);
     }
 
 
@@ -545,9 +619,13 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        EvidenceConstraint constraint = toVerification(json).getEvidence().get(0);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        EvidenceConstraint constraint =
+                container.getVerifiedClaims().getVerification().getEvidence().get(0);
 
         assertTrue(constraint instanceof IDDocumentConstraint);
+
+        compareJson(json, container);
     }
 
 
@@ -567,9 +645,13 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        EvidenceConstraint constraint = toVerification(json).getEvidence().get(0);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        EvidenceConstraint constraint =
+                container.getVerifiedClaims().getVerification().getEvidence().get(0);
 
         assertTrue(constraint instanceof IDDocumentConstraint);
+
+        compareJson(json, container);
     }
 
 
@@ -589,9 +671,13 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        EvidenceConstraint constraint = toVerification(json).getEvidence().get(0);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        EvidenceConstraint constraint =
+                container.getVerifiedClaims().getVerification().getEvidence().get(0);
 
         assertTrue(constraint instanceof IDDocumentConstraint);
+
+        compareJson(json, container);
     }
 
 
@@ -611,9 +697,13 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        EvidenceConstraint constraint = toVerification(json).getEvidence().get(0);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        EvidenceConstraint constraint =
+                container.getVerifiedClaims().getVerification().getEvidence().get(0);
 
         assertTrue(constraint instanceof QESConstraint);
+
+        compareJson(json, container);
     }
 
 
@@ -633,9 +723,13 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        EvidenceConstraint constraint = toVerification(json).getEvidence().get(0);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        EvidenceConstraint constraint =
+                container.getVerifiedClaims().getVerification().getEvidence().get(0);
 
         assertTrue(constraint instanceof UtilityBillConstraint);
+
+        compareJson(json, container);
     }
 
 
@@ -752,7 +846,8 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        ClaimsConstraint claims = toClaims(json);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        ClaimsConstraint claims = container.getVerifiedClaims().getClaims();
 
         assertTrue(claims.exists());
         assertEquals(1, claims.size());
@@ -762,6 +857,8 @@ public class VerifiedClaimsContainerConstraintTest
 
         assertTrue(claim.exists());
         assertTrue(claim.isNull());
+
+        compareJson(json, container);
     }
 
 
@@ -778,7 +875,8 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        ClaimsConstraint claims = toClaims(json);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        ClaimsConstraint claims = container.getVerifiedClaims().getClaims();
 
         assertTrue(claims.exists());
         assertEquals(1, claims.size());
@@ -788,6 +886,8 @@ public class VerifiedClaimsContainerConstraintTest
 
         assertTrue( claim.exists());
         assertFalse(claim.isNull());
+
+        compareJson(json, container);
     }
 
 
@@ -808,7 +908,8 @@ public class VerifiedClaimsContainerConstraintTest
                 "  }",
                 "}");
 
-        ClaimsConstraint claims = toClaims(json);
+        VerifiedClaimsContainerConstraint container = toContainer(json);
+        ClaimsConstraint claims = container.getVerifiedClaims().getClaims();
 
         assertTrue(claims.exists());
         assertEquals(1, claims.size());
@@ -823,5 +924,7 @@ public class VerifiedClaimsContainerConstraintTest
         assertEquals("title", claim.getValue());
         assertArrayEquals(new String[]{"title0","title1"}, claim.getValues());
         assertEquals("purpose", claim.getPurpose());
+
+        compareJson(json, container);
     }
 }

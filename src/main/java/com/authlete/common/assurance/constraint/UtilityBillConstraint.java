@@ -30,33 +30,8 @@ import java.util.Map;
  */
 public class UtilityBillConstraint extends EvidenceConstraint
 {
-    private LeafConstraint type;
     private ProviderConstraint provider;
     private LeafConstraint date;
-
-
-    /**
-     * Get the constraint for {@code type}.
-     *
-     * @return
-     *         The constraint for {@code type}.
-     */
-    public LeafConstraint getType()
-    {
-        return type;
-    }
-
-
-    /**
-     * Set the constraint for {@code type}.
-     *
-     * @param constraint
-     *         The constraint for {@code type}.
-     */
-    public void setType(LeafConstraint constraint)
-    {
-        this.type = constraint;
-    }
 
 
     /**
@@ -114,7 +89,8 @@ public class UtilityBillConstraint extends EvidenceConstraint
      *         A map that represents {@code "utility_bill"}.
      *
      * @return
-     *         A {@code UtilityBillConstraint} that represents {@code "utility_bill"}.
+     *         A {@code UtilityBillConstraint} instance that represents
+     *         {@code "utility_bill"}.
      *
      * @throws ConstraintException
      *         The structure of the map does not conform to the specification
@@ -134,8 +110,26 @@ public class UtilityBillConstraint extends EvidenceConstraint
 
     private static void fill(UtilityBillConstraint instance, Map<?,?> map)
     {
-        instance.type     = LeafConstraint.extract(    map, "type");
+        EvidenceConstraint.fill(instance, map);
+
         instance.provider = ProviderConstraint.extract(map, "provider");
         instance.date     = LeafConstraint.extract(    map, "date");
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        addIfAvailable(map, "provider", provider);
+        addIfAvailable(map, "date",     date);
+
+        return map;
     }
 }

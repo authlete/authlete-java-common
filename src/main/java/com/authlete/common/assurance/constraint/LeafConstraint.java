@@ -17,6 +17,7 @@
 package com.authlete.common.assurance.constraint;
 
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +42,9 @@ public class LeafConstraint extends BaseConstraint
     private boolean essential;
     private String value;
     private String[] values;
+    private boolean essentialExists;
+    private boolean valueExists;
+    private boolean valuesExists;
 
 
     /**
@@ -125,7 +129,7 @@ public class LeafConstraint extends BaseConstraint
      *         The key that identifies the object in the map.
      *
      * @return
-     *         A {@code LeafConstraint} that represents a constraint.
+     *         A {@code LeafConstraint} instance that represents a constraint.
      *         Even if the map does not contain the given key, an instance of
      *         {@code LeafConstraint} is returned.
      *
@@ -156,49 +160,46 @@ public class LeafConstraint extends BaseConstraint
             return;
         }
 
-        if (!(object instanceof Map))
+        Map<?,?> map = Helper.ensureMap(object, key);
+
+        fillEssential(instance, map);
+        fillValue(instance, map);
+        fillValues(instance, map);
+    }
+
+
+    private static void fillEssential(LeafConstraint instance, Map<?,?> map)
+    {
+        instance.essentialExists = map.containsKey("essential");
+
+        if (instance.essentialExists)
         {
-            throw new ConstraintException("'" + key + "' is not an object.");
+            instance.essential = extractBoolean(map, "essential");
         }
-
-        Map<?,?> map = (Map<?,?>)object;
-
-        instance.essential = extractBoolean(    map, "essential");
-        instance.value     = extractString(     map, "value");
-        instance.values    = extractStringArray(map, "values");
     }
 
 
     private static boolean extractBoolean(Map<?,?> map, String key)
     {
-        if (map.containsKey(key) == false)
-        {
-            return false;
-        }
-
         Object value = map.get(key);
 
-        if (value == null)
-        {
-            return false;
-        }
+        return Helper.ensureBoolean(value, key);
+    }
 
-        if (!(value instanceof Boolean))
-        {
-            throw new ConstraintException("'" + key + "' is not a boolean value.");
-        }
 
-        return ((Boolean)value).booleanValue();
+    private static void fillValue(LeafConstraint instance, Map<?,?> map)
+    {
+        instance.valueExists = map.containsKey("value");
+
+        if (instance.valueExists)
+        {
+            instance.value = extractString(map, "value");
+        }
     }
 
 
     static String extractString(Map<?,?> map, String key)
     {
-        if (map.containsKey(key) == false)
-        {
-            return null;
-        }
-
         Object value = map.get(key);
 
         if (value == null)
@@ -206,22 +207,23 @@ public class LeafConstraint extends BaseConstraint
             return null;
         }
 
-        if (!(value instanceof String))
-        {
-            throw new ConstraintException("'" + key + "' is not a string.");
-        }
+        return Helper.ensureString(value, key);
+    }
 
-        return (String)value;
+
+    private static void fillValues(LeafConstraint instance, Map<?,?> map)
+    {
+        instance.valuesExists = map.containsKey("values");
+
+        if (instance.valuesExists)
+        {
+            instance.values = extractStringArray(map, "values");
+        }
     }
 
 
     private static String[] extractStringArray(Map<?,?> map, String key)
     {
-        if (map.containsKey(key) == false)
-        {
-            return null;
-        }
-
         Object value = map.get(key);
 
         if (value == null)
@@ -229,12 +231,7 @@ public class LeafConstraint extends BaseConstraint
             return null;
         }
 
-        if (!(value instanceof List))
-        {
-            throw new ConstraintException("'" + key + "' is not an array.");
-        }
-
-        List<?> list = (List<?>)value;
+        List<?> list = Helper.ensureList(value, key);
         int size = list.size();
 
         String[] array = new String[size];
@@ -245,13 +242,42 @@ public class LeafConstraint extends BaseConstraint
 
             if (element != null && !(element instanceof String))
             {
-                throw new ConstraintException(
-                        String.format("'%s[%d]' is not a string.", key, i));
+                throw Helper.exception("'%s[%d]' is not a string.", key, i);
             }
 
             array[i] = (String)element;
         }
 
         return array;
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        if (essentialExists)
+        {
+            map.put("essential", Boolean.valueOf(essential));
+        }
+
+        if (valueExists)
+        {
+            map.put("value", value);
+        }
+
+        if (valuesExists)
+        {
+            List<String> list = (values == null) ? null : Arrays.asList(values);
+            map.put("values", list);
+        }
+
+        return map;
     }
 }

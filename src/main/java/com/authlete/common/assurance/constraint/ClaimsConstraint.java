@@ -17,6 +17,7 @@
 package com.authlete.common.assurance.constraint;
 
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -89,7 +90,7 @@ implements Constraint
      *         the key is {@code "claims"}.
      *
      * @return
-     *         A {@code ClaimsConstraint} that represents {@code "claims"}.
+     *         A {@code ClaimsConstraint} instance that represents {@code "claims"}.
      *         Even if the map does not contain the given key, an instance of
      *         {@code ClaimsConstraint} is returned.
      *
@@ -120,18 +121,13 @@ implements Constraint
             return;
         }
 
-        if (!(object instanceof Map))
-        {
-            throw new ConstraintException("'" + key + "' is not an object.");
-        }
-
-        Map<?,?> map = (Map<?,?>)object;
+        Map<?,?> map = Helper.ensureMap(object, key);
 
         for (Map.Entry<?, ?> entry : map.entrySet())
         {
             if (!(entry.getKey() instanceof String))
             {
-                throw new ConstraintException("A key in '" + key + "' is not a string.");
+                throw Helper.exception("A key in '%s' is not a string.", key);
             }
 
             String name = (String)entry.getKey();
@@ -141,5 +137,77 @@ implements Constraint
 
             instance.put(name, constraint);
         }
+    }
+
+
+    /**
+     * Create a {@code Map} instance that represents this object in the way
+     * conforming to the structure defined in <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.5"
+     * >5. Requesting Verified Claims</a> of OpenID Connect for Identity Assurance 1.0.
+     *
+     * @return
+     *         A {@code Map} instance that represents this object.
+     *         If {@link #exists()} returns {@code false} or {@link #isNull()}
+     *         returns {@code true}, this method returns null.
+     */
+    public Map<String, Object> toMap()
+    {
+        if (!exists || isNull)
+        {
+            return null;
+        }
+
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+
+        for (Map.Entry<String, VerifiedClaimConstraint> entry : entrySet())
+        {
+            map.put(entry.getKey(), entry.getValue().toMap());
+        }
+
+        return map;
+    }
+
+
+    /**
+     * Convert this object into JSON in the way conforming to the structure
+     * defined in <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.5"
+     * >5. Requesting Verified Claims</a> of OpenID Connect for Identity Assurance 1.0.
+     *
+     * <p>
+     * This method is an alias of {@link #toJson(boolean) toJson}{@code (false)}.
+     * </p>
+     *
+     * @return
+     *         JSON that represents this object. If {@link #toMap()} returns
+     *         null, this method returns {@code "null"} (a {@code String}
+     *         instance which consists of {@code 'n'}, {@code 'u'}, {@code 'l'}
+     *         and {@code 'l'}).
+     */
+    public String toJson()
+    {
+        return Helper.toJson(toMap());
+    }
+
+
+    /**
+     * Convert this object into JSON in the way conforming to the structure
+     * defined in <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.5"
+     * >5. Requesting Verified Claims</a> of OpenID Connect for Identity Assurance 1.0.
+     *
+     * @param pretty
+     *         {@code true} to make the output more human-readable.
+     *
+     * @return
+     *         JSON that represents this object. If {@link #toMap()} returns
+     *         null, this method returns {@code "null"} (a {@code String}
+     *         instance which consists of {@code 'n'}, {@code 'u'}, {@code 'l'}
+     *         and {@code 'l'}).
+     */
+    public String toJson(boolean pretty)
+    {
+        return Helper.toJson(toMap(), pretty);
     }
 }

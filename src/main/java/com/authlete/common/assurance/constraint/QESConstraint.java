@@ -30,34 +30,9 @@ import java.util.Map;
  */
 public class QESConstraint extends EvidenceConstraint
 {
-    private LeafConstraint type;
     private LeafConstraint issuer;
     private LeafConstraint serialNumber;
     private LeafConstraint createdAt;
-
-
-    /**
-     * Get the constraint for {@code type}.
-     *
-     * @return
-     *         The constraint for {@code type}.
-     */
-    public LeafConstraint getType()
-    {
-        return type;
-    }
-
-
-    /**
-     * Set the constraint for {@code type}.
-     *
-     * @param constraint
-     *         The constraint for {@code type}.
-     */
-    public void setType(LeafConstraint constraint)
-    {
-        this.type = constraint;
-    }
 
 
     /**
@@ -139,7 +114,7 @@ public class QESConstraint extends EvidenceConstraint
      *         A map that represents {@code "qes"}.
      *
      * @return
-     *         A {@code QESConstraint} that represents {@code "qes"}.
+     *         A {@code QESConstraint} instance that represents {@code "qes"}.
      *
      * @throws ConstraintException
      *         The structure of the map does not conform to the specification
@@ -159,9 +134,28 @@ public class QESConstraint extends EvidenceConstraint
 
     private static void fill(QESConstraint instance, Map<?,?> map)
     {
-        instance.type         = LeafConstraint.extract(map, "type");
+        EvidenceConstraint.fill(instance, map);
+
         instance.issuer       = LeafConstraint.extract(map, "issuer");
         instance.serialNumber = LeafConstraint.extract(map, "serial_number");
         instance.createdAt    = LeafConstraint.extract(map, "created_at");
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        addIfAvailable(map, "issuer",        issuer);
+        addIfAvailable(map, "serial_number", serialNumber);
+        addIfAvailable(map, "created_at",    createdAt);
+
+        return map;
     }
 }

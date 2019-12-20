@@ -143,9 +143,10 @@ public class VerificationConstraint extends BaseConstraint
      *         the key is {@code "verification"}.
      *
      * @return
-     *         A {@code VerificationConstraint} that represents {@code "verification"}.
-     *         Even if the map does not contain the given key, an instance of
-     *         {@code VerificationConstraint} is returned.
+     *         A {@code VerificationConstraint} instance that represents
+     *         {@code "verification"}. Even if the map does not contain the
+     *         given key, an instance of {@code VerificationConstraint} is
+     *         returned.
      *
      * @throws ConstraintException
      *         The structure of the map does not conform to the specification
@@ -174,16 +175,34 @@ public class VerificationConstraint extends BaseConstraint
             return;
         }
 
-        if (!(object instanceof Map))
-        {
-            throw new ConstraintException("'" + key + "' is not an object.");
-        }
-
-        Map<?,?> map = (Map<?,?>)object;
+        Map<?,?> map = Helper.ensureMap(object, key);
 
         instance.trustFramework      = LeafConstraint.extract(         map, "trust_framework");
         instance.time                = TimeConstraint.extract(         map, "time");
         instance.verificationProcess = LeafConstraint.extract(         map, "verification_process");
         instance.evidence            = EvidenceArrayConstraint.extract(map, "evidence");
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        addIfAvailable(map, "trust_framework",      trustFramework);
+        addIfAvailable(map, "time",                 time);
+        addIfAvailable(map, "verification_process", verificationProcess);
+
+        if (evidence != null && evidence.exists())
+        {
+            map.put("evidence", evidence.toList());
+        }
+
+        return map;
     }
 }

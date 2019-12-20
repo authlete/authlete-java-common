@@ -143,9 +143,9 @@ public class ProviderConstraint extends BaseConstraint
      *         the key is {@code "provider"}.
      *
      * @return
-     *         A {@code ProviderConstraint} that represents {@code "provider"}.
-     *         Even if the map does not contain the given key, an instance of
-     *         {@code ProviderConstraint} is returned.
+     *         A {@code ProviderConstraint} instance that represents
+     *         {@code "provider"}. Even if the map does not contain the given
+     *         key, an instance of {@code ProviderConstraint} is returned.
      *
      * @throws ConstraintException
      *         The structure of the map does not conform to the specification
@@ -174,16 +174,30 @@ public class ProviderConstraint extends BaseConstraint
             return;
         }
 
-        if (!(object instanceof Map))
-        {
-            throw new ConstraintException("'" + key + "' is not an object.");
-        }
-
-        Map<?,?> map = (Map<?,?>)object;
+        Map<?,?> map = Helper.ensureMap(object, key);
 
         instance.name          = LeafConstraint.extract(map, "name");
         instance.country       = LeafConstraint.extract(map, "country");
         instance.region        = LeafConstraint.extract(map, "region");
         instance.streetAddress = LeafConstraint.extract(map, "street_address");
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        addIfAvailable(map, "name",           name);
+        addIfAvailable(map, "country",        country);
+        addIfAvailable(map, "region",         region);
+        addIfAvailable(map, "street_address", streetAddress);
+
+        return map;
     }
 }

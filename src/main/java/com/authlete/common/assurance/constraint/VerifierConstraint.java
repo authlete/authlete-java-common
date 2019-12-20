@@ -93,9 +93,9 @@ public class VerifierConstraint extends BaseConstraint
      *         the key is {@code "verifier"}.
      *
      * @return
-     *         A {@code VerifierConstraint} that represents {@code "verifier"}.
-     *         Even if the map does not contain the given key, an instance of
-     *         {@code VerifierConstraint} is returned.
+     *         A {@code VerifierConstraint} instance that represents
+     *         {@code "verifier"}. Even if the map does not contain the given
+     *         key, an instance of {@code VerifierConstraint} is returned.
      *
      * @throws ConstraintException
      *         The structure of the map does not conform to the specification
@@ -124,14 +124,26 @@ public class VerifierConstraint extends BaseConstraint
             return;
         }
 
-        if (!(object instanceof Map))
-        {
-            throw new ConstraintException("'" + key + "' is not an object.");
-        }
-
-        Map<?,?> map = (Map<?,?>)object;
+        Map<?,?> map = Helper.ensureMap(object, key);
 
         instance.organization = LeafConstraint.extract(map, "organization");
         instance.txn          = LeafConstraint.extract(map, "txn");
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        addIfAvailable(map, "organization", organization);
+        addIfAvailable(map, "txn",          txn);
+
+        return map;
     }
 }

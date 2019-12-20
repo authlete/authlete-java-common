@@ -168,7 +168,7 @@ public class DocumentConstraint extends BaseConstraint
      *         the key is {@code "document"}.
      *
      * @return
-     *         A {@code DocumentConstraint} that represents {@code "document"}.
+     *         A {@code DocumentConstraint} instance that represents {@code "document"}.
      *         Even if the map does not contain the given key, an instance of
      *         {@code DocumentConstraint} is returned.
      *
@@ -199,17 +199,32 @@ public class DocumentConstraint extends BaseConstraint
             return;
         }
 
-        if (!(object instanceof Map))
-        {
-            throw new ConstraintException("'" + key + "' is not an object.");
-        }
-
-        Map<?,?> map = (Map<?,?>)object;
+        Map<?,?> map = Helper.ensureMap(object, key);
 
         instance.type           = LeafConstraint.extract(  map, "type");
         instance.number         = LeafConstraint.extract(  map, "number");
         instance.issuer         = IssuerConstraint.extract(map, "issuer");
         instance.dateOfIssuance = LeafConstraint.extract(  map, "date_of_issuance");
         instance.dateOfExpiry   = LeafConstraint.extract(  map, "date_of_expiry");
+    }
+
+
+    @Override
+    public Map<String, Object> toMap()
+    {
+        Map<String, Object> map = super.toMap();
+
+        if (map == null)
+        {
+            return null;
+        }
+
+        addIfAvailable(map, "type",             type);
+        addIfAvailable(map, "number",           number);
+        addIfAvailable(map, "issuer",           issuer);
+        addIfAvailable(map, "date_of_issuance", dateOfIssuance);
+        addIfAvailable(map, "date_of_expiry",   dateOfExpiry);
+
+        return map;
     }
 }
