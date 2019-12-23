@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.65 (2019-12-23)
+-----------------
+
 - `Claims` class
     * Added `putClaim(String, Object)` method.
 
