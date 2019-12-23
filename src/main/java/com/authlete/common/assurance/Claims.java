@@ -35,6 +35,34 @@ public class Claims extends LinkedHashMap<String, Object>
 
 
     /**
+     * Put a claim to this object.
+     *
+     * <p>
+     * This method internally calls {@code put(String, Object)} method to
+     * register the given pair of claim name and claim value and then
+     * returns {@code this} object.
+     * </p>
+     *
+     * @param claimName
+     *         The claim name.
+     *
+     * @param claimValue
+     *         The claim value.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.65
+     */
+    public Claims putClaim(String claimName, Object claimValue)
+    {
+        put(claimName, claimValue);
+
+        return this;
+    }
+
+
+    /**
      * Create a {@code Claims} instance from an object in the given map.
      *
      * @param map
