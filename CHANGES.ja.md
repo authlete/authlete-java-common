@@ -4,6 +4,9 @@
 - `Claims` クラス
     * `putClaim(String, Object)` メソッドを追加。
 
+- `ClaimsConstraint` クラス
+    * `putClaim(String, VerifiedClaimConstraint)` メソッドを追加。
+
 
 2.64 (2019 年 12 月 20 日)
 --------------------------

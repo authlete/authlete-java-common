@@ -4,6 +4,9 @@ CHANGES
 - `Claims` class
     * Added `putClaim(String, Object)` method.
 
+- `ClaimsConstraint` class
+    * Added `putClaim(String, VerifiedClaimConstraint)` method.
+
 
 2.64 (2019-12-20)
 -----------------

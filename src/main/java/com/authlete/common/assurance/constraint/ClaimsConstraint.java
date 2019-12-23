@@ -19,7 +19,6 @@ package com.authlete.common.assurance.constraint;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 
 /**
@@ -31,10 +30,10 @@ import java.util.TreeMap;
  * @since 2.63
  */
 public class ClaimsConstraint
-extends TreeMap<String, VerifiedClaimConstraint>
+extends LinkedHashMap<String, VerifiedClaimConstraint>
 implements Constraint
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     private boolean exists;
@@ -76,6 +75,34 @@ implements Constraint
     public void setNull(boolean isNull)
     {
         this.isNull = isNull;
+    }
+
+
+    /**
+     * Put a claim constraint to this object.
+     *
+     * <p>
+     * This method internally calls {@code put(String, VerifiedClaimConstraint)}
+     * method to register the given pair of claim name and constraint and then
+     * returns {@code this} object.
+     * </p>
+     *
+     * @param claimName
+     *         The claim name.
+     *
+     * @param constraint
+     *         The constraint for the claim.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.65
+     */
+    public ClaimsConstraint putClaim(String claimName, VerifiedClaimConstraint constraint)
+    {
+        put(claimName, constraint);
+
+        return this;
     }
 
 
