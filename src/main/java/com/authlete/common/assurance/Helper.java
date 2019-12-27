@@ -25,10 +25,12 @@ import java.util.regex.Pattern;
 
 class Helper
 {
-    private static Pattern TIME_PATTERN =
-            Pattern.compile("^\\d{4}-?\\d{2}-?\\d{2}T\\d{2}:?\\d{2}:?\\d{2}(Z|[+-]\\d{2}(:?\\d{2})?)?$");
+    // YYYY-MM-DDThh:mm:ss
+    private static Pattern DATETIME_PATTERN =
+            Pattern.compile("^\\d{4}-?\\d{2}-?\\d{2}T\\d{2}:?\\d{2}:?\\d{2}([,.]\\d{1,})?(Z|[+-]\\d{2}(:?\\d{2})?)?$");
 
 
+    // YYYY-MM-DD
     private static Pattern DATE_PATTERN =
             Pattern.compile("^\\d{4}-?\\d{2}-?\\d{2}$");
 
@@ -174,7 +176,7 @@ class Helper
     }
 
 
-    public static String extractTime(Map<?,?> map, String key, String parent, boolean required)
+    public static String extractDateTime(Map<?,?> map, String key, String parent, boolean required)
     {
         String value = extractString(map, key, parent, required);
 
@@ -183,7 +185,7 @@ class Helper
             return null;
         }
 
-        if (!isValidTime(value))
+        if (!isValidDateTime(value))
         {
             throw exception("The format of '%s' in '%s' is wrong.", key, parent);
         }
@@ -192,9 +194,9 @@ class Helper
     }
 
 
-    public static boolean isValidTime(String string)
+    public static boolean isValidDateTime(String string)
     {
-        return TIME_PATTERN.matcher(string).matches();
+        return DATETIME_PATTERN.matcher(string).matches();
     }
 
 

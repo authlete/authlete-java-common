@@ -270,7 +270,7 @@ public class QES extends Evidence
     private static void fillCreatedAt(QES instance, Map<?,?> map, String key)
     {
         // The value of "created_at" in the map.
-        String value = Helper.extractTime(map, CREATED_AT, key, true);
+        String value = Helper.extractDateTime(map, CREATED_AT, key, true);
 
         instance.setCreatedAt(value);
     }

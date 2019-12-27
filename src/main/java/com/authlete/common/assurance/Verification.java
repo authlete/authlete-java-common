@@ -361,7 +361,7 @@ public class Verification extends LinkedHashMap<String, Object>
     private static void fillTime(Verification instance, Map<?,?> map, String key)
     {
         // The value of "time" in the map.
-        String value = Helper.extractTime(map, TIME, key, false);
+        String value = Helper.extractDateTime(map, TIME, key, false);
 
         instance.setTime(value);
     }

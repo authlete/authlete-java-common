@@ -35,15 +35,15 @@ public class HelperTest
     }
 
 
-    private static void validTime(String string)
+    private static void validDateTime(String string)
     {
-        assertTrue(Helper.isValidTime(string));
+        assertTrue(Helper.isValidDateTime(string));
     }
 
 
-    private static void invalidTime(String string)
+    private static void invalidDateTime(String string)
     {
-        assertFalse(Helper.isValidTime(string));
+        assertFalse(Helper.isValidDateTime(string));
     }
 
 
@@ -111,127 +111,211 @@ public class HelperTest
 
 
     @Test
-    public void testTime01()
+    public void testDateTime01()
     {
-        validTime("2019-12-31T01:23:45");
+        validDateTime("2019-12-31T01:23:45");
     }
 
 
     @Test
-    public void testTime02()
+    public void testDateTime02()
     {
-        validTime("2019-12-31T01:23:45Z");
+        validDateTime("2019-12-31T01:23:45Z");
     }
 
 
     @Test
-    public void testTime03()
+    public void testDateTime03()
     {
-        validTime("2019-12-31T01:23:45+01");
+        validDateTime("2019-12-31T01:23:45+01");
     }
 
 
     @Test
-    public void testTime04()
+    public void testDateTime04()
     {
-        validTime("2019-12-31T01:23:45-01");
+        validDateTime("2019-12-31T01:23:45-01");
     }
 
 
     @Test
-    public void testTime05()
+    public void testDateTime05()
     {
-        validTime("2019-12-31T01:23:45+0100");
+        validDateTime("2019-12-31T01:23:45+0100");
     }
 
 
     @Test
-    public void testTime06()
+    public void testDateTime06()
     {
-        validTime("2019-12-31T01:23:45+01:00");
+        validDateTime("2019-12-31T01:23:45+01:00");
     }
 
 
     @Test
-    public void testTime07()
+    public void testDateTime07()
     {
-        invalidTime("2019-12-31T01:23:4");
+        invalidDateTime("2019-12-31T01:23:4");
     }
 
 
     @Test
-    public void testTime08()
+    public void testDateTime08()
     {
-        invalidTime("2019-12-31T01:2:46");
+        invalidDateTime("2019-12-31T01:2:46");
     }
 
 
     @Test
-    public void testTime09()
+    public void testDateTime09()
     {
-        invalidTime("2019-12-31T1:23:45");
+        invalidDateTime("2019-12-31T1:23:45");
     }
 
 
     @Test
-    public void testTime10()
+    public void testDateTime10()
     {
-        invalidTime("2019-12-31t01:23:45");
+        invalidDateTime("2019-12-31t01:23:45");
     }
 
 
     @Test
-    public void testTime11()
+    public void testDateTime11()
     {
-        invalidTime("2019-12-31T01234");
+        invalidDateTime("2019-12-31T01234");
     }
 
 
     @Test
-    public void testTime12()
+    public void testDateTime12()
     {
-        invalidTime("2019-12-31T01:23:45z");
+        invalidDateTime("2019-12-31T01:23:45z");
     }
 
 
     @Test
-    public void testTime13()
+    public void testDateTime13()
     {
-        invalidTime("2019-12-31T01:23:45Z012");
+        invalidDateTime("2019-12-31T01:23:45Z012");
     }
 
 
     @Test
-    public void testTime14()
+    public void testDateTime14()
     {
-        invalidTime("2019-12-31T01:23:45Z01234");
+        invalidDateTime("2019-12-31T01:23:45Z01234");
     }
 
 
     @Test
-    public void testTime15()
+    public void testDateTime15()
     {
-        invalidTime("2019-12-31T01:23:45Z01:2");
+        invalidDateTime("2019-12-31T01:23:45Z01:2");
     }
 
 
     @Test
-    public void testTime16()
+    public void testDateTime16()
     {
-        invalidTime("2019-12-31T01:23:45Z1:23");
+        invalidDateTime("2019-12-31T01:23:45Z1:23");
     }
 
 
     @Test
-    public void testTime17()
+    public void testDateTime17()
     {
-        invalidTime("2019-12-31T01:23:45Z01:234");
+        invalidDateTime("2019-12-31T01:23:45Z01:234");
     }
 
 
     @Test
-    public void testTime18()
+    public void testDateTime18()
     {
-        invalidTime("2019-12-31T01:23:45Z01-23");
+        invalidDateTime("2019-12-31T01:23:45Z01-23");
+    }
+
+
+    @Test
+    public void testDateTime19()
+    {
+        validDateTime("2019-12-31T01:23:45.1");
+    }
+
+
+    @Test
+    public void testDateTime20()
+    {
+        validDateTime("2019-12-31T01:23:45.12");
+    }
+
+
+    @Test
+    public void testDateTime21()
+    {
+        validDateTime("2019-12-31T01:23:45.123");
+    }
+
+
+    @Test
+    public void testDateTime22()
+    {
+        validDateTime("2019-12-31T01:23:45,1");
+    }
+
+
+    @Test
+    public void testDateTime23()
+    {
+        validDateTime("2019-12-31T01:23:45,12");
+    }
+
+
+    @Test
+    public void testDateTime24()
+    {
+        validDateTime("2019-12-31T01:23:45,123");
+    }
+
+
+    @Test
+    public void testDateTime25()
+    {
+        invalidDateTime("2019-12-31T01:23:45.");
+    }
+
+
+    @Test
+    public void testDateTime26()
+    {
+        invalidDateTime("2019-12-31T01:23:45,");
+    }
+
+
+    @Test
+    public void testDateTime27()
+    {
+        invalidDateTime("2019-12-31T01:23:45x1");
+    }
+
+
+    @Test
+    public void testDateTime28()
+    {
+        validDateTime("2019-12-31T01:23:45.1Z");
+    }
+
+
+    @Test
+    public void testDateTime29()
+    {
+        validDateTime("2019-12-31T01:23:45.12+09:00");
+    }
+
+
+    @Test
+    public void testDateTime30()
+    {
+        validDateTime("2019-12-31T01:23:45.123-09:00");
     }
 }
