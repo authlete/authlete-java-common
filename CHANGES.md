@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+2.66 (2019-12-28)
+-----------------
+
+- `Helper` class (`com.authlete.common.assurance` package)
+    * Updated the datetime regular expression to accept the decimal fraction part.
+
+
 2.65 (2019-12-23)
 -----------------
 
