@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.67 (2020-01-14)
+-----------------
+
 - `Provider` class
     * Added `getFormatted()` method.
     * Added `setFormatted(String)` method.
