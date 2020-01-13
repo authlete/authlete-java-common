@@ -1,6 +1,29 @@
 CHANGES
 =======
 
+- `Provider` class
+    * Added `getFormatted()` method.
+    * Added `setFormatted(String)` method.
+    * Added `containsFormatted()` method.
+    * Added `removeFormatted()` method.
+    * Added `getLocality()` method.
+    * Added `setLocality(String)` method.
+    * Added `containsLocality()` method.
+    * Added `removeLocality()` method.
+    * Added `getPostalCode()` method.
+    * Added `setPostalCode(String)` method.
+    * Added `containsPostalCode()` method.
+    * Added `removePostalCode()` method.
+
+- `ProviderConstraint` class
+    * Added `getFormatted()` method.
+    * Added `setFormatted(LeafConstraint)` method.
+    * Added `getLocality()` method.
+    * Added `setLocality(LeafConstraint)` method.
+    * Added `getPostalCode()` method.
+    * Added `setPostalCode(LeafConstraint)` method.
+
+
 2.66 (2019-12-28)
 -----------------
 

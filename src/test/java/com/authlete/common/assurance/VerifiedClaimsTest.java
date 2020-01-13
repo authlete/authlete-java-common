@@ -809,9 +809,12 @@ public class VerifiedClaimsTest
                 "          \"type\":\"utility_bill\",",
                 "          \"provider\":{",
                 "            \"name\":\"n\",",
-                "            \"country\":\"c\",",
+                "            \"formatted\":\"f\",",
+                "            \"street_address\":\"s\",",
+                "            \"locality\":\"l\",",
                 "            \"region\":\"r\",",
-                "            \"street_address\":\"s\"",
+                "            \"postal_code\":\"p\",",
+                "            \"country\":\"c\"",
                 "          },",
                 "          \"date\":\"" + VALID_DATE_1 + "\"",
                 "        }",
@@ -843,14 +846,23 @@ public class VerifiedClaimsTest
         // provider/name
         assertEquals("n", provider.getName());
 
-        // provider/country
-        assertEquals("c", provider.getCountry());
+        // provider/formatted
+        assertEquals("f", provider.getFormatted());
+
+        // provider/street_address
+        assertEquals("s", provider.getStreetAddress());
+
+        // provider/locality
+        assertEquals("l", provider.getLocality());
 
         // provider/region
         assertEquals("r", provider.getRegion());
 
-        // provider/street_address
-        assertEquals("s", provider.getStreetAddress());
+        // provider/postal_code
+        assertEquals("p", provider.getPostalCode());
+
+        // provider/country
+        assertEquals("c", provider.getCountry());
 
         // date
         assertEquals(VALID_DATE_1, ub.getDate());

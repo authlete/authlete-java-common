@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,9 +31,12 @@ import java.util.Map;
 public class ProviderConstraint extends BaseConstraint
 {
     private LeafConstraint name;
-    private LeafConstraint country;
-    private LeafConstraint region;
+    private LeafConstraint formatted;
     private LeafConstraint streetAddress;
+    private LeafConstraint locality;
+    private LeafConstraint region;
+    private LeafConstraint postalCode;
+    private LeafConstraint country;
 
 
     /**
@@ -61,26 +64,82 @@ public class ProviderConstraint extends BaseConstraint
 
 
     /**
-     * Get the constraint for {@code country}.
+     * Get the constraint for {@code formatted}.
      *
      * @return
-     *         The constraint for {@code country}.
+     *         The constraint for {@code formatted}.
+     *
+     * @since 2.67
      */
-    public LeafConstraint getCountry()
+    public LeafConstraint getFormatted()
     {
-        return country;
+        return formatted;
     }
 
 
     /**
-     * Set the constraint for {@code country}.
+     * Set the constraint for {@code formatted}.
      *
      * @param constraint
-     *         The constraint for {@code country}.
+     *         The constraint for {@code formatted}.
+     *
+     * @since 2.67
      */
-    public void setCountry(LeafConstraint constraint)
+    public void setFormatted(LeafConstraint constraint)
     {
-        this.country = constraint;
+        this.formatted = constraint;
+    }
+
+
+    /**
+     * Get the constraint for {@code street_address}.
+     *
+     * @return
+     *         The constraint for {@code street_address}.
+     */
+    public LeafConstraint getStreetAddress()
+    {
+        return streetAddress;
+    }
+
+
+    /**
+     * Set the constraint for {@code street_address}.
+     *
+     * @param constraint
+     *         The constraint for {@code street_address}.
+     */
+    public void setStreetAddress(LeafConstraint constraint)
+    {
+        this.streetAddress = constraint;
+    }
+
+
+    /**
+     * Get the constraint for {@code locality}.
+     *
+     * @return
+     *         The constraint for {@code locality}.
+     *
+     * @since 2.67
+     */
+    public LeafConstraint getLocality()
+    {
+        return locality;
+    }
+
+
+    /**
+     * Set the constraint for {@code locality}.
+     *
+     * @param constraint
+     *         The constraint for {@code locality}.
+     *
+     * @since 2.67
+     */
+    public void setLocality(LeafConstraint constraint)
+    {
+        this.locality = constraint;
     }
 
 
@@ -109,26 +168,54 @@ public class ProviderConstraint extends BaseConstraint
 
 
     /**
-     * Get the constraint for {@code street_address}.
+     * Get the constraint for {@code postal_code}.
      *
      * @return
-     *         The constraint for {@code street_address}.
+     *         The constraint for {@code postal_code}.
+     *
+     * @since 2.67
      */
-    public LeafConstraint getStreetAddress()
+    public LeafConstraint getPostalCode()
     {
-        return streetAddress;
+        return postalCode;
     }
 
 
     /**
-     * Set the constraint for {@code street_address}.
+     * Set the constraint for {@code postal_code}.
      *
      * @param constraint
-     *         The constraint for {@code street_address}.
+     *         The constraint for {@code postal_code}.
+     *
+     * @since 2.67
      */
-    public void setStreetAddress(LeafConstraint constraint)
+    public void setPostalCode(LeafConstraint constraint)
     {
-        this.streetAddress = constraint;
+        this.postalCode = constraint;
+    }
+
+
+    /**
+     * Get the constraint for {@code country}.
+     *
+     * @return
+     *         The constraint for {@code country}.
+     */
+    public LeafConstraint getCountry()
+    {
+        return country;
+    }
+
+
+    /**
+     * Set the constraint for {@code country}.
+     *
+     * @param constraint
+     *         The constraint for {@code country}.
+     */
+    public void setCountry(LeafConstraint constraint)
+    {
+        this.country = constraint;
     }
 
 
@@ -177,9 +264,12 @@ public class ProviderConstraint extends BaseConstraint
         Map<?,?> map = Helper.ensureMap(object, key);
 
         instance.name          = LeafConstraint.extract(map, "name");
-        instance.country       = LeafConstraint.extract(map, "country");
-        instance.region        = LeafConstraint.extract(map, "region");
+        instance.formatted     = LeafConstraint.extract(map, "formatted");
         instance.streetAddress = LeafConstraint.extract(map, "street_address");
+        instance.locality      = LeafConstraint.extract(map, "locality");
+        instance.region        = LeafConstraint.extract(map, "region");
+        instance.postalCode    = LeafConstraint.extract(map, "postal_code");
+        instance.country       = LeafConstraint.extract(map, "country");
     }
 
 
@@ -194,9 +284,12 @@ public class ProviderConstraint extends BaseConstraint
         }
 
         addIfAvailable(map, "name",           name);
-        addIfAvailable(map, "country",        country);
-        addIfAvailable(map, "region",         region);
+        addIfAvailable(map, "formatted",      formatted);
         addIfAvailable(map, "street_address", streetAddress);
+        addIfAvailable(map, "locality",       locality);
+        addIfAvailable(map, "region",         region);
+        addIfAvailable(map, "postal_code",    postalCode);
+        addIfAvailable(map, "country",        country);
 
         return map;
     }

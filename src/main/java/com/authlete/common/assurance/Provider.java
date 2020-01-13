@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,13 +31,16 @@ import java.util.Map;
  */
 public class Provider extends LinkedHashMap<String, Object>
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     private static final String NAME           = "name";
-    private static final String COUNTRY        = "country";
-    private static final String REGION         = "region";
+    private static final String FORMATTED      = "formatted";
     private static final String STREET_ADDRESS = "street_address";
+    private static final String LOCALITY       = "locality";
+    private static final String REGION         = "region";
+    private static final String POSTAL_CODE    = "postal_code";
+    private static final String COUNTRY        = "country";
 
 
     /**
@@ -94,108 +97,63 @@ public class Provider extends LinkedHashMap<String, Object>
 
 
     /**
-     * Get the country of the provider's address
+     * Get the formatted address of the provider.
      *
      * @return
-     *         The country of the provider's address.
+     *         The formatted address of the provider.
+     *
+     * @since 2.67
      */
-    public String getCountry()
+    public String getFormatted()
     {
-        return (String)get(COUNTRY);
+        return (String)get(FORMATTED);
     }
 
 
     /**
-     * Set the country of the provider's address
+     * Set the formatted address of the provider.
      *
-     * @param country
-     *         The country of the provider's address.
+     * @param formatted
+     *         The formatted address of the provider.
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 2.67
      */
-    public Provider setCountry(String country)
+    public Provider setFormatted(String formatted)
     {
-        put(COUNTRY, country);
+        put(FORMATTED, formatted);
 
         return this;
     }
 
 
     /**
-     * Check if this object contains {@code "country"}.
+     * Check if this object contains {@code "formatted"}.
      *
      * @return
-     *         {@code true} if this object contains {@code "country"}.
+     *         {@code true} if this object contains {@code "formatted"}.
+     *
+     * @since 2.67
      */
-    public boolean containsCountry()
+    public boolean containsFormatted()
     {
-        return containsKey(COUNTRY);
+        return containsKey(FORMATTED);
     }
 
 
     /**
-     * Remove {@code "country"} from this object.
+     * Remove {@code "formatted"} from this object.
      *
      * @return
      *         The old value that may have existed before removal.
-     */
-    public String removeCountry()
-    {
-        return (String)remove(COUNTRY);
-    }
-
-
-    /**
-     * Get the region of the provider's address.
      *
-     * @return
-     *         The region of the provider's address.
+     * @since 2.67
      */
-    public String getRegion()
+    public String removeFormatted()
     {
-        return (String)get(REGION);
-    }
-
-
-    /**
-     * Set the region of the provider's address.
-     *
-     * @param region
-     *         The region of the provider's address.
-     *
-     * @return
-     *         {@code this} object.
-     */
-    public Provider setRegion(String region)
-    {
-        put(REGION, region);
-
-        return this;
-    }
-
-
-    /**
-     * Check if this object contains {@code "region"}.
-     *
-     * @return
-     *         {@code true} if this object contains {@code "region"}.
-     */
-    public boolean containsRegion()
-    {
-        return containsKey(REGION);
-    }
-
-
-    /**
-     * Remove {@code "region"} from this object.
-     *
-     * @return
-     *         The old value that may have existed before removal.
-     */
-    public String removeRegion()
-    {
-        return (String)remove(REGION);
+        return (String)remove(FORMATTED);
     }
 
 
@@ -253,6 +211,234 @@ public class Provider extends LinkedHashMap<String, Object>
 
 
     /**
+     * Get the locality of the provider's address.
+     *
+     * @return
+     *         The locality of the provider's address.
+     *
+     * @since 2.67
+     */
+    public String getLocality()
+    {
+        return (String)get(LOCALITY);
+    }
+
+
+    /**
+     * Set the locality of the provider's address.
+     *
+     * @param locality
+     *         The locality of the provider's address.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.67
+     */
+    public Provider setLocality(String locality)
+    {
+        put(LOCALITY, locality);
+
+        return this;
+    }
+
+
+    /**
+     * Check if this object contains {@code "locality"}.
+     *
+     * @return
+     *         {@code true} if this object contains {@code "locality"}.
+     *
+     * @since 2.67
+     */
+    public boolean containsLocality()
+    {
+        return containsKey(LOCALITY);
+    }
+
+
+    /**
+     * Remove {@code "locality"} from this object.
+     *
+     * @return
+     *         The old value that may have existed before removal.
+     *
+     * @since 2.67
+     */
+    public String removeLocality()
+    {
+        return (String)remove(LOCALITY);
+    }
+
+
+    /**
+     * Get the region of the provider's address.
+     *
+     * @return
+     *         The region of the provider's address.
+     */
+    public String getRegion()
+    {
+        return (String)get(REGION);
+    }
+
+
+    /**
+     * Set the region of the provider's address.
+     *
+     * @param region
+     *         The region of the provider's address.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Provider setRegion(String region)
+    {
+        put(REGION, region);
+
+        return this;
+    }
+
+
+    /**
+     * Check if this object contains {@code "region"}.
+     *
+     * @return
+     *         {@code true} if this object contains {@code "region"}.
+     */
+    public boolean containsRegion()
+    {
+        return containsKey(REGION);
+    }
+
+
+    /**
+     * Remove {@code "region"} from this object.
+     *
+     * @return
+     *         The old value that may have existed before removal.
+     */
+    public String removeRegion()
+    {
+        return (String)remove(REGION);
+    }
+
+
+    /**
+     * Get the postal code of the provider's address.
+     *
+     * @return
+     *         The postal code of the provider's address.
+     *
+     * @since 2.67
+     */
+    public String getPostalCode()
+    {
+        return (String)get(POSTAL_CODE);
+    }
+
+
+    /**
+     * Set the postal code of the provider's address.
+     *
+     * @param postalCode
+     *         The postal code of the provider's address.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.67
+     */
+    public Provider setPostalCode(String postalCode)
+    {
+        put(POSTAL_CODE, postalCode);
+
+        return this;
+    }
+
+
+    /**
+     * Check if this object contains {@code "postal_code"}.
+     *
+     * @return
+     *         {@code true} if this object contains {@code "postal_code"}.
+     *
+     * @since 2.67
+     */
+    public boolean containsPostalCode()
+    {
+        return containsKey(POSTAL_CODE);
+    }
+
+
+    /**
+     * Remove {@code "postal_code"} from this object.
+     *
+     * @return
+     *         The old value that may have existed before removal.
+     *
+     * @since 2.67
+     */
+    public String removePostalCode()
+    {
+        return (String)remove(POSTAL_CODE);
+    }
+
+
+    /**
+     * Get the country of the provider's address
+     *
+     * @return
+     *         The country of the provider's address.
+     */
+    public String getCountry()
+    {
+        return (String)get(COUNTRY);
+    }
+
+
+    /**
+     * Set the country of the provider's address
+     *
+     * @param country
+     *         The country of the provider's address.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Provider setCountry(String country)
+    {
+        put(COUNTRY, country);
+
+        return this;
+    }
+
+
+    /**
+     * Check if this object contains {@code "country"}.
+     *
+     * @return
+     *         {@code true} if this object contains {@code "country"}.
+     */
+    public boolean containsCountry()
+    {
+        return containsKey(COUNTRY);
+    }
+
+
+    /**
+     * Remove {@code "country"} from this object.
+     *
+     * @return
+     *         The old value that may have existed before removal.
+     */
+    public String removeCountry()
+    {
+        return (String)remove(COUNTRY);
+    }
+
+
+    /**
      * Create a {@code Provider} instance from an object in the given map.
      *
      * @param map
@@ -295,14 +481,23 @@ public class Provider extends LinkedHashMap<String, Object>
         // "name": optional
         fillName(instance, map, key);
 
-        // "country": optional
-        fillCountry(instance, map, key);
+        // "formatted": optional
+        fillFormatted(instance, map, key);
+
+        // "street_address": optional
+        fillStreetAddress(instance, map, key);
+
+        // "locality": optional
+        fillLocality(instance, map, key);
 
         // "region": optional
         fillRegion(instance, map, key);
 
-        // "street_address": optional
-        fillStreetAddress(instance, map, key);
+        // "postal_code": optional
+        fillPostalCode(instance, map, key);
+
+        // "country": optional
+        fillCountry(instance, map, key);
     }
 
 
@@ -315,12 +510,30 @@ public class Provider extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillCountry(Provider instance, Map<?,?> map, String key)
+    private static void fillFormatted(Provider instance, Map<?,?> map, String key)
     {
-        // The value of "country" in the map.
-        String value = Helper.extractString(map, COUNTRY, key, false);
+        // The value of "formatted" in the map.
+        String value = Helper.extractString(map, FORMATTED, key, false);
 
-        instance.setCountry(value);
+        instance.setFormatted(value);
+    }
+
+
+    private static void fillStreetAddress(Provider instance, Map<?,?> map, String key)
+    {
+        // The value of "street_address" in the map.
+        String value = Helper.extractString(map, STREET_ADDRESS, key, false);
+
+        instance.setStreetAddress(value);
+    }
+
+
+    private static void fillLocality(Provider instance, Map<?,?> map, String key)
+    {
+        // The value of "locality" in the map.
+        String value = Helper.extractString(map, LOCALITY, key, false);
+
+        instance.setLocality(value);
     }
 
 
@@ -333,11 +546,20 @@ public class Provider extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillStreetAddress(Provider instance, Map<?,?> map, String key)
+    private static void fillPostalCode(Provider instance, Map<?,?> map, String key)
     {
-        // The value of "street_address" in the map.
-        String value = Helper.extractString(map, STREET_ADDRESS, key, false);
+        // The value of "postal_code" in the map.
+        String value = Helper.extractString(map, POSTAL_CODE, key, false);
 
-        instance.setStreetAddress(value);
+        instance.setPostalCode(value);
+    }
+
+
+    private static void fillCountry(Provider instance, Map<?,?> map, String key)
+    {
+        // The value of "country" in the map.
+        String value = Helper.extractString(map, COUNTRY, key, false);
+
+        instance.setCountry(value);
     }
 }

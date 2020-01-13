@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,12 +39,6 @@ public class VerifiedClaimsContainerConstraintTest
     private static VerifiedClaimsContainerConstraint toContainer(String json)
     {
         return VerifiedClaimsContainerConstraint.fromJson(json);
-    }
-
-
-    private static VerifiedClaimsConstraint toVerifiedClaims(String json)
-    {
-        return toContainer(json).getVerifiedClaims();
     }
 
 
@@ -542,13 +536,18 @@ public class VerifiedClaimsContainerConstraintTest
                 "              \"value\":\"name\",",
                 "              \"values\":[\"name0\",\"name1\"]",
                 "            },",
-                "            \"country\":{",
-                "              \"value\":\"country\"",
-                "            },",
+                "            \"formatted\":null,",
+                "            \"street_address\":null,",
+                "            \"locality\":null,",
                 "            \"region\":{",
                 "              \"essential\":true",
                 "            },",
-                "            \"street_address\":null",
+                "            \"postal_code\":{",
+                "              \"value\":\"12345\"",
+                "            },",
+                "            \"country\":{",
+                "              \"value\":\"country\"",
+                "            }",
                 "          },",
                 "          \"date\":null",
                 "        }",
@@ -585,16 +584,26 @@ public class VerifiedClaimsContainerConstraintTest
         assertEquals("name", utilityBill.getProvider().getName().getValue());
         assertArrayEquals(new String[]{"name0","name1"}, utilityBill.getProvider().getName().getValues());
 
-        // utility_bill/provider/country
-        assertTrue(utilityBill.getProvider().getCountry().exists());
-        assertEquals("country", utilityBill.getProvider().getCountry().getValue());
+        // utility_bill/provider/formatted
+        assertTrue(utilityBill.getProvider().getFormatted().exists());
+
+        // utility_bill/provider/street_address
+        assertTrue(utilityBill.getProvider().getStreetAddress().exists());
+
+        // utility_bill/provider/locality
+        assertTrue(utilityBill.getProvider().getLocality().exists());
 
         // utility_bill/provider/region
         assertTrue(utilityBill.getProvider().getRegion().exists());
         assertTrue(utilityBill.getProvider().getRegion().isEssential());
 
-        // utility_bill/provider/street_address
-        assertTrue(utilityBill.getProvider().getStreetAddress().exists());
+        // utility_bill/provider/postal_code
+        assertTrue(utilityBill.getProvider().getPostalCode().exists());
+        assertEquals("12345", utilityBill.getProvider().getPostalCode().getValue());
+
+        // utility_bill/provider/country
+        assertTrue(utilityBill.getProvider().getCountry().exists());
+        assertEquals("country", utilityBill.getProvider().getCountry().getValue());
 
         // utility_bill/date
         assertTrue(utilityBill.getDate().exists());

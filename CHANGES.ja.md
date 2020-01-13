@@ -1,6 +1,29 @@
 変更点
 ======
 
+- `Provider` クラス
+    * `getFormatted()` メソッドを追加。
+    * `setFormatted(String)` メソッドを追加。
+    * `containsFormatted()` メソッドを追加。
+    * `removeFormatted()` メソッドを追加。
+    * `getLocality()` メソッドを追加。
+    * `setLocality(String)` メソッドを追加。
+    * `containsLocality()` メソッドを追加。
+    * `removeLocality()` メソッドを追加。
+    * `getPostalCode()` メソッドを追加。
+    * `setPostalCode(String)` メソッドを追加。
+    * `containsPostalCode()` メソッドを追加。
+    * `removePostalCode()` メソッドを追加。
+
+- `ProviderConstraint` クラス
+    * `getFormatted()` メソッドを追加。
+    * `setFormatted(LeafConstraint)` メソッドを追加。
+    * `getLocality()` メソッドを追加。
+    * `setLocality(LeafConstraint)` メソッドを追加。
+    * `getPostalCode()` メソッドを追加。
+    * `setPostalCode(LeafConstraint)` メソッドを追加。
+
+
 2.66 (2019 年 12 月 28 日)
 --------------------------
 
