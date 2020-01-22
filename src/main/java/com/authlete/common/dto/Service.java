@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2019 Authlete, Inc.
+ * Copyright (C) 2014-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -178,7 +178,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 32L;
+    private static final long serialVersionUID = 33L;
 
 
     /*
@@ -580,6 +580,20 @@ public class Service implements Serializable
      * @since 2.63
      */
     private String[] supportedVerifiedClaims;
+
+
+    /**
+     * The flag indicating whether token requests from public clients without
+     * the {@code client_id} request parameter are allowed when the client can
+     * be guessed from {@code authorization_code} or {@code refresh_token}.
+     *
+     * <p>
+     * Don't set this flag unless you have special reasons.
+     * </p>
+     *
+     * @since 2.68
+     */
+    private boolean missingClientIdAllowed;
 
 
     /**
@@ -4560,6 +4574,55 @@ public class Service implements Serializable
     public Service setSupportedVerifiedClaims(String[] claims)
     {
         this.supportedVerifiedClaims = claims;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether token requests from public clients without
+     * the {@code client_id} request parameter are allowed when the client can be
+     * guessed from {@code authorization_code} or {@code refresh_token}.
+     *
+     * <p>
+     * This flag should not be set unless you have special reasons.
+     * </p>
+     *
+     * @return
+     *         {@code true} if token requests from public clients without the
+     *         {@code client_id} request parameter are allowed in the authorization
+     *         code flow and the refresh token flow.
+     *
+     * @since 2.68
+     */
+    public boolean isMissingClientIdAllowed()
+    {
+        return missingClientIdAllowed;
+    }
+
+
+    /**
+     * Set the flag indicating whether token requests from public clients without
+     * the {@code client_id} request parameter are allowed when the client can be
+     * guessed from {@code authorization_code} or {@code refresh_token}.
+     *
+     * <p>
+     * Don't set this flag unless you have special reasons.
+     * </p>
+     *
+     * @param allowed
+     *         {@code true} to allow token requests from public clients without
+     *         the {@code client_id} request parameter in the authorization code
+     *         flow and the refresh token flow.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.68
+     */
+    public Service setMissingClientIdAllowed(boolean allowed)
+    {
+        this.missingClientIdAllowed = allowed;
 
         return this;
     }

@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isMissingClientIdAllowed()` メソッドを追加。
+    * `setMissingClientIdAllowed(boolean)` メソッドを追加。
+
+
 2.67 (2019 年 01 月 14 日)
 --------------------------
 
