@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.68 (2020-01-22)
+-----------------
+
 - `Service` class
     * Added `isMissingClientIdAllowed()` method.
     * Added `setMissingClientIdAllowed(boolean)` method.
