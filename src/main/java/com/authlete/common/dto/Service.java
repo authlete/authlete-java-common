@@ -178,7 +178,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 33L;
+    private static final long serialVersionUID = 34L;
 
 
     /*
@@ -273,6 +273,7 @@ public class Service implements Serializable
     private boolean mutualTlsValidatePkiCertChain;
     private String[] trustedRootCertificates;
     private boolean dynamicRegistrationSupported;
+    private URI endSessionEndpoint;
 
 
     /**
@@ -4623,6 +4624,47 @@ public class Service implements Serializable
     public Service setMissingClientIdAllowed(boolean allowed)
     {
         this.missingClientIdAllowed = allowed;
+
+        return this;
+    }
+
+
+    /**
+     * Get the end session endpoint for the service. This endpoint is used by clients
+     * to signal to the IdP that the user's session should be terminated.
+     *
+     * @return
+     *         The end session endpoint, or {@code null} if not set.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-session-1_0.html#RPLogout"
+     *      >OpenID Connect Session Management 1.0, 5. RP-Initiated Logout</a>
+     *
+     * @since 2.XX
+     */
+    public URI getEndSessionEndpoint()
+    {
+        return endSessionEndpoint;
+    }
+
+
+    /**
+     * Set the end session endpoint for the service. This endpoint is used by clients
+     * to signal to the IdP that the user's session should be terminated.
+     *
+     * @param endSessionEndpoint
+     *            The end session endpoint, or {@code null} if not set.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-session-1_0.html#RPLogout"
+     *      >OpenID Connect Session Management 1.0, 5. RP-Initiated Logout</a>
+     *
+     * @since 2.XX
+     */
+    public Service setEndSessionEndpoint(URI endSessionEndpoint)
+    {
+        this.endSessionEndpoint = endSessionEndpoint;
 
         return this;
     }
