@@ -4639,7 +4639,7 @@ public class Service implements Serializable
      * @see <a href="https://openid.net/specs/openid-connect-session-1_0.html#RPLogout"
      *      >OpenID Connect Session Management 1.0, 5. RP-Initiated Logout</a>
      *
-     * @since 2.XX
+     * @since 2.69
      */
     public URI getEndSessionEndpoint()
     {
@@ -4660,7 +4660,7 @@ public class Service implements Serializable
      * @see <a href="https://openid.net/specs/openid-connect-session-1_0.html#RPLogout"
      *      >OpenID Connect Session Management 1.0, 5. RP-Initiated Logout</a>
      *
-     * @since 2.XX
+     * @since 2.69
      */
     public Service setEndSessionEndpoint(URI endSessionEndpoint)
     {

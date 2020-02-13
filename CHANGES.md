@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+2.69 (2020-02-13)
+-----------------
+
+- `Service` class
+    * Added `getEndSessionEndpoint()` method.
+    * Added `setEndSessionEndpoint(URI)` method.
+
+
 2.68 (2020-01-22)
 -----------------
 
