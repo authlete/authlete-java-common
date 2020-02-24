@@ -147,6 +147,22 @@ public class TokenRequest implements Serializable
 
 
     /**
+     * DPoP Header
+     */
+    private String dpop;
+
+    /**
+     * HTTP Method (for DPoP validation).
+     */
+    private String htm;
+
+    /**
+     * HTTP URL base (for DPoP validation).
+     */
+    private String htu;
+
+
+    /**
      * Get the value of {@code parameters} which are the request
      * parameters that the OAuth 2.0 token endpoint of the service
      * implementation received from the client application.
@@ -428,6 +444,48 @@ public class TokenRequest implements Serializable
     public TokenRequest setClientCertificatePath(String[] clientCertificatePath)
     {
         this.clientCertificatePath = clientCertificatePath;
+
+        return this;
+    }
+
+
+    public String getDpop()
+    {
+        return dpop;
+    }
+
+
+    public TokenRequest setDpop(String dpop)
+    {
+        this.dpop = dpop;
+
+        return this;
+    }
+
+
+    public String getHtm()
+    {
+        return htm;
+    }
+
+
+    public TokenRequest setHtm(String htm)
+    {
+        this.htm = htm;
+
+        return this;
+    }
+
+
+    public String getHtu()
+    {
+        return htu;
+    }
+
+
+    public TokenRequest setHtu(String htu)
+    {
+        this.htu = htu;
 
         return this;
     }

@@ -69,6 +69,21 @@ public class IntrospectionRequest implements Serializable
     private String subject;
     private String clientCertificate;
 
+    /**
+     * DPoP Header
+     */
+    private String dpop;
+
+    /**
+     * HTTP Method (for DPoP validation).
+     */
+    private String htm;
+
+    /**
+     * HTTP URL base (for DPoP validation).
+     */
+    private String htu;
+
 
     /**
      * Get the access token.
@@ -184,6 +199,48 @@ public class IntrospectionRequest implements Serializable
     public IntrospectionRequest setClientCertificate(String clientCertificate)
     {
         this.clientCertificate = clientCertificate;
+
+        return this;
+    }
+
+
+    public String getDpop()
+    {
+        return dpop;
+    }
+
+
+    public IntrospectionRequest setDpop(String dpop)
+    {
+        this.dpop = dpop;
+
+        return this;
+    }
+
+
+    public String getHtm()
+    {
+        return htm;
+    }
+
+
+    public IntrospectionRequest setHtm(String htm)
+    {
+        this.htm = htm;
+
+        return this;
+    }
+
+
+    public String getHtu()
+    {
+        return htu;
+    }
+
+
+    public IntrospectionRequest setHtu(String htu)
+    {
+        this.htu = htu;
 
         return this;
     }
