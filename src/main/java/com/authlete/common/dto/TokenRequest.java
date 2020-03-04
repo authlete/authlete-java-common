@@ -419,7 +419,9 @@ public class TokenRequest implements Serializable
      * client authentication. These certificates are strings in
      * PEM format.
      *
-     * @return the clientCertificatePath
+     * @return
+     *         The client certificate path as an array of strings
+     *         in PEM format.
      *
      * @since 2.15
      */
@@ -434,7 +436,9 @@ public class TokenRequest implements Serializable
      * client authentication. These certificates are strings in
      * PEM format.
      *
-     * @param clientCertificatePath the clientCertificatePath
+     * @param clientCertificatePath
+     *            The client certificate path as an array of strings
+     *            in PEM format.
      *
      * @return
      *         {@code this} object.
@@ -449,12 +453,35 @@ public class TokenRequest implements Serializable
     }
 
 
+    /**
+     * Get the DPoP header presented by the client during the request
+     * to the token endpoint. This header contains a signed JWT which
+     * includes the public key used to sign it.
+     *
+     * @return
+     *         The DPoP header string.
+     * 
+     * @since 2.XX
+     */
     public String getDpop()
     {
         return dpop;
     }
 
 
+    /**
+     * Set the DPoP header presented by the client during the request
+     * to the token endpoint. This header contains a signed JWT which
+     * includes the public key used to sign it.
+     *
+     * @param dpop
+     *            The DPoP header string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
     public TokenRequest setDpop(String dpop)
     {
         this.dpop = dpop;
@@ -463,12 +490,33 @@ public class TokenRequest implements Serializable
     }
 
 
+    /**
+     * Get the HTTP Method used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @return
+     *         The HTTP Method as a string.
+     * 
+     * @since 2.XX
+     */
     public String getHtm()
     {
         return htm;
     }
 
 
+    /**
+     * Set the HTTP Method used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @param htm
+     *            The HTTP Method as a string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
     public TokenRequest setHtm(String htm)
     {
         this.htm = htm;
@@ -477,12 +525,33 @@ public class TokenRequest implements Serializable
     }
 
 
+    /**
+     * Get the HTTP URL used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @return
+     *         The HTTP URL as a string.
+     * 
+     * @since 2.XX
+     */
     public String getHtu()
     {
         return htu;
     }
 
 
+    /**
+     * Set the HTTP URL used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @param htm
+     *            The HTTP URL as a string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
     public TokenRequest setHtu(String htu)
     {
         this.htu = htu;

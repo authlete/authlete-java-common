@@ -204,12 +204,35 @@ public class IntrospectionRequest implements Serializable
     }
 
 
+    /**
+     * Get the DPoP header presented by the client during the request
+     * to the resource server. This header contains a signed JWT which
+     * includes the public key used to sign it.
+     *
+     * @return
+     *         The DPoP header string.
+     * 
+     * @since 2.XX
+     */
     public String getDpop()
     {
         return dpop;
     }
 
 
+    /**
+     * Set the DPoP header presented by the client during the request
+     * to the resource server. This header contains a signed JWT which
+     * includes the public key used to sign it.
+     *
+     * @param dpop
+     *            The DPoP header string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
     public IntrospectionRequest setDpop(String dpop)
     {
         this.dpop = dpop;
@@ -218,12 +241,33 @@ public class IntrospectionRequest implements Serializable
     }
 
 
+    /**
+     * Get the HTTP Method used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @return
+     *         The HTTP Method as a string.
+     * 
+     * @since 2.XX
+     */
     public String getHtm()
     {
         return htm;
     }
 
 
+    /**
+     * Set the HTTP Method used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @param htm
+     *            The HTTP Method as a string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
     public IntrospectionRequest setHtm(String htm)
     {
         this.htm = htm;
@@ -232,12 +276,33 @@ public class IntrospectionRequest implements Serializable
     }
 
 
+    /**
+     * Get the HTTP URL used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @return
+     *         The HTTP URL as a string.
+     * 
+     * @since 2.XX
+     */
     public String getHtu()
     {
         return htu;
     }
 
 
+    /**
+     * Set the HTTP URL used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @param htm
+     *            The HTTP URL as a string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
     public IntrospectionRequest setHtu(String htu)
     {
         this.htu = htu;
