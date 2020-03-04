@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,13 +21,7 @@ import java.util.regex.Pattern;
 
 
 /**
- * Utility class for Bearer Token defined in
- * <a href="http://tools.ietf.org/html/rfc6750">RFC 6750</a>.
- *
- * @author Takahiko Kawasaki
- *
- * @see <a href="http://tools.ietf.org/html/rfc6750"
- *      >RFC 6750 (OAuth 2.0 Bearer Token Usage)</a>
+ * Utility class for DPoP Token.
  */
 public class DpopToken
 {
@@ -64,8 +58,8 @@ public class DpopToken
             return null;
         }
 
-        // First, check whether the input matches the pattern
-        // "Bearer {access-token}".
+        // Check whether the input matches the pattern
+        // "DPoP {access-token}".
         Matcher matcher = CHALLENGE_PATTERN.matcher(input);
 
         // If the input matches the pattern.
