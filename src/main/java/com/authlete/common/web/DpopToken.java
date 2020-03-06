@@ -40,7 +40,7 @@ public class DpopToken
 
 
     /**
-     * Extract the DPoP proof JWT embedded in the input string.
+     * Extract the DPoP access token embedded in the input string.
      *
      * <p>
      * This method assumes that the input string comes from the
@@ -50,7 +50,7 @@ public class DpopToken
      *            The input string to be parsed.
      *
      * @return
-     *         The extracted DPoP proof JWT, or <code>null</code> if not found.
+     *         The extracted DPoP access token, or <code>null</code> if not found.
      *
      */
     public static String parse(String input)
@@ -61,7 +61,7 @@ public class DpopToken
         }
 
         // Check whether the input matches the pattern
-        // "DPoP {DPoP-proof-JWT}".
+        // "DPoP {access-token}".
         Matcher matcher = CHALLENGE_PATTERN.matcher(input);
 
         // If the input matches the pattern.
