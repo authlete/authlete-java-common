@@ -1,6 +1,34 @@
 CHANGES
 =======
 
+- `IntrospectionRequest` class
+    * Added `getDpop()` method.
+    * Added `setDpop(String)` method.
+    * Added `getHtm()` method.
+    * Added `setHtm(String)` method.
+    * Added `getHtu()` method.
+    * Added `setHtu(String)` method.
+
+- `TokenRequest` class
+    * Added `getDpop()` method.
+    * Added `setDpop(String)` method.
+    * Added `getHtm()` method.
+    * Added `setHtm(String)` method.
+    * Added `getHtu()` method.
+    * Added `setHtu(String)` method.
+
+- `UserInfoRequest` class
+    * Added `getDpop()` method.
+    * Added `setDpop(String)` method.
+    * Added `getHtm()` method.
+    * Added `setHtm(String)` method.
+    * Added `getHtu()` method.
+    * Added `setHtu(String)` method.
+
+- New classes
+    * `DpopToken`
+
+
 2.69 (2020-02-13)
 -----------------
 

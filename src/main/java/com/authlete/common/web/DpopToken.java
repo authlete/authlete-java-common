@@ -22,6 +22,8 @@ import java.util.regex.Pattern;
 
 /**
  * Utility class for DPoP Token.
+ *
+ * @since 2.70
  */
 public class DpopToken
 {
@@ -38,17 +40,17 @@ public class DpopToken
 
 
     /**
-     * Extract the access token embedded in the input string.
+     * Extract the DPoP proof JWT embedded in the input string.
      *
      * <p>
      * This method assumes that the input string comes from the
      * Authorization Request Header Field.
-     * 
+     *
      * @param input
      *            The input string to be parsed.
      *
      * @return
-     *         The extracted access token, or <code>null</code> if not found.
+     *         The extracted DPoP proof JWT, or <code>null</code> if not found.
      *
      */
     public static String parse(String input)
@@ -59,7 +61,7 @@ public class DpopToken
         }
 
         // Check whether the input matches the pattern
-        // "DPoP {access-token}".
+        // "DPoP {DPoP-proof-JWT}".
         Matcher matcher = CHALLENGE_PATTERN.matcher(input);
 
         // If the input matches the pattern.

@@ -44,13 +44,42 @@ import java.io.Serializable;
  * The subject that should be associated with the access token.
  * </p>
  * </dd>
- * </dl>
  *
  * <dt><b><code>clientCertificate</code></b> (OPTIONAL)</dt>
  * <dd>
  * <p>
- * The certificate presented by the client, used to validate TLS 
+ * The certificate presented by the client, used to validate TLS
  * client certificate bound access tokens.
+ * See <a href="https://tools.ietf.org/html/rfc8705">RFC 8705</a>
+ * (OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access
+ * Tokens) for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>dpop</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code DPoP} HTTP header.
+ * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
+ * Layer (DPoP)"</i> for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>htm</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The HTTP method of the request to the protected resource endpoint.
+ * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
+ * Layer (DPoP)"</i> for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>htu</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The URL of the protected resource endpoint.
+ * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
+ * Layer (DPoP)"</i> for details.
  * </p>
  * </dd>
  * </dl>
@@ -205,14 +234,19 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Get the DPoP header presented by the client during the request
+     * Get the {@code DPoP} header presented by the client during the request
      * to the resource server. This header contains a signed JWT which
      * includes the public key used to sign it.
      *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
      * @return
-     *         The DPoP header string.
-     * 
-     * @since 2.XX
+     *         The {@code DPoP} header string.
+     *
+     * @since 2.70
      */
     public String getDpop()
     {
@@ -221,17 +255,22 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Set the DPoP header presented by the client during the request
+     * Set the {@code DPoP} header presented by the client during the request
      * to the resource server. This header contains a signed JWT which
      * includes the public key used to sign it.
      *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
      * @param dpop
-     *            The DPoP header string.
-     * 
+     *         The {@code DPoP} header string.
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.70
      */
     public IntrospectionRequest setDpop(String dpop)
     {
@@ -242,13 +281,19 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Get the HTTP Method used to make this request. This field is used
-     * to validate the DPoP header.
-     * 
+     * Get the HTTP method of the request from the client to the protected
+     * resource endpoint. This field is used to validate the {@code DPoP}
+     * header.
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
      * @return
-     *         The HTTP Method as a string.
-     * 
-     * @since 2.XX
+     *         The HTTP method as a string. For example, {@code "GET"}.
+     *
+     * @since 2.70
      */
     public String getHtm()
     {
@@ -257,16 +302,22 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Set the HTTP Method used to make this request. This field is used
-     * to validate the DPoP header.
-     * 
+     * Set the HTTP method of the request from the client to the protected
+     * resource endpoint. This field is used to validate the {@code DPoP}
+     * header.
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
      * @param htm
-     *            The HTTP Method as a string.
-     * 
+     *         The HTTP method as a string. For example, {@code "GET"}.
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.70
      */
     public IntrospectionRequest setHtm(String htm)
     {
@@ -277,13 +328,18 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Get the HTTP URL used to make this request. This field is used
-     * to validate the DPoP header.
-     * 
+     * Get the URL of the protected resource endpoint. This field is used
+     * to validate the {@code DPoP} header.
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
      * @return
-     *         The HTTP URL as a string.
-     * 
-     * @since 2.XX
+     *         The URL of the protected resource endpoint.
+     *
+     * @since 2.70
      */
     public String getHtu()
     {
@@ -292,16 +348,21 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Set the HTTP URL used to make this request. This field is used
-     * to validate the DPoP header.
-     * 
-     * @param htm
-     *            The HTTP URL as a string.
-     * 
+     * Set the URL of the protected resource endpoint. This field is used
+     * to validate the {@code DPoP} header.
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
+     * @param htu
+     *         The URL of the protected resource endpoint.
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.70
      */
     public IntrospectionRequest setHtu(String htu)
     {

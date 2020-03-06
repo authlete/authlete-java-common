@@ -1,6 +1,34 @@
 変更点
 ======
 
+- `IntrospectionRequest` クラス
+    * `getDpop()` メソッドを追加。
+    * `setDpop(String)` メソッドを追加。
+    * `getHtm()` メソッドを追加。
+    * `setHtm(String)` メソッドを追加。
+    * `getHtu()` メソッドを追加。
+    * `setHtu(String)` メソッドを追加。
+
+- `TokenRequest` クラス
+    * `getDpop()` メソッドを追加。
+    * `setDpop(String)` メソッドを追加。
+    * `getHtm()` メソッドを追加。
+    * `setHtm(String)` メソッドを追加。
+    * `getHtu()` メソッドを追加。
+    * `setHtu(String)` メソッドを追加。
+
+- `UserInfoRequest` クラス
+    * `getDpop()` メソッドを追加。
+    * `setDpop(String)` メソッドを追加。
+    * `getHtm()` メソッドを追加。
+    * `setHtm(String)` メソッドを追加。
+    * `getHtu()` メソッドを追加。
+    * `setHtu(String)` メソッドを追加。
+
+- 新しいクラス
+    * `DpopToken`
+
+
 2.69 (2020 年 02 月 13 日)
 --------------------------
 

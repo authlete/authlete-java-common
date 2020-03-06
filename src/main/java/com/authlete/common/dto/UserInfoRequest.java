@@ -30,6 +30,47 @@ import java.io.Serializable;
  * An access token to get user information.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>clientCertificate</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The client certificate from the MTLS of the userinfo request from
+ * the client application.
+ * See <a href="https://tools.ietf.org/html/rfc8705">RFC 8705</a>
+ * (OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access
+ * Tokens) for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>dpop</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code DPoP} HTTP header.
+ * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
+ * Layer (DPoP)"</i> for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>htm</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The HTTP method of the userinfo request. In normal cases, the value should
+ * be either {@code "GET"} or {@code "POST"}.
+ * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
+ * Layer (DPoP)"</i> for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>htu</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The URL of the userinfo endpoint. If omitted, the {@code userInfoEndpoint}
+ * property of {@link Service} is used as the default value.
+ * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
+ * Layer (DPoP)"</i> for details.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -54,11 +95,30 @@ public class UserInfoRequest implements Serializable
      */
     private String clientCertificate;
 
+
+    /**
+     * The {@code DPoP} header.
+     *
+     * @since 2.70
+     */
     private String dpop;
 
+
+    /**
+     * The HTTP method of the userinfo request.
+     *
+     * @since 2.70
+     */
     private String htm;
 
+
+    /**
+     * The URL of the userinfo endpoint.
+     *
+     * @since 2.70
+     */
     private String htu;
+
 
     /**
      * Get the access token which has come along with the userinfo
@@ -128,14 +188,19 @@ public class UserInfoRequest implements Serializable
 
 
     /**
-     * Get the DPoP header presented by the client during the request
-     * to the token endpoint. This header contains a signed JWT which
+     * Get the {@code DPoP} header presented by the client during the request
+     * to the userinfo endpoint. This header contains a signed JWT which
      * includes the public key used to sign it.
      *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
      * @return
-     *         The DPoP header string.
-     * 
-     * @since 2.XX
+     *         The {@code DPoP} header string.
+     *
+     * @since 2.70
      */
     public String getDpop()
     {
@@ -144,17 +209,22 @@ public class UserInfoRequest implements Serializable
 
 
     /**
-     * Set the DPoP header presented by the client during the request
-     * to the token endpoint. This header contains a signed JWT which
+     * Set the {@code DPoP} header presented by the client during the request
+     * to the userinfo endpoint. This header contains a signed JWT which
      * includes the public key used to sign it.
      *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
      * @param dpop
-     *            The DPoP header string.
-     * 
+     *         The {@code DPoP} header string.
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.70
      */
     public UserInfoRequest setDpop(String dpop)
     {
@@ -165,13 +235,22 @@ public class UserInfoRequest implements Serializable
 
 
     /**
-     * Get the HTTP Method used to make this request. This field is used
-     * to validate the DPoP header.
-     * 
+     * Get the HTTP method of the userinfo request. This field is used to
+     * validate the {@code DPoP} header.
+     *
+     * <p>
+     * In normal cases, the value is either {@code "GET"} or {@code "POST"}.
+     * </p>
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
      * @return
-     *         The HTTP Method as a string.
-     * 
-     * @since 2.XX
+     *         The HTTP method as a string. For example, {@code "GET"}.
+     *
+     * @since 2.70
      */
     public String getHtm()
     {
@@ -180,16 +259,25 @@ public class UserInfoRequest implements Serializable
 
 
     /**
-     * Set the HTTP Method used to make this request. This field is used
-     * to validate the DPoP header.
-     * 
+     * Set the HTTP method of the userinfo request. This field is used to
+     * validate the {@code DPoP} header.
+     *
+     * <p>
+     * In normal cases, the value is either {@code "GET"} or {@code "POST"}.
+     * </p>
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
      * @param htm
-     *            The HTTP Method as a string.
-     * 
+     *         The HTTP method as a string. For example, {@code "GET"}.
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.70
      */
     public UserInfoRequest setHtm(String htm)
     {
@@ -200,13 +288,23 @@ public class UserInfoRequest implements Serializable
 
 
     /**
-     * Get the HTTP URL used to make this request. This field is used
-     * to validate the DPoP header.
-     * 
+     * Get the URL of the userinfo endpoint. This field is used to validate
+     * the {@code DPoP} header.
+     *
+     * <p>
+     * If this parameter is omitted, the {@code userInfoEndpoint} property
+     * of the {@link Service} is used as the default value.
+     * </p>
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
      * @return
-     *         The HTTP URL as a string.
-     * 
-     * @since 2.XX
+     *         The URL of the userinfo endpoint.
+     *
+     * @since 2.70
      */
     public String getHtu()
     {
@@ -215,16 +313,26 @@ public class UserInfoRequest implements Serializable
 
 
     /**
-     * Set the HTTP URL used to make this request. This field is used
-     * to validate the DPoP header.
-     * 
-     * @param htm
-     *            The HTTP URL as a string.
-     * 
+     * Set the URL of the userinfo endpoint. This field is used to validate
+     * the {@code DPoP} header.
+     *
+     * <p>
+     * If this parameter is omitted, the {@code userInfoEndpoint} property
+     * of the {@link Service} is used as the default value.
+     * </p>
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
+     * @param htu
+     *         The URL of the userinfo endpoint.
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.70
      */
     public UserInfoRequest setHtu(String htu)
     {
