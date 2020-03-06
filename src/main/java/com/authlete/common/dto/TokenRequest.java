@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -106,7 +106,7 @@ import com.authlete.common.web.URLCoder;
  */
 public class TokenRequest implements Serializable
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /**
@@ -144,6 +144,22 @@ public class TokenRequest implements Serializable
      * Extra properties to associate with an access token.
      */
     private Property[] properties;
+
+
+    /**
+     * DPoP Header
+     */
+    private String dpop;
+
+    /**
+     * HTTP Method (for DPoP validation).
+     */
+    private String htm;
+
+    /**
+     * HTTP URL base (for DPoP validation).
+     */
+    private String htu;
 
 
     /**
@@ -403,7 +419,9 @@ public class TokenRequest implements Serializable
      * client authentication. These certificates are strings in
      * PEM format.
      *
-     * @return the clientCertificatePath
+     * @return
+     *         The client certificate path as an array of strings
+     *         in PEM format.
      *
      * @since 2.15
      */
@@ -418,7 +436,9 @@ public class TokenRequest implements Serializable
      * client authentication. These certificates are strings in
      * PEM format.
      *
-     * @param clientCertificatePath the clientCertificatePath
+     * @param clientCertificatePath
+     *            The client certificate path as an array of strings
+     *            in PEM format.
      *
      * @return
      *         {@code this} object.
@@ -428,6 +448,113 @@ public class TokenRequest implements Serializable
     public TokenRequest setClientCertificatePath(String[] clientCertificatePath)
     {
         this.clientCertificatePath = clientCertificatePath;
+
+        return this;
+    }
+
+
+    /**
+     * Get the DPoP header presented by the client during the request
+     * to the token endpoint. This header contains a signed JWT which
+     * includes the public key used to sign it.
+     *
+     * @return
+     *         The DPoP header string.
+     * 
+     * @since 2.XX
+     */
+    public String getDpop()
+    {
+        return dpop;
+    }
+
+
+    /**
+     * Set the DPoP header presented by the client during the request
+     * to the token endpoint. This header contains a signed JWT which
+     * includes the public key used to sign it.
+     *
+     * @param dpop
+     *            The DPoP header string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public TokenRequest setDpop(String dpop)
+    {
+        this.dpop = dpop;
+
+        return this;
+    }
+
+
+    /**
+     * Get the HTTP Method used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @return
+     *         The HTTP Method as a string.
+     * 
+     * @since 2.XX
+     */
+    public String getHtm()
+    {
+        return htm;
+    }
+
+
+    /**
+     * Set the HTTP Method used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @param htm
+     *            The HTTP Method as a string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public TokenRequest setHtm(String htm)
+    {
+        this.htm = htm;
+
+        return this;
+    }
+
+
+    /**
+     * Get the HTTP URL used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @return
+     *         The HTTP URL as a string.
+     * 
+     * @since 2.XX
+     */
+    public String getHtu()
+    {
+        return htu;
+    }
+
+
+    /**
+     * Set the HTTP URL used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @param htm
+     *            The HTTP URL as a string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public TokenRequest setHtu(String htu)
+    {
+        this.htu = htu;
 
         return this;
     }

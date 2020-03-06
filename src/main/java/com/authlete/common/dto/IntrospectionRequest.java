@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Authlete, Inc.
+ * Copyright (C) 2014-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,13 +61,28 @@ import java.io.Serializable;
  */
 public class IntrospectionRequest implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     private String token;
     private String[] scopes;
     private String subject;
     private String clientCertificate;
+
+    /**
+     * DPoP Header
+     */
+    private String dpop;
+
+    /**
+     * HTTP Method (for DPoP validation).
+     */
+    private String htm;
+
+    /**
+     * HTTP URL base (for DPoP validation).
+     */
+    private String htu;
 
 
     /**
@@ -184,6 +199,113 @@ public class IntrospectionRequest implements Serializable
     public IntrospectionRequest setClientCertificate(String clientCertificate)
     {
         this.clientCertificate = clientCertificate;
+
+        return this;
+    }
+
+
+    /**
+     * Get the DPoP header presented by the client during the request
+     * to the resource server. This header contains a signed JWT which
+     * includes the public key used to sign it.
+     *
+     * @return
+     *         The DPoP header string.
+     * 
+     * @since 2.XX
+     */
+    public String getDpop()
+    {
+        return dpop;
+    }
+
+
+    /**
+     * Set the DPoP header presented by the client during the request
+     * to the resource server. This header contains a signed JWT which
+     * includes the public key used to sign it.
+     *
+     * @param dpop
+     *            The DPoP header string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public IntrospectionRequest setDpop(String dpop)
+    {
+        this.dpop = dpop;
+
+        return this;
+    }
+
+
+    /**
+     * Get the HTTP Method used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @return
+     *         The HTTP Method as a string.
+     * 
+     * @since 2.XX
+     */
+    public String getHtm()
+    {
+        return htm;
+    }
+
+
+    /**
+     * Set the HTTP Method used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @param htm
+     *            The HTTP Method as a string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public IntrospectionRequest setHtm(String htm)
+    {
+        this.htm = htm;
+
+        return this;
+    }
+
+
+    /**
+     * Get the HTTP URL used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @return
+     *         The HTTP URL as a string.
+     * 
+     * @since 2.XX
+     */
+    public String getHtu()
+    {
+        return htu;
+    }
+
+
+    /**
+     * Set the HTTP URL used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @param htm
+     *            The HTTP URL as a string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public IntrospectionRequest setHtu(String htu)
+    {
+        this.htu = htu;
 
         return this;
     }

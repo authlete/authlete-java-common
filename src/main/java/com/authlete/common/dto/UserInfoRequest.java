@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2019 Authlete, Inc.
+ * Copyright (C) 2015-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ import java.io.Serializable;
  */
 public class UserInfoRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -54,6 +54,11 @@ public class UserInfoRequest implements Serializable
      */
     private String clientCertificate;
 
+    private String dpop;
+
+    private String htm;
+
+    private String htu;
 
     /**
      * Get the access token which has come along with the userinfo
@@ -117,6 +122,113 @@ public class UserInfoRequest implements Serializable
     public UserInfoRequest setClientCertificate(String certificate)
     {
         this.clientCertificate = certificate;
+
+        return this;
+    }
+
+
+    /**
+     * Get the DPoP header presented by the client during the request
+     * to the token endpoint. This header contains a signed JWT which
+     * includes the public key used to sign it.
+     *
+     * @return
+     *         The DPoP header string.
+     * 
+     * @since 2.XX
+     */
+    public String getDpop()
+    {
+        return dpop;
+    }
+
+
+    /**
+     * Set the DPoP header presented by the client during the request
+     * to the token endpoint. This header contains a signed JWT which
+     * includes the public key used to sign it.
+     *
+     * @param dpop
+     *            The DPoP header string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public UserInfoRequest setDpop(String dpop)
+    {
+        this.dpop = dpop;
+
+        return this;
+    }
+
+
+    /**
+     * Get the HTTP Method used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @return
+     *         The HTTP Method as a string.
+     * 
+     * @since 2.XX
+     */
+    public String getHtm()
+    {
+        return htm;
+    }
+
+
+    /**
+     * Set the HTTP Method used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @param htm
+     *            The HTTP Method as a string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public UserInfoRequest setHtm(String htm)
+    {
+        this.htm = htm;
+
+        return this;
+    }
+
+
+    /**
+     * Get the HTTP URL used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @return
+     *         The HTTP URL as a string.
+     * 
+     * @since 2.XX
+     */
+    public String getHtu()
+    {
+        return htu;
+    }
+
+
+    /**
+     * Set the HTTP URL used to make this request. This field is used
+     * to validate the DPoP header.
+     * 
+     * @param htm
+     *            The HTTP URL as a string.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public UserInfoRequest setHtu(String htu)
+    {
+        this.htu = htu;
 
         return this;
     }
