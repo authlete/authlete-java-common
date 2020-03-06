@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.70 (2020-03-06)
+-----------------
+
 - `IntrospectionRequest` class
     * Added `getDpop()` method.
     * Added `setDpop(String)` method.
