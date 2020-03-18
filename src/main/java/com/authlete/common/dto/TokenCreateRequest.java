@@ -201,6 +201,26 @@ import com.authlete.common.types.GrantType;
  * request parameter is ignored.
  * </p>
  * </dd>
+ * 
+ * <dt><b><code>certificateThumbprint</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The thumbprint of the MTLS certificate bound to this token. If this field
+ * is set, a certificate with the corresponding value MUST be presented with the
+ * access token when it is used by a client.
+ * </p>
+ * </dd>
+ * 
+ * <dt><b><code>dpopKeyThumbprint</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The thumbprint of the public key used for DPoP presentation of this token.
+ * If this field is set, a DPoP proof signed with the corresponding public key
+ * MUST be presented with the access token when it is used by a client. Additionally,
+ * the token's {@code token_type} will be set to 'DPoP'.
+ * </p>
+ * </dd>
+ * 
  * </dl>
  * </blockquote>
  *
@@ -210,7 +230,7 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     private GrantType grantType;
@@ -224,6 +244,8 @@ public class TokenCreateRequest implements Serializable
     private String accessToken;
     private String refreshToken;
     private boolean accessTokenPersistent;
+    private String certificateThumbprint;
+    private String dpopKeyThumbprint;
 
 
     /**
@@ -755,6 +777,82 @@ public class TokenCreateRequest implements Serializable
     {
         this.accessTokenPersistent = persistent;
 
+        return this;
+    }
+
+
+    /**
+     * Get the thumbprint of the MTLS certificate bound to this token. If this field
+     * is set, a certificate with the corresponding value MUST be presented with the
+     * access token when it is used by a client.
+     * 
+     * @return
+     *         The SHA256 certificate thumbprint, base64url encoded.
+     * 
+     * @since 2.XX
+     */
+    public String getCertificateThumbprint()
+    {
+        return certificateThumbprint;
+    }
+
+
+    /**
+     * Set the thumbprint of the MTLS certificate bound to this token. If this field
+     * is set, a certificate with the corresponding value MUST be presented with the
+     * access token when it is used by a client.
+     * 
+     * @param certificateThumbprint
+     *            The SHA256 certificate thumbprint, base64url encoded.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public TokenCreateRequest setCertificateThumbprint(String certificateThumbprint)
+    {
+        this.certificateThumbprint = certificateThumbprint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the thumbprint of the public key used for DPoP presentation of this token.
+     * If this field is set, a DPoP proof signed with the corresponding public key
+     * MUST be presented with the access token when it is used by a client. Additionally,
+     * the token's {@code token_type} will be set to 'DPoP'.
+     * 
+     * @return
+     *         The JWK public key thumbprint.
+     * 
+     * @since 2.XX
+     */
+    public String getDpopKeyThumbprint()
+    {
+        return dpopKeyThumbprint;
+    }
+
+
+    /**
+     * Set the thumbprint of the public key used for DPoP presentation of this token.
+     * If this field is set, a DPoP proof signed with the corresponding public key
+     * MUST be presented with the access token when it is used by a client. Additionally,
+     * the token's {@code token_type} will be set to 'DPoP'.
+     * 
+     * @param dpopKeyThumbprint
+     *            The JWK public key thumbprint.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.XX
+     */
+    public TokenCreateRequest setDpopKeyThumbprint(String dpopKeyThumbprint)
+    {
+        this.dpopKeyThumbprint = dpopKeyThumbprint;
+        
         return this;
     }
 }
