@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2018 Authlete, Inc.
+ * Copyright (C) 2015-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -201,7 +201,7 @@ import com.authlete.common.types.GrantType;
  * request parameter is ignored.
  * </p>
  * </dd>
- * 
+ *
  * <dt><b><code>certificateThumbprint</code></b> (OPTIONAL)</dt>
  * <dd>
  * <p>
@@ -210,17 +210,17 @@ import com.authlete.common.types.GrantType;
  * access token when it is used by a client.
  * </p>
  * </dd>
- * 
+ *
  * <dt><b><code>dpopKeyThumbprint</code></b> (OPTIONAL)</dt>
  * <dd>
  * <p>
  * The thumbprint of the public key used for DPoP presentation of this token.
- * If this field is set, a DPoP proof signed with the corresponding public key
+ * If this field is set, a DPoP proof signed with the corresponding private key
  * MUST be presented with the access token when it is used by a client. Additionally,
  * the token's {@code token_type} will be set to 'DPoP'.
  * </p>
  * </dd>
- * 
+ *
  * </dl>
  * </blockquote>
  *
@@ -785,11 +785,11 @@ public class TokenCreateRequest implements Serializable
      * Get the thumbprint of the MTLS certificate bound to this token. If this field
      * is set, a certificate with the corresponding value MUST be presented with the
      * access token when it is used by a client.
-     * 
+     *
      * @return
      *         The SHA256 certificate thumbprint, base64url encoded.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.72
      */
     public String getCertificateThumbprint()
     {
@@ -801,14 +801,14 @@ public class TokenCreateRequest implements Serializable
      * Set the thumbprint of the MTLS certificate bound to this token. If this field
      * is set, a certificate with the corresponding value MUST be presented with the
      * access token when it is used by a client.
-     * 
+     *
      * @param certificateThumbprint
      *            The SHA256 certificate thumbprint, base64url encoded.
-     * 
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.72
      */
     public TokenCreateRequest setCertificateThumbprint(String certificateThumbprint)
     {
@@ -820,14 +820,14 @@ public class TokenCreateRequest implements Serializable
 
     /**
      * Get the thumbprint of the public key used for DPoP presentation of this token.
-     * If this field is set, a DPoP proof signed with the corresponding public key
+     * If this field is set, a DPoP proof signed with the corresponding private key
      * MUST be presented with the access token when it is used by a client. Additionally,
      * the token's {@code token_type} will be set to 'DPoP'.
-     * 
+     *
      * @return
      *         The JWK public key thumbprint.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.72
      */
     public String getDpopKeyThumbprint()
     {
@@ -837,22 +837,22 @@ public class TokenCreateRequest implements Serializable
 
     /**
      * Set the thumbprint of the public key used for DPoP presentation of this token.
-     * If this field is set, a DPoP proof signed with the corresponding public key
+     * If this field is set, a DPoP proof signed with the corresponding private key
      * MUST be presented with the access token when it is used by a client. Additionally,
      * the token's {@code token_type} will be set to 'DPoP'.
-     * 
+     *
      * @param dpopKeyThumbprint
      *            The JWK public key thumbprint.
-     * 
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.72
      */
     public TokenCreateRequest setDpopKeyThumbprint(String dpopKeyThumbprint)
     {
         this.dpopKeyThumbprint = dpopKeyThumbprint;
-        
+
         return this;
     }
 }

@@ -1,6 +1,19 @@
 CHANGES
 =======
 
+- `TokenCreateRequest` class
+    * Added `getCertificateThumbprint()` method.
+    * Added `setCertificateThumbprint(String)` method.
+    * Added `getDpopKeyThumbprint()` method.
+    * Added `setDpopKeyThumbprint(String)` method.
+
+- `TokenUpdateRequest` class
+    * Added `getCertificateThumbprint()` method.
+    * Added `setCertificateThumbprint(String)` method.
+    * Added `getDpopKeyThumbprint()` method.
+    * Added `setDpopKeyThumbprint(String)` method.
+
+
 2.71 (2020-03-07)
 -----------------
 

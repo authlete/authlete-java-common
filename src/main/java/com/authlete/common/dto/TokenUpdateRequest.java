@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2018 Authlete, Inc.
+ * Copyright (C) 2016-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -109,17 +109,17 @@ import java.io.Serializable;
  * access token when it is used by a client.
  * </p>
  * </dd>
- * 
+ *
  * <dt><b><code>dpopKeyThumbprint</code></b> (OPTIONAL)</dt>
  * <dd>
  * <p>
  * The thumbprint of the public key used for DPoP presentation of this token.
- * If this field is set, a DPoP proof signed with the corresponding public key
+ * If this field is set, a DPoP proof signed with the corresponding private key
  * MUST be presented with the access token when it is used by a client. Additionally,
  * the token's {@code token_type} will be set to 'DPoP'.
  * </p>
  * </dd>
- * 
+ *
  * </dl>
  * </blockquote>
  *
@@ -546,11 +546,11 @@ public class TokenUpdateRequest implements Serializable
      * Get the thumbprint of the MTLS certificate bound to this token. If this field
      * is set, a certificate with the corresponding value MUST be presented with the
      * access token when it is used by a client.
-     * 
+     *
      * @return
      *         The SHA256 certificate thumbprint, base64url encoded.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.72
      */
     public String getCertificateThumbprint()
     {
@@ -562,14 +562,14 @@ public class TokenUpdateRequest implements Serializable
      * Set the thumbprint of the MTLS certificate bound to this token. If this field
      * is set, a certificate with the corresponding value MUST be presented with the
      * access token when it is used by a client.
-     * 
+     *
      * @param certificateThumbprint
      *            The SHA256 certificate thumbprint, base64url encoded.
-     * 
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.72
      */
     public TokenUpdateRequest setCertificateThumbprint(String certificateThumbprint)
     {
@@ -581,14 +581,14 @@ public class TokenUpdateRequest implements Serializable
 
     /**
      * Get the thumbprint of the public key used for DPoP presentation of this token.
-     * If this field is set, a DPoP proof signed with the corresponding public key
+     * If this field is set, a DPoP proof signed with the corresponding private key
      * MUST be presented with the access token when it is used by a client. Additionally,
      * the token's {@code token_type} will be set to 'DPoP'.
-     * 
+     *
      * @return
      *         The JWK public key thumbprint.
-     * 
-     * @since 2.XX
+     *
+     * @since 2.72
      */
     public String getDpopKeyThumbprint()
     {
@@ -598,17 +598,17 @@ public class TokenUpdateRequest implements Serializable
 
     /**
      * Set the thumbprint of the public key used for DPoP presentation of this token.
-     * If this field is set, a DPoP proof signed with the corresponding public key
+     * If this field is set, a DPoP proof signed with the corresponding private key
      * MUST be presented with the access token when it is used by a client. Additionally,
      * the token's {@code token_type} will be set to 'DPoP'.
-     * 
+     *
      * @param dpopKeyThumbprint
      *            The JWK public key thumbprint.
-     * 
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 2.XX
+     * @since 2.72
      */
     public TokenUpdateRequest setDpopKeyThumbprint(String dpopKeyThumbprint)
     {
