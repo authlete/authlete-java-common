@@ -1,6 +1,19 @@
 変更点
 ======
 
+- `TokenCreateRequest` クラス
+    * `getCertificateThumbprint()` メソッドを追加。
+    * `setCertificateThumbprint(String)` メソッドを追加。
+    * `getDpopKeyThumbprint()` メソッドを追加。
+    * `setDpopKeyThumbprint(String)` メソッドを追加。
+
+- `TokenUpdateRequest` クラス
+    * `getCertificateThumbprint()` メソッドを追加。
+    * `setCertificateThumbprint(String)` メソッドを追加。
+    * `getDpopKeyThumbprint()` メソッドを追加。
+    * `setDpopKeyThumbprint(String)` メソッドを追加。
+
+
 2.71 (2020 年 03 月 07 日)
 --------------------------
 

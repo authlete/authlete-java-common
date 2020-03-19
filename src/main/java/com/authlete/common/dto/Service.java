@@ -117,15 +117,26 @@ import com.authlete.common.types.UserCodeCharset;
  *     <td>{@code cnf}</td>
  *     <td>object</td>
  *     <td>
+ *       <p>
  *       If this access token is bound to a client certificate, this claim
  *       is included. The type of its value is object and the sub object
  *       contains a {@code "x5t#S256"} claim. The value of the {@code
  *       "x5t#S256"} claim is the X.509 Certificate SHA-256 thumbprint of
- *       the client certificate. See <i>"3.1. X.509 Certificate Thumbprint
- *       Confirmation Method for JWT"</i> of <i>"<a href=
- *       "https://datatracker.ietf.org/doc/draft-ietf-oauth-mtls/?include_text=1"
- *       >OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound
- *       Access Tokens</a>"</i> for details.
+ *       the client certificate. See
+ *       <i>"<a href="https://www.rfc-editor.org/rfc/rfc8705.html#name-jwt-certificate-thumbprint-"
+ *       >3.1. JWT Certificate Thumbprint Confirmation Method</a>"</i> of
+ *       <a href="https://www.rfc-editor.org/rfc/rfc8705.html">RFC 8705</a>
+ *       (OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound
+ *       Access Tokens) for details.
+ *       </p>
+ *       <p>
+ *       If this access token is bound to a public key of DPoP, this claim
+ *       is included. The type of its value is object and the sub object
+ *       contains a {@code "jkt"} claim. The value of the {@code "jkt"}
+ *       claim is the thumbprint of the public key. See <i>"OAuth 2.0
+ *       Demonstration of Proof-of-Possession at the Application Layer"</i>
+ *       for details.
+ *       </p>
  *     </td>
  *   </tr>
  *   <tr>
