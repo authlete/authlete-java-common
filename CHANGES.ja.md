@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.72 (2020 年 03 月 20 日)
+--------------------------
+
 - `TokenCreateRequest` クラス
     * `getCertificateThumbprint()` メソッドを追加。
     * `setCertificateThumbprint(String)` メソッドを追加。

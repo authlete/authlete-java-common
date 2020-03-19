@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.72 (2020-03-20)
+-----------------
+
 - `TokenCreateRequest` class
     * Added `getCertificateThumbprint()` method.
     * Added `setCertificateThumbprint(String)` method.
