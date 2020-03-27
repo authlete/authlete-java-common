@@ -265,6 +265,20 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
 
     /**
+     * Property key to specify the dpop signing key
+     * ({@code service.dpop_key}).
+     */
+    private static final String PROPERTY_KEY_DPOP_KEY = "service.dpop_key";
+
+
+    /**
+     * Property key to specify the client's MTLS certificate
+     * ({@code service.client_certificate}).
+     */
+    private static final String PROPERTY_KEY_CLIENT_CERTIFICATE = "service.client_certificate";
+
+
+    /**
      * The default value of the base URL ({@code https://api.authlete.com}).
      */
     private static final String BASE_URL_DEFAULT = "https://api.authlete.com";
@@ -310,6 +324,18 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      * Service access token.
      */
     private String mServiceAccessToken;
+
+
+    /**
+     * DPoP Signing key pair
+     */
+    private String mDpopKey;
+
+
+    /**
+     * Client MTLS certificate.
+     */
+    private String mClientCertificate;
 
 
     /**
@@ -531,6 +557,10 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
         mServiceAccessToken = props.getString(PROPERTY_KEY_SERVICE_ACCESS_TOKEN);
         mServiceOwnerAccessToken = props.getString(PROPERTY_KEY_SERVICE_OWNER_ACCESS_TOKEN);
+
+        mDpopKey = props.getString(PROPERTY_KEY_DPOP_KEY);
+
+        mClientCertificate = props.getString(PROPERTY_KEY_CLIENT_CERTIFICATE);
     }
 
 
@@ -673,5 +703,19 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
     public String getServiceAccessToken()
     {
         return mServiceAccessToken;
+    }
+
+
+    @Override
+    public String getDpopKey()
+    {
+        return mDpopKey;
+    }
+
+
+    @Override
+    public String getClientCertificate()
+    {
+        return mClientCertificate;
     }
 }

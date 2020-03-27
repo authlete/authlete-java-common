@@ -61,4 +61,18 @@ public interface AuthleteConfiguration
      * Get the service API access token
      */
     String getServiceAccessToken();
+
+
+    /**
+     * Get the public/private keypair used for DPoP
+     * signatures in JWK format.
+     */
+    String getDpopKey();
+
+
+    /**
+     * Get the certificate used for MTLS bound
+     * access tokens in PEM format.
+     */
+    String getClientCertificate();
 }
