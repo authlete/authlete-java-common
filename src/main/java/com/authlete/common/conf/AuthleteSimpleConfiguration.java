@@ -28,6 +28,8 @@ public class AuthleteSimpleConfiguration implements AuthleteConfiguration
     private String serviceApiKey;
     private String serviceApiSecret;
     private String serviceAccessToken;
+    private String dpopKey;
+    private String clientCertificate;
 
 
     @Override
@@ -197,6 +199,43 @@ public class AuthleteSimpleConfiguration implements AuthleteConfiguration
     public AuthleteSimpleConfiguration setServiceAccessToken(String accessToken)
     {
         this.serviceAccessToken = accessToken;
+
+        return this;
+    }
+
+
+    @Override
+    public String getDpopKey()
+    {
+        return dpopKey;
+    }
+
+
+    /**
+     * Set the DPoP access public and private key pair
+     * in serialized JWK format.
+     */
+    public AuthleteSimpleConfiguration setDpopKey(String dpopKey)
+    {
+        this.dpopKey = dpopKey;
+
+        return this;
+    }
+
+
+    @Override
+    public String getClientCertificate()
+    {
+        return clientCertificate;
+    }
+
+
+    /**
+     * Set the client's MTLS certificate in PEM format.
+     */
+    public AuthleteSimpleConfiguration setClientCertificate(String clientCertificate)
+    {
+        this.clientCertificate = clientCertificate;
 
         return this;
     }

@@ -52,6 +52,8 @@ public class AuthleteEnvConfiguration implements AuthleteConfiguration
     private static final String ENV_KEY_SERVICE_API_SECRET         = "AUTHLETE_SERVICE_APISECRET";
     private static final String ENV_KEY_SERVICE_OWNER_ACCESS_TOKEN = "AUTHLETE_SERVICEOWNER_ACCESSTOKEN";
     private static final String ENV_KEY_SERVICE_ACCESS_TOKEN       = "AUTHLETE_SERVICE_ACCESSTOKEN";
+    private static final String ENV_KEY_DPOP_KEY                   = "AUTHLETE_DPOP_KEY";
+    private static final String ENV_KEY_CLIENT_CERTIFICATE         = "AUTHLETE_CLIENT_CERTIFICATE";
 
 
     @Override
@@ -100,6 +102,20 @@ public class AuthleteEnvConfiguration implements AuthleteConfiguration
     public String getServiceAccessToken()
     {
         return get(ENV_KEY_SERVICE_ACCESS_TOKEN);
+    }
+
+
+    @Override
+    public String getDpopKey()
+    {
+        return get(ENV_KEY_DPOP_KEY);
+    }
+
+
+    @Override
+    public String getClientCertificate()
+    {
+        return get(ENV_KEY_CLIENT_CERTIFICATE);
     }
 
 
