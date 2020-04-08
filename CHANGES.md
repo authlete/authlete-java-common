@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+2.73 (2020-04-08)
+-----------------
+
+- `AuthleteConfiguration` interface
+    * Added `getDpopKey()` method.
+    * Added `getClientCertificate()` method.
+
+
 2.72 (2020-03-20)
 -----------------
 
