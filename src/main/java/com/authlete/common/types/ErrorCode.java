@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2019 Authlete, Inc.
+ * Copyright (C) 2014-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -426,11 +426,26 @@ public enum ErrorCode
      * The requested resource is invalid, missing, unknown, or malformed.
      *
      * <p>
-     * See "Resource Indicators for OAuth 2.0" for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc8707.html">RFC 8707</a>
+     * (Resource Indicators for OAuth 2.0) for details.
      * </p>
      *
      * @since 2.62
      */
     invalid_target,
+
+
+    /**
+     * The DPoP proof JWT included in the {@code DPoP} HTTP header is invalid.
+     *
+     * <p>
+     * See "<a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
+     * >OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer
+     * (DPoP)"</a> for details.
+     * </p>
+     *
+     * @since 2.74
+     */
+    invalid_dpop_proof,
     ;
 }
