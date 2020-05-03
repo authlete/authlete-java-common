@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.74 (2020-05-03)
+-----------------
+
 - `ErrorCode` enum
     * Added `invalid_dpop_proof`.
 
