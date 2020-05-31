@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -306,7 +306,7 @@ public class Document extends LinkedHashMap<String, Object>
      * @return
      *         The old value that may have existed before removal.
      */
-    public String removeDateOfExpir()
+    public String removeDateOfExpiry()
     {
         return (String)remove(DATE_OF_EXPIRY);
     }

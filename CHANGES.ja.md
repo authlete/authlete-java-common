@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `Document` クラス
+    * `removeDateOfExpir()` を `removeDateOfExpiry()` に名称変更。
+
+
 2.74 (2020 年 05 月 03 日)
 --------------------------
 

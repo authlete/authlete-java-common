@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `Document` class
+    * Renamed `removeDateOfExpir()` to `removeDateOfExpiry()`.
+
+
 2.74 (2020-05-03)
 -----------------
 
