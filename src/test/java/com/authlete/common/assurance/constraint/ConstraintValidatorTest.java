@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,7 +69,25 @@ public class ConstraintValidatorTest
     }
 
 
-    @Test
+    @Test(expected = ConstraintException.class)
+    public void testClaimsMissing()
+    {
+        String json = String.join("\n",
+                "{",
+                "  \"verified_claims\":{",
+                "  }",
+                "}");
+
+        // In the Implementer's Draft 1 (ID1) of "OpenID Connect for Identity
+        // Assurance 1.0", "claims" is optional, but the ID2 has changed the
+        // specification. Now "claims" is mandatory. See the comment in
+        // ConstraintValidator for details.
+
+        validate(json);
+    }
+
+
+    @Test(expected = ConstraintException.class)
     public void testClaimsNull()
     {
         String json = String.join("\n",
@@ -78,6 +96,11 @@ public class ConstraintValidatorTest
                 "    \"claims\":null",
                 "  }",
                 "}");
+
+        // In the Implementer's Draft 1 (ID1) of "OpenID Connect for Identity
+        // Assurance 1.0", "claims":null has a special meaning, but the ID2 has
+        // changed the specification. Now "claims":null is not allowed. See the
+        // comment in ConstraintValidator for details.
 
         validate(json);
     }

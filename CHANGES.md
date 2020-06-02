@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+- `ConstraintValidator` class
+    * Changed the behavior of the `validate(ClaimsConstraint)` method because
+      the special rule given to the case of `"claims":null` was removed when
+      OpenID Connect for Identity Assurance 1.0 was updated from Implementer's
+      Draft 1 to 2.
+
 - `Document` class
     * Renamed `removeDateOfExpir()` to `removeDateOfExpiry()`.
 

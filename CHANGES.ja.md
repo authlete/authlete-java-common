@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `ConstraintValidator` クラス
+    * `validate(ClaimsConstraint)` メソッドの動作を変更。OpenID Connect for
+      Identity Assurance 1.0 が Implementer's Draft 1 から 2 へと更新される際、
+      `"claims":null` に与えられていた特別なルールが削除されたため。
+
 - `Document` クラス
     * `removeDateOfExpir()` を `removeDateOfExpiry()` に名称変更。
 

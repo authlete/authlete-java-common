@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -122,27 +122,57 @@ public class ConstraintValidator
             return;
         }
 
+        // NOTE ABOUT THE CHANGE OF THE SPECIFICATION FOR "claims":null
+        //
+        // In the Implementer's Draft 1 (ID1) of "OpenID Connect for Identity
+        // Assurance 1.0", "claims":null means "all possible claims".
+        //
+        // During the public review period of the ID1, I raised an issue to
+        // insist that special meanings should not be given to null and empty
+        // strings.
+        //
+        //     Issue 1110
+        //     [Identity Assurance] Giving null and/or empty strings special
+        //     meanings might bring about difficulties in implementations
+        //
+        //       https://bitbucket.org/openid/ekyc-ida/issues/1110
+        //
+        // However, my opinion was not reflected and the ID1 was published
+        // without modification.
+        //
+        // Soon after the release of the ID1, however, the special meaning was
+        // removed. As a result, the Implementer's Draft 2 does not have the
+        // special rule any more.
+        //
+        // If the ID1 had not contained the special rule, the implementation
+        // of classes in 'com.authlete.common.assurance.constraint' package
+        // would have become much simpler.
+
         // If "claims" does not exist.
         if (claims.exists() == false)
         {
-            return;
+            // In the ID1, "claims" is optional. However, in the ID2, "claims"
+            // must be given.
+            throw Helper.exception("'claims' is not included.");
         }
 
         // If "claims" is null.
         if (claims.isNull())
         {
-            return;
+            // In the ID1, "claims":null means "all possible claims". However,
+            // the special meaning was removed from the ID2.
+            throw Helper.exception("'claims' is null.");
         }
 
         // If "claims" is empty.
         if (claims.size() == 0)
         {
-            // OpenID Connect for Identity Assurance 1.0,
-            // 5.1. Requesting End-User Claims, the last paragraph
+            // OpenID Connect for Identity Assurance 1.0, Implementer's Draft 2
+            // 5.1.1. Error Handling, the first paragraph
             //
-            //   Note: If the claims sub-element is empty or contains a Claim
-            //   not fulfilling the requirements defined in Section 4.2, the
-            //   OP will abort the transaction with an invalid_request error.
+            //   If the claims sub-element is empty, the OP MUST abort the
+            //   transaction with an invalid_request error.
+            //
             throw Helper.exception("'claims' is empty.");
         }
 
