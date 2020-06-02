@@ -9,6 +9,11 @@
 - `Document` クラス
     * `removeDateOfExpir()` を `removeDateOfExpiry()` に名称変更。
 
+- `VerifiedClaimsConstraint` クラス
+    * `isAllClaimsRequested()` メソッドを deprecated 化。OpenID Connect for
+      Identity Assurance 1.0 が Implementer's Draft 1 から 2 へと更新される際、
+      `"claims":null` に与えられていた特別なルールが削除されたため。
+
 
 2.74 (2020 年 05 月 03 日)
 --------------------------

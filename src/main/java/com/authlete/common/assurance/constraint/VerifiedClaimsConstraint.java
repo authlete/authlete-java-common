@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -104,13 +104,25 @@ public class VerifiedClaimsConstraint extends BaseConstraint
      * or the value of {@code "claims"} is null.
      * </p>
      *
+     * <p>
+     * <b>NOTE</b>: In the Implementer's Draft 1
+     * (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0-ID1.html"
+     * >ID1</a>) of OpenID Connect for Identity Assurance 1.0,
+     * {@code "claims":null} has a special meaning. It is interpreted as
+     * <i>"all possible claims"</i>. However, the special rule was removed
+     * from the
+     * <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0-ID2.html"
+     * >ID2</a>. Therefore, this method has been marked as deprecated.
+     * </p>
+     *
      * @return
      *         {@code true} if the constraint indicates that all possible
      *         claims are required.
      */
+    @Deprecated
     public boolean isAllClaimsRequested()
     {
-        // OpenID Connect for Identity Assurance 1.0
+        // OpenID Connect for Identity Assurance 1.0, Implementer's Draft 1
         // 5.1. Requesting End-User Claims
         //
         //   Note: A claims sub-element with value null is interpreted
