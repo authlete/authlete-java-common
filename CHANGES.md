@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.75 (2020-06-04)
+-----------------
+
 - `ConstraintValidator` class
     * Changed the behavior of the `validate(ClaimsConstraint)` method because
       the special rule given to the case of `"claims":null` was removed when
@@ -9,6 +12,10 @@ CHANGES
 
 - `Document` class
     * Renamed `removeDateOfExpir()` to `removeDateOfExpiry()`.
+
+- `JWSAlg` enum
+    * Added `ES256K`.
+    * Added `EdDSA`.
 
 - `VerifiedClaimsConstraint` class
     * Marked the `isAllClaimsRequested()` method as deprecated because

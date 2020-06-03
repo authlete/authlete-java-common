@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -104,27 +104,39 @@ public enum JWSAlg
 
     /**
      * {@code "PS512"} (12); RSASSA-PSS using SHA-512 and MGF1 with SHA-512.
+     *
+     * @since 2.75
      */
-    PS512((short) 12, "PS512", SHA_512),
+    PS512((short)12, "PS512", SHA_512),
 
 
     /**
      * {@code "ES256K"} (13); ECDSA using secp256k1 curve and SHA-256.
-     * 
-     * @see https://tools.ietf.org/html/draft-ietf-cose-webauthn-algorithms
+     *
+     * @see <a href="https://tools.ietf.org/html/draft-ietf-cose-webauthn-algorithms"
+     *      >COSE and JOSE Registrations for WebAuthn Algorithms</a>
+     *
+     * @since 2.75
      */
-    ES256K((short) 13, "ES256K", SHA_256),
+    ES256K((short)13, "ES256K", SHA_256),
 
 
     /**
      * {@code "EdDSA"} (14); EdDSA signature algorithms.
-     * 
-     * @see https://tools.ietf.org/html/rfc8037
-     * 
-     * Note: SHA512 is used as has as per the Edwards algorithm in RFC8032.
-     * @see https://tools.ietf.org/html/rfc8032
+     *
+     * <p>
+     * Note: SHA512 is used as has as per the Edwards algorithm in <a href=
+     * "https://tools.ietf.org/html/rfc8032">RFC 8032 : Edwards-Curve Digital
+     * Signature Algorithm (EdDSA)</a>.
+     * </p>
+     *
+     * @see <a href="https://tools.ietf.org/html/rfc8037">RFC 8037 :
+     *      CFRG Elliptic Curve Diffie-Hellman (ECDH) and Signatures
+     *      in JSON Object Signing and Encryption (JOSE)</a>
+     *
+     * @since 2.75
      */
-    EdDSA((short) 14, "EdDSA", SHA_512)
+    EdDSA((short)14, "EdDSA", SHA_512),
     ;
 
 

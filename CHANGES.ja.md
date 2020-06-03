@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.75 (2020 年 06 月 04 日)
+--------------------------
+
 - `ConstraintValidator` クラス
     * `validate(ClaimsConstraint)` メソッドの動作を変更。OpenID Connect for
       Identity Assurance 1.0 が Implementer's Draft 1 から 2 へと更新される際、
@@ -8,6 +11,10 @@
 
 - `Document` クラス
     * `removeDateOfExpir()` を `removeDateOfExpiry()` に名称変更。
+
+- `JWSAlg` 列挙型
+    * `ES256K` を追加。
+    * `EdDSA` を追加。
 
 - `VerifiedClaimsConstraint` クラス
     * `isAllClaimsRequested()` メソッドを deprecated 化。OpenID Connect for
