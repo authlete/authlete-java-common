@@ -105,7 +105,26 @@ public enum JWSAlg
     /**
      * {@code "PS512"} (12); RSASSA-PSS using SHA-512 and MGF1 with SHA-512.
      */
-    PS512((short)12, "PS512", SHA_512)
+    PS512((short) 12, "PS512", SHA_512),
+
+
+    /**
+     * {@code "ES256K"} (13); ECDSA using secp256k1 curve and SHA-256.
+     * 
+     * @see https://tools.ietf.org/html/draft-ietf-cose-webauthn-algorithms
+     */
+    ES256K((short) 13, "ES256K", SHA_256),
+
+
+    /**
+     * {@code "EdDSA"} (14); EdDSA signature algorithms.
+     * 
+     * @see https://tools.ietf.org/html/rfc8037
+     * 
+     * Note: SHA512 is used as has as per the Edwards algorithm in RFC8032.
+     * @see https://tools.ietf.org/html/rfc8032
+     */
+    EdDSA((short) 14, "EdDSA", SHA_512)
     ;
 
 
@@ -336,6 +355,8 @@ public enum JWSAlg
             case ES256:
             case ES384:
             case ES512:
+            case ES256K:
+            case EdDSA:
                 return true;
 
             default:
