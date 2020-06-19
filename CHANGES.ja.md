@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `AuthorizationIssueRequest` クラス
+    * `getIdtHeaderParams()` メソッドを追加。
+    * `setIdtHeaderParams(String)` メソッドを追加。
+
+
 2.75 (2020 年 06 月 04 日)
 --------------------------
 

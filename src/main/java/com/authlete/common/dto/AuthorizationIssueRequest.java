@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,6 +78,14 @@ import com.authlete.common.util.Utils;
  * </p>
  * </dd>
  *
+ * <dt><b><code>idtHeaderParams</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * JSON that represents additional JWS header parameters for ID tokens that may
+ * be issued based on the authorization request.
+ * </p>
+ * </dd>
+ *
  * <dt><b><code>properties</code></b> (OPTIONAL)</dt>
  * <dd>
  * <p>
@@ -152,7 +160,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     /**
@@ -207,6 +215,15 @@ public class AuthorizationIssueRequest implements Serializable
      * replace the original scopes contained in the original request.
      */
     private String[] scopes;
+
+
+    /**
+     * JSON that represents additional JWS header parameters for ID tokens
+     * that may be issued based on the authorization request.
+     *
+     * @since 2.76
+     */
+    private String idtHeaderParams;
 
 
     /**
@@ -706,6 +723,41 @@ public class AuthorizationIssueRequest implements Serializable
     public AuthorizationIssueRequest setScopes(String[] scopes)
     {
         this.scopes = scopes;
+
+        return this;
+    }
+
+
+    /**
+     * Get JSON that represents additional JWS header parameters for ID tokens
+     * that may be issued based on the authorization request.
+     *
+     * @return
+     *         JSON that represents additional JWS header parameters for ID tokens.
+     *
+     * @since 2.76
+     */
+    public String getIdtHeaderParams()
+    {
+        return idtHeaderParams;
+    }
+
+
+    /**
+     * Set JSON that represents additional JWS header parameters for ID tokens
+     * that may be issued based on the authorization request.
+     *
+     * @param params
+     *         JSON that represents additional JWS header parameters for ID tokens.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.76
+     */
+    public AuthorizationIssueRequest setIdtHeaderParams(String params)
+    {
+        this.idtHeaderParams = params;
 
         return this;
     }

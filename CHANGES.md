@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `AuthorizationIssueRequest` class
+    * Added `getIdtHeaderParams()` method.
+    * Added `setIdtHeaderParams(String)` method.
+
+
 2.75 (2020-06-04)
 -----------------
 
