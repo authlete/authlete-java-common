@@ -46,7 +46,7 @@ Source Code
 JavaDoc
 -------
 
-  <code>http://authlete.github.io/authlete-java-common/</code>
+  <code>https://authlete.github.io/authlete-java-common/</code>
 
 
 Description
@@ -405,12 +405,12 @@ Contact
 
 
 [1]: https://www.authlete.com/
-[2]: https://www.authlete.com/documents/apis
-[3]: http://tools.ietf.org/html/rfc6749
-[4]: http://openid.net/connect/
-[5]: https://www.authlete.com/documents/overview
+[2]: https://docs.authlete.com/
+[3]: https://tools.ietf.org/html/rfc6749
+[4]: https://openid.net/connect/
+[5]: https://www.authlete.com/developers/overview/
 [6]: https://github.com/authlete/java-oauth-server
 [7]: https://github.com/authlete/authlete-java-jaxrs
-[8]: http://authlete.github.io/authlete-java-common/
+[8]: https://authlete.github.io/authlete-java-common/
 [9]: https://github.com/authlete/java-resource-server
 [10]: https://medium.com/@darutk/new-architecture-of-oauth-2-0-and-openid-connect-implementation-18f408f9338d
