@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.77 (2020-07-14)
+-----------------
+
 - `Client` class
     * Added `isParRequired()` method.
     * Added `setParRequired(boolean)` method.
