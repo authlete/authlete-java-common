@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2019 Authlete, Inc.
+ * Copyright (C) 2014-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 17L;
+    private static final long serialVersionUID = 18L;
 
 
     /*
@@ -265,6 +265,7 @@ public class Client implements Serializable
     private boolean dynamicallyRegistered;
     private String registrationAccessTokenHash;
     private String[] authorizationDataTypes;
+    private boolean parRequired;
 
 
     /**
@@ -2838,6 +2839,55 @@ public class Client implements Serializable
     public Client setAuthorizationDataTypes(String[] types)
     {
         this.authorizationDataTypes = types;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether this client is required to use the
+     * pushed authorization request endpoint.
+     *
+     * <p>
+     * This property corresponds to the
+     * {@code require_pushed_authorization_requests} client metadata defined
+     * in "OAuth 2.0 Pushed Authorization Requests".
+     * </p>
+     *
+     * @return
+     *         {@code true} if this client is required to use the pushed
+     *         authorization request endpoint.
+     *
+     * @since 2.77
+     */
+    public boolean isParRequired()
+    {
+        return parRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether this client is required to use the
+     * pushed authorization request endpoint.
+     *
+     * <p>
+     * This property corresponds to the
+     * {@code require_pushed_authorization_requests} client metadata defined
+     * in "OAuth 2.0 Pushed Authorization Requests".
+     * </p>
+     *
+     * @param required
+     *         {@code true} to indicate that this client is required to use
+     *         the pushed authorization request endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.77
+     */
+    public Client setParRequired(boolean required)
+    {
+        this.parRequired = required;
 
         return this;
     }

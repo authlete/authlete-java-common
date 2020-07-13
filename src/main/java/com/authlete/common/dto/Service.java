@@ -189,7 +189,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 34L;
+    private static final long serialVersionUID = 35L;
 
 
     /*
@@ -606,6 +606,15 @@ public class Service implements Serializable
      * @since 2.68
      */
     private boolean missingClientIdAllowed;
+
+
+    /**
+     * The flag indicating whether this service requires that clients use the
+     * pushed authorization request endpoint.
+     *
+     * @since 2.77
+     */
+    private boolean parRequired;
 
 
     /**
@@ -4676,6 +4685,55 @@ public class Service implements Serializable
     public Service setEndSessionEndpoint(URI endSessionEndpoint)
     {
         this.endSessionEndpoint = endSessionEndpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether this service requires that clients use
+     * the pushed authorization request endpoint.
+     *
+     * <p>
+     * This property corresponds to the
+     * {@code require_pushed_authorization_requests} server metadata defined
+     * in "OAuth 2.0 Pushed Authorization Requests".
+     * </p>
+     *
+     * @return
+     *         {@code true} if this client is required to use the pushed
+     *         authorization request endpoint.
+     *
+     * @since 2.77
+     */
+    public boolean isParRequired()
+    {
+        return parRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether this service requires that clients use
+     * the pushed authorization request endpoint.
+     *
+     * <p>
+     * This property corresponds to the
+     * {@code require_pushed_authorization_requests} server metadata defined
+     * in "OAuth 2.0 Pushed Authorization Requests".
+     * </p>
+     *
+     * @param required
+     *         {@code true} to indicate that this service requires that clients
+     *         use the pushed authorization request endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.77
+     */
+    public Service setParRequired(boolean required)
+    {
+        this.parRequired = required;
 
         return this;
     }

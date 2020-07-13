@@ -1,6 +1,15 @@
 変更点
 ======
 
+- `Client` クラス
+    * `isParRequired()` メソッドを追加。
+    * `setParRequired(boolean)` メソッドを追加。
+
+- `Service` クラス
+    * `isParRequired()` メソッドを追加。
+    * `setParRequired(boolean)` メソッドを追加。
+
+
 2.76 (2020 年 06 月 19 日)
 --------------------------
 
