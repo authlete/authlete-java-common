@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isRefreshTokenDurationKept()` メソッドを追加。
+    * `setRefreshTokenDurationKept(boolean)` メソッドを追加。
+
+
 2.77 (2020 年 07 月 14 日)
 --------------------------
 

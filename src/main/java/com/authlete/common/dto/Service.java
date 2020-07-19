@@ -189,7 +189,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 35L;
+    private static final long serialVersionUID = 36L;
 
 
     /*
@@ -274,6 +274,7 @@ public class Service implements Serializable
     private boolean pkceRequired;
     private boolean pkceS256Required;
     private boolean refreshTokenKept;
+    private boolean refreshTokenDurationKept;
     private boolean errorDescriptionOmitted;
     private boolean errorUriOmitted;
     private boolean clientIdAliasEnabled;
@@ -2748,6 +2749,41 @@ public class Service implements Serializable
     public Service setRefreshTokenKept(boolean kept)
     {
         this.refreshTokenKept = kept;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the remaining duration of the used
+     * refresh token is taken over to the newly issued refresh token.
+     *
+     * @return
+     *         {@code true} if the remaining duration of the used refresh token
+     *         is taken over to the newly issued refresh token.
+     *
+     * @since 2.78
+     */
+    public boolean isRefreshTokenDurationKept()
+    {
+        return refreshTokenDurationKept;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the remaining duration of the used
+     * refresh token is taken over to the newly issued refresh token.
+     *
+     * @param kept
+     *         {@code true} to indicate that the remaining duration of the used
+     *         refresh token is taken over to the newly issued refresh token.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Service setRefreshTokenDurationKept(boolean kept)
+    {
+        this.refreshTokenDurationKept = kept;
 
         return this;
     }
