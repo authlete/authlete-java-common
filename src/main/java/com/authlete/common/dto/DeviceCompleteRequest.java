@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ import com.authlete.common.util.Utils;
  */
 public class DeviceCompleteRequest implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -223,6 +223,15 @@ public class DeviceCompleteRequest implements Serializable
      * contained in the original request.
      */
     private String[] scopes;
+
+
+    /**
+     * JSON that represents additional JWS header parameters for the ID token
+     * which may be issued from the token endpoint.
+     *
+     * @since 2.79
+     */
+    private String idtHeaderParams;
 
 
     /**
@@ -697,6 +706,43 @@ public class DeviceCompleteRequest implements Serializable
     public DeviceCompleteRequest setScopes(String[] scopes)
     {
         this.scopes = scopes;
+
+        return this;
+    }
+
+
+    /**
+     * Get JSON that represents additional JWS header parameters for the ID
+     * token that may be issued from the token endpoint.
+     *
+     * @return
+     *         JSON that represents additional JWS header parameters for
+     *         the ID token.
+     *
+     * @since 2.79
+     */
+    public String getIdtHeaderParams()
+    {
+        return idtHeaderParams;
+    }
+
+
+    /**
+     * Set JSON that represents additional JWS header parameters for the ID
+     * token that may be issued from the token endpoint.
+     *
+     * @param params
+     *         JSON that represents additional JWS header parameters for
+     *         the ID token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.79
+     */
+    public DeviceCompleteRequest setIdtHeaderParams(String params)
+    {
+        this.idtHeaderParams = params;
 
         return this;
     }

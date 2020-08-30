@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `DeviceCompleteRequest` class
+    * Added `getIdtHeaderParams()` method.
+    * Added `setIdtHeaderParams(String)` method.
+
+
 2.78 (2020-07-19)
 -----------------
 
