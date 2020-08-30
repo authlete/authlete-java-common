@@ -189,8 +189,9 @@ public class UserInfoRequest implements Serializable
 
     /**
      * Get the {@code DPoP} header presented by the client during the request
-     * to the userinfo endpoint. This header contains a signed JWT which
-     * includes the public key used to sign it.
+     * to the userinfo endpoint. The header contains a signed JWT which
+     * includes the public key that is paired with the private key used to
+     * sign the JWT.
      *
      * <p>
      * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
@@ -210,8 +211,9 @@ public class UserInfoRequest implements Serializable
 
     /**
      * Set the {@code DPoP} header presented by the client during the request
-     * to the userinfo endpoint. This header contains a signed JWT which
-     * includes the public key used to sign it.
+     * to the userinfo endpoint. The header contains a signed JWT which
+     * includes the public key that is paired with the private key used to
+     * sign the JWT.
      *
      * <p>
      * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the

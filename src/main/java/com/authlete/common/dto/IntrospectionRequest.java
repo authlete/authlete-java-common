@@ -236,7 +236,8 @@ public class IntrospectionRequest implements Serializable
     /**
      * Get the {@code DPoP} header presented by the client during the request
      * to the resource server. This header contains a signed JWT which
-     * includes the public key used to sign it.
+     * includes the public key that is paired with the private key used to
+     * sign it.
      *
      * <p>
      * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
@@ -257,7 +258,8 @@ public class IntrospectionRequest implements Serializable
     /**
      * Set the {@code DPoP} header presented by the client during the request
      * to the resource server. This header contains a signed JWT which
-     * includes the public key used to sign it.
+     * includes the public key that is paired with the private key used to
+     * sign it.
      *
      * <p>
      * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the

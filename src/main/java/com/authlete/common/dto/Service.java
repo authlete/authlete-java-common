@@ -4737,8 +4737,7 @@ public class Service implements Serializable
      * </p>
      *
      * @return
-     *         {@code true} if this client is required to use the pushed
-     *         authorization request endpoint.
+     *         {@code true} if client of this service are required to use PAR.
      *
      * @since 2.77
      */

@@ -711,7 +711,6 @@ public class DeviceAuthorizationResponse extends ApiResponse
      * Set the end-user verification URI. This corresponds to the
      * {@code verification_uri} property in the response to the client.
      *
-     *
      * @param uri
      *         The end-user verification URI.
      *
