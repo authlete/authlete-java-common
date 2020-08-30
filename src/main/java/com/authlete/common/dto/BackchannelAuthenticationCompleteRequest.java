@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2019 Authlete, Inc.
+ * Copyright (C) 2018-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -85,7 +85,7 @@ import com.authlete.common.util.Utils;
  */
 public class BackchannelAuthenticationCompleteRequest implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -225,6 +225,14 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
      * scopes contained in the original request.
      */
     private String[] scopes;
+
+
+    /**
+     * JSON that represents additional JWS header parameters for the ID token.
+     *
+     * @since 2.79
+     */
+    private String idtHeaderParams;
 
 
     /**
@@ -687,6 +695,39 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
     public BackchannelAuthenticationCompleteRequest setScopes(String[] scopes)
     {
         this.scopes = scopes;
+
+        return this;
+    }
+
+
+    /**
+     * Get JSON that represents additional JWS header parameters for the ID token.
+     *
+     * @return
+     *         JSON that represents additional JWS header parameters for the ID token.
+     *
+     * @since 2.79
+     */
+    public String getIdtHeaderParams()
+    {
+        return idtHeaderParams;
+    }
+
+
+    /**
+     * Set JSON that represents additional JWS header parameters for the ID token.
+     *
+     * @param params
+     *         JSON that represents additional JWS header parameters for the ID token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.79
+     */
+    public BackchannelAuthenticationCompleteRequest setIdtHeaderParams(String params)
+    {
+        this.idtHeaderParams = params;
 
         return this;
     }

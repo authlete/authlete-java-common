@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `BackchannelAuthenticationCompleteRequest` クラス
+    * `getIdtHeaderParams()` メソッドを追加。
+    * `setIdtHeaderParams(String)` メソッドを追加。
+
 - `DeviceCompleteRequest` クラス
     * `getIdtHeaderParams()` メソッドを追加。
     * `setIdtHeaderParams(String)` メソッドを追加。
