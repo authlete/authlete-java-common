@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.79 (2020 年 08 月 30 日)
+--------------------------
+
 - `BackchannelAuthenticationCompleteRequest` クラス
     * `getIdtHeaderParams()` メソッドを追加。
     * `setIdtHeaderParams(String)` メソッドを追加。

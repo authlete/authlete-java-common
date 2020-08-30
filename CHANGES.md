@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.79 (2020-08-30)
+-----------------
+
 - `BackchannelAuthenticationCompleteRequest` class
     * Added `getIdtHeaderParams()` method.
     * Added `setIdtHeaderParams(String)` method.
