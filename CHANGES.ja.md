@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.80 (2020 年 09 月 16 日)
+--------------------------
+
 - `Client` クラス
     * `isRequestObjectRequired()` メソッドを追加。
     * `setRequestObjectRequired(boolean)` メソッドを追加。

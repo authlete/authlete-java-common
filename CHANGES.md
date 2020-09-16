@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.80 (2020-09-16)
+-----------------
+
 - `Client` class
     * Added `isRequestObjectRequired()` method.
     * Added `setRequestObjectRequired(boolean)` method.
