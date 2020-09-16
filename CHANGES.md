@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+- `Client` class
+    * Added `isRequestObjectRequired()` method.
+    * Added `setRequestObjectRequired(boolean)` method.
+
+- `Service` class
+    * Added `isRequestObjectRequired()` method.
+    * Added `setRequestObjectRequired(boolean)` method.
+    * Added `isTraditionalRequestObjectProcessingApplied()` method.
+    * Added `setTraditionalRequestObjectProcessingApplied(boolean)` method.
+
+
 2.79 (2020-08-30)
 -----------------
 

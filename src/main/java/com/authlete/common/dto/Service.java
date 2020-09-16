@@ -189,7 +189,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 36L;
+    private static final long serialVersionUID = 37L;
 
 
     /*
@@ -616,6 +616,24 @@ public class Service implements Serializable
      * @since 2.77
      */
     private boolean parRequired;
+
+
+    /**
+     * The flag indicating whether authorization requests must utilize a
+     * request object.
+     *
+     * @since 2.80
+     */
+    private boolean requestObjectRequired;
+
+
+    /**
+     * The flag indicating whether traditional request object processing
+     * (rules defined in OIDC Core 1.0) is applied.
+     *
+     * @since 2.80
+     */
+    private boolean traditionalRequestObjectProcessingApplied;
 
 
     /**
@@ -4769,6 +4787,133 @@ public class Service implements Serializable
     public Service setParRequired(boolean required)
     {
         this.parRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether this service requires that authorization
+     * requests always utilize a request object by using either {@code request}
+     * or {@code request_uri} request parameter.
+     *
+     * <p>
+     * If this flag is {@code true} and
+     * {@link #isTraditionalRequestObjectProcessingApplied()} returns
+     * {@code false}, the value of {@code require_signed_request_object} server
+     * metadata of this service is reported as {@code true} in the discovery
+     * document. The metadata is defined in JAR (JWT Secured Authorization
+     * Request). That {@code require_signed_request_object} is {@code true}
+     * means that authorization requests which don't conform to the JAR
+     * specification are rejected.
+     * </p>
+     *
+     * @return
+     *         {@code true} if this service requires that authorization
+     *         requests always utilize a request object.
+     *
+     * @since 2.80
+     */
+    public boolean isRequestObjectRequired()
+    {
+        return requestObjectRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether this service requires that authorization
+     * requests always utilize a request object by using either {@code request}
+     * or {@code request_uri} request parameter.
+     *
+     * <p>
+     * See the description of {@link #isRequestObjectRequired()} for details.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require that authorization requests always
+     *         utilize a request object.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.80
+     */
+    public Service setRequestObjectRequired(boolean required)
+    {
+        this.requestObjectRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether a request object is processed based on
+     * rules defined in OpenID Connect Core 1.0 or JAR (JWT Secured
+     * Authorization Request).
+     *
+     * <p>
+     * Differences between rules in OpenID Connect Core 1.0 and ones in JAR are
+     * as follows.
+     * </p>
+     *
+     * <ul>
+     * <li>JAR requires that a request object be always signed.
+     * <li>JAR does not allow request parameters outside a request object to
+     *     be referred to.
+     * <li>OIDC Core 1.0 requires that {@code response_type} request parameter
+     *     exist outside a request object even if the request object includes
+     *     the request parameter.
+     * <li>OIDC Core 1.0 requires that {@code scope} request parameter exist
+     *     outside a request object if the authorization request is an OIDC
+     *     request even if the request object includes the request parameter.
+     * </ul>
+     *
+     * <p>
+     * If this flag is {@code false} and {@link #isRequestObjectRequired()}
+     * returns {@code true}, the value of {@code require_signed_request_object}
+     * server metadata of this service is reported as {@code true} in the
+     * discovery document. The metadata is defined in JAR (JWT Secured
+     * Authorization Request). That {@code require_signed_request_object} is
+     * {@code true} means that authorization requests which don't conform to
+     * the JAR specification are rejected.
+     * </p>
+     *
+     * @return
+     *         {@code true} if rules defined in OpenID Connect Core 1.0 are
+     *         applied on processing a request object. {@code false} if rules
+     *         defined in JAR (JWT Secured Authorization Request) are applied.
+     *
+     * @since 2.80
+     */
+    public boolean isTraditionalRequestObjectProcessingApplied()
+    {
+        return traditionalRequestObjectProcessingApplied;
+    }
+
+
+    /**
+     * Set the flag indicating whether a request object is processed based on
+     * rules defined in OpenID Connect Core 1.0 or JAR (JWT Secured
+     * Authorization Request).
+     *
+     * <p>
+     * See the description of {@link #isTraditionalRequestObjectProcessingApplied()}
+     * for details.
+     * </p>
+     *
+     * @param applied
+     *         {@code true} to apply rules defined in OpenID Connect Core 1.0
+     *         on processing a request object. {@code false} to apply rules
+     *         defined in JAR instead.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.80
+     */
+    public Service setTraditionalRequestObjectProcessingApplied(boolean applied)
+    {
+        this.traditionalRequestObjectProcessingApplied = applied;
 
         return this;
     }

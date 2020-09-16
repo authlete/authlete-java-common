@@ -1,6 +1,17 @@
 変更点
 ======
 
+- `Client` クラス
+    * `isRequestObjectRequired()` メソッドを追加。
+    * `setRequestObjectRequired(boolean)` メソッドを追加。
+
+- `Service` クラス
+    * `isRequestObjectRequired()` メソッドを追加。
+    * `setRequestObjectRequired(boolean)` メソッドを追加。
+    * `isTraditionalRequestObjectProcessingApplied()` メソッドを追加。
+    * `setTraditionalRequestObjectProcessingApplied(boolean)` メソッドを追加。
+
+
 2.79 (2020 年 08 月 30 日)
 --------------------------
 

@@ -49,7 +49,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 18L;
+    private static final long serialVersionUID = 19L;
 
 
     /*
@@ -266,6 +266,7 @@ public class Client implements Serializable
     private String registrationAccessTokenHash;
     private String[] authorizationDataTypes;
     private boolean parRequired;
+    private boolean requestObjectRequired;
 
 
     /**
@@ -2888,6 +2889,59 @@ public class Client implements Serializable
     public Client setParRequired(boolean required)
     {
         this.parRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether authorization requests from this client
+     * are always required to utilize a request object by using either
+     * {@code request} or {@code request_uri} request parameter.
+     *
+     * <p>
+     * If this flag is {@code true} and the service's {@link
+     * Service#isTraditionalRequestObjectProcessingApplied()
+     * isTraditionalRequestObjectProcessingApplied()} returns {@code false},
+     * authorization requests from this client are processed as if
+     * {@code require_signed_request_object} client metadata of this client is
+     * {@code true}. The metadata is defined in JAR (JWT Secured Authorization
+     * Request).
+     * </p>
+     *
+     * @return
+     *         {@code true} if authorization requests from this client are
+     *         always required to utilize a request object.
+     *
+     * @since 2.80
+     */
+    public boolean isRequestObjectRequired()
+    {
+        return requestObjectRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether authorization requests from this client
+     * are always required to utilize a request object by using either
+     * {@code request} or {@code request_uri} request parameter.
+     *
+     * <p>
+     * See the description of {@link #isRequestObjectRequired()} for details.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require that authorization requests from this
+     *         client always utilize a request object.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.80
+     */
+    public Client setRequestObjectRequired(boolean required)
+    {
+        this.requestObjectRequired = required;
 
         return this;
     }
