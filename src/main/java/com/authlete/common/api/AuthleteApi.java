@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2019 Authlete, Inc.
+ * Copyright (C) 2014-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -142,6 +142,17 @@ public interface AuthleteApi
      * @since 1.13
      */
     TokenCreateResponse tokenCreate(TokenCreateRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/token/delete} API.
+     *
+     * @param token
+     *         An access token or its hash value.
+     *
+     * @since 2.81
+     */
+    void tokenDelete(String token) throws AuthleteApiException;
 
 
     /**

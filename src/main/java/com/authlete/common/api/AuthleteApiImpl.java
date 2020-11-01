@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2019 Authlete, Inc.
+ * Copyright (C) 2017-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -120,6 +120,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String AUTH_AUTHORIZATION_ISSUE_API_PATH      = "/api/auth/authorization/issue";
     private static final String AUTH_TOKEN_API_PATH                    = "/api/auth/token";
     private static final String AUTH_TOKEN_CREATE_API_PATH             = "/api/auth/token/create";
+    private static final String AUTH_TOKEN_DELETE_API_PATH             = "/api/auth/token/delete/%s";
     private static final String AUTH_TOKEN_FAIL_API_PATH               = "/api/auth/token/fail";
     private static final String AUTH_TOKEN_ISSUE_API_PATH              = "/api/auth/token/issue";
     private static final String AUTH_TOKEN_UPDATE_API_PATH             = "/api/auth/token/update";
@@ -891,6 +892,14 @@ class AuthleteApiImpl implements AuthleteApi
     {
         return callServicePostApi(
                 AUTH_TOKEN_CREATE_API_PATH, request, TokenCreateResponse.class);
+    }
+
+
+    @Override
+    public void tokenDelete(String token) throws AuthleteApiException
+    {
+        callServiceDeleteApi(
+                String.format(AUTH_TOKEN_DELETE_API_PATH, token));
     }
 
 

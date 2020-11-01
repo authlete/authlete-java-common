@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `tokenDelete(String)` method.
+
 - `Service` class
     * Added `isClaimShortcutRestrictive()` method.
     * Added `setClaimShortcutRestrictive(boolean)` method.

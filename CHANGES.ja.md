@@ -1,6 +1,9 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `tokenDelete(String)` メソッドを追加。
+
 - `Service` クラス
     * `isClaimShortcutRestrictive()` メソッドを追加。
     * `setClaimShortcutRestrictive(boolean)` メソッドを追加。
