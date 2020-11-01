@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `isClaimShortcutRestrictive()` method.
+    * Added `setClaimShortcutRestrictive(boolean)` method.
+
+
 2.80 (2020-09-16)
 -----------------
 

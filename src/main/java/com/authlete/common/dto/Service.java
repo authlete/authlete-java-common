@@ -189,7 +189,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 37L;
+    private static final long serialVersionUID = 38L;
 
 
     /*
@@ -634,6 +634,16 @@ public class Service implements Serializable
      * @since 2.80
      */
     private boolean traditionalRequestObjectProcessingApplied;
+
+
+    /**
+     * The flag indicating whether claims specified by shortcut scopes
+     * (e.g. profile) are included in the issued ID token only when no
+     * access token is issued.
+     *
+     * @since 2.81
+     */
+    private boolean claimShortcutRestrictive;
 
 
     /**
@@ -4914,6 +4924,83 @@ public class Service implements Serializable
     public Service setTraditionalRequestObjectProcessingApplied(boolean applied)
     {
         this.traditionalRequestObjectProcessingApplied = applied;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether claims specified by shortcut scopes
+     * (e.g. {@code profile}) are included in the issued ID token only when
+     * no access token is issued.
+     *
+     * <p>
+     * To strictly conform to the description below excerpted from OpenID
+     * Connect Core 1.0 <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
+     * >Section 5.4</a>, this flag has to be true.
+     * </p>
+     *
+     * <blockquote>
+     * <p><i>
+     * The Claims requested by the {@code profile}, {@code email},
+     * {@code address}, and {@code phone} scope values are returned from the
+     * UserInfo Endpoint, as described in Section 5.3.2, when a
+     * {@code response_type} value is used that results in an Access Token
+     * being issued. However, when no Access Token is issued (which is the
+     * case for the {@code response_type} value {@code id_token}), the
+     * resulting Claims are returned in the ID Token.
+     * </i></p>
+     * </blockquote>
+     *
+     * @return
+     *         {@code true} if claims specified by shortcut scopes are included
+     *         in the issued ID token only when no access token is issued.
+     *         {@code false} if the claims are included in the issued ID token
+     *         regardless of whether an access token is issued or not.
+     *
+     * @since 2.81
+     */
+    public boolean isClaimShortcutRestrictive()
+    {
+        return claimShortcutRestrictive;
+    }
+
+
+    /**
+     * Set the flag indicating whether claims specified by shortcut scopes
+     * (e.g. {@code profile}) are included in the issued ID token only when
+     * no access token is issued.
+     *
+     * <p>
+     * To strictly conform to the description below excerpted from OpenID
+     * Connect Core 1.0 <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
+     * >Section 5.4</a>, this flag has to be true.
+     * </p>
+     *
+     * <blockquote>
+     * <p><i>
+     * The Claims requested by the {@code profile}, {@code email},
+     * {@code address}, and {@code phone} scope values are returned from the
+     * UserInfo Endpoint, as described in Section 5.3.2, when a
+     * {@code response_type} value is used that results in an Access Token
+     * being issued. However, when no Access Token is issued (which is the
+     * case for the {@code response_type} value {@code id_token}), the
+     * resulting Claims are returned in the ID Token.
+     * </i></p>
+     * </blockquote>
+     *
+     * @param restrictive
+     *         {@code true} to include claims specified by shortcut scopes
+     *         in the issued ID token only when no access token is issued.
+     *         {@code false} to include the claims in the issued ID token
+     *         regardless of whether an access token is issued or not.
+     * @return
+     */
+    public Service setClaimShortcutRestrictive(boolean restrictive)
+    {
+        this.claimShortcutRestrictive = restrictive;
 
         return this;
     }
