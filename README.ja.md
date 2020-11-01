@@ -30,7 +30,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>2.80</version>
+    <version>2.81</version>
 </dependency>
 ```
 
@@ -272,6 +272,7 @@ settings.setReadTimeout(5000);
   10. トークン操作のためのメソッド群
 
   - `tokenCreate(TokenCreateRequest request)`
+  - `tokenDelete(String token)`
   - `tokenUpdate(TokenUpdateRequest request)`
 
   11. クライアント毎の要求可能スコープ群に関するメソッド群 (非推奨; Client API で代替可能)

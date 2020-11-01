@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.81 (2020-11-02)
+-----------------
+
 - `AuthleteApi` interface
     * Added `tokenDelete(String)` method.
 
