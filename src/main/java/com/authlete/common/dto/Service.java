@@ -647,6 +647,15 @@ public class Service implements Serializable
 
 
     /**
+     * The flag indicating whether requests that request no scope are
+     * rejected or not.
+     *
+     * @since 2.81
+     */
+    private boolean scopeRequired;
+
+
+    /**
      * Get the service number.
      *
      * @return
@@ -4996,11 +5005,107 @@ public class Service implements Serializable
      *         in the issued ID token only when no access token is issued.
      *         {@code false} to include the claims in the issued ID token
      *         regardless of whether an access token is issued or not.
+     *
      * @return
+     *         {@code this} object.
      */
     public Service setClaimShortcutRestrictive(boolean restrictive)
     {
         this.claimShortcutRestrictive = restrictive;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether requests that request no scope are
+     * rejected or not.
+     *
+     * <p>
+     * When a request has no explicit {@code scope} parameter and the service's
+     * pre-defined default scope set is empty, the authorization server regards
+     * the request requests no scope. When this flag is true, requests that
+     * request no scope are rejected.
+     * </p>
+     *
+     * <p>
+     * The requirement below excerpted from RFC 6749 <a href=
+     * "https://tools.ietf.org/html/rfc6749#section-3.3">Section 3.3</a> does
+     * not explicitly mention the case where the default scope set is empty.
+     * </p>
+     *
+     * <blockquote>
+     * <p><i>
+     * If the client omits the {@code scope} parameter when requesting
+     * authorization, the authorization server MUST either process the request
+     * using a pre-defined default value or fail the request indicating an
+     * invalid scope.
+     * </i></p>
+     * </blockquote>
+     *
+     * <p>
+     * However, if you interpret <i>"the default scope set exists but is empty"</i>
+     * as <i>"the default scope set does not exist"</i> and want to strictly
+     * conform to the requirement above, this flag has to be true.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the authorization server rejects requests that
+     *         request no scope. {@code false} if the authorization server
+     *         admits requests that request no scope.
+     *
+     * @since 2.81
+     */
+    public boolean isScopeRequired()
+    {
+        return scopeRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether requests that request no scope are
+     * rejected or not.
+     *
+     * <p>
+     * When a request has no explicit {@code scope} parameter and the service's
+     * pre-defined default scope set is empty, the authorization server regards
+     * the request requests no scope. When this flag is true, requests that
+     * request no scope are rejected.
+     * </p>
+     *
+     * <p>
+     * The requirement below excerpted from RFC 6749 <a href=
+     * "https://tools.ietf.org/html/rfc6749#section-3.3">Section 3.3</a> does
+     * not explicitly mention the case where the default scope set is empty.
+     * </p>
+     *
+     * <blockquote>
+     * <p><i>
+     * If the client omits the {@code scope} parameter when requesting
+     * authorization, the authorization server MUST either process the request
+     * using a pre-defined default value or fail the request indicating an
+     * invalid scope.
+     * </i></p>
+     * </blockquote>
+     *
+     * <p>
+     * However, if you interpret <i>"the default scope set exists but is empty"</i>
+     * as <i>"the default scope set does not exist"</i> and want to strictly
+     * conform to the requirement above, this flag has to be true.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to reject requests that request no scope.
+     *         {@code false} to admit requests that request no scope.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.81
+     */
+    public Service isScopeRequired(boolean required)
+    {
+        this.scopeRequired = required;
 
         return this;
     }

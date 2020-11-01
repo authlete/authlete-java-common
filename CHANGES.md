@@ -4,6 +4,8 @@ CHANGES
 - `Service` class
     * Added `isClaimShortcutRestrictive()` method.
     * Added `setClaimShortcutRestrictive(boolean)` method.
+    * Added `isScopeRequired()` method.
+    * Added `setScopeRequired(boolean)` method.
 
 
 2.80 (2020-09-16)

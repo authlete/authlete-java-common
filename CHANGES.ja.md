@@ -4,6 +4,8 @@
 - `Service` クラス
     * `isClaimShortcutRestrictive()` メソッドを追加。
     * `setClaimShortcutRestrictive(boolean)` メソッドを追加。
+    * `isScopeRequired()` メソッドを追加。
+    * `setScopeRequired(boolean)` メソッドを追加。
 
 
 2.80 (2020 年 09 月 16 日)
