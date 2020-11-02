@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.82 (2020-11-02)
+-----------------
+
 - `Service` class
     * Renamed `isScopeRequired(boolean)` to `setScopeRequired(boolean)`.
 
