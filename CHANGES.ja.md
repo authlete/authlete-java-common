@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isScopeRequired(boolean)` を `setScopeRequired(boolean)` に名称変更。
+
+
 2.81 (2020 年 11 月 02 日)
 --------------------------
 

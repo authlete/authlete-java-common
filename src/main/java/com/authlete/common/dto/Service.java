@@ -189,7 +189,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 38L;
+    private static final long serialVersionUID = 39L;
 
 
     /*
@@ -5101,9 +5101,9 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 2.81
+     * @since 2.82
      */
-    public Service isScopeRequired(boolean required)
+    public Service setScopeRequired(boolean required)
     {
         this.scopeRequired = required;
 
