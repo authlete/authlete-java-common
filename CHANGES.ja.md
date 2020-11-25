@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.83 (2020 年 11 月 25 日)
+--------------------------
+
 - `StandardIntrospectionRequest` クラス
     * `isWithHiddenProperties()` メソッドを追加。
     * `setWithHiddenProperties(boolean)` メソッドを追加。
