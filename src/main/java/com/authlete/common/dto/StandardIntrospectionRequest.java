@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Authlete, Inc.
+ * Copyright (C) 2017-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,10 +52,29 @@ import com.authlete.common.api.AuthleteApi;
  * value of {@code parameters}.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>withHiddenProperties</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * Flag indicating whether to include hidden properties in the output.
+ * </p>
+ * <p>
+ * Authlete has a mechanism whereby to associate arbitrary key-value pairs
+ * with an access token. Each key-value pair has a {@code hidden} attribute.
+ * By default, key-value pairs whose {@code hidden} attribute is true are
+ * not embedded in the standard introspection output.
+ * </p>
+ * <p>
+ * If the {@code withHiddenProperties} request parameter is given and its
+ * value is {@code true}, {@code /api/auth/introspection/standard} API
+ * includes all the associated key-value pairs into the output regardless
+ * of the value of the {@code hidden} attribute.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
- * @see <a href="http://tools.ietf.org/html/rfc7662">RFC 7662, OAuth 2.0 Token Introspection</a>
+ * @see <a href="https://tools.ietf.org/html/rfc7662">RFC 7662, OAuth 2.0 Token Introspection</a>
  * @see StandardIntrospectionResponse
  * @see AuthleteApi#standardIntrospection(StandardIntrospectionRequest)
  *
@@ -65,13 +84,21 @@ import com.authlete.common.api.AuthleteApi;
  */
 public class StandardIntrospectionRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
      * OAuth 2.0 token introspection request parameters.
      */
     private String parameters;
+
+
+    /**
+     * Flag indicating whether to include hidden properties in the output.
+     *
+     * @since 2.83
+     */
+    private boolean withHiddenProperties;
 
 
     /**
@@ -108,6 +135,59 @@ public class StandardIntrospectionRequest implements Serializable
     public StandardIntrospectionRequest setParameters(String parameters)
     {
         this.parameters = parameters;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether to include hidden properties
+     * associated with the token in the output.
+     *
+     * <p>
+     * Authlete has a mechanism whereby to associate arbitrary key-value pairs
+     * with an access token. Each key-value pair has a {@code hidden} attribute.
+     * By default, key-value pairs whose {@code hidden} attribute is true are
+     * not embedded in the standard introspection output.
+     * </p>
+     *
+     * <p>
+     * If the {@code withHiddenProperties} request parameter is given and its
+     * value is {@code true}, {@code /api/auth/introspection/standard} API
+     * includes all the associated key-value pairs into the output regardless
+     * of the value of the {@code hidden} attribute.
+     * </p>
+     *
+     * @return
+     *         {@code true} if hidden properties are included in the output.
+     *
+     * @since 2.83
+     */
+    public boolean isWithHiddenProperties()
+    {
+        return withHiddenProperties;
+    }
+
+
+    /**
+     * Set the flag which indicates whether to include hidden properties
+     * associated with the token in the output.
+     *
+     * <p>
+     * See the description of {@link #isWithHiddenProperties()} for details.
+     * </p>
+     *
+     * @param with
+     *         {@code true} to include hidden properties in the output.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.83
+     */
+    public StandardIntrospectionRequest setWithHiddenProperties(boolean with)
+    {
+        this.withHiddenProperties = with;
 
         return this;
     }

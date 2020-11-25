@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `StandardIntrospectionRequest` class
+    * Added `isWithHiddenProperties()` method.
+    * Added `setWithHiddenProperties(boolean)` method.
+
+
 2.82 (2020-11-02)
 -----------------
 
