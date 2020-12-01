@@ -426,23 +426,23 @@ class AuthleteApiImpl implements AuthleteApi
             Object requestBody, Class<TResponse> responseClass) throws AuthleteApiException
     {
         // Create a connection to the Authlete API.
-        HttpURLConnection con = createConnection(
+        ConnectionContext ctx = createConnection(
                 method, credentials, mBaseUrl, path, queryParams, mSettings);
 
         try
         {
             // Communicate with the API and get a response.
-            return communicate(con, requestBody, responseClass);
+            return communicate(ctx, requestBody, responseClass);
         }
         finally
         {
-            // Disconnect the connection in any case.
-            con.disconnect();
+            // Close the connection in any case.
+            ctx.close();
         }
     }
 
 
-    private static HttpURLConnection createConnection(
+    private static ConnectionContext createConnection(
             HttpMethod method, BasicCredentials credentials,
             String baseUrl, String path, Map<String, String> queryParams,
             Settings settings) throws AuthleteApiException
@@ -461,7 +461,7 @@ class AuthleteApiImpl implements AuthleteApi
     }
 
 
-    private static HttpURLConnection openConnection(
+    private static ConnectionContext openConnection(
             HttpMethod method, BasicCredentials credentials, String baseUrl,
             String path, Map<String, String> queryParams,
             Settings settings) throws IOException
@@ -490,7 +490,7 @@ class AuthleteApiImpl implements AuthleteApi
         // Set a read timeout in milliseconds.
         con.setReadTimeout(settings.getReadTimeout());
 
-        return con;
+        return new ConnectionContext(con);
     }
 
 
@@ -579,17 +579,17 @@ class AuthleteApiImpl implements AuthleteApi
 
     @SuppressWarnings("unchecked")
     private <TResponse> TResponse communicate(
-            HttpURLConnection con, Object requestBody, Class<TResponse> responseClass) throws AuthleteApiException
+            ConnectionContext ctx, Object requestBody, Class<TResponse> responseClass) throws AuthleteApiException
     {
         // If the request has a request body.
         if (requestBody != null)
         {
             // Write the request body.
-            writeRequestBody(con, requestBody);
+            writeRequestBody(ctx, requestBody);
         }
 
         // Read the response body. (JSON is expected)
-        String responseBody = readResponseBody(con);
+        String responseBody = readResponseBody(ctx);
 
         // If the response does not include any entity.
         if (responseBody == null)
@@ -609,28 +609,28 @@ class AuthleteApiImpl implements AuthleteApi
     }
 
 
-    private static void writeRequestBody(HttpURLConnection con, Object requestBody) throws AuthleteApiException
+    private static void writeRequestBody(ConnectionContext ctx, Object requestBody) throws AuthleteApiException
     {
         // Set 'Content-Type' to send JSON.
-        con.setRequestProperty("Content-Type", "application/json");
+        ctx.property("Content-Type", "application/json");
 
         // Use the connection as an output stream.
-        con.setDoOutput(true);
+        ctx.doOutput(true);
 
         try
         {
             // Write the request body.
-            writeContent(con, requestBody);
+            writeContent(ctx, requestBody);
         }
         catch (Throwable cause)
         {
             // Failed to write the request body.
-            throw createAuthleteApiException(cause, con);
+            throw createAuthleteApiException(cause, ctx);
         }
     }
 
 
-    private static void writeContent(HttpURLConnection con, Object requestBody) throws IOException
+    private static void writeContent(ConnectionContext ctx, Object requestBody) throws IOException
     {
         // Convert the object to JSON.
         String json = Utils.toJson(requestBody);
@@ -639,7 +639,7 @@ class AuthleteApiImpl implements AuthleteApi
         byte[] bytes = getBytesUTF8(json);
 
         // Open the stream to send data to Authlete server.
-        OutputStream out = con.getOutputStream();
+        OutputStream out = ctx.outputStream();
 
         // Write the request body.
         out.write(bytes);
@@ -662,25 +662,25 @@ class AuthleteApiImpl implements AuthleteApi
     }
 
 
-    private static String readResponseBody(HttpURLConnection con) throws AuthleteApiException
+    private static String readResponseBody(ConnectionContext ctx) throws AuthleteApiException
     {
         try
         {
             // Read the response body.
-            return readContent(con);
+            return readContent(ctx);
         }
         catch (Throwable cause)
         {
             // Failed to read the response body.
-            throw createAuthleteApiException(cause, con);
+            throw createAuthleteApiException(cause, ctx);
         }
     }
 
 
-    private static String readContent(HttpURLConnection con) throws IOException
+    private static String readContent(ConnectionContext ctx) throws IOException
     {
         // Call readInputStream() with the stream, the expected length and charset.
-        return readInputStream(con.getInputStream(), con.getContentLength(), UTF_8);
+        return readInputStream(ctx.inputStream(), ctx.contentLength(), UTF_8);
     }
 
 
@@ -725,10 +725,12 @@ class AuthleteApiImpl implements AuthleteApi
     }
 
 
-    private static AuthleteApiException createAuthleteApiException(Throwable cause, HttpURLConnection con)
+    private static AuthleteApiException createAuthleteApiException(Throwable cause, ConnectionContext ctx)
     {
         // Error message.
         String message = cause.getMessage();
+
+        HttpURLConnection con = ctx.connection();
 
         if (con == null)
         {
@@ -745,7 +747,7 @@ class AuthleteApiImpl implements AuthleteApi
         String statusMessage = extractStatusMessage(con);
 
         // Response body.
-        String responseBody = extractErrorData(con);
+        String responseBody = extractErrorData(ctx);
 
         // HTTP response headers.
         Map<String, List<String>> headers = con.getHeaderFields();
@@ -798,7 +800,7 @@ class AuthleteApiImpl implements AuthleteApi
     }
 
 
-    private static String extractErrorData(HttpURLConnection con)
+    private static String extractErrorData(ConnectionContext ctx)
     {
         // JavaDoc of HttpURLConnection.getErrorStream() says as follows.
         //
@@ -816,7 +818,7 @@ class AuthleteApiImpl implements AuthleteApi
 
         try
         {
-            InputStream in = con.getErrorStream();
+            InputStream in = ctx.errorStream();
 
             if (in != null)
             {
@@ -826,7 +828,7 @@ class AuthleteApiImpl implements AuthleteApi
             else
             {
                 // Read the request body. Note that this may have already been tried.
-                return readContent(con);
+                return readContent(ctx);
             }
         }
         catch (Throwable cause)

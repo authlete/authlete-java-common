@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `AuthleteApiImpl` class
+    * Replaced the call of `HttpURLConnection.disconnect()` with calls of
+      `close()` method of underlying streams.
+
+
 2.83 (2020-11-25)
 -----------------
 
