@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,6 +65,7 @@ implements JsonSerializer<AuthzDetailsElement>
         jobject.addProperty("type",       element.getType());
         jobject.add(        "locations",  fromStringArray(element.getLocations()));
         jobject.add(        "actions",    fromStringArray(element.getActions()));
+        jobject.add(        "datatypes",  fromStringArray(element.getDataTypes()));
         jobject.addProperty("identifier", element.getIdentifier());
 
         return jobject;

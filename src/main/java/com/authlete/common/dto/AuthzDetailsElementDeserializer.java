@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ public class AuthzDetailsElementDeserializer extends BaseJsonDeserializer
 implements JsonDeserializer<AuthzDetailsElement>
 {
     private static String[] INDEPENDENT_FIELDS = new String[] {
-            "type", "locations", "actions", "identifier"
+            "type", "locations", "actions", "datatypes", "identifier"
     };
 
 
@@ -58,6 +58,7 @@ implements JsonDeserializer<AuthzDetailsElement>
                 .setType(getAsStringFromObject(jobject, "type"))
                 .setLocations(getAsStringArrayFromObject(jobject, "locations"))
                 .setActions(getAsStringArrayFromObject(jobject, "actions"))
+                .setDataTypes(getAsStringArrayFromObject(jobject, "datatypes"))
                 .setIdentifier(getAsStringFromObject(jobject, "identifier"))
                 .setOtherFields(getOtherFieldsFromObject(jobject))
                 ;

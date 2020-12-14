@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,13 +38,14 @@ public class AuthzDetailsElementTest
 
     private void verify(
             AuthzDetailsElement element, String type, String[] locations,
-            String[] actions, String identifier, String otherFields)
+            String[] actions, String[] dataTypes, String identifier, String otherFields)
     {
         assertNotNull(element);
 
         verifyType(       element, type);
         verifyLocations(  element, locations);
         verifyActions(    element, actions);
+        verifyDataTypes(  element, dataTypes);
         verifyIdentifier( element, identifier);
         verifyOtherFields(element, otherFields);
     }
@@ -85,6 +86,19 @@ public class AuthzDetailsElementTest
         else
         {
             assertArrayEquals(actions, element.getActions());
+        }
+    }
+
+
+    private void verifyDataTypes(AuthzDetailsElement element, String[] dataTypes)
+    {
+        if (dataTypes == null)
+        {
+            assertNull(element.getDataTypes());
+        }
+        else
+        {
+            assertArrayEquals(dataTypes, element.getDataTypes());
         }
     }
 
@@ -146,7 +160,7 @@ public class AuthzDetailsElementTest
     @Test
     public void test00()
     {
-        verify(deserialize("{}"), null, null, null, null, null);
+        verify(deserialize("{}"), null, null, null, null, null, null);
     }
 
 
@@ -158,6 +172,7 @@ public class AuthzDetailsElementTest
             "  \"type\":\"my_type\"," +
             "  \"locations\": [\"loc0\", \"loc1\"], " +
             "  \"actions\": [\"act0\", \"act1\"], " +
+            "  \"datatypes\": [\"dty0\", \"dty1\"], " +
             "  \"identifier\": \"my_id\"" +
             "}";
 
@@ -165,6 +180,7 @@ public class AuthzDetailsElementTest
             "my_type",
             new String[] { "loc0", "loc1" },
             new String[] { "act0", "act1" },
+            new String[] { "dty0", "dty1" },
             "my_id",
             null
         );
@@ -190,6 +206,7 @@ public class AuthzDetailsElementTest
 
         verify(deserialize(json),
             "my_type",
+            null,
             null,
             null,
             null,
@@ -255,6 +272,9 @@ public class AuthzDetailsElementTest
         // actions
         assertFalse(map.containsKey("actions"));
 
+        // datatypes
+        assertFalse(map.containsKey("datatypes"));
+
         // identifier
         assertFalse(map.containsKey("identifier"));
     }
@@ -273,6 +293,7 @@ public class AuthzDetailsElementTest
             .setType("my_type")
             .setLocations(new String[]{"loc0", "loc1"})
             .setActions(new String[]{"act0", "act1"})
+            .setDataTypes(new String[]{"dty0", "dty1"})
             .setIdentifier("my_id")
             .setOtherFields(otherFields)
             ;
@@ -297,6 +318,13 @@ public class AuthzDetailsElementTest
         actions.add("act0");
         actions.add("act1");
         assertEquals(actions, map.get("actions"));
+
+        // datatypes
+        assertTrue(map.containsKey("datatypes"));
+        List<String> datatypes = new ArrayList<String>();
+        datatypes.add("dty0");
+        datatypes.add("dty1");
+        assertEquals(datatypes, map.get("datatypes"));
 
         // identifier
         assertTrue(map.containsKey("identifier"));

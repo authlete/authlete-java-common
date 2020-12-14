@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2020 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,12 +30,13 @@ import com.google.gson.GsonBuilder;
  */
 public class AuthzDetailsElement implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     private String type;
     private String[] locations;
     private String[] actions;
+    private String[] dataTypes;
     private String identifier;
     private String otherFields;
 
@@ -49,7 +50,7 @@ public class AuthzDetailsElement implements Serializable
      *
      * <blockquote>
      * <p>
-     * <i>"The type of resource request as a string. This field MAY define which
+     * <i>"The type of authorization data as a string. This field MAY define which
      * other elements are allowed in the request. This element is REQUIRED."</i>
      * </p>
      * </blockquote>
@@ -72,7 +73,7 @@ public class AuthzDetailsElement implements Serializable
      *
      * <blockquote>
      * <p>
-     * <i>"The type of resource request as a string. This field MAY define which
+     * <i>"The type of authorization data as a string. This field MAY define which
      * other elements are allowed in the request. This element is REQUIRED."</i>
      * </p>
      * </blockquote>
@@ -190,6 +191,61 @@ public class AuthzDetailsElement implements Serializable
     public AuthzDetailsElement setActions(String[] actions)
     {
         this.actions = actions;
+
+        return this;
+    }
+
+
+    /**
+     * Get the data types.
+     *
+     * <p>
+     * From <i>"OAuth 2.0 Rich Authorization Requests"</i>:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * <i>"An array of strings representing the kinds of data being requested
+     * from the resource."</i>
+     * </p>
+     * </blockquote>
+     *
+     * @return
+     *         The data types.
+     *
+     * @since 2.85
+     */
+    public String[] getDataTypes()
+    {
+        return dataTypes;
+    }
+
+
+    /**
+     * Set the data types.
+     *
+     * <p>
+     * From <i>"OAuth 2.0 Rich Authorization Requests"</i>:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * <i>"An array of strings representing the kinds of data being requested
+     * from the resource."</i>
+     * </p>
+     * </blockquote>
+     *
+     * @param dataTypes
+     *         The data types.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.85
+     */
+    public AuthzDetailsElement setDataTypes(String[] dataTypes)
+    {
+        this.dataTypes = dataTypes;
 
         return this;
     }

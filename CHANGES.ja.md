@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `AuthzDetailsElement` クラス
+    * `getDataTypes()` メソッドを追加。
+    * `setDataTypes(String[])` メソッドを追加。
+
+
 2.84 (2020 年 12 月 01 日)
 --------------------------
 

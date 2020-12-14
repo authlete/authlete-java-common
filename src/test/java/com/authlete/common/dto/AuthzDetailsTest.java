@@ -64,6 +64,7 @@ public class AuthzDetailsTest
             "    \"type\":\"typ0\",\n" +
             "    \"locations\": [\"loc0\", \"loc1\"],\n" +
             "    \"actions\": [\"act0\", \"act1\"],\n" +
+            "    \"datatypes\": [\"dty0\", \"dty1\"],\n" +
             "    \"identifier\": \"my_id\"\n" +
             "  },\n" +
             "  {\n" +
@@ -92,6 +93,10 @@ public class AuthzDetailsTest
         // element 0, actions
         String[] actions = new String[]{ "act0", "act1" };
         assertArrayEquals(actions, element0.getActions());
+
+        // element 0, datatypes
+        String[] datatypes = new String[]{ "dty0", "dty1" };
+        assertArrayEquals(datatypes, element0.getDataTypes());
 
         // element 0, identifier
         assertEquals("my_id", element0.getIdentifier());

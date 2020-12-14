@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `AuthzDetailsElement` class
+    * Added `getDataTypes()` method.
+    * Added `setDataTypes(String[])` method.
+
+
 2.84 (2020-12-01)
 -----------------
 
