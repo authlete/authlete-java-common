@@ -2,6 +2,8 @@
 ======
 
 - `Service` クラス
+    * `isIssSuppressed()` メソッドを追加。
+    * `setIssSuppressed(boolean)` メソッドを追加。
     * `isNbfOptional()` メソッドを追加。
     * `setNbfOptional(boolean)` メソッドを追加。
 

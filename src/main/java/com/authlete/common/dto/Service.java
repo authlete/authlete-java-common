@@ -666,6 +666,15 @@ public class Service implements Serializable
 
 
     /**
+     * The flag indicating whether generation of the {@code iss} response
+     * parameter is suppressed.
+     *
+     * @since 2.86
+     */
+    private boolean issSuppressed;
+
+
+    /**
      * Get the service number.
      *
      * @return
@@ -5194,6 +5203,72 @@ public class Service implements Serializable
     public Service setNbfOptional(boolean optional)
     {
         this.nbfOptional = optional;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether generation of the {@code iss} response
+     * parameter is suppressed.
+     *
+     * <p>
+     * &quot;OAuth 2.0 Authorization Server Issuer Identifier in Authorization
+     * Response&quot; has defined a new authorization response parameter,
+     * {@code iss}, as a countermeasure for a certain type of mix-up attacks.
+     * </p>
+     *
+     * <p>
+     * The specification requires that the {@code iss} response parameter
+     * always be included in authorization responses unless JARM (JWT Secured
+     * Authorization Response Mode) is used.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code true}, the authorization server does not include
+     * the {@code iss} response parameter in authorization responses. By turning
+     * this flag on and off, developers of client applications can experiment
+     * the mix-up attack and the effect of the {@code iss} response parameter.
+     * </p>
+     *
+     * <p>
+     * Note that this flag should not be {@code true} in production environment
+     * unless there are special reasons for it.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the authorization server does not include the
+     *         {@code iss} response parameter in authorization responses.
+     *
+     * @since 2.86
+     */
+    public boolean isIssSuppressed()
+    {
+        return issSuppressed;
+    }
+
+
+    /**
+     * Set the flag indicating whether generation of the {@code iss} response
+     * parameter is suppressed.
+     *
+     * <p>
+     * See the description of {@link #isIssSuppressed()} for details about
+     * this flag.
+     * </p>
+     *
+     * @param suppressed
+     *         {@code true} to make the authorization server suppress the
+     *         {@code iss} response parameter.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.86
+     */
+    public Service setIssSuppressed(boolean suppressed)
+    {
+        this.issSuppressed = suppressed;
 
         return this;
     }
