@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.86 (2021 年 01 月 23 日)
+--------------------------
+
 - `Service` クラス
     * `isIssSuppressed()` メソッドを追加。
     * `setIssSuppressed(boolean)` メソッドを追加。
