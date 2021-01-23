@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `isNbfOptional()` method.
+    * Added `setNbfOptional(boolean)` method.
+
+
 2.85 (2020-12-14)
 -----------------
 

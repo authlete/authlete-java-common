@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2020 Authlete, Inc.
+ * Copyright (C) 2014-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -189,7 +189,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 39L;
+    private static final long serialVersionUID = 40L;
 
 
     /*
@@ -653,6 +653,16 @@ public class Service implements Serializable
      * @since 2.81
      */
     private boolean scopeRequired;
+
+
+    /**
+     * The flag indicating whether the {@code nbf} claim in the request
+     * object is optional even when the authorization request is regarded
+     * as a FAPI-Part2 request.
+     *
+     * @since 2.86
+     */
+    private boolean nbfOptional;
 
 
     /**
@@ -5106,6 +5116,84 @@ public class Service implements Serializable
     public Service setScopeRequired(boolean required)
     {
         this.scopeRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether the {@code nbf} claim in the request
+     * object is optional even when the authorization request is regarded as
+     * a FAPI-Part2 request.
+     *
+     * <p>
+     * The final version of Financial-grade API was approved in January, 2021.
+     * The Part 2 of the final version has new requirements on lifetime of
+     * request objects. They require that request objects contain an {@code nbf}
+     * claim and the lifetime computed by {@code exp - nbf} be no longer than
+     * 60 minutes.
+     * </p>
+     *
+     * <p>
+     * Therefore, when an authorization request is regarded as a FAPI-Part2
+     * request, the request object used in the authorization request must
+     * contain an {@code nbf} claim. Otherwise, the authorization server
+     * rejects the authorization request.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code true}, the {@code nbf} claim is treated as an
+     * optional claim even when the authorization request is regarded as a
+     * FAPI-Part2 request. That is, the authorization server does not perform
+     * the validation on lifetime of the request object when the request object
+     * contains no {@code nbf} claim.
+     * </p>
+     *
+     * <p>
+     * Skipping the validation is a violation of the FAPI specification. The
+     * reason why this flag has been prepared nevertheless is that the new
+     * requirements (which do not exist in the Implementer's Draft 2 released
+     * in October, 2018) have big impacts on deployed implementations of client
+     * applications and Authlete thinks there should be a mechanism whereby to
+     * make the migration from ID2 to Final smooth without breaking live
+     * systems.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the {@code nbf} claim is treated as an optional
+     *         claim even when the authorization request is regarded as a
+     *         FAPI-Part2 request.
+     *
+     * @since 2.86
+     */
+    public boolean isNbfOptional()
+    {
+        return nbfOptional;
+    }
+
+
+    /**
+     * Set the flag indicating whether the {@code nbf} claim in the request
+     * object is optional even when the authorization request is regarded as
+     * a FAPI-Part2 request.
+     *
+     * <p>
+     * See the description of {@link #isNbfOptional()} for details about this
+     * flag.
+     * </p>
+     *
+     * @param optional
+     *         {@code true} to handle the {@code nbf} claim as a mandatory claim
+     *         as requested by the FAPI Part 2.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.86
+     */
+    public Service setNbfOptional(boolean optional)
+    {
+        this.nbfOptional = optional;
 
         return this;
     }
