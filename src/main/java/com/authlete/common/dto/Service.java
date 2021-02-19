@@ -18,6 +18,8 @@ package com.authlete.common.dto;
 
 import java.io.Serializable;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import com.authlete.common.types.ClaimType;
@@ -189,7 +191,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 40L;
+    private static final long serialVersionUID = 41L;
 
 
     /*
@@ -672,6 +674,14 @@ public class Service implements Serializable
      * @since 2.86
      */
     private boolean issSuppressed;
+
+
+    /**
+     * Arbitrary attributes associated with this service.
+     *
+     * @since 2.87
+     */
+    private Pair[] attributes;
 
 
     /**
@@ -5154,8 +5164,7 @@ public class Service implements Serializable
      * When this flag is {@code true}, the {@code nbf} claim is treated as an
      * optional claim even when the authorization request is regarded as a
      * FAPI-Part2 request. That is, the authorization server does not perform
-     * the validation on lifetime of the request object when the request object
-     * contains no {@code nbf} claim.
+     * the validation on lifetime of the request object.
      * </p>
      *
      * <p>
@@ -5192,8 +5201,7 @@ public class Service implements Serializable
      * </p>
      *
      * @param optional
-     *         {@code true} to handle the {@code nbf} claim as a mandatory claim
-     *         as requested by the FAPI Part 2.
+     *         {@code true} to treat the {@code nbf} claim as an optional claim.
      *
      * @return
      *         {@code this} object.
@@ -5269,6 +5277,99 @@ public class Service implements Serializable
     public Service setIssSuppressed(boolean suppressed)
     {
         this.issSuppressed = suppressed;
+
+        return this;
+    }
+
+
+    /**
+     * Get attributes.
+     *
+     * <p>
+     * The feature of "service attributes" is available since Authlete 2.2.
+     * </p>
+     *
+     * @return
+     *         Attributes.
+     *
+     * @since 2.87
+     */
+    public Pair[] getAttributes()
+    {
+        return attributes;
+    }
+
+
+    /**
+     * Set attributes.
+     *
+     * <p>
+     * The feature of "service attributes" is available since Authlete 2.2.
+     * </p>
+     *
+     * @param attributes
+     *         Attributes.
+     *
+     * @return
+     *     {@code this} object.
+     *
+     * @since 2.87
+     */
+    public Service setAttributes(Pair[] attributes)
+    {
+        this.attributes = attributes;
+
+        return this;
+    }
+
+
+    /**
+     * Set attributes.
+     *
+     * <p>
+     * The feature of "service attributes" is available since Authlete 2.2.
+     * </p>
+     *
+     * @param attributes
+     *         Attributes.
+     *
+     * @return
+     *     {@code this} object.
+     *
+     * @since 2.87
+     */
+    public Service setAttributes(Iterable<Pair> attributes)
+    {
+        if (attributes == null)
+        {
+            this.attributes = null;
+
+            return this;
+        }
+
+        List<Pair> list = new ArrayList<Pair>();
+
+        for (Pair attribute : attributes)
+        {
+            if (attribute == null || attribute.getKey() == null)
+            {
+                continue;
+            }
+
+            list.add(attribute);
+        }
+
+        int size = list.size();
+
+        if (size == 0)
+        {
+            this.attributes = null;
+
+            return this;
+        }
+
+        Pair[] array = new Pair[size];
+        this.attributes = list.toArray(array);
 
         return this;
     }

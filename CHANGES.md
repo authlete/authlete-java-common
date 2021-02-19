@@ -6,6 +6,11 @@ CHANGES
     * Added `setAttributes(Pair[])` method.
     * Added `setAttributes(Iterable<Pair>)` method.
 
+- `Service` class
+    * Added `getAttributes()` method.
+    * Added `setAttributes(Pair[])` method.
+    * Added `setAttributes(Iterable<Pair>)` method.
+
 
 2.86 (2021-01-23)
 -----------------
