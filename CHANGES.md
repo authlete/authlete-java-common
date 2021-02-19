@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.87 (2021-02-19)
+-----------------
+
 - `Client` class
     * Added `getAttributes()` method.
     * Added `setAttributes(Pair[])` method.
