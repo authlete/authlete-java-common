@@ -1,6 +1,12 @@
 変更点
 ======
 
+- `Client` クラス
+    * `getAttributes()` メソッドを追加。
+    * `setAttributes(Pair[])` メソッドを追加。
+    * `setAttributes(Iterable<Pair>)` メソッドを追加。
+
+
 2.86 (2021 年 01 月 23 日)
 --------------------------
 

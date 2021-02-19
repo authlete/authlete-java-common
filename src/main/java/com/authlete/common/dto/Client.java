@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2020 Authlete, Inc.
+ * Copyright (C) 2014-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ package com.authlete.common.dto;
 
 import java.io.Serializable;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import com.authlete.common.types.ApplicationType;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.ClientType;
@@ -49,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 19L;
+    private static final long serialVersionUID = 20L;
 
 
     /*
@@ -267,6 +269,7 @@ public class Client implements Serializable
     private String[] authorizationDataTypes;
     private boolean parRequired;
     private boolean requestObjectRequired;
+    private Pair[] attributes;
 
 
     /**
@@ -2942,6 +2945,99 @@ public class Client implements Serializable
     public Client setRequestObjectRequired(boolean required)
     {
         this.requestObjectRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get attributes.
+     *
+     * <p>
+     * The feature of "client attributes" is available since Authlete 2.2.
+     * </p>
+     *
+     * @return
+     *         Attributes.
+     *
+     * @since 2.87
+     */
+    public Pair[] getAttributes()
+    {
+        return attributes;
+    }
+
+
+    /**
+     * Set attributes.
+     *
+     * <p>
+     * The feature of "client attributes" is available since Authlete 2.2.
+     * </p>
+     *
+     * @param attributes
+     *         Attributes.
+     *
+     * @return
+     *     {@code this} object.
+     *
+     * @since 2.87
+     */
+    public Client setAttributes(Pair[] attributes)
+    {
+        this.attributes = attributes;
+
+        return this;
+    }
+
+
+    /**
+     * Set attributes.
+     *
+     * <p>
+     * The feature of "client attributes" is available since Authlete 2.2.
+     * </p>
+     *
+     * @param attributes
+     *         Attributes.
+     *
+     * @return
+     *     {@code this} object.
+     *
+     * @since 2.87
+     */
+    public Client setAttributes(Iterable<Pair> attributes)
+    {
+        if (attributes == null)
+        {
+            this.attributes = null;
+
+            return this;
+        }
+
+        List<Pair> list = new ArrayList<Pair>();
+
+        for (Pair attribute : attributes)
+        {
+            if (attribute == null || attribute.getKey() == null)
+            {
+                continue;
+            }
+
+            list.add(attribute);
+        }
+
+        int size = list.size();
+
+        if (size == 0)
+        {
+            this.attributes = null;
+
+            return this;
+        }
+
+        Pair[] array = new Pair[size];
+        this.attributes = list.toArray(array);
 
         return this;
     }
