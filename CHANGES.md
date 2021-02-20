@@ -19,6 +19,12 @@ CHANGES
     * Added `getServiceAttributes()` method.
     * Added `setServiceAttribute(Pair[])` method.
 
+- `DeviceVerificationResponse` class
+    * Added `getClientAttributes()` method.
+    * Added `setClientAttributes(Pair[])` method.
+    * Added `getServiceAttributes()` method.
+    * Added `setServiceAttribute(Pair[])` method.
+
 - `IntrospectionResponse` class
     * Added `getClientAttributes()` method.
     * Added `setClientAttributes(Pair[])` method.
