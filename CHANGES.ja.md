@@ -1,6 +1,12 @@
 変更点
 ======
 
+- `BackchannelAuthenticationCompleteResponse` クラス
+    * `getClientAttributes()` メソッドを追加。
+    * `setClientAttributes(Pair[])` メソッドを追加。
+    * `getServiceAttributes()` メソッドを追加。
+    * `setServiceAttributes(Pair[])` メソッドを追加。
+
 - `BackchannelAuthenticationResponse` クラス
     * `getClientAttributes()` メソッドを追加。
     * `setClientAttributes(Pair[])` メソッドを追加。

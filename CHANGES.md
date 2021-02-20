@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+- `BackchannelAuthenticationCompleteResponse` class
+    * Added `getClientAttributes()` method.
+    * Added `setClientAttributes(Pair[])` method.
+    * Added `getServiceAttributes()` method.
+    * Added `setServiceAttribute(Pair[])` method.
+
 - `BackchannelAuthenticationResponse` class
     * Added `getClientAttributes()` method.
     * Added `setClientAttributes(Pair[])` method.

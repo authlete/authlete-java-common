@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2019 Authlete, Inc.
+ * Copyright (C) 2018-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,7 +139,7 @@ import com.authlete.common.types.DeliveryMode;
  */
 public class BackchannelAuthenticationCompleteResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /**
@@ -202,6 +202,8 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     private String jwtAccessToken;
     private URI[] resources;
     private AuthzDetails authorizationDetails;
+    private Pair[] serviceAttributes;
+    private Pair[] clientAttributes;
 
 
     /**
@@ -878,6 +880,88 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     public BackchannelAuthenticationCompleteResponse setAuthorizationDetails(AuthzDetails details)
     {
         this.authorizationDetails = details;
+
+        return this;
+    }
+
+
+    /**
+     * Get the attributes of the service that the client application belongs to.
+     *
+     * <p>
+     * This property is available since Authlete 2.2.
+     * </p>
+     *
+     * @return
+     *         The attributes of the service.
+     *
+     * @since 2.88
+     */
+    public Pair[] getServiceAttributes()
+    {
+        return serviceAttributes;
+    }
+
+
+    /**
+     * Set the attributes of the service that the client application belongs to.
+     *
+     * <p>
+     * This property is available since Authlete 2.2.
+     * </p>
+     *
+     * @param attributes
+     *         The attributes of the service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.88
+     */
+    public BackchannelAuthenticationCompleteResponse setServiceAttributes(Pair[] attributes)
+    {
+        this.serviceAttributes = attributes;
+
+        return this;
+    }
+
+
+    /**
+     * Get the attributes of the client.
+     *
+     * <p>
+     * This property is available since Authlete 2.2.
+     * </p>
+     *
+     * @return
+     *         The attributes of the client.
+     *
+     * @since 2.88
+     */
+    public Pair[] getClientAttributes()
+    {
+        return clientAttributes;
+    }
+
+
+    /**
+     * Set the attributes of the client.
+     *
+     * <p>
+     * This property is available since Authlete 2.2.
+     * </p>
+     *
+     * @param attributes
+     *         The attributes of the client.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.88
+     */
+    public BackchannelAuthenticationCompleteResponse setClientAttributes(Pair[] attributes)
+    {
+        this.clientAttributes = attributes;
 
         return this;
     }
