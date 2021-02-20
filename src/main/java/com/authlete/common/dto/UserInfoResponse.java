@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2018 Authlete, Inc.
+ * Copyright (C) 2015-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -232,7 +232,7 @@ import com.authlete.common.util.Utils;
  */
 public class UserInfoResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -352,6 +352,18 @@ public class UserInfoResponse extends ApiResponse
      * "userinfo" in "claims" of an authorization request.
      */
     private String userInfoClaims;
+
+
+    /**
+     * The attributes of the service that the client belongs to.
+     */
+    private Pair[] serviceAttributes;
+
+
+    /**
+     * The attributes of the client that the access token has been issued to.
+     */
+    private Pair[] clientAttributes;
 
 
     /**
@@ -695,5 +707,77 @@ public class UserInfoResponse extends ApiResponse
     public void setUserInfoClaims(String userInfoClaims)
     {
         this.userInfoClaims = userInfoClaims;
+    }
+
+
+    /**
+     * Get the attributes of the service that the client application belongs to.
+     *
+     * <p>
+     * This property is available since Authlete 2.2.
+     * </p>
+     *
+     * @return
+     *         The attributes of the service.
+     *
+     * @since 2.88
+     */
+    public Pair[] getServiceAttributes()
+    {
+        return serviceAttributes;
+    }
+
+
+    /**
+     * Set the attributes of the service that the client application belongs to.
+     *
+     * <p>
+     * This property is available since Authlete 2.2.
+     * </p>
+     *
+     * @param attributes
+     *         The attributes of the service.
+     *
+     * @since 2.88
+     */
+    public void setServiceAttributes(Pair[] attributes)
+    {
+        this.serviceAttributes = attributes;
+    }
+
+
+    /**
+     * Get the attributes of the client that the access token has been issued to.
+     *
+     * <p>
+     * This property is available since Authlete 2.2.
+     * </p>
+     *
+     * @return
+     *         The attributes of the client.
+     *
+     * @since 2.88
+     */
+    public Pair[] getClientAttributes()
+    {
+        return clientAttributes;
+    }
+
+
+    /**
+     * Set the attributes of the client that the access token has been issued to.
+     *
+     * <p>
+     * This property is available since Authlete 2.2.
+     * </p>
+     *
+     * @param attributes
+     *         The attributes of the client.
+     *
+     * @since 2.88
+     */
+    public void setClientAttributes(Pair[] attributes)
+    {
+        this.clientAttributes = attributes;
     }
 }

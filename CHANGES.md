@@ -31,6 +31,12 @@ CHANGES
     * Added `getServiceAttributes()` method.
     * Added `setServiceAttribute(Pair[])` method.
 
+- `UserInfoResponse` class
+    * Added `getClientAttributes()` method.
+    * Added `setClientAttributes(Pair[])` method.
+    * Added `getServiceAttributes()` method.
+    * Added `setServiceAttribute(Pair[])` method.
+
 
 2.87 (2021-02-19)
 -----------------
