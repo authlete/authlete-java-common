@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.88 (2021 年 02 月 21 日)
+--------------------------
+
 - `BackchannelAuthenticationCompleteResponse` クラス
     * `getClientAttributes()` メソッドを追加。
     * `setClientAttributes(Pair[])` メソッドを追加。

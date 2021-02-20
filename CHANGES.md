@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.88 (2021-02-21)
+-----------------
+
 - `BackchannelAuthenticationCompleteResponse` class
     * Added `getClientAttributes()` method.
     * Added `setClientAttributes(Pair[])` method.
