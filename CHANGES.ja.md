@@ -1,6 +1,12 @@
 変更点
 ======
 
+- `DeviceAuthorizationResponse` クラス
+    * `getClientAttributes()` メソッドを追加。
+    * `setClientAttributes(Pair[])` メソッドを追加。
+    * `getServiceAttributes()` メソッドを追加。
+    * `setServiceAttributes(Pair[])` メソッドを追加。
+
 - `IntrospectionResponse` クラス
     * `getClientAttributes()` メソッドを追加。
     * `setClientAttributes(Pair[])` メソッドを追加。
