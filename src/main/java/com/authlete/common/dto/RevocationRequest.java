@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Authlete, Inc.
+ * Copyright (C) 2015-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -103,7 +103,7 @@ import com.authlete.common.web.URLCoder;
  */
 public class RevocationRequest implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -122,6 +122,18 @@ public class RevocationRequest implements Serializable
      * Client secret.
      */
     private String clientSecret;
+
+
+    /**
+     * Client certificate.
+     */
+    private String clientCertificate;
+
+
+    /**
+     * Client certificate path.
+     */
+    private String[] clientCertificatePath;
 
 
     /**
@@ -212,6 +224,78 @@ public class RevocationRequest implements Serializable
     public RevocationRequest setClientSecret(String clientSecret)
     {
         this.clientSecret = clientSecret;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client certificate used in the TLS connection between the
+     * client application and the revocation endpoint.
+     *
+     * @return
+     *         The client certificate.
+     *
+     * @since 2.88
+     */
+    public String getClientCertificate()
+    {
+        return clientCertificate;
+    }
+
+
+    /**
+     * Set the client certificate used in the TLS connection between the
+     * client application and the revocation endpoint.
+     *
+     * @param certificate
+     *         The client certificate.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.88
+     */
+    public RevocationRequest setClientCertificate(String certificate)
+    {
+        this.clientCertificate = certificate;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client certificate path presented by the client during client
+     * authentication.
+     *
+     * @return
+     *          The client certificate path. Each element is a string in PEM
+     *          format.
+     *
+     * @since 2.88
+     */
+    public String[] getClientCertificatePath()
+    {
+        return clientCertificatePath;
+    }
+
+
+    /**
+     * Set the client certificate path presented by the client during client
+     * authentication.
+     *
+     * @param path
+     *          The client certificate path. Each element is a string in PEM
+     *          format.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.88
+     */
+    public RevocationRequest setClientCertificatePath(String[] path)
+    {
+        this.clientCertificatePath = path;
 
         return this;
     }

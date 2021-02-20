@@ -31,6 +31,12 @@ CHANGES
     * Added `getServiceAttributes()` method.
     * Added `setServiceAttribute(Pair[])` method.
 
+- `RevocationRequest` class
+    * Added `getClientCertificate()` method.
+    * Added `setClientCertificate(String)` method.
+    * Added `getClientCertificatePath()` method.
+    * Added `setClientCertificatePath(String[])` method.
+
 - `TokenIssueResponse` class
     * Added `getClientAttributes()` method.
     * Added `setClientAttributes(Pair[])` method.

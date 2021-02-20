@@ -31,6 +31,12 @@
     * `getServiceAttributes()` メソッドを追加。
     * `setServiceAttributes(Pair[])` メソッドを追加。
 
+- `RevocationRequest` クラス
+    * `getClientCertificate()` メソッドを追加。
+    * `setClientCertificate(String)` メソッドを追加。
+    * `getClientCertificatePath()` メソッドを追加。
+    * `setClientCertificatePath(String[])` メソッドを追加。
+
 - `TokenIssueResponse` クラス
     * `getClientAttributes()` メソッドを追加。
     * `setClientAttributes(Pair[])` メソッドを追加。
