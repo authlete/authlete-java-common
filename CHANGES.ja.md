@@ -19,6 +19,12 @@
     * `getServiceAttributes()` メソッドを追加。
     * `setServiceAttributes(Pair[])` メソッドを追加。
 
+- `TokenIssueResponse` クラス
+    * `getClientAttributes()` メソッドを追加。
+    * `setClientAttributes(Pair[])` メソッドを追加。
+    * `getServiceAttributes()` メソッドを追加。
+    * `setServiceAttributes(Pair[])` メソッドを追加。
+
 - `TokenResponse` クラス
     * `getClientAttributes()` メソッドを追加。
     * `setClientAttributes(Pair[])` メソッドを追加。

@@ -19,6 +19,12 @@ CHANGES
     * Added `getServiceAttributes()` method.
     * Added `setServiceAttribute(Pair[])` method.
 
+- `TokenIssueResponse` class
+    * Added `getClientAttributes()` method.
+    * Added `setClientAttributes(Pair[])` method.
+    * Added `getServiceAttributes()` method.
+    * Added `setServiceAttribute(Pair[])` method.
+
 - `TokenResponse` class
     * Added `getClientAttributes()` method.
     * Added `setClientAttributes(Pair[])` method.
