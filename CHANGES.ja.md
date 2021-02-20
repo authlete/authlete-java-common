@@ -19,6 +19,12 @@
     * `getServiceAttributes()` メソッドを追加。
     * `setServiceAttributes(Pair[])` メソッドを追加。
 
+- `TokenResponse` クラス
+    * `getClientAttributes()` メソッドを追加。
+    * `setClientAttributes(Pair[])` メソッドを追加。
+    * `getServiceAttributes()` メソッドを追加。
+    * `setServiceAttributes(Pair[])` メソッドを追加。
+
 
 2.87 (2021 年 02 月 19 日)
 --------------------------
