@@ -5324,7 +5324,7 @@ public class Service implements Serializable
 
 
     /**
-     * Set attributes.
+     * Load attributes from an iterable.
      *
      * <p>
      * The feature of "service attributes" is available since Authlete 2.2.
@@ -5336,9 +5336,9 @@ public class Service implements Serializable
      * @return
      *     {@code this} object.
      *
-     * @since 2.87
+     * @since 2.89
      */
-    public Service setAttributes(Iterable<Pair> attributes)
+    public Service loadAttributes(Iterable<Pair> attributes)
     {
         if (attributes == null)
         {
