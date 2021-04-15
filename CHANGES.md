@@ -1,10 +1,15 @@
 CHANGES
 =======
 
+2.89 (2021-04-15)
+-----------------
+
 - `Client` class
     * Renamed `setAttributes(Iterable<Pair>)` method to `loadAttributes(Iterable<Pair>)`.
+
 - `Service` class
     * Renamed `setAttributes(Iterable<Pair>)` method to `loadAttributes(Iterable<Pair>)`.
+
 
 2.88 (2021-02-21)
 -----------------

@@ -1,6 +1,16 @@
 変更点
 ======
 
+2.89 (2021 年 04 月 15 日)
+--------------------------
+
+- `Client` クラス
+    * `setAttributes(Iterable<Pair>)` メソッドを `loadAttributes(Iterable<Pair>)` へ名称変更。
+
+- `Service` クラス
+    * `setAttributes(Iterable<Pair>)` メソッドを `loadAttributes(Iterable<Pair>)` へ名称変更。
+
+
 2.88 (2021 年 02 月 21 日)
 --------------------------
 
