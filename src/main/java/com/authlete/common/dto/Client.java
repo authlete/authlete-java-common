@@ -2992,7 +2992,7 @@ public class Client implements Serializable
 
 
     /**
-     * Set attributes.
+     * Load attributes from an iterable.
      *
      * <p>
      * The feature of "client attributes" is available since Authlete 2.2.
@@ -3004,9 +3004,9 @@ public class Client implements Serializable
      * @return
      *     {@code this} object.
      *
-     * @since 2.87
+     * @since 2.89
      */
-    public Client setAttributes(Iterable<Pair> attributes)
+    public Client loadAttributes(Iterable<Pair> attributes)
     {
         if (attributes == null)
         {
