@@ -1,6 +1,15 @@
 変更点
 ======
 
+2.90 (2021 年 05 月 05 日)
+--------------------------
+
+- `pom.xml`
+    * `javax.annotation:javax.annotation-api` 依存を削除。
+    * `javax.xml.bind:jaxb-api` 依存を削除。
+    * `org.glassfish.jaxb:jaxb-runtime` 依存を削除。
+
+
 2.89 (2021 年 04 月 15 日)
 --------------------------
 

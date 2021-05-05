@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+2.90 (2021-05-05)
+-----------------
+
+- `pom.xml`
+    * Removed `javax.annotation:javax.annotation-api` dependency.
+    * Removed `javax.xml.bind:jaxb-api` dependency.
+    * Removed `org.glassfish.jaxb:jaxb-runtime` dependency.
+
+
 2.89 (2021-04-15)
 -----------------
 
