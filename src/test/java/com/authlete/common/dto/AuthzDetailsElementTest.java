@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Authlete, Inc.
+ * Copyright (C) 2019-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,8 @@ public class AuthzDetailsElementTest
 
     private void verify(
             AuthzDetailsElement element, String type, String[] locations,
-            String[] actions, String[] dataTypes, String identifier, String otherFields)
+            String[] actions, String[] dataTypes, String identifier,
+            String[] privileges, String otherFields)
     {
         assertNotNull(element);
 
@@ -47,6 +48,7 @@ public class AuthzDetailsElementTest
         verifyActions(    element, actions);
         verifyDataTypes(  element, dataTypes);
         verifyIdentifier( element, identifier);
+        verifyPrivileges( element, privileges);
         verifyOtherFields(element, otherFields);
     }
 
@@ -116,6 +118,19 @@ public class AuthzDetailsElementTest
     }
 
 
+    private void verifyPrivileges(AuthzDetailsElement element, String[] privileges)
+    {
+        if (privileges == null)
+        {
+            assertNull(element.getPrivileges());
+        }
+        else
+        {
+            assertArrayEquals(privileges, element.getPrivileges());
+        }
+    }
+
+
     private void verifyOtherFields(AuthzDetailsElement element, String otherFields)
     {
         if (otherFields == null)
@@ -160,7 +175,7 @@ public class AuthzDetailsElementTest
     @Test
     public void test00()
     {
-        verify(deserialize("{}"), null, null, null, null, null, null);
+        verify(deserialize("{}"), null, null, null, null, null, null, null);
     }
 
 
@@ -173,7 +188,8 @@ public class AuthzDetailsElementTest
             "  \"locations\": [\"loc0\", \"loc1\"], " +
             "  \"actions\": [\"act0\", \"act1\"], " +
             "  \"datatypes\": [\"dty0\", \"dty1\"], " +
-            "  \"identifier\": \"my_id\"" +
+            "  \"identifier\": \"my_id\", " +
+            "  \"privileges\": [\"prv0\", \"prv1\"]" +
             "}";
 
         verify(deserialize(json),
@@ -182,6 +198,7 @@ public class AuthzDetailsElementTest
             new String[] { "act0", "act1" },
             new String[] { "dty0", "dty1" },
             "my_id",
+            new String[] { "prv0", "prv1" },
             null
         );
     }
@@ -206,6 +223,7 @@ public class AuthzDetailsElementTest
 
         verify(deserialize(json),
             "my_type",
+            null,
             null,
             null,
             null,
@@ -277,6 +295,9 @@ public class AuthzDetailsElementTest
 
         // identifier
         assertFalse(map.containsKey("identifier"));
+
+        // privileges
+        assertFalse(map.containsKey("privileges"));
     }
 
 
@@ -295,6 +316,7 @@ public class AuthzDetailsElementTest
             .setActions(new String[]{"act0", "act1"})
             .setDataTypes(new String[]{"dty0", "dty1"})
             .setIdentifier("my_id")
+            .setPrivileges(new String[]{"prv0", "prv1"})
             .setOtherFields(otherFields)
             ;
 
@@ -329,6 +351,13 @@ public class AuthzDetailsElementTest
         // identifier
         assertTrue(map.containsKey("identifier"));
         assertEquals("my_id", map.get("identifier"));
+
+        // privileges
+        assertTrue(map.containsKey("privileges"));
+        List<String> privileges = new ArrayList<String>();
+        privileges.add("prv0");
+        privileges.add("prv1");
+        assertEquals(privileges, map.get("privileges"));
 
         // Other fields
         assertTrue(map.containsKey("prop0"));

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,7 +65,8 @@ public class AuthzDetailsTest
             "    \"locations\": [\"loc0\", \"loc1\"],\n" +
             "    \"actions\": [\"act0\", \"act1\"],\n" +
             "    \"datatypes\": [\"dty0\", \"dty1\"],\n" +
-            "    \"identifier\": \"my_id\"\n" +
+            "    \"identifier\": \"my_id\",\n" +
+            "    \"privileges\": [\"prv0\", \"prv1\"]\n" +
             "  },\n" +
             "  {\n" +
             "    \"type\":\"typ1\",\n" +
@@ -100,6 +101,10 @@ public class AuthzDetailsTest
 
         // element 0, identifier
         assertEquals("my_id", element0.getIdentifier());
+
+        // element 0, privileges
+        String[] privileges = new String[]{ "prv0", "prv1" };
+        assertArrayEquals(privileges, element0.getPrivileges());
 
         // element 1
         AuthzDetailsElement element1 = elements[1];

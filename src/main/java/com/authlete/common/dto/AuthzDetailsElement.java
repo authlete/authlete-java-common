@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Authlete, Inc.
+ * Copyright (C) 2019-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import com.google.gson.GsonBuilder;
  */
 public class AuthzDetailsElement implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     private String type;
@@ -38,6 +38,7 @@ public class AuthzDetailsElement implements Serializable
     private String[] actions;
     private String[] dataTypes;
     private String identifier;
+    private String[] privileges;
     private String otherFields;
 
 
@@ -102,7 +103,8 @@ public class AuthzDetailsElement implements Serializable
      * <blockquote>
      * <p>
      * <i>"An array of strings representing the location of the resource or
-     * resource server. This is typically composed of URIs."</i>
+     * resource server. These strings are typically URIs identifying the
+     * location of the RS."</i>
      * </p>
      * </blockquote>
      *
@@ -125,7 +127,8 @@ public class AuthzDetailsElement implements Serializable
      * <blockquote>
      * <p>
      * <i>"An array of strings representing the location of the resource or
-     * resource server. This is typically composed of URIs."</i>
+     * resource server. These strings are typically URIs identifying the
+     * location of the RS."</i>
      * </p>
      * </blockquote>
      *
@@ -153,8 +156,7 @@ public class AuthzDetailsElement implements Serializable
      * <blockquote>
      * <p>
      * <i>"An array of strings representing the kinds of actions to be taken
-     * at the resource. The values of the strings are determined by the API
-     * being protected."</i>
+     * at the resource."</i>
      * </p>
      * </blockquote>
      *
@@ -177,8 +179,7 @@ public class AuthzDetailsElement implements Serializable
      * <blockquote>
      * <p>
      * <i>"An array of strings representing the kinds of actions to be taken
-     * at the resource. The values of the strings are determined by the API
-     * being protected."</i>
+     * at the resource."</i>
      * </p>
      * </blockquote>
      *
@@ -301,8 +302,63 @@ public class AuthzDetailsElement implements Serializable
 
 
     /**
-     * Get the other fields (than {@code type}, {@code locations},
-     * {@code actions} and {@code identifier}) as a string in the JSON format.
+     * Get the types or levels of privilege.
+     *
+     * <p>
+     * From <i>"OAuth 2.0 Rich Authorization Requests"</i>:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * <i>"An array of strings representing the types or levels of privilege
+     * being requested at the resource."</i>
+     * </p>
+     * </blockquote>
+     *
+     * @return
+     *         Types or levels of privilege.
+     *
+     * @since 2.91
+     */
+    public String[] getPrivileges()
+    {
+        return privileges;
+    }
+
+
+    /**
+     * Set the types or levels of privilege.
+     *
+     * <p>
+     * From <i>"OAuth 2.0 Rich Authorization Requests"</i>:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * <i>"An array of strings representing the types or levels of privilege
+     * being requested at the resource."</i>
+     * </p>
+     * </blockquote>
+     *
+     * @param privileges
+     *         Types or levels of privilege.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.91
+     */
+    public AuthzDetailsElement setPrivileges(String[] privileges)
+    {
+        this.privileges = privileges;
+
+        return this;
+    }
+
+
+    /**
+     * Get the other fields (than the pre-defined ones such as {@code type}
+     * and {@code locations}) as a string in the JSON format.
      *
      * <p>
      * The content varies depending on the {@code type} field.
@@ -320,8 +376,8 @@ public class AuthzDetailsElement implements Serializable
 
 
     /**
-     * Set the other fields (than {@code type}, {@code locations},
-     * {@code actions} and {@code identifier}) as a string in the JSON format.
+     * Set the other fields (than the pre-defined ones such as {@code type}
+     * and {@code locations}) as a string in the JSON format.
      *
      * <p>
      * The content varies depending on the {@code type} field.

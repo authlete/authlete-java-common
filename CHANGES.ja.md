@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `AuthzDetailsElement` クラス
+   * `getPrivileges()` メソッドを追加。
+   * `setPrivileges(String[])` メソッドを追加。
+
 - `Client` クラス
    * `getAuthorizationDataTypes()` メソッドを `getAuthorizationDetailsTypes()` へ名称変更。
    * `setAuthorizationDataTypes(String[])` メソッドを `setAuthorizationDetailsTypes(String[])` へ名称変更。

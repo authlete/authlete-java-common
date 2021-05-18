@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `AuthzDetailsElement` class
+   * Added `getPrivileges()` method.
+   * Added `setPrivileges(String[])` method.
+
 - `Client` class
    * Renamed `getAuthorizationDataTypes()` method to `getAuthorizationDetailsTypes()`.
    * Renamed `setAuthorizationDataTypes(String[])` method to `setAuthorizationDetailsTypes(String[])`.
