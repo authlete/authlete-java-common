@@ -191,7 +191,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 41L;
+    private static final long serialVersionUID = 42L;
 
 
     /*
@@ -547,9 +547,16 @@ public class Service implements Serializable
 
 
     /**
-     * Supported data types for {@code "authorization_details"}.
+     * Supported authorization details types for {@code "authorization_details"}.
+     *
+     * <p>
+     * This property was renamed from {@code supportedAuthorizationDataTypes} to
+     * align with the change made by the 5th draft of the RAR specification.
+     * </p>
+     *
+     * @since 2.91
      */
-    private String[] supportedAuthorizationDataTypes;
+    private String[] supportedAuthorizationDetailsTypes;
 
 
     /**
@@ -4431,47 +4438,59 @@ public class Service implements Serializable
 
 
     /**
-     * Get the supported data types that can be used as values of the
-     * {@code "type"} field in {@code "authorization_details"}.
+     * Get the supported authorization details types that can be used as values
+     * of the {@code "type"} field in {@code "authorization_details"}.
      *
      * <p>
      * This property corresponds to the
-     * {@code "authorization_data_types_supported"} metadata.
+     * {@code "authorization_details_types_supported"} server metadata.
      * See "OAuth 2.0 Rich Authorization Requests" (RAR) for details.
      * </p>
      *
-     * @return
-     *         Supported data types.
+     * <p>
+     * Note that the property name was renamed from {@code supportedAuthorizationDataTypes}
+     * to {@code supportedAuthorizationDetailsTypes} to align with the change
+     * made by the 5th draft of the RAR specification.
+     * </p>
      *
-     * @since 2.55
+     * @return
+     *         Supported authorization details types.
+     *
+     * @since 2.91
      */
-    public String[] getSupportedAuthorizationDataTypes()
+    public String[] getSupportedAuthorizationDetailsTypes()
     {
-        return supportedAuthorizationDataTypes;
+        return supportedAuthorizationDetailsTypes;
     }
 
 
     /**
-     * Set the supported data types that can be used as values of the
-     * {@code "type"} field in {@code "authorization_details"}.
+     * Set the supported authorization details types that can be used as values
+     * of the {@code "type"} field in {@code "authorization_details"}.
      *
      * <p>
      * This property corresponds to the
-     * {@code "authorization_data_types_supported"} metadata.
+     * {@code "authorization_details_types_supported"} server metadata.
      * See "OAuth 2.0 Rich Authorization Requests" (RAR) for details.
      * </p>
      *
+     * <p>
+     * Note that the property name was renamed from {@code supportedAuthorizationDataTypes}
+     * to {@code supportedAuthorizationDetailsTypes} to align with the change
+     * made by the 5th draft of the RAR specification.
+     * </p>
+     *
      * @param types
-     *         Supported data types.
+     *         Supported authorization details types.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 2.55
+     * @since 2.91
      */
-    public Service setSupportedAuthorizationDataTypes(String[] types)
+    public Service setSupportedAuthorizationDetailsTypes(String[] types)
     {
-        this.supportedAuthorizationDataTypes = types;
+        this.supportedAuthorizationDetailsTypes = types;
 
         return this;
     }

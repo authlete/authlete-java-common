@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` クラス
+    * `getSupportedAuthorizationDataTypes()` メソッドを `getSupportedAuthorizationDetailsTypes()` へ名称変更。
+    * `setSupportedAuthorizationDataTypes(String[])` メソッドを `getSupportedAuthorizationDetailsTypes(String[])` へ名称変更。
+
+
 2.90 (2021 年 05 月 05 日)
 --------------------------
 

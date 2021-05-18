@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `Service` class
+    * Renamed `getSupportedAuthorizationDataTypes()` method to `getSupportedAuthorizationDetailsTypes()`.
+    * Renamed `setSupportedAuthorizationDataTypes(String[])` method to `getSupportedAuthorizationDetailsTypes(String[])`.
+
+
 2.90 (2021-05-05)
 -----------------
 
