@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `Client` class
+   * Renamed `getAuthorizationDataTypes()` method to `getAuthorizationDetailsTypes()`.
+   * Renamed `setAuthorizationDataTypes(String[])` method to `setAuthorizationDetailsTypes(String[])`.
+
 - `Service` class
     * Renamed `getSupportedAuthorizationDataTypes()` method to `getSupportedAuthorizationDetailsTypes()`.
     * Renamed `setSupportedAuthorizationDataTypes(String[])` method to `getSupportedAuthorizationDetailsTypes(String[])`.

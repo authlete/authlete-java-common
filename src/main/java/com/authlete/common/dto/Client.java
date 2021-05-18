@@ -51,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 20L;
+    private static final long serialVersionUID = 21L;
 
 
     /*
@@ -266,7 +266,7 @@ public class Client implements Serializable
     private boolean bcUserCodeRequired;
     private boolean dynamicallyRegistered;
     private String registrationAccessTokenHash;
-    private String[] authorizationDataTypes;
+    private String[] authorizationDetailsTypes;
     private boolean parRequired;
     private boolean requestObjectRequired;
     private Pair[] attributes;
@@ -2804,45 +2804,57 @@ public class Client implements Serializable
 
 
     /**
-     * Get the data types that this client may use as values of the
-     * {@code "type"} field in {@code "authorization_details"}.
+     * Get the authorization details types that this client may use as values
+     * of the {@code "type"} field in {@code "authorization_details"}.
      *
      * <p>
-     * This property corresponds to the {@code "authorization_data_types"}
+     * This property corresponds to the {@code "authorization_details_types"}
      * metadata. See "OAuth 2.0 Rich Authorization Requests" (RAR) for details.
      * </p>
      *
-     * @return
-     *         Data types used in {@code "authorization_details"}.
+     * <p>
+     * Note that the property name was renamed from {@code authorizationDataTypes}
+     * to {@code authorizationDetailsTypes} to align with the change made by
+     * the 5th draft of the RAR specification.
+     * </p>
      *
-     * @since 2.55
+     * @return
+     *         Authorization details types used in {@code "authorization_details"}.
+     *
+     * @since 2.91
      */
-    public String[] getAuthorizationDataTypes()
+    public String[] getAuthorizationDetailsTypes()
     {
-        return authorizationDataTypes;
+        return authorizationDetailsTypes;
     }
 
 
     /**
-     * Set the data types that this client may use as values of the
-     * {@code "type"} field in {@code "authorization_details"}.
+     * Set the authorization details types that this client may use as values
+     * of the {@code "type"} field in {@code "authorization_details"}.
      *
      * <p>
-     * This property corresponds to the {@code "authorization_data_types"}
+     * This property corresponds to the {@code "authorization_details_types"}
      * metadata. See "OAuth 2.0 Rich Authorization Requests" (RAR) for details.
      * </p>
      *
+     * <p>
+     * Note that the property name was renamed from {@code authorizationDataTypes}
+     * to {@code authorizationDetailsTypes} to align with the change made by
+     * the 5th draft of the RAR specification.
+     * </p>
+     *
      * @param types
-     *         Data types used in {@code "authorization_details"}.
+     *         Authorization details types used in {@code "authorization_details"}.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 2.55
+     * @since 2.91
      */
-    public Client setAuthorizationDataTypes(String[] types)
+    public Client setAuthorizationDetailsTypes(String[] types)
     {
-        this.authorizationDataTypes = types;
+        this.authorizationDetailsTypes = types;
 
         return this;
     }

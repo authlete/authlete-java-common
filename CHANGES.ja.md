@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `Client` クラス
+   * `getAuthorizationDataTypes()` メソッドを `getAuthorizationDetailsTypes()` へ名称変更。
+   * `setAuthorizationDataTypes(String[])` メソッドを `setAuthorizationDetailsTypes(String[])` へ名称変更。
+
 - `Service` クラス
     * `getSupportedAuthorizationDataTypes()` メソッドを `getSupportedAuthorizationDetailsTypes()` へ名称変更。
     * `setSupportedAuthorizationDataTypes(String[])` メソッドを `getSupportedAuthorizationDetailsTypes(String[])` へ名称変更。
