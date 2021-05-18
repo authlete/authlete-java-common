@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.91 (2021-05-18)
+-----------------
+
 - `AuthzDetailsElement` class
    * Added `getPrivileges()` method.
    * Added `setPrivileges(String[])` method.

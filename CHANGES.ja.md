@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.91 (2021 年 05 月 18 日)
+--------------------------
+
 - `AuthzDetailsElement` クラス
    * `getPrivileges()` メソッドを追加。
    * `setPrivileges(String[])` メソッドを追加。
