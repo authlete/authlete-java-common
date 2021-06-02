@@ -5,6 +5,10 @@ CHANGES
     * Added `getDynamicScopes()` method.
     * Added `setDynamicScopes(DynamicScope[])` method.
 
+- `BackchannelAuthenticationResponse` class
+    * Added `getDynamicScopes()` method.
+    * Added `setDynamicScopes(DynamicScope[])` method.
+
 - New classes
     * `DynamicScope`
 

@@ -474,7 +474,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  *   <tr/>
  *   <tr>
  *     <td>{@code scope}</td>
- *     <td>{@link #getScopes()}</td>
+ *     <td>{@link #getScopes()}, {@link #getDynamicScopes()}</td>
  *     <td>
  *       <p>
  *         A backchannel authentication request always contains a list of
@@ -493,6 +493,12 @@ import com.authlete.common.types.UserIdentificationHintType;
  *         >5.4. Requesting Claims using Scope Values</a> of OpenID Connect
  *         Core 1.0. That is, they are expanded into a list of claim names.
  *         The {@link #getClaimNames()} method returns the expanded result.
+ *       </p>
+ *       <p>
+ *         The {@code scope} request parameter may contain dynamic scopes.
+ *         They are obtained through {@link #getDynamicScopes()} method.
+ *         See the description of the {@link DynamicScope} class for details
+ *         about dynamic scopes.
  *       </p>
  *     </td>
  *   </tr>
@@ -591,7 +597,7 @@ import com.authlete.common.types.UserIdentificationHintType;
  */
 public class BackchannelAuthenticationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 8L;
+    private static final long serialVersionUID = 9L;
 
 
     /**
@@ -649,6 +655,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     private ClientAuthMethod clientAuthMethod;
     private DeliveryMode deliveryMode;
     private Scope[] scopes;
+    private DynamicScope[] dynamicScopes;
     private String[] claimNames;
     private String clientNotificationToken;
     private String[] acrs;
@@ -1001,6 +1008,47 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     public BackchannelAuthenticationResponse setScopes(Scope[] scopes)
     {
         this.scopes = scopes;
+
+        return this;
+    }
+
+
+    /**
+     * Get the dynamic scopes which the client application requested
+     * by the {@code scope} request parameter. See the description of
+     * {@link DynamicScope} for details.
+     *
+     * @return
+     *         The list of dynamic scopes.
+     *
+     * @since 2.92
+     *
+     * @see DynamicScope
+     */
+    public DynamicScope[] getDynamicScopes()
+    {
+        return dynamicScopes;
+    }
+
+
+    /**
+     * Set the dynamic scopes which the client application requested
+     * by the {@code scope} request parameter. See the description of
+     * {@link DynamicScope} for details.
+     *
+     * @param dynamicScopes
+     *         The list of dynamic scopes.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.92
+     *
+     * @see DynamicScope
+     */
+    public BackchannelAuthenticationResponse setDynamicScopes(DynamicScope[] dynamicScopes)
+    {
+        this.dynamicScopes = dynamicScopes;
 
         return this;
     }
