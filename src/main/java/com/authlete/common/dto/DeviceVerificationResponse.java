@@ -73,7 +73,7 @@ import java.net.URI;
  */
 public class DeviceVerificationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -121,6 +121,7 @@ public class DeviceVerificationResponse extends ApiResponse
     private boolean clientIdAliasUsed;
     private String clientName;
     private Scope[] scopes;
+    private DynamicScope[] dynamicScopes;
     private String[] claimNames;
     private String[] acrs;
     private long expiresAt;
@@ -345,6 +346,47 @@ public class DeviceVerificationResponse extends ApiResponse
     public DeviceVerificationResponse setScopes(Scope[] scopes)
     {
         this.scopes = scopes;
+
+        return this;
+    }
+
+
+    /**
+     * Get the dynamic scopes which the client application requested
+     * by the {@code scope} request parameter. See the description of
+     * {@link DynamicScope} for details.
+     *
+     * @return
+     *         The list of dynamic scopes.
+     *
+     * @since 2.92
+     *
+     * @see DynamicScope
+     */
+    public DynamicScope[] getDynamicScopes()
+    {
+        return dynamicScopes;
+    }
+
+
+    /**
+     * Set the dynamic scopes which the client application requested
+     * by the {@code scope} request parameter. See the description of
+     * {@link DynamicScope} for details.
+     *
+     * @param dynamicScopes
+     *         The list of dynamic scopes.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.92
+     *
+     * @see DynamicScope
+     */
+    public DeviceVerificationResponse setDynamicScopes(DynamicScope[] dynamicScopes)
+    {
+        this.dynamicScopes = dynamicScopes;
 
         return this;
     }

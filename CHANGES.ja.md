@@ -13,6 +13,10 @@
     * `getDynamicScopes()` メソッドを追加。
     * `setDynamicScopes(DynamicScope[])` メソッドを追加。
 
+- `DeviceVerificationResponse` クラス
+    * `getDynamicScopes()` メソッドを追加。
+    * `setDynamicScopes(DynamicScope[])` メソッドを追加。
+
 - 新しいクラス
     * `DynamicScope`
 

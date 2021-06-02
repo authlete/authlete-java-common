@@ -13,6 +13,10 @@ CHANGES
     * Added `getDynamicScopes()` method.
     * Added `setDynamicScopes(DynamicScope[])` method.
 
+- `DeviceVerificationResponse` class
+    * Added `getDynamicScopes()` method.
+    * Added `setDynamicScopes(DynamicScope[])` method.
+
 - New classes
     * `DynamicScope`
 
