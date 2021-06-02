@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- New classes
+    * `DynamicScope`
+
+
 2.91 (2021-05-18)
 -----------------
 
