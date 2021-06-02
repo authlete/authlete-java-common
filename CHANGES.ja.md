@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.92 (2021 年 06 月 02 日)
+--------------------------
+
 - `AuthorizationResponse` クラス
     * `getDynamicScopes()` メソッドを追加。
     * `setDynamicScopes(DynamicScope[])` メソッドを追加。

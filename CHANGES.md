@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.92 (2021-06-02)
+-----------------
+
 - `AuthorizationResponse` class
     * Added `getDynamicScopes()` method.
     * Added `setDynamicScopes(DynamicScope[])` method.
