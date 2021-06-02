@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `AuthorizationResponse` クラス
+    * `getDynamicScopes()` メソッドを追加。
+    * `setDynamicScopes(DynamicScope[])` メソッドを追加。
+
 - 新しいクラス
     * `DynamicScope`
 

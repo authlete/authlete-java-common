@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2019 Authlete, Inc.
+ * Copyright (C) 2014-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -342,7 +342,7 @@ import com.authlete.common.util.Utils;
  *     {@code reason=}{@link AuthorizationFailRequest.Reason#CONSENT_REQUIRED
  *     CONSENT_REQUIRED} and use the response from the API to generate a
  *     response to the client application. Otherwise, go to the next step
- *     ([RESOURCES]).
+ *     ([DYNAMIC SCOPES]).
  *     </p>
  *     <br/>
  *     <p>
@@ -353,6 +353,29 @@ import com.authlete.common.util.Utils;
  *     for details). In other words, the APIs of the shared Authlete server
  *     are disabled intentionally (in order to prevent garbage data from
  *     being accumulated) and they return {@code 403 Forbidden}.
+ *     </p>
+ *     <br/>
+ *   <li>
+ *     <p><b>[DYNAMIC SCOPES]</b>
+ *     Get the dynamic scopes by {@link #getDynamicScopes()}. If the array
+ *     contains a scope which has not been granted to the client application
+ *     by the end-user in the past, call Authlete's
+ *     {@code /auth/authorization/fail} API with
+ *     {@code reason=}{@link AuthorizationFailRequest.Reason#CONSENT_REQUIRED
+ *     CONSENT_REQUIRED} and use the response from the API to generate a
+ *     response to the client application. Otherwise, go to the next step
+ *     ([RESOURCES]).
+ *     </p>
+ *     <br/>
+ *     <p>
+ *     Note that Authlete provides APIs to manage records of granted scopes
+ *     ({@code /api/client/granted_scopes/*} APIs) but dynamic scopes are
+ *     not remembered as granted scopes.
+ *     </p>
+ *     <br/>
+ *     <p>
+ *     See the description of the {@link DynamicScope} class for details about
+ *     dynamic scopes.
  *     </p>
  *     <br/>
  *   <li>
@@ -701,6 +724,15 @@ import com.authlete.common.util.Utils;
  *     <br/>
  *
  *   <li>
+ *     <p><b>[DYNAMIC SCOPES]</b>
+ *       The authorization request may include dynamic scopes. The list of
+ *       recognized dynamic scopes are accessible by {@link #getDynamicScopes()}
+ *       method. See the description of the {@link DynamicScope} class for
+ *       details about dynamic scopes.
+ *     </p>
+ *     <br/>
+ *
+ *   <li>
  *     <p><b>[AUTHORIZATION DETAILS]</b>
  *       The authorization server implementation should show the end-user
  *       "authorization details" if the request includes it.
@@ -906,7 +938,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 14L;
+    private static final long serialVersionUID = 15L;
 
 
     /**
@@ -982,6 +1014,7 @@ public class AuthorizationResponse extends ApiResponse
     private Display display;
     private int maxAge;
     private Scope[] scopes;
+    private DynamicScope[] dynamicScopes;
     private String[] uiLocales;
     private String[] claimsLocales;
     private String[] claims;
@@ -1172,6 +1205,42 @@ public class AuthorizationResponse extends ApiResponse
     public void setScopes(Scope[] scopes)
     {
         this.scopes = scopes;
+    }
+
+
+    /**
+     * Get the dynamic scopes which the client application requested
+     * by the {@code scope} request parameter. See the description of
+     * {@link DynamicScope} for details.
+     *
+     * @return
+     *         The list of dynamic scopes.
+     *
+     * @since 2.92
+     *
+     * @see DynamicScope
+     */
+    public DynamicScope[] getDynamicScopes()
+    {
+        return dynamicScopes;
+    }
+
+
+    /**
+     * Set the dynamic scopes which the client application requested
+     * by the {@code scope} request parameter. See the description of
+     * {@link DynamicScope} for details.
+     *
+     * @param dynamicScopes
+     *         The list of dynamic scopes.
+     *
+     * @since 2.92
+     *
+     * @see DynamicScope
+     */
+    public void setDynamicScopes(DynamicScope[] dynamicScopes)
+    {
+        this.dynamicScopes = dynamicScopes;
     }
 
 
