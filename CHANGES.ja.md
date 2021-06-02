@@ -9,6 +9,10 @@
     * `getDynamicScopes()` メソッドを追加。
     * `setDynamicScopes(DynamicScope[])` メソッドを追加。
 
+- `DeviceAuthorizationResponse` クラス
+    * `getDynamicScopes()` メソッドを追加。
+    * `setDynamicScopes(DynamicScope[])` メソッドを追加。
+
 - 新しいクラス
     * `DynamicScope`
 

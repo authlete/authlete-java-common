@@ -169,7 +169,7 @@ import com.authlete.common.types.ClientAuthMethod;
  */
 public class DeviceAuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -221,6 +221,7 @@ public class DeviceAuthorizationResponse extends ApiResponse
     private String clientName;
     private ClientAuthMethod clientAuthMethod;
     private Scope[] scopes;
+    private DynamicScope[] dynamicScopes;
     private String[] claimNames;
     private String[] acrs;
     private String deviceCode;
@@ -531,6 +532,47 @@ public class DeviceAuthorizationResponse extends ApiResponse
     public DeviceAuthorizationResponse setScopes(Scope[] scopes)
     {
         this.scopes = scopes;
+
+        return this;
+    }
+
+
+    /**
+     * Get the dynamic scopes which the client application requested
+     * by the {@code scope} request parameter. See the description of
+     * {@link DynamicScope} for details.
+     *
+     * @return
+     *         The list of dynamic scopes.
+     *
+     * @since 2.92
+     *
+     * @see DynamicScope
+     */
+    public DynamicScope[] getDynamicScopes()
+    {
+        return dynamicScopes;
+    }
+
+
+    /**
+     * Set the dynamic scopes which the client application requested
+     * by the {@code scope} request parameter. See the description of
+     * {@link DynamicScope} for details.
+     *
+     * @param dynamicScopes
+     *         The list of dynamic scopes.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.92
+     *
+     * @see DynamicScope
+     */
+    public DeviceAuthorizationResponse setDynamicScopes(DynamicScope[] dynamicScopes)
+    {
+        this.dynamicScopes = dynamicScopes;
 
         return this;
     }
