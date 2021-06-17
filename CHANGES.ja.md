@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.93 (2021 年 06 月 18 日)
+--------------------------
+
 - `Client` クラス
     * `getCustomMetadata()` メソッドを追加。
     * `setCustomMetadata(String)` メソッドを追加。
