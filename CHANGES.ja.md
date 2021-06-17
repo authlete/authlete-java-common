@@ -1,6 +1,15 @@
 変更点
 ======
 
+- `Client` クラス
+    * `getCustomMetadata()` メソッドを追加。
+    * `setCustomMetadata(String)` メソッドを追加。
+
+- `Service` クラス
+    * `getSupportedCustomClientMetadata()` メソッドを追加。
+    * `setSupportedCustomClientMetadata(String[])` メソッドを追加。
+
+
 2.92 (2021 年 06 月 02 日)
 --------------------------
 

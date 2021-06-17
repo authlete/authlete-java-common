@@ -51,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 21L;
+    private static final long serialVersionUID = 22L;
 
 
     /*
@@ -270,6 +270,7 @@ public class Client implements Serializable
     private boolean parRequired;
     private boolean requestObjectRequired;
     private Pair[] attributes;
+    private String customMetadata;
 
 
     /**
@@ -3050,6 +3051,133 @@ public class Client implements Serializable
 
         Pair[] array = new Pair[size];
         this.attributes = list.toArray(array);
+
+        return this;
+    }
+
+
+    /**
+     * Get the custom client metadata in JSON format.
+     *
+     * <p>
+     * Standard specifications define client metadata as necessary.
+     * The following are such examples.
+     * </p>
+     *
+     * <ol>
+     * <li><a href="https://openid.net/specs/openid-connect-registration-1_0.html"
+     *     >OpenID Connect Dynamic Client Registration 1.0</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc7591.html"
+     *     >RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc8705.html"
+     *     >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
+     * <li><a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
+     *     >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-jwsreq/"
+     *     >The OAuth 2.0 Authorization Framework: JWT Secured Authorization Request (JAR)</a>
+     * <li><a href="https://openid.net/specs/openid-financial-api-jarm.html"
+     *     >Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-par/"
+     *     >OAuth 2.0 Pushed Authorization Requests (PAR)</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
+     *     >OAuth 2.0 Rich Authorization Requests (RAR)</a>
+     * </ol>
+     *
+     * <p>
+     * Standard client metadata included in Client Registration Request and
+     * Client Update Request (cf. <a href=
+     * "https://openid.net/specs/openid-connect-registration-1_0.html">OIDC
+     * DynReg</a>, <a href="https://www.rfc-editor.org/rfc/rfc7591.html">RFC
+     * 7591</a> and <a href=""https://www.rfc-editor.org/rfc/rfc7592.html"
+     * >RFC 7592</a>) are, if supported by Authlete, set to corresponding
+     * properties of the client application. For example, the value of
+     * the {@code client_name} client metadata in Client Registration/Update
+     * Request is set to the {@code clientName} property. On the other hand,
+     * unrecognized client metadata are discarded.
+     * </p>
+     *
+     * <p>
+     * By listing up custom client metadata in advance by using the
+     * {@code supportedCustomClientMetadata} property of {@link Service},
+     * Authlete can recognize them and stores their values into the database.
+     * The stored custom client metadata values can be referenced by this
+     * method.
+     * </p>
+     *
+     * @return
+     *         Custom client metadata in JSON format.
+     *
+     * @see Service#getSupportedCustomClientMetadata()
+     *
+     * @since 2.93
+     */
+    public String getCustomMetadata()
+    {
+        return customMetadata;
+    }
+
+
+    /**
+     * Set the custom client metadata in JSON format.
+     *
+     * <p>
+     * Standard specifications define client metadata as necessary.
+     * The following are such examples.
+     * </p>
+     *
+     * <ol>
+     * <li><a href="https://openid.net/specs/openid-connect-registration-1_0.html"
+     *     >OpenID Connect Dynamic Client Registration 1.0</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc7591.html"
+     *     >RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc8705.html"
+     *     >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
+     * <li><a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
+     *     >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-jwsreq/"
+     *     >The OAuth 2.0 Authorization Framework: JWT Secured Authorization Request (JAR)</a>
+     * <li><a href="https://openid.net/specs/openid-financial-api-jarm.html"
+     *     >Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-par/"
+     *     >OAuth 2.0 Pushed Authorization Requests (PAR)</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
+     *     >OAuth 2.0 Rich Authorization Requests (RAR)</a>
+     * </ol>
+     *
+     * <p>
+     * Standard client metadata included in Client Registration Request and
+     * Client Update Request (cf. <a href=
+     * "https://openid.net/specs/openid-connect-registration-1_0.html">OIDC
+     * DynReg</a>, <a href="https://www.rfc-editor.org/rfc/rfc7591.html">RFC
+     * 7591</a> and <a href=""https://www.rfc-editor.org/rfc/rfc7592.html"
+     * >RFC 7592</a>) are, if supported by Authlete, set to corresponding
+     * properties of the client application. For example, the value of
+     * the {@code client_name} client metadata in Client Registration/Update
+     * Request is set to the {@code clientName} property. On the other hand,
+     * unrecognized client metadata are discarded.
+     * </p>
+     *
+     * <p>
+     * By listing up custom client metadata in advance by using the
+     * {@code supportedCustomClientMetadata} property of {@link Service},
+     * Authlete can recognize them and stores their values into the database.
+     * The stored custom client metadata values can be referenced by
+     * {@link #getCustomMetadata()}.
+     * </p>
+     *
+     * @param metadata
+     *         Custom client metadata in JSON format.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see Service#getSupportedCustomClientMetadata()
+     *
+     * @since 2.93
+     */
+    public Client setCustomMetadata(String metadata)
+    {
+        this.customMetadata = metadata;
 
         return this;
     }

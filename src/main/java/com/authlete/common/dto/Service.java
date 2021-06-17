@@ -191,7 +191,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 42L;
+    private static final long serialVersionUID = 43L;
 
 
     /*
@@ -689,6 +689,14 @@ public class Service implements Serializable
      * @since 2.87
      */
     private Pair[] attributes;
+
+
+    /**
+     * Custom client metadata supported by this service.
+     *
+     * @since 2.93
+     */
+    private String[] supportedCustomClientMetadata;
 
 
     /**
@@ -5389,6 +5397,135 @@ public class Service implements Serializable
 
         Pair[] array = new Pair[size];
         this.attributes = list.toArray(array);
+
+        return this;
+    }
+
+
+    /**
+     * Get custom client metadata supported by this service.
+     *
+     * <p>
+     * Standard specifications define client metadata as necessary.
+     * The following are such examples.
+     * </p>
+     *
+     * <ol>
+     * <li><a href="https://openid.net/specs/openid-connect-registration-1_0.html"
+     *     >OpenID Connect Dynamic Client Registration 1.0</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc7591.html"
+     *     >RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc8705.html"
+     *     >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
+     * <li><a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
+     *     >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-jwsreq/"
+     *     >The OAuth 2.0 Authorization Framework: JWT Secured Authorization Request (JAR)</a>
+     * <li><a href="https://openid.net/specs/openid-financial-api-jarm.html"
+     *     >Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-par/"
+     *     >OAuth 2.0 Pushed Authorization Requests (PAR)</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
+     *     >OAuth 2.0 Rich Authorization Requests (RAR)</a>
+     * </ol>
+     *
+     * <p>
+     * Standard client metadata included in Client Registration Request and
+     * Client Update Request (cf. <a href=
+     * "https://openid.net/specs/openid-connect-registration-1_0.html">OIDC
+     * DynReg</a>, <a href="https://www.rfc-editor.org/rfc/rfc7591.html">RFC
+     * 7591</a> and <a href=""https://www.rfc-editor.org/rfc/rfc7592.html"
+     * >RFC 7592</a>) are, if supported by Authlete, stored into Authlete
+     * database. On the other hand, unrecognized client metadata are discarded.
+     * </p>
+     *
+     * <p>
+     * By listing up custom client metadata in advance by using this property
+     * ({@code Service.supportedCustomClientMetadata}), Authlete can recognize
+     * them and stores their values into the database. The stored custom client
+     * metadata values can be referenced by {@link Client#getCustomMetadata()}.
+     * </p>
+     *
+     * <p>
+     * This property affects the behavior of {@code /api/client/registration}
+     * API of Authlete 2.2 onwards.
+     * </p>
+     *
+     * @return
+     *         Custom client metadata supported by this service.
+     *
+     * @see Client#getCustomMetadata()
+     *
+     * @since 2.93
+     */
+    public String[] getSupportedCustomClientMetadata()
+    {
+        return supportedCustomClientMetadata;
+    }
+
+
+    /**
+     * Set custom client metadata supported by this service.
+     *
+     * <p>
+     * Standard specifications define client metadata as necessary.
+     * The following are such examples.
+     * </p>
+     *
+     * <ol>
+     * <li><a href="https://openid.net/specs/openid-connect-registration-1_0.html"
+     *     >OpenID Connect Dynamic Client Registration 1.0</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc7591.html"
+     *     >RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc8705.html"
+     *     >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
+     * <li><a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
+     *     >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-jwsreq/"
+     *     >The OAuth 2.0 Authorization Framework: JWT Secured Authorization Request (JAR)</a>
+     * <li><a href="https://openid.net/specs/openid-financial-api-jarm.html"
+     *     >Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-par/"
+     *     >OAuth 2.0 Pushed Authorization Requests (PAR)</a>
+     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
+     *     >OAuth 2.0 Rich Authorization Requests (RAR)</a>
+     * </ol>
+     *
+     * <p>
+     * Standard client metadata included in Client Registration Request and
+     * Client Update Request (cf. <a href=
+     * "https://openid.net/specs/openid-connect-registration-1_0.html">OIDC
+     * DynReg</a>, <a href="https://www.rfc-editor.org/rfc/rfc7591.html">RFC
+     * 7591</a> and <a href=""https://www.rfc-editor.org/rfc/rfc7592.html"
+     * >RFC 7592</a>) are, if supported by Authlete, stored into Authlete
+     * database. On the other hand, unrecognized client metadata are discarded.
+     * </p>
+     *
+     * <p>
+     * By listing up custom client metadata in advance by using this property
+     * ({@code Service.supportedCustomClientMetadata}), Authlete can recognize
+     * them and stores their values into the database. The stored custom client
+     * metadata values can be referenced by {@link Client#getCustomMetadata()}.
+     * </p>
+     *
+     * <p>
+     * This property affects the behavior of {@code /api/client/registration}
+     * API of Authlete 2.2 onwards.
+     * </p>
+     *
+     * @param metadata
+     *         Custom client metadata supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see Client#getCustomMetadata()
+     *
+     * @since 2.93
+     */
+    public Service setSupportedCustomClientMetadata(String[] metadata)
+    {
+        this.supportedCustomClientMetadata = metadata;
 
         return this;
     }

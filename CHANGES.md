@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+- `Client` class
+    * Added `getCustomMetadata()` method.
+    * Added `setCustomMetadata(String)` method.
+
+- `Service` class
+    * Added `getSupportedCustomClientMetadata()` method.
+    * Added `setSupportedCustomClientMetadata(String[])` method.
+
+
 2.92 (2021-06-02)
 -----------------
 
