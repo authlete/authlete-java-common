@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.94 (2021-06-19)
+-----------------
+
 - New classes
     * `FapiUtils`
 
