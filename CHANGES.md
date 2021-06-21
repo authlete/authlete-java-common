@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.95 (2021-06-22)
+-----------------
+
 - `Service` class
     * Added `isTokenExpirationLinked()` method.
     * Added `setTokenExpirationLinked(boolean)` method.
