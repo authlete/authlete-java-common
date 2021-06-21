@@ -191,7 +191,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 43L;
+    private static final long serialVersionUID = 44L;
 
 
     /*
@@ -697,6 +697,15 @@ public class Service implements Serializable
      * @since 2.93
      */
     private String[] supportedCustomClientMetadata;
+
+
+    /**
+     * The flag indicating whether the expiration date of an access token
+     * never exceeds that of the corresponding refresh token.
+     *
+     * @since 2.95
+     */
+    private boolean tokenExpirationLinked;
 
 
     /**
@@ -5526,6 +5535,104 @@ public class Service implements Serializable
     public Service setSupportedCustomClientMetadata(String[] metadata)
     {
         this.supportedCustomClientMetadata = metadata;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether the expiration date of an access token
+     * never exceeds that of the corresponding refresh token.
+     *
+     * <p>
+     * When a new access token is issued by a refresh token request (= a token
+     * request with {@code grant_type=refresh_token}), the expiration date of
+     * the access token may exceed the expiration date of the corresponding
+     * refresh token. This behavior itself is not wrong and may happen when
+     * {@link #isRefreshTokenKept()} returns {@code true} and/or when
+     * {@link #isRefreshTokenDurationKept()} returns {@code true}.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code true}, the expiration date of an access token
+     * never exceeds that of the corresponding refresh token regardless of
+     * the calculated duration based on other settings such as
+     * {@link Service#getAccessTokenDuration()},
+     * {@link ClientExtension#getAccessTokenDuration()} and the
+     * {@code access_token.duration} attribute of scopes.
+     * </p>
+     *
+     * <p>
+     * It is technically possible to set a value which is bigger than the
+     * duration of refresh tokens as the duration of access tokens although
+     * it is strange. In the case, the duration of an access token becomes
+     * longer than the duration of the refresh token which is issued together
+     * with the access token. Even if the duration values are configured so,
+     * if this flag is {@code true}, the expiration date of the access token
+     * does not exceed that of the refresh token. That is, the duration of
+     * the access token will be shortened, and as a result, the access token
+     * and the refresh token will have the same expiration date.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the service assures that the expiration date
+     *         of an access token never exceeds that of the corresponding
+     *         refresh token.
+     *
+     * @since 2.95
+     */
+    public boolean isTokenExpirationLinked()
+    {
+        return tokenExpirationLinked;
+    }
+
+
+    /**
+     * Set the flag indicating whether the expiration date of an access token
+     * never exceeds that of the corresponding refresh token.
+     *
+     * <p>
+     * When a new access token is issued by a refresh token request (= a token
+     * request with {@code grant_type=refresh_token}), the expiration date of
+     * the access token may exceed the expiration date of the corresponding
+     * refresh token. This behavior itself is not wrong and may happen when
+     * {@link #isRefreshTokenKept()} returns {@code true} and/or when
+     * {@link #isRefreshTokenDurationKept()} returns {@code true}.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code true}, the expiration date of an access token
+     * never exceeds that of the corresponding refresh token regardless of
+     * the calculated duration based on other settings such as
+     * {@link Service#getAccessTokenDuration()},
+     * {@link ClientExtension#getAccessTokenDuration()} and the
+     * {@code access_token.duration} attribute of scopes.
+     * </p>
+     *
+     * <p>
+     * It is technically possible to set a value which is bigger than the
+     * duration of refresh tokens as the duration of access tokens although
+     * it is strange. In the case, the duration of an access token becomes
+     * longer than the duration of the refresh token which is issued together
+     * with the access token. Even if the duration values are configured so,
+     * if this flag is {@code true}, the expiration date of the access token
+     * does not exceed that of the refresh token. That is, the duration of
+     * the access token will be shortened, and as a result, the access token
+     * and the refresh token will have the same expiration date.
+     * </p>
+     *
+     * @param linked
+     *         {@code true} to assure that the expiration date of an access
+     *         token never exceeds that of the corresponding refresh token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.95
+     */
+    public Service setTokenExpirationLinked(boolean linked)
+    {
+        this.tokenExpirationLinked = linked;
 
         return this;
     }

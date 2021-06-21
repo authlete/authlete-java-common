@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isTokenExpirationLinked()` メソッドを追加。
+    * `setTokenExpirationLinked(boolean)` メソッドを追加。
+
+
 2.94 (2021 年 06 月 19 日)
 --------------------------
 
