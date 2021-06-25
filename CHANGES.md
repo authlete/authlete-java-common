@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+2.96 (2021-06-26)
+-----------------
+
 - `Client` class
     * Added `isFrontChannelRequestObjectEncryptionRequired()` method.
     * Added `setFrontChannelRequestObjectEncryptionRequired(boolean)` method.

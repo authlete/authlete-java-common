@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.96 (2021 年 06 月 26 日)
+--------------------------
+
 - `Client` クラス
     * `isFrontChannelRequestObjectEncryptionRequired()` メソッドを追加。
     * `setFrontChannelRequestObjectEncryptionRequired(boolean)` メソッドを追加。
