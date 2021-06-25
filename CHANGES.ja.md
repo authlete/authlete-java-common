@@ -1,6 +1,23 @@
 変更点
 ======
 
+- `Client` クラス
+    * `isFrontChannelRequestObjectEncryptionRequired()` メソッドを追加。
+    * `setFrontChannelRequestObjectEncryptionRequired(boolean)` メソッドを追加。
+    * `isRequestObjectEncryptionAlgMatchRequired()` メソッドを追加。
+    * `setRequestObjectEncryptionAlgMatchRequired(boolean)` メソッドを追加。
+    * `isRequestObjectEncryptionEncMatchRequired()` メソッドを追加。
+    * `setRequestObjectEncryptionEncMatchRequired(boolean)` メソッドを追加。
+
+- `Service` クラス
+    * `isFrontChannelRequestObjectEncryptionRequired()` メソッドを追加。
+    * `setFrontChannelRequestObjectEncryptionRequired(boolean)` メソッドを追加。
+    * `isRequestObjectEncryptionAlgMatchRequired()` メソッドを追加。
+    * `setRequestObjectEncryptionAlgMatchRequired(boolean)` メソッドを追加。
+    * `isRequestObjectEncryptionEncMatchRequired()` メソッドを追加。
+    * `setRequestObjectEncryptionEncMatchRequired(boolean)` メソッドを追加。
+
+
 2.95 (2021 年 06 月 22 日)
 --------------------------
 

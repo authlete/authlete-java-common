@@ -191,7 +191,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 44L;
+    private static final long serialVersionUID = 45L;
 
 
     /*
@@ -706,6 +706,35 @@ public class Service implements Serializable
      * @since 2.95
      */
     private boolean tokenExpirationLinked;
+
+
+    /**
+     * The flag indicating whether encryption of request object is required
+     * when the request object is passed through the front channel.
+     *
+     * @since 2.96
+     */
+    private boolean frontChannelRequestObjectEncryptionRequired;
+
+
+    /**
+     * The flag indicating whether the JWE {@code alg} of encrypted request
+     * object must match the value of the {@code request_object_encryption_alg}
+     * client metadata.
+     *
+     * @since 2.96
+     */
+    private boolean requestObjectEncryptionAlgMatchRequired;
+
+
+    /**
+     * The flag indicating whether the JWE {@code enc} of encrypted request
+     * object must match the value of the {@code request_object_encryption_enc}
+     * client metadata.
+     *
+     * @since 2.96
+     */
+    private boolean requestObjectEncryptionEncMatchRequired;
 
 
     /**
@@ -5633,6 +5662,333 @@ public class Service implements Serializable
     public Service setTokenExpirationLinked(boolean linked)
     {
         this.tokenExpirationLinked = linked;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether encryption of request object is required
+     * when the request object is passed through the front channel.
+     *
+     * <p>
+     * This flag does not affect the processing of request objects at the
+     * Pushed Authorization Request Endpoint, which is defined in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-par/">OAuth 2.0
+     * Pushed Authorization Requests</a>. Unecrypted request objects are
+     * accepted at the endpoint even if this flag is {@code true}.
+     * </p>
+     *
+     * <p>
+     * This flag does not indicate whether a request object is always required.
+     * There is a different flag, {@code requestObjectRequired}, for the purpose.
+     * See the description of {@link #isRequestObjectRequired()} for details.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is {@code false}, encryption of request object is
+     * required if the {@code Client.frontChannelRequestObjectEncryptionRequired}
+     * flag is {@code true}.
+     * </p>
+     *
+     * @return
+     *         {@code true} if encryption of request object is required when
+     *         the request object is passed through the front channel.
+     *
+     * @see #isRequestObjectRequired()
+     * @see Client#isFrontChannelRequestObjectEncryptionRequired()
+     *
+     * @since 2.96
+     */
+    public boolean isFrontChannelRequestObjectEncryptionRequired()
+    {
+        return frontChannelRequestObjectEncryptionRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether encryption of request object is required
+     * when the request object is passed through the front channel.
+     *
+     * <p>
+     * This flag does not affect the processing of request objects at the
+     * Pushed Authorization Request Endpoint, which is defined in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-par/">OAuth 2.0
+     * Pushed Authorization Requests</a>. Unecrypted request objects are
+     * accepted at the endpoint even if this flag is {@code true}.
+     * </p>
+     *
+     * <p>
+     * This flag does not indicate whether a request object is always required.
+     * There is a different flag, {@code requestObjectRequired}, for the purpose.
+     * See the description of {@link #isRequestObjectRequired()} for details.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is {@code false}, encryption of request object is
+     * required if the {@code Client.frontChannelRequestObjectEncryptionRequired}
+     * flag is {@code true}.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require that request objects passed through the
+     *         front channel be encrypted.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see #isRequestObjectRequired()
+     * @see Client#isFrontChannelRequestObjectEncryptionRequired()
+     *
+     * @since 2.96
+     */
+    public Service setFrontChannelRequestObjectEncryptionRequired(boolean required)
+    {
+        this.frontChannelRequestObjectEncryptionRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether the JWE {@code alg} of encrypted request
+     * object must match the {@code request_object_encryption_alg} client metadata
+     * of the client that has sent the request object.
+     *
+     * <p>
+     * The {@code request_object_encryption_alg} client metadata itself is defined
+     * in <a href="https://openid.net/specs/openid-connect-registration-1_0.html"
+     * >OpenID Connect Dynamic Client Registration 1.0</a> as follows.
+     * </p>
+     *
+     * <blockquote>
+     * <dl>
+     * <dt>{@code request_object_encryption_alg}</dt>
+     * <dd>
+     * <p>
+     * OPTIONAL. JWE [JWE] {@code alg} algorithm [JWA] the RP is declaring that
+     * it may use for encrypting Request Objects sent to the OP. This parameter
+     * SHOULD be included when symmetric encryption will be used, since this
+     * signals to the OP that a {@code client_secret} value needs to be returned
+     * from which the symmetric key will be derived, that might not otherwise be
+     * returned. The RP MAY still use other supported encryption algorithms or
+     * send unencrypted Request Objects, even when this parameter is present.
+     * If both signing and encryption are requested, the Request Object will be
+     * signed then encrypted, with the result being a Nested JWT, as defined in
+     * [JWT]. The default, if omitted, is that the RP is not declaring whether
+     * it might encrypt any Request Objects.
+     * </p>
+     * </dd>
+     * </dl>
+     * </blockquote>
+     *
+     * <p>
+     * The point here is <i>"The RP MAY still use other supported encryption
+     * algorithms or send unencrypted Request Objects, even when this parameter
+     * is present."</i>
+     * </p>
+     *
+     * <p>
+     * The {@link Client}'s property that represents the client metadata is
+     * {@code Client.requestEncryptionAlg}. See the description of
+     * {@link Client#getRequestEncryptionAlg()} for details.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is {@code false}, the match is required if the
+     * {@code Client.requestObjectEncryptionAlgMatchRequired} flag is {@code true}.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the JWE {@code alg} of encrypted request object
+     *         must match the {@code request_object_encryption_alg} client metadata.
+     *
+     * @see Client#getRequestEncryptionAlg()
+     * @see Client#isRequestObjectEncryptionAlgMatchRequired()
+     *
+     * @since 2.96
+     */
+    public boolean isRequestObjectEncryptionAlgMatchRequired()
+    {
+        return requestObjectEncryptionAlgMatchRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether the JWE {@code alg} of encrypted request
+     * object must match the {@code request_object_encryption_alg} client metadata
+     * of the client that has sent the request object.
+     *
+     * <p>
+     * The {@code request_object_encryption_alg} client metadata itself is defined
+     * in <a href="https://openid.net/specs/openid-connect-registration-1_0.html"
+     * >OpenID Connect Dynamic Client Registration 1.0</a> as follows.
+     * </p>
+     *
+     * <blockquote>
+     * <dl>
+     * <dt>{@code request_object_encryption_alg}</dt>
+     * <dd>
+     * <p>
+     * OPTIONAL. JWE [JWE] {@code alg} algorithm [JWA] the RP is declaring that
+     * it may use for encrypting Request Objects sent to the OP. This parameter
+     * SHOULD be included when symmetric encryption will be used, since this
+     * signals to the OP that a {@code client_secret} value needs to be returned
+     * from which the symmetric key will be derived, that might not otherwise be
+     * returned. The RP MAY still use other supported encryption algorithms or
+     * send unencrypted Request Objects, even when this parameter is present.
+     * If both signing and encryption are requested, the Request Object will be
+     * signed then encrypted, with the result being a Nested JWT, as defined in
+     * [JWT]. The default, if omitted, is that the RP is not declaring whether
+     * it might encrypt any Request Objects.
+     * </p>
+     * </dd>
+     * </dl>
+     * </blockquote>
+     *
+     * <p>
+     * The point here is <i>"The RP MAY still use other supported encryption
+     * algorithms or send unencrypted Request Objects, even when this parameter
+     * is present."</i>
+     * </p>
+     *
+     * <p>
+     * The {@link Client}'s property that represents the client metadata is
+     * {@code Client.requestEncryptionAlg}. See the description of
+     * {@link Client#getRequestEncryptionAlg()} for details.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is {@code false}, the match is required if the
+     * {@code Client.requestObjectEncryptionAlgMatchRequired} flag is {@code true}.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require that the JWE {@code alg} of encrypted
+     *         request object match the {@code request_object_encryption_alg}
+     *         client metadata.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see Client#getRequestEncryptionAlg()
+     * @see Client#isRequestObjectEncryptionAlgMatchRequired()
+     *
+     * @since 2.96
+     */
+    public Service setRequestObjectEncryptionAlgMatchRequired(boolean required)
+    {
+        this.requestObjectEncryptionAlgMatchRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether the JWE {@code enc} of encrypted request
+     * object must match the {@code request_object_encryption_enc} client metadata
+     * of the client that has sent the request object.
+     *
+     * <p>
+     * The {@code request_object_encryption_enc} client metadata itself is defined
+     * in <a href="https://openid.net/specs/openid-connect-registration-1_0.html"
+     * >OpenID Connect Dynamic Client Registration 1.0</a> as follows.
+     * </p>
+     *
+     * <blockquote>
+     * <dl>
+     * <dt>{@code request_object_encryption_enc}</dt>
+     * <dd>
+     * <p>
+     * OPTIONAL. JWE {@code enc} algorithm [JWA] the RP is declaring that it may
+     * use for encrypting Request Objects sent to the OP. If
+     * {@code request_object_encryption_alg} is specified, the default for this
+     * value is {@code A128CBC-HS256}. When {@code request_object_encryption_enc}
+     * is included, {@code request_object_encryption_alg} MUST also be provided.
+     * </p>
+     * </dd>
+     * </dl>
+     * </blockquote>
+     *
+     * <p>
+     * The {@link Client}'s property that represents the client metadata is
+     * {@code Client.requestEncryptionEnc}. See the description of
+     * {@link Client#getRequestEncryptionEnc()} for details.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is {@code false}, the match is required if the
+     * {@code Client.requestObjectEncryptionEncMatchRequired} flag is {@code true}.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the JWE {@code enc} of encrypted request object
+     *         must match the {@code request_object_encryption_enc} client metadata.
+     *
+     * @see Client#getRequestEncryptionEnc()
+     * @see Client#isRequestObjectEncryptionEncMatchRequired()
+     *
+     * @since 2.96
+     */
+    public boolean isRequestObjectEncryptionEncMatchRequired()
+    {
+        return requestObjectEncryptionEncMatchRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether the JWE {@code enc} of encrypted request
+     * object must match the {@code request_object_encryption_enc} client metadata
+     * of the client that has sent the request object.
+     *
+     * <p>
+     * The {@code request_object_encryption_enc} client metadata itself is defined
+     * in <a href="https://openid.net/specs/openid-connect-registration-1_0.html"
+     * >OpenID Connect Dynamic Client Registration 1.0</a> as follows.
+     * </p>
+     *
+     * <blockquote>
+     * <dl>
+     * <dt>{@code request_object_encryption_enc}</dt>
+     * <dd>
+     * <p>
+     * OPTIONAL. JWE {@code enc} algorithm [JWA] the RP is declaring that it may
+     * use for encrypting Request Objects sent to the OP. If
+     * {@code request_object_encryption_alg} is specified, the default for this
+     * value is {@code A128CBC-HS256}. When {@code request_object_encryption_enc}
+     * is included, {@code request_object_encryption_alg} MUST also be provided.
+     * </p>
+     * </dd>
+     * </dl>
+     * </blockquote>
+     *
+     * <p>
+     * The {@link Client}'s property that represents the client metadata is
+     * {@code Client.requestEncryptionEnc}. See the description of
+     * {@link Client#getRequestEncryptionEnc()} for details.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is {@code false}, the match is required if the
+     * {@code Client.requestObjectEncryptionEncMatchRequired} flag is {@code true}.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require that the JWE {@code enc} of encrypted
+     *         request object match the {@code request_object_encryption_enc}
+     *         client metadata.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see Client#getRequestEncryptionEnc()
+     * @see Client#isRequestObjectEncryptionEncMatchRequired()
+     *
+     * @since 2.96
+     */
+    public Service setRequestObjectEncryptionEncMatchRequired(boolean required)
+    {
+        this.requestObjectEncryptionEncMatchRequired = required;
 
         return this;
     }

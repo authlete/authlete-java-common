@@ -1,6 +1,23 @@
 CHANGES
 =======
 
+- `Client` class
+    * Added `isFrontChannelRequestObjectEncryptionRequired()` method.
+    * Added `setFrontChannelRequestObjectEncryptionRequired(boolean)` method.
+    * Added `isRequestObjectEncryptionAlgMatchRequired()` method.
+    * Added `setRequestObjectEncryptionAlgMatchRequired(boolean)` method.
+    * Added `isRequestObjectEncryptionEncMatchRequired()` method.
+    * Added `setRequestObjectEncryptionEncMatchRequired(boolean)` method.
+
+- `Service` class
+    * Added `isFrontChannelRequestObjectEncryptionRequired()` method.
+    * Added `setFrontChannelRequestObjectEncryptionRequired(boolean)` method.
+    * Added `isRequestObjectEncryptionAlgMatchRequired()` method.
+    * Added `setRequestObjectEncryptionAlgMatchRequired(boolean)` method.
+    * Added `isRequestObjectEncryptionEncMatchRequired()` method.
+    * Added `setRequestObjectEncryptionEncMatchRequired(boolean)` method.
+
+
 2.95 (2021-06-22)
 -----------------
 
