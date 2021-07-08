@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2020 Authlete, Inc.
+ * Copyright (C) 2017-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,6 +63,9 @@ import com.authlete.common.dto.DeviceCompleteResponse;
 import com.authlete.common.dto.DeviceVerificationRequest;
 import com.authlete.common.dto.DeviceVerificationResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
+import com.authlete.common.dto.HskCreateRequest;
+import com.authlete.common.dto.HskListResponse;
+import com.authlete.common.dto.HskResponse;
 import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
 import com.authlete.common.dto.JoseVerifyRequest;
@@ -165,6 +168,10 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String DEVICE_COMPLETE_API_PATH               = "/api/device/complete";
     private static final String DEVICE_VERIFICATION_API_PATH           = "/api/device/verification";
     private static final String PUSHED_AUTH_REQ_API_PATH               = "/api/pushed_auth_req";
+    private static final String HSK_CREATE_API_PATH                    = "/api/hsk/create";
+    private static final String HSK_DELETE_API_PATH                    = "/api/hsk/delete/%s";
+    private static final String HSK_GET_API_PATH                       = "/api/hsk/get/%s";
+    private static final String HSK_GET_LIST_API_PATH                  = "/api/hsk/get/list";
 
 
     private final String mBaseUrl;
@@ -1519,5 +1526,41 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 PUSHED_AUTH_REQ_API_PATH, request,
                 PushedAuthReqResponse.class);
+    }
+
+
+    @Override
+    public HskResponse hskCreate(HskCreateRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                HSK_CREATE_API_PATH, request,
+                HskResponse.class);
+    }
+
+
+    @Override
+    public HskResponse hskDelete(String handle) throws AuthleteApiException
+    {
+        return callServiceGetApi(
+                String.format(HSK_DELETE_API_PATH, handle),
+                HskResponse.class);
+    }
+
+
+    @Override
+    public HskResponse hskGet(String handle) throws AuthleteApiException
+    {
+        return callServiceGetApi(
+                String.format(HSK_GET_API_PATH, handle),
+                HskResponse.class);
+    }
+
+
+    @Override
+    public HskListResponse hskGetList() throws AuthleteApiException
+    {
+        return callServiceGetApi(
+                HSK_GET_LIST_API_PATH,
+                HskListResponse.class);
     }
 }

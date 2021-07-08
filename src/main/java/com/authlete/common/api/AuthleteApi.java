@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2020 Authlete, Inc.
+ * Copyright (C) 2014-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,6 +46,9 @@ import com.authlete.common.dto.DeviceCompleteResponse;
 import com.authlete.common.dto.DeviceVerificationRequest;
 import com.authlete.common.dto.DeviceVerificationResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
+import com.authlete.common.dto.HskCreateRequest;
+import com.authlete.common.dto.HskListResponse;
+import com.authlete.common.dto.HskResponse;
 import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
 import com.authlete.common.dto.JoseVerifyRequest;
@@ -165,6 +168,7 @@ public interface AuthleteApi
      *         Response from the API.
      */
     TokenFailResponse tokenFail(TokenFailRequest request) throws AuthleteApiException;
+
 
     /**
      * Call Authlete's {@code /auth/token/issue} API.
@@ -1443,4 +1447,57 @@ public interface AuthleteApi
      */
     PushedAuthReqResponse pushAuthorizationRequest(
             PushedAuthReqRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/hsk/create} API.
+     *
+     * @param request
+     *            Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.97
+     */
+    HskResponse hskCreate(HskCreateRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's <code>/api/hsk/delete/{handle}</code> API.
+     *
+     * @param handle
+     *            The handle for the target record.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.97
+     */
+    HskResponse hskDelete(String handle) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's <code>/api/hsk/get/{handle}</code> API.
+     *
+     * @param handle
+     *            The handle for the target record.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.97
+     */
+    HskResponse hskGet(String handle) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/hsk/get/list} API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 2.97
+     */
+    HskListResponse hskGetList() throws AuthleteApiException;
 }

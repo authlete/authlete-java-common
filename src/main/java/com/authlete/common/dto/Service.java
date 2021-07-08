@@ -191,7 +191,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 45L;
+    private static final long serialVersionUID = 46L;
 
 
     /*
@@ -735,6 +735,23 @@ public class Service implements Serializable
      * @since 2.96
      */
     private boolean requestObjectEncryptionEncMatchRequired;
+
+
+    /**
+     * The flag indicating whether HSM (Hardware Security Module) support is
+     * enabled for this service.
+     *
+     * @since 2.97
+     */
+    private boolean hsmEnabled;
+
+
+    /**
+     * Hardware-secured keys. Output only.
+     *
+     * @since 2.97
+     */
+    private Hsk[] hsks;
 
 
     /**
@@ -5989,6 +6006,108 @@ public class Service implements Serializable
     public Service setRequestObjectEncryptionEncMatchRequired(boolean required)
     {
         this.requestObjectEncryptionEncMatchRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether HSM (Hardware Security Module) support
+     * is enabled for this service.
+     *
+     * <p>
+     * When this flag is false, keys managed in HSMs are not used even if they
+     * exist. In addition, {@code /api/hsk/*} APIs reject all requests.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is true, HSM-related features do not work if the
+     * configuration of the Authlete server you are using does not support HSM.
+     * </p>
+     *
+     * @return
+     *         {@code true} if HSM support is enabled for this service.
+     *
+     * @since 2.97
+     */
+    public boolean isHsmEnabled()
+    {
+        return hsmEnabled;
+    }
+
+
+    /**
+     * Set the flag indicating whether HSM (Hardware Security Module) support
+     * is enabled for this service.
+     *
+     * <p>
+     * When this flag is false, keys managed in HSMs are not used even if they
+     * exist. In addition, {@code /api/hsk/*} APIs reject all requests.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is true, HSM-related features do not work if the
+     * configuration of the Authlete server you are using does not support HSM.
+     * </p>
+     *
+     * @param enabled
+     *         {@code true} to enable HSM support for this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.97
+     */
+    public Service setHsmEnabled(boolean enabled)
+    {
+        this.hsmEnabled = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get information about keys managed on HSMs (Hardware Security Modules).
+     *
+     * <p>
+     * This {@code hsks} property is output only, meaning that {@code hsks} in
+     * requests to {@code /api/service/create} API and {@code /api/service/update}
+     * API do not have any effect. The contents of this property is controlled
+     * only by {@code /api/hsk/*} APIs.
+     * </p>
+     *
+     * @return
+     *         Information about keys managed on HSMs.
+     *
+     * @since 2.97
+     */
+    public Hsk[] getHsks()
+    {
+        return hsks;
+    }
+
+
+    /**
+     * Set information about keys managed on HSMs (Hardware Security Modules).
+     *
+     * <p>
+     * This {@code hsks} property is output only, meaning that {@code hsks} in
+     * requests to {@code /api/service/create} API and {@code /api/service/update}
+     * API do not have any effect. The contents of this property is controlled
+     * only by {@code /api/hsk/*} APIs.
+     * </p>
+     *
+     * @param hsks
+     *         Information about keys managed on HSMs.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.97
+     */
+    public Service setHsks(Hsk[] hsks)
+    {
+        this.hsks = hsks;
 
         return this;
     }

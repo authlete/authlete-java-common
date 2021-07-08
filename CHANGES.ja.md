@@ -1,6 +1,26 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `hskCreate(HskCreateRequest)` メソッドを追加。
+    * `hskDelete(String)` メソッドを追加。
+    * `hskGet(String)` メソッドを追加。
+    * `hskGetList()` メソッドを追加。
+
+- `Service` クラス
+    * `isHsmEnabled()` メソッドを追加。
+    * `setHsmEnabled(boolean)` メソッドを追加。
+    * `getHsks()` メソッドを追加。
+    * `setHsks(Hsk[])` メソッドを追加。
+
+- 新しいクラスとインターフェース
+    * `Hsk`
+    * `HskCreateRequest`
+    * `HskListResponse`
+    * `HskResponse`
+    * `HSM`
+
+
 2.96 (2021 年 06 月 26 日)
 --------------------------
 

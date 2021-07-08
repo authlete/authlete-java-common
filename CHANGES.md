@@ -1,6 +1,26 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `hskCreate(HskCreateRequest)` method.
+    * Added `hskDelete(String)` method.
+    * Added `hskGet(String)` method.
+    * Added `hskGetList()` method.
+
+- `Service` class
+    * Added `isHsmEnabled()` method.
+    * Added `setHsmEnabled(boolean)` method.
+    * Added `getHsks()` method.
+    * Added `setHsks(Hsk[])` method.
+
+- New classes and interfaces
+    * `Hsk`
+    * `HskCreateRequest`
+    * `HskListResponse`
+    * `HskResponse`
+    * `HSM`
+
+
 2.96 (2021-06-26)
 -----------------
 
