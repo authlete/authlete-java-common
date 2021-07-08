@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.97 (2021 年 07 月 09 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `hskCreate(HskCreateRequest)` メソッドを追加。
     * `hskDelete(String)` メソッドを追加。
