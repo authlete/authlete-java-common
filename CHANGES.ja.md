@@ -1,6 +1,9 @@
 変更点
 ======
 
+2.98 (2021 年 07 月 20 日)
+--------------------------
+
 - `Service` クラス
     * `isRefreshTokenDurationReset()` メソッドを追加。
     * `setRefreshTokenDurationReset(boolean)` メソッドを追加。
