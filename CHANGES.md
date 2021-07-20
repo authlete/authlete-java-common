@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `isRefreshTokenDurationReset()` method.
+    * Added `setRefreshTokenDurationReset(boolean)` method.
+
+
 2.97 (2021-07-09)
 -----------------
 

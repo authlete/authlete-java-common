@@ -191,7 +191,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 46L;
+    private static final long serialVersionUID = 47L;
 
 
     /*
@@ -277,6 +277,7 @@ public class Service implements Serializable
     private boolean pkceS256Required;
     private boolean refreshTokenKept;
     private boolean refreshTokenDurationKept;
+    private boolean refreshTokenDurationReset;
     private boolean errorDescriptionOmitted;
     private boolean errorUriOmitted;
     private boolean clientIdAliasEnabled;
@@ -2920,6 +2921,63 @@ public class Service implements Serializable
     public Service setRefreshTokenDurationKept(boolean kept)
     {
         this.refreshTokenDurationKept = kept;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether duration of refresh tokens are
+     * reset when they are used even if the {@code refreshTokenKept} property
+     * of this service (cf&#x2E; {@link #isRefreshTokenKept()}) is true
+     * (= even if "Refresh Token Continuous Use" is "Kept").
+     *
+     * <p>
+     * This flag has no effect when the {@code refreshTokenKept} property is
+     * {@code false}. In other words, if this service issues a new refresh
+     * token on every refresh token request, the refresh token will have fresh
+     * duration (unless {@code refreshTokenDurationKept} is true) and this
+     * {@code refreshTokenDurationReset} property is not referenced.
+     * </p>
+     *
+     * @return
+     *         {@code true} if duration of refresh tokens are reset when they
+     *         are used.
+     *
+     * @since 2.98
+     */
+    public boolean isRefreshTokenDurationReset()
+    {
+        return refreshTokenDurationReset;
+    }
+
+
+    /**
+     * Set the flag which indicates whether duration of refresh tokens are
+     * reset when they are used even if the {@code refreshTokenKept} property
+     * of this service (cf&#x2E; {@link #isRefreshTokenKept()}) is true
+     * (= even if "Refresh Token Continuous Use" is "Kept").
+     *
+     * <p>
+     * This flag has no effect when the {@code refreshTokenKept} property is
+     * {@code false}. In other words, if this service issues a new refresh
+     * token on every refresh token request, the refresh token will have fresh
+     * duration (unless {@code refreshTokenDurationKept} is true) and this
+     * {@code refreshTokenDurationReset} property is not referenced.
+     * </p>
+     *
+     * @param reset
+     *         {@code true} to reset duration of refresh tokens when they are
+     *         used.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.98
+     */
+    public Service setRefreshTokenDurationReset(boolean reset)
+    {
+        this.refreshTokenDurationReset = reset;
 
         return this;
     }
