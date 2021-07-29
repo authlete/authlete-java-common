@@ -214,7 +214,7 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
-                            <keyname>E834481D</keyname>
+                            <keyname>${gpg.keyname}</keyname>
                         </configuration>
                     </execution>
                 </executions>
