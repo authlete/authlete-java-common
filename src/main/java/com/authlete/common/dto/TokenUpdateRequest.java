@@ -142,6 +142,7 @@ public class TokenUpdateRequest implements Serializable
     private boolean accessTokenValueUpdated;
     private String certificateThumbprint;
     private String dpopKeyThumbprint;
+    private AuthzDetails authorizationDetails;
 
 
     /**
@@ -613,6 +614,20 @@ public class TokenUpdateRequest implements Serializable
     public TokenUpdateRequest setDpopKeyThumbprint(String dpopKeyThumbprint)
     {
         this.dpopKeyThumbprint = dpopKeyThumbprint;
+
+        return this;
+    }
+
+
+    public AuthzDetails getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    public TokenUpdateRequest setAuthorizationDetails(AuthzDetails authorizationDetails)
+    {
+        this.authorizationDetails = authorizationDetails;
 
         return this;
     }

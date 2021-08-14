@@ -136,6 +136,7 @@ public class TokenCreateResponse extends ApiResponse
     private long expiresAt;
     private String refreshToken;
     private Property[] properties;
+    private AuthzDetails authorizationDetails;
 
 
     /**
@@ -485,5 +486,17 @@ public class TokenCreateResponse extends ApiResponse
         return String.format(SUMMARY_FORMAT,
             action, grantType, clientId, subject, Utils.join(scopes, " "),
             accessToken, tokenType, expiresIn, expiresAt, refreshToken);
+    }
+
+
+    public AuthzDetails getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    public void setAuthorizationDetails(AuthzDetails authorizationDetails)
+    {
+        this.authorizationDetails = authorizationDetails;
     }
 }

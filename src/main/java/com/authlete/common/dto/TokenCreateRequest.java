@@ -246,6 +246,7 @@ public class TokenCreateRequest implements Serializable
     private boolean accessTokenPersistent;
     private String certificateThumbprint;
     private String dpopKeyThumbprint;
+    private AuthzDetails authorizationDetails;
 
 
     /**
@@ -852,6 +853,20 @@ public class TokenCreateRequest implements Serializable
     public TokenCreateRequest setDpopKeyThumbprint(String dpopKeyThumbprint)
     {
         this.dpopKeyThumbprint = dpopKeyThumbprint;
+
+        return this;
+    }
+
+
+    public AuthzDetails getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    public TokenCreateRequest setAuthorizationDetails(AuthzDetails authorizationDetails)
+    {
+        this.authorizationDetails = authorizationDetails;
 
         return this;
     }
