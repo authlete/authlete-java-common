@@ -431,7 +431,15 @@ public class AuthzDetailsElement implements Serializable
      * The content varies depending on the {@code type} field.
      * </p>
      *
-     * @see #getOtherFields()
+     * @param otherFields
+     *         A {@code Map} instance holding other fields.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see #getOtherFieldsAsMap()
+     *
+     * @since 2.99
      */
     public AuthzDetailsElement setOtherFieldsFromMap(Map<?, ?> otherFields)
     {

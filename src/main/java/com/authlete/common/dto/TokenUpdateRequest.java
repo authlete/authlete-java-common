@@ -651,7 +651,7 @@ public class TokenUpdateRequest implements Serializable
      * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
      *
      * @param authorizationDetails
-     *            Authorization details.
+     *         Authorization details.
      *
      * @return
      *         {@code this} object.

@@ -1,6 +1,35 @@
 CHANGES
 =======
 
+2.99 (2021-08-17)
+-----------------
+
+- `AuthorizationIssueRequest` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetails)` method.
+
+- `AuthzDetailsElement` class
+    * Added `setOtherFieldsFromMap(Map)` method.
+
+- `TokenCreateRequest` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetails)` method.
+    * Added `getResources()` method.
+    * Added `setResources(URI[])` method.
+
+- `TokenCreateResponse` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetails)` method.
+
+- `TokenUpdateRequest` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetails)` method.
+
+- `TokenUpdateResponse` class
+    * Added `getAuthorizationDetails()` method.
+    * Added `setAuthorizationDetails(AuthzDetails)` method.
+
+
 2.98 (2021-07-20)
 -----------------
 

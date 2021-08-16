@@ -233,7 +233,7 @@ import com.authlete.common.types.GrantType;
  * <dt><b><code>resources</code></b> (OPTIONAL)</dt>
  * <dd>
  * <p>
- * The value of the {@code resources} to associate with the token.
+ * The value of the {@code resource}s to associate with the token.
  * Can be {@code null}.
  * </p>
  * </dd>
@@ -898,7 +898,7 @@ public class TokenCreateRequest implements Serializable
      * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
      *
      * @param authorizationDetails
-     *            Authorization details.
+     *         Authorization details.
      *
      * @return
      *         {@code this} object.
@@ -935,7 +935,7 @@ public class TokenCreateRequest implements Serializable
      * <i>"RFC8707 Resource Indicators for OAuth 2.0"</i>.
      *
      * @param resources
-     *            Array of resource URIs.
+     *         Array of resource URIs.
      *
      * @return
      *         {@code this} object.
@@ -946,6 +946,4 @@ public class TokenCreateRequest implements Serializable
     {
         this.resources = resources;
     }
-
-
 }

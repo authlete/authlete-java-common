@@ -255,6 +255,7 @@ public class TokenUpdateResponse extends ApiResponse
         return this;
     }
 
+
     /**
      * Get the properties associated with the access token.
      *
@@ -349,7 +350,7 @@ public class TokenUpdateResponse extends ApiResponse
      * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
      *
      * @param authorizationDetails
-     *            Authorization details.
+     *         Authorization details.
      *
      * @return
      *         {@code this} object.

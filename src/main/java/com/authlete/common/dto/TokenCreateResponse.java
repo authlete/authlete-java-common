@@ -507,7 +507,7 @@ public class TokenCreateResponse extends ApiResponse
      * Set the authorization details associated with the access token.
      *
      * @param authorizationDetails
-     *            Authorization details.
+     *         Authorization details.
      *
      * @return
      *         {@code this} object.

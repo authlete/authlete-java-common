@@ -148,7 +148,7 @@ import com.authlete.common.util.Utils;
  * is associated with the access token.
  * </p>
  * </dd>
- * 
+ *
  * <dt><b><code>authorizationDetails</code></b> (OPTIONAL)</dt>
  * <dd>
  * <p>
@@ -802,7 +802,7 @@ public class AuthorizationIssueRequest implements Serializable
      * set, it overrides the parameter in the original request.
      *
      * @param authorizationDetails
-     *            Authorization details.
+     *         Authorization details.
      *
      * @return
      *         {@code this} object.

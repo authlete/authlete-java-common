@@ -1,6 +1,35 @@
 変更点
 ======
 
+2.99 (2021 年 08 月 17 日)
+--------------------------
+
+- `AuthorizationIssueRequest` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetails)` メソッドを追加。
+
+- `AuthzDetailsElement` クラス
+    * `setOtherFieldsFromMap(Map)` メソッドを追加。
+
+- `TokenCreateRequest` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetails)` メソッドを追加。
+    * `getResources()` メソッドを追加。
+    * `setResources(URI[])` メソッドを追加。
+
+- `TokenCreateResponse` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetails)` メソッドを追加。
+
+- `TokenUpdateRequest` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetails)` メソッドを追加。
+
+- `TokenUpdateResponse` クラス
+    * `getAuthorizationDetails()` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetails)` メソッドを追加。
+
+
 2.98 (2021 年 07 月 20 日)
 --------------------------
 
