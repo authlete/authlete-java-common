@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2016 Authlete, Inc.
+ * Copyright (C) 2015-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -119,7 +119,7 @@ public class TokenCreateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
     private static final String SUMMARY_FORMAT
         = "action=%s, grantType=%s, clientId=%d, subject=%s, scopes=%s, "
         + "accessToken=%s, tokenType=%s, expiresIn=%d, expiresAt=%d, refreshToken=%s";
@@ -489,12 +489,31 @@ public class TokenCreateResponse extends ApiResponse
     }
 
 
+    /**
+     * Get the authorization details associated with the access token.
+     *
+     * @return
+     *         Authorization details.
+     *
+     * @since 2.99
+     */
     public AuthzDetails getAuthorizationDetails()
     {
         return authorizationDetails;
     }
 
 
+    /**
+     * Set the authorization details associated with the access token.
+     *
+     * @param authorizationDetails
+     *            Authorization details.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.99
+     */
     public void setAuthorizationDetails(AuthzDetails authorizationDetails)
     {
         this.authorizationDetails = authorizationDetails;

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2018 Authlete, Inc.
+ * Copyright (C) 2016-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -122,7 +122,7 @@ public class TokenUpdateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
     private static final String SUMMARY_FORMAT =
             "action=%s, accessToken=%s, accessTokenExpiresAt=%d, scopes=%s, tokenType=%s";
 
@@ -133,6 +133,7 @@ public class TokenUpdateResponse extends ApiResponse
     private long accessTokenExpiresAt;
     private String[] scopes;
     private Property[] properties;
+    private AuthzDetails authorizationDetails;
 
 
     /**
@@ -254,7 +255,6 @@ public class TokenUpdateResponse extends ApiResponse
         return this;
     }
 
-
     /**
      * Get the properties associated with the access token.
      *
@@ -324,5 +324,42 @@ public class TokenUpdateResponse extends ApiResponse
     {
         return String.format(SUMMARY_FORMAT, action, accessToken,
                 accessTokenExpiresAt, Utils.join(scopes, " "), tokenType);
+    }
+
+
+    /**
+     * Get the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @return
+     *         Authorization details.
+     *
+     * @since 2.99
+     */
+    public AuthzDetails getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    /**
+     * Set the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @param authorizationDetails
+     *            Authorization details.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.99
+     */
+    public TokenUpdateResponse setAuthorizationDetails(AuthzDetails authorizationDetails)
+    {
+        this.authorizationDetails = authorizationDetails;
+
+        return this;
     }
 }

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -148,6 +148,16 @@ import com.authlete.common.util.Utils;
  * is associated with the access token.
  * </p>
  * </dd>
+ * 
+ * <dt><b><code>authorizationDetails</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code authorization_details} to associate with the token.
+ * If this value is {@code null}, the authorization details on the original
+ * request are used. If this value is set, its contents completely override
+ * the authorization details set in the original request.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
@@ -227,7 +237,7 @@ public class AuthorizationIssueRequest implements Serializable
 
 
     /**
-     * 
+     * The authorization details to associate with the access token.
      */
     private AuthzDetails authorizationDetails;
 
@@ -768,12 +778,37 @@ public class AuthorizationIssueRequest implements Serializable
     }
 
 
+    /**
+     * Get the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>. If this parameter is
+     * set, it overrides the parameter in the original request.
+     *
+     * @return
+     *         Authorization details.
+     *
+     * @since 2.99
+     */
     public AuthzDetails getAuthorizationDetails()
     {
         return authorizationDetails;
     }
 
 
+    /**
+     * Set the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>. If this parameter is
+     * set, it overrides the parameter in the original request.
+     *
+     * @param authorizationDetails
+     *            Authorization details.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.99
+     */
     public AuthorizationIssueRequest setAuthorizationDetails(AuthzDetails authorizationDetails)
     {
         this.authorizationDetails = authorizationDetails;

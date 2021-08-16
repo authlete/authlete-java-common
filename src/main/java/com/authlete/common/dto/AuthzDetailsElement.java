@@ -30,7 +30,7 @@ import com.google.gson.GsonBuilder;
  */
 public class AuthzDetailsElement implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     private String type;
@@ -418,6 +418,36 @@ public class AuthzDetailsElement implements Serializable
         }
 
         return new Gson().fromJson(otherFields, Map.class);
+    }
+
+
+    /**
+     * Set the other fields (than {@code type}, {@code locations},
+     * {@code actions} and {@code identifier}) using a {@link Map}
+     * object. The internal value is stored as a string serialization
+     * of the {@link Map} object.
+     *
+     * <p>
+     * The content varies depending on the {@code type} field.
+     * </p>
+     *
+     * @
+     * Other fields as a {@link Map} object. This may be {@code null}.
+     *
+     * @see #getOtherFields()
+     */
+    public AuthzDetailsElement setOtherFieldsFromMap(Map<?, ?> otherFields)
+    {
+        if (otherFields == null)
+        {
+            this.otherFields = null;
+        }
+        else
+        {
+            this.otherFields = new Gson().toJson(otherFields, Map.class);
+        }
+
+        return this;
     }
 
 
