@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2020 Authlete, Inc.
+ * Copyright (C) 2016-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ import java.io.Serializable;
  * <dd>
  * <p>
  * A new date at which the access token will expire in milliseconds
- * since the Unix epoch (1970-01-01).  If the {@code accessTokenExpiresAt}
+ * since the Unix epoch (1970-01-01). If the {@code accessTokenExpiresAt}
  * request parameter is not included in a request or its value is 0
  * (or negative), the expiration date of the access token is not changed.
  * </p>
@@ -120,6 +120,16 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
+ * <dt><b><code>authorizationDetails</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code authorization_details} to associate with the token.
+ * If this value is {@code null}, the authorization details will not be changed.
+ * If this value is set, it will completely replace the authorization details
+ * previously set on the token.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -129,7 +139,7 @@ import java.io.Serializable;
  */
 public class TokenUpdateRequest implements Serializable
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     private String accessToken;
@@ -142,6 +152,7 @@ public class TokenUpdateRequest implements Serializable
     private boolean accessTokenValueUpdated;
     private String certificateThumbprint;
     private String dpopKeyThumbprint;
+    private AuthzDetails authorizationDetails;
 
 
     /**
@@ -613,6 +624,43 @@ public class TokenUpdateRequest implements Serializable
     public TokenUpdateRequest setDpopKeyThumbprint(String dpopKeyThumbprint)
     {
         this.dpopKeyThumbprint = dpopKeyThumbprint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @return
+     *         Authorization details.
+     *
+     * @since 2.99
+     */
+    public AuthzDetails getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    /**
+     * Set the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @param authorizationDetails
+     *            Authorization details.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.99
+     */
+    public TokenUpdateRequest setAuthorizationDetails(AuthzDetails authorizationDetails)
+    {
+        this.authorizationDetails = authorizationDetails;
 
         return this;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2020 Authlete, Inc.
+ * Copyright (C) 2014-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -148,6 +148,16 @@ import com.authlete.common.util.Utils;
  * is associated with the access token.
  * </p>
  * </dd>
+ * 
+ * <dt><b><code>authorizationDetails</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code authorization_details} to associate with the token.
+ * If this value is {@code null}, the authorization details on the original
+ * request are used. If this value is set, its contents completely override
+ * the authorization details set in the original request.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
@@ -160,7 +170,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 8L;
+    private static final long serialVersionUID = 9L;
 
 
     /**
@@ -225,6 +235,11 @@ public class AuthorizationIssueRequest implements Serializable
      */
     private String idtHeaderParams;
 
+
+    /**
+     * The authorization details to associate with the access token.
+     */
+    private AuthzDetails authorizationDetails;
 
     /**
      * Get the value of {@code "ticket"} which is the ticket
@@ -758,6 +773,45 @@ public class AuthorizationIssueRequest implements Serializable
     public AuthorizationIssueRequest setIdtHeaderParams(String params)
     {
         this.idtHeaderParams = params;
+
+        return this;
+    }
+
+
+    /**
+     * Get the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>. If this parameter is
+     * set, it overrides the parameter in the original request.
+     *
+     * @return
+     *         Authorization details.
+     *
+     * @since 2.99
+     */
+    public AuthzDetails getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    /**
+     * Set the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>. If this parameter is
+     * set, it overrides the parameter in the original request.
+     *
+     * @param authorizationDetails
+     *            Authorization details.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.99
+     */
+    public AuthorizationIssueRequest setAuthorizationDetails(AuthzDetails authorizationDetails)
+    {
+        this.authorizationDetails = authorizationDetails;
 
         return this;
     }

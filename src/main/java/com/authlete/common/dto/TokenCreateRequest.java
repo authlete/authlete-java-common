@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2020 Authlete, Inc.
+ * Copyright (C) 2015-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.net.URI;
 import com.authlete.common.types.GrantType;
 
 
@@ -221,6 +222,22 @@ import com.authlete.common.types.GrantType;
  * </p>
  * </dd>
  *
+ * <dt><b><code>authorizationDetails</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code authorization_details} to associate with the token.
+ * Can be {@code null}.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>resources</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code resources} to associate with the token.
+ * Can be {@code null}.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -230,7 +247,7 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 8L;
+    private static final long serialVersionUID = 9L;
 
 
     private GrantType grantType;
@@ -246,6 +263,8 @@ public class TokenCreateRequest implements Serializable
     private boolean accessTokenPersistent;
     private String certificateThumbprint;
     private String dpopKeyThumbprint;
+    private AuthzDetails authorizationDetails;
+    private URI[] resources;
 
 
     /**
@@ -855,4 +874,78 @@ public class TokenCreateRequest implements Serializable
 
         return this;
     }
+
+
+    /**
+     * Get the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @return
+     *         Authorization details.
+     *
+     * @since 2.99
+     */
+    public AuthzDetails getAuthorizationDetails()
+    {
+        return authorizationDetails;
+    }
+
+
+    /**
+     * Set the authorization details. This represents the value of the
+     * {@code "authorization_details"} request parameter which is defined in
+     * <i>"OAuth 2.0 Rich Authorization Requests"</i>.
+     *
+     * @param authorizationDetails
+     *            Authorization details.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.99
+     */
+    public TokenCreateRequest setAuthorizationDetails(AuthzDetails authorizationDetails)
+    {
+        this.authorizationDetails = authorizationDetails;
+
+        return this;
+    }
+
+
+    /**
+     * Get the resources. This represents the value of one or more
+     * {@code "resource"} request parameters which is defined in
+     * <i>"RFC8707 Resource Indicators for OAuth 2.0"</i>.
+     *
+     * @return
+     *         Array of resource URIs.
+     *
+     * @since 2.99
+     */
+    public URI[] getResources()
+    {
+        return resources;
+    }
+
+
+    /**
+     * Get the resources. This represents the value of one or more
+     * {@code "resource"} request parameters which is defined in
+     * <i>"RFC8707 Resource Indicators for OAuth 2.0"</i>.
+     *
+     * @param resources
+     *            Array of resource URIs.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.99
+     */
+    public void setResources(URI[] resources)
+    {
+        this.resources = resources;
+    }
+
+
 }
