@@ -172,6 +172,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String HSK_DELETE_API_PATH                    = "/api/hsk/delete/%s";
     private static final String HSK_GET_API_PATH                       = "/api/hsk/get/%s";
     private static final String HSK_GET_LIST_API_PATH                  = "/api/hsk/get/list";
+    private static final String ECHO_API_PATH                          = "/api/misc/echo";
 
 
     private final String mBaseUrl;
@@ -482,8 +483,11 @@ class AuthleteApiImpl implements AuthleteApi
         // Set HTTP method.
         con.setRequestMethod(method.name());
 
-        // Set 'Authorization' HTTP header to access the Authlete API.
-        con.setRequestProperty("Authorization", credentials.format());
+        if (credentials != null)
+        {
+            // Set 'Authorization' HTTP header to access the Authlete API.
+            con.setRequestProperty("Authorization", credentials.format());
+        }
 
         // Set 'Accept' HTTP header for a JSON response.
         con.setRequestProperty("Accept", "application/json");
@@ -1562,5 +1566,14 @@ class AuthleteApiImpl implements AuthleteApi
         return callServiceGetApi(
                 HSK_GET_LIST_API_PATH,
                 HskListResponse.class);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public Map<String, String> echo(Map<String, String> parameters) throws AuthleteApiException
+    {
+        return (Map<String, String>)callGetApi(
+                null, ECHO_API_PATH, parameters, Map.class);
     }
 }

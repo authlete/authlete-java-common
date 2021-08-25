@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `echo(Map<String, String>)` method.
+
+
 2.99 (2021-08-17)
 -----------------
 

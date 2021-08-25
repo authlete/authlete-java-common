@@ -16,6 +16,7 @@
 package com.authlete.common.api;
 
 
+import java.util.Map;
 import com.authlete.common.dto.AuthorizationFailRequest;
 import com.authlete.common.dto.AuthorizationFailResponse;
 import com.authlete.common.dto.AuthorizationIssueRequest;
@@ -1500,4 +1501,22 @@ public interface AuthleteApi
      * @since 2.97
      */
     HskListResponse hskGetList() throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/misc/echo} API.
+     *
+     * <p>
+     * The API returns a JSON string which contains given request parameters.
+     * </p>
+     *
+     * @param parameters
+     *         Arbitrary parameters.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.0
+     */
+    Map<String, String> echo(Map<String, String> parameters) throws AuthleteApiException;
 }
