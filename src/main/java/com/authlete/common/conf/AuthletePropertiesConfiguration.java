@@ -279,6 +279,12 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
 
     /**
+     * Property key to specify the API version.
+     * ({@code service.api_version}).
+     */
+    private static final String PROPERTY_KEY_API_VERSION = "service.api_version";
+
+    /**
      * The default value of the base URL ({@code https://api.authlete.com}).
      */
     private static final String BASE_URL_DEFAULT = "https://api.authlete.com";
@@ -336,6 +342,12 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
      * Client MTLS certificate.
      */
     private String mClientCertificate;
+
+
+    /**
+     * Supported API Version.
+     */
+    private String mApiVersion;
 
 
     /**
@@ -561,6 +573,8 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
         mDpopKey = props.getString(PROPERTY_KEY_DPOP_KEY);
 
         mClientCertificate = props.getString(PROPERTY_KEY_CLIENT_CERTIFICATE);
+
+        mApiVersion = props.getString(PROPERTY_KEY_API_VERSION);
     }
 
 
@@ -641,6 +655,15 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
         }
     }
 
+
+    /**
+     * Get the supported API version as a string.
+     */
+    @Override
+    public String getApiVersionString()
+    {
+        return mApiVersion;
+    }
 
     /**
      * Get the base URL.
