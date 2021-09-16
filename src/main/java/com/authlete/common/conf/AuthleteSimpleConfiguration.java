@@ -30,6 +30,7 @@ public class AuthleteSimpleConfiguration implements AuthleteConfiguration
     private String serviceAccessToken;
     private String dpopKey;
     private String clientCertificate;
+    private String apiVersion;
 
 
     @Override
@@ -236,6 +237,35 @@ public class AuthleteSimpleConfiguration implements AuthleteConfiguration
     public AuthleteSimpleConfiguration setClientCertificate(String clientCertificate)
     {
         this.clientCertificate = clientCertificate;
+
+        return this;
+    }
+
+
+    public String getApiVersionString()
+    {
+        return apiVersion;
+    }
+
+
+    public AuthleteSimpleConfiguration setApiVersionString(String apiVersion)
+    {
+        this.apiVersion = apiVersion;
+
+        return this;
+    }
+
+
+    public AuthleteSimpleConfiguration setApiVersion(ApiVersion apiVersion)
+    {
+        if (apiVersion == null)
+        {
+            this.apiVersion = null;
+        }
+        else
+        {
+            this.apiVersion = apiVersion.name();
+        }
 
         return this;
     }

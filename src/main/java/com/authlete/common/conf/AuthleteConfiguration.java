@@ -15,12 +15,39 @@
  */
 package com.authlete.common.conf;
 
-
 /**
  * Authlete configuration.
  */
 public interface AuthleteConfiguration
 {
+    public enum ApiVersion
+    {
+        V2, V3
+    }
+
+
+    /**
+     * Get the supported API version as an enum, defaults to V2.
+     */
+    default ApiVersion getApiVersion()
+    {
+        String apiVersionString = getApiVersionString();
+        if (apiVersionString == null)
+        {
+            return ApiVersion.V2;
+        }
+        else
+        {
+            return ApiVersion.valueOf(apiVersionString);
+        }
+    }
+
+
+    /**
+     * Get the supported API version as a string.
+     */
+    String getApiVersionString();
+
     /**
      * Get the base URL.
      */

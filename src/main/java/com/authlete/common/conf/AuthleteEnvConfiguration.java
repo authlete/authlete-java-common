@@ -54,6 +54,14 @@ public class AuthleteEnvConfiguration implements AuthleteConfiguration
     private static final String ENV_KEY_SERVICE_ACCESS_TOKEN       = "AUTHLETE_SERVICE_ACCESSTOKEN";
     private static final String ENV_KEY_DPOP_KEY                   = "AUTHLETE_DPOP_KEY";
     private static final String ENV_KEY_CLIENT_CERTIFICATE         = "AUTHLETE_CLIENT_CERTIFICATE";
+    private static final String ENV_KEY_API_VERSION = "AUTHLETE_API_VERSION";
+
+
+    @Override
+    public String getApiVersionString()
+    {
+        return get(ENV_KEY_API_VERSION);
+    }
 
 
     @Override

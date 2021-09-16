@@ -18,6 +18,7 @@ package com.authlete.common.api;
 
 import java.lang.reflect.Constructor;
 import com.authlete.common.conf.AuthleteConfiguration;
+import com.authlete.common.conf.AuthleteConfiguration.ApiVersion;
 import com.authlete.common.conf.AuthletePropertiesConfiguration;
 
 
@@ -32,8 +33,14 @@ public class AuthleteApiFactory
      * An implementation of {@link AuthleteApi} using JAX-RS.
      * This implementation exists in authlete/authlete-java-jaxrs.
      */
-    private static final String IMPL_JAX_RS = "com.authlete.jaxrs.api.AuthleteApiImpl";
+    private static final String IMPL_JAX_RS_V2 = "com.authlete.jaxrs.api.AuthleteApiImplV2";
 
+
+    /**
+     * An implementation of {@link AuthleteApi} using JAX-RS.
+     * This implementation exists in authlete/authlete-java-jaxrs.
+     */
+    private static final String IMPL_JAX_RS_V3 = "com.authlete.jaxrs.api.AuthleteApiImplV3";
 
     /**
      * An implementation of {@link AuthleteApi} using {@link java.net.HttpURLConnection HttpURLConnection}.
@@ -43,13 +50,19 @@ public class AuthleteApiFactory
 
 
     /**
-     * Known implementations of AuthleteApi.
+     * Known implementations of AuthleteApi V2.
      */
-    private static final String[] sKnownImpls = {
-        IMPL_JAX_RS,
+    private static final String[] sKnownImplsV2 = {
+        IMPL_JAX_RS_V2,
         IMPL_HTTP_URL_CONNECTION
     };
 
+    /**
+     * Known implementations of AuthleteApi V3.
+     */
+    private static final String[] sKnownImplsV3 = {
+        IMPL_JAX_RS_V3
+    };
 
     /**
      * The default {@link AuthleteApi} instance.
@@ -71,11 +84,22 @@ public class AuthleteApiFactory
      * </p>
      *
      * <p>
-     * The classes listed below are the ones that the current implementation knows.
+     * The classes listed below are the ones that the current implementation knows
+     * for Authlete API V3.
      * </p>
      *
      * <ol>
-     * <li><code>com.authlete.jaxrs.api.AuthleteApiImpl</code><br/>
+     * <li><code>com.authlete.jaxrs.api.AuthleteApiImplV3</code><br/>
+     *     (using JAX-RS 2.0 API, contained in <code>com.authlete:authlete-java-jaxrs</code>)
+     * </ol>
+     *
+     * <p>
+     * The classes listed below are the ones that the current implementation knows
+     * for Authlete API V2.
+     * </p>
+     *
+     * <ol>
+     * <li><code>com.authlete.jaxrs.api.AuthleteApiImplV2</code><br/>
      *     (using JAX-RS 2.0 API, contained in <code>com.authlete:authlete-java-jaxrs</code>)
      * <li><code>com.authlete.common.api.AuthleteApiImpl</code><br/>
      *     (using {@link java.net.HttpURLConnection HttpURLConnection}, contained in <code>com.authlete:authlete-java-common</code> since version 2.0)
@@ -91,18 +115,31 @@ public class AuthleteApiFactory
      */
     public static AuthleteApi create(AuthleteConfiguration configuration)
     {
-        for (String className : sKnownImpls)
-        {
-            try
+        if (configuration.getApiVersion() == ApiVersion.V2) {
+            for (String className : sKnownImplsV2)
             {
-                return create(configuration, className);
+                try
+                {
+                    return create(configuration, className);
+                }
+                catch (Exception e)
+                {
+                    // Ignore.
+                }
             }
-            catch (Exception e)
+        } else if (configuration.getApiVersion() == ApiVersion.V3) {
+            for (String className : sKnownImplsV3)
             {
-                // Ignore.
+                try
+                {
+                    return create(configuration, className);
+                }
+                catch (Exception e)
+                {
+                    // Ignore.
+                }
             }
         }
-
         // No implementation was found.
         return null;
     }
