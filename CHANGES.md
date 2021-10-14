@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.1 (2021-10-15)
+----------------
+
 - `AuthleteApi` interface
     * Added `gm(GMRequest)` method.
 
