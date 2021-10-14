@@ -219,7 +219,7 @@ import com.authlete.common.util.Utils;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 11L;
+    private static final long serialVersionUID = 12L;
 
 
     /**
@@ -376,6 +376,18 @@ public class IntrospectionResponse extends ApiResponse
      * included in the request that obtained the token.
      */
     private AuthzDetails authorizationDetails;
+
+
+    /**
+     * Grant ID that this access token is tied to.
+     */
+    private String grantId;
+
+
+    /**
+     * Grant that this access token has inherited.
+     */
+    private Grant grant;
 
 
     /**
@@ -884,6 +896,106 @@ public class IntrospectionResponse extends ApiResponse
     public void setAuthorizationDetails(AuthzDetails details)
     {
         this.authorizationDetails = details;
+    }
+
+
+    /**
+     * Get the grant ID which this access token is tied to.
+     *
+     * <p>
+     * In Authlete, when an authorization request includes the
+     * {@code grant_management_action} request parameter, a grant ID (which
+     * may be a newly-generated one or an existing one specified by the
+     * {@code grant_id} request parameter) is tied to the access token which
+     * is created as a result of the authorization request.
+     * </p>
+     *
+     * @return
+     *         The grant ID tied to this access token.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public String getGrantId()
+    {
+        return grantId;
+    }
+
+
+    /**
+     * Set the grant ID which this access token is tied to.
+     *
+     * <p>
+     * In Authlete, when an authorization request includes the
+     * {@code grant_management_action} request parameter, a grant ID (which
+     * may be a newly-generated one or an existing one specified by the
+     * {@code grant_id} request parameter) is tied to the access token which
+     * is created as a result of the authorization request.
+     * </p>
+     *
+     * @param grantId
+     *         The grant ID tied to this access token.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public void setGrantId(String grantId)
+    {
+        this.grantId = grantId;
+    }
+
+
+    /**
+     * Get the grant that this access token has inherited.
+     *
+     * <p>
+     * When an authorization request includes {@code grant_id} and
+     * {@code grant_management_action=update}, privileges identified by the
+     * grant ID are additionally given to the access token which is created
+     * as a result of the authorization request. This property represents
+     * the grant.
+     * </p>
+     *
+     * @return
+     *         The grant that this access token has inherited.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public Grant getGrant()
+    {
+        return grant;
+    }
+
+
+    /**
+     * Set the grant that this access token has inherited.
+     *
+     * <p>
+     * When an authorization request includes {@code grant_id} and
+     * {@code grant_management_action=update}, privileges identified by the
+     * grant ID are additionally given to the access token which is created
+     * as a result of the authorization request. This property represents
+     * the grant.
+     * </p>
+     *
+     * @param grant
+     *         The grant that this access token has inherited.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public void setGrant(Grant grant)
+    {
+        this.grant = grant;
     }
 
 

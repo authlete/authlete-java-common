@@ -1,6 +1,76 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `gm(GMRequest)` メソッドを追加。
+
+- `AuthorizationResponse` クラス
+    * `getGmAction()` メソッドを追加。
+    * `setGmAction(GMAction)` メソッドを追加。
+    * `getGrant()` メソッドを追加。
+    * `setGrant(Grant)` メソッドを追加。
+    * `getGrantId()` メソッドを追加。
+    * `setGrantId(String)` メソッドを追加。
+    * `getGrantSubject()` メソッドを追加。
+    * `setGrantSubject(String)` メソッドを追加。
+
+- `BackchannelAuthenticationCompleteResponse` クラス
+    * `getGrantId()` メソッドを追加。
+    * `setGrantId(String)` メソッドを追加。
+
+- `BackchannelAuthenticationResponse` クラス
+    * `getGmAction()` メソッドを追加。
+    * `setGmAction(GMAction)` メソッドを追加。
+    * `getGrant()` メソッドを追加。
+    * `setGrant(Grant)` メソッドを追加。
+    * `getGrantId()` メソッドを追加。
+    * `setGrantId(String)` メソッドを追加。
+    * `getGrantSubject()` メソッドを追加。
+    * `setGrantSubject(String)` メソッドを追加。
+
+- `DeviceAuthorizationResponse` クラス
+    * `getGmAction()` メソッドを追加。
+    * `setGmAction(GMAction)` メソッドを追加。
+    * `getGrant()` メソッドを追加。
+    * `setGrant(Grant)` メソッドを追加。
+    * `getGrantId()` メソッドを追加。
+    * `setGrantId(String)` メソッドを追加。
+    * `getGrantSubject()` メソッドを追加。
+    * `setGrantSubject(String)` メソッドを追加。
+
+- `ErrorCode` 列挙型
+    * `invalid_grant_id` を追加。
+
+- `IntrospectionRequest` クラス
+    * `getResources()` メソッドを追加。
+    * `setResources(URI[])` メソッドを追加。
+
+- `IntrospectionResponse` クラス
+    * `getGrantId()` メソッドを追加。
+    * `setGrantId(String)` メソッドを追加。
+    * `getGrant()` メソッドを追加。
+    * `setGrant(Grant)` メソッドを追加。
+
+- `Service` クラス
+    * `getGrantManagementEndpoint()` メソッドを追加。
+    * `setGrantManagementEndpoint(URI)` メソッドを追加。
+    * `isGrantManagementActionRequired()` メソッドを追加。
+    * `setGrantManagementActionRequired(boolean)` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getGrantId()` メソッドを追加。
+    * `setGrantId(String)` メソッドを追加。
+
+- 新しい型
+    * `GMAction` 列挙型
+    * `GMRequest` クラス
+    * `GMResponse` クラス
+    * `Grant` クラス
+    * `GrantDeserializer` クラス
+    * `GrantScope` クラス
+    * `GrantSerializer` クラス
+
+
 3.0 (2021 年 08 月 25 日)
 -------------------------
 

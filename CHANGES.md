@@ -1,6 +1,76 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `gm(GMRequest)` method.
+
+- `AuthorizationResponse` class
+    * Added `getGmAction()` method.
+    * Added `setGmAction(GMAction)` method.
+    * Added `getGrant()` method.
+    * Added `setGrant(Grant)` method.
+    * Added `getGrantId()` method.
+    * Added `setGrantId(String)` method.
+    * Added `getGrantSubject()` method.
+    * Added `setGrantSubject(String)` method.
+
+- `BackchannelAuthenticationCompleteResponse` class
+    * Added `getGrantId()` method.
+    * Added `setGrantId(String)` method.
+
+- `BackchannelAuthenticationResponse` class
+    * Added `getGmAction()` method.
+    * Added `setGmAction(GMAction)` method.
+    * Added `getGrant()` method.
+    * Added `setGrant(Grant)` method.
+    * Added `getGrantId()` method.
+    * Added `setGrantId(String)` method.
+    * Added `getGrantSubject()` method.
+    * Added `setGrantSubject(String)` method.
+
+- `DeviceAuthorizationResponse` class
+    * Added `getGmAction()` method.
+    * Added `setGmAction(GMAction)` method.
+    * Added `getGrant()` method.
+    * Added `setGrant(Grant)` method.
+    * Added `getGrantId()` method.
+    * Added `setGrantId(String)` method.
+    * Added `getGrantSubject()` method.
+    * Added `setGrantSubject(String)` method.
+
+- `ErrorCode` enum
+    * Added `invalid_grant_id`.
+
+- `IntrospectionRequest` class
+    * Added `getResources()` method.
+    * Added `setResources(URI[])` method.
+
+- `IntrospectionResponse` class
+    * Added `getGrantId()` method.
+    * Added `setGrantId(String)` method.
+    * Added `getGrant()` method.
+    * Added `setGrant(Grant)` method.
+
+- `Service` class
+    * Added `getGrantManagementEndpoint()` method.
+    * Added `setGrantManagementEndpoint(URI)` method.
+    * Added `isGrantManagementActionRequired()` method.
+    * Added `setGrantManagementActionRequired(boolean)` method.
+
+- `TokenResponse` class
+    * Added `getGrantId()` method.
+    * Added `setGrantId(String)` method.
+
+- New types
+    * `GMAction` enum
+    * `GMRequest` class
+    * `GMResponse` class
+    * `Grant` class
+    * `GrantDeserializer` class
+    * `GrantScope` class
+    * `GrantSerializer` class
+
+
 3.0 (2021-08-25)
 ----------------
 

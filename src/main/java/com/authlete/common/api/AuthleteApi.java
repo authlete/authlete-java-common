@@ -46,6 +46,8 @@ import com.authlete.common.dto.DeviceCompleteRequest;
 import com.authlete.common.dto.DeviceCompleteResponse;
 import com.authlete.common.dto.DeviceVerificationRequest;
 import com.authlete.common.dto.DeviceVerificationResponse;
+import com.authlete.common.dto.GMRequest;
+import com.authlete.common.dto.GMResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
 import com.authlete.common.dto.HskCreateRequest;
 import com.authlete.common.dto.HskListResponse;
@@ -1454,7 +1456,7 @@ public interface AuthleteApi
      * Call Authlete's {@code /api/hsk/create} API.
      *
      * @param request
-     *            Request parameters passed to the API.
+     *         Request parameters passed to the API.
      *
      * @return
      *         Response from the API.
@@ -1468,7 +1470,7 @@ public interface AuthleteApi
      * Call Authlete's <code>/api/hsk/delete/{handle}</code> API.
      *
      * @param handle
-     *            The handle for the target record.
+     *         The handle for the target record.
      *
      * @return
      *         Response from the API.
@@ -1482,7 +1484,7 @@ public interface AuthleteApi
      * Call Authlete's <code>/api/hsk/get/{handle}</code> API.
      *
      * @param handle
-     *            The handle for the target record.
+     *         The handle for the target record.
      *
      * @return
      *         Response from the API.
@@ -1519,4 +1521,27 @@ public interface AuthleteApi
      * @since 3.0
      */
     Map<String, String> echo(Map<String, String> parameters) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /api/gm} API.
+     *
+     * <p>
+     * The API is for the implementation of the grant management endpoint which is
+     * defined in "<a href="https://openid.net/specs/fapi-grant-management.html"
+     * >Grant Management for OAuth 2.0</a>".
+     * </p>
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    GMResponse gm(GMRequest request) throws AuthleteApiException;
 }

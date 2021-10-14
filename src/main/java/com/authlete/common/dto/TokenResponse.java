@@ -256,7 +256,7 @@ import com.authlete.common.util.Utils;
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 10L;
+    private static final long serialVersionUID = 11L;
 
 
     /**
@@ -337,6 +337,7 @@ public class TokenResponse extends ApiResponse
     private URI[] resources;
     private URI[] accessTokenResources;
     private AuthzDetails authorizationDetails;
+    private String grantId;
     private Pair[] serviceAttributes;
     private Pair[] clientAttributes;
 
@@ -1110,6 +1111,40 @@ public class TokenResponse extends ApiResponse
     public void setAuthorizationDetails(AuthzDetails details)
     {
         this.authorizationDetails = details;
+    }
+
+
+    /**
+     * Get the value of the {@code grant_id} parameter in the token response.
+     *
+     * @return
+     *         The value of the {@code grant_id} response parameter.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public String getGrantId()
+    {
+        return grantId;
+    }
+
+
+    /**
+     * Set the value of the {@code grant_id} parameter in the token response.
+     *
+     * @param grantId
+     *         The value of the {@code grant_id} response parameter.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public void setGrantId(String grantId)
+    {
+        this.grantId = grantId;
     }
 
 

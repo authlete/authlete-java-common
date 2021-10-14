@@ -139,7 +139,7 @@ import com.authlete.common.types.DeliveryMode;
  */
 public class BackchannelAuthenticationCompleteResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -202,6 +202,7 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     private String jwtAccessToken;
     private URI[] resources;
     private AuthzDetails authorizationDetails;
+    private String grantId;
     private Pair[] serviceAttributes;
     private Pair[] clientAttributes;
 
@@ -880,6 +881,55 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     public BackchannelAuthenticationCompleteResponse setAuthorizationDetails(AuthzDetails details)
     {
         this.authorizationDetails = details;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the {@code grant_id} parameter in the response.
+     *
+     * <p>
+     * This property may hold a non-null value only when the backchannel
+     * token delivery mode is "push".
+     * </p>
+     *
+     * @return
+     *         The value of the {@code grant_id} response parameter.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public String getGrantId()
+    {
+        return grantId;
+    }
+
+
+    /**
+     * Set the value of the {@code grant_id} parameter in the response.
+     *
+     * <p>
+     * This property may hold a non-null value only when the backchannel
+     * token delivery mode is "push".
+     * </p>
+     *
+     * @param grantId
+     *         The value of the {@code grant_id} response parameter.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public BackchannelAuthenticationCompleteResponse setGrantId(String grantId)
+    {
+        this.grantId = grantId;
 
         return this;
     }

@@ -146,8 +146,8 @@ import com.authlete.common.types.UserCodeCharset;
  *     <td>array</td>
  *     <td>
  *       If this access token has been generated with target resources, this
- *       claim is included. See <i>"Resource Indicators for OAuth 2.0"</i>
- *       for details.
+ *       claim is included. See <a href="https://www.rfc-editor.org/rfc/rfc8707.html"
+ *       >RFC 8707</a> (Resource Indicators for OAuth 2.0) for details.
  *     </td>
  *   </tr>
  *   <tr>
@@ -157,6 +157,34 @@ import com.authlete.common.types.UserCodeCharset;
  *       If this access token has been generated with {@code authorization_details},
  *       this claim is included. See <i>"OAuth 2.0 Rich Authorization Requests"</i>
  *       for details.
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code grant_id}</td>
+ *     <td>string</td>
+ *     <td>
+ *       The grant ID tied to this access token. This field may be set if
+ *       the authorization request which created this access token included
+ *       {@code grant_id} or {@code grant_management_action=create}.
+ *       See <i>"Grant Management for OAuth 2.0"</i> for details about the
+ *       request parameters.
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code grant}</td>
+ *     <td>object</td>
+ *     <td>
+ *       <p>
+ *       The grant this access token has inherited. This field may be set if
+ *       the authorization request which created this access token included
+ *       {@code grant_management_action=update}. See <i>"Grant Management for
+ *       OAuth 2.0"</i> for details about the request parameter.
+ *       </p>
+ *       <p>
+ *       The format of this JSON object is the same as the response from the
+ *       grant management endpoint which is defined in <i>"Grant Management for
+ *       OAuth 2.0"</i>.
+ *       </p>
  *     </td>
  *   </tr>
  * </table>
@@ -184,6 +212,13 @@ import com.authlete.common.types.UserCodeCharset;
  * versions is just ignored, so JWT-based access tokens won't include the
  * {@code authorization_details} claim.
  * </p>
+ *
+ * <p>
+ * <i>"Grant Management for OAuth 2.0"</i> is supported since Authlete 2.3.
+ * The {@code grant_id} and {@code grant_management_action} request parameters
+ * given to older Authlete versions are just ignored, so JWT-based access token
+ * won't include the {@code grant_id} and {@code grant} claims.
+ * </p>
  * </blockquote>
  *
  * @see <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
@@ -191,7 +226,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 47L;
+    private static final long serialVersionUID = 48L;
 
 
     /*
@@ -753,6 +788,23 @@ public class Service implements Serializable
      * @since 2.97
      */
     private Hsk[] hsks;
+
+
+    /**
+     * The URL of the grant management endpoint.
+     *
+     * @since 3.1
+     */
+    private URI grantManagementEndpoint;
+
+
+    /**
+     * The flag indicating whether every authorization request must include the
+     * {@code grant_management_action} request parameter.
+     *
+     * @since 3.1
+     */
+    private boolean grantManagementActionRequired;
 
 
     /**
@@ -6166,6 +6218,118 @@ public class Service implements Serializable
     public Service setHsks(Hsk[] hsks)
     {
         this.hsks = hsks;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URL of the grant management endpoint.
+     *
+     * @return
+     *         The URL of the grant management endpoint.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public URI getGrantManagementEndpoint()
+    {
+        return grantManagementEndpoint;
+    }
+
+
+    /**
+     * Set the URL of the grant management endpoint.
+     *
+     * @param endpoint
+     *         The URL of the grant management endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public Service setGrantManagementEndpoint(URI endpoint)
+    {
+        this.grantManagementEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether every authorization request (and any
+     * request serving as an authorization request such as CIBA backchannel
+     * authentication request and device authorization request) must include
+     * the {@code grant_management_action} request parameter.
+     *
+     * <p>
+     * This property corresponds to the {@code grant_management_action_required}
+     * server metadata defined in "<a href=
+     * "https://openid.net/specs/fapi-grant-management.html">Grant Management
+     * for OAuth 2.0</a>".
+     * </p>
+     *
+     * <p>
+     * Note that setting {@code true} to this property will result in blocking
+     * all public clients because the specification requires that grant
+     * management be usable only by confidential clients for security reasons.
+     * </p>
+     *
+     * @return
+     *         {@code true} if every authorization request must include the
+     *         {@code grant_management_action} request parameter.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public boolean isGrantManagementActionRequired()
+    {
+        return grantManagementActionRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether every authorization request (and any
+     * request serving as an authorization request such as CIBA backchannel
+     * authentication request and device authorization request) must include
+     * the {@code grant_management_action} request parameter.
+     *
+     * <p>
+     * This property corresponds to the {@code grant_management_action_required}
+     * server metadata defined in "<a href=
+     * "https://openid.net/specs/fapi-grant-management.html">Grant Management
+     * for OAuth 2.0</a>".
+     * </p>
+     *
+     * <p>
+     * Note that setting {@code true} to this property will result in blocking
+     * all public clients because the specification requires that grant
+     * management be usable only by confidential clients for security reasons.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require every authorization request include the
+     *         {@code grant_management_action} request parameter.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public Service setGrantManagementActionRequired(boolean required)
+    {
+        this.grantManagementActionRequired = required;
 
         return this;
     }

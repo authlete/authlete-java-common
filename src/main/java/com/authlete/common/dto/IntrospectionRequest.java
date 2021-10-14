@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2020 Authlete, Inc.
+ * Copyright (C) 2014-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.net.URI;
 
 
 /**
@@ -48,11 +49,11 @@ import java.io.Serializable;
  * <dt><b><code>clientCertificate</code></b> (OPTIONAL)</dt>
  * <dd>
  * <p>
- * The certificate presented by the client, used to validate TLS
- * client certificate bound access tokens.
- * See <a href="https://tools.ietf.org/html/rfc8705">RFC 8705</a>
- * (OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access
- * Tokens) for details.
+ * The client certificate used in the mutual TLS connection established
+ * between the client application and the protected resource endpoint.
+ * See <a href="https://www.rfc-editor.org/rfc/rfc8705.html">RFC 8705
+ * OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access
+ * Tokens</a> for details.
  * </p>
  * </dd>
  *
@@ -60,8 +61,9 @@ import java.io.Serializable;
  * <dd>
  * <p>
  * The value of the {@code DPoP} HTTP header.
- * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
- * Layer (DPoP)"</i> for details.
+ * See <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
+ * >OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)</a>
+ * for details.
  * </p>
  * </dd>
  *
@@ -69,8 +71,9 @@ import java.io.Serializable;
  * <dd>
  * <p>
  * The HTTP method of the request to the protected resource endpoint.
- * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
- * Layer (DPoP)"</i> for details.
+ * See <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
+ * >OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)</a>
+ * for details.
  * </p>
  * </dd>
  *
@@ -78,35 +81,78 @@ import java.io.Serializable;
  * <dd>
  * <p>
  * The URL of the protected resource endpoint.
- * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
- * Layer (DPoP)"</i> for details.
+ * See <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
+ * >OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)</a>
+ * for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>resources</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * Resource indicators that should be covered by the access token.
+ * See <a href="https://www.rfc-editor.org/rfc/rfc8707.html">RFC 8707
+ * Resource Indicators for OAuth 2.0</a> for details.
  * </p>
  * </dd>
  * </dl>
- *
  * </blockquote>
  *
  * @author Takahiko Kawasaki
+ *
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc6750.html"
+ *      >RFC 6750 The OAuth 2.0 Authorization Framework: Bearer Token Usage</a>
+ *
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc8705.html"
+ *      >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
+ *
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc8707.html"
+ *      >RFC 8707 Resource Indicators for OAuth 2.0</a>
+ *
+ * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
+ *      >OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)</a>
  */
 public class IntrospectionRequest implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
-
-    private String token;
-    private String[] scopes;
-    private String subject;
-    private String clientCertificate;
 
     /**
-     * DPoP Header
+     * Access token to introspect.
+     */
+    private String token;
+
+
+    /**
+     * Required scopes for access to the protected resource endpoint.
+     */
+    private String[] scopes;
+
+
+    /**
+     * Expected identifier of resource owner.
+     */
+    private String subject;
+
+
+    /**
+     * Client certificate used in the mutual TLS connection between
+     * the client application and the protected resource endpoint.
+     */
+    private String clientCertificate;
+
+
+    /**
+     * DPoP Header.
      */
     private String dpop;
+
 
     /**
      * HTTP Method (for DPoP validation).
      */
     private String htm;
+
 
     /**
      * HTTP URL base (for DPoP validation).
@@ -115,7 +161,16 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Get the access token.
+     * Resource indicators.
+     */
+    private URI[] resources;
+
+
+    /**
+     * Get the access token to introspect.
+     *
+     * @return
+     *         The access token.
      */
     public String getToken()
     {
@@ -124,7 +179,13 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Set the access token which has been issued by Authlete.
+     * Set the access token to introspect.
+     *
+     * @param token
+     *         The access token.
+     *
+     * @return
+     *         {@code this} object.
      */
     public IntrospectionRequest setToken(String token)
     {
@@ -135,8 +196,11 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Get the scopes which are required to access the target
-     * protected resource.
+     * Get the scopes which are required to access the protected resource
+     * endpoint.
+     *
+     * @return
+     *         Required scopes.
      */
     public String[] getScopes()
     {
@@ -145,18 +209,22 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Set the scopes which are required to access the target
-     * protected resource. If the array contains a scope which
-     * is not covered by the access token, Authlete's
-     * {@code /auth/introspection} API returns {@code FORBIDDEN}
-     * as the action and {@code insufficent_scope} as the error
-     * code.
+     * Set the scopes which are required to access the protected resource
+     * endpoint.
+     *
+     * <p>
+     * If the array contains a scope which is not covered by the access token,
+     * Authlete's {@code /auth/introspection} API returns {@code FORBIDDEN} as
+     * the action and {@code insufficent_scope} as the error code.
+     * </p>
      *
      * @param scopes
-     *         Scopes required to access the target protected
-     *         resource. If {@code null} is given, Authlete's
-     *         {@code /auth/introspection} endpoint does not
-     *         perform scope checking.
+     *         Scopes required to access the protected resource endpoint.
+     *         If {@code null} is given, the {@code /auth/introspection}
+     *         API does not perform scope checking.
+     *
+     * @return
+     *         {@code this} object.
      */
     public IntrospectionRequest setScopes(String[] scopes)
     {
@@ -167,9 +235,11 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Get the subject (= end-user ID managed by the service
-     * implementation) which is required to access the target
-     * protected resource.
+     * Get the subject (= end-user ID managed by the service implementation)
+     * which is required to access the protected resource endpoint.
+     *
+     * @return
+     *         Expected identifier of resource owner.
      */
     public String getSubject()
     {
@@ -178,20 +248,24 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Set the subject (= end-user ID managed by the service
-     * implementation) which is required to access the target
-     * protected resource. If the specified subject is different
-     * from the one associated with the access token, Authlete's
-     * {@code /auth/introspection} API returns {@code FORBIDDEN}
-     * as the action and {@code invalid_request} as the error
+     * Set the subject (= end-user ID managed by the service implementation)
+     * which is required to access the protected resource endpoint.
+     *
+     * <p>
+     * If the specified subject is different from the one associated with the
+     * access token, Authlete's {@code /auth/introspection} API returns
+     * {@code FORBIDDEN} as the action and {@code invalid_request} as the error
      * code.
+     * </p>
      *
      * @param subject
-     *         Subject (= end-user ID managed by the service
-     *         implementation) which is required to access the
-     *         protected resource. If {@code null} is given,
-     *         Authlete's {@code /auth/introspection} endpoint
+     *         Subject (= end-user ID managed by the service implementation)
+     *         which is required to access the protected resource endpoint.
+     *         If {@code null} is given, the {@code /auth/introspection} API
      *         does not perform subject checking.
+     *
+     * @return
+     *         {@code this} object.
      */
     public IntrospectionRequest setSubject(String subject)
     {
@@ -202,13 +276,16 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Get the client certificate, used to validate binding against
-     * access tokens using the TLS client certificate confirmation method.
+     * Get the client certificate used in the mutual TLS connection established
+     * between the client application and the protected resource endpoint.
      *
      * @return
-     *         The certificate in PEM format.
+     *         The client certificate in PEM format.
      *
      * @since 2.14
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8705.html"
+     *      >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
      */
     public String getClientCertificate()
     {
@@ -217,13 +294,24 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Set the client certificate, used to validate binding against
-     * access tokens using the TLS client certificate confirmation method.
+     * Set the client certificate used in the mutual TLS connection established
+     * between the client application and the protected resource endpoint.
+     *
+     * <p>
+     * If the access token is bound to a client certificate, this parameter is
+     * used for validation.
+     * </p>
      *
      * @param clientCertificate
-     *         The certificate in PEM format.
+     *         The client certificate in PEM format.
+     *
+     * @return
+     *         {@code this} object.
      *
      * @since 2.14
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8705.html"
+     *      >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
      */
     public IntrospectionRequest setClientCertificate(String clientCertificate)
     {
@@ -239,15 +327,13 @@ public class IntrospectionRequest implements Serializable
      * includes the public key that is paired with the private key used to
      * sign it.
      *
-     * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
-     * </p>
-     *
      * @return
      *         The {@code DPoP} header string.
      *
      * @since 2.70
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
+     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
      */
     public String getDpop()
     {
@@ -262,8 +348,8 @@ public class IntrospectionRequest implements Serializable
      * sign it.
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * If the access token is bound to a public key via DPoP, this parameter
+     * is used for validation.
      * </p>
      *
      * @param dpop
@@ -273,6 +359,9 @@ public class IntrospectionRequest implements Serializable
      *         {@code this} object.
      *
      * @since 2.70
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
+     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
      */
     public IntrospectionRequest setDpop(String dpop)
     {
@@ -287,15 +376,13 @@ public class IntrospectionRequest implements Serializable
      * resource endpoint. This field is used to validate the {@code DPoP}
      * header.
      *
-     * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
-     * </p>
-     *
      * @return
      *         The HTTP method as a string. For example, {@code "GET"}.
      *
      * @since 2.70
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
+     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
      */
     public String getHtm()
     {
@@ -309,8 +396,8 @@ public class IntrospectionRequest implements Serializable
      * header.
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * If the access token is bound to a public key via DPoP, this parameter
+     * is used for validation.
      * </p>
      *
      * @param htm
@@ -320,6 +407,9 @@ public class IntrospectionRequest implements Serializable
      *         {@code this} object.
      *
      * @since 2.70
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
+     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
      */
     public IntrospectionRequest setHtm(String htm)
     {
@@ -333,15 +423,13 @@ public class IntrospectionRequest implements Serializable
      * Get the URL of the protected resource endpoint. This field is used
      * to validate the {@code DPoP} header.
      *
-     * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
-     * </p>
-     *
      * @return
      *         The URL of the protected resource endpoint.
      *
      * @since 2.70
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
+     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
      */
     public String getHtu()
     {
@@ -354,8 +442,8 @@ public class IntrospectionRequest implements Serializable
      * to validate the {@code DPoP} header.
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * If the access token is bound to a public key via DPoP, this parameter
+     * is used for validation.
      * </p>
      *
      * @param htu
@@ -365,10 +453,55 @@ public class IntrospectionRequest implements Serializable
      *         {@code this} object.
      *
      * @since 2.70
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
+     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
      */
     public IntrospectionRequest setHtu(String htu)
     {
         this.htu = htu;
+
+        return this;
+    }
+
+
+    /**
+     * Get the resource indicators that the access token should cover.
+     *
+     * @return
+     *         The resource indicators.
+     *
+     * @since 3.1
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8707.html"
+     *      >RFC 8707 Resource Indicators for OAuth 2.0</a>
+     */
+    public URI[] getResources()
+    {
+        return resources;
+    }
+
+
+    /**
+     * Set the resource indicators that the access token should cover.
+     *
+     * @param resources
+     *         The resource indicators that the access token should cover to
+     *         access the protected resource endpoint. If {@code null} is
+     *         given, the {@code /auth/introspection} API does not perform
+     *         resource indicator checking.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.1
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8707.html"
+     *      >RFC 8707 Resource Indicators for OAuth 2.0</a>
+     */
+    public IntrospectionRequest setResource(URI[] resources)
+    {
+        this.resources = resources;
 
         return this;
     }

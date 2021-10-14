@@ -18,6 +18,7 @@ package com.authlete.common.dto;
 
 import java.net.URI;
 import com.authlete.common.types.ClientAuthMethod;
+import com.authlete.common.types.GMAction;
 
 
 /**
@@ -169,7 +170,7 @@ import com.authlete.common.types.ClientAuthMethod;
  */
 public class DeviceAuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     /**
@@ -232,6 +233,10 @@ public class DeviceAuthorizationResponse extends ApiResponse
     private int interval;
     private URI[] resources;
     private AuthzDetails authorizationDetails;
+    private GMAction gmAction;
+    private String grantId;
+    private String grantSubject;
+    private Grant grant;
     private Pair[] serviceAttributes;
     private Pair[] clientAttributes;
     private String[] warnings;
@@ -971,6 +976,252 @@ public class DeviceAuthorizationResponse extends ApiResponse
     public DeviceAuthorizationResponse setAuthorizationDetails(AuthzDetails details)
     {
         this.authorizationDetails = details;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the {@code grant_management_action} request parameter.
+     *
+     * <p>
+     * The {@code grant_management_action} request parameter is defined in
+     * <a href="https://openid.net/specs/fapi-grant-management.html">Grant
+     * Management for OAuth 2.0</a>, which is supported by Authlete 2.3 and
+     * newer versions.
+     * </p>
+     *
+     * @return
+     *         A grant management action. {@code null} or one of
+     *         {@link GMAction#CREATE CREATE}, {@link GMAction#REPLACE REPLACE}
+     *         and {@link GMAction#UPDATE UPDATE}.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public GMAction getGmAction()
+    {
+        return gmAction;
+    }
+
+
+    /**
+     * Set the value of the {@code grant_management_action} request parameter.
+     *
+     * <p>
+     * The {@code grant_management_action} request parameter is defined in
+     * <a href="https://openid.net/specs/fapi-grant-management.html">Grant
+     * Management for OAuth 2.0</a>, which is supported by Authlete 2.3 and
+     * newer versions.
+     * </p>
+     *
+     * @param action
+     *         A grant management action. {@code null} or one of
+     *         {@link GMAction#CREATE CREATE}, {@link GMAction#REPLACE REPLACE}
+     *         and {@link GMAction#UPDATE UPDATE}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public DeviceAuthorizationResponse setGmAction(GMAction action)
+    {
+        this.gmAction = action;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the {@code grant_id} request parameter.
+     *
+     * <p>
+     * The {@code grant_id} request parameter is defined in
+     * <a href="https://openid.net/specs/fapi-grant-management.html">Grant
+     * Management for OAuth 2.0</a>, which is supported by Authlete 2.3 and
+     * newer versions.
+     * </p>
+     *
+     * @return
+     *         A grant ID.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public String getGrantId()
+    {
+        return grantId;
+    }
+
+
+    /**
+     * Set the value of the {@code grant_id} request parameter.
+     *
+     * <p>
+     * The {@code grant_id} request parameter is defined in
+     * <a href="https://openid.net/specs/fapi-grant-management.html">Grant
+     * Management for OAuth 2.0</a>, which is supported by Authlete 2.3 and
+     * newer versions.
+     * </p>
+     *
+     * @param grantId
+     *         A grant ID.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.1
+     */
+    public DeviceAuthorizationResponse setGrantId(String grantId)
+    {
+        this.grantId = grantId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the subject of the user who has given the grant which is identified
+     * by the {@code grant_id} request parameter.
+     *
+     * <p>
+     * Authlete 2.3 and newer versions support <a href=
+     * "https://openid.net/specs/fapi-grant-management.html">Grant Management
+     * for OAuth 2.0</a>. An authorization request may contain a {@code grant_id}
+     * request parameter which is defined in the specification. If the value of
+     * the request parameter is valid, {@link #getGrantSubject()} will return
+     * the subject of the user who has given the grant to the client application.
+     * Authorization server implementations may use the value returned from
+     * {@link #getGrantSubject()} in order to determine the user to authenticate.
+     * </p>
+     *
+     * <p>
+     * The user your system will authenticate during the authorization process
+     * (or has already authenticated) may be different from the user of the
+     * grant. The first implementer's draft of "Grant Management for OAuth 2.0"
+     * does not mention anything about the case, so the behavior in the case is
+     * left to implementations. Authlete will not perform the grant management
+     * action when the {@code subject} passed to Authlete does not match the
+     * user of the grant.
+     * </p>
+     *
+     * @return
+     *         The subject of the user who has given the grant.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public String getGrantSubject()
+    {
+        return grantSubject;
+    }
+
+
+    /**
+     * Set the subject of the user who has given the grant which is identified
+     * by the {@code grant_id} request parameter.
+     *
+     * <p>
+     * Authlete 2.3 and newer versions support <a href=
+     * "https://openid.net/specs/fapi-grant-management.html">Grant Management
+     * for OAuth 2.0</a>. An authorization request may contain a {@code grant_id}
+     * request parameter which is defined in the specification. If the value of
+     * the request parameter is valid, {@link #getGrantSubject()} will return
+     * the subject of the user who has given the grant to the client application.
+     * Authorization server implementations may use the value returned from
+     * {@link #getGrantSubject()} in order to determine the user to authenticate.
+     * </p>
+     *
+     * <p>
+     * The user your system will authenticate during the authorization process
+     * (or has already authenticated) may be different from the user of the
+     * grant. The first implementer's draft of "Grant Management for OAuth 2.0"
+     * does not mention anything about the case, so the behavior in the case is
+     * left to implementations. Authlete will not perform the grant management
+     * action when the {@code subject} passed to Authlete does not match the
+     * user of the grant.
+     * </p>
+     *
+     * @param subject
+     *         The subject of the user who has given the grant.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public DeviceAuthorizationResponse setGrantSubject(String subject)
+    {
+        this.grantSubject = subject;
+
+        return this;
+    }
+
+
+    /**
+     * Get the content of the grant which is identified by the {@code grant_id}
+     * request parameter.
+     *
+     * <p>
+     * The user your system will authenticate during the authorization process
+     * (or has already authenticated) may be different from the user of the grant.
+     * Be careful when your system displays the content of the grant.
+     * </p>
+     *
+     * @return
+     *         The content of the grant.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public Grant getGrant()
+    {
+        return grant;
+    }
+
+
+    /**
+     * Set the content of the grant which is identified by the {@code grant_id}
+     * request parameter.
+     *
+     * <p>
+     * The user your system will authenticate during the authorization process
+     * (or has already authenticated) may be different from the user of the grant.
+     * Be careful when your system displays the content of the grant.
+     * </p>
+     *
+     * @param grant
+     *         The content of the grant.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    public DeviceAuthorizationResponse setGrant(Grant grant)
+    {
+        this.grant = grant;
 
         return this;
     }

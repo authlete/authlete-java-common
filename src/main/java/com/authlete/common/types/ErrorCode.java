@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2020 Authlete, Inc.
+ * Copyright (C) 2014-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -447,5 +447,16 @@ public enum ErrorCode
      * @since 2.74
      */
     invalid_dpop_proof,
+
+
+    /**
+     * The {@code grant_id} included in the request is unknown or invalid.
+     *
+     * @see <a href="https://openid.net/specs/fapi-grant-management.html"
+     *      >Grant Management for OAuth 2.0</a>
+     *
+     * @since 3.1
+     */
+    invalid_grant_id,
     ;
 }
