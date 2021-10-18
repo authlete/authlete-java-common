@@ -494,12 +494,12 @@ public class IntrospectionRequest implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 3.1
+     * @since 3.3
      *
      * @see <a href="https://www.rfc-editor.org/rfc/rfc8707.html"
      *      >RFC 8707 Resource Indicators for OAuth 2.0</a>
      */
-    public IntrospectionRequest setResource(URI[] resources)
+    public IntrospectionRequest setResources(URI[] resources)
     {
         this.resources = resources;
 
