@@ -56,7 +56,7 @@ public enum GMAction
     /**
      * {@code "update"} (5).
      */
-    UPDATE((short)4, "update"),
+    UPDATE((short)5, "update"),
     ;
 
 
