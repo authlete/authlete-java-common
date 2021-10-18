@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.3 (2021-10-18)
+----------------
+
 - `IntrospectionRequest` class
     * Renamed `setResource(URI[])` to `setResources(URI[])`.
 

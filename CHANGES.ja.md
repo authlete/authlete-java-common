@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.3 (2021 年 10 月 18 日)
+-------------------------
+
 - `IntrospectionRequest` クラス
     * `setResource(URI[])` を `setResources(URI[])` に名称変更。
 
