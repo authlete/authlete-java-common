@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.2 (2021-10-18)
+----------------
+
 - `GMAction` enum
     * Correct the value of the first argument for `UPDATE`.
 
