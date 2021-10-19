@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.4 (2021-10-20)
+----------------
+
 - `ClientRegistrationResponse.Action` enum
     * Added `UNAUTHORIZED`.
 

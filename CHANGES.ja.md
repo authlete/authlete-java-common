@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.4 (2021 年 10 月 20 日)
+-------------------------
+
 - `ClientRegistrationResponse.Action` 列挙型
     * `UNAUTHORIZED` を追加。
 
