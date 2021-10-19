@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Authlete, Inc.
+ * Copyright (C) 2018-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package com.authlete.common.dto;
 
 
 /**
- * Response from Authlete's {@code /api/client/register} API.
+ * Response from Authlete's {@code /api/client/registration} API.
  *
  * <p>
  * Authlete's {@code /api/client/register} API returns JSON which can be
@@ -94,6 +94,47 @@ package com.authlete.common.dto;
  * <i>(The value returned from {@link #getResponseContent()})</i></pre>
  * </dd>
  *
+ * <dt><b>{@link Action#UNAUTHORIZED UNAUTHORIZED}</b></dt>
+ * <dd>
+ * <p>
+ * When the value of {@code "action"} is {@code "UNAUTHORIZED"}, it means that
+ * the registration access token used by the client configuration request
+ * (<a href="https://www.rfc-editor.org/rfc/rfc7592.html">RFC 7592</a>) is
+ * invalid, or the client application which the token is tied to does not exist
+ * any longer or is invalid.
+ * </p>
+ *
+ * <p>
+ * The HTTP status of the response returned to the client application must be
+ * {@code "401 Unauthorized"} and the content type must be
+ * {@code "application/json"}.
+ * </p>
+ *
+ * <p>
+ * {@link #getResponseContent()} returns a JSON string which describes the
+ * error, so it can be used as the entity body of the response.
+ * </p>
+ *
+ * <p>
+ * The following illustrates the response which the endpoint implementation
+ * should generate and return to the client application.
+ * </p>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;">
+ * HTTP/1.1 401 Unauthorized
+ * Content-Type: application/json
+ * Cache-Control: no-store
+ * Pragma: no-cache
+ *
+ * <i>(The value returned from {@link #getResponseContent()})</i></pre>
+ *
+ * <p>
+ * NOTE: The {@code UNAUTHORIZED} enum value was added recently (in October, 2021).
+ * See the description of {@link Service#setUnauthorizedOnClientConfigSupported(boolean)}
+ * for details.
+ * </p>
+ * </dd>
+ *
  * <dt><b>{@link Action#CREATED CREATED}</b></dt>
  * <dd>
  * <p>
@@ -129,7 +170,7 @@ package com.authlete.common.dto;
  */
 public class ClientRegistrationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -150,6 +191,33 @@ public class ClientRegistrationResponse extends ApiResponse
          * should return {@code "400 Bad Request"} to the client application.
          */
         BAD_REQUEST,
+
+        /**
+         * The registration access token used by the client configuration
+         * request (<a href="https://www.rfc-editor.org/rfc/rfc7592.html"
+         * >RFC 7592</a>) is invalid, or the client application which the
+         * token is tied to does not exist any longer or is invalid. The
+         * endpoint implementation should return {@code "401 Unauthorized"}.
+         *
+         * <p>
+         * This enum value did not exist in the initial implementation of
+         * this enum, meaning that implementations of client configuration
+         * endpoint were not able to conform to RFC 7592 strictly.
+         * </p>
+         *
+         * <p>
+         * For backward compatibility (to avoid breaking running systems),
+         * Authlete's {@code /api/client/registration} API does not return
+         * this {@code UNAUTHORIZED} enum value if the {@code
+         * unauthorizedOnClientConfigSupported} flag of the {@link Service}
+         * is not turned on. See the description of {@link
+         * Service#setUnauthorizedOnClientConfigSupported(boolean)} for
+         * details.
+         * </p>
+         *
+         * @since 3.4
+         */
+        UNAUTHORIZED,
 
         /**
          * The request was valid and a client application has been registered

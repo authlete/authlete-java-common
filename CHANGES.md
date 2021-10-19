@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+- `ClientRegistrationResponse.Action` enum
+    * Added `UNAUTHORIZED`.
+
+- `Service` class
+    * Added `isUnauthorizedOnClientConfigSupported()` method.
+    * Added `setUnauthorizedOnClientConfigSupported(boolean)` method.
+
+
 3.3 (2021-10-18)
 ----------------
 

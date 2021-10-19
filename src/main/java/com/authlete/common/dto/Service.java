@@ -226,7 +226,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 48L;
+    private static final long serialVersionUID = 49L;
 
 
     /*
@@ -805,6 +805,15 @@ public class Service implements Serializable
      * @since 3.1
      */
     private boolean grantManagementActionRequired;
+
+
+    /**
+     * The flag indicating whether to let /api/client/registration API use
+     * ClientRegistrationResponse.Action.UNAUTHORIZED whenever appropriate.
+     *
+     * @since 3.4
+     */
+    private boolean unauthorizedOnClientConfigSupported;
 
 
     /**
@@ -6330,6 +6339,92 @@ public class Service implements Serializable
     public Service setGrantManagementActionRequired(boolean required)
     {
         this.grantManagementActionRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether Authlete's {@code /api/client/registration}
+     * API uses {@link ClientRegistrationResponse.Action#UNAUTHORIZED UNAUTHORIZED}
+     * as a value of the {@code action} response parameter when appropriate.
+     *
+     * <p>
+     * See the description of {@link #setUnauthorizedOnClientConfigSupported(boolean)}
+     * for details.
+     * </p>
+     *
+     * @return
+     *         {@code true} if Authlete's {@code /api/client/registration} uses
+     *         {@code UNAUTHORIZED} as a value of the {@code action} response
+     *         parameter when appropriate. {@code false} if {@code UNAUTHORIZED}
+     *         is not used in any case.
+     *
+     * @since 3.4
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7592.html"
+     *      >RFC 7592 OAuth 2.0 Dynamic Client Registration Management Protocol</a>
+     */
+    public boolean isUnauthorizedOnClientConfigSupported()
+    {
+        return unauthorizedOnClientConfigSupported;
+    }
+
+
+    /**
+     * Set the flag indicating whether Authlete's {@code /api/client/registration}
+     * API uses {@link ClientRegistrationResponse.Action#UNAUTHORIZED UNAUTHORIZED}
+     * as a value of the {@code action} response parameter when appropriate.
+     *
+     * <p>
+     * The {@code UNAUTHORIZED} enum value did not exist in the initial
+     * implementation of the {@link ClientRegistrationResponse.Action} enum.
+     * This means that implementations of client configuration endpoint were
+     * not able to conform to <a href=
+     * "https://www.rfc-editor.org/rfc/rfc7592.html">RFC 7592</a> strictly.
+     * </p>
+     *
+     * <p>
+     * For backward compatibility (to avoid breaking running systems),
+     * Authlete's {@code /api/client/registration} API does not return the
+     * {@code UNAUTHORIZED} enum value if this flag is not turned on.
+     * </p>
+     *
+     * <p>
+     * The steps an existing implementation of client configuration endpoint
+     * has to do in order to conform to the requirement related to
+     * "{@code 401 Unauthorized}" are as follows.
+     * </p>
+     *
+     * <ol>
+     * <li>
+     * Update the Authlete library (e.g. <a href=
+     * "https://github.com/authlete/authlete-java-common"
+     * >authlete-java-common</a>) your system is using.
+     * <li>
+     * Update your implementation of client configuration endpoint so that
+     * it can handle the {@code UNAUTHORIZED} action.
+     * <li>
+     * Turn on this {@code unauthorizedOnClientConfigSupported} flag.
+     * </ol>
+     *
+     * @param supported
+     *         {@code true} to let Authlete's {@code /api/client/registration}
+     *         API use the {@code UNAUTHORIZED} enum value when appropriate.
+     *         {@code false} to prevent the {@code UNAUTHORIZED} enum value
+     *         from being used.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.4
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7592.html"
+     *      >RFC 7592 OAuth 2.0 Dynamic Client Registration Management Protocol</a>
+     */
+    public Service setUnauthorizedOnClientConfigSupported(boolean supported)
+    {
+        this.unauthorizedOnClientConfigSupported = supported;
 
         return this;
     }

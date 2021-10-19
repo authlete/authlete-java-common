@@ -1,6 +1,14 @@
 変更点
 ======
 
+- `ClientRegistrationResponse.Action` 列挙型
+    * `UNAUTHORIZED` を追加。
+
+- `Service` クラス
+    * `isUnauthorizedOnClientConfigSupported()` メソッドを追加。
+    * `setUnauthorizedOnClientConfigSupported(boolean)` メソッドを追加。
+
+
 3.3 (2021 年 10 月 18 日)
 -------------------------
 
