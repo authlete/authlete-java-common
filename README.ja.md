@@ -320,6 +320,10 @@ settings.setReadTimeout(5000);
 
   - `pushAuthorizationRequest(PushedAuthReqRequest)`
 
+  19. Grant Management for OAuth 2.0 に関するメソッド群
+
+  - `gm(GMRequest)`
+
 
 *例*
 

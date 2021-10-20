@@ -332,6 +332,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
   - `pushAuthorizationRequest(PushedAuthReqRequest)`
 
+  19. Methods for Grant Management for OAuth 2.0
+
+  - `gm(GMRequest)`
+
 *Examples*
 
 The following code snippet is an example to get the list of your existing
