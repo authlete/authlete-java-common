@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isDcrScopeUsedAsRequestable()` メソッドを追加。
+    * `setDcrScopeUsedAsRequestable(boolean)` メソッドを追加。
+
+
 3.4 (2021 年 10 月 20 日)
 -------------------------
 

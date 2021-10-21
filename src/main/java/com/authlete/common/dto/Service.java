@@ -226,7 +226,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 49L;
+    private static final long serialVersionUID = 50L;
 
 
     /*
@@ -814,6 +814,16 @@ public class Service implements Serializable
      * @since 3.4
      */
     private boolean unauthorizedOnClientConfigSupported;
+
+
+    /**
+     * The flag indicating whether the {@code scope} request parameter in
+     * dynamic client registration/update requests is used as requestable
+     * scopes.
+     *
+     * @since 3.5
+     */
+    private boolean dcrScopeUsedAsRequestable;
 
 
     /**
@@ -6425,6 +6435,96 @@ public class Service implements Serializable
     public Service setUnauthorizedOnClientConfigSupported(boolean supported)
     {
         this.unauthorizedOnClientConfigSupported = supported;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether the {@code scope} request parameter
+     * in dynamic client registration and update requests (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc7591.html">RFC 7591</a> and
+     * <a href="https://www.rfc-editor.org/rfc/rfc7592.html">RFC 7592</a>)
+     * is used as scopes that the client can request.
+     *
+     * <p>
+     * Limiting the range of scopes that a client can request is achieved by
+     * listing scopes in the {@code client.extension.requestableScopes}
+     * property (cf. {@link ClientExtension#getRequestableScopes()}) and
+     * setting {@code true} to the
+     * {@code client.extension.requestableScopesEnabled} property (cf.
+     * {@link ClientExtension#isRequestableScopesEnabled()}). This feature
+     * is called "requestable scopes".
+     * </p>
+     *
+     * <p>
+     * This property affects behaviors of {@code /api/client/registration}
+     * and other family APIs.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the {@code scope} request parameter in dynamic
+     *         client registration and update requests is used to limit the
+     *         range of scopes that the client can request. {@code false} if
+     *         Authlete does nothing special for the {@code scope} request
+     *         parameter.
+     *
+     * @since 3.5
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7591.html"
+     *      >RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7592.html"
+     *      >RFC 7592 OAuth 2.0 Dynamic Client Registration Management Protocol</a>
+     */
+    public boolean isDcrScopeUsedAsRequestable()
+    {
+        return dcrScopeUsedAsRequestable;
+    }
+
+
+    /**
+     * Set the flag indicating whether the {@code scope} request parameter
+     * in dynamic client registration and update requests (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc7591.html">RFC 7591</a> and
+     * <a href="https://www.rfc-editor.org/rfc/rfc7592.html">RFC 7592</a>)
+     * is used as scopes that the client can request.
+     *
+     * <p>
+     * Limiting the range of scopes that a client can request is achieved by
+     * listing scopes in the {@code client.extension.requestableScopes}
+     * property (cf. {@link ClientExtension#getRequestableScopes()}) and
+     * setting {@code true} to the
+     * {@code client.extension.requestableScopesEnabled} property (cf.
+     * {@link ClientExtension#isRequestableScopesEnabled()}). This feature
+     * is called "requestable scopes".
+     * </p>
+     *
+     * <p>
+     * This property affects behaviors of {@code /api/client/registration}
+     * and other family APIs.
+     * </p>
+     *
+     * @param used
+     *         {@code true} to make Authlete treat the {@code scope} request
+     *         parameter in dynamic client registration and update requests
+     *         as requestable scopes. {@code false} to leave it to Authlete
+     *         (Authlete will do nothing special).
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.5
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7591.html"
+     *      >RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7592.html"
+     *      >RFC 7592 OAuth 2.0 Dynamic Client Registration Management Protocol</a>
+     */
+    public Service setDcrScopeUsedAsRequestable(boolean used)
+    {
+        this.dcrScopeUsedAsRequestable = used;
 
         return this;
     }
