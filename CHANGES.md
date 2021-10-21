@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.5 (2021-10-22)
+----------------
+
 - `Service` class
     * Added `isDcrScopeUsedAsRequestable()` method.
     * Added `setDcrScopeUsedAsRequestable(boolean)` method.
