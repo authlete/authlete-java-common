@@ -1,6 +1,17 @@
 変更点
 ======
 
+- `DeviceVerificationResponse` クラス
+    * `getGmAction()` メソッドを追加。
+    * `setGmAction(GMAction)` メソッドを追加。
+    * `getGrant()` メソッドを追加。
+    * `setGrant(Grant)` メソッドを追加。
+    * `getGrantId()` メソッドを追加。
+    * `setGrantId(String)` メソッドを追加。
+    * `getGrantSubject()` メソッドを追加。
+    * `setGrantSubject(String)` メソッドを追加。
+
+
 3.5 (2021 年 10 月 22 日)
 -------------------------
 

@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+- `DeviceVerificationResponse` class
+    * Added `getGmAction()` method.
+    * Added `setGmAction(GMAction)` method.
+    * Added `getGrant()` method.
+    * Added `setGrant(Grant)` method.
+    * Added `getGrantId()` method.
+    * Added `setGrantId(String)` method.
+    * Added `getGrantSubject()` method.
+    * Added `setGrantSubject(String)` method.
+
+
 3.5 (2021-10-22)
 ----------------
 
