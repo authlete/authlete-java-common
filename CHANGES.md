@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.6 (2021-10-28)
+----------------
+
 - `DeviceVerificationResponse` class
     * Added `getGmAction()` method.
     * Added `setGmAction(GMAction)` method.

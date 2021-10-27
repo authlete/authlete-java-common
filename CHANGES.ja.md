@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.6 (2021 年 10 月 28 日)
+-------------------------
+
 - `DeviceVerificationResponse` クラス
     * `getGmAction()` メソッドを追加。
     * `setGmAction(GMAction)` メソッドを追加。
