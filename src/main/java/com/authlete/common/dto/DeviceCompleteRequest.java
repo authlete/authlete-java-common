@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Authlete, Inc.
+ * Copyright (C) 2019-2021 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ import com.authlete.common.util.Utils;
  */
 public class DeviceCompleteRequest implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -232,6 +232,14 @@ public class DeviceCompleteRequest implements Serializable
      * @since 2.79
      */
     private String idtHeaderParams;
+
+
+    /**
+     * Claims that the user has consented for the client application to know.
+     *
+     * @since 3.7
+     */
+    private String[] consentedClaims;
 
 
     /**
@@ -743,6 +751,104 @@ public class DeviceCompleteRequest implements Serializable
     public DeviceCompleteRequest setIdtHeaderParams(String params)
     {
         this.idtHeaderParams = params;
+
+        return this;
+    }
+
+
+    /**
+     * Get the claims that the user has consented for the client application
+     * to know.
+     *
+     * <p>
+     * See the description of {@link #setConsentedClaims(String[])} for
+     * details.
+     * </p>
+     *
+     * @return
+     *         Consented claims.
+     *
+     * @since 3.7
+     */
+    public String[] getConsentedClaims()
+    {
+        return consentedClaims;
+    }
+
+
+    /**
+     * Set the claims that the user has consented for the client application
+     * to know.
+     *
+     * <p>
+     * If the {@code claims} request parameter holds JSON, Authlete extracts
+     * claims from the JSON and embeds them in an ID token (cf. {@link
+     * #setClaims(String)}). However, the claims are not necessarily identical
+     * to the set of claims that the user has actually consented for the client
+     * application to know.
+     * </p>
+     *
+     * <p>
+     * For example, if the user has allowed the {@code profile} scope to be
+     * tied to an access token being issued, it technically means that the
+     * user has consented for the client application to know the following
+     * claims based on the mapping defined in OpenID Connect Core 1.0 <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
+     * >Section 5.4. Requesting Claims using Scope Values</a>: {@code name},
+     * {@code family_name}, {@code given_name}, {@code middle_name},
+     * {@code nickname}, {@code preferred_username}, {@code profile},
+     * {@code picture}, {@code website}, {@code gender}, {@code birthdate},
+     * {@code zoneinfo}, {@code locale} and {@code updated_at}. However,
+     * JSON of the {@code claims} request parameter does not necessarily
+     * include all the claims. It may be simply because the authorization
+     * server does not support other claims or because the authorization
+     * server intends to return requested claims from the <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
+     * >UserInfo Endpoint</a> instead of embedding them in an ID token, or
+     * for some other reasons. Therefore, Authlete does not assume that the
+     * claims in the JSON of the {@code claims} request parameter represent
+     * the complete set of consented claims.
+     * </p>
+     *
+     * <p>
+     * This {@code consentedClaims} request parameter (supported from Authlete
+     * 2.3) can be used to convey the exact set of consented claims to Authlete.
+     * Authlete saves the information into its database and makes them
+     * referrable in responses from the {@code /api/auth/introspection} API
+     * and the {@code /api/auth/userinfo} API.
+     * </p>
+     *
+     * <p>
+     * In addition, the information conveyed via this {@code consentedClaims}
+     * request parameter is used to compute the exact value of the {@code
+     * claims} parameter in responses from the Grant Management Endpoint, which
+     * is defined in <a href="https://openid.net/specs/fapi-grant-management.html"
+     * >Grant Management for OAuth 2.0</a>.
+     * </p>
+     *
+     * </p>
+     * When this request parameter is missing or its value is empty, Authlete
+     * computes the set of consented claims from the consented scopes (e.g.
+     * {@code profile}) and the claims in the JSON of the {@code claims}
+     * request parameter although Authlete knows the possibility that the
+     * computed set may be different from the actual set of consented claims.
+     * Especially, the computed set may not include claims that the
+     * authorization server returns from the UserInfo Endpoint. Therefore,
+     * if you want to control the exact set of consented claims, utilize this
+     * request parameter.
+     * </p>
+     *
+     * @param claims
+     *         Consented claims.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.7
+     */
+    public DeviceCompleteRequest setConsentedClaims(String[] claims)
+    {
+        this.consentedClaims = claims;
 
         return this;
     }

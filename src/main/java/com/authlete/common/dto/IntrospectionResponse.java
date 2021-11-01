@@ -219,7 +219,7 @@ import com.authlete.common.util.Utils;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 12L;
+    private static final long serialVersionUID = 13L;
 
 
     /**
@@ -388,6 +388,12 @@ public class IntrospectionResponse extends ApiResponse
      * Grant that this access token has inherited.
      */
     private Grant grant;
+
+
+    /**
+     * Claims that the user has consented for the client application to know.
+     */
+    private String[] consentedClaims;
 
 
     /**
@@ -996,6 +1002,80 @@ public class IntrospectionResponse extends ApiResponse
     public void setGrant(Grant grant)
     {
         this.grant = grant;
+    }
+
+
+    /**
+     * Get the claims that the user has consented for the client application
+     * to know.
+     *
+     * <p>
+     * The following Authlete APIs accept a {@code consentedClaims} request
+     * parameter (which is supported from Authlete 2.3).
+     * </p>
+     *
+     * <ul>
+     * <li>{@code /api/auth/authorization/issue}
+     * <li>{@code /api/backchannel/authentication/complete}
+     * <li>{@code /api/device/complete}
+     * </ul>
+     *
+     * <p>
+     * The request parameter is used to convey consented claims to Authlete.
+     * This property holds the consented claims. See the description of
+     * {@link AuthorizationIssueRequest#setConsentedClaims(String[])} for
+     * details.
+     * </p>
+     *
+     * @return
+     *         Consented claims.
+     *
+     * @see {@link AuthorizationIssueRequest#setConsentedClaims(String[])}
+     * @see {@link BackchannelAuthenticationCompleteRequest#setConsentedClaims(String[])}
+     * @see {@link DeviceCompleteRequest#setConsentedClaims(String[])}
+     *
+     * @since 3.7
+     */
+    public String[] getConsentedClaims()
+    {
+        return consentedClaims;
+    }
+
+
+    /**
+     * Set the claims that the user has consented for the client application
+     * to know.
+     *
+     * <p>
+     * The following Authlete APIs accept a {@code consentedClaims} request
+     * parameter (which is supported from Authlete 2.3).
+     * </p>
+     *
+     * <ul>
+     * <li>{@code /api/auth/authorization/issue}
+     * <li>{@code /api/backchannel/authentication/complete}
+     * <li>{@code /api/device/complete}
+     * </ul>
+     *
+     * <p>
+     * The request parameter is used to convey consented claims to Authlete.
+     * This property holds the consented claims. See the description of
+     * {@link AuthorizationIssueRequest#setConsentedClaims(String[])} for
+     * details.
+     * </p>
+     *
+     * @param claims
+     *         Consented claims.
+     *
+     * @see {@link AuthorizationIssueRequest#setConsentedClaims(String[])}
+     * @see {@link BackchannelAuthenticationCompleteRequest#setConsentedClaims(String[])}
+     * @see {@link DeviceCompleteRequest#setConsentedClaims(String[])}
+     *
+     * @since 3.7
+     */
+    public void setConsentedClaims(String[] claims)
+    {
+        this.consentedClaims = claims;
     }
 
 

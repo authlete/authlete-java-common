@@ -1,6 +1,27 @@
 変更点
 ======
 
+- `AuthorizationIssueRequest` クラス
+    * `getConsentedClaims()` メソッドを追加。
+    * `setConsentedClaims(String[])` メソッドを追加。
+
+- `BackchannelAuthenticationCompleteRequest` クラス
+    * `getConsentedClaims()` メソッドを追加。
+    * `setConsentedClaims(String[])` メソッドを追加。
+
+- `DeviceCompleteRequest` クラス
+    * `getConsentedClaims()` メソッドを追加。
+    * `setConsentedClaims(String[])` メソッドを追加。
+
+- `IntrospectionResponse` クラス
+    * `getConsentedClaims()` メソッドを追加。
+    * `setConsentedClaims(String[])` メソッドを追加。
+
+- `UserInfoResponse` クラス
+    * `getConsentedClaims()` メソッドを追加。
+    * `setConsentedClaims(String[])` メソッドを追加。
+
+
 3.6 (2021 年 10 月 28 日)
 -------------------------
 

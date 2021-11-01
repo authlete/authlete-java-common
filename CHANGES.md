@@ -1,6 +1,27 @@
 CHANGES
 =======
 
+- `AuthorizationIssueRequest` class
+    * Added `getConsentedClaims()` method.
+    * Added `setConsentedClaims(String[])` method.
+
+- `BackchannelAuthenticationCompleteRequest` class
+    * Added `getConsentedClaims()` method.
+    * Added `setConsentedClaims(String[])` method.
+
+- `DeviceCompleteRequest` class
+    * Added `getConsentedClaims()` method.
+    * Added `setConsentedClaims(String[])` method.
+
+- `IntrospectionResponse` class
+    * Added `getConsentedClaims()` method.
+    * Added `setConsentedClaims(String[])` method.
+
+- `UserInfoResponse` class
+    * Added `getConsentedClaims()` method.
+    * Added `setConsentedClaims(String[])` method.
+
+
 3.6 (2021-10-28)
 ----------------
 
