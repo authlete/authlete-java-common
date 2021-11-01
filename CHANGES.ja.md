@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.7 (2021 年 11 月 02 日)
+-------------------------
+
 - `AuthorizationIssueRequest` クラス
     * `getConsentedClaims()` メソッドを追加。
     * `setConsentedClaims(String[])` メソッドを追加。

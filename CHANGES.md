@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.7 (2021-11-02)
+----------------
+
 - `AuthorizationIssueRequest` class
     * Added `getConsentedClaims()` method.
     * Added `setConsentedClaims(String[])` method.
