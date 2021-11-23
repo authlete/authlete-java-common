@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.8 (2021 年 11 月 23 日)
+-------------------------
+
 - `AuthorizationIssueRequest` クラス
     * `getClaimsForTx()` メソッドを追加。
     * `setClaimsForTx(String)` メソッドを追加。

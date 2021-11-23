@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.8 (2021-11-23)
+----------------
+
 - `AuthorizationIssueRequest` class
     * Added `getClaimsForTx()` method.
     * Added `setClaimsForTx(String)` method.
