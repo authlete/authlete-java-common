@@ -1,6 +1,42 @@
 CHANGES
 =======
 
+- `AuthorizationIssueRequest` class
+    * Added `getClaimsForTx()` method.
+    * Added `setClaimsForTx(String)` method.
+    * Added `getVerifiedClaimsForTx()` method.
+    * Added `setVerifiedClaimsForTx(String[])` method.
+
+- `AuthorizationResponse` class
+    * Added `getTransformedClaims()` method.
+    * Added `setTransformedClaims(String)` method.
+    * Added `getRequestedClaimsForTx()` method.
+    * Added `setRequestedClaimsForTx(String[])` method.
+    * Added `getRequestedVerifiedClaimsForTx()` method.
+    * Added `setRequestedVerifiedClaimsForTx(StringArray[])` method.
+
+- `Service` class
+    * Added `getPredefinedTransformedClaims()` method.
+    * Added `setPredefinedTransformedClaims(String)` method.
+
+- `UserInfoIssueRequest` class
+    * Added `getClaimsForTx()` method.
+    * Added `setClaimsForTx(String)` method.
+    * Added `getVerifiedClaimsForTx()` method.
+    * Added `setVerifiedClaimsForTx(String[])` method.
+
+- `UserInfoResponse` class
+    * Added `getTransformedClaims()` method.
+    * Added `setTransformedClaims(String)` method.
+    * Added `getRequestedClaimsForTx()` method.
+    * Added `setRequestedClaimsForTx(String[])` method.
+    * Added `getRequestedVerifiedClaimsForTx()` method.
+    * Added `setRequestedVerifiedClaimsForTx(StringArray[])` method.
+
+- New classes
+    * `StringArray`
+
+
 3.7 (2021-11-02)
 ----------------
 

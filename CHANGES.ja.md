@@ -1,6 +1,42 @@
 変更点
 ======
 
+- `AuthorizationIssueRequest` クラス
+    * `getClaimsForTx()` メソッドを追加。
+    * `setClaimsForTx(String)` メソッドを追加。
+    * `getVerifiedClaimsForTx()` メソッドを追加。
+    * `setVerifiedClaimsForTx(String[])` メソッドを追加。
+
+- `AuthorizationResponse` クラス
+    * `getTransformedClaims()` メソッドを追加。
+    * `setTransformedClaims(String)` メソッドを追加。
+    * `getRequestedClaimsForTx()` メソッドを追加。
+    * `setRequestedClaimsForTx(String[])` メソッドを追加。
+    * `getRequestedVerifiedClaimsForTx()` メソッドを追加。
+    * `setRequestedVerifiedClaimsForTx(StringArray[])` メソッドを追加。
+
+- `Service` クラス
+    * `getPredefinedTransformedClaims()` メソッドを追加。
+    * `setPredefinedTransformedClaims(String)` メソッドを追加。
+
+- `UserInfoIssueRequest` クラス
+    * `getClaimsForTx()` メソッドを追加。
+    * `setClaimsForTx(String)` メソッドを追加。
+    * `getVerifiedClaimsForTx()` メソッドを追加。
+    * `setVerifiedClaimsForTx(String[])` メソッドを追加。
+
+- `UserInfoResponse` クラス
+    * `getTransformedClaims()` メソッドを追加。
+    * `setTransformedClaims(String)` メソッドを追加。
+    * `getRequestedClaimsForTx()` メソッドを追加。
+    * `setRequestedClaimsForTx(String[])` メソッドを追加。
+    * `getRequestedVerifiedClaimsForTx()` メソッドを追加。
+    * `setRequestedVerifiedClaimsForTx(StringArray[])` メソッドを追加。
+
+- 新しいクラス
+    * `StringArray`
+
+
 3.7 (2021 年 11 月 02 日)
 -------------------------
 

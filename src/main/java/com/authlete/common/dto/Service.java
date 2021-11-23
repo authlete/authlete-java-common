@@ -226,7 +226,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 50L;
+    private static final long serialVersionUID = 51L;
 
 
     /*
@@ -824,6 +824,15 @@ public class Service implements Serializable
      * @since 3.5
      */
     private boolean dcrScopeUsedAsRequestable;
+
+
+    /**
+     * Predefined transformed claims in JSON format. Available from
+     * Authlete 2.3 onwards.
+     *
+     * @since 3.8
+     */
+    private String predefinedTransformedClaims;
 
 
     /**
@@ -6525,6 +6534,119 @@ public class Service implements Serializable
     public Service setDcrScopeUsedAsRequestable(boolean used)
     {
         this.dcrScopeUsedAsRequestable = used;
+
+        return this;
+    }
+
+
+    /**
+     * Get the transformed claims predefined by this service in JSON format.
+     * This property corresponds to the {@code transformed_claims_predefined}
+     * server metadata.
+     *
+     * <p>
+     * See the description of {@link #setPredefinedTransformedClaims(String)}
+     * for details.
+     * </p>
+     *
+     * <p>
+     * This {@code predefinedTransformedClaims} property is available from
+     * Authlete 2.3 onwards.
+     * </p>
+     *
+     * @return
+     *         Predefined transformed claims in JSON format.
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @see #setPredefinedTransformedClaims(String)
+     *
+     * @since 3.8
+     */
+    public String getPredefinedTransformedClaims()
+    {
+        return predefinedTransformedClaims;
+    }
+
+
+    /**
+     * Set the transformed claims predefined by this service in JSON format.
+     * This property corresponds to the {@code transformed_claims_predefined}
+     * server metadata.
+     *
+     * <p>
+     * <i>"Transformed Claims"</i> is a specification that enables to define
+     * a <i>"transformed claim"</i> which transforms the value of an existing
+     * claim by applying <i>"transformation functions"</i>.
+     * </p>
+     *
+     * <p>
+     * The following example defines a transformed claim named {@code 18_or_over}
+     * which uses the {@code birthdate} claim as input and applies two
+     * transformation functions, {@code years_ago} and {@code gte}. As a result
+     * of the transformation, the transformed claim will have a boolean value.
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "18_or_over": {
+     *     "claim": "birthdate",
+     *     "fn": [
+     *       "years_ago",
+     *       [ "gte", 18 ]
+     *     ]
+     *   }
+     * }
+     * </pre>
+     *
+     * <p>
+     * A client application can request a predefined transformed claim by
+     * prepending two colons ({@code ::}) to the name of a transformed claim.
+     * The following is an example of the {@code claims} request parameter
+     * (OpenID Connect Core 1.0, <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
+     * >5.5. Requesting Claims using the "claims" Request Parameter</a>) that
+     * requests a predefined transformed claim named {@code 18_or_over} to be
+     * embedded in an ID token.
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "id_token": {
+     *     "::18_or_over": null
+     *   }
+     * }
+     * </pre>
+     *
+     * <p>
+     * If the age of the user is 18 or over, the ID token will contain the
+     * transformed claim like below.
+     * </p>
+     *
+     * <pre>
+     * "::18_or_over": true
+     * </pre>
+     *
+     * <p>
+     * This {@code predefinedTransformedClaims} property is available from
+     * Authlete 2.3 onwards.
+     * </p>
+     *
+     * @param claims
+     *         Predefined transformed claims in JSON format.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @since 3.8
+     */
+    public Service setPredefinedTransformedClaims(String claims)
+    {
+        this.predefinedTransformedClaims = claims;
 
         return this;
     }

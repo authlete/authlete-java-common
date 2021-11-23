@@ -181,7 +181,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 10L;
+    private static final long serialVersionUID = 11L;
 
 
     /**
@@ -259,6 +259,24 @@ public class AuthorizationIssueRequest implements Serializable
      * @since 3.7
      */
     private String[] consentedClaims;
+
+
+    /**
+     * Claim key-value pairs that are used to compute values of transformed
+     * claims. The format is JSON.
+     *
+     * @since 3.8
+     */
+    private String claimsForTx;
+
+
+    /**
+     * Verified claim key-value pairs that are used to compute values of
+     * transformed claims. The format of each element is JSON.
+     *
+     * @since 3.8
+     */
+    private String[] verifiedClaimsForTx;
 
 
     /**
@@ -930,6 +948,220 @@ public class AuthorizationIssueRequest implements Serializable
     public AuthorizationIssueRequest setConsentedClaims(String[] claims)
     {
         this.consentedClaims = claims;
+
+        return this;
+    }
+
+
+    /**
+     * Get values of claims requested indirectly by <i>"transformed claims"</i>.
+     *
+     * <p>
+     * See the description of {@link #setClaimsForTx(String)} for details.
+     * </p>
+     *
+     * @return
+     *         Values of claims requested indirectly by <i>"transformed
+     *         claims"</i>. The format is JSON.
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @see #setClaimsForTx(String)
+     *
+     * @since 3.8
+     */
+    public String getClaimsForTx()
+    {
+        return claimsForTx;
+    }
+
+
+    /**
+     * Set values of claims requested indirectly by <i>"transformed claims"</i>.
+     *
+     * <p>
+     * A client application may request <i>"transformed claims"</i>. Each of
+     * transformed claims uses an existing claim as input. As a result, to
+     * compute the value of a transformed claim, the value of the referenced
+     * existing claim is needed. This {@code claimsForTx} request parameter
+     * has to be used to provide values of existing claims for computation of
+     * transformed claims.
+     * </p>
+     *
+     * <p>
+     * A response from the {@code /api/auth/authorization} API may include the
+     * {@code requestedClaimsForTx} response parameter which is a list of
+     * claims that are referenced indirectly by transformed claims (cf. {@link
+     * AuthorizationResponse#getRequestedClaimsForTx()}). The authorization
+     * server implementation should prepare values of the claims listed in
+     * {@code requestedClaimsForTx} and pass them as the value of this {@code
+     * claimsForTx} request parameter.
+     * </p>
+     *
+     * <p>
+     * The following is an example of the value of this request parameter.
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "birthdate": "1970-01-23",
+     *   "nationalities": [ "DEU", "USA" ]
+     * }
+     * </pre>
+     *
+     * @param claims
+     *         Values of claims requested indirectly by <i>"transformed claims"</i>.
+     *         The format is JSON.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @see AuthorizationResponse#getRequestedClaimsForTx()
+     *
+     * @since 3.8
+     */
+    public AuthorizationIssueRequest setClaimsForTx(String claims)
+    {
+        this.claimsForTx = claims;
+
+        return this;
+    }
+
+
+    /**
+     * Get values of verified claims requested indirectly by
+     * <i>"transformed claims"</i>.
+     *
+     * <p>
+     * See the description of {@link #setVerifiedClaimsForTx(String[])}
+     * for details.
+     * </p>
+     *
+     * @return
+     *         Values of verified claims requested indirectly by <i>"transformed
+     *         claims"</i>. The format of elements in the array is JSON.
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see #setVerifiedClaimsForTx(String[])
+     *
+     * @since 3.8
+     */
+    public String[] getVerifiedClaimsForTx()
+    {
+        return verifiedClaimsForTx;
+    }
+
+
+    /**
+     * Set values of verified claims requested indirectly by
+     * <i>"transformed claims"</i>.
+     *
+     * <p>
+     * A client application may request <i>"transformed claims"</i>. Each of
+     * transformed claims uses an existing claim as input. As a result, to
+     * compute the value of a transformed claim, the value of the referenced
+     * existing claim is needed. This {@code verifiedClaimsForTx} request
+     * parameter has to be used to provide values of existing claims for
+     * computation of transformed claims.
+     * </p>
+     *
+     * <p>
+     * A response from the {@code /api/auth/authorization} API may include the
+     * {@code requestedVerifiedClaimsForTx} response parameter which is a list
+     * of verified claims that are referenced indirectly by transformed claims
+     * (cf. {@link AuthorizationResponse#getRequestedVerifiedClaimsForTx()}).
+     * The authorization server implementation should prepare values of the
+     * verified claims listed in {@code requestedVerifiedClaimsForTx} and pass
+     * them as the value of this {@code verifiedClaimsForTx} request parameter.
+     * </p>
+     *
+     * <p>
+     * The following is an example of the value of this request parameter.
+     * </p>
+     *
+     * <pre>
+     * [
+     *   "{\"birthdate\":\"1970-01-23\",\"nationalities\":[\"DEU\",\"USA\"]}"
+     * ]
+     * </pre>
+     *
+     * <p>
+     * The reason that this {@code verifiedClaimsForTx} property is an array
+     * is that the {@code "verified_claims"} property in the {@code claims}
+     * request parameter of an authorization request can be an array like below.
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "transformed_claims": {
+     *     "nationality_usa": {
+     *       "claim": "nationalities",
+     *       "fn": [
+     *         [ "eq", "USA" ],
+     *         "any"
+     *       ]
+     *     }
+     *   },
+     *   "id_token": {
+     *     "verified_claims": [
+     *       {
+     *         "verification": { "trust_framework": { "value": "gold" } },
+     *         "claims": { "::18_or_above": null }
+     *       },
+     *       {
+     *         "verification": { "trust_framework": { "value": "silver" } },
+     *         "claims": { ":nationality_usa": null }
+     *       }
+     *     ]
+     *   }
+     * }
+     * </pre>
+     *
+     * <p>
+     * For the example above, the value of this {@code verifiedClaimsForTx}
+     * property should be an array of size 2 and look like below. The first
+     * element is JSON including claims which have been verified under the
+     * trust framework "gold", and the second element is JSON including
+     * claims which have been verified under the trust framework "silver".
+     * </p>
+     *
+     * <pre>
+     * [
+     *   "{\"birthdate\":\"1970-01-23\"}",
+     *   "{\"nationalities\":[\"DEU\",\"USA\"]}"
+     * ]
+     * </pre>
+     *
+     * @param claims
+     *         Values of verified claims requested indirectly by
+     *         <i>"transformed claims"</i>. The format of elements in the
+     *         array is JSON.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see AuthorizationResponse#getRequestedVerifiedClaimsForTx()
+     *
+     * @since 3.8
+     */
+    public AuthorizationIssueRequest setVerifiedClaimsForTx(String[] claims)
+    {
+        this.verifiedClaimsForTx = claims;
 
         return this;
     }

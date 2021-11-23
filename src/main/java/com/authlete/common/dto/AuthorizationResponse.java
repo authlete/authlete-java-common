@@ -935,6 +935,20 @@ import com.authlete.common.util.Utils;
  * </dd>
  * </dl>
  *
+ * <p>
+ * Authlete 2.3 and newer version support <i>"Transformed Claims"</i>. An
+ * authorization request may request <i>"transformed claims"</i>. A transformed
+ * claim uses an existing claim as input. For example, an authorization server
+ * may predefine a transformed claim named {@code 18_or_over} which uses the
+ * {@code birthdate} claim as input. If a client application requests the
+ * {@code 18_or_over} transformation claim, the authorization server needs to
+ * prepare the value of the {@code birthdate} claim and passes it to Authlete's
+ * {@code /api/auth/authorization/issue} API so that Authlete can compute the
+ * value of the {@code 18_or_over} transformation claim. See the descriptions
+ * of {@link #getRequestedClaimsForTx()} and {@link #getRequestedVerifiedClaimsForTx()}
+ * for details.
+ * </p>
+ *
  * @see <a href="http://tools.ietf.org/html/rfc6749">RFC 6749, OAuth 2.0</a>
  *
  * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html"
@@ -950,7 +964,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 16L;
+    private static final long serialVersionUID = 17L;
 
 
     /**
@@ -1040,6 +1054,7 @@ public class AuthorizationResponse extends ApiResponse
     private String requestObjectPayload;
     private String idTokenClaims;
     private String userInfoClaims;
+    private String transformedClaims;
     private URI[] resources;
     private AuthzDetails authorizationDetails;
     private String purpose;
@@ -1047,6 +1062,8 @@ public class AuthorizationResponse extends ApiResponse
     private String grantId;
     private String grantSubject;
     private Grant grant;
+    private String[] requestedClaimsForTx;
+    private StringArray[] requestedVerifiedClaimsForTx;
     private String responseContent;
     private String ticket;
 
@@ -1760,6 +1777,46 @@ public class AuthorizationResponse extends ApiResponse
 
 
     /**
+     * Get the value of the {@code "transformed_claims"} property in the
+     * {@code "claims"} request parameter or in the {@code "claims"} property
+     * in a request object.
+     *
+     * @return
+     *         The value of the {@code "transformed_claims"} property in the
+     *         {@code "claims"} in JSON format.
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @since 3.8
+     */
+    public String getTransformedClaims()
+    {
+        return transformedClaims;
+    }
+
+
+    /**
+     * Set the value of the {@code "transformed_claims"} property in the
+     * {@code "claims"} request parameter or in the {@code "claims"} property
+     * in a request object.
+     *
+     * @param transformedClaims
+     *         The value of the {@code "transformed_claims"} property in the
+     *         {@code "claims"} in JSON format.
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @since 3.8
+     */
+    public void setTransformedClaims(String transformedClaims)
+    {
+        this.transformedClaims = transformedClaims;
+    }
+
+
+    /**
      * Get the resources specified by the {@code resource} request parameters
      * or by the {@code resource} property in the request object. If both are
      * given, the values in the request object take precedence.
@@ -2123,6 +2180,317 @@ public class AuthorizationResponse extends ApiResponse
     public void setGrant(Grant grant)
     {
         this.grant = grant;
+    }
+
+
+    /**
+     * Get names of claims that are requested indirectly by <i>"transformed
+     * claims"</i>.
+     *
+     * <p>
+     * A client application can request <i>"transformed claims"</i> by adding
+     * names of transformed claims in the {@code claims} request parameter.
+     * The following is an example of the {@code claims} request parameter
+     * that requests a predefined transformed claim named {@code 18_or_over}
+     * and a transformed claim named {@code nationality_usa} to be embedded
+     * in an ID Token.
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "transformed_claims": {
+     *     "nationality_usa": {
+     *       "claim": "nationalities",
+     *       "fn": [
+     *         [ "eq", "USA" ],
+     *         "any"
+     *       ]
+     *     }
+     *   },
+     *   "id_token": {
+     *     "::18_or_over": null,
+     *     ":nationality_usa": null
+     *   }
+     * }
+     * </pre>
+     *
+     * <p>
+     * The example above assumes that a transformed claim named {@code 18_or_over}
+     * is predefined by the authorization server like below.
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "18_or_over": {
+     *     "claim": "birthdate",
+     *     "fn": [
+     *       "years_ago",
+     *       [ "gte", 18 ]
+     *     ]
+     *   }
+     * }
+     * </pre>
+     *
+     * <p>
+     * In the example, the {@code nationalities} claim is requested indirectly
+     * by the {@code nationality_usa} transformation claim. Likewise, the
+     * {@code birthdate} claim is requested indirectly by the {@code 18_or_over}
+     * transformation claim.
+     * </p>
+     *
+     * <p>
+     * When the {@code claims} request parameter of an authorization request is
+     * like the example above, this {@code requestedClaimsForTx} property will
+     * hold the following value.
+     * </p>
+     *
+     * <pre>
+     * [ "birthdate", "nationalities" ]
+     * </pre>
+     *
+     * <p>
+     * It is expected that the authorization server implementation prepares values
+     * of the listed claims and passes them as the value of the {@code claimsForTx}
+     * request parameter when it calls the {@code /api/auth/authorization/issue}
+     * API (cf. {@link AuthorizationIssueRequest#setClaimsForTx(String)}). The
+     * following is an example of the value of the {@code claimsForTx} request
+     * parameter.
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "birthdate": "1970-01-23",
+     *   "nationalities": [ "DEU", "USA" ]
+     * }
+     * </pre>
+     *
+     * <p>
+     * This {@code requestedClaimsForTx} property is available from Authlete 2.3
+     * onwards.
+     * </p>
+     *
+     * @return
+     *         Names of claims that are requested indirectly by
+     *         <i>"transformed claims"</i>
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @since 3.8
+     */
+    public String[] getRequestedClaimsForTx()
+    {
+        return requestedClaimsForTx;
+    }
+
+
+    /**
+     * Set names of claims that are requested indirectly by <i>"transformed
+     * claims"</i>.
+     *
+     * <p>
+     * See the description of {@link #getRequestedClaimsForTx()} for details.
+     * </p>
+     *
+     * @param claims
+     *         Names of claims that are requested indirectly by
+     *         <i>"transformed claims"</i>
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @see #getRequestedClaimsForTx()
+     *
+     * @since 3.8
+     */
+    public void setRequestedClaimsForTx(String[] claims)
+    {
+        this.requestedClaimsForTx = claims;
+    }
+
+
+    /**
+     * Get names of verified claims that are requested indirectly by
+     * <i>"transformed claims"</i>.
+     *
+     * <p>
+     * A client application can request <i>"transformed claims"</i> by adding
+     * names of transformed claims in the {@code claims} request parameter.
+     * The following is an example of the {@code claims} request parameter
+     * that requests a predefined transformed claim named {@code 18_or_over}
+     * and a transformed claim named {@code nationality_usa} to be embedded
+     * in an ID Token.
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "transformed_claims": {
+     *     "nationality_usa": {
+     *       "claim": "nationalities",
+     *       "fn": [
+     *         [ "eq", "USA" ],
+     *         "any"
+     *       ]
+     *     }
+     *   },
+     *   "id_token": {
+     *     "verified_claims": {
+     *       "verification": {
+     *         "trust_framework": null
+     *       },
+     *       "claims": {
+     *         "::18_or_over": null,
+     *         ":nationality_usa": null
+     *       }
+     *     }
+     *   }
+     * }
+     * </pre>
+     *
+     * <p>
+     * The example above assumes that a transformed claim named {@code 18_or_over}
+     * is predefined by the authorization server like below.
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "18_or_over": {
+     *     "claim": "birthdate",
+     *     "fn": [
+     *       "years_ago",
+     *       [ "gte", 18 ]
+     *     ]
+     *   }
+     * }
+     * </pre>
+     *
+     * <p>
+     * In the example, the {@code nationalities} claim is requested indirectly
+     * by the {@code nationality_usa} transformation claim. Likewise, the
+     * {@code birthdate} claim is requested indirectly by the {@code 18_or_over}
+     * transformation claim.
+     * </p>
+     *
+     * <p>
+     * When the {@code claims} request parameter of an authorization request is
+     * like the example above, this {@code requestedVerifiedClaimsForTx} property
+     * will hold the following value.
+     * </p>
+     *
+     * <pre>
+     * [
+     *   { "array": [ "birthdate", "nationalities" ] }
+     * ]
+     * </pre>
+     *
+     * <p>
+     * It is expected that the authorization server implementation prepares
+     * values of the listed verified claims and passes them as the value of
+     * the {@code verifiedClaimsForTx} request parameter when it calls the
+     * {@code /api/auth/authorization/issue} API (cf.
+     * {@link AuthorizationIssueRequest#setVerifiedClaimsForTx(String[])}).
+     * The following is an example of the value of the
+     * {@code verifiedClaimsForTx} request parameter.
+     * </p>
+     *
+     * <pre>
+     * [
+     *   "{\"birthdate\":\"1970-01-23\",\"nationalities\":[\"DEU\",\"USA\"]}"
+     * ]
+     * </pre>
+     *
+     * <p>
+     * The reason that this {@code requestVerifiedClaimsForTx} property and
+     * the {@code verifiedClaimsForTx} request parameter are arrays is that
+     * the {@code "verified_claims"} property in the {@code claims} request
+     * parameter can be an array like below.
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "transformed_claims": {
+     *     "nationality_usa": {
+     *       "claim": "nationalities",
+     *       "fn": [
+     *         [ "eq", "USA" ],
+     *         "any"
+     *       ]
+     *     }
+     *   },
+     *   "id_token": {
+     *     "verified_claims": [
+     *       {
+     *         "verification": { "trust_framework": { "value": "gold" } },
+     *         "claims": { "::18_or_above": null }
+     *       },
+     *       {
+     *         "verification": { "trust_framework": { "value": "silver" } },
+     *         "claims": { ":nationality_usa": null }
+     *       }
+     *     ]
+     *   }
+     * }
+     * </pre>
+     *
+     * <p>
+     * The order of elements in {@code requestedVerifiedClaimsForTx} matches
+     * the order of elements in the {@code "verified_claims"} array.
+     * </p>
+     *
+     * <p>
+     * This {@code requestedVerifiedClaimsForTx} property is available from
+     * Authlete 2.3 onwards.
+     * </p>
+     *
+     * @return
+     *         Names of verified claims that are requested indirectly by
+     *         <i>"transformed claims"</i>
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.8
+     */
+    public StringArray[] getRequestedVerifiedClaimsForTx()
+    {
+        return requestedVerifiedClaimsForTx;
+    }
+
+
+    /**
+     * Set names of verified claims that are requested indirectly by
+     * <i>"transformed claims"</i>.
+     *
+     * <p>
+     * See the description of {@link #getRequestedVerifiedClaimsForTx()} for
+     * details.
+     * </p>
+     *
+     * <p>
+     * This {@code requestedVerifiedClaimsForTx} property is available from
+     * Authlete 2.3 onwards.
+     * </p>
+     *
+     * @param claimsArray
+     *         Names of verified claims that are requested indirectly by
+     *         <i>"transformed claims"</i>
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/src/master/openid-advanced-syntax-for-claims.md"
+     *      >OpenID Connect Advanced Syntax for Claims (ASC) 1.0</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see #getRequestedVerifiedClaimsForTx()
+     *
+     * @since 3.8
+     */
+    public void setRequestedVerifiedClaimsForTx(StringArray[] claimsArray)
+    {
+        this.requestedVerifiedClaimsForTx = claimsArray;
     }
 
 
