@@ -1,6 +1,15 @@
 変更点
 ======
 
+- `AuthorizationIssueRequest` クラス
+    * `setClaimsForTx(Map<String, Object>)` メソッドを追加。
+    * `setVerifiedClaimsForTx(List<Map<String, Object>>)` メソッドを追加。
+
+- `UserInfoIssueRequest` クラス
+    * `setClaimsForTx(Map<String, Object>)` メソッドを追加。
+    * `setVerifiedClaimsForTx(List<Map<String, Object>>)` メソッドを追加。
+
+
 3.8 (2021 年 11 月 23 日)
 -------------------------
 

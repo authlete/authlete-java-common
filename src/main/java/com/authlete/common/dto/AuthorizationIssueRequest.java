@@ -17,6 +17,7 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 import com.authlete.common.util.Utils;
 
@@ -159,7 +160,7 @@ import com.authlete.common.util.Utils;
  * </p>
  * </dd>
  *
- * <dt><b><code>consentedClaims</code></b> (OPTIONAL)</dt>
+ * <dt><b><code>consentedClaims</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
  * Claims that the user has consented for the client application to know.
@@ -167,6 +168,24 @@ import com.authlete.common.util.Utils;
  * the consented scopes (e.g. {@code profile}) and the claims included in the
  * JSON of the {@code claims} request parameter. See the description of
  * {@link #setConsentedClaims(String[])} for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>claimsForTx</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
+ * <dd>
+ * <p>
+ * Claim data that are referenced when Authlete computes values of
+ * <i>transformed claims</i>. See the description of
+ * {@link #setClaimsForTx(String)} for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>verifiedClaimsForTx</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
+ * <dd>
+ * <p>
+ * Verified claim data that are referenced when Authlete computes values of
+ * <i>transformed claims</i>. See the description of
+ * {@link #setVerifiedClaimsForTx(String[])} for details.
  * </p>
  * </dd>
  * </dl>
@@ -181,7 +200,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 11L;
+    private static final long serialVersionUID = 12L;
 
 
     /**
@@ -1010,6 +1029,11 @@ public class AuthorizationIssueRequest implements Serializable
      * }
      * </pre>
      *
+     * <p>
+     * This request parameter ({@code claimsForTx}) is recognized by Authlete
+     * 2.3 onwards.
+     * </p>
+     *
      * @param claims
      *         Values of claims requested indirectly by <i>"transformed claims"</i>.
      *         The format is JSON.
@@ -1029,6 +1053,32 @@ public class AuthorizationIssueRequest implements Serializable
         this.claimsForTx = claims;
 
         return this;
+    }
+
+
+    /**
+     * Set the value of {@code "claimsForTx"} which is the claims of the
+     * subject. The argument is converted into a JSON string and passed
+     * to {@link #setClaimsForTx(String)} method.
+     *
+     * @param claims
+     *         The claims of the subject. Keys are claim names.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.9
+     */
+    public AuthorizationIssueRequest setClaimsForTx(Map<String, Object> claims)
+    {
+        if (claims == null || claims.size() == 0)
+        {
+            return setClaimsForTx((String)null);
+        }
+
+        String json = Utils.toJson(claims);
+
+        return setClaimsForTx(json);
     }
 
 
@@ -1141,6 +1191,11 @@ public class AuthorizationIssueRequest implements Serializable
      * ]
      * </pre>
      *
+     * <p>
+     * This request parameter ({@code verifiedClaimsForTx}) is recognized by
+     * Authlete 2.3 onwards.
+     * </p>
+     *
      * @param claims
      *         Values of verified claims requested indirectly by
      *         <i>"transformed claims"</i>. The format of elements in the
@@ -1164,5 +1219,39 @@ public class AuthorizationIssueRequest implements Serializable
         this.verifiedClaimsForTx = claims;
 
         return this;
+    }
+
+
+    /**
+     * Set the value of {@code "verifiedClaimsForTx"} which is the verified
+     * claims of the subject. Each element in the given list is converted to
+     * a JSON string and a newly created string array containing the converted
+     * elements is passed to {@link #setVerifiedClaimsForTx(String[])}.
+     *
+     * @param list
+     *         List of clusters of verified claims.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.9
+     */
+    public AuthorizationIssueRequest setVerifiedClaimsForTx(List<Map<String, Object>> list)
+    {
+        if (list == null || list.size() == 0)
+        {
+            return setVerifiedClaimsForTx((String[])null);
+        }
+
+        int size = list.size();
+
+        String[] array = new String[size];
+
+        for (int i = 0; i < size; ++i)
+        {
+            array[i] = Utils.toJson(list.get(i));
+        }
+
+        return setVerifiedClaimsForTx(array);
     }
 }
