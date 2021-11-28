@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.9 (2021-11-28)
+----------------
+
 - `AuthorizationIssueRequest` class
     * Added `setClaimsForTx(Map<String, Object>)` method.
     * Added `setVerifiedClaimsForTx(List<Map<String, Object>>)` method.
