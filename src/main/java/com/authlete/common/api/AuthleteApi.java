@@ -1544,4 +1544,20 @@ public interface AuthleteApi
      * @since 3.1
      */
     GMResponse gm(GMRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Update the lock flag of a client application.
+     *
+     * @param clientIdentifier
+     *         The client ID or the client ID alias of a client application.
+     *
+     * @param clientLocked
+     *         The value to which this request updates the lock flag of a client
+     *         application.
+     *
+     * @since 3.10
+     */
+    void updateClientLockFlag(
+            String clientIdentifier, boolean clientLocked) throws AuthleteApiException;
 }
