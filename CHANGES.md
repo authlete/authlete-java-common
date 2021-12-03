@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+3.10 (2021-12-03)
+-----------------
+
+- `AuthleteApi` interface
+    * Added `updateClientLockFlag(String, boolean)` method.
+
+- New classes
+    * `ClientLockFlagUpdateRequest`
+
+
 3.9 (2021-11-28)
 ----------------
 

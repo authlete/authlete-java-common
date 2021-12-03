@@ -1,6 +1,16 @@
 変更点
 ======
 
+3.10 (2021 年 12 月 03 日)
+--------------------------
+
+- `AuthleteApi` インターフェース
+    * `updateClientLockFlag(String, boolean)` メソッドを追加。
+
+- 新しいクラス
+    * `ClientLockFlagUpdateRequest`
+
+
 3.9 (2021 年 11 月 28 日)
 -------------------------
 
