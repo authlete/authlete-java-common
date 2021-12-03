@@ -51,6 +51,7 @@ import com.authlete.common.dto.ClientAuthorizationDeleteRequest;
 import com.authlete.common.dto.ClientAuthorizationGetListRequest;
 import com.authlete.common.dto.ClientAuthorizationUpdateRequest;
 import com.authlete.common.dto.ClientListResponse;
+import com.authlete.common.dto.ClientLockFlagUpdateRequest;
 import com.authlete.common.dto.ClientRegistrationRequest;
 import com.authlete.common.dto.ClientRegistrationResponse;
 import com.authlete.common.dto.ClientSecretRefreshResponse;
@@ -176,6 +177,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String HSK_GET_LIST_API_PATH                  = "/api/hsk/get/list";
     private static final String ECHO_API_PATH                          = "/api/misc/echo";
     private static final String GM_API_PATH                            = "/api/gm";
+    private static final String CLIENT_LOCK_FLAG_UPDATE_API_PATH       = "/api/client/lock_flag/update";
 
 
     private final String mBaseUrl;
@@ -1587,5 +1589,18 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 GM_API_PATH, request,
                 GMResponse.class);
+    }
+
+
+    @Override
+    public void updateClientLockFlag(String clientIdentifier, boolean clientLocked) throws AuthleteApiException
+    {
+        // Prepare a request body.
+        ClientLockFlagUpdateRequest request =
+                new ClientLockFlagUpdateRequest().setClientLocked(clientLocked);
+
+        callServicePostApi(
+                CLIENT_LOCK_FLAG_UPDATE_API_PATH, request,
+                ApiResponse.class);
     }
 }
