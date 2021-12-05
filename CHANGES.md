@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.11 (2021-12-05)
+-----------------
+
 - `TokenCreateResponse` class
     * Added `getJwtAccessToken()` method.
     * Added `setJwtAccessToken(String)` method.

@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.11 (2021 年 12 月 05 日)
+--------------------------
+
 - `TokenCreateResponse` クラス
     * `getJwtAccessToken()` メソッドを追加。
     * `setJwtAccessToken(String)` メソッドを追加。
