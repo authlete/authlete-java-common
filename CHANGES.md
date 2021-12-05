@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+- `TokenCreateResponse` class
+    * Added `getJwtAccessToken()` method.
+    * Added `setJwtAccessToken(String)` method.
+    * Changed the return type of `setAuthorizationDetails(AuthzDetails)`
+      method from `void` to `TokenCreateResponse`.
+
+
 3.10 (2021-12-03)
 -----------------
 

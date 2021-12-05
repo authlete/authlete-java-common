@@ -119,7 +119,7 @@ public class TokenCreateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
     private static final String SUMMARY_FORMAT
         = "action=%s, grantType=%s, clientId=%d, subject=%s, scopes=%s, "
         + "accessToken=%s, tokenType=%s, expiresIn=%d, expiresAt=%d, refreshToken=%s";
@@ -136,6 +136,7 @@ public class TokenCreateResponse extends ApiResponse
     private long expiresAt;
     private String refreshToken;
     private Property[] properties;
+    private String jwtAccessToken;
     private AuthzDetails authorizationDetails;
 
 
@@ -490,6 +491,55 @@ public class TokenCreateResponse extends ApiResponse
 
 
     /**
+     * Get the newly issued access token in JWT format.
+     *
+     * <p>
+     * If the authorization server is configured to issue JWT-based access
+     * tokens (= if {@link Service#getAccessTokenSignAlg()} returns a non-null
+     * value), a JWT-based access token is issued along with the original
+     * random-string one.
+     * </p>
+     *
+     * <p>
+     * Regarding the detailed format of the JWT-based access token, see the
+     * description of the {@link Service} class.
+     * </p>
+     *
+     * @return
+     *         The newly issued access token in JWT format. If the service is
+     *         not configured to issue JWT-based access tokens, this method
+     *         always returns null.
+     *
+     * @see #getAccessToken()
+     *
+     * @since 3.11
+     */
+    public String getJwtAccessToken()
+    {
+        return jwtAccessToken;
+    }
+
+
+    /**
+     * Set the newly issued access token in JWT format.
+     *
+     * @param jwtAccessToken
+     *         The newly issued access token in JWT format.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.11
+     */
+    public TokenCreateResponse setJwtAccessToken(String jwtAccessToken)
+    {
+        this.jwtAccessToken = jwtAccessToken;
+
+        return this;
+    }
+
+
+    /**
      * Get the authorization details associated with the access token.
      *
      * @return
@@ -514,8 +564,10 @@ public class TokenCreateResponse extends ApiResponse
      *
      * @since 2.99
      */
-    public void setAuthorizationDetails(AuthzDetails authorizationDetails)
+    public TokenCreateResponse setAuthorizationDetails(AuthzDetails authorizationDetails)
     {
         this.authorizationDetails = authorizationDetails;
+
+        return this;
     }
 }

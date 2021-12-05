@@ -1,6 +1,13 @@
 変更点
 ======
 
+- `TokenCreateResponse` クラス
+    * `getJwtAccessToken()` メソッドを追加。
+    * `setJwtAccessToken(String)` メソッドを追加。
+    * `setAuthorizationDetails(AuthzDetails)` メソッドの戻り値の型を
+      `void` から `TokenCreateResponse` へ変更。
+
+
 3.10 (2021 年 12 月 03 日)
 --------------------------
 
