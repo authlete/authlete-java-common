@@ -226,7 +226,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 51L;
+    private static final long serialVersionUID = 52L;
 
 
     /*
@@ -833,6 +833,15 @@ public class Service implements Serializable
      * @since 3.8
      */
     private String predefinedTransformedClaims;
+
+
+    /**
+     * The flag indicating whether the port number component of redirection
+     * URIs can be variable when the host component indicates loopback.
+     *
+     * @since 3.12
+     */
+    private boolean loopbackRedirectionUriVariable;
 
 
     /**
@@ -6647,6 +6656,189 @@ public class Service implements Serializable
     public Service setPredefinedTransformedClaims(String claims)
     {
         this.predefinedTransformedClaims = claims;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether the port number component of redirection
+     * URIs can be variable when the host component indicates loopback.
+     *
+     * <p>
+     * When this flag is true, if the host component of a redirection URI
+     * specified in an authorization request indicates loopback (to be precise,
+     * when the host component is {@code localhost}, {@code 127.0.0.1} or
+     * {@code ::1}), the port number component is ignored when the specified
+     * redirection URI is compared to pre-registered ones. This behavior is
+     * described in <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8252.html#section-7.3">7.3. Loopback
+     * Interface Redirection</a> of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8252.html">RFC 8252 OAuth 2.0 for
+     * Native Apps</a>.
+     * </p>
+     *
+     * <p>
+     * <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-3.1.2.3"
+     * >3.1.2.3. Dynamic Configuration</a> of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc6749.html">RFC 6749</a> states
+     * <i>"If the client registration included the full redirection URI, the
+     * authorization server MUST compare the two URIs using <b>simple string
+     * comparison</b> as defined in [RFC3986] Section 6.2.1."</i> Also, the
+     * description of {@code redirect_uri} in <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+     * >3.1.2.1. Authentication Request</a> of <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect
+     * Core 1.0</a> states <i>"This URI MUST exactly match one of the
+     * Redirection URI values for the Client pre-registered at the OpenID
+     * Provider, with the matching performed as described in Section 6.2.1 of
+     * [RFC3986] (<b>Simple String Comparison</b>)."</i> These "Simple String
+     * Comparison" requirements are preceded by this flag. That is, even when
+     * the conditions described in RFC 6749 and OpenID Connect Core 1.0 are
+     * satisfied, the port number component of loopback redirection URIs can
+     * be variable when this flag is true.
+     * </p>
+     *
+     * <p>
+     * <a href="https://www.rfc-editor.org/rfc/rfc8252.html#section-8.3">8.3.
+     * Loopback Redirect Considerations</a> of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8252.html">RFC 8252</a> states as
+     * follows.
+     * </p>
+     *
+     * <blockquote><p><i>
+     * While redirect URIs using <code>localhost</code> (i.e.,
+     * <code>"http://localhost:{port}/{path}"</code>) function similarly to
+     * loopback IP redirects described in Section 7.3, the use of
+     * <code>localhost</code> is NOT RECOMMENDED. Specifying a redirect URI
+     * with the loopback IP literal rather than <code>localhost</code> avoids
+     * inadvertently listening on network interfaces other than the loopback
+     * interface. It is also less susceptible to client-side firewalls and
+     * misconfigured host name resolution on the user's device.
+     * </i></p></blockquote>
+     *
+     * <p>
+     * However, Authlete allows the port number component to be variable in
+     * the case of {@code localhost}, too. It is left to client applications
+     * whether they use {@code localhost} or a literal loopback IP address
+     * ({@code 127.0.0.1} for IPv4 or {@code ::1} for IPv6).
+     * </p>
+     *
+     * <p>
+     * Section 7.3 and Section 8.3 of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8252.html">RFC 8252</a> state that
+     * loopback redirection URIs use the {@code "http"} scheme, but Authlete
+     * allows the port number component to be variable in other cases (e.g.
+     * in the case of the {@code "https"} scheme), too.
+     * </p>
+     *
+     * @return
+     *         True if the port number component of loopback redirection URIs
+     *         can be variable.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8252.html#section-7.3"
+     *      >RFC 8252 OAuth 2.0 for Native Apps, 7.3. Loopback Interface Redirection</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8252.html#section-8.3"
+     *      >RFC 8252 OAuth 2.0 for Native Apps, 8.3. Loopback Redirect Considerations</a>
+     *
+     * @since 3.12
+     */
+    public boolean isLoopbackRedirectionUriVariable()
+    {
+        return loopbackRedirectionUriVariable;
+    }
+
+
+    /**
+     * Set the flag indicating whether the port number component of redirection
+     * URIs can be variable when the host component indicates loopback.
+     *
+     * <p>
+     * When this flag is true, if the host component of a redirection URI
+     * specified in an authorization request indicates loopback (to be precise,
+     * when the host component is {@code localhost}, {@code 127.0.0.1} or
+     * {@code ::1}), the port number component is ignored when the specified
+     * redirection URI is compared to pre-registered ones. This behavior is
+     * described in <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8252.html#section-7.3">7.3. Loopback
+     * Interface Redirection</a> of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8252.html">RFC 8252 OAuth 2.0 for
+     * Native Apps</a>.
+     * </p>
+     *
+     * <p>
+     * <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-3.1.2.3"
+     * >3.1.2.3. Dynamic Configuration</a> of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc6749.html">RFC 6749</a> states
+     * <i>"If the client registration included the full redirection URI, the
+     * authorization server MUST compare the two URIs using <b>simple string
+     * comparison</b> as defined in [RFC3986] Section 6.2.1."</i> Also, the
+     * description of {@code redirect_uri} in <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+     * >3.1.2.1. Authentication Request</a> of <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect
+     * Core 1.0</a> states <i>"This URI MUST exactly match one of the
+     * Redirection URI values for the Client pre-registered at the OpenID
+     * Provider, with the matching performed as described in Section 6.2.1 of
+     * [RFC3986] (<b>Simple String Comparison</b>)."</i> These "Simple String
+     * Comparison" requirements are preceded by this flag. That is, even when
+     * the conditions described in RFC 6749 and OpenID Connect Core 1.0 are
+     * satisfied, the port number component of loopback redirection URIs can
+     * be variable when this flag is true.
+     * </p>
+     *
+     * <p>
+     * <a href="https://www.rfc-editor.org/rfc/rfc8252.html#section-8.3">8.3.
+     * Loopback Redirect Considerations</a> of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8252.html">RFC 8252</a> states as
+     * follows.
+     * </p>
+     *
+     * <blockquote><p><i>
+     * While redirect URIs using <code>localhost</code> (i.e.,
+     * <code>"http://localhost:{port}/{path}"</code>) function similarly to
+     * loopback IP redirects described in Section 7.3, the use of
+     * <code>localhost</code> is NOT RECOMMENDED. Specifying a redirect URI
+     * with the loopback IP literal rather than <code>localhost</code> avoids
+     * inadvertently listening on network interfaces other than the loopback
+     * interface. It is also less susceptible to client-side firewalls and
+     * misconfigured host name resolution on the user's device.
+     * </i></p></blockquote>
+     *
+     * <p>
+     * However, Authlete allows the port number component to be variable in
+     * the case of {@code localhost}, too. It is left to client applications
+     * whether they use {@code localhost} or a literal loopback IP address
+     * ({@code 127.0.0.1} for IPv4 or {@code ::1} for IPv6).
+     * </p>
+     *
+     * <p>
+     * Section 7.3 and Section 8.3 of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8252.html">RFC 8252</a> state that
+     * loopback redirection URIs use the {@code "http"} scheme, but Authlete
+     * allows the port number component to be variable in other cases (e.g.
+     * in the case of the {@code "https"} scheme), too.
+     * </p>
+     *
+     * @param variable
+     *         True to allow the port number component of loopback redirection
+     *         URIs to be variable.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8252.html#section-7.3"
+     *      >RFC 8252 OAuth 2.0 for Native Apps, 7.3. Loopback Interface Redirection</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8252.html#section-8.3"
+     *      >RFC 8252 OAuth 2.0 for Native Apps, 8.3. Loopback Redirect Considerations</a>
+     *
+     * @since 3.12
+     */
+    public Service setLoopbackRedirectionUriVariable(boolean variable)
+    {
+        this.loopbackRedirectionUriVariable = variable;
 
         return this;
     }
