@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.12 (2021-12-11)
+-----------------
+
 - `Service` class
     * Added `isLoopbackRedirectionUriVariable()` method.
     * Added `setLoopbackRedirectionUriVariable(boolean)` method.

@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.12 (2021 年 12 月 11 日)
+--------------------------
+
 - `Service` クラス
     * `isLoopbackRedirectionUriVariable()` メソッドを追加。
     * `setLoopbackRedirectionUriVariable(boolean)` メソッドを追加。
