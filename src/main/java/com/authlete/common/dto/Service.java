@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2021 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import com.authlete.common.types.AttachmentType;
 import com.authlete.common.types.ClaimType;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.DeliveryMode;
@@ -226,7 +227,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 52L;
+    private static final long serialVersionUID = 53L;
 
 
     /*
@@ -596,8 +597,9 @@ public class Service implements Serializable
 
 
     /**
-     * Supported trust frameworks. This corresponds to
-     * {@code trust_frameworks_supported}.
+     * Supported trust frameworks. This property corresponds to the
+     * {@code trust_frameworks_supported} server metadata which is defined in
+     * OpenID Connect for Identity Assurance 1.0.
      *
      * @since 2.63
      */
@@ -605,8 +607,9 @@ public class Service implements Serializable
 
 
     /**
-     * Supported evidence. This corresponds to
-     * {@code evidence_supported}.
+     * Supported evidence. This property corresponds to the
+     * {@code evidence_supported} server metadata which is defined in
+     * OpenID Connect for Identity Assurance 1.0.
      *
      * @since 2.63
      */
@@ -614,30 +617,133 @@ public class Service implements Serializable
 
 
     /**
-     * Supported ID documents. This corresponds to
-     * {@code id_documents_supported}.
+     * Supported ID documents. This property corresponds to the
+     * {@code id_documents_supported} server metadata which was defined in
+     * old drafts of OpenID Connect for Identity Assurance 1.0.
+     *
+     * <p>
+     * The third implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0 renamed the {@code id_documents_supported} server metadata to
+     * {@code documents_supported}.
+     * </p>
      *
      * @since 2.63
+     *
+     * @see supportedDocuments
+     *
+     * @deprecated
      */
+    @Deprecated
     private String[] supportedIdentityDocuments;
 
 
     /**
-     * Supported verification methods. This corresponds to
-     * {@code id_documents_verification_methods_supported}.
+     * Supported documents. This property corresponds to the {@code documents_supported}
+     * server metadata which was renamed to from {@code id_documents_supported}
+     * by the third implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0.
+     *
+     * @since 3.13
+     */
+    private String[] supportedDocuments;
+
+
+    /**
+     * Supported verification methods. This property corresponds to the
+     * {@code id_documents_verification_methods_supported} server metadata
+     * which was defined in old drafts of OpenID Connect for Identity Assurance
+     * 1.0.
+     *
+     * <p>
+     * The third implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0 renamed the {@code id_documents_verification_methods_supported}
+     * server metadata to {@code documents_methods_supported}.
+     * </p>
      *
      * @since 2.63
+     *
+     * @see supportedDocumentsMethods
+     *
+     * @deprecated
      */
+    @Deprecated
     private String[] supportedVerificationMethods;
 
 
     /**
-     * Supported verified claims. This corresponds to
-     * {@code claims_in_verified_claims_supported}.
+     * Supported validation and verification processes. This property corresponds
+     * to the {@code documents_methods_supported} server metadata which was
+     * renamed to from {@code id_documents_verification_methods_supported}
+     * by the third implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0.
+     *
+     * @since 3.13
+     */
+    private String[] supportedDocumentsMethods;
+
+
+    /**
+     * Supported document validation methods. This property corresponds to the
+     * {@code documents_validation_methods_supported} server metadata which
+     * was added by the third implementer's draft of OpenID Connect for
+     * Identity Assurance 1.0.
+     *
+     * @since 3.13
+     */
+    private String[] supportedDocumentsValidationMethods;
+
+
+    /**
+     * Supported document verification methods. This property corresponds to
+     * the {@code documents_verification_methods_supported} server metadata
+     * which was added by the third implementer's draft of OpenID Connect for
+     * Identity Assurance 1.0.
+     *
+     * @since 3.13
+     */
+    private String[] supportedDocumentsVerificationMethods;
+
+
+    /**
+     * Supported electronic record types. This property corresponds to the
+     * {@code electronic_records_supported} server metadata which was added by
+     * the third implementer's draft of OpenID Connect for Identity Assurance 1.0.
+     *
+     * @since 3.13
+     */
+    private String[] supportedElectronicRecords;
+
+
+    /**
+     * Supported verified claims. This property corresponds to the
+     * {@code claims_in_verified_claims_supported} server metadata which is
+     * defined in OpenID Connect for Identity Assurance 1.0.
      *
      * @since 2.63
      */
     private String[] supportedVerifiedClaims;
+
+
+    /**
+     * Supported attachment types. This property corresponds to the {@code
+     * attachments_supported} server metadata which was added by the third
+     * implementer's draft of OpenID Connect for Identity Assurance 1.0.
+     *
+     * @since 3.13
+     */
+    private AttachmentType[] supportedAttachments;
+
+
+    /**
+     * Supported algorithms used to compute digest values of external
+     * attachments. This property corresponds to the
+     * {@code digest_algorithms_supported} server metadata which was added
+     * by the third implementer's draft of OpenID Connect for Identity
+     * Assurance 1.0.
+     *
+     * @since 3.13
+     */
+    private String[] supportedDigestAlgorithms;
 
 
     /**
@@ -4708,15 +4814,14 @@ public class Service implements Serializable
 
     /**
      * Get trust frameworks supported by this service.
-     * This corresponds to the {@code trust_frameworks_supported} <a href=
-     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
-     * >metadata</a>.
+     * This property corresponds to the {@code trust_frameworks_supported} server
+     * metadata.
      *
      * @return
      *         Trust frameworks supported by this service.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.1"
-     *      >OpenID Connect for Identity Assurance 1.0, 11.1. Trust Frameworks</a>
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
      *
      * @since 2.63
      */
@@ -4728,9 +4833,8 @@ public class Service implements Serializable
 
     /**
      * Set trust frameworks supported by this service.
-     * This corresponds to the {@code trust_frameworks_supported} <a href=
-     * https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
-     * >metadata</a>.
+     * This property corresponds to the {@code trust_frameworks_supported} server
+     * metadata.
      *
      * @param frameworks
      *         Trust frameworks supported by this service.
@@ -4738,8 +4842,8 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.1"
-     *      >OpenID Connect for Identity Assurance 1.0, 11.1. Trust Frameworks</a>
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
      *
      * @since 2.63
      */
@@ -4753,15 +4857,13 @@ public class Service implements Serializable
 
     /**
      * Get evidence supported by this service.
-     * This corresponds to the {@code evidence_supported} <a href=
-     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
-     * >metadata</a>.
+     * This property corresponds to the {@code evidence_supported} server metadata.
      *
      * @return
      *         Evidence supported by this service.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.4.1.1"
-     *      >OpenID Connect for Identity Assurance 1.0, 4.1.1. Evidence</a>
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
      *
      * @since 2.63
      */
@@ -4773,9 +4875,7 @@ public class Service implements Serializable
 
     /**
      * Set evidence supported by this service.
-     * This corresponds to the {@code evidence_supported} <a href=
-     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
-     * >metadata</a>.
+     * This property corresponds to the {@code evidence_supported} server metadata.
      *
      * @param evidence
      *         Evidence supported by this service.
@@ -4783,8 +4883,8 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.4.1.1"
-     *      >OpenID Connect for Identity Assurance 1.0, 4.1.1. Evidence</a>
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
      *
      * @since 2.63
      */
@@ -4798,18 +4898,29 @@ public class Service implements Serializable
 
     /**
      * Get identity documents supported by this service.
-     * This corresponds to the {@code id_documents_supported} <a href=
-     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
-     * >metadata</a>.
+     * This property corresponds to the {@code id_documents_supported} server metadata.
+     *
+     * <p>
+     * The third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> renamed the
+     * {@code id_documents_supported} server metadata to
+     * {@code documents_supported}.
+     * </p>
      *
      * @return
      *         Identity documents supported by this service.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.2"
-     *      >OpenID Connect for Identity Assurance 1.0, 11.2. Identity Documents</a>
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see #getSupportedDocuments()
      *
      * @since 2.63
+     *
+     * @deprecated
      */
+    @Deprecated
     public String[] getSupportedIdentityDocuments()
     {
         return supportedIdentityDocuments;
@@ -4818,9 +4929,15 @@ public class Service implements Serializable
 
     /**
      * Set identity documents supported by this service.
-     * This corresponds to the {@code id_documents_supported} <a href=
-     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
-     * >metadata</a>.
+     * This property corresponds to the {@code id_documents_supported} server metadata.
+     *
+     * <p>
+     * The third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> renamed the
+     * {@code id_documents_supported} server metadata to
+     * {@code documents_supported}.
+     * </p>
      *
      * @param documents
      *         Identity documents supported by this service.
@@ -4828,11 +4945,16 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.2"
-     *      >OpenID Connect for Identity Assurance 1.0, 11.2. Identity Documents</a>
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see #setSupportedDocuments(String[])
      *
      * @since 2.63
+     *
+     * @deprecated
      */
+    @Deprecated
     public Service setSupportedIdentityDocuments(String[] documents)
     {
         this.supportedIdentityDocuments = documents;
@@ -4842,19 +4964,96 @@ public class Service implements Serializable
 
 
     /**
+     * Get document types supported by this service. This property corresponds
+     * to the {@code documents_supported} server metadata.
+     *
+     * <p>
+     * The third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> renamed the
+     * {@code id_documents_supported} server metadata to
+     * {@code documents_supported}.
+     * </p>
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @return
+     *         Document types supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public String[] getSupportedDocuments()
+    {
+        return supportedDocuments;
+    }
+
+
+    /**
+     * Set document types supported by this service. This property corresponds
+     * to the {@code documents_supported} server metadata.
+     *
+     * <p>
+     * The third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> renamed the
+     * {@code id_documents_supported} server metadata to
+     * {@code documents_supported}.
+     * </p>
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @param documents
+     *         Document types supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public Service setSupportedDocuments(String[] documents)
+    {
+        this.supportedDocuments = documents;
+
+        return this;
+    }
+
+
+    /**
      * Get verification methods supported by this service.
-     * This corresponds to the {@code id_documents_verification_methods_supported}
-     * <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
-     * >metadata</a>.
+     * This property corresponds to the {@code id_documents_verification_methods_supported}
+     * server metadata.
+     *
+     * <p>
+     * The third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> renamed the
+     * {@code id_documents_verification_methods_supported} server metadata to
+     * {@code documents_methods_supported}.
+     * </p>
      *
      * @return
      *         Verification methods supported by this service.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.3"
-     *      >OpenID Connect for Identity Assurance 1.0, 11.3. Verification Methods</a>
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see #getSupportedDocumentsMethods()
      *
      * @since 2.63
+     *
+     * @deprecated
      */
+    @Deprecated
     public String[] getSupportedVerificationMethods()
     {
         return supportedVerificationMethods;
@@ -4863,9 +5062,16 @@ public class Service implements Serializable
 
     /**
      * Set verification methods supported by this service.
-     * This corresponds to the {@code id_documents_verification_methods_supported}
-     * <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
-     * >metadata</a>.
+     * This property corresponds to the {@code id_documents_verification_methods_supported}
+     * server metadata.
+     *
+     * <p>
+     * The third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> renamed the
+     * {@code id_documents_verification_methods_supported} server metadata to
+     * {@code documents_methods_supported}.
+     * </p>
      *
      * @param methods
      *         Verification methods supported by this service.
@@ -4873,11 +5079,16 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.11.3"
-     *      >OpenID Connect for Identity Assurance 1.0, 11.3. Verification Methods</a>
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see #setSupportedDocumentsMethods(String[])
      *
      * @since 2.63
+     *
+     * @deprecated
      */
+    @Deprecated
     public Service setSupportedVerificationMethods(String[] methods)
     {
         this.supportedVerificationMethods = methods;
@@ -4887,16 +5098,259 @@ public class Service implements Serializable
 
 
     /**
+     * Get validation and verification processes supported by this service.
+     * This property corresponds to the {@code documents_methods_supported}
+     * server metadata.
+     *
+     * <p>
+     * The third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> renamed the
+     * {@code id_documents_verification_methods_supported} server metadata to
+     * {@code documents_methods_supported}.
+     * </p>
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @return
+     *         Validation and verification processes supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public String[] getSupportedDocumentsMethods()
+    {
+        return supportedDocumentsMethods;
+    }
+
+
+    /**
+     * Set validation and verification processes supported by this service.
+     * This property corresponds to the {@code documents_methods_supported}
+     * server metadata.
+     *
+     * <p>
+     * The third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> renamed the
+     * {@code id_documents_verification_methods_supported} server metadata to
+     * {@code documents_methods_supported}.
+     * </p>
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @param methods
+     *         Validation and verification processes supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public Service setSupportedDocumentsMethods(String[] methods)
+    {
+        this.supportedDocumentsMethods = methods;
+
+        return this;
+    }
+
+
+    /**
+     * Get document validation methods supported by this service. This property
+     * corresponds to the {@code documents_validation_methods_supported} server
+     * metadata which was added by the third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @return
+     *         Document validation methods supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public String[] getSupportedDocumentsValidationMethods()
+    {
+        return supportedDocumentsValidationMethods;
+    }
+
+
+    /**
+     * Set document validation methods supported by this service. This property
+     * corresponds to the {@code documents_validation_methods_supported} server
+     * metadata which was added by the third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @param methods
+     *         Document validation methods supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public Service setSupportedDocumentsValidationMethods(String[] methods)
+    {
+        this.supportedDocumentsValidationMethods = methods;
+
+        return this;
+    }
+
+
+    /**
+     * Get document verification methods supported by this service. This property
+     * corresponds to the {@code documents_verification_methods_supported} server
+     * metadata which was added by the third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @return
+     *         Document verification methods supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public String[] getSupportedDocumentsVerificationMethods()
+    {
+        return supportedDocumentsVerificationMethods;
+    }
+
+
+    /**
+     * Set document verification methods supported by this service. This property
+     * corresponds to the {@code documents_verification_methods_supported} server
+     * metadata which was added by the third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @param methods
+     *         Document verification methods supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public Service setSupportedDocumentsVerificationMethods(String[] methods)
+    {
+        this.supportedDocumentsVerificationMethods = methods;
+
+        return this;
+    }
+
+
+    /**
+     * Get electronic record types supported by this service. This property
+     * corresponds to the {@code electronic_records_supported} server metadata
+     * which was added by the third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * If {@code "electronic_record"} is included in the list of supported
+     * evidence (cf. {@link #getSupportedEvidence()}, this property must have
+     * at least one entry.
+     * </p>
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @return
+     *         Electronic record types supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public String[] getSupportedElectronicRecords()
+    {
+        return supportedElectronicRecords;
+    }
+
+
+    /**
+     * Set electronic record types supported by this service. This property
+     * corresponds to the {@code electronic_records_supported} server metadata
+     * which was added by the third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * If {@code "electronic_record"} is included in the list of supported
+     * evidence (cf. {@link #getSupportedEvidence()}, this property must have
+     * at least one entry.
+     * </p>
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @param records
+     *         Electronic record types supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public Service setSupportedElectronicRecords(String[] records)
+    {
+        this.supportedElectronicRecords = records;
+
+        return this;
+    }
+
+
+    /**
      * Get verified claims supported by this service.
-     * This corresponds to the {@code claims_in_verified_claims_supported}
-     * <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
-     * >metadata</a>.
+     * This property corresponds to the {@code claims_in_verified_claims_supported}
+     * server metadata.
      *
      * @return
      *         Verified claims supported by this service.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.3.1"
-     *      >OpenID Connect for Identity Assurance 1.0, 3.1. Additional Claims about End-Users</a>
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
      *
      * @since 2.63
      */
@@ -4908,9 +5362,8 @@ public class Service implements Serializable
 
     /**
      * Set verified claims supported by this service.
-     * This corresponds to the {@code claims_in_verified_claims_supported}
-     * <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.7"
-     * >metadata</a>.
+     * This property corresponds to the {@code claims_in_verified_claims_supported}
+     * server metadata.
      *
      * @param claims
      *         Verified claims supported by this service.
@@ -4918,14 +5371,150 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#rfc.section.3.1"
-     *      >OpenID Connect for Identity Assurance 1.0, 3.1. Additional Claims about End-Users</a>
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
      *
      * @since 2.63
      */
     public Service setSupportedVerifiedClaims(String[] claims)
     {
         this.supportedVerifiedClaims = claims;
+
+        return this;
+    }
+
+
+    /**
+     * Get attachment types supported by this service. This property
+     * corresponds to the {@code attachments_supported} server metadata
+     * which was added by the third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @return
+     *         Attachment types supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public AttachmentType[] getSupportedAttachments()
+    {
+        return supportedAttachments;
+    }
+
+
+    /**
+     * Set attachment types supported by this service. This property
+     * corresponds to the {@code attachments_supported} server metadata
+     * which was added by the third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @param types
+     *         Attachment types supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.13
+     */
+    public Service setSupportedAttachments(AttachmentType[] types)
+    {
+        this.supportedAttachments = types;
+
+        return this;
+    }
+
+
+    /**
+     * Get supported algorithms used to compute digest values of external
+     * attachments. This property corresponds to the
+     * {@code digest_algorithms_supported} server metadata which was added by
+     * the third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * Possible values are listed in the <a href=
+     * "https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg"
+     * >Hash Algorithm Registry</a> of IANA (Internet Assigned Numbers Authority).
+     * If this service supports external attachments (cf. {@link
+     * #getSupportedAttachments()}), this property must include at least
+     * {@code "sha-256"}.
+     * </p>
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @return
+     *         Supported digest algorithms for external attachments.
+     *
+     * @since 3.13
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see <a href="https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg"
+     *      >Hash Algorithm Registry</a>
+     */
+    public String[] getSupportedDigestAlgorithms()
+    {
+        return supportedDigestAlgorithms;
+    }
+
+
+    /**
+     * Set supported algorithms used to compute digest values of external
+     * attachments. This property corresponds to the
+     * {@code digest_algorithms_supported} server metadata which was added by
+     * the third implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * Possible values are listed in the <a href=
+     * "https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg"
+     * >Hash Algorithm Registry</a> of IANA (Internet Assigned Numbers Authority).
+     * If this service supports external attachments (cf. {@link
+     * #getSupportedAttachments()}), this property must include at least
+     * {@code "sha-256"}.
+     * </p>
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @param algorithms
+     *         Supported digest algorithms for external attachments.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.13
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see <a href="https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg"
+     *      >Hash Algorithm Registry</a>
+     */
+    public Service setSupportedDigestAlgorithms(String[] algorithms)
+    {
+        this.supportedDigestAlgorithms = algorithms;
 
         return this;
     }

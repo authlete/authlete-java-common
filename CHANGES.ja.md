@@ -1,6 +1,34 @@
 変更点
 ======
 
+- `Client` クラス
+    * `getDigestAlgorithm()` メソッドを追加。
+    * `setDigestAlgorithm(String)` メソッドを追加。
+
+- `Service` クラス
+    * `getSupportedDocuments()` メソッドを追加。
+    * `setSupportedDocuments(String[])` メソッドを追加。
+    * `getSupportedDocumentsMethods()` メソッドを追加。
+    * `setSupportedDocumentsMethods(String[])` メソッドを追加。
+    * `getSupportedDocumentsValidationMethods()` メソッドを追加。
+    * `setSupportedDocumentsValidationMethods(String[])` メソッドを追加。
+    * `getSupportedDocumentsVerificationMethods()` メソッドを追加。
+    * `setSupportedDocumentsVerificationMethods(String[])` メソッドを追加。
+    * `getSupportedElectronicRecords()` メソッドを追加。
+    * `setSupportedElectronicRecords(String[])` メソッドを追加。
+    * `getSupportedAttachments()` メソッドを追加。
+    * `setSupportedAttachments(AttachmentType[])` メソッドを追加。
+    * `getSupportedDigestAlgorithms()` メソッドを追加。
+    * `setSupportedDigestAlgorithms(String[])` メソッドを追加。
+    * `getSupportedIdentityDocuments()` メソッドを非推奨化。
+    * `setSupportedIdentityDocuments(String[])`  メソッドを非推奨化。
+    * `getSupportedVerificationMethods()`  メソッドを非推奨化。
+    * `setSupportedVerificationMethods(String[])`  メソッドを非推奨化。
+
+- 新しい型
+    * `AttachmentType` 列挙型
+
+
 3.12 (2021 年 12 月 11 日)
 --------------------------
 

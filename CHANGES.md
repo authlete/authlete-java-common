@@ -1,6 +1,34 @@
 CHANGES
 =======
 
+- `Client` class
+    * Added `getDigestAlgorithm()` method.
+    * Added `setDigestAlgorithm(String)` method.
+
+- `Service` class
+    * Added `getSupportedDocuments()` method.
+    * Added `setSupportedDocuments(String[])` method.
+    * Added `getSupportedDocumentsMethods()` method.
+    * Added `setSupportedDocumentsMethods(String[])` method.
+    * Added `getSupportedDocumentsValidationMethods()` method.
+    * Added `setSupportedDocumentsValidationMethods(String[])` method.
+    * Added `getSupportedDocumentsVerificationMethods()` method.
+    * Added `setSupportedDocumentsVerificationMethods(String[])` method.
+    * Added `getSupportedElectronicRecords()` method.
+    * Added `setSupportedElectronicRecords(String[])` method.
+    * Added `getSupportedAttachments()` method.
+    * Added `setSupportedAttachments(AttachmentType[])` method.
+    * Added `getSupportedDigestAlgorithms()` method.
+    * Added `setSupportedDigestAlgorithms(String[])` method.
+    * Deprecated `getSupportedIdentityDocuments()` method.
+    * Deprecated `setSupportedIdentityDocuments(String[])` method.
+    * Deprecated `getSupportedVerificationMethods()` method.
+    * Deprecated `setSupportedVerificationMethods(String[])` method.
+
+- New types
+    * `AttachmentType` enum
+
+
 3.12 (2021-12-11)
 -----------------
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2021 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 23L;
+    private static final long serialVersionUID = 24L;
 
 
     /*
@@ -274,6 +274,7 @@ public class Client implements Serializable
     private boolean frontChannelRequestObjectEncryptionRequired;
     private boolean requestObjectEncryptionAlgMatchRequired;
     private boolean requestObjectEncryptionEncMatchRequired;
+    private String digestAlgorithm;
 
 
     /**
@@ -3504,6 +3505,103 @@ public class Client implements Serializable
     public Client setRequestObjectEncryptionEncMatchRequired(boolean required)
     {
         this.requestObjectEncryptionEncMatchRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the digest algorithm that this client requests the server to use
+     * when it computes digest values of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#name-external-attachments"
+     * >external attachments</a>, which may be referenced from within ID tokens
+     * or userinfo responses (or any place that can have the {@code
+     * verified_claims} claim).
+     *
+     * <p>
+     * Possible values are listed in the <a href=
+     * "https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg"
+     * >Hash Algorithm Registry</a> of IANA (Internet Assigned Numbers Authority),
+     * but the server does not necessarily support all the values there. When
+     * this property is omitted, {@code "sha-256"} is used as the default
+     * algorithm.
+     * </p>
+     *
+     * <p>
+     * This property corresponds to the {@code digest_algorithm} client metadata
+     * which was defined by the third implementer's draft of &quot;<a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>&quot;.
+     * </p>
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @return
+     *         The digest algorithm that this client requests the server to use
+     *         when it computes digest values of external attachments.
+     *
+     * @since 3.13
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see <a href="https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg"
+     *      >Hash Algorithm Registry</a>
+     */
+    public String getDigestAlgorithm()
+    {
+        return digestAlgorithm;
+    }
+
+
+    /**
+     * Set the digest algorithm that this client requests the server to use
+     * when it computes digest values of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#name-external-attachments"
+     * >external attachments</a>, which may be referenced from within ID tokens
+     * or userinfo responses (or any place that can have the {@code
+     * verified_claims} claim).
+     *
+     * <p>
+     * Possible values are listed in the <a href=
+     * "https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg"
+     * >Hash Algorithm Registry</a> of IANA (Internet Assigned Numbers Authority),
+     * but the server does not necessarily support all the values there. When
+     * this property is omitted, {@code "sha-256"} is used as the default
+     * algorithm.
+     * </p>
+     *
+     * <p>
+     * This property corresponds to the {@code digest_algorithm} client metadata
+     * which was defined by the third implementer's draft of &quot;<a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>&quot;.
+     * </p>
+     *
+     * <p>
+     * This property is recognized by Authlete 2.3 and newer versions.
+     * </p>
+     *
+     * @param algorithm
+     *         The digest algorithm that this client requests the server to use
+     *         when it computes digest values of external attachments.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.13
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see <a href="https://www.iana.org/assignments/named-information/named-information.xhtml#hash-alg"
+     *      >Hash Algorithm Registry</a>
+     */
+    public Client setDigestAlgorithm(String algorithm)
+    {
+        this.digestAlgorithm = algorithm;
 
         return this;
     }
