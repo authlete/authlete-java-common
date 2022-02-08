@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.13 (2022-02-08)
+-----------------
+
 - `Client` class
     * Added `getDigestAlgorithm()` method.
     * Added `setDigestAlgorithm(String)` method.

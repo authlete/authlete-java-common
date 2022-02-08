@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.13 (2022 年 02 月 08 日)
+--------------------------
+
 - `Client` クラス
     * `getDigestAlgorithm()` メソッドを追加。
     * `setDigestAlgorithm(String)` メソッドを追加。
