@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isRequestObjectAudienceChecked()` メソッドを追加。
+    * `setRequestObjectAudienceChecked(boolean)` メソッドを追加。
+
+
 3.13 (2022 年 02 月 08 日)
 --------------------------
 

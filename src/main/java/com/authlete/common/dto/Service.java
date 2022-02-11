@@ -227,7 +227,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 53L;
+    private static final long serialVersionUID = 54L;
 
 
     /*
@@ -948,6 +948,15 @@ public class Service implements Serializable
      * @since 3.12
      */
     private boolean loopbackRedirectionUriVariable;
+
+
+    /**
+     * The flag indicating whether Authlete checks whether the {@code aud} claim
+     * of request objects matches the issuer identifier of this service.
+     *
+     * @since 3.14
+     */
+    private boolean requestObjectAudienceChecked;
 
 
     /**
@@ -7428,6 +7437,115 @@ public class Service implements Serializable
     public Service setLoopbackRedirectionUriVariable(boolean variable)
     {
         this.loopbackRedirectionUriVariable = variable;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether Authlete checks whether the {@code aud}
+     * claim of request objects matches the issuer identifier of this service.
+     *
+     * <p>
+     * <a href="https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests"
+     * >Section 6.1. Passing a Request Object by Value</a> of <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect
+     * Core 1.0</a> has the following statement.
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * The {@code aud} value SHOULD be or include the OP's Issuer Identifier URL.
+     * </p>
+     * </blockquote>
+     *
+     * <p>
+     * Likewise, <a href="https://www.rfc-editor.org/rfc/rfc9101.html#section-4"
+     * >Section 4. Request Object</a> of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc9101.html">RFC 9101</a> (The OAuth 2.0
+     * Authorization Framework: JWT-Secured Authorization Request (JAR)) has the
+     * following statement.
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * The value of {@code aud} should be the value of the authorization server
+     * (AS) {@code issuer}, as defined in <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8414.html">RFC 8414</a>.
+     * </p>
+     * </blockquote>
+     *
+     * <p>
+     * As excerpted above, validation on the {@code aud} claim of request objects
+     * is optional. However, if this flag is turned on, Authlete checks whether
+     * the {@code aud} claim of request objects matches the issuer identifier of
+     * this service and raises an error if they are different.
+     * </p>
+     *
+     * @return
+     *         {@code true} if Authlete checks whether the {@code aud} claim of
+     *         request objects matches the issuer identifier of this service.
+     *
+     * @since 3.14
+     */
+    public boolean isRequestObjectAudienceChecked()
+    {
+        return requestObjectAudienceChecked;
+    }
+
+
+    /**
+     * Set the flag indicating whether Authlete checks whether the {@code aud}
+     * claim of request objects matches the issuer identifier of this service.
+     *
+     * <p>
+     * <a href="https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests"
+     * >Section 6.1. Passing a Request Object by Value</a> of <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect
+     * Core 1.0</a> has the following statement.
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * The {@code aud} value SHOULD be or include the OP's Issuer Identifier URL.
+     * </p>
+     * </blockquote>
+     *
+     * <p>
+     * Likewise, <a href="https://www.rfc-editor.org/rfc/rfc9101.html#section-4"
+     * >Section 4. Request Object</a> of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc9101.html">RFC 9101</a> (The OAuth 2.0
+     * Authorization Framework: JWT-Secured Authorization Request (JAR)) has the
+     * following statement.
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * The value of {@code aud} should be the value of the authorization server
+     * (AS) {@code issuer}, as defined in <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8414.html">RFC 8414</a>.
+     * </p>
+     * </blockquote>
+     *
+     * <p>
+     * As excerpted above, validation on the {@code aud} claim of request objects
+     * is optional. However, if this flag is turned on, Authlete checks whether
+     * the {@code aud} claim of request objects matches the issuer identifier of
+     * this service and raises an error if they are different.
+     * </p>
+     *
+     * @param checked
+     *         {@code true} to make Authlete check whether the {@code aud} claim
+     *         of request objects matches the issuer identifier of this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.14
+     */
+    public Service setRequestObjectAudienceChecked(boolean checked)
+    {
+        this.requestObjectAudienceChecked = checked;
 
         return this;
     }
