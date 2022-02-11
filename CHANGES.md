@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.14 (2022-02-12)
+-----------------
+
 - `Service` class
     * Added `isRequestObjectAudienceChecked()` method.
     * Added `setRequestObjectAudienceChecked(boolean)` method.
