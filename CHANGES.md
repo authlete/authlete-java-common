@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+3.15 (2022-02-24)
+-----------------
+
+- `JWSAlg` enum
+    * Corrected a typo in the second argument of `JWEAlg.RSA_OAEP_256()`.
+
+
 3.14 (2022-02-12)
 -----------------
 
