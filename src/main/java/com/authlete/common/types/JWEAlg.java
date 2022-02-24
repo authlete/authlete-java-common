@@ -44,7 +44,7 @@ public enum JWEAlg
     /**
      * {@code "RSA-OAEP-256"} (3); RSAES OAEP using SHA-256 and MGF1 with SHA-256.
      */
-    RSA_OAEP_256((short)3, "RSA-OEAP-256"),
+    RSA_OAEP_256((short)3, "RSA-OAEP-256"),
 
 
     /**
