@@ -19,6 +19,7 @@ package com.authlete.common.web;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -104,12 +105,6 @@ public class URLCoder
             String key    = entry.getKey();
             Object values = entry.getValue();
 
-            if (values instanceof List)
-            {
-                List<?> list = (List<?>)values;
-                values = list.toArray(new String[list.size()]);
-            }
-
             appendParameters(sb, key, (String[])values);
         }
 
@@ -140,18 +135,23 @@ public class URLCoder
             sb.append(key).append("&");
             return;
         }
-
+        sb.append(key);
         // For each value of the key.
-        for (String value : values)
+        for (int i = 0; i < values.length; i++)
         {
-            sb.append(key);
-
-            if (value != null && value.length() != 0)
+            if (values[i] != null)
             {
-                sb.append("=").append(encode(value));
+                if (values[i] != null && i == 0)
+                {
+                    sb.append("=");
+                }
+                sb.append(encode(values[i]));
+                if (values.length > 1 && i!= values.length-1)
+                {
+                    sb.append(" ");
+                }
             }
-
-            sb.append("&");
         }
+        sb.append("&");
     }
 }
