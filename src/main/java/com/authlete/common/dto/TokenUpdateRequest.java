@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2021 Authlete, Inc.
+ * Copyright (C) 2016-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -130,6 +130,19 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
+ * <dt><b><code>forExternalAttachment</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * A boolean flag which indicates whether the access token is for an external
+ * attachment. See <a href=
+ * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#name-external-attachments"
+ * >External Attachments</a> of <a href=
+ * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+ * >OpenID Connect for Identity Assurance 1.0</a> for details about external
+ * attachments.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -139,7 +152,7 @@ import java.io.Serializable;
  */
 public class TokenUpdateRequest implements Serializable
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     private String accessToken;
@@ -153,6 +166,7 @@ public class TokenUpdateRequest implements Serializable
     private String certificateThumbprint;
     private String dpopKeyThumbprint;
     private AuthzDetails authorizationDetails;
+    private boolean forExternalAttachment;
 
 
     /**
@@ -661,6 +675,48 @@ public class TokenUpdateRequest implements Serializable
     public TokenUpdateRequest setAuthorizationDetails(AuthzDetails authorizationDetails)
     {
         this.authorizationDetails = authorizationDetails;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the access token is for an external
+     * attachment.
+     *
+     * @return
+     *         {@code true} if the access token is for an external attachment.
+     *
+     * @since 3.16
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#name-external-attachments"
+     *      >OpenID Connect for Identity Assurance 1.0, External Attachments</a>
+     */
+    public boolean isForExternalAttachment()
+    {
+        return forExternalAttachment;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the access token is for an external
+     * attachment.
+     *
+     * @param forExternalAttachment
+     *         {@code true} to indicate that the access token is for an
+     *         external attachment.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.16
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#name-external-attachments"
+     *      >OpenID Connect for Identity Assurance 1.0, External Attachments</a>
+     */
+    public TokenUpdateRequest setForExternalAttachment(boolean forExternalAttachment)
+    {
+        this.forExternalAttachment = forExternalAttachment;
 
         return this;
     }

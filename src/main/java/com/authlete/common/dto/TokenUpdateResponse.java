@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2021 Authlete, Inc.
+ * Copyright (C) 2016-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -122,7 +122,7 @@ public class TokenUpdateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
     private static final String SUMMARY_FORMAT =
             "action=%s, accessToken=%s, accessTokenExpiresAt=%d, scopes=%s, tokenType=%s";
 
@@ -134,6 +134,7 @@ public class TokenUpdateResponse extends ApiResponse
     private String[] scopes;
     private Property[] properties;
     private AuthzDetails authorizationDetails;
+    private boolean forExternalAttachment;
 
 
     /**
@@ -360,6 +361,48 @@ public class TokenUpdateResponse extends ApiResponse
     public TokenUpdateResponse setAuthorizationDetails(AuthzDetails authorizationDetails)
     {
         this.authorizationDetails = authorizationDetails;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the access token is for an external
+     * attachment.
+     *
+     * @return
+     *         {@code true} if the access token is for an external attachment.
+     *
+     * @since 3.16
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#name-external-attachments"
+     *      >OpenID Connect for Identity Assurance 1.0, External Attachments</a>
+     */
+    public boolean isForExternalAttachment()
+    {
+        return forExternalAttachment;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the access token is for an external
+     * attachment.
+     *
+     * @param forExternalAttachment
+     *         {@code true} to indicate that the access token is for an
+     *         external attachment.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.16
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#name-external-attachments"
+     *      >OpenID Connect for Identity Assurance 1.0, External Attachments</a>
+     */
+    public TokenUpdateResponse setForExternalAttachment(boolean forExternalAttachment)
+    {
+        this.forExternalAttachment = forExternalAttachment;
 
         return this;
     }
