@@ -956,9 +956,11 @@ public class TokenCreateRequest implements Serializable
      *
      * @since 2.99
      */
-    public void setResources(URI[] resources)
+    public TokenCreateRequest setResources(URI[] resources)
     {
         this.resources = resources;
+
+        return this;
     }
 
 
