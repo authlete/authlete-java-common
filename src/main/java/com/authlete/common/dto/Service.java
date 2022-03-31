@@ -227,7 +227,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 54L;
+    private static final long serialVersionUID = 55L;
 
 
     /*
@@ -957,6 +957,16 @@ public class Service implements Serializable
      * @since 3.14
      */
     private boolean requestObjectAudienceChecked;
+
+
+    /**
+     * The flag indicating whether Authlete generates access tokens for
+     * external attachments and embeds them in ID tokens and userinfo
+     * responses.
+     *
+     * @since 3.16
+     */
+    private boolean accessTokenForExternalAttachmentEmbedded;
 
 
     /**
@@ -7546,6 +7556,243 @@ public class Service implements Serializable
     public Service setRequestObjectAudienceChecked(boolean checked)
     {
         this.requestObjectAudienceChecked = checked;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether Authlete generates access tokens for
+     * external attachments and embeds them in ID tokens and userinfo
+     * responses.
+     *
+     * <p>
+     * The third draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> introduced a new feature
+     * called "Attachments". The feature enables OpenID Providers to attach
+     * additional contents as parts of "evidence".
+     * </p>
+     *
+     * <p>
+     * There are two types of attachments. One is "embedded attachment" where
+     * contents of attachments are base64-encoded and embedded in ID tokens
+     * and userinfo responses directly. The other is "external attachment"
+     * where contents of attachments are hosted on resource servers and URLs
+     * of them are embedded in ID tokens and userinfo responses.
+     * </p>
+     *
+     * <p>
+     * When an OpenID Provider embeds URLs of external attachments in ID tokens
+     * and userinfo responses, it may optionally embed access tokens with which
+     * the client application access the external attachments.
+     * </p>
+     *
+     * <p>
+     * The following is an example of {@code "verified_claims"} that shows how
+     * an access token is embedded. (A simplified version of an example in the
+     * specification.)
+     * </p>
+     *
+     * <pre>
+     * "verified_claims": {
+     *   "verification": {
+     *     "trust_framework":"eidas",
+     *     "evidence": [
+     *       {
+     *         "type": "document",
+     *         "attachments": [
+     *           {
+     *             "desc": "Front of id document",
+     *             "digest": {
+     *               "alg": "sha-256",
+     *               "value": "qC1zE5AfxylOFLrCnOIURXJUvnZwSFe5uUj8t6hdQVM="
+     *             },
+     *             "url": "https://example.com/attachments/pGL9yz4hZQ",
+     *             "access_token": "ksj3n283dke",
+     *             "expires_in": 30
+     *           }
+     *         ]
+     *       }
+     *     ]
+     *   },
+     *   "claims": {
+     *     "given_name": "Max",
+     *     "family_name": "Mustermann",
+     *     "birthdate": "1956-01-28"
+     *   }
+     * }
+     * </pre>
+     *
+     * <p>
+     * Because it is developers (not Authlete) who prepare the content of
+     * {@code "verified_claims"} (cf. the {@code "claims"} request parameter of
+     * Authlete's {@code /api/auth/authorization/issue} API), developers can
+     * embed arbitrary access tokens for external attachments. However, it is
+     * a burdensome task to prepare access tokens appropriately. The task can
+     * be delegated to Authlete by setting true to this
+     * {@code accessTokenForExternalAttachmentEmbedded} property.
+     * </p>
+     *
+     * <p>
+     * When this property is set to true, Authlete behaves as described below
+     * for each element in the {@code "attachments"} array.
+     * </p>
+     *
+     * <ol>
+     * <li>Ignores the element if it does not contain the {@code "url"} property
+     *     because it means that the element is not an external attachment.
+     * <li>Does nothing for the element if it already contains the
+     *     {@code "access_token"} property.
+     * <li>Computes the duration of the access token which is about to be
+     *     generated. If the element already contains the {@code "expires_in"}
+     *     property, its value is used as the duration. Otherwise, (1) the
+     *     duration of the ID token is used in the case where URLs of external
+     *     attachments are to be included in an ID token, or (2) the remaining
+     *     duration of the access token which was presented at the userinfo
+     *     endpoint is used in the case where URLs of external attachments are
+     *     to be included in a userinfo response.
+     * <li>Generates an access token which has the duration computed in the
+     *     previous step. Also, the access token has the URL as an associated
+     *     resource as if the {@code resource} request parameter defined in
+     *     <a href="https://www.rfc-editor.org/rfc/rfc8707.html">RFC 8707</a>
+     *     (Resource Indicators for OAuth 2.0) were used.
+     * <li>Puts the {@code "access_token"} and {@code "expires_in"} properties
+     *     in the element whose values are the generated access token and the
+     *     computed duration.
+     * </ol>
+     *
+     * @return
+     *         {@code true} if Authlete generates access tokens for external
+     *         attachments and embeds them in ID tokens and userinfo responses.
+     *
+     * @since 3.16
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     */
+    public boolean isAccessTokenForExternalAttachmentEmbedded()
+    {
+        return accessTokenForExternalAttachmentEmbedded;
+    }
+
+
+    /**
+     * Set the flag indicating whether Authlete generates access tokens for
+     * external attachments and embeds them in ID tokens and userinfo
+     * responses.
+     *
+     * <p>
+     * The third draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a> introduced a new feature
+     * called "Attachments". The feature enables OpenID Providers to attach
+     * additional contents as parts of "evidence".
+     * </p>
+     *
+     * <p>
+     * There are two types of attachments. One is "embedded attachment" where
+     * contents of attachments are base64-encoded and embedded in ID tokens
+     * and userinfo responses directly. The other is "external attachment"
+     * where contents of attachments are hosted on resource servers and URLs
+     * of them are embedded in ID tokens and userinfo responses.
+     * </p>
+     *
+     * <p>
+     * When an OpenID Provider embeds URLs of external attachments in ID tokens
+     * and userinfo responses, it may optionally embed access tokens with which
+     * the client application access the external attachments.
+     * </p>
+     *
+     * <p>
+     * The following is an example of {@code "verified_claims"} that shows how
+     * an access token is embedded. (A simplified version of an example in the
+     * specification.)
+     * </p>
+     *
+     * <pre>
+     * "verified_claims": {
+     *   "verification": {
+     *     "trust_framework":"eidas",
+     *     "evidence": [
+     *       {
+     *         "type": "document",
+     *         "attachments": [
+     *           {
+     *             "desc": "Front of id document",
+     *             "digest": {
+     *               "alg": "sha-256",
+     *               "value": "qC1zE5AfxylOFLrCnOIURXJUvnZwSFe5uUj8t6hdQVM="
+     *             },
+     *             "url": "https://example.com/attachments/pGL9yz4hZQ",
+     *             "access_token": "ksj3n283dke",
+     *             "expires_in": 30
+     *           }
+     *         ]
+     *       }
+     *     ]
+     *   },
+     *   "claims": {
+     *     "given_name": "Max",
+     *     "family_name": "Mustermann",
+     *     "birthdate": "1956-01-28"
+     *   }
+     * }
+     * </pre>
+     *
+     * <p>
+     * Because it is developers (not Authlete) who prepare the content of
+     * {@code "verified_claims"} (cf. the {@code "claims"} request parameter of
+     * Authlete's {@code /api/auth/authorization/issue} API), developers can
+     * embed arbitrary access tokens for external attachments. However, it is
+     * a burdensome task to prepare access tokens appropriately. The task can
+     * be delegated to Authlete by setting true to this
+     * {@code accessTokenForExternalAttachmentEmbedded} property.
+     * </p>
+     *
+     * <p>
+     * When this property is set to true, Authlete behaves as described below
+     * for each element in the {@code "attachments"} array.
+     * </p>
+     *
+     * <ol>
+     * <li>Ignores the element if it does not contain the {@code "url"} property
+     *     because it means that the element is not an external attachment.
+     * <li>Does nothing for the element if it already contains the
+     *     {@code "access_token"} property.
+     * <li>Computes the duration of the access token which is about to be
+     *     generated. If the element already contains the {@code "expires_in"}
+     *     property, its value is used as the duration. Otherwise, (1) the
+     *     duration of the ID token is used in the case where URLs of external
+     *     attachments are to be included in an ID token, or (2) the remaining
+     *     duration of the access token which was presented at the userinfo
+     *     endpoint is used in the case where URLs of external attachments are
+     *     to be included in a userinfo response.
+     * <li>Generates an access token which has the duration computed in the
+     *     previous step. Also, the access token has the URL as an associated
+     *     resource as if the {@code resource} request parameter defined in
+     *     <a href="https://www.rfc-editor.org/rfc/rfc8707.html">RFC 8707</a>
+     *     (Resource Indicators for OAuth 2.0) were used.
+     * <li>Puts the {@code "access_token"} and {@code "expires_in"} properties
+     *     in the element whose values are the generated access token and the
+     *     computed duration.
+     * </ol>
+     *
+     * @param embedded
+     *         {@code true} to make Authlete generate access tokens for external
+     *         attachments and embed them in ID tokens and userinfo responses.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.16
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     */
+    public Service setAccessTokenForExternalAttachmentEmbedded(boolean embedded)
+    {
+        this.accessTokenForExternalAttachmentEmbedded = embedded;
 
         return this;
     }
