@@ -1,6 +1,37 @@
 CHANGES
 =======
 
+3.16 (2022-03-31)
+-----------------
+
+- `IntrospectionResponse` class
+    * Added `getScopeDetails()` method.
+    * Added `setScopeDetails(Scope[])` method.
+    * Added `isForExternalAttachment()` method.
+    * Added `setForExternalAttachment(boolean)` method.
+
+- `Service` class
+    * Added `isAccessTokenForExternalAttachmentEmbedded()` method.
+    * Added `setAccessTokenForExternalAttachmentEmbedded(boolean)` method.
+
+- `TokenCreateRequest` class
+    * Added `isForExternalAttachment()` method.
+    * Added `setForExternalAttachment(boolean)` method.
+    * Changed the return type of `setResources(URI[])` from `void` to `TokenCreateRequest`.
+
+- `TokenCreateResponse` class
+    * Added `isForExternalAttachment()` method.
+    * Added `setForExternalAttachment(boolean)` method.
+
+- `TokenUpdateRequest` class
+    * Added `isForExternalAttachment()` method.
+    * Added `setForExternalAttachment(boolean)` method.
+
+- `TokenUpdateResponse` class
+    * Added `isForExternalAttachment()` method.
+    * Added `setForExternalAttachment(boolean)` method.
+
+
 3.15 (2022-02-24)
 -----------------
 

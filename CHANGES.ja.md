@@ -1,6 +1,37 @@
 変更点
 ======
 
+3.16 (2022 年 03 月 31 日)
+--------------------------
+
+- `IntrospectionResponse` クラス
+    * `getScopeDetails()` メソッドを追加。
+    * `setScopeDetails(Scope[])` メソッドを追加。
+    * `isForExternalAttachment()` メソッドを追加。
+    * `setForExternalAttachment(boolean)` メソッドを追加。
+
+- `Service` クラス
+    * `isAccessTokenForExternalAttachmentEmbedded()` メソッドを追加。
+    * `setAccessTokenForExternalAttachmentEmbedded(boolean)` メソッドを追加。
+
+- `TokenCreateRequest` クラス
+    * `isForExternalAttachment()` メソッドを追加。
+    * `setForExternalAttachment(boolean)` メソッドを追加。
+    * `setResources(URI[])` の戻り値の型を `void` から `TokenCreateRequest` に変更。
+
+- `TokenCreateResponse` クラス
+    * `isForExternalAttachment()` メソッドを追加。
+    * `setForExternalAttachment(boolean)` メソッドを追加。
+
+- `TokenUpdateRequest` クラス
+    * `isForExternalAttachment()` メソッドを追加。
+    * `setForExternalAttachment(boolean)` メソッドを追加。
+
+- `TokenUpdateResponse` クラス
+    * `isForExternalAttachment()` メソッドを追加。
+    * `setForExternalAttachment(boolean)` メソッドを追加。
+
+
 3.15 (2022 年 02 月 24 日)
 --------------------------
 
