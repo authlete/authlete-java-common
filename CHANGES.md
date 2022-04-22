@@ -1,6 +1,19 @@
 CHANGES
 =======
 
+- `pom.xml`
+    * Added dependency `org.slf4j:slf4j-api:1.7.32`.
+    * Added dependency `org.slf4j:slf4j-simple:1.7.32` with `scope=test`.
+    * Added dependency `jakarta.json:jakarta.json-api:2.0.1` with `scope=test`.
+    * Added dependency `org.glassfish:jakarta.json:module:2.0.1` with `scope=test`.
+
+- New packages
+    * `com.authlete.common.ida`
+
+- New types
+    * `MutableJsonPointer` class
+
+
 3.16 (2022-03-31)
 -----------------
 

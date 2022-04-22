@@ -1,6 +1,19 @@
 変更点
 ======
 
+- `pom.xml`
+    * Dependency `org.slf4j:slf4j-api:1.7.32` を追加。
+    * Dependency `org.slf4j:slf4j-simple:1.7.32` を `scope=test` で追加。
+    * Dependency `jakarta.json:jakarta.json-api:2.0.1` を `scope=test` で追加。
+    * Dependency `org.glassfish:jakarta.json:module:2.0.1` を `scope=test` で追加。
+
+- 新しいパッケージ
+    * `com.authlete.common.ida`
+
+- 新しい型
+    * `MutableJsonPointer` クラス
+
+
 3.16 (2022 年 03 月 31 日)
 --------------------------
 
