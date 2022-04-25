@@ -17,7 +17,10 @@ package com.authlete.common.api;
 
 
 import java.lang.reflect.Constructor;
+import java.util.logging.Logger;
+
 import com.authlete.common.conf.AuthleteConfiguration;
+import com.authlete.common.conf.AuthleteEnvConfiguration;
 import com.authlete.common.conf.AuthletePropertiesConfiguration;
 
 
@@ -28,6 +31,19 @@ import com.authlete.common.conf.AuthletePropertiesConfiguration;
  */
 public class AuthleteApiFactory
 {
+	
+	/**
+     * The system property key to specify the source for the
+     * configuration ({@code authlete.default.configuration.source}) of
+     * default api.
+     * When this system property has a value as "ENV", Authlete default
+     * API will be configured from system environments variables.
+     * 
+     * @since 2.99
+     */
+    public static final String SYSTEM_PROPERTY_AUTHLETE_DEFAULT_CONFIGURATION_SOURCE =
+        "AUTHLETE_CONFIG_SOURCE";
+    
     /**
      * An implementation of {@link AuthleteApi} using JAX-RS.
      * This implementation exists in authlete/authlete-java-jaxrs.
@@ -226,7 +242,14 @@ public class AuthleteApiFactory
             }
 
             // Load an Authlete configuration file.
-            AuthleteConfiguration ac = new AuthletePropertiesConfiguration();
+            AuthleteConfiguration ac ;
+            
+            if(System.getenv().getOrDefault(SYSTEM_PROPERTY_AUTHLETE_DEFAULT_CONFIGURATION_SOURCE, "FILE").equalsIgnoreCase("ENV")) {
+            	ac = new AuthleteEnvConfiguration();
+            } else {
+            	ac = new AuthletePropertiesConfiguration();
+            }
+            
 
             // Create an AuthleteApi instance using the configuration.
             sDefaultApi = create(ac);
