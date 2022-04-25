@@ -1088,9 +1088,9 @@ public class IntrospectionResponse extends ApiResponse
      * @return
      *         Consented claims.
      *
-     * @see {@link AuthorizationIssueRequest#setConsentedClaims(String[])}
-     * @see {@link BackchannelAuthenticationCompleteRequest#setConsentedClaims(String[])}
-     * @see {@link DeviceCompleteRequest#setConsentedClaims(String[])}
+     * @see AuthorizationIssueRequest#setConsentedClaims(String[])
+     * @see BackchannelAuthenticationCompleteRequest#setConsentedClaims(String[])
+     * @see DeviceCompleteRequest#setConsentedClaims(String[])
      *
      * @since 3.7
      */
@@ -1125,9 +1125,9 @@ public class IntrospectionResponse extends ApiResponse
      * @param claims
      *         Consented claims.
      *
-     * @see {@link AuthorizationIssueRequest#setConsentedClaims(String[])}
-     * @see {@link BackchannelAuthenticationCompleteRequest#setConsentedClaims(String[])}
-     * @see {@link DeviceCompleteRequest#setConsentedClaims(String[])}
+     * @see AuthorizationIssueRequest#setConsentedClaims(String[])
+     * @see BackchannelAuthenticationCompleteRequest#setConsentedClaims(String[])
+     * @see DeviceCompleteRequest#setConsentedClaims(String[])
      *
      * @since 3.7
      */

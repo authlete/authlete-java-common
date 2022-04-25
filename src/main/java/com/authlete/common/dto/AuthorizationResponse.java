@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2021 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -941,10 +941,10 @@ import com.authlete.common.util.Utils;
  * claim uses an existing claim as input. For example, an authorization server
  * may predefine a transformed claim named {@code 18_or_over} which uses the
  * {@code birthdate} claim as input. If a client application requests the
- * {@code 18_or_over} transformation claim, the authorization server needs to
+ * {@code 18_or_over} transformed claim, the authorization server needs to
  * prepare the value of the {@code birthdate} claim and passes it to Authlete's
  * {@code /api/auth/authorization/issue} API so that Authlete can compute the
- * value of the {@code 18_or_over} transformation claim. See the descriptions
+ * value of the {@code 18_or_over} transformed claim. See the descriptions
  * of {@link #getRequestedClaimsForTx()} and {@link #getRequestedVerifiedClaimsForTx()}
  * for details.
  * </p>
@@ -2233,9 +2233,9 @@ public class AuthorizationResponse extends ApiResponse
      *
      * <p>
      * In the example, the {@code nationalities} claim is requested indirectly
-     * by the {@code nationality_usa} transformation claim. Likewise, the
+     * by the {@code nationality_usa} transformed claim. Likewise, the
      * {@code birthdate} claim is requested indirectly by the {@code 18_or_over}
-     * transformation claim.
+     * transformed claim.
      * </p>
      *
      * <p>
@@ -2366,9 +2366,9 @@ public class AuthorizationResponse extends ApiResponse
      *
      * <p>
      * In the example, the {@code nationalities} claim is requested indirectly
-     * by the {@code nationality_usa} transformation claim. Likewise, the
+     * by the {@code nationality_usa} transformed claim. Likewise, the
      * {@code birthdate} claim is requested indirectly by the {@code 18_or_over}
-     * transformation claim.
+     * transformed claim.
      * </p>
      *
      * <p>
@@ -2400,7 +2400,7 @@ public class AuthorizationResponse extends ApiResponse
      * </pre>
      *
      * <p>
-     * The reason that this {@code requestVerifiedClaimsForTx} property and
+     * The reason that this {@code requestedVerifiedClaimsForTx} property and
      * the {@code verifiedClaimsForTx} request parameter are arrays is that
      * the {@code "verified_claims"} property in the {@code claims} request
      * parameter can be an array like below.
