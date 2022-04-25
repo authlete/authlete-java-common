@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.17 (2022 年 04 月 25 日)
+--------------------------
+
 - `pom.xml`
     * Dependency `org.slf4j:slf4j-api:1.7.32` を追加。
     * Dependency `org.slf4j:slf4j-simple:1.7.32` を `scope=test` で追加。

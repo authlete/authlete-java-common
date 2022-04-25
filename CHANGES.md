@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.17 (2022-04-25)
+-----------------
+
 - `pom.xml`
     * Added dependency `org.slf4j:slf4j-api:1.7.32`.
     * Added dependency `org.slf4j:slf4j-simple:1.7.32` with `scope=test`.
