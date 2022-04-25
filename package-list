@@ -4,6 +4,7 @@ com.authlete.common.assurance
 com.authlete.common.assurance.constraint
 com.authlete.common.conf
 com.authlete.common.dto
+com.authlete.common.ida
 com.authlete.common.types
 com.authlete.common.util
 com.authlete.common.web
