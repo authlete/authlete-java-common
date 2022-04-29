@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2017 Authlete, Inc.
+ * Copyright (C) 2015-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,12 +25,18 @@ import com.google.gson.GsonBuilder;
 
 public class Utils
 {
-    private static final Gson GSON = new Gson();
-    private static final Gson PRETTY_GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static final Gson GSON = gsonBuilder().create();
+    private static final Gson PRETTY_GSON = gsonBuilder().setPrettyPrinting().create();
 
 
     private Utils()
     {
+    }
+
+
+    private static GsonBuilder gsonBuilder()
+    {
+        return new GsonBuilder().serializeNulls();
     }
 
 
