@@ -85,7 +85,7 @@ import org.slf4j.Logger;
  *             "name": "TheBank"
  *           }
  *         }
- *       },
+ *       }
  *     ]
  *   },
  *   "claims": {
