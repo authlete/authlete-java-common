@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.18 (2022-04-30)
+-----------------
+
 - `Utils` class
     * Changed the configuration of `Gson` instances in the `Utils` class to serialize nulls.
 
