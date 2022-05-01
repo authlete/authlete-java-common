@@ -22,6 +22,11 @@ Java 用 Authlete 共通ライブラリ
 
   Apache License, Version 2.0
 
+  `src/test/resources/ekyc-ida` 以下の JSON ファイル群は
+  https://bitbucket.org/openid/ekyc-ida/src/master/examples/response/
+  からコピーしたものです。それらのライセンスについては、OpenID Foundation の
+  eKYC-IDA ワーキンググループにお尋ねください。
+
 
 Maven
 -----

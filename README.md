@@ -24,6 +24,10 @@ License
 
   Apache License, Version 2.0
 
+  JSON files under `src/test/resources/ekyc-ida` have been copied from
+  https://bitbucket.org/openid/ekyc-ida/src/master/examples/response/ .
+  Regarding their license, ask the eKYC-IDA WG of OpenID Foundation.
+
 
 Maven
 -----
