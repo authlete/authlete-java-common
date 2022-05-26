@@ -135,6 +135,7 @@ public class TokenUpdateResponse extends ApiResponse
     private Property[] properties;
     private AuthzDetails authorizationDetails;
     private boolean forExternalAttachment;
+    private String tokenId;
 
 
     /**
@@ -404,6 +405,41 @@ public class TokenUpdateResponse extends ApiResponse
     {
         this.forExternalAttachment = forExternalAttachment;
 
+        return this;
+    }
+
+
+    /**
+     * Get the token identifier.
+     *
+     * @return
+     *         The token identifier string.
+     *
+     * @since 3.XX
+     * @since Authlete API 3.0
+     */
+    public String getTokenId()
+    {
+        return tokenId;
+    }
+
+
+    /**
+     * Set the token identifier.
+     *
+     * @param tokenId
+     *            The token identifier string.
+     * @return
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.XX
+     * @since Authlete API 3.0
+     */
+    public TokenUpdateResponse setTokenId(String tokenId)
+    {
+        this.tokenId = tokenId;
         return this;
     }
 }
