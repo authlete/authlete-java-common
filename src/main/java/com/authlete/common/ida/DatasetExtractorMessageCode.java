@@ -95,6 +95,9 @@ enum DatasetExtractorMessageCode
 
     /** Some elements in the array in the original dataset satisfy any of the elements in the array in the request. */
     DE22,
+
+    /** All available sub-elements under 'assurance_details' are unconditionally returned based on the special rule for the property. */
+    DE23,
     ;
 
 

@@ -881,4 +881,51 @@ public class DatasetExtractorTest
 
         assertEquals("The dataset is different from the expected one.", expectedDigest, actualDigest);
     }
+
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testAssuranceDetails()
+    {
+        Object original = getDataset(EVIDENCE_WITH_ASSURANCE_DETAILS);
+        Map<String, Object> request = fromJson(
+                "{" +
+                  "\"verification\":{" +
+                    "\"trust_framework\":null," +
+                    "\"assurance_process\":{" +
+                      "\"assurance_details\":null" +
+                    "}" +
+                  "}," +
+                  "\"claims\":{" +
+                    "\"given_name\":null" +
+                  "}" +
+                "}"
+        );
+
+        Map<String, Object> dataset = extract(request, original);
+        assertNotNull("dataset is null.", dataset);
+
+        Map<String, Object> verification = (Map<String, Object>)dataset.get("verification");
+        assertNotNull("'verification' is null.", verification);
+
+        Map<String, Object> assuranceProcess = (Map<String, Object>)verification.get("assurance_process");
+        assertNotNull("'assurance_process' is null.", assuranceProcess);
+
+        // "assurance_details" has a special rule. When it is requested,
+        // all available sub-elements must be returned.
+
+        List<?> assuranceDetails = (List<?>)assuranceProcess.get("assurance_details");
+        assertNotNull("'assurance_details' is null.", assuranceDetails);
+
+        // Check the number of the "assurance_details" array.
+        assertEquals("The number of elements in 'assurance_details' is wrong.", 3, assuranceDetails.size());
+
+        // The first element in the "assurance_details" array.
+        Map<String, Object> first = (Map<String, Object>)assuranceDetails.get(0);
+        assertNotNull("The first element in the 'assurance_details' array is null.", first);
+
+        // Check the properties of the element.
+        assertEquals("'assurance_type' is wrong.", "evidence_validation", (String)first.get("assurance_type"));
+        assertEquals("'assurance_classification' is wrong.", "score_2", (String)first.get("assurance_classification"));
+    }
 }
