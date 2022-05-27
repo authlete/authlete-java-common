@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.19 (2022-05-27)
+-----------------
+
 - `DatasetExtractor` class
     * Implemented the special rule for the `assurance_details` property which
       was added by https://bitbucket.org/openid/ekyc-ida/pull-requests/113

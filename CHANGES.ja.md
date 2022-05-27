@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.19 (2022 年 05 月 27 日)
+--------------------------
+
 - `DatasetExtractor` クラス
     * https://bitbucket.org/openid/ekyc-ida/pull-requests/113 により追加された
       `assurance_details` プロパティー用の特別規則を実装
