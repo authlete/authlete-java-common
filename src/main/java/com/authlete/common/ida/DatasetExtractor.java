@@ -246,6 +246,13 @@ public class DatasetExtractor
 
 
     /**
+     * The key "assurance_details" which may appear in
+     * "verified_claims/verification/assurance_process".
+     */
+    private static final String KEY_ASSURANCE_DETAILS = "assurance_details";
+
+
+    /**
      * Time used for the "max_age" constraint.
      */
     private final OffsetDateTime mCurrentTime;
@@ -631,6 +638,34 @@ public class DatasetExtractor
         {
             // The property is unavailable, and therefore omitted.
             trace(context, requestValue, originalValue, DE02);
+
+            return true;
+        }
+
+        // If the key is "assurance_details".
+        if (requestKey.equals(KEY_ASSURANCE_DETAILS))
+        {
+            // "assurance_details" has a special rule.
+            //
+            // OpenID Connect for Identity Assurance 1.0
+            // 6.2. Requesting Verification Data
+            //
+            //   assurance_details is an array representing how the evidence and
+            //   check_details meets the requirements of the trust_framework. RP
+            //   SHOULD only request this where they need to know this information.
+            //   Where assurance_details have been requested by an RP the OP MUST
+            //   return the assurance_details element along with all sub-elements
+            //   that it has. If an RP wants to filter what types of evidence and
+            //   check_methods they MUST use those methods to do so, e.g.
+            //   requesting an assurance_type should have no filtering effect.
+
+            // All available sub-elements under 'assurance_details' are
+            // unconditionally returned based on the special rule for the property.
+            trace(context, requestValue, originalValue, DE23);
+
+            // Copy all available sub-elements under 'assurance_details' without
+            // applying any filtering rules.
+            copy.put(requestKey, originalValue);
 
             return true;
         }
