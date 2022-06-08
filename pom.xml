@@ -135,19 +135,61 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>external</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>authlete</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+        
+                <repository>
+                    <id>authlete</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+            <repositories>
+                <repository>
+                    <id>authlete-internal</id>
+                    <url>artifactregistry://us-maven.pkg.dev/authlete/internal</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.4</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>authlete</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>internal</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>authlete-internal</id>
+                    <url>artifactregistry://us-maven.pkg.dev/authlete/internal</url>
+                </snapshotRepository>
+                <repository>
+                    <id>authlete-internal</id>
+                    <url>artifactregistry://us-maven.pkg.dev/authlete/internal</url>
+                </repository>
+            </distributionManagement>
+        </profile>
     </profiles>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>authlete</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-
-        <repository>
-            <id>authlete</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
 
     <build>
         <plugins>
@@ -207,18 +249,6 @@
             </plugin>
 
             <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.4</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>authlete</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>
-
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.1</version>
@@ -264,5 +294,12 @@
                 </configuration>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>com.google.cloud.artifactregistry</groupId>
+                <artifactId>artifactregistry-maven-wagon</artifactId>
+                <version>2.1.5</version>
+            </extension>
+        </extensions>
     </build>
 </project>
