@@ -227,7 +227,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 55L;
+    private static final long serialVersionUID = 56L;
 
 
     /*
@@ -967,6 +967,17 @@ public class Service implements Serializable
      * @since 3.16
      */
     private boolean accessTokenForExternalAttachmentEmbedded;
+
+
+    /**
+     * The flag indicating whether refresh token requests with the same
+     * refresh token can be made multiple times in quick succession and
+     * they can obtain the same renewed refresh token within the short
+     * period.
+     *
+     * @since 3.21
+     */
+    private boolean refreshTokenIdempotent;
 
 
     /**
@@ -7793,6 +7804,53 @@ public class Service implements Serializable
     public Service setAccessTokenForExternalAttachmentEmbedded(boolean embedded)
     {
         this.accessTokenForExternalAttachmentEmbedded = embedded;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether refresh token requests with the same
+     * refresh token can be made multiple times in quick succession and they
+     * can obtain the same renewed refresh token within the short period.
+     *
+     * <p>
+     * This feature is available in Authlete 2.3 onwards.
+     * </p>
+     *
+     * @return
+     *         {@code true} if multiple refresh token requests in a short
+     *         period can obtain the same renewed refresh token.
+     *
+     * @since 3.21
+     */
+    public boolean isRefreshTokenIdempotent()
+    {
+        return refreshTokenIdempotent;
+    }
+
+
+    /**
+     * Set the flag indicating whether refresh token requests with the same
+     * refresh token can be made multiple times in quick succession and they
+     * can obtain the same renewed refresh token within the short period.
+     *
+     * <p>
+     * This feature is available in Authlete 2.3 onwards.
+     * </p>
+     *
+     * @param idempotent
+     *         {@code true} to enable multiple refresh token requests in a
+     *         short period to obtain the same renewed refresh token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.21
+     */
+    public Service setRefreshTokenIdempotent(boolean idempotent)
+    {
+        this.refreshTokenIdempotent = idempotent;
 
         return this;
     }

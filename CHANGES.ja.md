@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isRefreshTokenIdempotent()` メソッドを追加。
+    * `setRefreshTokenIdempotent(boolean)` メソッドを追加。
+
+
 3.20 (2022 年 06 月 09 日)
 --------------------------
 
