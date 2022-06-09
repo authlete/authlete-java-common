@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.21 (2022-06-09)
+-----------------
+
 - `Service` class
     * Added `isRefreshTokenIdempotent()` method.
     * Added `setRefreshTokenIdempotent(boolean)` method.
