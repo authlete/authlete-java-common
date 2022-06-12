@@ -25,6 +25,7 @@ import java.util.TreeSet;
 import com.authlete.common.types.AttachmentType;
 import com.authlete.common.types.ClaimType;
 import com.authlete.common.types.ClientAuthMethod;
+import com.authlete.common.types.ClientRegistrationType;
 import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.Display;
 import com.authlete.common.types.GrantType;
@@ -227,7 +228,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 56L;
+    private static final long serialVersionUID = 57L;
 
 
     /*
@@ -978,6 +979,85 @@ public class Service implements Serializable
      * @since 3.21
      */
     private boolean refreshTokenIdempotent;
+
+
+    /**
+     * The flag indicating whether this service supports OpenID Connect
+     * Federation 1&#002E0.
+     *
+     * @since 3.22
+     */
+    private boolean federationEnabled;
+
+
+    /**
+     * The human-readable name representing the organization that operates
+     * this service. This property corresponds to the {@code organization_name}
+     * server metadata that is defined in OpenID Connect Federation 1.0.
+     *
+     * @since 3.22
+     */
+    private String organizationName;
+
+
+    /**
+     * Identifiers of entities that can issue entity statements for this
+     * service. This property corresponds to the {@code authority_hints}
+     * property that appears in a self-signed entity statement that is
+     * defined in OpenID Connect Federation 1.0.
+     *
+     * @since 3.22
+     */
+    private URI[] authorityHints;
+
+
+    /**
+     * Trust anchors that are referenced when this service resolves trust
+     * chains of relying parties.
+     *
+     * @since 3.22
+     */
+    private TrustAnchor[] trustAnchors;
+
+
+    /**
+     * JWK Set document containing keys that are used to sign (1) self-signed
+     * entity statement of this service and (2) the response from
+     * {@code signed_jwks_uri}.
+     *
+     * @since 3.22
+     */
+    private String federationJwks;
+
+
+    /**
+     * The URI of the endpoint that returns this service's JWK Set document in
+     * the JWT format. This property corresponds to the {@code signed_jwks_uri}
+     * server metadata defined in OpenID Connect Federation 1.0.
+     *
+     * @since 3.22
+     */
+    private URI signedJwksUri;
+
+
+    /**
+     * The URI of the federation registration endpoint. This property corresponds
+     * to the {@code federation_registration_endpoint} server metadata that is
+     * defined in OpenID Connect Federation 1.0.
+     *
+     * @since 3.22
+     */
+    private URI federationRegistrationEndpoint;
+
+
+    /**
+     * Supported client registration types. This property corresponds to the
+     * {@code client_registration_types_supported} server metadata that is
+     * defined in OpenID Connect Federation 1.0.
+     *
+     * @since 3.22
+     */
+    private ClientRegistrationType[] supportedClientRegistrationTypes;
 
 
     /**
@@ -7851,6 +7931,519 @@ public class Service implements Serializable
     public Service setRefreshTokenIdempotent(boolean idempotent)
     {
         this.refreshTokenIdempotent = idempotent;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether this service supports <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1&#x002E;0</a>.
+     *
+     * <p>
+     * If the feature of OpenID Connect Federation 1.0 is not enabled in the
+     * Authlete server on which this service is hosted, functions related to
+     * OpenID Connect Federation 1.0 are not usable regardless of the setting
+     * of this property.
+     * </p>
+     *
+     * <p>
+     * OpenID Connect Federation 1.0 is supported by Authlete 2.3 onwards.
+     * </p>
+     *
+     * @return
+     *         {@code true} if this service supports OpenID Connect Federation 1.0.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public boolean isFederationEnabled()
+    {
+        return federationEnabled;
+    }
+
+
+    /**
+     * Set the flag indicating whether this service supports <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1&#x002E;0</a>.
+     *
+     * <p>
+     * If the feature of OpenID Connect Federation 1.0 is not enabled in the
+     * Authlete server on which this service is hosted, functions related to
+     * OpenID Connect Federation 1.0 are not usable regardless of the setting
+     * of this property.
+     * </p>
+     *
+     * <p>
+     * OpenID Connect Federation 1.0 is supported by Authlete 2.3 onwards.
+     * </p>
+     *
+     * @param enabled
+     *         {@code true} to enable the feature of OpenID Connect
+     *         Federation 1.0.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Service setFederationEnabled(boolean enabled)
+    {
+        this.federationEnabled = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get the human-readable name representing the organization that operates
+     * this service. This property corresponds to the {@code organization_name}
+     * server metadata that is defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * <p>
+     * If this property is not empty, the {@code organization_name} property
+     * appears in self-signed entity statements of this service.
+     * </p>
+     *
+     * @return
+     *         The name of the organization that operates this service.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public String getOrganizationName()
+    {
+        return organizationName;
+    }
+
+
+    /**
+     * Set the human-readable name representing the organization that operates
+     * this service. This property corresponds to the {@code organization_name}
+     * server metadata that is defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * <p>
+     * If this property is not empty, the {@code organization_name} property
+     * appears in self-signed entity statements of this service.
+     * </p>
+     *
+     * @param name
+     *         The name of the organization that operates this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Service setOrganizationName(String name)
+    {
+        this.organizationName = name;
+
+        return this;
+    }
+
+
+    /**
+     * Get the identifiers of entities that can issue entity statements for
+     * this service. This property corresponds to the {@code authority_hints}
+     * property that appears in a self-signed entity statement that is defined
+     * in <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     * >OpenID Connect Federation 1.0</a>.
+     *
+     * <p>
+     * OpenID providers participating in one or more federations are supposed
+     * to have authority hints. It is only trust anchors having no superiors
+     * that do not have authority hints.
+     * </p>
+     *
+     * <p>
+     * Because the {@code authority_hints} property in self-signed entity
+     * statements of OpenID providers is mandatory, if this property is empty,
+     * the configuration endpoint ({@code /.well-known/openid-federation})
+     * cannot generate a valid entity statement. It means that OpenID
+     * Connect Federation 1.0 does not work.
+     * </p>
+     *
+     * @return
+     *         Identifiers of entities that can issue entity statements
+     *         for this service.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public URI[] getAuthorityHints()
+    {
+        return authorityHints;
+    }
+
+
+    /**
+     * Set the identifiers of entities that can issue entity statements for
+     * this service. This property corresponds to the {@code authority_hints}
+     * property that appears in a self-signed entity statement that is defined
+     * in <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     * >OpenID Connect Federation 1.0</a>.
+     *
+     * <p>
+     * OpenID providers participating in one or more federations are supposed
+     * to have authority hints. It is only trust anchors having no superiors
+     * that do not have authority hints.
+     * </p>
+     *
+     * <p>
+     * Because the {@code authority_hints} property in self-signed entity
+     * statements of OpenID providers is mandatory, if this property is empty,
+     * the configuration endpoint ({@code /.well-known/openid-federation})
+     * cannot generate a valid entity statement. It means that OpenID
+     * Connect Federation 1.0 does not work.
+     * </p>
+     *
+     * @param authorityHints
+     *         Identifiers of entities that can issue entity statements
+     *         for this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Service setAuthorityHints(URI[] authorityHints)
+    {
+        this.authorityHints = authorityHints;
+
+        return this;
+    }
+
+
+    /**
+     * Get the trust anchors that are referenced when this service resolves
+     * trust chains of relying parties.
+     *
+     * <p>
+     * If this property is empty, client registration fails regardless of
+     * whether its type is {@code automatic} or {@code explicit}. It means
+     * that OpenID Connect Federation 1.0 does not work.
+     * </p>
+     *
+     * @return
+     *         The trust anchors that are referenced when this service resolves
+     *         trust chains of relying parties.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     *
+     * @see TrustAnchor
+     */
+    public TrustAnchor[] getTrustAnchors()
+    {
+        return trustAnchors;
+    }
+
+
+    /**
+     * Set the trust anchors that are referenced when this service resolves
+     * trust chains of relying parties.
+     *
+     * <p>
+     * If this property is empty, client registration fails regardless of
+     * whether its type is {@code automatic} or {@code explicit}. It means
+     * that OpenID Connect Federation 1.0 does not work.
+     * </p>
+     *
+     * @param trustAnchors
+     *         The trust anchors that are referenced when this service resolves
+     *         trust chains of relying parties.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     *
+     * @see TrustAnchor
+     */
+    public Service setTrustAnchors(TrustAnchor[] trustAnchors)
+    {
+        this.trustAnchors = trustAnchors;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWK Set document containing keys that are used to sign (1)
+     * self-signed entity statement of this service and (2) the response from
+     * {@code signed_jwks_uri}.
+     *
+     * <p>
+     * If this property is empty, this service cannot generate a valid
+     * self-signed entity statement. It means that OpenID Connect Federation
+     * 1.0 does not work.
+     * </p>
+     *
+     * @return
+     *         The JWK Set document containing keys used to sign self-signed
+     *         entity statement and the response from {@code signed_jwks_uri}.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public String getFederationJwks()
+    {
+        return federationJwks;
+    }
+
+
+    /**
+     * Set the JWK Set document containing keys that are used to sign (1)
+     * self-signed entity statement of this service and (2) the response from
+     * {@code signed_jwks_uri}.
+     *
+     * <p>
+     * If this property is empty, this service cannot generate a valid
+     * self-signed entity statement. It means that OpenID Connect Federation
+     * 1.0 does not work.
+     * </p>
+     *
+     * @param jwks
+     *         The JWK Set document containing keys used to sign self-signed
+     *         entity statement and the response from {@code signed_jwks_uri}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Service setFederationJwks(String jwks)
+    {
+        this.federationJwks = jwks;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the endpoint that returns this service's JWK Set document in
+     * the JWT format. This property corresponds to the {@code signed_jwks_uri}
+     * server metadata defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * <p>
+     * The JWT returned from the endpoint is signed with a key in the JWK Set
+     * document specified by the {@code federationJwks} property. Therefore, if
+     * the {@code federationJwks} property is not set up properly, the endpoint
+     * won't return a valid response.
+     * </p>
+     *
+     * <p>
+     * If this property is not empty, the {@code signed_jwks_uri} property
+     * appears in the {@code openid_provider} property of this service's entity
+     * configuration. And in that case, {@code jwks_uri} does not appear in
+     * exchange.
+     * </p>
+     *
+     * @return
+     *         The URI of the endpoint that returns this service's JWK Set
+     *         document in the JWT format.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public URI getSignedJwksUri()
+    {
+        return signedJwksUri;
+    }
+
+
+    /**
+     * Set the URI of the endpoint that returns this service's JWK Set document in
+     * the JWT format. This property corresponds to the {@code signed_jwks_uri}
+     * server metadata defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * <p>
+     * The JWT returned from the endpoint is signed with a key in the JWK Set
+     * document specified by the {@code federationJwks} property. Therefore, if
+     * the {@code federationJwks} property is not set up properly, the endpoint
+     * won't return a valid response.
+     * </p>
+     *
+     * <p>
+     * If this property is not empty, the {@code signed_jwks_uri} property
+     * appears in the {@code openid_provider} property of this service's entity
+     * configuration. And in that case, {@code jwks_uri} does not appear in
+     * exchange.
+     * </p>
+     *
+     * @param uri
+     *         The URI of the endpoint that returns this service's JWK Set
+     *         document in the JWT format.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Service setSignedJwksUri(URI uri)
+    {
+        this.signedJwksUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the federation registration endpoint. This property
+     * corresponds to the {@code federation_registration_endpoint} server
+     * metadata that is defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * <p>
+     * If this service declares it supports the "{@code explicit}" client
+     * registration, this property must not be empty.
+     * </p>
+     *
+     * @return
+     *         The URI of the federation registration endpoint.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public URI getFederationRegistrationEndpoint()
+    {
+        return federationRegistrationEndpoint;
+    }
+
+
+    /**
+     * Set the URI of the federation registration endpoint. This property
+     * corresponds to the {@code federation_registration_endpoint} server
+     * metadata that is defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * <p>
+     * If this service declares it supports the "{@code explicit}" client
+     * registration, this property must not be empty.
+     * </p>
+     *
+     * @param endpoint
+     *         The URI of the federation registration endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Service setFederationRegistrationEndpoint(URI endpoint)
+    {
+        this.federationRegistrationEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client registration types supported by this service. This
+     * property corresponds to the {@code client_registration_types_supported}
+     * server metadata that is defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * <p>
+     * If this property includes {@link ClientRegistrationType#EXPLICIT
+     * EXPLICIT}, the {@code federationRegistrationEndpoint} property must be
+     * set up properly.
+     * </p>
+     *
+     * @return
+     *         Client registration types supported by this service.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     *
+     * @see ClientRegistrationType
+     */
+    public ClientRegistrationType[] getSupportedClientRegistrationTypes()
+    {
+        return supportedClientRegistrationTypes;
+    }
+
+
+    /**
+     * Set the client registration types supported by this service. This
+     * property corresponds to the {@code client_registration_types_supported}
+     * server metadata that is defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * <p>
+     * If this property includes {@link ClientRegistrationType#EXPLICIT
+     * EXPLICIT}, the {@code federationRegistrationEndpoint} property must be
+     * set up properly.
+     * </p>
+     *
+     * @param types
+     *         Client registration types supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.22
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     *
+     * @see ClientRegistrationType
+     */
+    public Service setSupportedClientRegistrationTypes(ClientRegistrationType[] types)
+    {
+        this.supportedClientRegistrationTypes = types;
 
         return this;
     }

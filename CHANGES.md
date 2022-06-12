@@ -1,6 +1,29 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `isFederationEnabled()` method.
+    * Added `setFederationEnabled(boolean)` method.
+    * Added `getOrganizationName()` method.
+    * Added `setOrganizationName(String)` method.
+    * Added `getAuthorityHints()` method.
+    * Added `setAuthorityHints(URI[])` method.
+    * Added `getTrustAnchors()` method.
+    * Added `setTrustAnchors(TrustAnchor[])` method.
+    * Added `getFederationJwks()` method.
+    * Added `setFederationJwks(String)` method.
+    * Added `getSignedJwksUri()` method.
+    * Added `setSignedJwksUri(URI)` method.
+    * Added `getFederationRegistrationEndpoint()` method.
+    * Added `setFederationRegistrationEndpoint(URI)` method.
+    * Added `getSupportedClientRegistrationTypes()` method.
+    * Added `setSupportedClientRegistrationTypes(ClientRegistrationType[])` method.
+
+- New types
+    * `ClientRegistrationType` enum
+    * `TrustAnchor` class
+
+
 3.21 (2022-06-09)
 -----------------
 

@@ -1,6 +1,29 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isFederationEnabled()` メソッドを追加。
+    * `setFederationEnabled(boolean)` メソッドを追加。
+    * `getOrganizationName()` メソッドを追加。
+    * `setOrganizationName(String)` メソッドを追加。
+    * `getAuthorityHints()` メソッドを追加。
+    * `setAuthorityHints(URI[])` メソッドを追加。
+    * `getTrustAnchors()` メソッドを追加。
+    * `setTrustAnchors(TrustAnchor[])` メソッドを追加。
+    * `getFederationJwks()` メソッドを追加。
+    * `setFederationJwks(String)` メソッドを追加。
+    * `getSignedJwksUri()` メソッドを追加。
+    * `setSignedJwksUri(URI)` メソッドを追加。
+    * `getFederationRegistrationEndpoint()` メソッドを追加。
+    * `setFederationRegistrationEndpoint(URI)` メソッドを追加。
+    * `getSupportedClientRegistrationTypes()` メソッドを追加。
+    * `setSupportedClientRegistrationTypes(ClientRegistrationType[])` メソッドを追加。
+
+- 新しい型
+    * `ClientRegistrationType` 列挙型
+    * `TrustAnchor` クラス
+
+
 3.21 (2022 年 06 月 09 日)
 --------------------------
 
