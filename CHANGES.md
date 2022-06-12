@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.22 (2022-06-12)
+-----------------
+
 - `Service` class
     * Added `isFederationEnabled()` method.
     * Added `setFederationEnabled(boolean)` method.

@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.22 (2022 年 06 月 12 日)
+--------------------------
+
 - `Service` クラス
     * `isFederationEnabled()` メソッドを追加。
     * `setFederationEnabled(boolean)` メソッドを追加。
