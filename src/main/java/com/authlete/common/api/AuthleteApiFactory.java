@@ -33,7 +33,7 @@ public class AuthleteApiFactory
      * An implementation of {@link AuthleteApi} using JAX-RS.
      * This implementation exists in authlete/authlete-java-jaxrs.
      */
-    private static final String IMPL_JAX_RS_V2 = "com.authlete.jaxrs.api.AuthleteApiImplV2";
+    private static final String IMPL_JAX_RS_V2 = "com.authlete.jaxrs.api.AuthleteApiImpl";
 
 
     /**
@@ -90,7 +90,7 @@ public class AuthleteApiFactory
      *
      * <ol>
      * <li><code>com.authlete.jaxrs.api.AuthleteApiImplV3</code><br/>
-     *     (using JAX-RS 2.0 API, contained in <code>com.authlete:authlete-java-jaxrs</code>)
+     * (using JAX-RS 2.0 API, contained in <code>com.authlete:authlete-java-jaxrs</code>)
      * </ol>
      *
      * <p>
@@ -99,14 +99,14 @@ public class AuthleteApiFactory
      * </p>
      *
      * <ol>
-     * <li><code>com.authlete.jaxrs.api.AuthleteApiImplV2</code><br/>
-     *     (using JAX-RS 2.0 API, contained in <code>com.authlete:authlete-java-jaxrs</code>)
+     * <li><code>com.authlete.jaxrs.api.AuthleteApiImpl</code><br/>
+     * (using JAX-RS 2.0 API, contained in <code>com.authlete:authlete-java-jaxrs</code>)
      * <li><code>com.authlete.common.api.AuthleteApiImpl</code><br/>
-     *     (using {@link java.net.HttpURLConnection HttpURLConnection}, contained in <code>com.authlete:authlete-java-common</code> since version 2.0)
+     * (using {@link java.net.HttpURLConnection HttpURLConnection}, contained in <code>com.authlete:authlete-java-common</code> since version 2.0)
      * </ol>
      *
      * @param configuration
-     *         Authlete configuration.
+     *            Authlete configuration.
      *
      * @return
      *         An instance of {@link AuthleteApi}. If none of the known classes
