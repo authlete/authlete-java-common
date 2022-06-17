@@ -152,7 +152,7 @@ import java.io.Serializable;
  */
 public class TokenUpdateRequest implements Serializable
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     private String accessToken;
@@ -729,7 +729,7 @@ public class TokenUpdateRequest implements Serializable
      * @return
      *         The token identifier string.
      *
-     * @since 3.XX
+     * @since 3.23
      * @since Authlete API 3.0
      */
     public String getTokenId()
@@ -742,18 +742,18 @@ public class TokenUpdateRequest implements Serializable
      * Set the token identifier.
      *
      * @param tokenId
-     *            The token identifier string.
-     * @return
-     * 
+     *         The token identifier string.
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 3.XX
+     * @since 3.23
      * @since Authlete API 3.0
      */
     public TokenUpdateRequest setTokenId(String tokenId)
     {
         this.tokenId = tokenId;
+
         return this;
     }
 }

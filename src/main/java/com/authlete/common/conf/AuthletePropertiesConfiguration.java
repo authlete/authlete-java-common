@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -280,9 +280,10 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
     /**
      * Property key to specify the API version.
-     * ({@code service.api_version}).
+     * ({@code api_version}).
      */
-    private static final String PROPERTY_KEY_API_VERSION = "service.api_version";
+    private static final String PROPERTY_KEY_API_VERSION = "api_version";
+
 
     /**
      * The default value of the base URL ({@code https://api.authlete.com}).
@@ -657,13 +658,14 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
 
 
     /**
-     * Get the supported API version as a string.
+     * Get the Authlete API version.
      */
     @Override
-    public String getApiVersionString()
+    public String getApiVersion()
     {
         return mApiVersion;
     }
+
 
     /**
      * Get the base URL.

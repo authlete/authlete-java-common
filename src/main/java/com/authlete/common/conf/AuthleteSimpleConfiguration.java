@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -242,30 +242,19 @@ public class AuthleteSimpleConfiguration implements AuthleteConfiguration
     }
 
 
-    public String getApiVersionString()
+    @Override
+    public String getApiVersion()
     {
         return apiVersion;
     }
 
 
-    public AuthleteSimpleConfiguration setApiVersionString(String apiVersion)
+    /**
+     * Set the Authlete API version.
+     */
+    public AuthleteSimpleConfiguration setApiVersion(String version)
     {
-        this.apiVersion = apiVersion;
-
-        return this;
-    }
-
-
-    public AuthleteSimpleConfiguration setApiVersion(ApiVersion apiVersion)
-    {
-        if (apiVersion == null)
-        {
-            this.apiVersion = null;
-        }
-        else
-        {
-            this.apiVersion = apiVersion.name();
-        }
+        this.apiVersion = version;
 
         return this;
     }

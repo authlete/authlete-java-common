@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ package com.authlete.common.api;
 
 
 import java.lang.reflect.Constructor;
+import com.authlete.common.conf.AuthleteApiVersion;
 import com.authlete.common.conf.AuthleteConfiguration;
-import com.authlete.common.conf.AuthleteConfiguration.ApiVersion;
 import com.authlete.common.conf.AuthletePropertiesConfiguration;
 
 
@@ -42,6 +42,7 @@ public class AuthleteApiFactory
      */
     private static final String IMPL_JAX_RS_V3 = "com.authlete.jaxrs.api.AuthleteApiImplV3";
 
+
     /**
      * An implementation of {@link AuthleteApi} using {@link java.net.HttpURLConnection HttpURLConnection}.
      * This implementation exists in authlete/authlete-java-common.
@@ -57,12 +58,14 @@ public class AuthleteApiFactory
         IMPL_HTTP_URL_CONNECTION
     };
 
+
     /**
      * Known implementations of AuthleteApi V3.
      */
     private static final String[] sKnownImplsV3 = {
         IMPL_JAX_RS_V3
     };
+
 
     /**
      * The default {@link AuthleteApi} instance.
@@ -115,32 +118,38 @@ public class AuthleteApiFactory
      */
     public static AuthleteApi create(AuthleteConfiguration configuration)
     {
-        if (configuration.getApiVersion() == ApiVersion.V2) {
-            for (String className : sKnownImplsV2)
+        // Authlete API version specified by the configuration.
+        AuthleteApiVersion version =
+                AuthleteApiVersion.parse(configuration.getApiVersion());
+
+        // If the specified Authlete API version is "V3".
+        if (version == AuthleteApiVersion.V3)
+        {
+            // An implementation for the Authlete API version 3.
+            return create(configuration, sKnownImplsV3);
+        }
+        else
+        {
+            // An implementation for the Authlete API version 2.
+            return create(configuration, sKnownImplsV2);
+        }
+    }
+
+
+    private static AuthleteApi create(AuthleteConfiguration configuration, String[] implementations)
+    {
+        for (String className : implementations)
+        {
+            try
             {
-                try
-                {
-                    return create(configuration, className);
-                }
-                catch (Exception e)
-                {
-                    // Ignore.
-                }
+                return create(configuration, className);
             }
-        } else if (configuration.getApiVersion() == ApiVersion.V3) {
-            for (String className : sKnownImplsV3)
+            catch (Exception e)
             {
-                try
-                {
-                    return create(configuration, className);
-                }
-                catch (Exception e)
-                {
-                    // Ignore.
-                }
+                // Ignore.
             }
         }
-        // No implementation was found.
+
         return null;
     }
 

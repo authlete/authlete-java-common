@@ -122,7 +122,7 @@ public class TokenUpdateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
     private static final String SUMMARY_FORMAT =
             "action=%s, accessToken=%s, accessTokenExpiresAt=%d, scopes=%s, tokenType=%s";
 
@@ -415,7 +415,7 @@ public class TokenUpdateResponse extends ApiResponse
      * @return
      *         The token identifier string.
      *
-     * @since 3.XX
+     * @since 3.23
      * @since Authlete API 3.0
      */
     public String getTokenId()
@@ -428,18 +428,18 @@ public class TokenUpdateResponse extends ApiResponse
      * Set the token identifier.
      *
      * @param tokenId
-     *            The token identifier string.
-     * @return
-     * 
+     *         The token identifier string.
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 3.XX
+     * @since 3.23
      * @since Authlete API 3.0
      */
     public TokenUpdateResponse setTokenId(String tokenId)
     {
         this.tokenId = tokenId;
+
         return this;
     }
 }

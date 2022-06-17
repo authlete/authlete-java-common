@@ -1,6 +1,25 @@
 CHANGES
 =======
 
+- `AuthleteConfiguration` interface
+    * Added `getApiVersion()` method.
+
+- `TokenCreateResponse` class
+    * Added `getTokenId()` method.
+    * Added `setTokenId(String)` method.
+
+- `TokenUpdateRequest` class
+    * Added `getTokenId()` method.
+    * Added `setTokenId(String)` method.
+
+- `TokenUpdateResponse` class
+    * Added `getTokenId()` method.
+    * Added `setTokenId(String)` method.
+
+- New types
+    * `AuthleteApiVersion` enum
+
+
 3.22 (2022-06-12)
 -----------------
 

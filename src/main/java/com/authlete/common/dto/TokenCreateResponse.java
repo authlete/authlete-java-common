@@ -119,7 +119,7 @@ public class TokenCreateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
     private static final String SUMMARY_FORMAT
         = "action=%s, grantType=%s, clientId=%d, subject=%s, scopes=%s, "
         + "accessToken=%s, tokenType=%s, expiresIn=%d, expiresAt=%d, refreshToken=%s";
@@ -623,8 +623,8 @@ public class TokenCreateResponse extends ApiResponse
      * @return
      *         The token identifier as a string.
      *
-     * @since 3.XX
-     *
+     * @since 3.23
+     * @since Authlete API 3.0
      */
     public String getTokenId()
     {
@@ -636,17 +636,18 @@ public class TokenCreateResponse extends ApiResponse
      * Set the unique token identifier.
      *
      * @param tokenId
-     *            The token identifier as a string.
+     *         The token identifier as a string.
+     *
      * @return
      *         {@code this} object.
      *
-     * @since 3.XX
+     * @since 3.23
      * @since Authlete API 3.0
-     *
      */
     public TokenCreateResponse setTokenId(String tokenId)
     {
         this.tokenId = tokenId;
+
         return this;
     }
 }
