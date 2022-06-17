@@ -1,6 +1,25 @@
 変更点
 ======
 
+- `AuthleteConfiguration` インターフェース
+    * `getApiVersion()` メソッドを追加。
+
+- `TokenCreateResponse` クラス
+    * `getTokenId()` メソッドを追加。
+    * `setTokenId(String)` メソッドを追加。
+
+- `TokenUpdateRequest` クラス
+    * `getTokenId()` メソッドを追加。
+    * `setTokenId(String)` メソッドを追加。
+
+- `TokenUpdateResponse` クラス
+    * `getTokenId()` メソッドを追加。
+    * `setTokenId(String)` メソッドを追加。
+
+- 新しい型
+    * `AuthleteApiVersion` 列挙型
+
+
 3.22 (2022 年 06 月 12 日)
 --------------------------
 

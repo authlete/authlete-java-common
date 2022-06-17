@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ public class AuthleteEnvConfiguration implements AuthleteConfiguration
 
 
     @Override
-    public String getApiVersionString()
+    public String getApiVersion()
     {
         return get(ENV_KEY_API_VERSION);
     }

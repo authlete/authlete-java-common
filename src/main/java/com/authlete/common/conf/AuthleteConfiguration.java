@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2018 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,38 +15,19 @@
  */
 package com.authlete.common.conf;
 
+
 /**
  * Authlete configuration.
  */
 public interface AuthleteConfiguration
 {
-    public enum ApiVersion
-    {
-        V2, V3
-    }
-
-
     /**
-     * Get the supported API version as an enum, defaults to V2.
+     * Get the Authlete API version.
+     *
+     * @since 3.23
      */
-    default ApiVersion getApiVersion()
-    {
-        String apiVersionString = getApiVersionString();
-        if (apiVersionString == null)
-        {
-            return ApiVersion.V2;
-        }
-        else
-        {
-            return ApiVersion.valueOf(apiVersionString);
-        }
-    }
+    String getApiVersion();
 
-
-    /**
-     * Get the supported API version as a string.
-     */
-    String getApiVersionString();
 
     /**
      * Get the base URL.
@@ -91,8 +72,10 @@ public interface AuthleteConfiguration
 
 
     /**
-     * Get the public/private keypair used for DPoP
+     * Get the public/private key pair used for DPoP
      * signatures in JWK format.
+     *
+     * @since 2.73
      */
     String getDpopKey();
 
@@ -100,6 +83,8 @@ public interface AuthleteConfiguration
     /**
      * Get the certificate used for MTLS bound
      * access tokens in PEM format.
+     *
+     * @since 2.73
      */
     String getClientCertificate();
 }
