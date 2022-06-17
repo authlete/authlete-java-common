@@ -139,6 +139,7 @@ public class TokenCreateResponse extends ApiResponse
     private String jwtAccessToken;
     private AuthzDetails authorizationDetails;
     private boolean forExternalAttachment;
+    private String tokenId;
 
 
     /**
@@ -596,13 +597,14 @@ public class TokenCreateResponse extends ApiResponse
      * attachment.
      *
      * @param forExternalAttachment
-     *         {@code true} to indicate that the access token is for an
-     *         external attachment.
+     *            {@code true} to indicate that the access token is for an
+     *            external attachment.
      *
      * @return
      *         {@code this} object.
      *
      * @since 3.16
+     * @since Authlete API 3.0
      *
      * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html#name-external-attachments"
      *      >OpenID Connect for Identity Assurance 1.0, External Attachments</a>
@@ -611,6 +613,40 @@ public class TokenCreateResponse extends ApiResponse
     {
         this.forExternalAttachment = forExternalAttachment;
 
+        return this;
+    }
+
+
+    /**
+     * Get the unique token identifier.
+     *
+     * @return
+     *         The token identifier as a string.
+     *
+     * @since 3.XX
+     *
+     */
+    public String getTokenId()
+    {
+        return tokenId;
+    }
+
+
+    /**
+     * Set the unique token identifier.
+     *
+     * @param tokenId
+     *            The token identifier as a string.
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.XX
+     * @since Authlete API 3.0
+     *
+     */
+    public TokenCreateResponse setTokenId(String tokenId)
+    {
+        this.tokenId = tokenId;
         return this;
     }
 }
