@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ import java.io.Serializable;
  */
 public class TokenIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -86,6 +86,15 @@ public class TokenIssueRequest implements Serializable
      * Extra properties to associate with an access token.
      */
     private Property[] properties;
+
+
+    /**
+     * Additional claims that are added to the payload part of the JWT
+     * access token.
+     *
+     * @since 3.23
+     */
+    private String jwtAtClaims;
 
 
     /**
@@ -234,6 +243,61 @@ public class TokenIssueRequest implements Serializable
     public TokenIssueRequest setProperties(Property[] properties)
     {
         this.properties = properties;
+
+        return this;
+    }
+
+
+    /**
+     * Get the additional claims in JSON object format that are added to the
+     * payload part of the JWT access token.
+     *
+     * <p>
+     * This request parameter has a meaning only when the format of access
+     * tokens issued by this service is JWT. In other words, it has a meaning
+     * only when the {@code accessTokenSignAlg} property of the {@link Service}
+     * holds a non-null value. See the description of the {@link
+     * Service#getAccessTokenSignAlg() getAccessTokenSignAlg()} method for
+     * details.
+     * </p>
+     *
+     * @return
+     *         Additional claims that are added to the payload part of the JWT
+     *         access token.
+     *
+     * @since 3.23
+     */
+    public String getJwtAtClaims()
+    {
+        return jwtAtClaims;
+    }
+
+
+    /**
+     * Set the additional claims in JSON object format that are added to the
+     * payload part of the JWT access token.
+     *
+     * <p>
+     * This request parameter has a meaning only when the format of access
+     * tokens issued by this service is JWT. In other words, it has a meaning
+     * only when the {@code accessTokenSignAlg} property of the {@link Service}
+     * holds a non-null value. See the description of the {@link
+     * Service#getAccessTokenSignAlg() getAccessTokenSignAlg()} method for
+     * details.
+     * </p>
+     *
+     * @param claims
+     *         Additional claims that are added to the payload part of the JWT
+     *         access token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.23
+     */
+    public TokenIssueRequest setJwtAtClaims(String claims)
+    {
+        this.jwtAtClaims = claims;
 
         return this;
     }

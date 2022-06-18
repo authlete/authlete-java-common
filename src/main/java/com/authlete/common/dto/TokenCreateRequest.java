@@ -260,7 +260,7 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 10L;
+    private static final long serialVersionUID = 11L;
 
 
     private GrantType grantType;
@@ -279,6 +279,7 @@ public class TokenCreateRequest implements Serializable
     private AuthzDetails authorizationDetails;
     private URI[] resources;
     private boolean forExternalAttachment;
+    private String jwtAtClaims;
 
 
     /**
@@ -1001,6 +1002,61 @@ public class TokenCreateRequest implements Serializable
     public TokenCreateRequest setForExternalAttachment(boolean forExternalAttachment)
     {
         this.forExternalAttachment = forExternalAttachment;
+
+        return this;
+    }
+
+
+    /**
+     * Get the additional claims in JSON object format that are added to the
+     * payload part of the JWT access token.
+     *
+     * <p>
+     * This request parameter has a meaning only when the format of access
+     * tokens issued by this service is JWT. In other words, it has a meaning
+     * only when the {@code accessTokenSignAlg} property of the {@link Service}
+     * holds a non-null value. See the description of the {@link
+     * Service#getAccessTokenSignAlg() getAccessTokenSignAlg()} method for
+     * details.
+     * </p>
+     *
+     * @return
+     *         Additional claims that are added to the payload part of the JWT
+     *         access token.
+     *
+     * @since 3.23
+     */
+    public String getJwtAtClaims()
+    {
+        return jwtAtClaims;
+    }
+
+
+    /**
+     * Set the additional claims in JSON object format that are added to the
+     * payload part of the JWT access token.
+     *
+     * <p>
+     * This request parameter has a meaning only when the format of access
+     * tokens issued by this service is JWT. In other words, it has a meaning
+     * only when the {@code accessTokenSignAlg} property of the {@link Service}
+     * holds a non-null value. See the description of the {@link
+     * Service#getAccessTokenSignAlg() getAccessTokenSignAlg()} method for
+     * details.
+     * </p>
+     *
+     * @param claims
+     *         Additional claims that are added to the payload part of the JWT
+     *         access token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.23
+     */
+    public TokenCreateRequest setJwtAtClaims(String claims)
+    {
+        this.jwtAtClaims = claims;
 
         return this;
     }
