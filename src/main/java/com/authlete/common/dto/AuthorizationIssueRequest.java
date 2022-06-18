@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2021 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -188,6 +188,15 @@ import com.authlete.common.util.Utils;
  * {@link #setVerifiedClaimsForTx(String[])} for details.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>jwtAtClaims</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
+ * <dd>
+ * <p>
+ * Additional claims in JSON object format that are added to the payload part
+ * of the JWT access token. See the description of
+ * {@link #getJwtAtClaims()} for details.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
@@ -200,7 +209,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 12L;
+    private static final long serialVersionUID = 13L;
 
 
     /**
@@ -296,6 +305,15 @@ public class AuthorizationIssueRequest implements Serializable
      * @since 3.8
      */
     private String[] verifiedClaimsForTx;
+
+
+    /**
+     * Additional claims that are added to the payload part of the JWT
+     * access token.
+     *
+     * @since 3.23
+     */
+    private String jwtAtClaims;
 
 
     /**
@@ -1253,5 +1271,60 @@ public class AuthorizationIssueRequest implements Serializable
         }
 
         return setVerifiedClaimsForTx(array);
+    }
+
+
+    /**
+     * Get the additional claims in JSON object format that are added to the
+     * payload part of the JWT access token.
+     *
+     * <p>
+     * This request parameter has a meaning only when the format of access
+     * tokens issued by this service is JWT. In other words, it has a meaning
+     * only when the {@code accessTokenSignAlg} property of the {@link Service}
+     * holds a non-null value. See the description of the {@link
+     * Service#getAccessTokenSignAlg() getAccessTokenSignAlg()} method for
+     * details.
+     * </p>
+     *
+     * @return
+     *         Additional claims that are added to the payload part of the JWT
+     *         access token.
+     *
+     * @since 3.23
+     */
+    public String getJwtAtClaims()
+    {
+        return jwtAtClaims;
+    }
+
+
+    /**
+     * Set the additional claims in JSON object format that are added to the
+     * payload part of the JWT access token.
+     *
+     * <p>
+     * This request parameter has a meaning only when the format of access
+     * tokens issued by this service is JWT. In other words, it has a meaning
+     * only when the {@code accessTokenSignAlg} property of the {@link Service}
+     * holds a non-null value. See the description of the {@link
+     * Service#getAccessTokenSignAlg() getAccessTokenSignAlg()} method for
+     * details.
+     * </p>
+     *
+     * @param claims
+     *         Additional claims that are added to the payload part of the JWT
+     *         access token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.23
+     */
+    public AuthorizationIssueRequest setJwtAtClaims(String claims)
+    {
+        this.jwtAtClaims = claims;
+
+        return this;
     }
 }

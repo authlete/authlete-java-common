@@ -203,7 +203,9 @@ import com.authlete.common.types.UserCodeCharset;
  * </p>
  *
  * <p>
- * <i>"Resource Indicators for OAuth 2.0"</i> is supported since Authlete 2.2.
+ * <i>"Resource Indicators for OAuth 2.0"</i> (<a href=
+ * "https://www.rfc-editor.org/rfc/rfc8707.html">RFC 8707</a>) is supported
+ * since Authlete 2.2.
  * The {@code resource} request parameter given to older Authlete versions is
  * just ignored, so JWT-based access tokens won't include the {@code aud} claim.
  * </p>
@@ -221,10 +223,20 @@ import com.authlete.common.types.UserCodeCharset;
  * given to older Authlete versions are just ignored, so JWT-based access token
  * won't include the {@code grant_id} and {@code grant} claims.
  * </p>
+ *
+ * <p>
+ * Some Authlete APIs (e.g. {@code /api/auth/authorization/issue}) recognize
+ * the {@code jwtAtClaims} request parameter since Authlete 2.3. Its format is
+ * JSON object. The content of the JSON object will be merged into the payload
+ * part of the JWT access token.
+ * </p>
  * </blockquote>
  *
  * @see <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
  *      >OpenID Connect Discovery 1.0</a>
+ *
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc8707.html"
+ *      >RFC 8707 Resource Indicators for OAuth 2.0</a>
  */
 public class Service implements Serializable
 {

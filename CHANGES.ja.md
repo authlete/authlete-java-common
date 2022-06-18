@@ -4,9 +4,29 @@
 - `AuthleteConfiguration` インターフェース
     * `getApiVersion()` メソッドを追加。
 
+- `AuthorizationIssueRequest` クラス
+    * `getJwtAtClaims()` メソッドを追加。
+    * `setJwtAtClaims(String)` メソッドを追加。
+
+- `BackchannelAuthenticationCompleteRequest` クラス
+    * `getJwtAtClaims()` メソッドを追加。
+    * `setJwtAtClaims(String)` メソッドを追加。
+
+- `DeviceCompleteRequest` クラス
+    * `getJwtAtClaims()` メソッドを追加。
+    * `setJwtAtClaims(String)` メソッドを追加。
+
+- `TokenCreateRequest` クラス
+    * `getJwtAtClaims()` メソッドを追加。
+    * `setJwtAtClaims(String)` メソッドを追加。
+
 - `TokenCreateResponse` クラス
     * `getTokenId()` メソッドを追加。
     * `setTokenId(String)` メソッドを追加。
+
+- `TokenIssueRequest` クラス
+    * `getJwtAtClaims()` メソッドを追加。
+    * `setJwtAtClaims(String)` メソッドを追加。
 
 - `TokenUpdateRequest` クラス
     * `getTokenId()` メソッドを追加。

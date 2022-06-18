@@ -4,9 +4,29 @@ CHANGES
 - `AuthleteConfiguration` interface
     * Added `getApiVersion()` method.
 
+- `AuthorizationIssueRequest` class
+    * Added `getJwtAtClaims()` method.
+    * Added `setJwtAtClaims(String)` method.
+
+- `BackchannelAuthenticationCompleteRequest` class
+    * Added `getJwtAtClaims()` method.
+    * Added `setJwtAtClaims(String)` method.
+
+- `DeviceCompleteRequest` class
+    * Added `getJwtAtClaims()` method.
+    * Added `setJwtAtClaims(String)` method.
+
+- `TokenCreateRequest` class
+    * Added `getJwtAtClaims()` method.
+    * Added `setJwtAtClaims(String)` method.
+
 - `TokenCreateResponse` class
     * Added `getTokenId()` method.
     * Added `setTokenId(String)` method.
+
+- `TokenIssueRequest` class
+    * Added `getJwtAtClaims()` method.
+    * Added `setJwtAtClaims(String)` method.
 
 - `TokenUpdateRequest` class
     * Added `getTokenId()` method.
