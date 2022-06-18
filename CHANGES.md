@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.23 (2022-06-18)
+-----------------
+
 - `AuthleteConfiguration` interface
     * Added `getApiVersion()` method.
 
