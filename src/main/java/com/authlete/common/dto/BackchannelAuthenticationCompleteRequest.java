@@ -85,7 +85,7 @@ import com.authlete.common.util.Utils;
  */
 public class BackchannelAuthenticationCompleteRequest implements Serializable
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /**
@@ -248,8 +248,19 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
      * access token.
      *
      * @since 3.23
+     * @since Authlete 2.3
      */
     private String jwtAtClaims;
+
+
+    /**
+     * The representation of an access token that may be issued as a
+     * result of the Authlete API call.
+     *
+     * @since 3.24
+     * @since Authlete 2.2.27
+     */
+    private String accessToken;
 
 
     /**
@@ -979,6 +990,111 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
     public BackchannelAuthenticationCompleteRequest setJwtAtClaims(String claims)
     {
         this.jwtAtClaims = claims;
+
+        return this;
+    }
+
+
+    /**
+     * Get the representation of an access token that may be issued as a
+     * result of the Authlete API call.
+     *
+     * <p>
+     * Basically, it is the Authlete server's role to generate an access token.
+     * However, some systems may have inflexible restrictions on the format of
+     * access tokens. Such systems may use this {@code accessToken} request
+     * parameter to specify the representation of an access token by themselves
+     * instead of leaving the access token generation task to the Authlete server.
+     * </p>
+     *
+     * <p>
+     * Usually, the Authlete server (1) generates a random 256-bit value, (2)
+     * base64url-encodes the value into a 43-character string, and (3) uses the
+     * resultant string as the representation of an access token. The Authlete
+     * implementation is written on the assumption that the 256-bit entropy is
+     * big enough. Therefore, <b>make sure that the entropy of the value of the
+     * {@code accessToken} request parameter is big enough, too.</b>
+     * </p>
+     *
+     * </p>
+     * The entropy does not necessarily have to be equal to or greater than 256
+     * bits. For example, 192-bit random values (which will become 32-character
+     * strings when encoded by base64url) may be enough. However, note that if
+     * the entropy is too low, access token string values will collide and
+     * Authlete API calls will fail.
+     * </p>
+     *
+     * <p>
+     * When no access token is generated as a result of the Authlete API call,
+     * this {@code accessToken} request parameter is not used.
+     * Note that the Authlete API generates an access token only when the flow
+     * is CIBA PUSH. In the cases of CIBA POLL and CIBA PING, an access token
+     * is generated at the token endpoint.
+     * </p>
+     *
+     * @return
+     *         The representation of an access token that may be issued as a
+     *         result of the Authlete API call.
+     *
+     * @since 3.24
+     * @since Authlete 2.2.27
+     */
+    public String getAccessToken()
+    {
+        return accessToken;
+    }
+
+
+    /**
+     * Set the representation of an access token that may be issued as a
+     * result of the Authlete API call.
+     *
+     * <p>
+     * Basically, it is the Authlete server's role to generate an access token.
+     * However, some systems may have inflexible restrictions on the format of
+     * access tokens. Such systems may use this {@code accessToken} request
+     * parameter to specify the representation of an access token by themselves
+     * instead of leaving the access token generation task to the Authlete server.
+     * </p>
+     *
+     * <p>
+     * Usually, the Authlete server (1) generates a random 256-bit value, (2)
+     * base64url-encodes the value into a 43-character string, and (3) uses the
+     * resultant string as the representation of an access token. The Authlete
+     * implementation is written on the assumption that the 256-bit entropy is
+     * big enough. Therefore, <b>make sure that the entropy of the value of the
+     * {@code accessToken} request parameter is big enough, too.</b>
+     * </p>
+     *
+     * </p>
+     * The entropy does not necessarily have to be equal to or greater than 256
+     * bits. For example, 192-bit random values (which will become 32-character
+     * strings when encoded by base64url) may be enough. However, note that if
+     * the entropy is too low, access token string values will collide and
+     * Authlete API calls will fail.
+     * </p>
+     *
+     * <p>
+     * When no access token is generated as a result of the Authlete API call,
+     * this {@code accessToken} request parameter is not used.
+     * Note that the Authlete API generates an access token only when the flow
+     * is CIBA PUSH. In the cases of CIBA POLL and CIBA PING, an access token
+     * is generated at the token endpoint.
+     * </p>
+     *
+     * @param accessToken
+     *         The representation of an access token that may be issued as a
+     *         result of the Authlete API call.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.24
+     * @since Authlete 2.2.27
+     */
+    public BackchannelAuthenticationCompleteRequest setAccessToken(String accessToken)
+    {
+        this.accessToken = accessToken;
 
         return this;
     }
