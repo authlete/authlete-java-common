@@ -1,6 +1,23 @@
 CHANGES
 =======
 
+- `AuthorizationIssueRequest` class
+    * Added `getAccessToken()` method.
+    * Added `setAccessToken(String)` method.
+
+- `BackchannelAuthenticationCompleteRequest` class
+    * Added `getAccessToken()` method.
+    * Added `setAccessToken(String)` method.
+
+- `TokenIssueRequest` class
+    * Added `getAccessToken()` method.
+    * Added `setAccessToken(String)` method.
+
+- `TokenRequest` class
+    * Added `getAccessToken()` method.
+    * Added `setAccessToken(String)` method.
+
+
 3.23 (2022-06-18)
 -----------------
 

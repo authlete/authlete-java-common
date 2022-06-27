@@ -1,6 +1,23 @@
 変更点
 ======
 
+- `AuthorizationIssueRequest` クラス
+    * `getAccessToken()` メソッドを追加。
+    * `setAccessToken(String)` メソッドを追加。
+
+- `BackchannelAuthenticationCompleteRequest` クラス
+    * `getAccessToken()` メソッドを追加。
+    * `setAccessToken(String)` メソッドを追加。
+
+- `TokenIssueRequest` クラス
+    * `getAccessToken()` メソッドを追加。
+    * `setAccessToken(String)` メソッドを追加。
+
+- `TokenRequest` クラス
+    * `getAccessToken()` メソッドを追加。
+    * `setAccessToken(String)` メソッドを追加。
+
+
 3.23 (2022 年 06 月 18 日)
 --------------------------
 
