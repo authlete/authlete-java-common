@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.24 (2022-06-27)
+-----------------
+
 - `AuthorizationIssueRequest` class
     * Added `getAccessToken()` method.
     * Added `setAccessToken(String)` method.

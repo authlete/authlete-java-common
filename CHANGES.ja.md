@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.24 (2022 年 06 月 27 日)
+--------------------------
+
 - `AuthorizationIssueRequest` クラス
     * `getAccessToken()` メソッドを追加。
     * `setAccessToken(String)` メソッドを追加。
