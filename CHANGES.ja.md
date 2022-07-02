@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.25 (2022 年 07 月 02 日)
+--------------------------
+
 - `Client` クラス
     * `isSingleAccessTokenPerSubject()` メソッドを追加。
     * `setSingleAccessTokenPerSubject(boolean)` メソッドを追加。
