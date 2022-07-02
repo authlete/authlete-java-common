@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Client` クラス
+    * `isSingleAccessTokenPerSubject()` メソッドを追加。
+    * `setSingleAccessTokenPerSubject(boolean)` メソッドを追加。
+
+
 3.24 (2022 年 06 月 27 日)
 --------------------------
 

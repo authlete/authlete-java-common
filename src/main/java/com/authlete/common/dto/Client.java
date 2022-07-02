@@ -51,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 24L;
+    private static final long serialVersionUID = 25L;
 
 
     /*
@@ -275,6 +275,7 @@ public class Client implements Serializable
     private boolean requestObjectEncryptionAlgMatchRequired;
     private boolean requestObjectEncryptionEncMatchRequired;
     private String digestAlgorithm;
+    private boolean singleAccessTokenPerSubject;
 
 
     /**
@@ -3602,6 +3603,95 @@ public class Client implements Serializable
     public Client setDigestAlgorithm(String algorithm)
     {
         this.digestAlgorithm = algorithm;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the number of access tokens
+     * per subject (and per client) is at most one or can be more.
+     *
+     * <p>
+     * If this flag is {@code true}, an attempt to issue a new access
+     * token invalidates existing access tokens associated with the
+     * same subject and the same client.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is {@code false}, invalidation of existing access
+     * tokens is executed if the {@code singleAccessTokenPerSubject}
+     * property of the {@link Service} this client application belongs to
+     * is {@code true}. (cf. {@link Service#isSingleAccessTokenPerSubject()})
+     * </p>
+     *
+     * <p>
+     * Note that, however, attempts by Client Credentials Flow do not
+     * invalidate existing access tokens because access tokens issued
+     * by Client Credentials Flow are not associated with any end-user's
+     * subject. Also note that an attempt by Refresh Token Flow
+     * invalidates the coupled access token only and this invalidation
+     * is always performed regardless of whether this flag is {@code
+     * true} or {@code false}.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the number of access tokens per subject
+     *         (and per client) is at most one.
+     *
+     * @since 3.25
+     * @since Authlete 2.3
+     *
+     * @see Service#isSingleAccessTokenPerSubject()
+     */
+    public boolean isSingleAccessTokenPerSubject()
+    {
+        return singleAccessTokenPerSubject;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the number of access tokens
+     * per subject (and per client) is at most one or can be more.
+     *
+     * <p>
+     * If {@code true} is set, an attempt to issue a new access token
+     * invalidates existing access tokens associated with the same
+     * subject and the same client.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is {@code false}, invalidation of existing access
+     * tokens is executed if the {@code singleAccessTokenPerSubject}
+     * property of the {@link Service} this client application belongs to
+     * is {@code true}. (cf. {@link Service#setSingleAccessTokenPerSubject(boolean)})
+     * </p>
+     *
+     * <p>
+     * Note that, however, attempts by Client Credentials Flow do not
+     * invalidate existing access tokens because access tokens issued
+     * by Client Credentials Flow are not associated with any end-user's
+     * subject. Also note that an attempt by Refresh Token Flow
+     * invalidates the coupled access token only and this invalidation
+     * is always performed regardless of whether this flag is {@code
+     * true} or {@code false}.
+     * </p>
+     *
+     * @param single
+     *         {@code true} to set the maximum number of access tokens
+     *         per subject (and per client) to 1.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.25
+     * @since Authlete 2.3
+     *
+     * @see Service#setSingleAccessTokenPerSubject(boolean)
+     */
+    public Client setSingleAccessTokenPerSubject(boolean single)
+    {
+        this.singleAccessTokenPerSubject = single;
 
         return this;
     }

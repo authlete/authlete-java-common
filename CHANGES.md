@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `Client` class
+    * Added `isSingleAccessTokenPerSubject()` method.
+    * Added `setSingleAccessTokenPerSubject(boolean)` method.
+
+
 3.24 (2022-06-27)
 -----------------
 

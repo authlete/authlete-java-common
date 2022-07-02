@@ -3007,6 +3007,14 @@ public class Service implements Serializable
      * </p>
      *
      * <p>
+     * Even if this flag is {@code false}, invalidation of existing access
+     * tokens is executed if the {@code singleAccessTokenPerSubject}
+     * property of the target client is {@code true}. The property of
+     * {@link Client} is recognized by Authlete 2.3 onwards. (cf.
+     * {@link Client#isSingleAccessTokenPerSubject()})
+     * </p>
+     *
+     * <p>
      * Note that, however, attempts by Client Credentials Flow do not
      * invalidate existing access tokens because access tokens issued
      * by Client Credentials Flow are not associated with any end-user's
@@ -3021,6 +3029,8 @@ public class Service implements Serializable
      *         (and per client) is at most one.
      *
      * @since 1.20
+     *
+     * @see Client#isSingleAccessTokenPerSubject()
      */
     public boolean isSingleAccessTokenPerSubject()
     {
@@ -3036,6 +3046,14 @@ public class Service implements Serializable
      * If {@code true} is set, an attempt to issue a new access token
      * invalidates existing access tokens associated with the same
      * subject and the same client.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is {@code false}, invalidation of existing access
+     * tokens is executed if the {@code singleAccessTokenPerSubject}
+     * property of the target client is {@code true}. The property of
+     * {@link Client} is recognized by Authlete 2.3 onwards. (cf.
+     * {@link Client#setSingleAccessTokenPerSubject(boolean)})
      * </p>
      *
      * <p>
@@ -3056,6 +3074,8 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 1.20
+     *
+     * @see Client#setSingleAccessTokenPerSubject(boolean)
      */
     public Service setSingleAccessTokenPerSubject(boolean single)
     {
