@@ -36,7 +36,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>3.25</version>
+    <version>3.26</version>
 </dependency>
 ```
 
@@ -289,6 +289,7 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
   - `tokenCreate(TokenCreateRequest request)`
   - `tokenDelete(String token)`
+  - `tokenRevoke(TokenRevokeRequest request)`
   - `tokenUpdate(TokenUpdateRequest request)`
 
   11. Methods for Requestable Scopes per Client (deprecated; Client APIs suffice)

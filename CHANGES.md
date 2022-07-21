@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.26 (2022-07-21)
+-----------------
+
 - `AuthleteApi` interface
     * Added `tokenRevoke(TokenRevokeRequest)` method.
 

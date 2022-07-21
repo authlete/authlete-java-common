@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.26 (2022 年 07 月 21 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `tokenRevoke(TokenRevokeRequest)` メソッドを追加。
 
