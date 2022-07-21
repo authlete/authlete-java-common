@@ -1,6 +1,9 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `tokenRevoke(TokenRevokeRequest)` メソッドを追加。
+
 - `ClientExtension` クラス
     * `isTokenExchangePermitted()` メソッドを追加。
     * `setTokenExchangePermitted(boolean)` メソッドを追加。
@@ -39,6 +42,8 @@
 
 - 新しい型
     * `TokenInfo` クラス
+    * `TokenRevokeRequest` クラス
+    * `TokenRevokeResponse` クラス
     * `TokenType` 列挙型
 
 

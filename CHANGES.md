@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `tokenRevoke(TokenRevokeRequest)` method.
+
 - `ClientExtension` class
     * Added `isTokenExchangePermitted()` method.
     * Added `setTokenExchangePermitted(boolean)` method.
@@ -39,6 +42,8 @@ CHANGES
 
 - New types
     * `TokenInfo` class
+    * `TokenRevokeRequest` class
+    * `TokenRevokeResponse` class
     * `TokenType` enum
 
 
