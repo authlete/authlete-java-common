@@ -240,7 +240,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 57L;
+    private static final long serialVersionUID = 58L;
 
 
     /*
@@ -978,6 +978,7 @@ public class Service implements Serializable
      * responses.
      *
      * @since 3.16
+     * @since Authlete 2.3
      */
     private boolean accessTokenForExternalAttachmentEmbedded;
 
@@ -989,6 +990,7 @@ public class Service implements Serializable
      * period.
      *
      * @since 3.21
+     * @since Authlete 2.3
      */
     private boolean refreshTokenIdempotent;
 
@@ -998,6 +1000,7 @@ public class Service implements Serializable
      * Federation 1&#002E0.
      *
      * @since 3.22
+     * @since Authlete 2.3
      */
     private boolean federationEnabled;
 
@@ -1008,6 +1011,7 @@ public class Service implements Serializable
      * server metadata that is defined in OpenID Connect Federation 1.0.
      *
      * @since 3.22
+     * @since Authlete 2.3
      */
     private String organizationName;
 
@@ -1019,6 +1023,7 @@ public class Service implements Serializable
      * defined in OpenID Connect Federation 1.0.
      *
      * @since 3.22
+     * @since Authlete 2.3
      */
     private URI[] authorityHints;
 
@@ -1028,6 +1033,7 @@ public class Service implements Serializable
      * chains of relying parties.
      *
      * @since 3.22
+     * @since Authlete 2.3
      */
     private TrustAnchor[] trustAnchors;
 
@@ -1038,6 +1044,7 @@ public class Service implements Serializable
      * {@code signed_jwks_uri}.
      *
      * @since 3.22
+     * @since Authlete 2.3
      */
     private String federationJwks;
 
@@ -1048,6 +1055,7 @@ public class Service implements Serializable
      * server metadata defined in OpenID Connect Federation 1.0.
      *
      * @since 3.22
+     * @since Authlete 2.3
      */
     private URI signedJwksUri;
 
@@ -1058,6 +1066,7 @@ public class Service implements Serializable
      * defined in OpenID Connect Federation 1.0.
      *
      * @since 3.22
+     * @since Authlete 2.3
      */
     private URI federationRegistrationEndpoint;
 
@@ -1068,8 +1077,39 @@ public class Service implements Serializable
      * defined in OpenID Connect Federation 1.0.
      *
      * @since 3.22
+     * @since Authlete 2.3
      */
     private ClientRegistrationType[] supportedClientRegistrationTypes;
+
+
+    /**
+     * The flag indicating whether to prohibit unidentifiable clients from
+     * making token exchange requests.
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    private boolean tokenExchangeByIdentifiableClientsOnly;
+
+
+    /**
+     * The flag indicating whether to prohibit public clients from making
+     * token exchange requests.
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    private boolean tokenExchangeByConfidentialClientsOnly;
+
+
+    /**
+     * The flag indicating whether to prohibit clients that have no explicit
+     * permission from making token exchange requests.
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    private boolean tokenExchangeByPermittedClientsOnly;
 
 
     /**
@@ -7790,6 +7830,7 @@ public class Service implements Serializable
      *         attachments and embeds them in ID tokens and userinfo responses.
      *
      * @since 3.16
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *      >OpenID Connect for Identity Assurance 1.0</a>
@@ -7909,6 +7950,7 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 3.16
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *      >OpenID Connect for Identity Assurance 1.0</a>
@@ -7935,6 +7977,7 @@ public class Service implements Serializable
      *         period can obtain the same renewed refresh token.
      *
      * @since 3.21
+     * @since Authlete 2.3
      */
     public boolean isRefreshTokenIdempotent()
     {
@@ -7959,6 +8002,7 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 3.21
+     * @since Authlete 2.3
      */
     public Service setRefreshTokenIdempotent(boolean idempotent)
     {
@@ -7988,6 +8032,7 @@ public class Service implements Serializable
      *         {@code true} if this service supports OpenID Connect Federation 1.0.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8022,6 +8067,7 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8050,6 +8096,7 @@ public class Service implements Serializable
      *         The name of the organization that operates this service.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8079,6 +8126,7 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8117,6 +8165,7 @@ public class Service implements Serializable
      *         for this service.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8156,6 +8205,7 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8183,6 +8233,7 @@ public class Service implements Serializable
      *         trust chains of relying parties.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8213,6 +8264,7 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8243,6 +8295,7 @@ public class Service implements Serializable
      *         entity statement and the response from {@code signed_jwks_uri}.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8272,6 +8325,7 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8310,6 +8364,7 @@ public class Service implements Serializable
      *         document in the JWT format.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8349,6 +8404,7 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8377,6 +8433,7 @@ public class Service implements Serializable
      *         The URI of the federation registration endpoint.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8406,6 +8463,7 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8435,6 +8493,7 @@ public class Service implements Serializable
      *         Client registration types supported by this service.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8467,6 +8526,7 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 3.22
+     * @since Authlete 2.3
      *
      * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
      *      >OpenID Connect Federation 1.0</a>
@@ -8476,6 +8536,280 @@ public class Service implements Serializable
     public Service setSupportedClientRegistrationTypes(ClientRegistrationType[] types)
     {
         this.supportedClientRegistrationTypes = types;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to prohibit unidentifiable clients from
+     * making token exchange requests (cf&#x002E; <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a>).
+     *
+     * <p>
+     * Section 2.1 of <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     * >RFC 8692 OAuth 2.0 Token Exchange</a> states as follows:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * <i>The supported methods of client authentication and whether or not
+     * to allow unauthenticated or <b>unidentified</b> clients are deployment
+     * decisions that are at the discretion of the authorization server.</i>
+     * </p>
+     * </blockquote>
+     *
+     * <p>
+     * Technically speaking, "<b>unidentified</b>" in the excerpted sentence
+     * means that a token exchange request contains no identifier of the client
+     * that made the request.
+     * </p>
+     *
+     * <p>
+     * When this flag is set to {@code true}, this service rejects token
+     * exchange requests that contain no client identifier.
+     * </p>
+     *
+     * @return
+     *         {@code true} if this service rejects token exchange requests
+     *         that contain no client identifier.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public boolean isTokenExchangeByIdentifiableClientsOnly()
+    {
+        return tokenExchangeByIdentifiableClientsOnly;
+    }
+
+
+    /**
+     * Set the flag indicating whether to prohibit unidentifiable clients from
+     * making token exchange requests (cf&#x002E; <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a>).
+     *
+     * <p>
+     * Section 2.1 of <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     * >RFC 8692 OAuth 2.0 Token Exchange</a> states as follows:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * <i>The supported methods of client authentication and whether or not
+     * to allow unauthenticated or <b>unidentified</b> clients are deployment
+     * decisions that are at the discretion of the authorization server.</i>
+     * </p>
+     * </blockquote>
+     *
+     * <p>
+     * Technically speaking, "<b>unidentified</b>" in the excerpted sentence
+     * means that a token exchange request contains no identifier of the client
+     * that made the request.
+     * </p>
+     *
+     * <p>
+     * When this flag is set to {@code true}, this service rejects token
+     * exchange requests that contain no client identifier.
+     * </p>
+     *
+     * @param only
+     *         {@code true} to reject token exchange requests that contain
+     *         no client identifier.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public Service setTokenExchangeByIdentifiableClientsOnly(boolean only)
+    {
+        this.tokenExchangeByIdentifiableClientsOnly = only;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to prohibit public clients from making
+     * token exchange requests (cf&#x002E; <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a>).
+     *
+     * <p>
+     * Section 2.1 of <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     * >RFC 8692 OAuth 2.0 Token Exchange</a> states as follows:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * <i>The supported methods of client authentication and whether or not
+     * to allow <b>unauthenticated</b> or unidentified clients are deployment
+     * decisions that are at the discretion of the authorization server.</i>
+     * </p>
+     * </blockquote>
+     *
+     * <p>
+     * Technically speaking, "<b>unauthenticated</b>" in the excerpted sentence
+     * means that the client making a token exchange request is a public client
+     * and so <a href=
+     * "https://darutk.medium.com/oauth-2-0-client-authentication-4b5f929305d4"
+     * >client authentication</a> for the client is not required at the token
+     * endpoint.
+     * </p>
+     *
+     * <p>
+     * When this flag is set to {@code true}, this service rejects token
+     * exchange requests from public clients.
+     * </p>
+     *
+     * @return
+     *         {@code true} if this service rejects token exchange requests
+     *         from public clients.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public boolean isTokenExchangeByConfidentialClientsOnly()
+    {
+        return tokenExchangeByConfidentialClientsOnly;
+    }
+
+
+    /**
+     * Set the flag indicating whether to prohibit public clients from making
+     * token exchange requests (cf&#x002E; <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a>).
+     *
+     * <p>
+     * Section 2.1 of <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     * >RFC 8692 OAuth 2.0 Token Exchange</a> states as follows:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * <i>The supported methods of client authentication and whether or not
+     * to allow <b>unauthenticated</b> or unidentified clients are deployment
+     * decisions that are at the discretion of the authorization server.</i>
+     * </p>
+     * </blockquote>
+     *
+     * <p>
+     * Technically speaking, "<b>unauthenticated</b>" in the excerpted sentence
+     * means that the client making a token exchange request is a public client
+     * and so <a href=
+     * "https://darutk.medium.com/oauth-2-0-client-authentication-4b5f929305d4"
+     * >client authentication</a> for the client is not required at the token
+     * endpoint.
+     * </p>
+     *
+     * <p>
+     * When this flag is set to {@code true}, this service rejects token
+     * exchange requests from public clients.
+     * </p>
+     *
+     * @param only
+     *         {@code true} to reject token exchange requests from public
+     *         clients.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public Service setTokenExchangeByConfidentialClientsOnly(boolean only)
+    {
+        this.tokenExchangeByConfidentialClientsOnly = only;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to prohibit clients which have no
+     * explicit permission from making token exchange requests (cf&#x002E;
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a>).
+     *
+     * <p>
+     * An administrator can give a client an explicit permission to make
+     * token exchange requests by setting {@code true} to the
+     * {@code tokenExchangePermitted} flag of the client (cf. {@link
+     * ClientExtension#setTokenExchangePermitted(boolean)}).
+     * </p>
+     *
+     * <p>
+     * When this flag ({@code tokenExchangeByPermittedClientsOnly}) is set
+     * to {@code true}, this service rejects token exchange requests from
+     * clients whose {@code tokenExchangePermitted} flag is {@code false}.
+     * </p>
+     *
+     * @return
+     *         {@code true} if this service rejects token exchange requests
+     *         from clients whose {@code tokenExchangePermitted} flag is
+     *         {@code false}.
+     *
+     * @see ClientExtension#isTokenExchangePermitted()
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public boolean isTokenExchangeByPermittedClientsOnly()
+    {
+        return tokenExchangeByPermittedClientsOnly;
+    }
+
+
+    /**
+     * Set the flag indicating whether to prohibit clients which have no
+     * explicit permission from making token exchange requests (cf&#x002E;
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a>).
+     *
+     * <p>
+     * An administrator can give a client an explicit permission to make
+     * token exchange requests by setting {@code true} to the
+     * {@code tokenExchangePermitted} flag of the client (cf. {@link
+     * ClientExtension#setTokenExchangePermitted(boolean)}).
+     * </p>
+     *
+     * <p>
+     * When this flag ({@code tokenExchangeByPermittedClientsOnly}) is set
+     * to {@code true}, this service rejects token exchange requests from
+     * clients whose {@code tokenExchangePermitted} flag is {@code false}.
+     * </p>
+     *
+     * @param only
+     *         {@code true} to reject token exchange requests from clients
+     *         whose {@code tokenExchangePermitted} flag is {@code false}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see ClientExtension#setTokenExchangePermitted(boolean)
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public Service setTokenExchangeByPermittedClientsOnly(boolean only)
+    {
+        this.tokenExchangeByPermittedClientsOnly = only;
 
         return this;
     }

@@ -44,6 +44,9 @@ import com.authlete.common.types.GrantType;
  * <li>{@link com.authlete.common.types.GrantType#IMPLICIT IMPLICIT}
  * <li>{@link com.authlete.common.types.GrantType#PASSWORD PASSWORD}
  * <li>{@link com.authlete.common.types.GrantType#CLIENT_CREDENTIALS CLIENT_CREDENTIALS}
+ * <li>{@link com.authlete.common.types.GrantType#CIBA CIBA} (Authlete 2.1 onwards)
+ * <li>{@link com.authlete.common.types.GrantType#DEVICE_CODE DEVICE_CODE} (Authlete 2.1 onwards)
+ * <li>{@link com.authlete.common.types.GrantType#TOKEN_EXCHANGE TOKEN_EXCHANGE} (Authlete 2.3 onwards)
  * </ol>
  * <p>
  * When {@code grantType} is either {@code IMPLICIT} or {@code CLIENT_CREDENTIALS},
