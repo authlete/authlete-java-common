@@ -1,6 +1,47 @@
 CHANGES
 =======
 
+- `ClientExtension` class
+    * Added `isTokenExchangePermitted()` method.
+    * Added `setTokenExchangePermitted(boolean)` method.
+
+- `GrantType` enum
+    * Added `TOKEN_EXCHANGE`.
+
+- `Service` class
+    * Added `isTokenExchangeByIdentifiableClientsOnly()` method.
+    * Added `setTokenExchangeByIdentifiableClientsOnly(boolean)` method.
+    * Added `isTokenExchangeByConfidentialClientsOnly()` method.
+    * Added `setTokenExchangeByConfidentialClientsOnly(boolean)` method.
+    * Added `isTokenExchangeByPermittedClientsOnly()` method.
+    * Added `setTokenExchangeByPermittedClientsOnly(boolean)` method.
+
+- `TokenResponse` class
+    * Added `getAudiences()` method.
+    * Added `setAudiences(String[])` method.
+    * Added `getRequestedTokenType()` method.
+    * Added `setRequestedTokenType(TokenType)` method.
+    * Added `getSubjectToken()` method.
+    * Added `setSubjectToken(String)` method.
+    * Added `getSubjectTokenType()` method.
+    * Added `setSubjectTokenType(TokenType)` method.
+    * Added `getSubjectTokenInfo()` method.
+    * Added `setSubjectTokenInfo(TokenInfo)` method.
+    * Added `getActorToken()` method.
+    * Added `setActorToken(String)` method.
+    * Added `getActorTokenType()` method.
+    * Added `setActorTokenType(TokenType)` method.
+    * Added `getActorTokenInfo()` method.
+    * Added `setActorTokenInfo(TokenInfo)` method.
+
+- `TokenResponse.Action` enum
+    * Added `TOKEN_EXCHANGE`.
+
+- New types
+    * `TokenInfo` class
+    * `TokenType` enum
+
+
 3.25 (2022-07-02)
 -----------------
 

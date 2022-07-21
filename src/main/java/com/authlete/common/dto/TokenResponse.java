@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2021 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package com.authlete.common.dto;
 import java.net.URI;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.GrantType;
+import com.authlete.common.types.TokenType;
 import com.authlete.common.util.Utils;
 
 
@@ -40,7 +41,7 @@ import com.authlete.common.util.Utils;
  * that authentication of the client failed. In this case, the HTTP status
  * of the response to the client application is either {@code "400 Bad
  * Request"} or {@code "401 Unauthorized"}. This requirement comes from
- * <a href="http://tools.ietf.org/html/rfc6749#section-5.2">RFC 6749, 5.2.
+ * <a href="https://www.rfc-editor.org/rfc/rfc6749.html">RFC 6749, 5.2.
  * Error Response</a>. The description about {@code "invalid_client"} shown
  * below is an excerpt from RFC 6749.
  * </p>
@@ -56,7 +57,7 @@ import com.authlete.common.util.Utils;
  *         supported. If the client attempted to authenticate via the
  *         "Authorization" request header field, the authorization server
  *         MUST respond with an HTTP 401 (Unauthorized) status code and
- *         include the <a href="http://tools.ietf.org/html/rfc2616#section-14.47"
+ *         include the <a href="https://www.rfc-editor.org/rfc/rfc2616.html#section-14.47"
  *         >"WWW-Authenticate"</a> response header field matching the
  *         authentication scheme used by the client.
  *       </p>
@@ -164,7 +165,7 @@ import com.authlete.common.util.Utils;
  * When the value of {@code "action"} is {@code "PASSWORD"}, it means that
  * the request from the client application is valid and {@code grant_type}
  * is {@code "password"}. That is, the flow is
- * <a href="http://tools.ietf.org/html/rfc6749#section-4.3">"Resource Owner
+ * <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.3">"Resource Owner
  * Password Credentials"</a>.
  * </p>
  *
@@ -248,15 +249,365 @@ import com.authlete.common.util.Utils;
  *
  * <i>(The value returned from {@link #getResponseContent()})</i></pre>
  * </dd>
+ *
+ * <dt><b>{@link Action#TOKEN_EXCHANGE TOKEN_EXCHANGE}</b> (Authlete 2.3 onwards)</dt>
+ * <dd>
+ * <p>
+ * When the value of {@code "action"} is {@code "TOKEN_EXCHANGE"}, it means
+ * that the request from the client application is a valid token exchange
+ * request (cf. <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC
+ * 8693 OAuth 2.0 Token Exchange</a>) and that the request has already passed
+ * the following validation steps.
+ * </p>
+ *
+ * <ol>
+ * <li>
+ * <p>
+ * If the {@code requested_token_type} request parameter is given and holds
+ * a non-empty value, the value is one of the token types registered at <a href=
+ * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#uri"
+ * >OAuth URI</a> of <a href=
+ * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml"
+ * >OAuth Parameters</a> of IANA (Internet Assigned Numbers Authority).
+ * (cf. {@link TokenType})
+ * </p>
+ * <br/>
+ *
+ * <li>
+ * <p>
+ * The {@code subject_token} request parameter is given and holds a non-empty
+ * value.
+ * </p>
+ * <br/>
+ *
+ * <li>
+ * <p>
+ * The {@code subject_token_type} request parameter is given and its value is
+ * one of the token types registered at <a href=
+ * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#uri"
+ * >OAuth URI</a> of <a href=
+ * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml"
+ * >OAuth Parameters</a> of IANA (Internet Assigned Numbers Authority).
+ * (cf. {@link TokenType})
+ * </p>
+ * <br/>
+ *
+ * <li>
+ * <p>
+ * If the {@code actor_token} request parameter is given and holds a non-empty
+ * value, the {@code actor_token_type} request parameter is also given and its
+ * value is one of the token types registered at <a href=
+ * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#uri"
+ * >OAuth URI</a> of <a href=
+ * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml"
+ * >OAuth Parameters</a> of IANA (Internet Assigned Numbers Authority).
+ * (cf. {@link TokenType})
+ * </p>
+ * <br/>
+ *
+ * <li>
+ * <p>
+ * If the {@code actor_token} request parameter is not given or its value is
+ * empty, the {@code actor_token_type} request parameter is not given either
+ * or its value is empty.
+ * </p>
+ * <br/>
+ * </ol>
+ *
+ * <p>
+ * In addition, it is assured that the tokens specified by the
+ * {@code subject_token} request parameter and the {@code actor_token} request
+ * parameter have passed the validation steps listed in the table below
+ * ("Token Validation Steps") that correspond to respective token types.
+ * </p>
+ *
+ * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+ *   <caption><b>Token Validation Steps</b></caption>
+ *   <tr>
+ *     <td bgcolor="gold" align="center">Token Type</td>
+ *     <td bgcolor="lightyellow"><code>urn:ietf:params:oauth:token-type:jwt</code></td>
+ *   <tr/>
+ *   <tr>
+ *     <td colspan="2">
+ *       <ol>
+ *       <li>
+ *         <p>
+ *         The format conforms to the JWT specification (<a href=
+ *         "https://www.rfc-editor.org/rfc/rfc7519.html">RFC 7519</a>).
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         (If the JWT is encrypted, the following validation steps are skipped.)
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         If the payload of the JWT contains the {@code exp} claim, the current
+ *         time has not reached the time indicated by the claim.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         If the payload of the JWT contains the {@code iat} claim, the current
+ *         time is equal to or after the time indicated by the claim.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         If the payload of the JWT contains the {@code nbf} claim, the current
+ *         time is equal to or after the time indicated by the claim.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         (The signature of the JWT is not verified.)
+ *         </p>
+ *       </ol>
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td bgcolor="gold" align="center">Token Type</td>
+ *     <td bgcolor="lightyellow"><code>urn:ietf:params:oauth:token-type:access_token</code></td>
+ *   <tr/>
+ *   <tr>
+ *     <td colspan="2">
+ *       <ol>
+ *       <li>
+ *         <p>
+ *         The token is an access token that has been issued by the Authlete
+ *         server of your service. This implies that access tokens issued by
+ *         other systems cannot be used as a subject token or an actor token
+ *         with the token type
+ *         <code>urn:ietf:params:oauth:token-type:access_token</code>.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         The access token has not expired.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         The access token belongs to the service.
+ *         </p>
+ *       </ol>
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td bgcolor="gold" align="center">Token Type</td>
+ *     <td bgcolor="lightyellow"><code>urn:ietf:params:oauth:token-type:refresh_token</code></td>
+ *   <tr/>
+ *   <tr>
+ *     <td colspan="2">
+ *       <ol>
+ *       <li>
+ *         <p>
+ *         The token is a refresh token that has been issued by the Authlete
+ *         server of your service. This implies that refresh tokens issued by
+ *         other systems cannot be used as a subject token or an actor token
+ *         with the token type
+ *         <code>urn:ietf:params:oauth:token-type:refresh_token</code>.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         The refresh token has not expired.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         The refresh token belongs to the service.
+ *         </p>
+ *       </ol>
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td bgcolor="gold" align="center">Token Type</td>
+ *     <td bgcolor="lightyellow"><code>urn:ietf:params:oauth:token-type:id_token</code></td>
+ *   <tr/>
+ *   <tr>
+ *     <td colspan="2">
+ *       <ol>
+ *       <li>
+ *         <p>
+ *         The format conforms to the JWT specification (<a href=
+ *         "https://www.rfc-editor.org/rfc/rfc7519.html">RFC 7519</a>).
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         (If the JWT is encrypted, the following validation steps are skipped.)
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         The payload of the ID Token contains the {@code exp} claim and the
+ *         current time has not reached the time indicated by the claim.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         The payload of the ID Token contains the {@code iat} claim and the
+ *         current time is equal to or after the time indicated by the claim.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         If the payload of the ID Token contains the {@code nbf} claim, the
+ *         current time is equal to or after the time indicated by the claim.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         The payload of the ID Token contains the {@code iss} claim and the
+ *         value is a valid URI. In addition, the URI has the {@code https}
+ *         scheme, no query component and no fragment component.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         The payload of the ID Token contains the {@code aud} claim and the
+ *         value is a JSON string or an array of JSON strings.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         If the payload of the ID Token contains the {@code nonce} claim,
+ *         the value is a JSON string.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         (If the ID Token is an unsecured JWT, the following validation
+ *         steps are skipped.)
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         The signature algorithm is asymmetric. This implies that ID Tokens
+ *         whose signature algorithm is symmetric ({@code HS256}, {@code HS384}
+ *         or {@code HS512}) cannot be used as a subject token or an actor
+ *         token with the token type
+ *         {@code urn:ietf:params:oauth:token-type:id_token}.
+ *         </p>
+ *         <br/>
+ *       <li>
+ *         <p>
+ *         The signature is valid. Signature verification is performed even in
+ *         the case where the issuer of the ID Token is not your service. But
+ *         in that case, the issuer must support the discovery endpoint defined
+ *         in <a href="https://openid.net/specs/openid-connect-discovery-1_0.html"
+ *         >OpenID Connect Discovery 1.0</a>. Otherwise, signature verification
+ *         fails.
+ *         </p>
+ *       </ol>
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td bgcolor="gold" align="center">Token Type</td>
+ *     <td bgcolor="lightyellow"><code>urn:ietf:params:oauth:token-type:saml1</code></td>
+ *   <tr/>
+ *   <tr>
+ *     <td colspan="2">
+ *       <ol>
+ *       <li>
+ *         <p>
+ *         (Authlete does not perform any validation for this token type.)
+ *         </p>
+ *       </ol>
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td bgcolor="gold" align="center">Token Type</td>
+ *     <td bgcolor="lightyellow"><code>urn:ietf:params:oauth:token-type:saml2</code></td>
+ *   <tr/>
+ *   <tr>
+ *     <td colspan="2">
+ *       <ol>
+ *       <li>
+ *         <p>
+ *         (Authlete does not perform any validation for this token type.)
+ *         </p>
+ *       </ol>
+ *     </td>
+ *   </tr>
+ * </table>
+ *
+ * <p>
+ * The specification of Token Exchange (<a href=
+ * "https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a>) is very
+ * flexible. In other words, the specification has abandoned the task of
+ * determining details. Therefore, for secure token exchange, you have
+ * to complement the specification with your own rules. For that purpose,
+ * Authlete provides some configuration options you may consider using
+ * as listed below.
+ * </p>
+ *
+ * <ul>
+ * <li>
+ * <p>
+ * <code>{@link Service#isTokenExchangeByIdentifiableClientsOnly()
+ * Service.tokenExchangeByIdentifiableClientsOnly} - </code>
+ * whether to reject token exchange requests that contain no client
+ * identifier.
+ * </p>
+ * <br/>
+ *
+ * <li>
+ * <p>
+ * <code>{@link Service#isTokenExchangeByConfidentialClientsOnly()
+ * Service.tokenExchangeByConfidentialClientsOnly} - </code>
+ * whether to reject token exchange requests by public clients.
+ * </p>
+ * <br/>
+ *
+ * <li>
+ * <p>
+ * <code>{@link Service#isTokenExchangeByPermittedClientsOnly()
+ * Service.tokenExchangeByPermittedClientsOnly} - </code>
+ * whether to reject token exchange requests by clients that have no
+ * explicit permission.
+ * </p>
+ * </ul>
+ *
+ * <p>
+ * In the case of {@link Action#TOKEN_EXCHANGE TOKEN_EXCHANGE}, the {@link
+ * #getResponseContent()} method returns {@code null}. You have to construct
+ * the token response by yourself.
+ * </p>
+ *
+ * <p>
+ * For example, you may generate an access token by calling Authlete's
+ * {@code /api/auth/token/create} API and construct a token response like
+ * below.
+ * </p>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;">
+ * HTTP/1.1 200 OK
+ * Content-Type: application/json
+ * Cache-Control: no-cache, no-store
+ *
+ * {
+ *   "access_token":      "{@link TokenCreateResponse#getAccessToken()}",
+ *   "issued_token_type": "urn:ietf:params:oauth:token-type:access_token",
+ *   "token_type":        "Bearer",
+ *   "expires_in":        {@link TokenCreateResponse#getExpiresIn()},
+ *   "scope":             "String.join(" ", {@link TokenCreateResponse#getScopes()})"
+ * }</pre>
+ *
+ * </dd>
  * </dl>
  *
- * @see <a href="http://tools.ietf.org/html/rfc6749">RFC 6749, OAuth 2.0</a>
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html"
+ *      >RFC 6749 The OAuth 2.0 Authorization Framework</a>
  *
- * @author Takahiko Kawasaki
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+ *      >RFC 8693 OAuth 2.0 Token Exchange</a>
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 11L;
+    private static final long serialVersionUID = 12L;
 
 
     /**
@@ -299,7 +650,21 @@ public class TokenResponse extends ApiResponse
          * implementation should return {@code "200 OK"} to the client
          * application with an access token.
          */
-        OK
+        OK,
+
+        /**
+         * The token request from the client was a valid token exchange
+         * request. The service implementation should take necessary
+         * actions (e.g. create an access token), generate a response and
+         * return it to the client application.
+         *
+         * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+         *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+         *
+         * @since 3.26
+         * @since Authlete 2.3
+         */
+        TOKEN_EXCHANGE,
     }
 
 
@@ -340,6 +705,18 @@ public class TokenResponse extends ApiResponse
     private String grantId;
     private Pair[] serviceAttributes;
     private Pair[] clientAttributes;
+
+    /*
+     * For RFC 8693 OAuth 2.0 Token Exchange
+     */
+    private String[] audiences;
+    private TokenType requestedTokenType;
+    private String subjectToken;
+    private TokenType subjectTokenType;
+    private TokenInfo subjectTokenInfo;
+    private String actorToken;
+    private TokenType actorTokenType;
+    private TokenInfo actorTokenInfo;
 
 
     /**
@@ -1217,5 +1594,427 @@ public class TokenResponse extends ApiResponse
     public void setClientAttributes(Pair[] attributes)
     {
         this.clientAttributes = attributes;
+    }
+
+
+    /**
+     * Get the values of the {@code audience} request parameters that are
+     * contained in the token exchange request (cf&#x002E; <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a>).
+     *
+     * <p>
+     * The {@code audience} request parameter is defined in <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth 2.0 Token
+     * Exchange</a>. Although <a href=
+     * "https://www.rfc-editor.org/rfc/rfc6749.html">RFC 6749 The OAuth 2.0
+     * Authorization Framework</a> states <i>"Request and response parameters
+     * MUST NOT be included more than once"</i>, RFC 8693 allows a token
+     * exchange request to include the {@code audience} request parameter
+     * multiple times.
+     * </p>
+     *
+     * @return
+     *         The values of the {@code audience} request parameters.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public String[] getAudiences()
+    {
+        return audiences;
+    }
+
+
+    /**
+     * Set the values of the {@code audience} request parameters that are
+     * contained in the token exchange request (cf&#x002E; <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a>).
+     *
+     * <p>
+     * The {@code audience} request parameter is defined in <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth 2.0 Token
+     * Exchange</a>. Although <a href=
+     * "https://www.rfc-editor.org/rfc/rfc6749.html">RFC 6749 The OAuth 2.0
+     * Authorization Framework</a> states <i>"Request and response parameters
+     * MUST NOT be included more than once"</i>, RFC 8693 allows a token
+     * exchange request to include the {@code audience} request parameter
+     * multiple times.
+     * </p>
+     *
+     * @param audiences
+     *         The values of the {@code audience} request parameters.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public void setAudiences(String[] audiences)
+    {
+        this.audiences = audiences;
+    }
+
+
+    /**
+     * Get the value of the {@code requested_token_type} request parameter.
+     *
+     * <p>
+     * The {@code requested_token_type} request parameter is defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth
+     * 2.0 Token Exchange</a>.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code requested_token_type} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public TokenType getRequestedTokenType()
+    {
+        return requestedTokenType;
+    }
+
+
+    /**
+     * Set the value of the {@code requested_token_type} request parameter.
+     *
+     * <p>
+     * The {@code requested_token_type} request parameter is defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth
+     * 2.0 Token Exchange</a>.
+     * </p>
+     *
+     * @param tokenType
+     *         The value of the {@code requested_token_type} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public void setRequestedTokenType(TokenType tokenType)
+    {
+        this.requestedTokenType = tokenType;
+    }
+
+
+    /**
+     * Get the value of the {@code subject_token} request parameter.
+     *
+     * <p>
+     * The {@code subject_token} request parameter is defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth
+     * 2.0 Token Exchange</a>.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code subject_token} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public String getSubjectToken()
+    {
+        return subjectToken;
+    }
+
+
+    /**
+     * Set the value of the {@code subject_token} request parameter.
+     *
+     * <p>
+     * The {@code subject_token} request parameter is defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth
+     * 2.0 Token Exchange</a>.
+     * </p>
+     *
+     * @param token
+     *         The value of the {@code subject_token} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public void setSubjectToken(String token)
+    {
+        this.subjectToken = token;
+    }
+
+
+    /**
+     * Get the value of the {@code subject_token_type} request parameter.
+     *
+     * <p>
+     * The {@code subject_token_type} request parameter is defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth
+     * 2.0 Token Exchange</a>.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code subject_token_type} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public TokenType getSubjectTokenType()
+    {
+        return subjectTokenType;
+    }
+
+
+    /**
+     * Set the value of the {@code subject_token_type} request parameter.
+     *
+     * <p>
+     * The {@code subject_token_type} request parameter is defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth
+     * 2.0 Token Exchange</a>.
+     * </p>
+     *
+     * @param tokenType
+     *         The value of the {@code subject_token_type} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public void setSubjectTokenType(TokenType tokenType)
+    {
+        this.subjectTokenType = tokenType;
+    }
+
+
+    /**
+     * Get the information about the token specified by the
+     * {@code subject_token} request parameter.
+     *
+     * <p>
+     * This property holds a non-null value only when the value of the
+     * {@code subject_token_type} request parameter is either
+     * {@code "urn:ietf:params:oauth:token-type:access_token"} or
+     * {@code "urn:ietf:params:oauth:token-type:refresh_token"} (= only
+     * when the {@code subjectTokenType} property is either
+     * <code>"{@link TokenType#ACCESS_TOKEN ACCESS_TOKEN}"</code> or
+     * <code>"{@link TokenType#REFRESH_TOKEN REFRESH_TOKEN}"</code>).
+     * </p>
+     *
+     * @return
+     *         The information about the token specified by the
+     *         {@code subject_token} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public TokenInfo getSubjectTokenInfo()
+    {
+        return subjectTokenInfo;
+    }
+
+
+    /**
+     * Set the information about the token specified by the
+     * {@code subject_token} request parameter.
+     *
+     * <p>
+     * This property holds a non-null value only when the value of the
+     * {@code subject_token_type} request parameter is either
+     * {@code "urn:ietf:params:oauth:token-type:access_token"} or
+     * {@code "urn:ietf:params:oauth:token-type:refresh_token"} (= only
+     * when the {@code subjectTokenType} property is either
+     * <code>"{@link TokenType#ACCESS_TOKEN ACCESS_TOKEN}"</code> or
+     * <code>"{@link TokenType#REFRESH_TOKEN REFRESH_TOKEN}"</code>).
+     * </p>
+     *
+     * @param tokenInfo
+     *         The information about the token specified by the
+     *         {@code subject_token} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public void setSubjectTokenInfo(TokenInfo tokenInfo)
+    {
+        this.subjectTokenInfo = tokenInfo;
+    }
+
+
+    /**
+     * Get the value of the {@code actor_token} request parameter.
+     *
+     * <p>
+     * The {@code actor_token} request parameter is defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth
+     * 2.0 Token Exchange</a>.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code actor_token} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public String getActorToken()
+    {
+        return actorToken;
+    }
+
+
+    /**
+     * Set the value of the {@code actor_token} request parameter.
+     *
+     * <p>
+     * The {@code actor_token} request parameter is defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth
+     * 2.0 Token Exchange</a>.
+     * </p>
+     *
+     * @param token
+     *         The value of the {@code actor_token} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public void setActorToken(String token)
+    {
+        this.actorToken = token;
+    }
+
+
+    /**
+     * Get the value of the {@code actor_token_type} request parameter.
+     *
+     * <p>
+     * The {@code actor_token_type} request parameter is defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth
+     * 2.0 Token Exchange</a>.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code actor_token_type} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public TokenType getActorTokenType()
+    {
+        return actorTokenType;
+    }
+
+
+    /**
+     * Set the value of the {@code actor_token_type} request parameter.
+     *
+     * <p>
+     * The {@code actor_token_type} request parameter is defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693 OAuth
+     * 2.0 Token Exchange</a>.
+     * </p>
+     *
+     * @param tokenType
+     *         The value of the {@code actor_token_type} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public void setActorTokenType(TokenType tokenType)
+    {
+        this.actorTokenType = tokenType;
+    }
+
+
+    /**
+     * Get the information about the token specified by the
+     * {@code actor_token} request parameter.
+     *
+     * <p>
+     * This property holds a non-null value only when the value of the
+     * {@code actor_token_type} request parameter is either
+     * {@code "urn:ietf:params:oauth:token-type:access_token"} or
+     * {@code "urn:ietf:params:oauth:token-type:refresh_token"} (= only
+     * when the {@code actorTokenType} property is either
+     * <code>"{@link TokenType#ACCESS_TOKEN ACCESS_TOKEN}"</code> or
+     * <code>"{@link TokenType#REFRESH_TOKEN REFRESH_TOKEN}"</code>).
+     * </p>
+     *
+     * @return
+     *         The information about the token specified by the
+     *         {@code actor_token} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public TokenInfo getActorTokenInfo()
+    {
+        return actorTokenInfo;
+    }
+
+
+    /**
+     * Set the information about the token specified by the
+     * {@code actor_token} request parameter.
+     *
+     * <p>
+     * This property holds a non-null value only when the value of the
+     * {@code actor_token_type} request parameter is either
+     * {@code "urn:ietf:params:oauth:token-type:access_token"} or
+     * {@code "urn:ietf:params:oauth:token-type:refresh_token"} (= only
+     * when the {@code actorTokenType} property is either
+     * <code>"{@link TokenType#ACCESS_TOKEN ACCESS_TOKEN}"</code> or
+     * <code>"{@link TokenType#REFRESH_TOKEN REFRESH_TOKEN}"</code>).
+     * </p>
+     *
+     * @param tokenInfo
+     *         The information about the token specified by the
+     *         {@code actor_token} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public void setActorTokenInfo(TokenInfo tokenInfo)
+    {
+        this.actorTokenInfo = tokenInfo;
     }
 }

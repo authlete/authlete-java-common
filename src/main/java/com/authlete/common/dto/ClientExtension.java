@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2019 Authlete, Inc.
+ * Copyright (C) 2017-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,13 +45,14 @@ import java.util.Set;
  */
 public class ClientExtension implements Serializable
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     private boolean requestableScopesEnabled;
     private String[] requestableScopes;
     private long accessTokenDuration;
     private long refreshTokenDuration;
+    private boolean tokenExchangePermitted;
 
 
     /**
@@ -313,6 +314,69 @@ public class ClientExtension implements Serializable
     public ClientExtension setRefreshTokenDuration(long duration)
     {
         this.refreshTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether the client is explicitly given a
+     * permission to make token exchange requests (cf&#x002E; <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a>).
+     *
+     * <p>
+     * This flag is referred to only when the
+     * {@code tokenExchangeByPermittedClientOnly} flag of the service which
+     * the client belongs to is {@code true}.
+     * </p>
+     *
+     * @return
+     *         {@code true} when the client is explicitly given a permission
+     *         to make token exchange requests.
+     *
+     * @see Service#isTokenExchangeByPermittedClientsOnly()
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public boolean isTokenExchangePermitted()
+    {
+        return tokenExchangePermitted;
+    }
+
+
+    /**
+     * Set the flag indicating whether the client is explicitly given a
+     * permission to make token exchange requests (cf&#x002E; <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8693.html">RFC 8693</a>).
+     *
+     * <p>
+     * This flag is referred to only when the
+     * {@code tokenExchangeByPermittedClientOnly} flag of the service which
+     * the client belongs to is {@code true}.
+     * </p>
+     *
+     * @param permitted
+     *         {@code true} to explicitly give the client a permission to
+     *         make token exchange requests.
+     *
+     * @return
+     *         {@code this} instance.
+     *
+     * @see Service#setTokenExchangeByPermittedClientsOnly(boolean)
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    public ClientExtension setTokenExchangePermitted(boolean permitted)
+    {
+        this.tokenExchangePermitted = permitted;
 
         return this;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2019 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,10 +31,10 @@ public enum GrantType
      * an access token and/or an ID token, and optionally a refresh token,
      * using an authorization code.
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6749#section-4.1.3"
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.1.3"
      *      >RFC 6749 (OAuth 2.0), 4.1.3. Access Token Request</a>
      *
-     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint"
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint"
      *      >OpenID Connect Core 1.0, 3.1.3. Token Endpoint</a>
      */
     AUTHORIZATION_CODE((short)1, "authorization_code"),
@@ -49,7 +49,7 @@ public enum GrantType
      * "implicit"} as a value for {@code grant_types} of client metadata.
      * </p>
      *
-     * @see <a href="http://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
+     * @see <a href="https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
      *      >OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata</a>
      */
     IMPLICIT((short)2, "implicit"),
@@ -59,7 +59,7 @@ public enum GrantType
      * {@code "password"} (3), a {@code grant_type} to request an access token
      * using a resource owner's username and password.
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6749#section-4.3.2"
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.3.2"
      *      >RFC 6749 (OAuth 2.0), 4.3.2. Access Token Request</a>
      */
     PASSWORD((short)3, "password"),
@@ -69,7 +69,7 @@ public enum GrantType
      * {@code "client_credentials"} (4), a {@code grant_type} to request
      * an access token using a client's credentials.
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6749#section-4.4.2"
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.4.2"
      *      >RFC 6749 (OAuth 2.0), 4.4.2. Access Token Request</a>
      */
     CLIENT_CREDENTIALS((short)4, "client_credentials"),
@@ -80,10 +80,10 @@ public enum GrantType
      * token, and optionally an ID token and/or a refresh token, using a
      * refresh token.
      *
-     * @see <a href="http://tools.ietf.org/html/rfc6749#section-6"
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-6"
      *      >RFC 6749 (OAuth 2.0), 6. Refreshing an Access Token</a>
      *
-     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#RefreshTokens"
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#RefreshTokens"
      *      >OpenID Connect Core 1.0, 12. Using Refresh Tokens</a>
      */
     REFRESH_TOKEN((short)5, "refresh_token"),
@@ -111,6 +111,19 @@ public enum GrantType
      * @since 2.42
      */
     DEVICE_CODE((short)7, "urn:ietf:params:oauth:grant-type:device_code"),
+
+
+    /**
+     * {@code "urn:ietf:params:oauth:grant-type:token-exchange"} (8), a
+     * {@code grant_type} for token exchange.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.26
+     * @since Authlete 2.3
+     */
+    TOKEN_EXCHANGE((short)8, "urn:ietf:params:oauth:grant-type:token-exchange"),
     ;
 
 

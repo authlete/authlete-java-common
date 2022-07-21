@@ -1,6 +1,47 @@
 変更点
 ======
 
+- `ClientExtension` クラス
+    * `isTokenExchangePermitted()` メソッドを追加。
+    * `setTokenExchangePermitted(boolean)` メソッドを追加。
+
+- `GrantType` 列挙型
+    * `TOKEN_EXCHANGE` を追加。
+
+- `Service` クラス
+    * `isTokenExchangeByIdentifiableClientsOnly()` メソッドを追加。
+    * `setTokenExchangeByIdentifiableClientsOnly(boolean)` メソッドを追加。
+    * `isTokenExchangeByConfidentialClientsOnly()` メソッドを追加。
+    * `setTokenExchangeByConfidentialClientsOnly(boolean)` メソッドを追加。
+    * `isTokenExchangeByPermittedClientsOnly()` メソッドを追加。
+    * `setTokenExchangeByPermittedClientsOnly(boolean)` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getAudiences()` メソッドを追加。
+    * `setAudiences(String[])` メソッドを追加。
+    * `getRequestedTokenType()` メソッドを追加。
+    * `setRequestedTokenType(TokenType)` メソッドを追加。
+    * `getSubjectToken()` メソッドを追加。
+    * `setSubjectToken(String)` メソッドを追加。
+    * `getSubjectTokenType()` メソッドを追加。
+    * `setSubjectTokenType(TokenType)` メソッドを追加。
+    * `getSubjectTokenInfo()` メソッドを追加。
+    * `setSubjectTokenInfo(TokenInfo)` メソッドを追加。
+    * `getActorToken()` メソッドを追加。
+    * `setActorToken(String)` メソッドを追加。
+    * `getActorTokenType()` メソッドを追加。
+    * `setActorTokenType(TokenType)` メソッドを追加。
+    * `getActorTokenInfo()` メソッドを追加。
+    * `setActorTokenInfo(TokenInfo)` メソッドを追加。
+
+- `TokenResponse.Action` 列挙型
+    * `TOKEN_EXCHANGE` を追加。
+
+- 新しい型
+    * `TokenInfo` クラス
+    * `TokenType` 列挙型
+
+
 3.25 (2022 年 07 月 02 日)
 --------------------------
 
