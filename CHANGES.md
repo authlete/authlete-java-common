@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `isTokenExchangeEncryptedJwtRejected()` method.
+    * Added `setTokenExchangeEncryptedJwtRejected(boolean)` method.
+    * Added `isTokenExchangeUnsignedJwtRejected()` method.
+    * Added `setTokenExchangeUnsignedJwtRejected(boolean)` method.
+
+
 3.26 (2022-07-21)
 -----------------
 
