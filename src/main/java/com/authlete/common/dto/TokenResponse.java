@@ -188,14 +188,12 @@ import com.authlete.common.util.Utils;
  *     Use the value returned from {@link #getTicket()} method as the value
  *     for {@code "ticket"} parameter.
  *   </p>
- *   <br/>
  *   <p>
  *     The response from {@code /auth/token/issue} API ({@link
  *     TokenIssueResponse}) contains data (an access token and others)
  *     which should be returned to the client application. Use the data
  *     to generate a response to the client application.
  *   </p>
- *   <br/>
  * <li>
  *   <p>
  *     <b>When the credentials are invalid</b>, call Authlete's {@code
@@ -206,7 +204,6 @@ import com.authlete.common.util.Utils;
  *     request parameter. Use the value returned from {@link #getTicket()}
  *     method as the value for {@code "ticket"} parameter.
  *   </p>
- *   <br/>
  *   <p>
  *     The response from {@code /auth/token/fail} API ({@link
  *     TokenFailResponse}) contains error information which should be
@@ -263,62 +260,42 @@ import com.authlete.common.util.Utils;
  * <ol>
  * <li>
  * <p>
- * If the {@code requested_token_type} request parameter is given and holds
- * a non-empty value, the value is one of the token types registered at <a href=
- * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#uri"
- * >OAuth URI</a> of <a href=
- * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml"
- * >OAuth Parameters</a> of IANA (Internet Assigned Numbers Authority).
- * (cf. {@link TokenType})
+ * Confirm that the value of the {@code requested_token_type} request parameter
+ * is one of the registered token type identifiers if the request parameter is
+ * given and its value is not empty.
  * </p>
- * <br/>
  *
  * <li>
  * <p>
- * The {@code subject_token} request parameter is given and holds a non-empty
- * value.
+ * Confirm that the {@code subject_token} request parameter is given and its
+ * value is not empty.
  * </p>
- * <br/>
  *
  * <li>
  * <p>
- * The {@code subject_token_type} request parameter is given and its value is
- * one of the token types registered at <a href=
- * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#uri"
- * >OAuth URI</a> of <a href=
- * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml"
- * >OAuth Parameters</a> of IANA (Internet Assigned Numbers Authority).
- * (cf. {@link TokenType})
+ * Confirm that the {@code subject_token_type} request parameter is given and
+ * its value is one of the registered token type identifiers.
  * </p>
- * <br/>
  *
  * <li>
  * <p>
- * If the {@code actor_token} request parameter is given and holds a non-empty
- * value, the {@code actor_token_type} request parameter is also given and its
- * value is one of the token types registered at <a href=
- * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#uri"
- * >OAuth URI</a> of <a href=
- * "https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml"
- * >OAuth Parameters</a> of IANA (Internet Assigned Numbers Authority).
- * (cf. {@link TokenType})
+ * Confirm that the {@code actor_token_type} request parameter is given and
+ * its value is one of the registered token type identifiers if the
+ * {@code actor_token} request parameter is given and its value is not empty.
  * </p>
- * <br/>
  *
  * <li>
  * <p>
- * If the {@code actor_token} request parameter is not given or its value is
- * empty, the {@code actor_token_type} request parameter is not given either
- * or its value is empty.
+ * Confirm that the {@code actor_token_type} request parameter is not given
+ * or its value is empty when the {@code actor_token} request parameter is
+ * not given or its value is empty.
  * </p>
- * <br/>
  * </ol>
  *
  * <p>
- * In addition, it is assured that the tokens specified by the
- * {@code subject_token} request parameter and the {@code actor_token} request
- * parameter have passed the validation steps listed in the table below
- * ("Token Validation Steps") that correspond to respective token types.
+ * Furthermore, Authlete performs additional validation on the tokens specified
+ * by the {@code subject_token} request parameter and the {@code actor_token}
+ * request parameter according to their respective token types as shown below.
  * </p>
  *
  * <table border="1" cellpadding="5" style="border-collapse: collapse;">
@@ -332,36 +309,49 @@ import com.authlete.common.util.Utils;
  *       <ol>
  *       <li>
  *         <p>
- *         The format conforms to the JWT specification (<a href=
+ *         Confirm that the format conforms to the JWT specification (<a href=
  *         "https://www.rfc-editor.org/rfc/rfc7519.html">RFC 7519</a>).
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         (If the JWT is encrypted, the following validation steps are skipped.)
+ *         Check if the JWT is encrypted and if it is encrypted, then (a) reject
+ *         the token exchange request when the {@link
+ *         Service#isTokenExchangeEncryptedJwtRejected()
+ *         tokenExchangeEncryptedJwtRejected} flag of the service is {@code true}
+ *         or (b) skip remaining validation steps when the flag is {@code false}.
+ *         Note that Authlete does not verify an encrypted JWT because there is
+ *         no standard way to obtain the key to decrypt the JWT with. This means
+ *         that you must verify an encrypted JWT by yourself when one is used as
+ *         an input token with the token type
+ *         {@code "urn:ietf:params:oauth:token-type:jwt"}.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         If the payload of the JWT contains the {@code exp} claim, the current
- *         time has not reached the time indicated by the claim.
+ *         Confirm that the current time has not reached the time indicated by
+ *         the {@code exp} claim if the JWT contains the claim.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         If the payload of the JWT contains the {@code iat} claim, the current
- *         time is equal to or after the time indicated by the claim.
+ *         Confirm that the current time is equal to or after the time indicated
+ *         by the {@code iat} claim if the JWT contains the claim.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         If the payload of the JWT contains the {@code nbf} claim, the current
- *         time is equal to or after the time indicated by the claim.
+ *         Confirm that the current time is equal to or after the time indicated
+ *         by the {@code nbf} claim if the JWT contains the claim.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         (The signature of the JWT is not verified.)
+ *         Check if the JWT is signed and if it is not signed, then (a) reject
+ *         the token exchange request when the {@link
+ *         Service#isTokenExchangeUnsignedJwtRejected()
+ *         tokenExchangeUnsignedJwtRejected} flag of the service is {@code true}
+ *         or (b) finish validation on the input token. Note that Authlete does
+ *         not verify the signature of the JWT because there is no standard way
+ *         to obtain the key to verify the signature of a JWT with. This means
+ *         that you must verify the signature by yourself when a signed JWT is
+ *         used as an input token with the token type
+ *         {@code "urn:ietf:params:oauth:token-type:jwt"}.
  *         </p>
  *       </ol>
  *     </td>
@@ -375,21 +365,19 @@ import com.authlete.common.util.Utils;
  *       <ol>
  *       <li>
  *         <p>
- *         The token is an access token that has been issued by the Authlete
- *         server of your service. This implies that access tokens issued by
- *         other systems cannot be used as a subject token or an actor token
- *         with the token type
+ *         Confirm that the token is an access token that has been issued by
+ *         the Authlete server of your service. This implies that access
+ *         tokens issued by other systems cannot be used as a subject token
+ *         or an actor token with the token type
  *         <code>urn:ietf:params:oauth:token-type:access_token</code>.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         The access token has not expired.
+ *         Confirm that the access token has not expired.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         The access token belongs to the service.
+ *         Confirm that the access token belongs to the service.
  *         </p>
  *       </ol>
  *     </td>
@@ -403,21 +391,19 @@ import com.authlete.common.util.Utils;
  *       <ol>
  *       <li>
  *         <p>
- *         The token is a refresh token that has been issued by the Authlete
- *         server of your service. This implies that refresh tokens issued by
- *         other systems cannot be used as a subject token or an actor token
- *         with the token type
+ *         Confirm that the token is a refresh token that has been issued by
+ *         the Authlete server of your service. This implies that refresh
+ *         tokens issued by other systems cannot be used as a subject token
+ *         or an actor token with the token type
  *         <code>urn:ietf:params:oauth:token-type:refresh_token</code>.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         The refresh token has not expired.
+ *         Confirm that the refresh token has not expired.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         The refresh token belongs to the service.
+ *         Confirm that the refresh token belongs to the service.
  *         </p>
  *       </ol>
  *     </td>
@@ -431,75 +417,79 @@ import com.authlete.common.util.Utils;
  *       <ol>
  *       <li>
  *         <p>
- *         The format conforms to the JWT specification (<a href=
+ *         Confirm that the format conforms to the JWT specification (<a href=
  *         "https://www.rfc-editor.org/rfc/rfc7519.html">RFC 7519</a>).
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         (If the JWT is encrypted, the following validation steps are skipped.)
+ *         Check if the ID Token is encrypted and if it is encrypted, then (a)
+ *         reject the token exchange request when the {@link
+ *         Service#isTokenExchangeEncryptedJwtRejected()
+ *         tokenExchangeEncryptedJwtRejected} flag of the service is {@code true}
+ *         or (b) skip remaining validation steps when the flag is {@code false}.
+ *         Note that Authlete does not verify an encrypted ID Token because
+ *         there is no standard way to obtain the key to decrypt the ID Token
+ *         with in the context of token exchange where the client ID for the
+ *         encrypted ID Token cannot be determined. This means that you must
+ *         verify an encrypted ID Token by yourself when one is used as an
+ *         input token with the token type
+ *         {@code "urn:ietf:params:oauth:token-type:id_token"}.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         The payload of the ID Token contains the {@code exp} claim and the
+ *         Confirm that the ID Token contains the {@code exp} claim and the
  *         current time has not reached the time indicated by the claim.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         The payload of the ID Token contains the {@code iat} claim and the
+ *         Confirm that the ID Token contains the {@code iat} claim and the
  *         current time is equal to or after the time indicated by the claim.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         If the payload of the ID Token contains the {@code nbf} claim, the
- *         current time is equal to or after the time indicated by the claim.
+ *         Confirm that the current time is equal to or after the time indicated
+ *         by the {@code nbf} claim if the ID Token contains the claim.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         The payload of the ID Token contains the {@code iss} claim and the
- *         value is a valid URI. In addition, the URI has the {@code https}
- *         scheme, no query component and no fragment component.
+ *         Confirm that the ID Token contains the {@code iss} claim and the
+ *         value is a valid URI. In addition, confirm that the URI has the
+ *         {@code https} scheme, no query component and no fragment component.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         The payload of the ID Token contains the {@code aud} claim and the
+ *         Confirm that the ID Token contains the {@code aud} claim and its
  *         value is a JSON string or an array of JSON strings.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         If the payload of the ID Token contains the {@code nonce} claim,
- *         the value is a JSON string.
+ *         Confirm that the value of the {@code nonce} claim is a JSON string
+ *         if the ID Token contains the claim.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         (If the ID Token is an unsecured JWT, the following validation
- *         steps are skipped.)
+ *         Check if the ID Token is signed and if it is not signed, then (a)
+ *         reject the token exchange request when the {@link
+ *         Service#isTokenExchangeUnsignedJwtRejected()
+ *         tokenExchangeUnsignedJwtRejected} flag of the service is {@code true}
+ *         or (b) finish validation on the input token.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         The signature algorithm is asymmetric. This implies that ID Tokens
- *         whose signature algorithm is symmetric ({@code HS256}, {@code HS384}
- *         or {@code HS512}) cannot be used as a subject token or an actor
- *         token with the token type
+ *         Confirm that the signature algorithm is asymmetric. This implies that
+ *         ID Tokens whose signature algorithm is symmetric ({@code HS256},
+ *         {@code HS384} or {@code HS512}) cannot be used as a subject token or
+ *         an actor token with the token type
  *         {@code urn:ietf:params:oauth:token-type:id_token}.
  *         </p>
- *         <br/>
  *       <li>
  *         <p>
- *         The signature is valid. Signature verification is performed even in
- *         the case where the issuer of the ID Token is not your service. But
- *         in that case, the issuer must support the discovery endpoint defined
- *         in <a href="https://openid.net/specs/openid-connect-discovery-1_0.html"
- *         >OpenID Connect Discovery 1.0</a>. Otherwise, signature verification
- *         fails.
+ *         Verify the signature of the ID Token. Signature verification is
+ *         performed even in the case where the issuer of the ID Token is not
+ *         your service. But in that case, the issuer must support the discovery
+ *         endpoint defined in <a href=
+ *         "https://openid.net/specs/openid-connect-discovery-1_0.html">OpenID
+ *         Connect Discovery 1.0</a>. Otherwise, signature verification fails.
  *         </p>
  *       </ol>
  *     </td>
@@ -540,8 +530,9 @@ import com.authlete.common.util.Utils;
  * flexible. In other words, the specification has abandoned the task of
  * determining details. Therefore, for secure token exchange, you have
  * to complement the specification with your own rules. For that purpose,
- * Authlete provides some configuration options you may consider using
- * as listed below.
+ * Authlete provides some configuration options as listed below.
+ * Authorization server implementers may utilize them and/or implement
+ * their own rules.
  * </p>
  *
  * <ul>
@@ -552,7 +543,6 @@ import com.authlete.common.util.Utils;
  * whether to reject token exchange requests that contain no client
  * identifier.
  * </p>
- * <br/>
  *
  * <li>
  * <p>
@@ -560,7 +550,6 @@ import com.authlete.common.util.Utils;
  * Service.tokenExchangeByConfidentialClientsOnly} - </code>
  * whether to reject token exchange requests by public clients.
  * </p>
- * <br/>
  *
  * <li>
  * <p>
@@ -568,6 +557,22 @@ import com.authlete.common.util.Utils;
  * Service.tokenExchangeByPermittedClientsOnly} - </code>
  * whether to reject token exchange requests by clients that have no
  * explicit permission.
+ * </p>
+ *
+ * <li>
+ * <p>
+ * <code>{@link Service#isTokenExchangeEncryptedJwtRejected()
+ * Service.tokenExchangeEncryptedJwtRejected} - </code>
+ * whether to reject token exchange requests which use encrypted JWTs
+ * as input tokens.
+ * </p>
+ *
+ * <li>
+ * <p>
+ * <code>{@link Service#isTokenExchangeUnsignedJwtRejected()
+ * Service.tokenExchangeUnsignedJwtRejected} - </code>
+ * whether to reject token exchange requests which use unsigned JWTs
+ * as input tokens.
  * </p>
  * </ul>
  *

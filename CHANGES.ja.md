@@ -1,6 +1,13 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isTokenExchangeEncryptedJwtRejected()` メソッドを追加。
+    * `setTokenExchangeEncryptedJwtRejected(boolean)` メソッドを追加。
+    * `isTokenExchangeUnsignedJwtRejected()` メソッドを追加。
+    * `setTokenExchangeUnsignedJwtRejected(boolean)` メソッドを追加。
+
+
 3.26 (2022 年 07 月 21 日)
 --------------------------
 

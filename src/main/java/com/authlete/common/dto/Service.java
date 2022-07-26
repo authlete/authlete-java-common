@@ -240,7 +240,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 58L;
+    private static final long serialVersionUID = 59L;
 
 
     /*
@@ -1110,6 +1110,26 @@ public class Service implements Serializable
      * @since Authlete 2.3
      */
     private boolean tokenExchangeByPermittedClientsOnly;
+
+
+    /**
+     * The flag indicating whether to reject token exchange requests which
+     * use encrypted JWTs as input tokens.
+     *
+     * @since 3.27
+     * @since Authlete 2.3
+     */
+    private boolean tokenExchangeEncryptedJwtRejected;
+
+
+    /**
+     * The flag indicating whether to reject token exchange requests which
+     * use unsigned JWTs as input tokens.
+     *
+     * @since 3.27
+     * @since Authlete 2.3
+     */
+    private boolean tokenExchangeUnsignedJwtRejected;
 
 
     /**
@@ -8810,6 +8830,180 @@ public class Service implements Serializable
     public Service setTokenExchangeByPermittedClientsOnly(boolean only)
     {
         this.tokenExchangeByPermittedClientsOnly = only;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to reject token exchange requests which
+     * use encrypted JWTs as input tokens.
+     *
+     * <p>
+     * When this {@code tokenExchangeEncryptedJwtRejected} flag is {@code true},
+     * token exchange requests which use encrypted JWTs as input tokens (subject
+     * token and/or actor token) with the token type
+     * {@code "urn:ietf:params:oauth:token-type:jwt"} or the token type
+     * {@code "urn:ietf:params:oauth:token-type:id_token"} are rejected.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code false}, Authlete skips remaining validation
+     * steps on an input token when Authlete detects that it is an encrypted
+     * JWT.
+     * </p>
+     *
+     * <p>
+     * See the description of {@link TokenResponse} for details about validation
+     * Authlete performs for token exchange requests.
+     * </p>
+     *
+     * @return
+     *         {@code true} if token exchange requests which use encrypted JWTs
+     *         as input tokens are rejected.
+     *
+     * @see TokenResponse
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.27
+     * @since Authlete 2.3
+     */
+    public boolean isTokenExchangeEncryptedJwtRejected()
+    {
+        return tokenExchangeEncryptedJwtRejected;
+    }
+
+
+    /**
+     * Set the flag indicating whether to reject token exchange requests which
+     * use encrypted JWTs as input tokens.
+     *
+     * <p>
+     * When this {@code tokenExchangeEncryptedJwtRejected} flag is {@code true},
+     * token exchange requests which use encrypted JWTs as input tokens (subject
+     * token and/or actor token) with the token type
+     * {@code "urn:ietf:params:oauth:token-type:jwt"} or the token type
+     * {@code "urn:ietf:params:oauth:token-type:id_token"} are rejected.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code false}, Authlete skips remaining validation
+     * steps on an input token when Authlete detects that it is an encrypted
+     * JWT.
+     * </p>
+     *
+     * <p>
+     * See the description of {@link TokenResponse} for details about validation
+     * Authlete performs for token exchange requests.
+     * </p>
+     *
+     * @param rejected
+     *         {@code true} to reject token exchange requests which use
+     *         encrypted JWTs as input tokens.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see TokenResponse
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.27
+     * @since Authlete 2.3
+     */
+    public Service setTokenExchangeEncryptedJwtRejected(boolean rejected)
+    {
+        this.tokenExchangeEncryptedJwtRejected = rejected;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to reject token exchange requests which
+     * use unsigned JWTs as input tokens.
+     *
+     * <p>
+     * When this {@code tokenExchangeUnsignedJwtRejected} flag is {@code true},
+     * token exchange requests which use unsigned JWTs as input tokens (subject
+     * token and/or actor token) with the token type
+     * {@code "urn:ietf:params:oauth:token-type:jwt"} or the token type
+     * {@code "urn:ietf:params:oauth:token-type:id_token"} are rejected.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code false}, Authlete skips remaining validation
+     * steps on an input token when Authlete detects that it is an unsigned
+     * JWT.
+     * </p>
+     *
+     * <p>
+     * See the description of {@link TokenResponse} for details about validation
+     * Authlete performs for token exchange requests.
+     * </p>
+     *
+     * @return
+     *         {@code true} if token exchange requests which use unsigned JWTs
+     *         as input tokens are rejected.
+     *
+     * @see TokenResponse
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.27
+     * @since Authlete 2.3
+     */
+    public boolean isTokenExchangeUnsignedJwtRejected()
+    {
+        return tokenExchangeUnsignedJwtRejected;
+    }
+
+
+    /**
+     * Set the flag indicating whether to reject token exchange requests which
+     * use unsigned JWTs as input tokens.
+     *
+     * <p>
+     * When this {@code tokenExchangeUnsignedJwtRejected} flag is {@code true},
+     * token exchange requests which use unsigned JWTs as input tokens (subject
+     * token and/or actor token) with the token type
+     * {@code "urn:ietf:params:oauth:token-type:jwt"} or the token type
+     * {@code "urn:ietf:params:oauth:token-type:id_token"} are rejected.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code false}, Authlete skips remaining validation
+     * steps on an input token when Authlete detects that it is an unsigned
+     * JWT.
+     * </p>
+     *
+     * <p>
+     * See the description of {@link TokenResponse} for details about validation
+     * Authlete performs for token exchange requests.
+     * </p>
+     *
+     * @param rejected
+     *         {@code true} to reject token exchange requests which use
+     *         unsigned JWTs as input tokens.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see TokenResponse
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
+     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+     *
+     * @since 3.27
+     * @since Authlete 2.3
+     */
+    public Service setTokenExchangeUnsignedJwtRejected(boolean rejected)
+    {
+        this.tokenExchangeUnsignedJwtRejected = rejected;
 
         return this;
     }
