@@ -55,8 +55,8 @@ Generate and Release Package
 ----------------------------
 
     $ mvn clean
-    $ mvn release:prepare
-    $ mvn release:perform
+    $ mvn -P external release:prepare
+    $ mvn -P external release:perform
 
 
 Publish JavaDoc
