@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.28 (2022-08-06)
+-----------------
+
 - `GMAction` enum
     * Renamed `UPDATE` to `MERGE` in order to follow the change made by
       [FAPI PR 344](https://bitbucket.org/openid/fapi/pull-requests/344).
