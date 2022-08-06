@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Authlete, Inc.
+ * Copyright (C) 2021-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,9 +54,22 @@ public enum GMAction
 
 
     /**
-     * {@code "update"} (5).
+     * {@code "merge"} (5).
+     *
+     * <p>
+     * {@code "update"} was renamed to {@code "merge"} by <a href=
+     * "https://bitbucket.org/openid/fapi/pull-requests/344">FAPI PR 344</a>.
+     * The change takes effect from the second Implementer's Draft of <a href=
+     * "https://openid.net/specs/fapi-grant-management.html">Grant Management
+     * for OAuth 2.0</a>.
+     * </p>
+     *
+     * @since 3.28
+     *
+     * @see <a href="https://bitbucket.org/openid/fapi/pull-requests/344"
+     *      >FAPI PR 344</a>
      */
-    UPDATE((short)5, "update"),
+    MERGE((short)5, "merge"),
     ;
 
 

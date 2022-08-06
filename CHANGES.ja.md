@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `GMAction` 列挙型
+    * [FAPI PR 344](https://bitbucket.org/openid/fapi/pull-requests/344)
+      による変更に追随するため `UPDATE` を `MERGE` へと名称変更。
+
+
 3.27 (2022 年 07 月 27 日)
 --------------------------
 
