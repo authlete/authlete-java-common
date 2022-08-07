@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+- `Client` class
+    * Added `isPkceRequired()` method.
+    * Added `setPkceRequired(boolean)` method.
+    * Added `isPkceS256Required()` method.
+    * Added `setPkceS256Required(boolean)` method.
+
+
 3.28 (2022-08-06)
 -----------------
 

@@ -1,6 +1,13 @@
 変更点
 ======
 
+- `Client` クラス
+    * `isPkceRequired()` メソッドを追加。
+    * `setPkceRequired(boolean)` メソッドを追加。
+    * `isPkceS256Required()` メソッドを追加。
+    * `setPkceS256Required(boolean)` メソッドを追加。
+
+
 3.28 (2022 年 08 月 06 日)
 --------------------------
 

@@ -51,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 25L;
+    private static final long serialVersionUID = 26L;
 
 
     /*
@@ -276,6 +276,8 @@ public class Client implements Serializable
     private boolean requestObjectEncryptionEncMatchRequired;
     private String digestAlgorithm;
     private boolean singleAccessTokenPerSubject;
+    private boolean pkceRequired;
+    private boolean pkceS256Required;
 
 
     /**
@@ -3692,6 +3694,122 @@ public class Client implements Serializable
     public Client setSingleAccessTokenPerSubject(boolean single)
     {
         this.singleAccessTokenPerSubject = single;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether PKCE (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc7636.html">RFC 7636</a>) is required
+     * whenever this client makes an authorization request by the authorization
+     * code flow.
+     *
+     * <p>
+     * Note that even if this flag is {@code false}, PKCE is required if
+     * {@link Service#isPkceRequired() Service.pkceRequired} is {@code true}.
+     * </p>
+     *
+     * @return
+     *         {@code true} if PKCE is required whenever this client makes
+     *         an authorization request by the authorization code flow.
+     *
+     * @since 3.29
+     * @since Authlete 2.3
+     *
+     * @see Service#isPkceRequired()
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7636.html"
+     *      >RFC 7636 Proof Key for Code Exchange by OAuth Public Clients</a>
+     */
+    public boolean isPkceRequired()
+    {
+        return pkceRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether PKCE (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc7636.html">RFC 7636</a>) is required
+     * whenever this client makes an authorization request by the authorization
+     * code flow.
+     *
+     * <p>
+     * Note that even if this flag is {@code false}, PKCE is required if
+     * {@link Service#isPkceRequired() Service.pkceRequired} is {@code true}.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require PKCE whenever this client makes an
+     *         authorization request by the authorization code flow.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.29
+     * @since Authlete 2.3
+     *
+     * @see Service#setPkceRequired(boolean)
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7636.html"
+     *      >RFC 7636 Proof Key for Code Exchange by OAuth Public Clients</a>
+     */
+    public Client setPkceRequired(boolean required)
+    {
+        this.pkceRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether {@code S256} must be used as the code
+     * challenge method whenever this client uses PKCE (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc7636.html">RFC 7636</a>).
+     *
+     * <p>
+     * Note that even if this flag is {@code false}, {@code S256} is required
+     * if {@link Service#isPkceS256Required() Service.pkceS256Required} is
+     * {@code true}.
+     * </p>
+     *
+     * @return
+     *         {@code true} if {@code S256} must be used as the code challenge
+     *         method whenever this client uses PKCE.
+     *
+     * @since 3.29
+     * @since Authlete 2.3
+     *
+     * @see Service#setPkceS256Required(boolean)
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7636.html"
+     *      >RFC 7636 Proof Key for Code Exchange by OAuth Public Clients</a>
+     */
+    public boolean isPkceS256Required()
+    {
+        return pkceS256Required;
+    }
+
+
+    /**
+     * Set the flag indicating whether {@code S256} must be used as the code
+     * challenge method whenever this client uses PKCE (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc7636.html">RFC 7636</a>).
+     *
+     * @param required
+     *         {@code true} to require {@code S256} as the code challenge
+     *         method whenever this client uses PKCE.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.29
+     * @since Authlete 2.3
+     *
+     * @see Service#setPkceS256Required(boolean)
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7636.html"
+     *      >RFC 7636 Proof Key for Code Exchange by OAuth Public Clients</a>
+     */
+    public Client setPkceS256Required(boolean required)
+    {
+        this.pkceS256Required = required;
 
         return this;
     }
