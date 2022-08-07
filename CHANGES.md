@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.29 (2022-08-08)
+-----------------
+
 - `Client` class
     * Added `isPkceRequired()` method.
     * Added `setPkceRequired(boolean)` method.
