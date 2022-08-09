@@ -1,6 +1,25 @@
 変更点
 ======
 
+- `GrantType` 列挙型
+    * `JWT_BEARER` を追加。
+
+- `Service` クラス
+    * `isJwtGrantByIdentifiableClientsOnly()` メソッドを追加。
+    * `setJwtGrantByIdentifiableClientsOnly(boolean)` メソッドを追加。
+    * `isJwtGrantEncryptedJwtRejected()` メソッドを追加。
+    * `setJwtGrantEncryptedJwtRejected(boolean)` メソッドを追加。
+    * `isJwtGrantUnsignedJwtRejected()` メソッドを追加。
+    * `setJwtGrantUnsignedJwtRejected(boolean)` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getAssertion()` メソッドを追加。
+    * `setAssertion(String)` メソッドを追加。
+
+- `TokenResponse.Action` 列挙型
+    * `JWT_BEARER` を追加
+
+
 3.29 (2022 年 08 月 08 日)
 --------------------------
 

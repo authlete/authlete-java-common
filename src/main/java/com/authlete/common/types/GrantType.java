@@ -124,6 +124,24 @@ public enum GrantType
      * @since Authlete 2.3
      */
     TOKEN_EXCHANGE((short)8, "urn:ietf:params:oauth:grant-type:token-exchange"),
+
+
+    /**
+     * {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"} (9), a
+     * {@code grant_type} using a JWT as an authorization grant.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
+     *      Assertion Framework for OAuth 2.0 Client Authentication and
+     *      Authorization Grants</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
+     *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+     *      and Authorization Grants</a>
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    JWT_BEARER((short)9, "urn:ietf:params:oauth:grant-type:jwt-bearer"),
     ;
 
 
