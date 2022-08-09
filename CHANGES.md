@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.30 (2022-08-10)
+-----------------
+
 - `GrantType` enum
     * Added `JWT_BEARER`.
 
