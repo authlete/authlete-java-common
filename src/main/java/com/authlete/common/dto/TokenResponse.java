@@ -602,17 +602,182 @@ import com.authlete.common.util.Utils;
  * }</pre>
  *
  * </dd>
+ *
+ * <dt><b>{@link Action#JWT_BEARER JWT_BEARER}</b> (Authlete 2.3 onwards)</dt>
+ * <dd>
+ * <p>
+ * When the value of {@code "action"} is {@code "JWT_BEARER"}, it means that
+ * the request from the client application is a valid token request with the
+ * grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"} (<a href=
+ * "https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523 JSON Web Token (JWT)
+ * Profile for OAuth 2.0 Client Authentication and Authorization Grants</a>)
+ * and that the request has already passed the following validation steps.
+ * </p>
+ *
+ * <ol>
+ * <li>
+ *   <p>
+ *   Confirm that the {@code assertion} request parameter is given and its value
+ *   is not empty.
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   Confirm that the format of the assertion conforms to the JWT specification
+ *   (<a href="https://www.rfc-editor.org/rfc/rfc7519.html">RFC 7519</a>).
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   Check if the JWT is encrypted and if it is encrypted, then (a) reject the
+ *   token request when the {@link Service#isJwtGrantEncryptedJwtRejected()
+ *   jwtGrantEncryptedJwtRejected} flag of the service is {@code true} or (b)
+ *   skip remaining validation steps when the flag is {@code false}. Note that
+ *   Authlete does not verify an encrypted JWT because there is no standard way
+ *   to obtain the key to decrypt the JWT with. This means that you must verify
+ *   an encrypted JWT by yourself.
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   Confirm that the JWT contains the {@code iss} claim and its value is a
+ *   JSON string.
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   Confirm that the JWT contains the {@code sub} claim and its value is a
+ *   JSON string.
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   Confirm that the JWT contains the {@code aud} claim and its value is
+ *   either a JSON string or an array of JSON strings.
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   Confirm that the issuer identifier of the service (cf. {@link Service#getIssuer()})
+ *   or the URL of the token endpoint (cf. {@link Service#getTokenEndpoint()})
+ *   is listed as audience in the {@code aud} claim.
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   Confirm that the JWT contains the {@code exp} claim and the current time
+ *   has not reached the time indicated by the claim.
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   Confirm that the current time is equal to or after the time indicated by
+ *   by the {@code iat} claim if the JWT contains the claim.
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   Confirm that the current time is equal to or after the time indicated by
+ *   by the {@code nbf} claim if the JWT contains the claim.
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   Check if the JWT is signed and if it is not signed, then (a) reject the
+ *   token request when the {@link Service#isJwtGrantUnsignedJwtRejected()
+ *   jwtGrantUnsignedJwtRejected} flag of the service is {@code true} or (b)
+ *   finish validation on the JWT. Note that Authlete does not verify the
+ *   signature of the JWT because there is no standard way to obtain the key
+ *   to verify the signature of a JWT with. This means that you must verify
+ *   the signature by yourself.
+ *   </p>
+ * </ol>
+ *
+ * <p>
+ * Authlete provides some configuration options for the grant type as listed
+ * below. Authorization server implementers may utilize them and/or implement
+ * their own rules.
+ * </p>
+ *
+ * <ul>
+ * <li>
+ *   <p>
+ *   <code>{@link Service#isJwtGrantByIdentifiableClientsOnly()
+ *   Service.jwtGrantByIdentifiableClientsOnly} - </code>
+ *   whether to reject token requests that use the grant type
+ *   {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"} but contain no client
+ *   identifier.
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   <code>{@link Service#isJwtGrantEncryptedJwtRejected()
+ *   Service.jwtGrantEncryptedJwtRejected} - </code>
+ *   whether to reject token requests that use an encrypted JWT as an
+ *   authorization grant with the grant type
+ *   {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}.
+ *   </p>
+ *
+ * <li>
+ *   <p>
+ *   <code>{@link Service#isJwtGrantUnsignedJwtRejected()
+ *   Service.jwtGrantUnsignedJwtRejected} - </code>
+ *   whether to reject token requests that use an unsigned JWT as an
+ *   authorization grant with the grant type
+ *   {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}.
+ *   </p>
+ * </ul>
+ *
+ * <p>
+ * In the case of {@link Action#JWT_BEARER JWT_BEARER}, the {@link
+ * #getResponseContent()} method returns {@code null}. You have to construct
+ * the token response by yourself.
+ * </p>
+ *
+ * <p>
+ * For example, you may generate an access token by calling Authlete's
+ * {@code /api/auth/token/create} API and construct a token response like
+ * below.
+ * </p>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;">
+ * HTTP/1.1 200 OK
+ * Content-Type: application/json
+ * Cache-Control: no-cache, no-store
+ *
+ * {
+ *   "access_token": "{@link TokenCreateResponse#getAccessToken()}",
+ *   "token_type":   "Bearer",
+ *   "expires_in":   {@link TokenCreateResponse#getExpiresIn()},
+ *   "scope":        "String.join(" ", {@link TokenCreateResponse#getScopes()})"
+ * }</pre>
+ *
+ * <p>
+ * Finally, note again that Authlete does not verify the signature of the JWT
+ * specified by the {@code assertion} request parameter. You must verify the
+ * signature by yourself.
+ * </p>
+ *
+ * </dd>
  * </dl>
  *
  * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html"
  *      >RFC 6749 The OAuth 2.0 Authorization Framework</a>
+ *
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
+ *      Assertion Framework for OAuth 2.0 Client Authentication and
+ *      Authorization Grants</a>
+ *
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
+ *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+ *      and Authorization Grants</a>
  *
  * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
  *      >RFC 8693 OAuth 2.0 Token Exchange</a>
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 12L;
+    private static final long serialVersionUID = 13L;
 
 
     /**
@@ -670,6 +835,26 @@ public class TokenResponse extends ApiResponse
          * @since Authlete 2.3
          */
         TOKEN_EXCHANGE,
+
+        /**
+         * The token request from the client was a valid token request with
+         * the grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}.
+         * The service implementation must verify the signature of the assertion,
+         * create an access token, generate a response and return it to the
+         * client application.
+         *
+         * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
+         *      Assertion Framework for OAuth 2.0 Client Authentication and
+         *      Authorization Grants</a>
+         *
+         * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
+         *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+         *      and Authorization Grants</a>
+         *
+         * @since 3.30
+         * @since Authlete 2.3
+         */
+        JWT_BEARER,
     }
 
 
@@ -722,6 +907,12 @@ public class TokenResponse extends ApiResponse
     private String actorToken;
     private TokenType actorTokenType;
     private TokenInfo actorTokenInfo;
+
+    /*
+     * For RFC 7523 JSON Web Token (JWT) Profile for OAuth 2.0
+     * Client Authentication and Authorization Grants
+     */
+    private String assertion;
 
 
     /**
@@ -2021,5 +2212,67 @@ public class TokenResponse extends ApiResponse
     public void setActorTokenInfo(TokenInfo tokenInfo)
     {
         this.actorTokenInfo = tokenInfo;
+    }
+
+
+    /**
+     * Get the value of the {@code assertion} request parameter.
+     *
+     * <p>
+     * The {@code assertion} request parameter is defined in <a href=
+     * "https://www.rfc-editor.org/rfc/rfc7521.html#section-4.1">Section
+     * 4.1</a> of <a href="https://www.rfc-editor.org/rfc/rfc7521.html"
+     * >RFC 7521 Assertion Framework for OAuth 2.0 Client
+     * Authentication and Authorization Grants</a>.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code assertion} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
+     *      Assertion Framework for OAuth 2.0 Client Authentication and
+     *      Authorization Grants</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
+     *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+     *      and Authorization Grants</a>
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    public String getAssertion()
+    {
+        return assertion;
+    }
+
+
+    /**
+     * Set the value of the {@code assertion} request parameter.
+     *
+     * <p>
+     * The {@code assertion} request parameter is defined in <a href=
+     * "https://www.rfc-editor.org/rfc/rfc7521.html#section-4.1">Section
+     * 4.1</a> of <a href="https://www.rfc-editor.org/rfc/rfc7521.html"
+     * >RFC 7521 Assertion Framework for OAuth 2.0 Client
+     * Authentication and Authorization Grants</a>.
+     * </p>
+     *
+     * @param assertion
+     *         The value of the {@code assertion} request parameter.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
+     *      Assertion Framework for OAuth 2.0 Client Authentication and
+     *      Authorization Grants</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
+     *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+     *      and Authorization Grants</a>
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    public void setAssertion(String assertion)
+    {
+        this.assertion = assertion;
     }
 }

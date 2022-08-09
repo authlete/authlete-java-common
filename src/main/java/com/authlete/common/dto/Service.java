@@ -240,7 +240,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 59L;
+    private static final long serialVersionUID = 60L;
 
 
     /*
@@ -1130,6 +1130,38 @@ public class Service implements Serializable
      * @since Authlete 2.3
      */
     private boolean tokenExchangeUnsignedJwtRejected;
+
+
+    /**
+     * The flag indicating whether to prohibit unidentifiable clients from
+     * using the grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}.
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    private boolean jwtGrantByIdentifiableClientsOnly;
+
+
+    /**
+     * The flag indicating whether to reject token requests that use an
+     * encrypted JWT as an authorization grant with the grant type
+     * {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}.
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    private boolean jwtGrantEncryptedJwtRejected;
+
+
+    /**
+     * The flag indicating whether to reject token requests that use an
+     * unsigned JWT as an authorization grant with the grant type
+     * {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}.
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    private boolean jwtGrantUnsignedJwtRejected;
 
 
     /**
@@ -9004,6 +9036,319 @@ public class Service implements Serializable
     public Service setTokenExchangeUnsignedJwtRejected(boolean rejected)
     {
         this.tokenExchangeUnsignedJwtRejected = rejected;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to prohibit unidentifiable clients from
+     * using the grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * (<a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523</a>).
+     *
+     * <p>
+     * <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523 JSON Web
+     * Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization
+     * Grants</a> states as follows:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * <i>JWT authorization grants may be used with or without client
+     * authentication or <b>identification</b>.</i>
+     * </p>
+     * </blockquote>
+     *
+     * <p>
+     * Technically speaking, "<b>identification</b>" in the excerpted sentence
+     * means that a token request contains an identifier of the client that
+     * made the request.
+     * </p>
+     *
+     * <p>
+     * When this flag is set to {@code true}, this service rejects token requests
+     * that use the grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * but contain no client identifier.
+     * </p>
+     *
+     * @return
+     *         {@code true} if this service rejects token requests that use the
+     *         grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     *         but contain no client identifier.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
+     *      Assertion Framework for OAuth 2.0 Client Authentication and
+     *      Authorization Grants</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
+     *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+     *      and Authorization Grants</a>
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    public boolean isJwtGrantByIdentifiableClientsOnly()
+    {
+        return jwtGrantByIdentifiableClientsOnly;
+    }
+
+
+    /**
+     * Set the flag indicating whether to prohibit unidentifiable clients from
+     * using the grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * (<a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523</a>).
+     *
+     * <p>
+     * <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523 JSON Web
+     * Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization
+     * Grants</a> states as follows:
+     * </p>
+     *
+     * <blockquote>
+     * <p>
+     * <i>JWT authorization grants may be used with or without client
+     * authentication or <b>identification</b>.</i>
+     * </p>
+     * </blockquote>
+     *
+     * <p>
+     * Technically speaking, "<b>identification</b>" in the excerpted sentence
+     * means that a token request contains an identifier of the client that
+     * made the request.
+     * </p>
+     *
+     * <p>
+     * When this flag is set to {@code true}, this service rejects token requests
+     * that use the grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * but contain no client identifier.
+     * </p>
+     *
+     * @param only
+     *         {@code true} to reject token requests that use the grant type
+     *         {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"} but
+     *         contain no client identifier.
+     *
+     * @return
+     *         {@code this} service.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
+     *      Assertion Framework for OAuth 2.0 Client Authentication and
+     *      Authorization Grants</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
+     *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+     *      and Authorization Grants</a>
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    public Service setJwtGrantByIdentifiableClientsOnly(boolean only)
+    {
+        this.jwtGrantByIdentifiableClientsOnly = only;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to reject token requests that use
+     * an encrypted JWT as an authorization grant with the grant type
+     * {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * (<a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523</a>).
+     *
+     * <p>
+     * When this {@code jwtGrantEncryptedJwtRejected} flag is {@code true},
+     * token requests that use an encrypted JWT as an authorization grant with
+     * the grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * are rejected.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code false}, Authlete skips remaining validation
+     * steps on an input assertion when Authlete detects that it is an
+     * encrypted JWT.
+     * </p>
+     *
+     * <p>
+     * See the description of {@link TokenResponse} for details about validation
+     * Authlete performs for the grant type.
+     * </p>
+     *
+     * @return
+     *         {@code true} if token requests that use an encrypted JWT as
+     *         an authorization grant with the grant type
+     *         {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"} are
+     *         rejected.
+     *
+     * @see TokenResponse
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
+     *      Assertion Framework for OAuth 2.0 Client Authentication and
+     *      Authorization Grants</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
+     *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+     *      and Authorization Grants</a>
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    public boolean isJwtGrantEncryptedJwtRejected()
+    {
+        return jwtGrantEncryptedJwtRejected;
+    }
+
+
+    /**
+     * Set the flag indicating whether to reject token requests that use
+     * an encrypted JWT as an authorization grant with the grant type
+     * {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * (<a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523</a>).
+     *
+     * <p>
+     * When this {@code jwtGrantEncryptedJwtRejected} flag is {@code true},
+     * token requests that use an encrypted JWT as an authorization grant with
+     * the grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * are rejected.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code false}, Authlete skips remaining validation
+     * steps on an input assertion when Authlete detects that it is an
+     * encrypted JWT.
+     * </p>
+     *
+     * <p>
+     * See the description of {@link TokenResponse} for details about validation
+     * Authlete performs for the grant type.
+     * </p>
+     *
+     * @param rejected
+     *         {@code true} to reject token requests that use an encrypted JWT
+     *         as an authorization grant with the grant type
+     *         {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see TokenResponse
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
+     *      Assertion Framework for OAuth 2.0 Client Authentication and
+     *      Authorization Grants</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
+     *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+     *      and Authorization Grants</a>
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    public Service setJwtGrantEncryptedJwtRejected(boolean rejected)
+    {
+        this.jwtGrantEncryptedJwtRejected = rejected;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to reject token requests that use
+     * an unsigned JWT as an authorization grant with the grant type
+     * {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * (<a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523</a>).
+     *
+     * <p>
+     * When this {@code jwtGrantUnsignedJwtRejected} flag is {@code true},
+     * token requests that use an unsigned JWT as an authorization grant with
+     * the grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * are rejected.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code false}, Authlete skips remaining validation
+     * steps on an input assertion when Authlete detects that it is an
+     * unsigned JWT.
+     * </p>
+     *
+     * <p>
+     * See the description of {@link TokenResponse} for details about validation
+     * Authlete performs for the grant type.
+     * </p>
+     *
+     * @return
+     *         {@code true} if token requests that use an unsigned JWT as
+     *         an authorization grant with the grant type
+     *         {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"} are
+     *         rejected.
+     *
+     * @see TokenResponse
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
+     *      Assertion Framework for OAuth 2.0 Client Authentication and
+     *      Authorization Grants</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
+     *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+     *      and Authorization Grants</a>
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    public boolean isJwtGrantUnsignedJwtRejected()
+    {
+        return jwtGrantUnsignedJwtRejected;
+    }
+
+
+    /**
+     * Set the flag indicating whether to reject token requests that use
+     * an unsigned JWT as an authorization grant with the grant type
+     * {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * (<a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523</a>).
+     *
+     * <p>
+     * When this {@code jwtGrantUnsignedJwtRejected} flag is {@code true},
+     * token requests that use an unsigned JWT as an authorization grant with
+     * the grant type {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}
+     * are rejected.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code false}, Authlete skips remaining validation
+     * steps on an input assertion when Authlete detects that it is an
+     * unsigned JWT.
+     * </p>
+     *
+     * <p>
+     * See the description of {@link TokenResponse} for details about validation
+     * Authlete performs for the grant type.
+     * </p>
+     *
+     * @param rejected
+     *         {@code true} to reject token requests that use an unsigned JWT
+     *         as an authorization grant with the grant type
+     *         {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see TokenResponse
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
+     *      Assertion Framework for OAuth 2.0 Client Authentication and
+     *      Authorization Grants</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
+     *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
+     *      and Authorization Grants</a>
+     *
+     * @since 3.30
+     * @since Authlete 2.3
+     */
+    public Service setJwtGrantUnsignedJwtRejected(boolean rejected)
+    {
+        this.jwtGrantUnsignedJwtRejected = rejected;
 
         return this;
     }

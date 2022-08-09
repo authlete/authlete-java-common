@@ -1,6 +1,25 @@
 CHANGES
 =======
 
+- `GrantType` enum
+    * Added `JWT_BEARER`.
+
+- `Service` class
+    * Added `isJwtGrantByIdentifiableClientsOnly()` method.
+    * Added `setJwtGrantByIdentifiableClientsOnly(boolean)` method.
+    * Added `isJwtGrantEncryptedJwtRejected()` method.
+    * Added `setJwtGrantEncryptedJwtRejected(boolean)` method.
+    * Added `isJwtGrantUnsignedJwtRejected()` method.
+    * Added `setJwtGrantUnsignedJwtRejected(boolean)` method.
+
+- `TokenResponse` class
+    * Added `getAssertion()` method.
+    * Added `setAssertion(String)` method.
+
+- `TokenResponse.Action` enum
+    * Added `JWT_BEARER`.
+
+
 3.29 (2022-08-08)
 -----------------
 
