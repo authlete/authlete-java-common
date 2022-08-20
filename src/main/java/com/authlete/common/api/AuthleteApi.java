@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2021 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,6 +46,8 @@ import com.authlete.common.dto.DeviceCompleteRequest;
 import com.authlete.common.dto.DeviceCompleteResponse;
 import com.authlete.common.dto.DeviceVerificationRequest;
 import com.authlete.common.dto.DeviceVerificationResponse;
+import com.authlete.common.dto.FederationConfigurationRequest;
+import com.authlete.common.dto.FederationConfigurationResponse;
 import com.authlete.common.dto.GMRequest;
 import com.authlete.common.dto.GMResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
@@ -1577,4 +1579,20 @@ public interface AuthleteApi
      */
     void updateClientLockFlag(
             String clientIdentifier, boolean clientLocked) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /federation/configuration} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.31
+     * @since Authlete 2.3
+     */
+    FederationConfigurationResponse federationConfiguration(
+            FederationConfigurationRequest request) throws AuthleteApiException;
 }

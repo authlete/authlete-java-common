@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2021 Authlete, Inc.
+ * Copyright (C) 2017-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,6 +63,8 @@ import com.authlete.common.dto.DeviceCompleteRequest;
 import com.authlete.common.dto.DeviceCompleteResponse;
 import com.authlete.common.dto.DeviceVerificationRequest;
 import com.authlete.common.dto.DeviceVerificationResponse;
+import com.authlete.common.dto.FederationConfigurationRequest;
+import com.authlete.common.dto.FederationConfigurationResponse;
 import com.authlete.common.dto.GMRequest;
 import com.authlete.common.dto.GMResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
@@ -181,6 +183,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String ECHO_API_PATH                          = "/api/misc/echo";
     private static final String GM_API_PATH                            = "/api/gm";
     private static final String CLIENT_LOCK_FLAG_UPDATE_API_PATH       = "/api/client/lock_flag/update";
+    private static final String FEDERATION_CONFIGURATION_API_PATH      = "/api/federation/configuration";
 
 
     private final String mBaseUrl;
@@ -1613,5 +1616,15 @@ class AuthleteApiImpl implements AuthleteApi
         callServicePostApi(
                 CLIENT_LOCK_FLAG_UPDATE_API_PATH, request,
                 ApiResponse.class);
+    }
+
+
+    @Override
+    public FederationConfigurationResponse federationConfiguration(
+            FederationConfigurationRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                FEDERATION_CONFIGURATION_API_PATH, request,
+                FederationConfigurationResponse.class);
     }
 }
