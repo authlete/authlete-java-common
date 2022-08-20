@@ -1,6 +1,23 @@
 変更点
 ======
 
+3.31 (2022 年 08 月 20 日)
+--------------------------
+
+- `AuthleteApi` インターフェース
+    * Added `federationConfiguration(FederationConfigurationRequest)` メソッドを追加。
+
+- `Service` クラス
+    * `getFederationSignatureKeyId()` メソッドを追加。
+    * `setFederationSignatureKeyId(String)` メソッドを追加。
+    * `getFederationConfigurationDuration()` メソッドを追加。
+    * `setFederationConfigurationDuration(long)` メソッドを追加。
+
+- 新しい型
+    * `FederationConfigurationRequest` クラス
+    * `FederationConfigurationResponse` クラス
+
+
 3.30 (2022 年 08 月 10 日)
 --------------------------
 

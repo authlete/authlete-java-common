@@ -1,6 +1,23 @@
 CHANGES
 =======
 
+3.31 (2022-08-20)
+-----------------
+
+- `AuthleteApi` interface
+    * Added `federationConfiguration(FederationConfigurationRequest)` method.
+
+- `Service` class
+    * Added `getFederationSignatureKeyId()` method.
+    * Added `setFederationSignatureKeyId(String)` method.
+    * Added `getFederationConfigurationDuration()` method.
+    * Added `setFederationConfigurationDuration(long)` method.
+
+- New types
+    * `FederationConfigurationRequest` class
+    * `FederationConfigurationResponse` class
+
+
 3.30 (2022-08-10)
 -----------------
 

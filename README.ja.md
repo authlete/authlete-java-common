@@ -35,7 +35,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>3.30</version>
+    <version>3.31</version>
 </dependency>
 ```
 
@@ -329,6 +329,10 @@ settings.setReadTimeout(5000);
   19. Grant Management for OAuth 2.0 に関するメソッド群
 
   - `gm(GMRequest)`
+
+  20. OpenID Connect Federation 1.0 に関するメソッド群
+
+  - `federationConfiguration(FederationConfigurationRequest)`
 
 
 *例*

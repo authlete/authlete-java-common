@@ -36,7 +36,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>3.30</version>
+    <version>3.31</version>
 </dependency>
 ```
 
@@ -340,6 +340,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   19. Methods for Grant Management for OAuth 2.0
 
   - `gm(GMRequest)`
+
+  20. Methods for OpenID Connect Federation 1.0
+
+  - `federationConfiguration(FederationConfigurationRequest)`
 
 *Examples*
 
