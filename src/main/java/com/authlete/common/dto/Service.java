@@ -1050,6 +1050,25 @@ public class Service implements Serializable
 
 
     /**
+     * A key ID to identify a JWK used to sign the entity configuration and
+     * the signed JWK Set.
+     *
+     * @since 3.31
+     * @since Authlete 2.3
+     */
+    private String federationSignatureKeyId;
+
+
+    /**
+     * The duration of the entity configuration in seconds.
+     *
+     * @since 3.31
+     * @since Authlete 2.3
+     */
+    private long federationConfigurationDuration;
+
+
+    /**
      * The URI of the endpoint that returns this service's JWK Set document in
      * the JWT format. This property corresponds to the {@code signed_jwks_uri}
      * server metadata defined in OpenID Connect Federation 1.0.
@@ -8385,6 +8404,154 @@ public class Service implements Serializable
     public Service setFederationJwks(String jwks)
     {
         this.federationJwks = jwks;
+
+        return this;
+    }
+
+
+    /**
+     * Get the key ID to identify a JWK that should be used to sign the entity
+     * configuration and the signed JWK Set.
+     *
+     * <p>
+     * The entity configuration is a kind of JWT and published at
+     * {@code /.well-known/openid-federation} or at a variant location such as
+     * {@code /.well-known/openid-federation}<i>{path_part_of_issuer}</i>.
+     * </p>
+     *
+     * <p>
+     * The signed JWK Set is also a kind of JWT and published at the URL
+     * designated by the {@code signed_jwks_uri} server metadata.
+     * </p>
+     *
+     * <p>
+     * When this property is specified, Authlete will use the JWK having the
+     * specified key ID when signing the entity configuration and the signed
+     * JWK Set. Otherwise, when this property is omitted, there is no guarantee
+     * as to which JWK Authlete will choose.
+     * </p>
+     *
+     * @return
+     *         A key ID. May be {@code null}.
+     *
+     * @since 3.31
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public String getFederationSignatureKeyId()
+    {
+        return federationSignatureKeyId;
+    }
+
+
+    /**
+     * Set the key ID to identify a JWK that should be used to sign the entity
+     * configuration and the signed JWK Set.
+     *
+     * <p>
+     * The entity configuration is a kind of JWT and published at
+     * {@code /.well-known/openid-federation} or at a variant location such as
+     * {@code /.well-known/openid-federation}<i>{path_part_of_issuer}</i>.
+     * </p>
+     *
+     * <p>
+     * The signed JWK Set is also a kind of JWT and published at the URL
+     * designated by the {@code signed_jwks_uri} server metadata.
+     * </p>
+     *
+     * <p>
+     * When this property is specified, Authlete will use the JWK having the
+     * specified key ID when signing the entity configuration and the signed
+     * JWK Set. Otherwise, when this property is omitted, there is no guarantee
+     * as to which JWK Authlete will choose.
+     * </p>
+     *
+     * @param keyId
+     *         A key ID. May be {@code null}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.31
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Service setFederationSignatureKeyId(String keyId)
+    {
+        this.federationSignatureKeyId = keyId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of the entity configuration in seconds.
+     *
+     * <p>
+     * An OpenID provider that participates in an OpenID Connect federation
+     * must publish its entity configuration at
+     * {@code /.well-known/openid-federation} or at a variant location such as
+     * <code>/.well-known/openid-federation<i>{path_part_of_issuer}</i></code>.
+     * An entity configuration is a kind of JWT. This property specifies the
+     * duration of the JWT in seconds.
+     * </p>
+     *
+     * <p>
+     * When the value of this property is 0, the default value determined by
+     * your Authlete server is used as the duration of the entity configuration.
+     * </p>
+     *
+     * @return
+     *         The duration of the entity configuration in seconds.
+     *
+     * @since 3.31
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public long getFederationConfigurationDuration()
+    {
+        return federationConfigurationDuration;
+    }
+
+
+    /**
+     * Set the duration of the entity configuration in seconds.
+     *
+     * <p>
+     * An OpenID provider that participates in an OpenID Connect federation
+     * must publish its entity configuration at
+     * {@code /.well-known/openid-federation} or at a variant location such as
+     * <code>/.well-known/openid-federation<i>{path_part_of_issuer}</i></code>.
+     * An entity configuration is a kind of JWT. This property specifies the
+     * duration of the JWT in seconds.
+     * </p>
+     *
+     * <p>
+     * When the value of this property is 0, the default value determined by
+     * your Authlete server is used as the duration of the entity configuration.
+     * </p>
+     *
+     * @param duration
+     *         The duration of the entity configuration in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.31
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Service setFederationConfigurationDuration(long duration)
+    {
+        this.federationConfigurationDuration = duration;
 
         return this;
     }
