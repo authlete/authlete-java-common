@@ -1,11 +1,16 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isDcrDuplicateSoftwareIdBlocked()` メソッドを追加。
+    * `setDcrDuplicateSoftwareIdBlocked(boolean)` メソッドを追加。
+
+
 3.31 (2022 年 08 月 20 日)
 --------------------------
 
 - `AuthleteApi` インターフェース
-    * Added `federationConfiguration(FederationConfigurationRequest)` メソッドを追加。
+    * `federationConfiguration(FederationConfigurationRequest)` メソッドを追加。
 
 - `Service` クラス
     * `getFederationSignatureKeyId()` メソッドを追加。

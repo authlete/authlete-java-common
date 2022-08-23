@@ -240,7 +240,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 60L;
+    private static final long serialVersionUID = 61L;
 
 
     /*
@@ -1181,6 +1181,16 @@ public class Service implements Serializable
      * @since Authlete 2.3
      */
     private boolean jwtGrantUnsignedJwtRejected;
+
+
+    /**
+     * The flag indicating whether to block DCR (Dynamic Client Registration)
+     * requests whose {@code software_id} has already been used previously.
+     *
+     * @since 3.32
+     * @since Authlete 2.2.30
+     */
+    private boolean dcrDuplicateSoftwareIdBlocked;
 
 
     /**
@@ -9516,6 +9526,79 @@ public class Service implements Serializable
     public Service setJwtGrantUnsignedJwtRejected(boolean rejected)
     {
         this.jwtGrantUnsignedJwtRejected = rejected;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to block DCR (Dynamic Client Registration)
+     * requests whose {@code software_id} has already been used previously.
+     *
+     * <p>
+     * A DCR request may contain the {@code software_id} client metadata (which
+     * is defined in <a href="https://www.rfc-editor.org/rfc/rfc7591.html">RFC
+     * 7591</a>). The client metadata is saved in Authlete's database together
+     * with other client metadata.
+     * </p>
+     *
+     * <p>
+     * If this {@code dcrDuplicateSoftwareIdBlocked} flag is {@code true},
+     * Authlete checks whether the value of the {@code software_id} client
+     * metadata included in a DCR request already exists in the database,
+     * and rejects the DCR request if one exists.
+     * </p>
+     *
+     * @return
+     *         {@code true} if DCR requests whose {@code software_id} has already
+     *         been used previously are blocked.
+     *
+     * @since 3.32
+     * @since Authlete 2.2.30
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7591.html"
+     *      >RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol</a>
+     */
+    public boolean isDcrDuplicateSoftwareIdBlocked()
+    {
+        return dcrDuplicateSoftwareIdBlocked;
+    }
+
+
+    /**
+     * Set the flag indicating whether to block DCR (Dynamic Client Registration)
+     * requests whose {@code software_id} has already been used previously.
+     *
+     * <p>
+     * A DCR request may contain the {@code software_id} client metadata (which
+     * is defined in <a href="https://www.rfc-editor.org/rfc/rfc7591.html">RFC
+     * 7591</a>). The client metadata is saved in Authlete's database together
+     * with other client metadata.
+     * </p>
+     *
+     * <p>
+     * If this {@code dcrDuplicateSoftwareIdBlocked} flag is {@code true},
+     * Authlete checks whether the value of the {@code software_id} client
+     * metadata included in a DCR request already exists in the database,
+     * and rejects the DCR request if one exists.
+     * </p>
+     *
+     * @param blocked
+     *         {@code true} to block DCR requests whose {@code software_id} has
+     *         already been used previously.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.32
+     * @since Authlete 2.2.30
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7591.html"
+     *      >RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol</a>
+     */
+    public Service setDcrDuplicateSoftwareIdBlocked(boolean blocked)
+    {
+        this.dcrDuplicateSoftwareIdBlocked = blocked;
 
         return this;
     }
