@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.32 (2022-08-23)
+-----------------
+
 - `Service` class
     * Added `isDcrDuplicateSoftwareIdBlocked()` method.
     * Added `setDcrDuplicateSoftwareIdBlocked(boolean)` method.

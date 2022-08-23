@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.32 (2022 年 08 月 23 日)
+--------------------------
+
 - `Service` クラス
     * `isDcrDuplicateSoftwareIdBlocked()` メソッドを追加。
     * `setDcrDuplicateSoftwareIdBlocked(boolean)` メソッドを追加。
