@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+3.34 (2022-09-06)
+-----------------
+
+- `Client` class
+    * Added `getOrganizationName()` method.
+    * Added `setOrganizationName(String)` method.
+    * Added `getSignedJwksUri()` method.
+    * Added `setSignedJwksUri(URI)` method.
+
+
 3.33 (2022-09-05)
 -----------------
 

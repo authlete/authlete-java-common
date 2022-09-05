@@ -1,6 +1,16 @@
 変更点
 ======
 
+3.34 (2022 年 09 月 06 日)
+--------------------------
+
+- `Client` クラス
+    * `getOrganizationName()` メソッドを追加。
+    * `setOrganizationName(String)` メソッドを追加。
+    * `getSignedJwksUri()` メソッドを追加。
+    * `setSignedJwksUri(URI)` メソッドを追加。
+
+
 3.33 (2022 年 09 月 05 日)
 --------------------------
 
