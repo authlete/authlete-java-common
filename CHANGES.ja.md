@@ -1,6 +1,26 @@
 変更点
 ======
 
+3.33 (2022 年 09 月 05 日)
+--------------------------
+
+- `Client` クラス
+    * `getEntityId()` メソッドを追加。
+    * `setEntityId(URI)` メソッドを追加。
+    * `getTrustAnchorId()` メソッドを追加。
+    * `setTrustAnchorId(URI)` メソッドを追加。
+    * `getTrustChain()` メソッドを追加。
+    * `setTrustChain(String[])` メソッドを追加。
+    * `getTrustChainExpiresAt()` メソッドを追加。
+    * `setTrustChainExpiresAt(long)` メソッドを追加。
+    * `getTrustChainUpdatedAt()` メソッドを追加。
+    * `setTrustChainUpdatedAt(long)` メソッドを追加。
+
+- `ErrorCode` 列挙型
+    * `missing_trust_anchor` を追加。
+    * `validation_failed` を追加。
+
+
 3.32 (2022 年 08 月 23 日)
 --------------------------
 

@@ -1,6 +1,26 @@
 CHANGES
 =======
 
+3.33 (2022-09-05)
+-----------------
+
+- `Client` class
+    * Added `getEntityId()` method.
+    * Added `setEntityId(URI)` method.
+    * Added `getTrustAnchorId()` method.
+    * Added `setTrustAnchorId(URI)` method.
+    * Added `getTrustChain()` method.
+    * Added `setTrustChain(String[])` method.
+    * Added `getTrustChainExpiresAt()` method.
+    * Added `setTrustChainExpiresAt(long)` method.
+    * Added `getTrustChainUpdatedAt()` method.
+    * Added `setTrustChainUpdatedAt(long)` method.
+
+- `ErrorCode` enum
+    * Added `missing_trust_anchor`.
+    * Added `validation_failed`.
+
+
 3.32 (2022-08-23)
 -----------------
 
