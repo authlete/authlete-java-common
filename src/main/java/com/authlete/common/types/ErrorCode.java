@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2021 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,22 +26,22 @@ package com.authlete.common.types;
  * #request_uri_not_supported} are not used.
  * </p>
  *
- * @see <a href="http://tools.ietf.org/html/rfc6749#section-4.1.2.1"
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.1.2.1"
  *      >RFC 6749 (OAuth 2.0), 4.1.2.1. Error Response</a>
  *
- * @see <a href="http://tools.ietf.org/html/rfc6749#section-4.2.2.1"
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.2.2.1"
  *      >RFC 6749 (OAuth 2.0), 4.2.2.1. Error Response</a>
  *
- * @see <a href="http://tools.ietf.org/html/rfc6749#section-5.2"
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-5.2"
  *      >RFC 6749 (OAuth 2.0), 5.2. Error Response</a>
  *
- * @see <a href="http://tools.ietf.org/html/rfc6750#section-3.1"
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc6750.html#section-3.1"
  *      >RFC 6750 (OAuth 2.0 Bearer Token Usage), 3.1. Error Codes</a>
  *
- * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthError"
+ * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthError"
  *      >OpenID Connect Core 1.0, 3.1.2.6. Authorization Error Response</a>
  *
- * @see <a href="https://tools.ietf.org/html/rfc7591#section-3.2.2"
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc7591.html#section-3.2.2"
  *      >RFC 7591, 3.2.2. Client Registration Error Response</a>
  *
  * @author Takahiko Kawasaki
@@ -169,7 +169,7 @@ public enum ErrorCode
 
     /**
      * The OP does not support use of the {@code registration}
-     * parameter defined in <a href="http://openid.net/specs/openid-connect-core-1_0.html#RegistrationParameter"
+     * parameter defined in <a href="https://openid.net/specs/openid-connect-core-1_0.html#RegistrationParameter"
      * >Section 7.2.1</a>.
      */
     registration_not_supported,
@@ -177,7 +177,7 @@ public enum ErrorCode
 
     /**
      * The OP does not support use of the {@code request} parameter
-     * defined in <a href="http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests"
+     * defined in <a href="https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests"
      * >Section 6</a>.
      */
     request_not_supported,
@@ -185,7 +185,7 @@ public enum ErrorCode
 
     /**
      * The OP does not support use of the {@code request_uri} parameter
-     * defined in <a href="http://openid.net/specs/openid-connect-core-1_0.html#JWTRequests"
+     * defined in <a href="https://openid.net/specs/openid-connect-core-1_0.html#JWTRequests"
      * >Section 6</a>.
      */
     request_uri_not_supported,
@@ -237,9 +237,9 @@ public enum ErrorCode
      *
      * <p>
      * See "<a href=
-     * "https://tools.ietf.org/html/rfc7591#section-3.2.2">3.2.2.
+     * "https://www.rfc-editor.org/rfc/rfc7591.html#section-3.2.2">3.2.2.
      * Client Registration Error Response</a>" in <a href=
-     * "https://tools.ietf.org/html/rfc7591">RFC 7591</a> for details.
+     * "https://www.rfc-editor.org/rfc/rfc7591.html">RFC 7591</a> for details.
      * </p>
      *
      * @since 2.22
@@ -253,9 +253,9 @@ public enum ErrorCode
      *
      * <p>
      * See "<a href=
-     * "https://tools.ietf.org/html/rfc7591#section-3.2.2">3.2.2.
+     * "https://www.rfc-editor.org/rfc/rfc7591.html#section-3.2.2">3.2.2.
      * Client Registration Error Response</a>" in <a href=
-     * "https://tools.ietf.org/html/rfc7591">RFC 7591</a> for details.
+     * "https://www.rfc-editor.org/rfc/rfc7591.html">RFC 7591</a> for details.
      * </p>
      *
      * @since 2.22
@@ -268,9 +268,9 @@ public enum ErrorCode
      *
      * <p>
      * See "<a href=
-     * "https://tools.ietf.org/html/rfc7591#section-3.2.2">3.2.2.
+     * "https://www.rfc-editor.org/rfc/rfc7591.html#section-3.2.2">3.2.2.
      * Client Registration Error Response</a>" in <a href=
-     * "https://tools.ietf.org/html/rfc7591">RFC 7591</a> for details.
+     * "https://www.rfc-editor.org/rfc/rfc7591.html">RFC 7591</a> for details.
      * </p>
      *
      * @since 2.22
@@ -284,9 +284,9 @@ public enum ErrorCode
      *
      * <p>
      * See "<a href=
-     * "https://tools.ietf.org/html/rfc7591#section-3.2.2">3.2.2.
+     * "https://www.rfc-editor.org/rfc/rfc7591.html#section-3.2.2">3.2.2.
      * Client Registration Error Response</a>" in <a href=
-     * "https://tools.ietf.org/html/rfc7591">RFC 7591</a> for details.
+     * "https://www.rfc-editor.org/rfc/rfc7591.html">RFC 7591</a> for details.
      * </p>
      *
      * @since 2.22
@@ -458,5 +458,29 @@ public enum ErrorCode
      * @since 3.1
      */
     invalid_grant_id,
+
+
+    /**
+     * No trusted Trust Anchor could be found.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     */
+    missing_trust_anchor,
+
+
+    /**
+     * Trust chain validation failed.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     */
+    validation_failed,
     ;
 }
