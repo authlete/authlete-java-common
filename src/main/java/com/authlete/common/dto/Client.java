@@ -51,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 27L;
+    private static final long serialVersionUID = 28L;
 
 
     /*
@@ -287,6 +287,8 @@ public class Client implements Serializable
     private String[] trustChain;
     private long trustChainExpiresAt;
     private long trustChainUpdatedAt;
+    private String organizationName;
+    private URI signedJwksUri;
 
 
     /**
@@ -4076,6 +4078,106 @@ public class Client implements Serializable
     public Client setTrustChainUpdatedAt(long updatedAt)
     {
         this.trustChainUpdatedAt = updatedAt;
+
+        return this;
+    }
+
+
+    /**
+     * Get the human-readable name representing the organization that manages
+     * this client. This property corresponds to the {@code organization_name}
+     * client metadata that is defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * @return
+     *         The name of the organization that manages this client.
+     *
+     * @since 3.34
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public String getOrganizationName()
+    {
+        return organizationName;
+    }
+
+
+    /**
+     * Set the human-readable name representing the organization that manages
+     * this client. This property corresponds to the {@code organization_name}
+     * client metadata that is defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * @param name
+     *         The name of the organization that manages this client.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.34
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Client setOrganizationName(String name)
+    {
+        this.organizationName = name;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the endpoint that returns this client's JWK Set document in
+     * the JWT format. This property corresponds to the {@code signed_jwks_uri}
+     * client metadata defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * @return
+     *         The URI of the endpoint that returns this client's JWK Set
+     *         document in the JWT format.
+     *
+     * @since 3.34
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public URI getSignedJwksUri()
+    {
+        return signedJwksUri;
+    }
+
+
+    /**
+     * Set the URI of the endpoint that returns this client's JWK Set document in
+     * the JWT format. This property corresponds to the {@code signed_jwks_uri}
+     * client metadata defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     *
+     * @param uri
+     *         The URI of the endpoint that returns this client's JWK Set
+     *         document in the JWT format.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.34
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Client setSignedJwksUri(URI uri)
+    {
+        this.signedJwksUri = uri;
 
         return this;
     }
