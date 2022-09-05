@@ -51,7 +51,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 26L;
+    private static final long serialVersionUID = 27L;
 
 
     /*
@@ -278,6 +278,15 @@ public class Client implements Serializable
     private boolean singleAccessTokenPerSubject;
     private boolean pkceRequired;
     private boolean pkceS256Required;
+
+    /*
+     * For OpenID Connect Federation 1.0.
+     */
+    private URI entityId;
+    private URI trustAnchorId;
+    private String[] trustChain;
+    private long trustChainExpiresAt;
+    private long trustChainUpdatedAt;
 
 
     /**
@@ -3810,6 +3819,263 @@ public class Client implements Serializable
     public Client setPkceS256Required(boolean required)
     {
         this.pkceS256Required = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the entity ID of this client.
+     *
+     * <p>
+     * This property holds a non-null value only when this client has been
+     * registered by the mechanism defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @return
+     *         The entity ID.
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public URI getEntityId()
+    {
+        return entityId;
+    }
+
+
+    /**
+     * Set the entity ID of this client.
+     *
+     * <p>
+     * This property holds a non-null value only when this client has been
+     * registered by the mechanism defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @param entityId
+     *         The entity ID.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Client setEntityId(URI entityId)
+    {
+        this.entityId = entityId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the entity ID of the trust anchor of the trust chain that was used
+     * when this client was registered or updated by the mechanism defined in
+     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     * >OpenID Connect Federation 1&#x002E;0</a>.
+     *
+     * @return
+     *         The entity ID of the trust anchor.
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public URI getTrustAnchorId()
+    {
+        return trustAnchorId;
+    }
+
+
+    /**
+     * Set the entity ID of the trust anchor of the trust chain that was used
+     * when this client was registered or updated by the mechanism defined in
+     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     * >OpenID Connect Federation 1&#x002E;0</a>.
+     *
+     * @param trustAnchorId
+     *         The entity ID of the trust anchor.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Client setTrustAnchorId(URI trustAnchorId)
+    {
+        this.trustAnchorId = trustAnchorId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the trust chain that was used when this client was registered or
+     * updated by the mechanism defined in
+     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     * >OpenID Connect Federation 1&#x002E;0</a>.
+     *
+     * <p>
+     * The elements in the array are entity statements that are ordered from
+     * the entity configuration of this client to the entity statement of the
+     * trust anchor. There may be one or more entity statements of intermediate
+     * entities in between. The format of the elements is a signed JWT (JWS).
+     * </p>
+     *
+     * @return
+     *         The trust chain.
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public String[] getTrustChain()
+    {
+        return trustChain;
+    }
+
+
+    /**
+     * Set the trust chain that was used when this client was registered or
+     * updated by the mechanism defined in
+     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     * >OpenID Connect Federation 1&#x002E;0</a>.
+     *
+     * <p>
+     * The elements in the array are entity statements that are ordered from
+     * the entity configuration of this client to the entity statement of the
+     * trust anchor. There may be one or more entity statements of intermediate
+     * entities in between. The format of the elements is a signed JWT (JWS).
+     * </p>
+     *
+     * @param trustChain
+     *         The trust chain.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Client setTrustChain(String[] trustChain)
+    {
+        this.trustChain = trustChain;
+
+        return this;
+    }
+
+
+    /**
+     * Get the expiration time of the trust chain that was used when this client
+     * was registered or updated by the mechanism defined in
+     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     * >OpenID Connect Federation 1&#x002E;0</a>. The value is represented as
+     * milliseconds elapsed since the Unix epoch (1970-01-01).
+     *
+     * @return
+     *         The expiration time of the trust chain.
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public long getTrustChainExpiresAt()
+    {
+        return trustChainExpiresAt;
+    }
+
+
+    /**
+     * Set the expiration time of the trust chain that was used when this client
+     * was registered or updated by the mechanism defined in
+     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     * >OpenID Connect Federation 1&#x002E;0</a>. The value is represented as
+     * milliseconds elapsed since the Unix epoch (1970-01-01).
+     *
+     * @param expiresAt
+     *         The expiration time of the trust chain.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Client setTrustChainExpiresAt(long expiresAt)
+    {
+        this.trustChainExpiresAt = expiresAt;
+
+        return this;
+    }
+
+
+    /**
+     * Get the time at which the trust chain was updated by the mechanism defined
+     * in <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     * >OpenID Connect Federation 1&#x002E;0</a>.
+     *
+     * @return
+     *         The time at which the trust chain was updated.
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public long getTrustChainUpdatedAt()
+    {
+        return trustChainUpdatedAt;
+    }
+
+
+    /**
+     * Set the time at which the trust chain was updated by the mechanism defined
+     * in <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     * >OpenID Connect Federation 1&#x002E;0</a>.
+     *
+     * @param updatedAt
+     *         The time at which the trust chain was updated.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.33
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Client setTrustChainUpdatedAt(long updatedAt)
+    {
+        this.trustChainUpdatedAt = updatedAt;
 
         return this;
     }
