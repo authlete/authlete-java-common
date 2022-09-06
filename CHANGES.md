@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+3.35 (2022-09-07)
+-----------------
+
+- `TokenRequest` class
+    * Added `getJwtAtClaims()` method.
+    * Added `setJwtAtClaims(String)` method.
+
+
 3.34 (2022-09-06)
 -----------------
 

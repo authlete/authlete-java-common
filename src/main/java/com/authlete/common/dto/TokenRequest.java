@@ -131,6 +131,15 @@ import com.authlete.common.web.URLCoder;
  * </p>
  * </dd>
  *
+ * <dt><b><code>jwtAtClaims</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
+ * <dd>
+ * <p>
+ * Additional claims in JSON object format that are added to the payload part
+ * of the JWT access token. See the description of {@link #getJwtAtClaims()}
+ * for details.
+ * </p>
+ * </dd>
+ *
  * <dt><b><code>accessToken</code></b> (OPTIONAL)</dt>
  * <dd>
  * <p>
