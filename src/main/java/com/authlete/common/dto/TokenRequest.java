@@ -156,7 +156,7 @@ import com.authlete.common.web.URLCoder;
  */
 public class TokenRequest implements Serializable
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     /**
@@ -212,6 +212,16 @@ public class TokenRequest implements Serializable
      * HTTP URL base (for DPoP validation).
      */
     private String htu;
+
+
+    /**
+     * Additional claims that are added to the payload part of the JWT
+     * access token.
+     *
+     * @since 3.35
+     * @since Authlete 2.3
+     */
+    private String jwtAtClaims;
 
 
     /**
@@ -667,6 +677,91 @@ public class TokenRequest implements Serializable
     public TokenRequest setHtu(String htu)
     {
         this.htu = htu;
+
+        return this;
+    }
+
+
+    /**
+     * Get the additional claims in JSON object format that are added to the
+     * payload part of the JWT access token.
+     *
+     * <p>
+     * This request parameter has a meaning only when the format of access
+     * tokens issued by this service is JWT. In other words, it has a meaning
+     * only when the {@code accessTokenSignAlg} property of the {@link Service}
+     * holds a non-null value. See the description of the {@link
+     * Service#getAccessTokenSignAlg() getAccessTokenSignAlg()} method for
+     * details.
+     * </p>
+     *
+     * <p>
+     * Note that this {@code jwtAtClaims} request parameter to the {@code
+     * /auth/token} API works only in the client credentials flow (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc6749.html">RFC 6749</a> <a href=
+     * "https://www.rfc-editor.org/rfc/rfc6749.html#section-4.4">Section
+     * 4.4</a>). For other flows, additional claims need to be passed to
+     * Authlete through other APIs. For example, to embed additional claims
+     * in an access token that is issued by the authorization code flow
+     * (<a href="https://www.rfc-editor.org/rfc/rfc6749.html">RFC 6749</a>
+     * <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.1"
+     * >Section 4.1</a>), the {@code jwtAtClaims} request parameter of the
+     * {@code /auth/authorization/issue} API has to be used.
+     * </p>
+     *
+     * @return
+     *         Additional claims that are added to the payload part of the
+     *         JWT access token.
+     *
+     * @since 3.35
+     * @since Authlete 2.3
+     */
+    public String getJwtAtClaims()
+    {
+        return jwtAtClaims;
+    }
+
+
+    /**
+     * Set the additional claims in JSON object format that are added to the
+     * payload part of the JWT access token.
+     *
+     * <p>
+     * This request parameter has a meaning only when the format of access
+     * tokens issued by this service is JWT. In other words, it has a meaning
+     * only when the {@code accessTokenSignAlg} property of the {@link Service}
+     * holds a non-null value. See the description of the {@link
+     * Service#getAccessTokenSignAlg() getAccessTokenSignAlg()} method for
+     * details.
+     * </p>
+     *
+     * <p>
+     * Note that this {@code jwtAtClaims} request parameter to the {@code
+     * /auth/token} API works only in the client credentials flow (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc6749.html">RFC 6749</a> <a href=
+     * "https://www.rfc-editor.org/rfc/rfc6749.html#section-4.4">Section
+     * 4.4</a>). For other flows, additional claims need to be passed to
+     * Authlete through other APIs. For example, to embed additional claims
+     * in an access token that is issued by the authorization code flow
+     * (<a href="https://www.rfc-editor.org/rfc/rfc6749.html">RFC 6749</a>
+     * <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.1"
+     * >Section 4.1</a>), the {@code jwtAtClaims} request parameter of the
+     * {@code /auth/authorization/issue} API has to be used.
+     * </p>
+     *
+     * @param claims
+     *         Additional claims that are added to the payload part of the
+     *         JWT access token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.35
+     * @since Authlete 2.3
+     */
+    public TokenRequest setJwtAtClaims(String claims)
+    {
+        this.jwtAtClaims = claims;
 
         return this;
     }
