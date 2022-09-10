@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.authlete.common.types.ApplicationType;
 import com.authlete.common.types.ClientAuthMethod;
+import com.authlete.common.types.ClientRegistrationType;
 import com.authlete.common.types.ClientType;
 import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.GrantType;
@@ -51,7 +52,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 28L;
+    private static final long serialVersionUID = 29L;
 
 
     /*
@@ -289,6 +290,7 @@ public class Client implements Serializable
     private long trustChainUpdatedAt;
     private String organizationName;
     private URI signedJwksUri;
+    private ClientRegistrationType[] clientRegistrationTypes;
 
 
     /**
@@ -4178,6 +4180,58 @@ public class Client implements Serializable
     public Client setSignedJwksUri(URI uri)
     {
         this.signedJwksUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client registration types that the client has declared it may use.
+     *
+     * <p>
+     * This property corresponds to the {@code client_registration_types} client
+     * metadata defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @return
+     *         Client registration types.
+     *
+     * @since 3.36
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public ClientRegistrationType[] getClientRegistrationTypes()
+    {
+        return clientRegistrationTypes;
+    }
+
+
+    /**
+     * Set the client registration types that the client has declared it may use.
+     *
+     * <p>
+     * This property corresponds to the {@code client_registration_types} client
+     * metadata defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @param types
+     *         Client registration types.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Client setClientRegistrationTypes(ClientRegistrationType[] types)
+    {
+        this.clientRegistrationTypes = types;
 
         return this;
     }
