@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+3.36 (2022-09-11)
+-----------------
+
+- `Client` class
+    * Added `getClientRegistrationTypes()` method.
+    * Added `setClientRegistrationTypes(ClientRegistrationType[])` method.
+
+
 3.35 (2022-09-07)
 -----------------
 

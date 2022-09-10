@@ -1,6 +1,14 @@
 変更点
 ======
 
+3.36 (2022 年 09 月 11 日)
+--------------------------
+
+- `Client` クラス
+    * `getClientRegistrationTypes()` メソッドを追加。
+    * `setClientRegistrationTypes(ClientRegistrationType[])` メソッドを追加。
+
+
 3.35 (2022 年 09 月 07 日)
 --------------------------
 
