@@ -1970,7 +1970,7 @@ public class AuthorizationResponse extends ApiResponse
      * @return
      *         A grant management action. {@code null} or one of
      *         {@link GMAction#CREATE CREATE}, {@link GMAction#REPLACE REPLACE}
-     *         and {@link GMAction#UPDATE UPDATE}.
+     *         and {@link GMAction#MERGE MERGE}.
      *
      * @see <a href="https://openid.net/specs/fapi-grant-management.html"
      *      >Grant Management for OAuth 2.0</a>
@@ -1996,7 +1996,7 @@ public class AuthorizationResponse extends ApiResponse
      * @param action
      *         A grant management action. {@code null} or one of
      *         {@link GMAction#CREATE CREATE}, {@link GMAction#REPLACE REPLACE}
-     *         and {@link GMAction#UPDATE UPDATE}.
+     *         and {@link GMAction#MERGE MERGE}.
      *
      * @see <a href="https://openid.net/specs/fapi-grant-management.html"
      *      >Grant Management for OAuth 2.0</a>

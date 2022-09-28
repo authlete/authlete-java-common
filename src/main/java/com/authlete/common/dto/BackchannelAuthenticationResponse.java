@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2021 Authlete, Inc.
+ * Copyright (C) 2018-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -1588,7 +1588,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
      * @return
      *         A grant management action. {@code null} or one of
      *         {@link GMAction#CREATE CREATE}, {@link GMAction#REPLACE REPLACE}
-     *         and {@link GMAction#UPDATE UPDATE}.
+     *         and {@link GMAction#MERGE MERGE}.
      *
      * @see <a href="https://openid.net/specs/fapi-grant-management.html"
      *      >Grant Management for OAuth 2.0</a>
@@ -1614,7 +1614,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
      * @param action
      *         A grant management action. {@code null} or one of
      *         {@link GMAction#CREATE CREATE}, {@link GMAction#REPLACE REPLACE}
-     *         and {@link GMAction#UPDATE UPDATE}.
+     *         and {@link GMAction#MERGE MERGE}.
      *
      * @return
      *         {@code this} object.
