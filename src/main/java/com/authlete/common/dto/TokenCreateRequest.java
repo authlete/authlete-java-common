@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -125,7 +125,7 @@ import com.authlete.common.types.GrantType;
  * </p>
  * <p>
  * This has an effect only on the value of the {@code aud} claim in a response from
- * <a href="http://openid.net/specs/openid-connect-core-1_0.html#UserInfo">UserInfo
+ * <a href="https://openid.net/specs/openid-connect-core-1_0.html#UserInfo">UserInfo
  * endpoint</a>. When you access the UserInfo endpoint (which is expected to be
  * implemented using Authlete's {@code /api/auth/userinfo} API and {@code
  * /api/auth/userinfo/issue} API) with an access token which has been created using
@@ -264,7 +264,7 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 11L;
+    private static final long serialVersionUID = 12L;
 
 
     private GrantType grantType;
@@ -275,6 +275,7 @@ public class TokenCreateRequest implements Serializable
     private long refreshTokenDuration;
     private Property[] properties;
     private boolean clientIdAliasUsed;
+    private boolean clientEntityIdUsed;
     private String accessToken;
     private String refreshToken;
     private boolean accessTokenPersistent;
@@ -516,7 +517,7 @@ public class TokenCreateRequest implements Serializable
      * Keys listed below should not be used and they would be ignored on
      * the server side even if they were used. It's because they are reserved
      * in <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a> and
-     * <a href="http://openid.net/specs/openid-connect-core-1_0.html"
+     * <a href="https://openid.net/specs/openid-connect-core-1_0.html"
      * >OpenID Connect Core 1.0</a>.
      * </p>
      *
@@ -563,7 +564,7 @@ public class TokenCreateRequest implements Serializable
      *
      * <p>
      * This has an effect only on the value of the {@code aud} claim in a response from
-     * <a href="http://openid.net/specs/openid-connect-core-1_0.html#UserInfo">UserInfo
+     * <a href="https://openid.net/specs/openid-connect-core-1_0.html#UserInfo">UserInfo
      * endpoint</a>. When you access the UserInfo endpoint (which is expected to be
      * implemented using Authlete's {@code /api/auth/userinfo} API and {@code
      * /api/auth/userinfo/issue} API) with an access token which has been created using
@@ -576,6 +577,11 @@ public class TokenCreateRequest implements Serializable
      * Note that if a client ID alias is not assigned to the client when Authlete's
      * {@code /api/auth/token/create} API is called, this property ({@code
      * clientIdAliasUsed}) has no effect (it is always regarded as {@code false}).
+     * </p>
+     *
+     * <p>
+     * Note that {@code clientIdAliasUsed} and {@code clientEntityIdUsed} are
+     * mutually exclusive.
      * </p>
      *
      * @return
@@ -596,7 +602,7 @@ public class TokenCreateRequest implements Serializable
      *
      * <p>
      * This has an effect only on the value of the {@code aud} claim in a response from
-     * <a href="http://openid.net/specs/openid-connect-core-1_0.html#UserInfo">UserInfo
+     * <a href="https://openid.net/specs/openid-connect-core-1_0.html#UserInfo">UserInfo
      * endpoint</a>. When you access the UserInfo endpoint (which is expected to be
      * implemented using Authlete's {@code /api/auth/userinfo} API and {@code
      * /api/auth/userinfo/issue} API) with an access token which has been created using
@@ -611,6 +617,11 @@ public class TokenCreateRequest implements Serializable
      * clientIdAliasUsed}) has no effect (it is always regarded as {@code false}).
      * </p>
      *
+     * <p>
+     * Note that {@code clientIdAliasUsed} and {@code clientEntityIdUsed} are
+     * mutually exclusive.
+     * </p>
+     *
      * @param used
      *         {@code true} to emulate that the client ID alias is used when a new
      *         access token is created.
@@ -623,6 +634,95 @@ public class TokenCreateRequest implements Serializable
     public TokenCreateRequest setClientIdAliasUsed(boolean used)
     {
         this.clientIdAliasUsed = used;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether to emulate that the entity ID is
+     * used as a client ID when a new access token is created.
+     *
+     * <p>
+     * This has an effect only on the value of the {@code aud} claim in a
+     * response from <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
+     * >UserInfo endpoint</a>. When you access the UserInfo endpoint (which is
+     * expected to be implemented using Authlete's {@code /auth/userinfo} API
+     * and {@code /auth/userinfo/issue} API) with an access token which has
+     * been created using Authlete's {@code /auth/token/create} API with this
+     * property ({@code clientEntityIdUsed}) true, the entity ID of the client
+     * is used as the value of the {@code aud} claim in a response from the
+     * UserInfo endpoint.
+     * </p>
+     *
+     * <p>
+     * Note that if an entity ID is not assigned to the client when Authlete's
+     * {@code /auth/token/create} API is called, this property
+     * ({@code clientEntityIdUsed}) has no effect (it is always regarded as
+     * {@code false}).
+     * </p>
+     *
+     * <p>
+     * Note that {@code clientIdAliasUsed} and {@code clientEntityIdUsed} are
+     * mutually exclusive.
+     * </p>
+     *
+     * @return
+     *         {@code true} to emulate that the entity ID is used when a new
+     *         access token is created.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     */
+    public boolean isClientEntityIdUsed()
+    {
+        return clientEntityIdUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether to emulate that the entity ID is
+     * used as a client ID when a new access token is created.
+     *
+     * <p>
+     * This has an effect only on the value of the {@code aud} claim in a
+     * response from <a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
+     * >UserInfo endpoint</a>. When you access the UserInfo endpoint (which is
+     * expected to be implemented using Authlete's {@code /auth/userinfo} API
+     * and {@code /auth/userinfo/issue} API) with an access token which has
+     * been created using Authlete's {@code /auth/token/create} API with this
+     * property ({@code clientEntityIdUsed}) true, the entity ID of the client
+     * is used as the value of the {@code aud} claim in a response from the
+     * UserInfo endpoint.
+     * </p>
+     *
+     * <p>
+     * Note that if an entity ID is not assigned to the client when Authlete's
+     * {@code /auth/token/create} API is called, this property
+     * ({@code clientEntityIdUsed}) has no effect (it is always regarded as
+     * {@code false}).
+     * </p>
+     *
+     * <p>
+     * Note that {@code clientIdAliasUsed} and {@code clientEntityIdUsed} are
+     * mutually exclusive.
+     * </p>
+     *
+     * @param used
+     *         {@code true} to emulate that the entity ID is used when a new
+     *         access token is created.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     */
+    public TokenCreateRequest setClientEntityIdUsed(boolean used)
+    {
+        this.clientEntityIdUsed = used;
 
         return this;
     }

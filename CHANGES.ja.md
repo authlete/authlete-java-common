@@ -1,6 +1,69 @@
 変更点
 ======
 
+- `AuthorizationResponse` クラス
+    * `isClientEntityIdUsed()` メソッドを追加。
+    * `setClientEntityIdUsed(boolean)` メソッドを追加。
+
+- `BackchannelAuthenticationCompleteResponse` クラス
+    * `getClientEntityId()` メソッドを追加。
+    * `setClientEntityId(URI)` メソッドを追加。
+    * `isClientEntityIdUsed()` メソッドを追加。
+    * `setClientEntityIdUsed(boolean)` メソッドを追加。
+
+- `BackchannelAuthenticationResponse` クラス
+    * `getClientEntityId()` メソッドを追加。
+    * `setClientEntityId(URI)` メソッドを追加。
+    * `isClientEntityIdUsed()` メソッドを追加。
+    * `setClientEntityIdUsed(boolean)` メソッドを追加。
+
+- `DeviceAuthorizationResponse` クラス
+    * `getClientEntityId()` メソッドを追加。
+    * `setClientEntityId(URI)` メソッドを追加。
+    * `isClientEntityIdUsed()` メソッドを追加。
+    * `setClientEntityIdUsed(boolean)` メソッドを追加。
+
+- `DeviceVerificationResponse` クラス
+    * `getClientEntityId()` メソッドを追加。
+    * `setClientEntityId(URI)` メソッドを追加。
+    * `isClientEntityIdUsed()` メソッドを追加。
+    * `setClientEntityIdUsed(boolean)` メソッドを追加。
+
+- `IntrospectionResponse` クラス
+    * `getClientEntityId()` メソッドを追加。
+    * `setClientEntityId(URI)` メソッドを追加。
+    * `isClientEntityIdUsed()` メソッドを追加。
+    * `setClientEntityIdUsed(boolean)` メソッドを追加。
+
+- `TokenCreateRequest` クラス
+    * `isClientEntityIdUsed()` メソッドを追加。
+    * `setClientEntityIdUsed(boolean)` メソッドを追加。
+
+- `TokenInfo` クラス
+    * `getClientEntityId()` メソッドを追加。
+    * `setClientEntityId(URI)` メソッドを追加。
+    * `isClientEntityIdUsed()` メソッドを追加。
+    * `setClientEntityIdUsed(boolean)` メソッドを追加。
+
+- `TokenIssueResponse` クラス
+    * `getClientEntityId()` メソッドを追加。
+    * `setClientEntityId(URI)` メソッドを追加。
+    * `isClientEntityIdUsed()` メソッドを追加。
+    * `setClientEntityIdUsed(boolean)` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getClientEntityId()` メソッドを追加。
+    * `setClientEntityId(URI)` メソッドを追加。
+    * `isClientEntityIdUsed()` メソッドを追加。
+    * `setClientEntityIdUsed(boolean)` メソッドを追加。
+
+- `UserInfoResponse` クラス
+    * `getClientEntityId()` メソッドを追加。
+    * `setClientEntityId(URI)` メソッドを追加。
+    * `isClientEntityIdUsed()` メソッドを追加。
+    * `setClientEntityIdUsed(boolean)` メソッドを追加。
+
+
 3.36 (2022 年 09 月 11 日)
 --------------------------
 

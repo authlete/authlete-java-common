@@ -1,6 +1,69 @@
 CHANGES
 =======
 
+- `AuthorizationResponse` class
+    * Added `isClientEntityIdUsed()` method.
+    * Added `setClientEntityIdUsed(boolean)` method.
+
+- `BackchannelAuthenticationCompleteResponse` class
+    * Added `getClientEntityId()` method.
+    * Added `setClientEntityId(URI)` method.
+    * Added `isClientEntityIdUsed()` method.
+    * Added `setClientEntityIdUsed(boolean)` method.
+
+- `BackchannelAuthenticationResponse` class
+    * Added `getClientEntityId()` method.
+    * Added `setClientEntityId(URI)` method.
+    * Added `isClientEntityIdUsed()` method.
+    * Added `setClientEntityIdUsed(boolean)` method.
+
+- `DeviceAuthorizationResponse` class
+    * Added `getClientEntityId()` method.
+    * Added `setClientEntityId(URI)` method.
+    * Added `isClientEntityIdUsed()` method.
+    * Added `setClientEntityIdUsed(boolean)` method.
+
+- `DeviceVerificationResponse` class
+    * Added `getClientEntityId()` method.
+    * Added `setClientEntityId(URI)` method.
+    * Added `isClientEntityIdUsed()` method.
+    * Added `setClientEntityIdUsed(boolean)` method.
+
+- `IntrospectionResponse` class
+    * Added `getClientEntityId()` method.
+    * Added `setClientEntityId(URI)` method.
+    * Added `isClientEntityIdUsed()` method.
+    * Added `setClientEntityIdUsed(boolean)` method.
+
+- `TokenCreateRequest` class
+    * Added `isClientEntityIdUsed()` method.
+    * Added `setClientEntityIdUsed(boolean)` method.
+
+- `TokenInfo` class
+    * Added `getClientEntityId()` method.
+    * Added `setClientEntityId(URI)` method.
+    * Added `isClientEntityIdUsed()` method.
+    * Added `setClientEntityIdUsed(boolean)` method.
+
+- `TokenIssueResponse` class
+    * Added `getClientEntityId()` method.
+    * Added `setClientEntityId(URI)` method.
+    * Added `isClientEntityIdUsed()` method.
+    * Added `setClientEntityIdUsed(boolean)` method.
+
+- `TokenResponse` class
+    * Added `getClientEntityId()` method.
+    * Added `setClientEntityId(URI)` method.
+    * Added `isClientEntityIdUsed()` method.
+    * Added `setClientEntityIdUsed(boolean)` method.
+
+- `UserInfoResponse` class
+    * Added `getClientEntityId()` method.
+    * Added `setClientEntityId(URI)` method.
+    * Added `isClientEntityIdUsed()` method.
+    * Added `setClientEntityIdUsed(boolean)` method.
+
+
 3.36 (2022-09-11)
 -----------------
 

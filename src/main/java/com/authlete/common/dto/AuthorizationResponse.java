@@ -964,7 +964,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 17L;
+    private static final long serialVersionUID = 18L;
 
 
     /**
@@ -1046,6 +1046,7 @@ public class AuthorizationResponse extends ApiResponse
     private String[] claims;
     private boolean acrEssential;
     private boolean clientIdAliasUsed;
+    private boolean clientEntityIdUsed;
     private String[] acrs;
     private String subject;
     private String loginHint;
@@ -1387,7 +1388,7 @@ public class AuthorizationResponse extends ApiResponse
     /**
      * Get the flag which indicates whether the value of the {@code client_id}
      * request parameter included in the authorization request is the client
-     * ID alias or the original numeric client ID.
+     * ID alias.
      *
      * @since 2.3
      */
@@ -1400,13 +1401,77 @@ public class AuthorizationResponse extends ApiResponse
     /**
      * Set the flag which indicates whether the value of the {@code client_id}
      * request parameter included in the authorization request is the client
-     * ID alias or the original numeric client ID.
+     * ID alias.
      *
      * @since 2.3
      */
     public void setClientIdAliasUsed(boolean used)
     {
         clientIdAliasUsed = used;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the value of the {@code client_id}
+     * request parameter included in the authorization request is the entity
+     * ID of the client.
+     *
+     * <p>
+     * "Entity ID" is a technical term defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code true}, {@code client.}{@link Client#getEntityId()
+     * getEntityId()} returns the entity ID of the client.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the value of the {@code client_id} request
+     *         parameter is the entity ID of the client.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public boolean isClientEntityIdUsed()
+    {
+        return clientEntityIdUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the value of the {@code client_id}
+     * request parameter included in the authorization request is the entity
+     * ID of the client.
+     *
+     * <p>
+     * "Entity ID" is a technical term defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code true}, {@code client.}{@link Client#getEntityId()
+     * getEntityId()} returns the entity ID of the client.
+     * </p>
+     *
+     * @param used
+     *         {@code true} to indicate that the value of the {@code client_id}
+     *         request parameter is the entity ID of the client.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public void setClientEntityIdUsed(boolean used)
+    {
+        clientEntityIdUsed = used;
     }
 
 
