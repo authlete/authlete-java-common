@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.37 (2022 年 10 月 01 日)
+--------------------------
+
 - `AuthorizationResponse` クラス
     * `isClientEntityIdUsed()` メソッドを追加。
     * `setClientEntityIdUsed(boolean)` メソッドを追加。

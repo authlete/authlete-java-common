@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.37 (2022-10-01)
+-----------------
+
 - `AuthorizationResponse` class
     * Added `isClientEntityIdUsed()` method.
     * Added `setClientEntityIdUsed(boolean)` method.
