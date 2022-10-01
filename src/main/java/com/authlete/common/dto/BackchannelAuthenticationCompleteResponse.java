@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2021 Authlete, Inc.
+ * Copyright (C) 2018-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,7 +139,7 @@ import com.authlete.common.types.DeliveryMode;
  */
 public class BackchannelAuthenticationCompleteResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     /**
@@ -188,6 +188,8 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     private long clientId;
     private String clientIdAlias;
     private boolean clientIdAliasUsed;
+    private URI clientEntityId;
+    private boolean clientEntityIdUsed;
     private String clientName;
     private DeliveryMode deliveryMode;
     private URI clientNotificationEndpoint;
@@ -374,14 +376,126 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
 
 
     /**
+     * Get the entity ID of the client.
+     *
+     * <p>
+     * "Entity ID" is a technical term defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @return
+     *         The entity ID of the client.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public URI getClientEntityId()
+    {
+        return clientEntityId;
+    }
+
+
+    /**
+     * Set the entity ID of the client.
+     *
+     * <p>
+     * "Entity ID" is a technical term defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @param entityId
+     *         The entity ID of the client.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public BackchannelAuthenticationCompleteResponse setClientEntityId(URI entityId)
+    {
+        this.clientEntityId = entityId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the entity ID of the client was
+     * used in the backchannel authentication request as a client ID.
+     *
+     * <p>
+     * "Entity ID" is a technical term defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the entity ID of the client was used in the
+     *         request as a client ID.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public boolean isClientEntityIdUsed()
+    {
+        return clientEntityIdUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the entity ID of the client was
+     * used in the backchannel authentication request as a client ID.
+     *
+     * <p>
+     * "Entity ID" is a technical term defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @param used
+     *         {@code true} to indicate that the entity ID of the client was
+     *         used in the request as a client ID.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public BackchannelAuthenticationCompleteResponse setClientEntityIdUsed(boolean used)
+    {
+        this.clientEntityIdUsed = used;
+
+        return this;
+    }
+
+
+    /**
      * Get the client identifier used in the backchannel authentication
      * request.
      *
      * <p>
      * When {@link #isClientIdAliasUsed()} returns {@code true}, this method
      * returns the same value as {@link #getClientIdAlias()} does. Otherwise,
-     * this method returns the string representation of the value returned
-     * from {@link #getClientId()}.
+     * if {@link #isClientEntityIdUsed()} returns {@code true}, this method
+     * returns the same value as {@link #getClientEntityId()}{@code .toString()}
+     * does. In other cases, this method returns the string representation of
+     * the value returned from {@link #getClientId()}.
      * </p>
      *
      * @return
@@ -393,6 +507,10 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
         if (clientIdAliasUsed)
         {
             return clientIdAlias;
+        }
+        else if (clientEntityIdUsed)
+        {
+            return clientEntityId.toString();
         }
         else
         {

@@ -16,6 +16,7 @@
 package com.authlete.common.dto;
 
 
+import java.net.URI;
 import com.authlete.common.util.Utils;
 
 
@@ -246,7 +247,7 @@ import com.authlete.common.util.Utils;
  */
 public class UserInfoResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /**
@@ -360,6 +361,25 @@ public class UserInfoResponse extends ApiResponse
      * when the authorization request for the access token was made.
      */
     private boolean clientIdAliasUsed;
+
+
+    /**
+     * The entity ID of the client.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     */
+    private URI clientEntityId;
+
+
+    /**
+     * Flag which indicates whether the entity ID of the client was used
+     * when the request for the access token was made.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     */
+    private boolean clientEntityIdUsed;
 
 
     /**
@@ -651,6 +671,106 @@ public class UserInfoResponse extends ApiResponse
     public void setClientIdAliasUsed(boolean used)
     {
         this.clientIdAliasUsed = used;
+    }
+
+
+    /**
+     * Get the entity ID of the client.
+     *
+     * <p>
+     * "Entity ID" is a technical term defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @return
+     *         The entity ID of the client.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public URI getClientEntityId()
+    {
+        return clientEntityId;
+    }
+
+
+    /**
+     * Set the entity ID of the client.
+     *
+     * <p>
+     * "Entity ID" is a technical term defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @param entityId
+     *         The entity ID of the client.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public void setClientEntityId(URI entityId)
+    {
+        this.clientEntityId = entityId;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the entity ID of the client was
+     * used when the request for the access token was made.
+     *
+     * <p>
+     * "Entity ID" is a technical term defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the entity ID of the client was used when the
+     *         request for the access token was made.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public boolean isClientEntityIdUsed()
+    {
+        return clientEntityIdUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the entity ID of the client was
+     * used when the request for the access token was made.
+     *
+     * <p>
+     * "Entity ID" is a technical term defined in <a href=
+     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
+     * Connect Federation 1.0</a>.
+     * </p>
+     *
+     * @param used
+     *         {@code true} to indicate that the entity ID of the client was
+     *         used when the request for the access token was made.
+     *
+     * @since 3.37
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public void setClientEntityIdUsed(boolean used)
+    {
+        this.clientEntityIdUsed = used;
     }
 
 
