@@ -113,12 +113,38 @@ public class UserInfoRequest implements Serializable
 
 
     /**
-     * The URL of the userinfo endpoint.
+     * The URL of the userinfo endpoint,
+     * without query or fragment components.
      *
      * @since 2.70
      */
     private String htu;
 
+
+    /**
+     * The full URL of the userinfo endpoint.
+     * 
+     * @since 3.xx
+     */
+    private String uri;
+
+
+    /**
+     * The HTTP message body of the request, if present.
+     * 
+     * @since 3.xx
+     */
+    private String message;
+
+
+    /**
+     * HTTP headers to be included in processing the signature. If this is
+     * a signed request, this must include the Signature and Signature-Input
+     * headers, as well as any additional headers covered by the signature.
+     * 
+     * @since 3.xx
+     */
+    private Pair[] headers;
 
     /**
      * Get the access token which has come along with the userinfo
@@ -341,5 +367,43 @@ public class UserInfoRequest implements Serializable
         this.htu = htu;
 
         return this;
+    }
+
+
+    public String getUri()
+    {
+        return uri;
+    }
+
+
+    public UserInfoRequest setUri(String uri)
+    {
+        this.uri = uri;
+        return this;
+    }
+
+
+    public String getMessage()
+    {
+        return message;
+    }
+
+
+    public UserInfoRequest setMessage(String message)
+    {
+        this.message = message;
+        return this;
+    }
+
+
+    public Pair[] getHeaders()
+    {
+        return headers;
+    }
+
+
+    public void setHeaders(Pair[] headers)
+    {
+        this.headers = headers;
     }
 }

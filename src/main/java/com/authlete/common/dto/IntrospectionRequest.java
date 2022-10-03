@@ -167,6 +167,32 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
+     * The full URL of the userinfo endpoint.
+     * 
+     * @since 3.xx
+     */
+    private String uri;
+
+
+    /**
+     * The HTTP message body of the request, if present.
+     * 
+     * @since 3.xx
+     */
+    private String message;
+
+
+    /**
+     * HTTP headers to be included in processing the signature. If this is
+     * a signed request, this must include the Signature and Signature-Input
+     * headers, as well as any additional headers covered by the signature.
+     * 
+     * @since 3.xx
+     */
+    private Pair[] headers;
+
+
+    /**
      * Get the access token to introspect.
      *
      * @return
@@ -503,6 +529,45 @@ public class IntrospectionRequest implements Serializable
     {
         this.resources = resources;
 
+        return this;
+    }
+
+
+    public String getUri()
+    {
+        return uri;
+    }
+
+
+    public IntrospectionRequest setUri(String uri)
+    {
+        this.uri = uri;
+        return this;
+    }
+
+
+    public String getMessage()
+    {
+        return message;
+    }
+
+
+    public IntrospectionRequest setMessage(String message)
+    {
+        this.message = message;
+        return this;
+    }
+
+
+    public Pair[] getHeaders()
+    {
+        return headers;
+    }
+
+
+    public IntrospectionRequest setHeaders(Pair[] headers)
+    {
+        this.headers = headers;
         return this;
     }
 }

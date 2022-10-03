@@ -291,6 +291,21 @@ public class UserInfoIssueResponse extends ApiResponse
     private Action action;
     private String responseContent;
 
+    /**
+     * The signature header of the response message.
+     */
+    private String signature;
+
+    /**
+     * The signature-input header of the response message
+     */
+    private String signatureInput;
+
+    /**
+     * The content-digest header of the response message
+     */
+    private String contentDigest;
+
 
     /**
      * Get the next action that the service implementation should take.
@@ -327,6 +342,42 @@ public class UserInfoIssueResponse extends ApiResponse
     public void setResponseContent(String content)
     {
         this.responseContent = content;
+    }
+
+
+    public String getSignature()
+    {
+        return signature;
+    }
+
+
+    public void setSignature(String signature)
+    {
+        this.signature = signature;
+    }
+
+
+    public String getSignatureInput()
+    {
+        return signatureInput;
+    }
+
+
+    public void setSignatureInput(String signatureInput)
+    {
+        this.signatureInput = signatureInput;
+    }
+
+
+    public String getContentDigest()
+    {
+        return contentDigest;
+    }
+
+
+    public void setContentDigest(String mContentDigest)
+    {
+        this.contentDigest = mContentDigest;
     }
 
 

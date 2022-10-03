@@ -82,7 +82,7 @@ import com.authlete.common.util.Utils;
  */
 public class UserInfoIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -116,6 +116,22 @@ public class UserInfoIssueRequest implements Serializable
      * claims.
      */
     private String[] verifiedClaimsForTx;
+
+
+    /**
+     * The {@code Signature} header value from the request.
+     * 
+     * @since 3.xx
+     */
+    private String requestSignature;
+
+
+    /**
+     * The HTTP headers to include in the signed response.
+     * 
+     * @since 3.xx
+     */
+    private Pair[] headers;
 
 
     /**
@@ -552,5 +568,31 @@ public class UserInfoIssueRequest implements Serializable
         }
 
         return setVerifiedClaimsForTx(array);
+    }
+
+
+    public String getRequestSignature()
+    {
+        return requestSignature;
+    }
+
+
+    public UserInfoIssueRequest setRequestSignature(String signature)
+    {
+        this.requestSignature = signature;
+        return this;
+    }
+
+
+    public Pair[] getHeaders()
+    {
+        return headers;
+    }
+
+
+    public UserInfoIssueRequest setHeaders(Pair[] headers)
+    {
+        this.headers = headers;
+        return this;
     }
 }
