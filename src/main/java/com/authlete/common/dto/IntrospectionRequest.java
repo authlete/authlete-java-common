@@ -193,6 +193,15 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
+     * HTTP Message Components required to be in the signature. If absent,
+     * defaults to [ "@method", "@target-uri", "authorization" ].
+     * 
+     * @since 3.xx
+     */
+    private String[] requiredComponents;
+
+
+    /**
      * Get the access token to introspect.
      *
      * @return
@@ -568,6 +577,19 @@ public class IntrospectionRequest implements Serializable
     public IntrospectionRequest setHeaders(Pair[] headers)
     {
         this.headers = headers;
+        return this;
+    }
+
+
+    public String[] getRequiredComponents()
+    {
+        return requiredComponents;
+    }
+
+
+    public IntrospectionRequest setRequiredComponents(String[] requiredComponents)
+    {
+        this.requiredComponents = requiredComponents;
         return this;
     }
 }
