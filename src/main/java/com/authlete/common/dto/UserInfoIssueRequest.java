@@ -76,13 +76,29 @@ import com.authlete.common.util.Utils;
  * </p>
  * </dd>
  * </dl>
+ *
+ * <dt><b><code>requestSignature</code></b> (REQUIRED)</dt>
+ * <dd>
+ * <p>
+ * The {@code Signature} header value from the request to the RS. All
+ * signatures in this header will be included in the output signature.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>headers</code></b> (REQUIRED)</dt>
+ * <dd>
+ * <p>
+ * The HTTP response headers, all will be included in the output signature.
+ * </p>
+ * </dd>
+ *
  * </blockquote>
  *
  * @author Takahiko Kawasaki
  */
 public class UserInfoIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -116,6 +132,22 @@ public class UserInfoIssueRequest implements Serializable
      * claims.
      */
     private String[] verifiedClaimsForTx;
+
+
+    /**
+     * The {@code Signature} header value from the request.
+     * 
+     * @since 3.xx
+     */
+    private String requestSignature;
+
+
+    /**
+     * The HTTP headers to include in the signed response.
+     * 
+     * @since 3.xx
+     */
+    private Pair[] headers;
 
 
     /**
@@ -552,5 +584,67 @@ public class UserInfoIssueRequest implements Serializable
         }
 
         return setVerifiedClaimsForTx(array);
+    }
+
+
+    /**
+     * Get the {@code Signature} header value from the request. All
+     * signatures in this header will be included in the output signature.
+     *
+     * @return
+     *         The formatted Signature header value.
+     */
+    public String getRequestSignature()
+    {
+        return requestSignature;
+    }
+
+
+    /**
+     * Set the {@code Signature} header value from the request. All
+     * signatures in this header will be included in the output signature.
+     *
+     * @parameter requestSignature
+     *            The formatted Signature header value.
+     * 
+     * @return
+     *         {@code this} object.
+     */
+    public UserInfoIssueRequest setRequestSignature(String signature)
+    {
+        this.requestSignature = signature;
+        return this;
+    }
+
+
+    /**
+     * Get the HTTP response headers, all will be included in the signature.
+     * The name of the header is the {@code key} of the entry and the value
+     * of the header is the {@code value} of the entry.
+     *
+     * @return
+     *         The response headers.
+     */
+    public Pair[] getHeaders()
+    {
+        return headers;
+    }
+
+
+    /**
+     * Set the HTTP response headers, all will be included in the signature.
+     * The name of the header is the {@code key} of the entry and the value
+     * of the header is the {@code value} of the entry.
+     *
+     * @parameter headers
+     *            The response headers.
+     * 
+     * @return
+     *         {@code this} object.
+     */
+    public UserInfoIssueRequest setHeaders(Pair[] headers)
+    {
+        this.headers = headers;
+        return this;
     }
 }

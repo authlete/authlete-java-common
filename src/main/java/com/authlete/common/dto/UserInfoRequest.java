@@ -64,10 +64,38 @@ import java.io.Serializable;
  * <dt><b><code>htu</code></b> (OPTIONAL)</dt>
  * <dd>
  * <p>
- * The URL of the userinfo endpoint. If omitted, the {@code userInfoEndpoint}
+ * The URL of the userinfo endpoint, without query or path components.
+ * If omitted, the {@code userInfoEndpoint}
  * property of {@link Service} is used as the default value.
  * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
  * Layer (DPoP)"</i> for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>uri</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The full URL of the userinfo endpoint. If omitted, the {@code userInfoEndpoint}
+ * property of {@link Service} is used as the default value.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>headers</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The HTTP headers to be included in processing the signature. If this is
+ * a signed request, this must include the {@code Signature} and
+ * {@code Signature-Input} headers, as well as any additional headers
+ * covered by the signature.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>message</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The HTTP message body of the request, if present. If supplied,
+ * this is used to validate the value of the {@code Content-Digest} header,
+ * which must in turn be covered in the HTTP Message Signature.
  * </p>
  * </dd>
  *
@@ -78,7 +106,7 @@ import java.io.Serializable;
  */
 public class UserInfoRequest implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -113,11 +141,39 @@ public class UserInfoRequest implements Serializable
 
 
     /**
-     * The URL of the userinfo endpoint.
+     * The URL of the userinfo endpoint,
+     * without query or fragment components.
      *
      * @since 2.70
      */
     private String htu;
+
+
+    /**
+     * The full URL of the userinfo endpoint.
+     * 
+     * @since 3.38
+     */
+    private String uri;
+
+
+    /**
+     * The HTTP headers to be included in processing the signature. If this is
+     * a signed request, this must include the {@code Signature} and
+     * {@code Signature-Input} headers, as well as any additional headers
+     * covered by the signature.
+     *
+     * @since 3.38
+     */
+    private Pair[] headers;
+
+
+    /**
+     * The HTTP message body of the request, if present.
+     * 
+     * @since 3.38
+     */
+    private String message;
 
 
     /**
@@ -340,6 +396,124 @@ public class UserInfoRequest implements Serializable
     {
         this.htu = htu;
 
+        return this;
+    }
+
+
+    /**
+     * Get the URL of the userinfo endpoint. This field is used to validate
+     * the HTTP Message Signature.
+     *
+     * <p>
+     * If this parameter is omitted, the {@code userInfoEndpoint} property
+     * of the {@link Service} is used as the default value.
+     * </p>
+     * 
+     * @return
+     *         The URL of the userinfo endpoint.
+     *
+     * @since 3.38
+     */
+    public String getUri()
+    {
+        return uri;
+    }
+
+
+    /**
+     * Set the URL of the userinfo endpoint. This field is used to validate
+     * the HTTP Message Signature.
+     *
+     * <p>
+     * If this parameter is omitted, the {@code userInfoEndpoint} property
+     * of the {@link Service} is used as the default value.
+     * </p>
+     * 
+     * @param uri
+     *            The URL of the userinfo endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     * 
+     * @since 3.38
+     */
+    public UserInfoRequest setUri(String uri)
+    {
+        this.uri = uri;
+        return this;
+    }
+
+
+    /**
+     * Get the HTTP headers to be included in processing the signature. If this is
+     * a signed request, this must include the {@code Signature} and
+     * {@code Signature-Input} headers, as well as any additional headers
+     * covered by the signature.
+     * 
+     * @return
+     *         The HTTP headers.
+     *
+     * @since 3.38
+     */
+    public Pair[] getHeaders()
+    {
+        return headers;
+    }
+
+
+    /**
+     * Set the HTTP headers to be included in processing the signature. If this is
+     * a signed request, this must include the {@code Signature} and
+     * {@code Signature-Input} headers, as well as any additional headers
+     * covered by the signature.
+     * 
+     * @param headers
+     *            The HTTP headers.
+     *
+     * @return
+     *         {@code this} object.
+     * 
+     * @since 3.38
+     */
+    public UserInfoRequest setHeaders(Pair[] headers)
+    {
+        this.headers = headers;
+        return this;
+    }
+
+
+    /**
+     * Get the HTTP message body, if present. If provided, this will be used to calculate
+     * the expected value of the {@code Content-Digest} in the headers of the request
+     * covered by the HTTP Message Signature.
+     * 
+     * @return
+     *         The HTTP message body
+     *
+     * @since 3.38
+     */
+    public String getMessage()
+    {
+        return message;
+    }
+
+
+    /**
+     * Set the HTTP message body, if present. If provided, this will be used to calculate
+     * the expected value of the {@code Content-Digest} in the headers of the request
+     * covered by the HTTP Message Signature.
+     * 
+     * @param message
+     *            The HTTP message body
+     *
+     * @return
+     *         {@code this} object.
+     * 
+     * @since 3.38
+     */
+    public UserInfoRequest setMessage(String message)
+    {
+        this.message = message;
         return this;
     }
 }
