@@ -63,7 +63,9 @@ package com.authlete.common.dto;
  * HTTP/1.1 500 Internal Server Error
  * WWW-Authenticate: <i>(The value returned from {@link #getResponseContent()})</i>
  * Cache-Control: no-store
- * Pragma: no-cache</pre>
+ * Pragma: no-cache
+ * </pre>
+ * 
  * </dd>
  *
  * <dt><b>{@link Action#BAD_REQUEST BAD_REQUEST}</b></dt>
@@ -96,7 +98,9 @@ package com.authlete.common.dto;
  * HTTP/1.1 400 Bad Request
  * WWW-Authenticate: <i>(The value returned from {@link #getResponseContent()})</i>
  * Cache-Control: no-store
- * Pragma: no-cache</pre>
+ * Pragma: no-cache
+ * </pre>
+ * 
  * </dd>
  *
  * <dt><b>{@link Action#UNAUTHORIZED UNAUTHORIZED}</b></dt>
@@ -128,7 +132,9 @@ package com.authlete.common.dto;
  * HTTP/1.1 401 Unauthorized
  * WWW-Authenticate: <i>(The value returned from {@link #getResponseContent()})</i>
  * Cache-Control: no-store
- * Pragma: no-cache</pre>
+ * Pragma: no-cache
+ * </pre>
+ * 
  * </dd>
  *
  * <dt><b>{@link Action#FORBIDDEN FORBIDDEN}</b></dt>
@@ -159,7 +165,9 @@ package com.authlete.common.dto;
  * HTTP/1.1 403 Forbidden
  * WWW-Authenticate: <i>(The value returned from {@link #getResponseContent()})</i>
  * Cache-Control: no-store
- * Pragma: no-cache</pre>
+ * Pragma: no-cache
+ * </pre>
+ * 
  * </dd>
  *
  * <dt><b>{@link Action#JSON JSON}</b></dt>
@@ -189,7 +197,9 @@ package com.authlete.common.dto;
  * Pragma: no-cache
  * Content-Type: application/json;charset=UTF-8
  *
- * <i>(The value returned from {@link #getResponseContent()})</i></pre>
+ * <i>(The value returned from {@link #getResponseContent()})</i>
+ * </pre>
+ * 
  * </dd>
  *
  * <dt><b>{@link Action#JWT JWT}</b></dt>
@@ -221,7 +231,45 @@ package com.authlete.common.dto;
  * Pragma: no-cache
  * Content-Type: application/jwt
  *
- * <i>(The value returned from {@link #getResponseContent()})</i></pre>
+ * <i>(The value returned from {@link #getResponseContent()})</i>
+ * </pre>
+ * 
+ * </dd>
+ * </dl>
+ *
+ * <p>
+ * Authlete 2.3 and above has the ability to sign the userinfo response using
+ * HTTP Message Signatures. If this feature is used,
+ * the resource server implementation should add the headers in this response
+ * object to the HTTP response message before returning it to the client.
+ * </p>
+ * 
+ * <dl>
+ * <dt><b>{@link #getSignature()}</b> (REQUIRED)</dt>
+ * <dd>
+ * <p>
+ * The serialized value for the {@code Signature} header applied to the
+ * response.
+ * </p>
+ * </dd>
+ * 
+ * <dl>
+ * <dt><b>{@link #getSignatureInput()}</b> (REQUIRED)</dt>
+ * <dd>
+ * <p>
+ * The serialized value for the {@code Signature-Input} header applied to the
+ * response.
+ * </p>
+ * </dd>
+ *
+ * <dl>
+ * <dt><b>{@link #getContentDigest()}</b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The serialized value for the {@code Content-Digest} header applied to the
+ * response. This value is only returned if a {@code message} is was passed
+ * to the request, otherwise it is {@code null}.
+ * </p>
  * </dd>
  * </dl>
  *
@@ -229,7 +277,7 @@ package com.authlete.common.dto;
  */
 public class UserInfoIssueResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -319,9 +367,10 @@ public class UserInfoIssueResponse extends ApiResponse
     /**
      * Set the next action that the service implementation should take.
      */
-    public void setAction(Action action)
+    public UserInfoIssueResponse setAction(Action action)
     {
         this.action = action;
+        return this;
     }
 
 
@@ -339,45 +388,94 @@ public class UserInfoIssueResponse extends ApiResponse
      * Set the response content which can be used as the entity body
      * of the response returned to the client application.
      */
-    public void setResponseContent(String content)
+    public UserInfoIssueResponse setResponseContent(String content)
     {
         this.responseContent = content;
+        return this;
     }
 
 
+    /**
+     * Get the {@code Signature} header value to add to the response message.
+     *
+     * @return
+     *         The serialized header value.
+     */
     public String getSignature()
     {
         return signature;
     }
 
 
-    public void setSignature(String signature)
+    /**
+     * Set the {@code Signature} header value to add to the response message.
+     *
+     * @param signature
+     *            The serialized header value.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public UserInfoIssueResponse setSignature(String signature)
     {
         this.signature = signature;
+        return this;
     }
 
 
+    /**
+     * Get the {@code Signature-Input} header value to add to the response message.
+     *
+     * @return
+     *         The serialized header value.
+     */
     public String getSignatureInput()
     {
         return signatureInput;
     }
 
 
-    public void setSignatureInput(String signatureInput)
+    /**
+     * Set the {@code Signature-Input} header value to add to the response message.
+     *
+     * @param signatureInput
+     *            The serialized header value.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public UserInfoIssueResponse setSignatureInput(String signatureInput)
     {
         this.signatureInput = signatureInput;
+        return this;
     }
 
 
+    /**
+     * Get the {@code Content-Digest} header value to add to the response message.
+     *
+     * @return
+     *         The serialized header value.
+     */
     public String getContentDigest()
     {
         return contentDigest;
     }
 
 
-    public void setContentDigest(String mContentDigest)
+    /**
+     * Set the {@code Content-Digest} header value to add to the response message.
+     *
+     * @param contentDigest
+     *            The serialized header value.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public UserInfoIssueResponse setContentDigest(String mContentDigest)
     {
         this.contentDigest = mContentDigest;
+        return this;
     }
 
 

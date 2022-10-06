@@ -95,6 +95,43 @@ import java.net.URI;
  * Resource Indicators for OAuth 2.0</a> for details.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>uri</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The full URL of the resource server.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>headers</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The HTTP headers to be included in processing the signature. If this is
+ * a signed request, this must include the {@code Signature} and
+ * {@code Signature-Input} headers, as well as any additional headers
+ * covered by the signature.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>message</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The HTTP message body of the request, if present. If supplied,
+ * this is used to validate the value of the {@code Content-Digest} header,
+ * which must in turn be covered in the HTTP Message Signature.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>requiredComponents</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The list of component identifiers required to be covered by
+ * the signature on this message. If this is omitted, the set defaults to
+ * including the {@code @method} and {@code @target-uri} derived components
+ * as well as all headers in the {@link #getHeaders()} array.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -114,7 +151,7 @@ import java.net.URI;
  */
 public class IntrospectionRequest implements Serializable
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -167,9 +204,9 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * The full URL of the userinfo endpoint.
+     * The full URL of the resource server.
      * 
-     * @since 3.xx
+     * @since 3.38
      */
     private String uri;
 
@@ -177,7 +214,7 @@ public class IntrospectionRequest implements Serializable
     /**
      * The HTTP message body of the request, if present.
      * 
-     * @since 3.xx
+     * @since 3.38
      */
     private String message;
 
@@ -187,16 +224,17 @@ public class IntrospectionRequest implements Serializable
      * a signed request, this must include the Signature and Signature-Input
      * headers, as well as any additional headers covered by the signature.
      * 
-     * @since 3.xx
+     * @since 3.38
      */
     private Pair[] headers;
 
 
     /**
      * HTTP Message Components required to be in the signature. If absent,
-     * defaults to [ "@method", "@target-uri", "authorization" ].
+     * defaults to "@method", "@target-uri", and appropriate headers such as
+     * "authorization" and "dpop".
      * 
-     * @since 3.xx
+     * @since 3.38
      */
     private String[] requiredComponents;
 
@@ -542,12 +580,33 @@ public class IntrospectionRequest implements Serializable
     }
 
 
+    /**
+     * Get the URL of the resource server. This field is used to validate
+     * the HTTP Message Signature.
+     * 
+     * @return
+     *         The URL of the resource server.
+     *
+     * @since 3.38
+     */
     public String getUri()
     {
         return uri;
     }
 
 
+    /**
+     * Set the URL of the resource server. This field is used to validate
+     * the HTTP Message Signature.
+     * 
+     * @param uri
+     *            The URL of the resource server.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.38
+     */
     public IntrospectionRequest setUri(String uri)
     {
         this.uri = uri;
@@ -555,12 +614,35 @@ public class IntrospectionRequest implements Serializable
     }
 
 
+    /**
+     * Get the HTTP message body, if present. If provided, this will be used to calculate
+     * the expected value of the {@code Content-Digest} in the headers of the request
+     * covered by the HTTP Message Signature.
+     * 
+     * @return
+     *         The HTTP message body
+     *
+     * @since 3.38
+     */
     public String getMessage()
     {
         return message;
     }
 
 
+    /**
+     * Set the HTTP message body, if present. If provided, this will be used to calculate
+     * the expected value of the {@code Content-Digest} in the headers of the request
+     * covered by the HTTP Message Signature.
+     * 
+     * @param message
+     *            The HTTP message body
+     *
+     * @return
+     *         {@code this} object.
+     * 
+     * @since 3.38
+     */
     public IntrospectionRequest setMessage(String message)
     {
         this.message = message;
@@ -568,12 +650,37 @@ public class IntrospectionRequest implements Serializable
     }
 
 
+    /**
+     * Get the HTTP headers to be included in processing the signature. If this is
+     * a signed request, this must include the {@code Signature} and
+     * {@code Signature-Input} headers, as well as any additional headers
+     * covered by the signature.
+     * 
+     * @return
+     *         The HTTP headers.
+     *
+     * @since 3.38
+     */
     public Pair[] getHeaders()
     {
         return headers;
     }
 
 
+    /**
+     * Set the HTTP headers to be included in processing the signature. If this is
+     * a signed request, this must include the {@code Signature} and
+     * {@code Signature-Input} headers, as well as any additional headers
+     * covered by the signature.
+     * 
+     * @param headers
+     *            The HTTP headers.
+     *
+     * @return
+     *         {@code this} object.
+     * 
+     * @since 3.38
+     */
     public IntrospectionRequest setHeaders(Pair[] headers)
     {
         this.headers = headers;
@@ -581,12 +688,39 @@ public class IntrospectionRequest implements Serializable
     }
 
 
+    /**
+     * Get the list of component identifiers required to be covered by
+     * the signature on this message. If this is omitted, the set defaults to
+     * including the {@code @method} and {@code @target-uri} derived components
+     * as well the {@code Authorization} header and, if present,
+     * the {@code DPoP} header.
+     * 
+     * @return
+     *         The component identifiers to cover in the signature.
+     *
+     * @since 3.38
+     */
     public String[] getRequiredComponents()
     {
         return requiredComponents;
     }
 
 
+    /**
+     * Set the list of component identifiers required to be covered by
+     * the signature on this message. If this is omitted, the set defaults to
+     * including the {@code @method} and {@code @target-uri} derived components
+     * as well the {@code Authorization} header and, if present,
+     * the {@code DPoP} header.
+     * 
+     * @param requiredComponents
+     *            The component identifiers to cover in the signature.
+     *
+     * @return
+     *         {@code this} object.
+     * 
+     * @since 3.38
+     */
     public IntrospectionRequest setRequiredComponents(String[] requiredComponents)
     {
         this.requiredComponents = requiredComponents;
