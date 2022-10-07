@@ -75,7 +75,7 @@ package com.authlete.common.dto;
  * </blockquote>
  *
  * <p>
- * The following illustrates the response which the resource server
+ * The following illustrate responses which the resource server
  * implementation should generate and return to the client application.
  * </p>
  *
@@ -86,6 +86,19 @@ package com.authlete.common.dto;
  * Pragma: no-cache
  * Signature: <i>(The value returned from {@link #getSignature()})</i>
  * Signature-Input: <i>(The value returned from {@link #getSignatureInput()})</i>
+ * </pre>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;">
+ * HTTP/1.1 200 OK
+ * Content-Type: application/json
+ * Cache-Control: no-store
+ * Pragma: no-cache
+ * Signature: <i>(The value returned from {@link #getSignature()})</i>
+ * Signature-Input: <i>(The value returned from {@link #getSignatureInput()})</i>
+ * Content-Digest: <i>(The value returned from {@link #getContentDigest()})</i>
+ * Content-Type: text/plain
+ * 
+ * Hello, world!
  * </pre>
  *
  * <br/>
@@ -102,13 +115,6 @@ package com.authlete.common.dto;
  * The resource server implementation should generate a response to the
  * client application with {@code 400 Bad Request}.
  * </p>
- *
- * <p>
- * The {@link #getResponseContent()} method returns a JSON string which
- * describes the error, so it can be used as the entity body of the response
- * if the resource server wants to and it makes sense for the API at the
- * resource server.
- * </p>
  * </dd>
  *
  * <dt><b>{@link Action#INTERNAL_SERVER_ERROR INTERNAL_SERVER_ERROR}</b></dt>
@@ -124,13 +130,6 @@ package com.authlete.common.dto;
  * on the server side. Therefore, the resource server implementation
  * should generate a response to the client application with
  * {@code 500 Internal Server Error}.
- * </p>
- *
- * <p>
- * The {@link #getResponseContent()} method returns a JSON string which
- * describes the error, so it can be used as the entity body of the response
- * if the resource server wants to and it makes sense for the API at the
- * resource server.
  * </p>
  * <br/>
  * </dd>
