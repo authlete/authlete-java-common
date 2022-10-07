@@ -60,7 +60,7 @@ package com.authlete.common.dto;
  * </dl>
  *
  * <p>
- * The following illustrates the response which the authorization server
+ * The following illustrate responses which the resource server
  * implementation should generate and return to the client application.
  * </p>
  *
@@ -72,7 +72,20 @@ package com.authlete.common.dto;
  * Signature: <i>(The value returned from {@link #getSignature()})</i>
  * Signature-Input: <i>(The value returned from {@link #getSignatureInput()})</i>
  * </pre>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;">
+ * HTTP/1.1 200 OK
+ * Content-Type: application/json
+ * Cache-Control: no-store
+ * Pragma: no-cache
+ * Signature: <i>(The value returned from {@link #getSignature()})</i>
+ * Signature-Input: <i>(The value returned from {@link #getSignatureInput()})</i>
+ * Content-Digest: <i>(The value returned from {@link #getContentDigest()})</i>
+ * Content-Type: text/plain
  * 
+ * Hello, world!
+ * </pre>
+ *
  * <br/>
  * </dd>
  *
@@ -87,34 +100,19 @@ package com.authlete.common.dto;
  * The resource server implementation should generate a response to the
  * client application with {@code 400 Bad Request}.
  * </p>
- *
- * <p>
- * The {@link #getResponseContent()} method returns a JSON string which
- * describes the error, so it can be used as the entity body of the response
- * if the resource server wants to and it makes sense for the API at the
- * resource server.
- * </p>
- *
  * <dt><b>{@link Action#INTERNAL_SERVER_ERROR INTERNAL_SERVER_ERROR}</b></dt>
  * <dd>
  * <p>
  * When the value of {@code action} is {@code INTERNAL_SERVER_ERROR}, it means
- * that the API call from the authorization server implementation was wrong or
+ * that the API call from the resource server implementation was wrong or
  * that an error occurred in Authlete.
  * </p>
  *
  * <p>
  * In either case, from a viewpoint of the client application, it is an error
- * on the server side. Therefore, the authorization server implementation
+ * on the server side. Therefore, the resource server implementation
  * should generate a response to the client application with
  * {@code 500 Internal Server Error}.
- * </p>
- *
- * <p>
- * The {@link #getResponseContent()} method returns a JSON string which
- * describes the error, so it can be used as the entity body of the response
- * if the resource server wants to and it makes sense for the API at the
- * resource server.
  * </p>
  * <br/>
  * </dd>
@@ -264,7 +262,7 @@ public class ResourceServerSignatureResponse extends ApiResponse
 
 
     /**
-     * Get the next action that the authorization server should take.
+     * Get the next action that the resource server should take.
      *
      * @return
      *         The action.
@@ -276,7 +274,7 @@ public class ResourceServerSignatureResponse extends ApiResponse
 
 
     /**
-     * Set the next action that the authorization server should take.
+     * Set the next action that the resource server should take.
      *
      * @param action
      *            The action.
