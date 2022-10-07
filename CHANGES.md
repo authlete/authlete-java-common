@@ -1,6 +1,46 @@
 CHANGES
 =======
 
+3.38 (2022-10-07)
+-----------------
+
+- `IntrospectionRequest` class
+    * `getUri()` method.
+    * `setUri(String)` method.
+    * `getMessage()` method.
+    * `setMessage(String)` method.
+    * `getHeaders()` method.
+    * `setHeaders(Pair[])` method.
+    * `getRequiredComponents()` method.
+    * `setRequiredComponents(String[])` method.
+
+- `UserInfoIssueRequest` class
+    * `getRequestSignature()` method.
+    * `setRequestSignature(String)` method.
+    * `getHeaders()` method.
+    * `setHeaders(Pair[])` method.
+
+- `UserInfoIssueResponse` class
+    * `getSignature()` method.
+    * `setSignature(String)` method.
+    * `getSignatureInput()` method.
+    * `setSignatureInput(String)` method.
+    * `getContentDigest()` method.
+    * `setContentDigest(String)` method.
+
+- `UserInfoRequest` class
+    * `getUri()` method.
+    * `setUri(String)` method.
+    * `getHeaders()` method.
+    * `setHeaders(Pair[])` method.
+    * `getMessage()` method.
+    * `setMessage(String)` method.
+
+- New types
+    * `ResourceServerSignatureRequest` class
+    * `ResourceServerSignatureResponse` class
+
+
 3.37 (2022-10-01)
 -----------------
 

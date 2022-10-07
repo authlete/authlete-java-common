@@ -1,6 +1,46 @@
 変更点
 ======
 
+3.38 (2022 年 10 月 07 日)
+--------------------------
+
+- `IntrospectionRequest` クラス
+    * `getUri()` メソッドを追加。
+    * `setUri(String)` メソッドを追加。
+    * `getMessage()` メソッドを追加。
+    * `setMessage(String)` メソッドを追加。
+    * `getHeaders()` メソッドを追加。
+    * `setHeaders(Pair[])` メソッドを追加。
+    * `getRequiredComponents()` メソッドを追加。
+    * `setRequiredComponents(String[])` メソッドを追加。
+
+- `UserInfoIssueRequest` クラス
+    * `getRequestSignature()` メソッドを追加。
+    * `setRequestSignature(String)` メソッドを追加。
+    * `getHeaders()` メソッドを追加。
+    * `setHeaders(Pair[])` メソッドを追加。
+
+- `UserInfoIssueResponse` クラス
+    * `getSignature()` メソッドを追加。
+    * `setSignature(String)` メソッドを追加。
+    * `getSignatureInput()` メソッドを追加。
+    * `setSignatureInput(String)` メソッドを追加。
+    * `getContentDigest()` メソッドを追加。
+    * `setContentDigest(String)` メソッドを追加。
+
+- `UserInfoRequest` クラス
+    * `getUri()` メソッドを追加。
+    * `setUri(String)` メソッドを追加。
+    * `getHeaders()` メソッドを追加。
+    * `setHeaders(Pair[])` メソッドを追加。
+    * `getMessage()` メソッドを追加。
+    * `setMessage(String)` メソッドを追加。
+
+- 新しい型
+    * `ResourceServerSignatureRequest` クラス
+    * `ResourceServerSignatureResponse` クラス
+
+
 3.37 (2022 年 10 月 01 日)
 --------------------------
 
