@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2022 Authlete, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
 package com.authlete.common.dto;
 
 
@@ -6,13 +21,14 @@ import java.io.Serializable;
 
 /**
  * Request to Authlete's {@code /api/rs/sign} API.
- * 
+ *
  * <p>
  * The resource server can use this utility to sign responses using
- * HTTP Message Signatures defined in
- * {@code https://www.ietf.org/archive/id/draft-ietf-httpbis-message-signatures-13.html}
- * as profiled by Financial-grade API: HTTP Signing Requirements
- * {@code https://bitbucket.org/openid/fapi/src/master/Financial_API_HTTP_Signing.md}.
+ * HTTP Message Signatures defined in <a href=
+ * "https://datatracker.ietf.org/doc/draft-ietf-httpbis-message-signatures/"
+ * >draft-ietf-httpbis-message-signatures</a> as profiled by <a href=
+ * "https://bitbucket.org/openid/fapi/src/master/Financial_API_HTTP_Signing.md"
+ * >Financial-grade API: HTTP Signing Requirements</a>.
  * </p>
  *
  * <p>
@@ -21,7 +37,10 @@ import java.io.Serializable;
  * in the service's registered JWKS. This key will be used to create an HTTP Message Signature
  * on the input parameters.
  * </p>
- * 
+ *
+ * <blockquote>
+ * <dl>
+ *
  * <dt><b><code>requestSignature</code></b> (REQUIRED)</dt>
  * <dd>
  * <p>
@@ -36,7 +55,7 @@ import java.io.Serializable;
  * The HTTP status code of the response.
  * </p>
  * </dd>
- * 
+ *
  * <dt><b><code>headers</code></b> (REQUIRED)</dt>
  * <dd>
  * <p>
@@ -48,12 +67,16 @@ import java.io.Serializable;
  * <dd>
  * <p>
  * The HTTP message response body. If included, the response will include
- * the Content-Digest of the message and the digest will be covered in
+ * the {@code Content-Digest} of the message and the digest will be covered in
  * the signature.
  * </p>
  * </dd>
- * 
+ *
+ * </dl>
+ * </blockquote>
+ *
  * @since 3.38
+ * @since Authlete 2.3
  */
 public class ResourceServerSignatureRequest implements Serializable
 {
@@ -105,8 +128,8 @@ public class ResourceServerSignatureRequest implements Serializable
      * signatures in this header will be included in the output signature.
      *
      * @parameter requestSignature
-     *            The formatted Signature header value.
-     * 
+     *         The formatted Signature header value.
+     *
      * @return
      *         {@code this} object.
      */
@@ -137,8 +160,8 @@ public class ResourceServerSignatureRequest implements Serializable
      * of the header is the {@code value} of the entry.
      *
      * @parameter headers
-     *            The response headers.
-     * 
+     *         The response headers.
+     *
      * @return
      *         {@code this} object.
      */
@@ -151,7 +174,7 @@ public class ResourceServerSignatureRequest implements Serializable
 
     /**
      * Get the HTTP message response body. If included, the response will include
-     * the Content-Digest of the message and the digest will be covered in
+     * the {@code Content-Digest} of the message and the digest will be covered in
      * the signature.
      *
      * @return
@@ -165,12 +188,12 @@ public class ResourceServerSignatureRequest implements Serializable
 
     /**
      * Set the HTTP message response body. If included, the response will include
-     * the Content-Digest of the message and the digest will be covered in
+     * the {@code Content-Digest} of the message and the digest will be covered in
      * the signature.
      *
      * @parameter message
-     *            HTTP message response body.
-     * 
+     *         HTTP message response body.
+     *
      * @return
      *         {@code this} object.
      */
@@ -197,8 +220,8 @@ public class ResourceServerSignatureRequest implements Serializable
      * Set the HTTP status code of the response.
      *
      * @parameter status
-     *            The numeric HTTP status code.
-     * 
+     *         The numeric HTTP status code.
+     *
      * @return
      *         {@code this} object.
      */

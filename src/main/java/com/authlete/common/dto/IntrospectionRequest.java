@@ -1,11 +1,11 @@
 /*
- * Copyright (C) 2014-2021 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -96,14 +96,14 @@ import java.net.URI;
  * </p>
  * </dd>
  *
- * <dt><b><code>uri</code></b> (OPTIONAL)</dt>
+ * <dt><b><code>uri</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
  * The full URL of the resource server.
  * </p>
  * </dd>
  *
- * <dt><b><code>headers</code></b> (OPTIONAL)</dt>
+ * <dt><b><code>headers</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
  * The HTTP headers to be included in processing the signature. If this is
@@ -113,7 +113,7 @@ import java.net.URI;
  * </p>
  * </dd>
  *
- * <dt><b><code>message</code></b> (OPTIONAL)</dt>
+ * <dt><b><code>message</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
  * The HTTP message body of the request, if present. If supplied,
@@ -122,7 +122,7 @@ import java.net.URI;
  * </p>
  * </dd>
  *
- * <dt><b><code>requiredComponents</code></b> (OPTIONAL)</dt>
+ * <dt><b><code>requiredComponents</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
  * The list of component identifiers required to be covered by
@@ -205,16 +205,18 @@ public class IntrospectionRequest implements Serializable
 
     /**
      * The full URL of the resource server.
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     private String uri;
 
 
     /**
      * The HTTP message body of the request, if present.
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     private String message;
 
@@ -223,8 +225,9 @@ public class IntrospectionRequest implements Serializable
      * HTTP headers to be included in processing the signature. If this is
      * a signed request, this must include the Signature and Signature-Input
      * headers, as well as any additional headers covered by the signature.
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     private Pair[] headers;
 
@@ -233,8 +236,9 @@ public class IntrospectionRequest implements Serializable
      * HTTP Message Components required to be in the signature. If absent,
      * defaults to "@method", "@target-uri", and appropriate headers such as
      * "authorization" and "dpop".
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     private String[] requiredComponents;
 
@@ -583,11 +587,12 @@ public class IntrospectionRequest implements Serializable
     /**
      * Get the URL of the resource server. This field is used to validate
      * the HTTP Message Signature.
-     * 
+     *
      * @return
      *         The URL of the resource server.
      *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public String getUri()
     {
@@ -598,14 +603,15 @@ public class IntrospectionRequest implements Serializable
     /**
      * Set the URL of the resource server. This field is used to validate
      * the HTTP Message Signature.
-     * 
+     *
      * @param uri
-     *            The URL of the resource server.
+     *         The URL of the resource server.
      *
      * @return
      *         {@code this} object.
      *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public IntrospectionRequest setUri(String uri)
     {
@@ -618,11 +624,12 @@ public class IntrospectionRequest implements Serializable
      * Get the HTTP message body, if present. If provided, this will be used to calculate
      * the expected value of the {@code Content-Digest} in the headers of the request
      * covered by the HTTP Message Signature.
-     * 
+     *
      * @return
-     *         The HTTP message body
+     *         The HTTP message body.
      *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public String getMessage()
     {
@@ -634,14 +641,15 @@ public class IntrospectionRequest implements Serializable
      * Set the HTTP message body, if present. If provided, this will be used to calculate
      * the expected value of the {@code Content-Digest} in the headers of the request
      * covered by the HTTP Message Signature.
-     * 
+     *
      * @param message
-     *            The HTTP message body
+     *         The HTTP message body.
      *
      * @return
      *         {@code this} object.
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public IntrospectionRequest setMessage(String message)
     {
@@ -655,11 +663,12 @@ public class IntrospectionRequest implements Serializable
      * a signed request, this must include the {@code Signature} and
      * {@code Signature-Input} headers, as well as any additional headers
      * covered by the signature.
-     * 
+     *
      * @return
      *         The HTTP headers.
      *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public Pair[] getHeaders()
     {
@@ -672,14 +681,15 @@ public class IntrospectionRequest implements Serializable
      * a signed request, this must include the {@code Signature} and
      * {@code Signature-Input} headers, as well as any additional headers
      * covered by the signature.
-     * 
+     *
      * @param headers
-     *            The HTTP headers.
+     *         The HTTP headers.
      *
      * @return
      *         {@code this} object.
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public IntrospectionRequest setHeaders(Pair[] headers)
     {
@@ -694,11 +704,12 @@ public class IntrospectionRequest implements Serializable
      * including the {@code @method} and {@code @target-uri} derived components
      * as well the {@code Authorization} header and, if present,
      * the {@code DPoP} header.
-     * 
+     *
      * @return
      *         The component identifiers to cover in the signature.
      *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public String[] getRequiredComponents()
     {
@@ -712,14 +723,15 @@ public class IntrospectionRequest implements Serializable
      * including the {@code @method} and {@code @target-uri} derived components
      * as well the {@code Authorization} header and, if present,
      * the {@code DPoP} header.
-     * 
+     *
      * @param requiredComponents
-     *            The component identifiers to cover in the signature.
+     *         The component identifiers to cover in the signature.
      *
      * @return
      *         {@code this} object.
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public IntrospectionRequest setRequiredComponents(String[] requiredComponents)
     {

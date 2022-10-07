@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2018 Authlete, Inc.
+ * Copyright (C) 2015-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ package com.authlete.common.dto;
  * Cache-Control: no-store
  * Pragma: no-cache
  * </pre>
- * 
+ *
  * </dd>
  *
  * <dt><b>{@link Action#BAD_REQUEST BAD_REQUEST}</b></dt>
@@ -100,7 +100,7 @@ package com.authlete.common.dto;
  * Cache-Control: no-store
  * Pragma: no-cache
  * </pre>
- * 
+ *
  * </dd>
  *
  * <dt><b>{@link Action#UNAUTHORIZED UNAUTHORIZED}</b></dt>
@@ -134,7 +134,7 @@ package com.authlete.common.dto;
  * Cache-Control: no-store
  * Pragma: no-cache
  * </pre>
- * 
+ *
  * </dd>
  *
  * <dt><b>{@link Action#FORBIDDEN FORBIDDEN}</b></dt>
@@ -167,7 +167,7 @@ package com.authlete.common.dto;
  * Cache-Control: no-store
  * Pragma: no-cache
  * </pre>
- * 
+ *
  * </dd>
  *
  * <dt><b>{@link Action#JSON JSON}</b></dt>
@@ -199,7 +199,7 @@ package com.authlete.common.dto;
  *
  * <i>(The value returned from {@link #getResponseContent()})</i>
  * </pre>
- * 
+ *
  * </dd>
  *
  * <dt><b>{@link Action#JWT JWT}</b></dt>
@@ -233,7 +233,7 @@ package com.authlete.common.dto;
  *
  * <i>(The value returned from {@link #getResponseContent()})</i>
  * </pre>
- * 
+ *
  * </dd>
  * </dl>
  *
@@ -243,7 +243,7 @@ package com.authlete.common.dto;
  * the resource server implementation should add the headers in this response
  * object to the HTTP response message before returning it to the client.
  * </p>
- * 
+ *
  * <dl>
  * <dt><b>{@link #getSignature()}</b> (REQUIRED)</dt>
  * <dd>
@@ -252,7 +252,7 @@ package com.authlete.common.dto;
  * response.
  * </p>
  * </dd>
- * 
+ *
  * <dl>
  * <dt><b>{@link #getSignatureInput()}</b> (REQUIRED)</dt>
  * <dd>
@@ -267,7 +267,7 @@ package com.authlete.common.dto;
  * <dd>
  * <p>
  * The serialized value for the {@code Content-Digest} header applied to the
- * response. This value is only returned if a {@code message} is was passed
+ * response. This value is only returned if a {@code message} was passed
  * to the request, otherwise it is {@code null}.
  * </p>
  * </dd>
@@ -400,6 +400,9 @@ public class UserInfoIssueResponse extends ApiResponse
      *
      * @return
      *         The serialized header value.
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
     public String getSignature()
     {
@@ -411,10 +414,13 @@ public class UserInfoIssueResponse extends ApiResponse
      * Set the {@code Signature} header value to add to the response message.
      *
      * @param signature
-     *            The serialized header value.
+     *         The serialized header value.
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
     public UserInfoIssueResponse setSignature(String signature)
     {
@@ -428,6 +434,9 @@ public class UserInfoIssueResponse extends ApiResponse
      *
      * @return
      *         The serialized header value.
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
     public String getSignatureInput()
     {
@@ -439,10 +448,13 @@ public class UserInfoIssueResponse extends ApiResponse
      * Set the {@code Signature-Input} header value to add to the response message.
      *
      * @param signatureInput
-     *            The serialized header value.
+     *         The serialized header value.
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
     public UserInfoIssueResponse setSignatureInput(String signatureInput)
     {
@@ -456,6 +468,9 @@ public class UserInfoIssueResponse extends ApiResponse
      *
      * @return
      *         The serialized header value.
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
     public String getContentDigest()
     {
@@ -467,14 +482,17 @@ public class UserInfoIssueResponse extends ApiResponse
      * Set the {@code Content-Digest} header value to add to the response message.
      *
      * @param contentDigest
-     *            The serialized header value.
+     *         The serialized header value.
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
-    public UserInfoIssueResponse setContentDigest(String mContentDigest)
+    public UserInfoIssueResponse setContentDigest(String contentDigest)
     {
-        this.contentDigest = mContentDigest;
+        this.contentDigest = contentDigest;
         return this;
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2021 Authlete, Inc.
+ * Copyright (C) 2015-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,10 +31,10 @@ import com.authlete.common.util.Utils;
  * <dd>
  * <p>
  * The access token that has been passed to the service's <a href=
- * "http://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
+ * "https://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
  * >userinfo endpoint</a> by the client application. In other words,
  * the access token which was contained in the <a href=
- * "http://openid.net/specs/openid-connect-core-1_0.html#UserInfoRequest"
+ * "https://openid.net/specs/openid-connect-core-1_0.html#UserInfoRequest"
  * >userinfo request</a>.
  * </p>
  * </dd>
@@ -44,7 +44,7 @@ import com.authlete.common.util.Utils;
  * <p>
  * Claims in JSON format. As for the format, see {@link #setClaims(String)}
  * and <i>"<a href=
- * "http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+ * "https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
  * >OpenID Connect Core 1.0, 5.1. Standard Claims</a>"</i>.
  * </p>
  * </dd>
@@ -75,9 +75,8 @@ import com.authlete.common.util.Utils;
  * {@link #setVerifiedClaimsForTx(String[])} for details.
  * </p>
  * </dd>
- * </dl>
  *
- * <dt><b><code>requestSignature</code></b> (REQUIRED)</dt>
+ * <dt><b><code>requestSignature</code></b> (REQUIRED; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
  * The {@code Signature} header value from the request to the RS. All
@@ -85,12 +84,13 @@ import com.authlete.common.util.Utils;
  * </p>
  * </dd>
  *
- * <dt><b><code>headers</code></b> (REQUIRED)</dt>
+ * <dt><b><code>headers</code></b> (REQUIRED; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
  * The HTTP response headers, all will be included in the output signature.
  * </p>
  * </dd>
+ * </dl>
  *
  * </blockquote>
  *
@@ -136,16 +136,18 @@ public class UserInfoIssueRequest implements Serializable
 
     /**
      * The {@code Signature} header value from the request.
-     * 
-     * @since 3.xx
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
     private String requestSignature;
 
 
     /**
      * The HTTP headers to include in the signed response.
-     * 
-     * @since 3.xx
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
     private Pair[] headers;
 
@@ -163,7 +165,7 @@ public class UserInfoIssueRequest implements Serializable
     /**
      * Set the access token which has been issued by Authlete.
      * The access token is the one that has come along with the
-     * <a href="http://openid.net/specs/openid-connect-core-1_0.html#UserInfoRequest"
+     * <a href="https://openid.net/specs/openid-connect-core-1_0.html#UserInfoRequest"
      * >userinfo request</a> from the client application.
      */
     public UserInfoIssueRequest setToken(String token)
@@ -217,7 +219,7 @@ public class UserInfoIssueRequest implements Serializable
      * </p>
      *
      * <p>
-     * See <a href="http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+     * See <a href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
      * >OpenID Connect Core 1.0, 5.1. Standard Claims</a> for further details
      * about the format.
      * </p>
@@ -228,7 +230,7 @@ public class UserInfoIssueRequest implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
      *      >OpenID Connect Core 1.0, 5.1. Standard Claims</a>
      */
     public UserInfoIssueRequest setClaims(String claims)
@@ -593,6 +595,9 @@ public class UserInfoIssueRequest implements Serializable
      *
      * @return
      *         The formatted Signature header value.
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
     public String getRequestSignature()
     {
@@ -605,10 +610,13 @@ public class UserInfoIssueRequest implements Serializable
      * signatures in this header will be included in the output signature.
      *
      * @parameter requestSignature
-     *            The formatted Signature header value.
-     * 
+     *         The formatted Signature header value.
+     *
      * @return
      *         {@code this} object.
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
     public UserInfoIssueRequest setRequestSignature(String signature)
     {
@@ -624,6 +632,9 @@ public class UserInfoIssueRequest implements Serializable
      *
      * @return
      *         The response headers.
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
     public Pair[] getHeaders()
     {
@@ -638,9 +649,12 @@ public class UserInfoIssueRequest implements Serializable
      *
      * @parameter headers
      *            The response headers.
-     * 
+     *
      * @return
      *         {@code this} object.
+     *
+     * @since 3.38
+     * @since Authlete 2.3
      */
     public UserInfoIssueRequest setHeaders(Pair[] headers)
     {

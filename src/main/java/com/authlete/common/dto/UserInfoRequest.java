@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2020 Authlete, Inc.
+ * Copyright (C) 2015-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
- * <dt><b><code>uri</code></b> (OPTIONAL)</dt>
+ * <dt><b><code>uri</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
  * The full URL of the userinfo endpoint. If omitted, the {@code userInfoEndpoint}
@@ -80,7 +80,7 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
- * <dt><b><code>headers</code></b> (OPTIONAL)</dt>
+ * <dt><b><code>headers</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
  * The HTTP headers to be included in processing the signature. If this is
@@ -90,7 +90,7 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
- * <dt><b><code>message</code></b> (OPTIONAL)</dt>
+ * <dt><b><code>message</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
  * The HTTP message body of the request, if present. If supplied,
@@ -151,8 +151,9 @@ public class UserInfoRequest implements Serializable
 
     /**
      * The full URL of the userinfo endpoint.
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     private String uri;
 
@@ -164,14 +165,16 @@ public class UserInfoRequest implements Serializable
      * covered by the signature.
      *
      * @since 3.38
+     * @since Authlete 2.3
      */
     private Pair[] headers;
 
 
     /**
      * The HTTP message body of the request, if present.
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     private String message;
 
@@ -408,11 +411,12 @@ public class UserInfoRequest implements Serializable
      * If this parameter is omitted, the {@code userInfoEndpoint} property
      * of the {@link Service} is used as the default value.
      * </p>
-     * 
+     *
      * @return
      *         The URL of the userinfo endpoint.
      *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public String getUri()
     {
@@ -428,14 +432,15 @@ public class UserInfoRequest implements Serializable
      * If this parameter is omitted, the {@code userInfoEndpoint} property
      * of the {@link Service} is used as the default value.
      * </p>
-     * 
+     *
      * @param uri
-     *            The URL of the userinfo endpoint.
+     *         The URL of the userinfo endpoint.
      *
      * @return
      *         {@code this} object.
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public UserInfoRequest setUri(String uri)
     {
@@ -449,11 +454,12 @@ public class UserInfoRequest implements Serializable
      * a signed request, this must include the {@code Signature} and
      * {@code Signature-Input} headers, as well as any additional headers
      * covered by the signature.
-     * 
+     *
      * @return
      *         The HTTP headers.
      *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public Pair[] getHeaders()
     {
@@ -466,14 +472,15 @@ public class UserInfoRequest implements Serializable
      * a signed request, this must include the {@code Signature} and
      * {@code Signature-Input} headers, as well as any additional headers
      * covered by the signature.
-     * 
+     *
      * @param headers
-     *            The HTTP headers.
+     *         The HTTP headers.
      *
      * @return
      *         {@code this} object.
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public UserInfoRequest setHeaders(Pair[] headers)
     {
@@ -486,11 +493,12 @@ public class UserInfoRequest implements Serializable
      * Get the HTTP message body, if present. If provided, this will be used to calculate
      * the expected value of the {@code Content-Digest} in the headers of the request
      * covered by the HTTP Message Signature.
-     * 
+     *
      * @return
-     *         The HTTP message body
+     *         The HTTP message body.
      *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public String getMessage()
     {
@@ -502,14 +510,15 @@ public class UserInfoRequest implements Serializable
      * Set the HTTP message body, if present. If provided, this will be used to calculate
      * the expected value of the {@code Content-Digest} in the headers of the request
      * covered by the HTTP Message Signature.
-     * 
+     *
      * @param message
-     *            The HTTP message body
+     *         The HTTP message body.
      *
      * @return
      *         {@code this} object.
-     * 
+     *
      * @since 3.38
+     * @since Authlete 2.3
      */
     public UserInfoRequest setMessage(String message)
     {
