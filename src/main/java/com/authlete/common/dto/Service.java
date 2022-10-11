@@ -240,7 +240,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 61L;
+    private static final long serialVersionUID = 62L;
 
 
     /*
@@ -1192,6 +1192,9 @@ public class Service implements Serializable
      */
     private boolean dcrDuplicateSoftwareIdBlocked;
 
+
+    private boolean rsResponseSigned;
+    private String resourceSignatureKeyId;
 
     /**
      * Get the service number.
@@ -9600,6 +9603,82 @@ public class Service implements Serializable
     {
         this.dcrDuplicateSoftwareIdBlocked = blocked;
 
+        return this;
+    }
+
+
+    /**
+     * Get the key ID of a JWK containing the private key used by this service to
+     * sign responses from the resource server, such as the userinfo endpoint and
+     * responses sent to the RS signing endpoint.
+     * 
+     * @return
+     *         The key ID.
+     * 
+     * @since 3.39
+     */
+    public String getResourceSignatureKeyId()
+    {
+        return resourceSignatureKeyId;
+    }
+
+
+    /**
+     * Set the key ID of a JWK containing the private key used by this service to
+     * sign responses from the resource server, such as the userinfo endpoint and
+     * responses sent to the RS signing endpoint.
+     * 
+     * @return
+     *         The key ID.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.39
+     */
+    public Service setResourceSignatureKeyId(String resourceSignatureKeyId)
+    {
+        this.resourceSignatureKeyId = resourceSignatureKeyId;
+        return this;
+    }
+
+
+    /**
+     * Get whether the services signs responses from the resource server.
+     * If {@code true}, userinfo issue responses and responses sent to the RS
+     * signing endpoint that are in relation to a client's signed request will
+     * be signed using the key identified by {{@link #getResourceSignatureKeyId()}.
+     * 
+     * @return
+     *         {@code true} if the services signs responses for the resource server,
+     *         {@code false} otherwise.
+     * 
+     * @since 3.39
+     */
+    public boolean isRsResponseSigned()
+    {
+        return rsResponseSigned;
+    }
+
+
+    /**
+     * Set whether the services signs responses from the resource server.
+     * If {@code true}, userinfo issue responses and responses sent to the RS
+     * signing endpoint that are in relation to a client's signed request will
+     * be signed using the key identified by {{@link #getResourceSignatureKeyId()}.
+     * 
+     * @param rsResponseSigned
+     *            {@code true} if the services signs responses for the resource server,
+     *            {@code false} otherwise.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.39
+     */
+    public Service setRsResponseSigned(boolean signRsResponse)
+    {
+        this.rsResponseSigned = signRsResponse;
         return this;
     }
 }
