@@ -52,7 +52,7 @@ import com.authlete.common.types.SubjectType;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 29L;
+    private static final long serialVersionUID = 30L;
 
 
     /*
@@ -279,6 +279,8 @@ public class Client implements Serializable
     private boolean singleAccessTokenPerSubject;
     private boolean pkceRequired;
     private boolean pkceS256Required;
+    private String rsSignedRequestKeyId;
+    private boolean rsRequestSigned;
 
     /*
      * For OpenID Connect Federation 1.0.
@@ -4233,6 +4235,80 @@ public class Client implements Serializable
     {
         this.clientRegistrationTypes = types;
 
+        return this;
+    }
+
+
+    /**
+     * Get the key ID of a JWK containing the public key used by this client to
+     * sign requests to the resource server.
+     * 
+     * @return
+     *         The key ID.
+     * 
+     * @since 3.39
+     */
+    public String getRsSignedRequestKeyId()
+    {
+        return rsSignedRequestKeyId;
+    }
+
+
+    /**
+     * Set the key ID of a JWK containing the public key used by this client to
+     * sign requests to the resource server.
+     * 
+     * @param rsSignedRequestKeyId
+     *            The key ID.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.39
+     */
+    public Client setRsSignedRequestKeyId(String rsSignedRequestKeyId)
+    {
+        this.rsSignedRequestKeyId = rsSignedRequestKeyId;
+        return this;
+    }
+
+
+    /**
+     * Get whether the client is expected to sign requests to the resource server.
+     * If {@code true}, introspection requests and userinfo requests will be checked
+     * for a signature and the signature validated against the key identified by
+     * {@link #getRsSignedRequestKeyId()}.
+     * 
+     * @return
+     *         {@code true} if the client signs requests to the resource server,
+     *         {@code false} otherwise.
+     * 
+     * @since 3.39
+     */
+    public boolean isRsRequestSigned()
+    {
+        return rsRequestSigned;
+    }
+
+
+    /**
+     * Set whether the client is expected to sign requests to the resource server.
+     * If {@code true}, introspection requests and userinfo requests will be checked
+     * for a signature and the signature validated against the key identified by
+     * {@link #getRsSignedRequestKeyId()}.
+     * 
+     * @param rsRequestSigned
+     *            {@code true} if the client signs requests to the resource server,
+     *            {@code false} otherwise.
+     * 
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.39
+     */
+    public Client setRsRequestSigned(boolean signRsRequests)
+    {
+        this.rsRequestSigned = signRsRequests;
         return this;
     }
 }
