@@ -1,40 +1,56 @@
 CHANGES
 =======
 
+3.39 (2022-10-13)
+-----------------
+
+- `Client` class
+    * Added `getRsSignedRequestKeyId()` method.
+    * Added `setRsSignedRequestKeyId(String)` method.
+    * Added `isRsRequestSigned()` method.
+    * Added `setRsRequestSigned(boolean)` method.
+
+- `Service` class
+    * Added `getResourceSignatureKeyId()` method.
+    * Added `setResourceSignatureKeyId(String)` method.
+    * Added `isRsResponseSigned()` method.
+    * Added `setRsResponseSigned(boolean)` method.
+
+
 3.38 (2022-10-07)
 -----------------
 
 - `IntrospectionRequest` class
-    * `getUri()` method.
-    * `setUri(String)` method.
-    * `getMessage()` method.
-    * `setMessage(String)` method.
-    * `getHeaders()` method.
-    * `setHeaders(Pair[])` method.
-    * `getRequiredComponents()` method.
-    * `setRequiredComponents(String[])` method.
+    * Added `getUri()` method.
+    * Added `setUri(String)` method.
+    * Added `getMessage()` method.
+    * Added `setMessage(String)` method.
+    * Added `getHeaders()` method.
+    * Added `setHeaders(Pair[])` method.
+    * Added `getRequiredComponents()` method.
+    * Added `setRequiredComponents(String[])` method.
 
 - `UserInfoIssueRequest` class
-    * `getRequestSignature()` method.
-    * `setRequestSignature(String)` method.
-    * `getHeaders()` method.
-    * `setHeaders(Pair[])` method.
+    * Added `getRequestSignature()` method.
+    * Added `setRequestSignature(String)` method.
+    * Added `getHeaders()` method.
+    * Added `setHeaders(Pair[])` method.
 
 - `UserInfoIssueResponse` class
-    * `getSignature()` method.
-    * `setSignature(String)` method.
-    * `getSignatureInput()` method.
-    * `setSignatureInput(String)` method.
-    * `getContentDigest()` method.
-    * `setContentDigest(String)` method.
+    * Added `getSignature()` method.
+    * Added `setSignature(String)` method.
+    * Added `getSignatureInput()` method.
+    * Added `setSignatureInput(String)` method.
+    * Added `getContentDigest()` method.
+    * Added `setContentDigest(String)` method.
 
 - `UserInfoRequest` class
-    * `getUri()` method.
-    * `setUri(String)` method.
-    * `getHeaders()` method.
-    * `setHeaders(Pair[])` method.
-    * `getMessage()` method.
-    * `setMessage(String)` method.
+    * Added `getUri()` method.
+    * Added `setUri(String)` method.
+    * Added `getHeaders()` method.
+    * Added `setHeaders(Pair[])` method.
+    * Added `getMessage()` method.
+    * Added `setMessage(String)` method.
 
 - New types
     * `ResourceServerSignatureRequest` class

@@ -1,6 +1,22 @@
 変更点
 ======
 
+3.39 (2022 年 10 月 13 日)
+--------------------------
+
+- `Client` クラス
+    * `getRsSignedRequestKeyId()` メソッドを追加。
+    * `setRsSignedRequestKeyId(String)` メソッドを追加。
+    * `isRsRequestSigned()` メソッドを追加。
+    * `setRsRequestSigned(boolean)` メソッドを追加。
+
+- `Service` クラス
+    * `getResourceSignatureKeyId()` メソッドを追加。
+    * `setResourceSignatureKeyId(String)` メソッドを追加。
+    * `isRsResponseSigned()` メソッドを追加。
+    * `setRsResponseSigned(boolean)` メソッドを追加。
+
+
 3.38 (2022 年 10 月 07 日)
 --------------------------
 
