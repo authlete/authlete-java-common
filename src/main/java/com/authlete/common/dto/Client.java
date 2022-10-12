@@ -4242,11 +4242,12 @@ public class Client implements Serializable
     /**
      * Get the key ID of a JWK containing the public key used by this client to
      * sign requests to the resource server.
-     * 
+     *
      * @return
      *         The key ID.
-     * 
+     *
      * @since 3.39
+     * @since Authlete 2.3
      */
     public String getRsSignedRequestKeyId()
     {
@@ -4257,18 +4258,20 @@ public class Client implements Serializable
     /**
      * Set the key ID of a JWK containing the public key used by this client to
      * sign requests to the resource server.
-     * 
-     * @param rsSignedRequestKeyId
-     *            The key ID.
-     * 
+     *
+     * @param keyId
+     *         The key ID.
+     *
      * @return
      *         {@code this} object.
      *
      * @since 3.39
+     * @since Authlete 2.3
      */
-    public Client setRsSignedRequestKeyId(String rsSignedRequestKeyId)
+    public Client setRsSignedRequestKeyId(String keyId)
     {
-        this.rsSignedRequestKeyId = rsSignedRequestKeyId;
+        this.rsSignedRequestKeyId = keyId;
+
         return this;
     }
 
@@ -4276,14 +4279,15 @@ public class Client implements Serializable
     /**
      * Get whether the client is expected to sign requests to the resource server.
      * If {@code true}, introspection requests and userinfo requests will be checked
-     * for a signature and the signature validated against the key identified by
-     * {@link #getRsSignedRequestKeyId()}.
-     * 
+     * for a signature and the signature will be validated against the key identified
+     * by {@link #getRsSignedRequestKeyId()}.
+     *
      * @return
      *         {@code true} if the client signs requests to the resource server,
      *         {@code false} otherwise.
-     * 
+     *
      * @since 3.39
+     * @since Authlete 2.3
      */
     public boolean isRsRequestSigned()
     {
@@ -4294,21 +4298,23 @@ public class Client implements Serializable
     /**
      * Set whether the client is expected to sign requests to the resource server.
      * If {@code true}, introspection requests and userinfo requests will be checked
-     * for a signature and the signature validated against the key identified by
-     * {@link #getRsSignedRequestKeyId()}.
-     * 
-     * @param rsRequestSigned
-     *            {@code true} if the client signs requests to the resource server,
-     *            {@code false} otherwise.
-     * 
+     * for a signature and the will be signature validated against the key identified
+     * by {@link #getRsSignedRequestKeyId()}.
+     *
+     * @param signed
+     *         {@code true} if the client signs requests to the resource server,
+     *         {@code false} otherwise.
+     *
      * @return
      *         {@code this} object.
      *
      * @since 3.39
+     * @since Authlete 2.3
      */
-    public Client setRsRequestSigned(boolean signRsRequests)
+    public Client setRsRequestSigned(boolean signed)
     {
-        this.rsRequestSigned = signRsRequests;
+        this.rsRequestSigned = signed;
+
         return this;
     }
 }

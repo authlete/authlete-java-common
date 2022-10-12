@@ -32,7 +32,7 @@ import java.io.Serializable;
  * </p>
  *
  * <p>
- * To use this feature, a service is configured with the {@code signRsResponse} flag
+ * To use this feature, a service is configured with the {@code rsResponseSigned} flag
  * set to true and the {@code resourceSignatureKeyId} set to the key ID of one of the keys
  * in the service's registered JWKS. This key will be used to create an HTTP Message Signature
  * on the input parameters.
