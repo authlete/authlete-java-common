@@ -67,10 +67,12 @@ import com.authlete.common.types.GrantType;
  * <dd>
  * <p>
  * The subject (= unique identifier) of the user who will be associated with
- * a newly created access token. This parameter is required unless the grant
+ * a newly created access token. This parameter is ignored when the grant
  * type is {@link com.authlete.common.types.GrantType#CLIENT_CREDENTIALS
- * CLIENT_CREDENTIALS}. The value must consist of only ASCII characters and
- * its length must not exceed 100.
+ * CLIENT_CREDENTIALS}. This parameter is optional when the grant type is
+ * {@link com.authlete.common.types.GrantType#JWT_BEARER JWT_BEARER}.
+ * In other cases, this parameter is required. When specified, the value must
+ * consist of only ASCII characters and its length must not exceed 100.
  * </p>
  * </dd>
  *
