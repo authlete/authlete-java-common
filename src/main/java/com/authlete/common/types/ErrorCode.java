@@ -482,5 +482,39 @@ public enum ErrorCode
      * @since Authlete 2.3
      */
     validation_failed,
+
+
+    /**
+     * The Authorization Server is unable to meet the requirements of the
+     * Relying Party for the authentication of the End-User.
+     *
+     * <p>
+     * This error code SHALL be used if the Relying Party wants the OP to
+     * conform to a certain Authentication Context Class Reference value
+     * using an essential claim acr claim as specified in Section 5.5.1.1.
+     * of OpenID Connect Core [OpenID.Core] and the OP is unable to meet
+     * this requirement and MAY be used in other cases, if appropriate.
+     * </p>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-unmet-authentication-requirements-1_0.html"
+     *      >OpenID Connect Core Error Code unmet_authentication_requirements</a>
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     */
+    unmet_authentication_requirements,
+
+
+    /**
+     * The authentication event associated with the access token does not
+     * meet the authentication requirements of the resource server.
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     */
+    insufficient_user_authentication,
     ;
 }

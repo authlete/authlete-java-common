@@ -1,6 +1,29 @@
 変更点
 ======
 
+- `ErrorCode` 列挙型
+    * `unmet_authentication_requirements` を追加。
+    * `insufficient_user_authentication` を追加。
+
+- `IntrospectionRequest` クラス
+    * `getAcrValues()` メソッドを追加。
+    * `setAcrValues(String[])` メソッドを追加。
+    * `getMaxAge()` メソッドを追加。
+    * `setMaxAge(int)` メソッドを追加。
+
+- `IntrospectionResponse` クラス
+    * `getAcr()` メソッドを追加。
+    * `setAcr(String)` メソッドを追加。
+    * `getAuthTime()` メソッドを追加。
+    * `setAuthTime(long)` メソッドを追加。
+
+- `TokenCreateRequest` クラス
+    * `getAcr()` メソッドを追加。
+    * `setAcr(String)` メソッドを追加。
+    * `getAuthTime()` メソッドを追加。
+    * `setAuthTime(long)` メソッドを追加。
+
+
 3.39 (2022 年 10 月 13 日)
 --------------------------
 

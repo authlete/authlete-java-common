@@ -1,6 +1,29 @@
 CHANGES
 =======
 
+- `ErrorCode` enum
+    * Added `unmet_authentication_requirements`.
+    * Added `insufficient_user_authentication`.
+
+- `IntrospectionRequest` class
+    * Added `getAcrValues()` method.
+    * Added `setAcrValues(String[])` method.
+    * Added `getMaxAge()` method.
+    * Added `setMaxAge(int)` method.
+
+- `IntrospectionResponse` class
+    * Added `getAcr()` method.
+    * Added `setAcr(String)` method.
+    * Added `getAuthTime()` method.
+    * Added `setAuthTime(long)` method.
+
+- `TokenCreateRequest` class
+    * Added `getAcr()` method.
+    * Added `setAcr(String)` method.
+    * Added `getAuthTime()` method.
+    * Added `setAuthTime(long)` method.
+
+
 3.39 (2022-10-13)
 -----------------
 
