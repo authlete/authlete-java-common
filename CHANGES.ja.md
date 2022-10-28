@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.40 (2022 年 10 月 28 日)
+--------------------------
+
 - `ErrorCode` 列挙型
     * `unmet_authentication_requirements` を追加。
     * `insufficient_user_authentication` を追加。

@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.40 (2022-10-28)
+-----------------
+
 - `ErrorCode` enum
     * Added `unmet_authentication_requirements`.
     * Added `insufficient_user_authentication`.
