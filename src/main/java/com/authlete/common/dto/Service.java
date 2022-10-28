@@ -157,8 +157,9 @@ import com.authlete.common.types.UserCodeCharset;
  *     <td>array</td>
  *     <td>
  *       If this access token has been generated with {@code authorization_details},
- *       this claim is included. See <i>"OAuth 2.0 Rich Authorization Requests"</i>
- *       for details.
+ *       this claim is included. See <i>"<a href=
+ *       "https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/">OAuth 2.0
+ *       Rich Authorization Requests</a>"</i> for details.
  *     </td>
  *   </tr>
  *   <tr>
@@ -189,6 +190,30 @@ import com.authlete.common.types.UserCodeCharset;
  *       </p>
  *     </td>
  *   </tr>
+ *   <tr>
+ *     <td>{@code acr}</td>
+ *     <td>string</td>
+ *     <td>
+ *       The authentication context class of the user authentication that the
+ *       authorization server performed during the course of issuing the access
+ *       token. See <i>"<a href=
+ *       "https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+ *       >OAuth 2.0 Step-up Authentication Challenge Protocol</a>"</i> for
+ *       details.
+ *     </td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code auth_time}</td>
+ *     <td>integer</td>
+ *     <td>
+ *       The time when the user authentication was performed for the access
+ *       token. The value represents the number of seconds elapsed since the
+ *       Unix epoch. See <i>"<a href=
+ *       "https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+ *       >OAuth 2.0 Step-up Authentication Challenge Protocol</a>"</i> for
+ *       details.
+ *     </td>
+ *   </tr>
  * </table>
  *
  * <p>
@@ -211,7 +236,8 @@ import com.authlete.common.types.UserCodeCharset;
  * </p>
  *
  * <p>
- * <i>"OAuth 2.0 Rich Authorization Requests"</i> is supported since Authlete 2.2.
+ * <i>"<a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/">OAuth
+ * 2.0 Rich Authorization Requests</a>"</i> is supported since Authlete 2.2.
  * The {@code authorization_details} request parameter given to older Authlete
  * versions is just ignored, so JWT-based access tokens won't include the
  * {@code authorization_details} claim.
@@ -222,6 +248,13 @@ import com.authlete.common.types.UserCodeCharset;
  * The {@code grant_id} and {@code grant_management_action} request parameters
  * given to older Authlete versions are just ignored, so JWT-based access token
  * won't include the {@code grant_id} and {@code grant} claims.
+ * </p>
+ *
+ * <p>
+ * <i>"<a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+ * >OAuth 2.0 Step-up Authentication Challenge Protocol</a>"</i> is supported
+ * since Authlete 2.3. JWT access tokens issued by older Authlete versions
+ * won't include the {@code acr} and {@code auth_time} claims.
  * </p>
  *
  * <p>
@@ -237,6 +270,12 @@ import com.authlete.common.types.UserCodeCharset;
  *
  * @see <a href="https://www.rfc-editor.org/rfc/rfc8707.html"
  *      >RFC 8707 Resource Indicators for OAuth 2.0</a>
+ *
+ * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
+ *      >OAuth 2.0 Rich Authorization Requests</a>
+ *
+ * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+ *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
  */
 public class Service implements Serializable
 {

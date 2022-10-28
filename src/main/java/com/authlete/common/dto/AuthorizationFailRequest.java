@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2019 Authlete, Inc.
+ * Copyright (C) 2014-2022 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -170,8 +170,17 @@ public class AuthorizationFailRequest implements Serializable
          * end-user does not match any one of the requested ACRs.
          *
          * <p>
-         * Using this reason will result in {@code error=login_required}.
+         * Using this reason will result in {@code error=login_required}
+         * when the version of your Authlete server is 2.2 or older.
+         * Otherwise, this reason will result in
+         * {@code error=unmet_authentication_requirements}. See <i>"<a href=
+         * "https://openid.net/specs/openid-connect-unmet-authentication-requirements-1_0.html"
+         * >OpenID Connect Core Error Code unmet_authentication_requirements</a>"</i>
+         * for details about {@code unmet_authentication_requirements}.
          * </p>
+         *
+         * @see <a href="https://openid.net/specs/openid-connect-unmet-authentication-requirements-1_0.html"
+         *      >OpenID Connect Core Error Code unmet_authentication_requirements</a>
          */
         ACR_NOT_SATISFIED,
 

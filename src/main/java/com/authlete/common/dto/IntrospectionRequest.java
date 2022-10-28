@@ -132,6 +132,24 @@ import java.net.URI;
  * </p>
  * </dd>
  *
+ * <dt><b><code>acrValues</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
+ * <dd>
+ * <p>
+ * The list of Authentication Context Class Reference values one of which
+ * the user authentication performed during the course of issuing the access
+ * token must satisfy.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>maxAge</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
+ * <dd>
+ * <p>
+ * The maximum authentication age which is the maximum allowable elapsed time
+ * since the user authentication was performed during the course of issuing the
+ * access token.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -148,10 +166,13 @@ import java.net.URI;
  *
  * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
  *      >OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)</a>
+ *
+ * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+ *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
  */
 public class IntrospectionRequest implements Serializable
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /**
@@ -241,6 +262,28 @@ public class IntrospectionRequest implements Serializable
      * @since Authlete 2.3
      */
     private String[] requiredComponents;
+
+
+    /**
+     * Authentication Context Class Reference values one of which the
+     * user authentication performed during the course of issuing the
+     * access token must satisfy.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     */
+    private String[] acrValues;
+
+
+    /**
+     * The maximum authentication age which is the maximum allowable
+     * elapsed time since the user authentication was performed during
+     * the course of issuing the access token.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     */
+    private int maxAge;
 
 
     /**
@@ -616,6 +659,7 @@ public class IntrospectionRequest implements Serializable
     public IntrospectionRequest setUri(String uri)
     {
         this.uri = uri;
+
         return this;
     }
 
@@ -654,6 +698,7 @@ public class IntrospectionRequest implements Serializable
     public IntrospectionRequest setMessage(String message)
     {
         this.message = message;
+
         return this;
     }
 
@@ -694,6 +739,7 @@ public class IntrospectionRequest implements Serializable
     public IntrospectionRequest setHeaders(Pair[] headers)
     {
         this.headers = headers;
+
         return this;
     }
 
@@ -736,6 +782,101 @@ public class IntrospectionRequest implements Serializable
     public IntrospectionRequest setRequiredComponents(String[] requiredComponents)
     {
         this.requiredComponents = requiredComponents;
+
+        return this;
+    }
+
+
+    /**
+     * Get the list of Authentication Context Class Reference values one of
+     * which the user authentication performed during the course of issuing
+     * the access token must satisfy.
+     *
+     * @return
+     *         The list of Authentication Context Class Reference values.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public String[] getAcrValues()
+    {
+        return acrValues;
+    }
+
+
+    /**
+     * Set the list of Authentication Context Class Reference values one of
+     * which the user authentication performed during the course of issuing
+     * the access token must satisfy.
+     *
+     * @param acrValues
+     *         The list of Authentication Context Class Reference values.
+     *         If {@code null} is given, the {@code /auth/introspection} API
+     *         does not perform ACR checking.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public IntrospectionRequest setAcrValues(String[] acrValues)
+    {
+        this.acrValues = acrValues;
+
+        return this;
+    }
+
+
+    /**
+     * Get the maximum authentication age which is the maximum allowable
+     * elapsed time since the user authentication was performed during
+     * the course of issuing the access token.
+     *
+     * @return
+     *         The maximum authentication age in seconds.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public int getMaxAge()
+    {
+        return maxAge;
+    }
+
+
+    /**
+     * Set the maximum authentication age which is the maximum allowable
+     * elapsed time since the user authentication was performed during
+     * the course of issuing the access token.
+     *
+     * @param maxAge
+     *         The maximum authentication age in seconds. If 0 or a negative
+     *         value is given, the {@code /auth/introspection} API does not
+     *         perform max age checking.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public IntrospectionRequest setMaxAge(int maxAge)
+    {
+        this.maxAge = maxAge;
+
         return this;
     }
 }

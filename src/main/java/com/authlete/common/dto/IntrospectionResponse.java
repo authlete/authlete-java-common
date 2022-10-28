@@ -219,7 +219,7 @@ import com.authlete.common.util.Utils;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 15L;
+    private static final long serialVersionUID = 16L;
 
 
     /**
@@ -441,6 +441,27 @@ public class IntrospectionResponse extends ApiResponse
      * @since 3.16
      */
     private boolean forExternalAttachment;
+
+
+    /**
+     * The Authentication Context Class Reference of the user authentication
+     * that the authorization server performed during the course of issuing
+     * the access token.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     */
+    private String acr;
+
+
+    /**
+     * The time when the user authentication was performed during the course
+     * of issuing the access token.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     */
+    private long authTime;
 
 
     /**
@@ -1381,5 +1402,83 @@ public class IntrospectionResponse extends ApiResponse
     public void setForExternalAttachment(boolean forExternalAttachment)
     {
         this.forExternalAttachment = forExternalAttachment;
+    }
+
+
+    /**
+     * Get the Authentication Context Class Reference of the user authentication
+     * that the authorization server performed during the course of issuing the
+     * access token.
+     *
+     * @return
+     *         The Authentication Context Class Reference.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public String getAcr()
+    {
+        return acr;
+    }
+
+
+    /**
+     * Set the Authentication Context Class Reference of the user authentication
+     * that the authorization server performed during the course of issuing the
+     * access token.
+     *
+     * @param acr
+     *         The Authentication Context Class Reference.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public void setAcr(String acr)
+    {
+        this.acr = acr;
+    }
+
+
+    /**
+     * Get the time when the user authentication was performed during the course
+     * of issuing the access token.
+     *
+     * @return
+     *         The time of the user authentication in seconds since the Unix epoch.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public long getAuthTime()
+    {
+        return authTime;
+    }
+
+
+    /**
+     * Set the time when the user authentication was performed during the course
+     * of issuing the access token.
+     *
+     * @param authTime
+     *         The time of the user authentication in seconds since the Unix epoch.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public void setAuthTime(long authTime)
+    {
+        this.authTime = authTime;
     }
 }

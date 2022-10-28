@@ -266,7 +266,7 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 12L;
+    private static final long serialVersionUID = 13L;
 
 
     private GrantType grantType;
@@ -287,6 +287,8 @@ public class TokenCreateRequest implements Serializable
     private URI[] resources;
     private boolean forExternalAttachment;
     private String jwtAtClaims;
+    private String acr;
+    private long authTime;
 
 
     /**
@@ -1163,6 +1165,115 @@ public class TokenCreateRequest implements Serializable
     public TokenCreateRequest setJwtAtClaims(String claims)
     {
         this.jwtAtClaims = claims;
+
+        return this;
+    }
+
+
+    /**
+     * Get the Authentication Context Class Reference of the user authentication
+     * that the authorization server performed during the course of issuing the
+     * access token.
+     *
+     * <p>
+     * Note that this parameter is ignored in cases where the {@code subject}
+     * parameter is missing or ignored.
+     * </p>
+     *
+     * @return
+     *         The Authentication Context Class Reference.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public String getAcr()
+    {
+        return acr;
+    }
+
+
+    /**
+     * Set the Authentication Context Class Reference of the user authentication
+     * that the authorization server performed during the course of issuing the
+     * access token.
+     *
+     * <p>
+     * Note that this parameter is ignored in cases where the {@code subject}
+     * parameter is missing or ignored.
+     * </p>
+     *
+     * @param acr
+     *         The Authentication Context Class Reference.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public TokenCreateRequest setAcr(String acr)
+    {
+        this.acr = acr;
+
+        return this;
+    }
+
+
+    /**
+     * Get the time when the user authentication was performed during the course
+     * of issuing the access token.
+     *
+     * <p>
+     * Note that this parameter is ignored in cases where the {@code subject}
+     * parameter is missing or ignored.
+     * </p>
+     *
+     * @return
+     *         The time of the user authentication in seconds since the Unix epoch.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public long getAuthTime()
+    {
+        return authTime;
+    }
+
+
+    /**
+     * Set the time when the user authentication was performed during the course
+     * of issuing the access token.
+     *
+     * <p>
+     * Note that this parameter is ignored in cases where the {@code subject}
+     * parameter is missing or ignored.
+     * </p>
+     *
+     * @param authTime
+     *         The time of the user authentication in seconds since the Unix epoch.
+     *         Must not be negative.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.40
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
+     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     */
+    public TokenCreateRequest setAuthTime(long authTime)
+    {
+        this.authTime = authTime;
 
         return this;
     }
