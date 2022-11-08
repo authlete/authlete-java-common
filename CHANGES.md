@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `IntrospectionResponse` class
+    * Added `getGrantType()` method.
+    * Added `setGrantType(GrantType)` method.
+
+
 3.40 (2022-10-28)
 -----------------
 

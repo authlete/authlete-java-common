@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `IntrospectionResponse` クラス
+    * `getGrantType()` メソッドを追加。
+    * `setGrantType(GrantType)` メソッドを追加。
+
+
 3.40 (2022 年 10 月 28 日)
 --------------------------
 

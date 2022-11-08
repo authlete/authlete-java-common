@@ -17,6 +17,7 @@ package com.authlete.common.dto;
 
 
 import java.net.URI;
+import com.authlete.common.types.GrantType;
 import com.authlete.common.util.Utils;
 
 
@@ -219,7 +220,7 @@ import com.authlete.common.util.Utils;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 16L;
+    private static final long serialVersionUID = 17L;
 
 
     /**
@@ -462,6 +463,17 @@ public class IntrospectionResponse extends ApiResponse
      * @since Authlete 2.3
      */
     private long authTime;
+
+
+    /**
+     * The grant type that was used for the issuance of the access token.
+     *
+     * @since 3.41
+     * @since Authlete 2.1.24
+     * @since Authlete 2.2.36
+     * @since Authlete 2.3
+     */
+    private GrantType grantType;
 
 
     /**
@@ -1480,5 +1492,39 @@ public class IntrospectionResponse extends ApiResponse
     public void setAuthTime(long authTime)
     {
         this.authTime = authTime;
+    }
+
+
+    /**
+     * Get the grant type that was used for issuance of the access token.
+     *
+     * @return
+     *         The grant type.
+     *
+     * @since 3.41
+     * @since Authlete 2.1.24
+     * @since Authlete 2.2.36
+     * @since Authlete 2.3
+     */
+    public GrantType getGrantType()
+    {
+        return grantType;
+    }
+
+
+    /**
+     * Set the grant type that was used for issuance of the access token.
+     *
+     * @param grantType
+     *         The grant type.
+     *
+     * @since 3.41
+     * @since Authlete 2.1.24
+     * @since Authlete 2.2.36
+     * @since Authlete 2.3
+     */
+    public void setGrantType(GrantType grantType)
+    {
+        this.grantType = grantType;
     }
 }

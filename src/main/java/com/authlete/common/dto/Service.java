@@ -214,6 +214,54 @@ import com.authlete.common.types.UserCodeCharset;
  *       details.
  *     </td>
  *   </tr>
+ *   <tr>
+ *     <td>{@code grant_type}</td>
+ *     <td>string</td>
+ *     <td>
+ *       <p>
+ *       The grant type that was used for the issuance of the access token.
+ *       Possible values are as follows.
+ *       </p>
+ *       <table border="1" cellpadding="5" style="border-collapse: collapse;">
+ *         <tr bgcolor="orange">
+ *           <th>Value</th>
+ *           <th>Since Authlete Version</th>
+ *         </tr>
+ *         <tr>
+ *           <td>{@code "authorization_code"}</td>
+ *           <td>2.1.24, 2.2.36, 2.3</td>
+ *         </tr>
+ *         <tr>
+ *           <td>{@code "implicit"}</td>
+ *           <td>2.1.24, 2.2.36, 2.3</td>
+ *         </tr>
+ *         <tr>
+ *           <td>{@code "password"}</td>
+ *           <td>2.1.24, 2.2.36, 2.3</td>
+ *         </tr>
+ *         <tr>
+ *           <td>{@code "client_credentials"}</td>
+ *           <td>2.1.24, 2.2.36, 2.3</td>
+ *         </tr>
+ *         <tr>
+ *           <td>{@code "urn:openid:params:grant-type:ciba"}</td>
+ *           <td>2.1.24, 2.2.36, 2.3</td>
+ *         </tr>
+ *         <tr>
+ *           <td>{@code "urn:ietf:params:oauth:grant-type:device_code"}</td>
+ *           <td>2.1.24, 2.2.36, 2.3</td>
+ *         </tr>
+ *         <tr>
+ *           <td>{@code "urn:ietf:params:oauth:grant-type:token-exchange"}</td>
+ *           <td>2.3</td>
+ *         </tr>
+ *         <tr>
+ *           <td>{@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}</td>
+ *           <td>2.3</td>
+ *         </tr>
+ *       </table>
+ *     </td>
+ *   </tr>
  * </table>
  *
  * <p>
