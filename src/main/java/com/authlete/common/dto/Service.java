@@ -327,7 +327,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 62L;
+    private static final long serialVersionUID = 63L;
 
 
     /*
@@ -1298,6 +1298,17 @@ public class Service implements Serializable
      * @since Authlete 2.3
      */
     private boolean rsResponseSigned;
+
+
+    /**
+     * The flag indicating whether to remove the {@code openid} scope from a
+     * new access token issued by the refresh token flow if the presented
+     * refresh token does not contain the {@code offline_access} scope.
+     *
+     * @since 3.42
+     * @since Authlete 2.2.36
+     */
+    private boolean openidDroppedOnRefreshWithoutOfflineAccess;
 
 
     /**
@@ -9788,6 +9799,49 @@ public class Service implements Serializable
     public Service setRsResponseSigned(boolean signed)
     {
         this.rsResponseSigned = signed;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to remove the {@code openid} scope from
+     * a new access token issued by the refresh token flow if the presented
+     * refresh token does not contain the {@code offline_access} scope.
+     *
+     * @return
+     *         {@code true} if the {@code openid} scope is dropped when
+     *         the presented refresh token does not contain the
+     *         {@code offline_access} scope.
+     *
+     * @since 3.42
+     * @since Authlete 2.2.36
+     */
+    public boolean isOpenidDroppedOnRefreshWithoutOfflineAccess()
+    {
+        return openidDroppedOnRefreshWithoutOfflineAccess;
+    }
+
+
+    /**
+     * Set the flag indicating whether to remove the {@code openid} scope from
+     * a new access token issued by the refresh token flow if the presented
+     * refresh token does not contain the {@code offline_access} scope.
+     *
+     * @param dropped
+     *         {@code true} to drop the {@code openid} scope when
+     *         the presented refresh token does not contain the
+     *         {@code offline_access} scope.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.42
+     * @since Authlete 2.2.36
+     */
+    public Service setOpenidDroppedOnRefreshWithoutOfflineAccess(boolean dropped)
+    {
+        this.openidDroppedOnRefreshWithoutOfflineAccess = dropped;
 
         return this;
     }
