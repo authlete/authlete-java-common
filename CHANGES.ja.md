@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.42 (2022 年 11 月 18 日)
+--------------------------
+
 - `Service` クラス
     * `isOpenidDroppedOnRefreshWithoutOfflineAccess()` メソッドを追加。
     * `setOpenidDroppedOnRefreshWithoutOfflineAccess(boolean)` メソッドを追加。

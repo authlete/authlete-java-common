@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.42 (2022-11-18)
+-----------------
+
 - `Service` class
     * Added `isOpenidDroppedOnRefreshWithoutOfflineAccess()` method.
     * Added `setOpenidDroppedOnRefreshWithoutOfflineAccess(boolean)` method.
