@@ -774,9 +774,9 @@ public interface AuthleteApi
      * @return
      *         The configuration of the service in JSON format.
      *
-     * @since 3.43
+     * @since 3.44
      */
-    String getServiceConfigurationRequest(ServiceConfigurationRequest request) throws AuthleteApiException;
+    String getServiceConfiguration(ServiceConfigurationRequest request) throws AuthleteApiException;
 
 
     /**

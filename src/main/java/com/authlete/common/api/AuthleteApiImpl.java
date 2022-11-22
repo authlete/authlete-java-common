@@ -1135,7 +1135,7 @@ class AuthleteApiImpl implements AuthleteApi
 
 
     @Override
-    public String getServiceConfigurationRequest(ServiceConfigurationRequest request) throws AuthleteApiException
+    public String getServiceConfiguration(ServiceConfigurationRequest request) throws AuthleteApiException
     {
         return callServicePostApi(
                 SERVICE_CONFIGURATION_API_PATH, request, String.class);
