@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.43 (2022-11-23)
+-----------------
+
 - `AuthleteApi` interface
     * Added `getServiceConfiguration(ServiceConfigurationRequest)` method.
 
