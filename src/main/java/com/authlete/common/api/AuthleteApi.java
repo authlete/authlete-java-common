@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -63,6 +63,7 @@ import com.authlete.common.dto.PushedAuthReqResponse;
 import com.authlete.common.dto.RevocationRequest;
 import com.authlete.common.dto.RevocationResponse;
 import com.authlete.common.dto.Service;
+import com.authlete.common.dto.ServiceConfigurationRequest;
 import com.authlete.common.dto.ServiceListResponse;
 import com.authlete.common.dto.StandardIntrospectionRequest;
 import com.authlete.common.dto.StandardIntrospectionResponse;
@@ -708,7 +709,7 @@ public interface AuthleteApi
 
     /**
      * Get the configuration of the service in JSON format that complies with
-     * <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
+     * <a href="https://openid.net/specs/openid-connect-discovery-1_0.html"
      * >OpenID Connect Discovery 1.0</a>.
      *
      * <p>
@@ -719,7 +720,7 @@ public interface AuthleteApi
      * @return
      *         The configuration of the service in JSON format.
      *
-     * @see <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
+     * @see <a href="https://openid.net/specs/openid-connect-discovery-1_0.html"
      *      >OpenID Connect Discovery 1.0</a>
      *
      * @since 1.27
@@ -729,13 +730,13 @@ public interface AuthleteApi
 
     /**
      * Get the configuration of the service in JSON format that complies with
-     * <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
+     * <a href="https://openid.net/specs/openid-connect-discovery-1_0.html"
      * >OpenID Connect Discovery 1.0</a>.
      *
      * <p>
      * The value returned from this method can be used as the response body
      * from {@code /.well-known/openid-configuration}. See "<a href=
-     * "http://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig"
+     * "https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig"
      * >4. Obtaining OpenID Provider Configuration Information</a>" in OpenID
      * Connect Discovery 1.0 for details.
      * </p>
@@ -746,12 +747,36 @@ public interface AuthleteApi
      * @return
      *         The configuration of the service in JSON format.
      *
-     * @see <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
+     * @see <a href="https://openid.net/specs/openid-connect-discovery-1_0.html"
      *      >OpenID Connect Discovery 1.0</a>
      *
      * @since 1.28
      */
     String getServiceConfiguration(boolean pretty) throws AuthleteApiException;
+
+
+    /**
+     * Get the configuration of the service in JSON format that complies with
+     * <a href="https://openid.net/specs/openid-connect-discovery-1_0.html"
+     * >OpenID Connect Discovery 1.0</a>.
+     *
+     * <p>
+     * The value returned from this method can be used as the response body
+     * from {@code /.well-known/openid-configuration}. See "<a href=
+     * "https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig"
+     * >4. Obtaining OpenID Provider Configuration Information</a>" in OpenID
+     * Connect Discovery 1.0 for details.
+     * </p>
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         The configuration of the service in JSON format.
+     *
+     * @since 3.43
+     */
+    String getServiceConfigurationRequest(ServiceConfigurationRequest request) throws AuthleteApiException;
 
 
     /**

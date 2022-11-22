@@ -80,6 +80,7 @@ import com.authlete.common.dto.PushedAuthReqResponse;
 import com.authlete.common.dto.RevocationRequest;
 import com.authlete.common.dto.RevocationResponse;
 import com.authlete.common.dto.Service;
+import com.authlete.common.dto.ServiceConfigurationRequest;
 import com.authlete.common.dto.ServiceListResponse;
 import com.authlete.common.dto.StandardIntrospectionRequest;
 import com.authlete.common.dto.StandardIntrospectionResponse;
@@ -1130,6 +1131,14 @@ class AuthleteApiImpl implements AuthleteApi
                 SERVICE_CONFIGURATION_API_PATH,
                 buildMap("pretty", pretty),
                 String.class);
+    }
+
+
+    @Override
+    public String getServiceConfigurationRequest(ServiceConfigurationRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                SERVICE_CONFIGURATION_API_PATH, request, String.class);
     }
 
 
