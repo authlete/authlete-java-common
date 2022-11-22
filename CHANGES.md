@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.44 (2022-11-23)
+-----------------
+
 - `AuthleteApi` interface
     * Renamed `getServiceConfigurationRequest(ServiceConfigurationRequest)` method
       to `getServiceConfiguration(ServiceConfigurationRequest)`.

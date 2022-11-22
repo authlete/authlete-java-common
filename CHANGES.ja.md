@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.44 (2022 年 11 月 23 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `getServiceConfigurationRequest(ServiceConfigurationRequest)` メソッドを
       `getServiceConfiguration(ServiceConfigurationRequest)` へ名称変更。
