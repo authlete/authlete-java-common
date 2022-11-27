@@ -16,10 +16,14 @@
 package com.authlete.common.dto;
 
 
+import static com.authlete.common.util.MapUtils.put;
+import static com.authlete.common.util.MapUtils.putJsonObject;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import com.authlete.common.types.ApplicationType;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.ClientRegistrationType;
@@ -31,28 +35,49 @@ import com.authlete.common.types.JWEEnc;
 import com.authlete.common.types.JWSAlg;
 import com.authlete.common.types.ResponseType;
 import com.authlete.common.types.SubjectType;
+import com.authlete.common.util.ClientMetadataControl;
+import com.authlete.common.util.Utils;
 
 
 /**
  * Information about a client application.
  *
  * <p>
- * Some properties correspond to the ones listed in <a href=
- * "https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
- * >Client Metadata</a> in <a href=
- * "https://openid.net/specs/openid-connect-registration-1_0.html"
- * >OpenID Connect Dynamic Client Registration 1.0</a>.
+ * Some properties correspond to client metadata defined in related standard
+ * specifications. See the implementation of
+ * {@link #toStandardMetadata(ClientMetadataControl)} for exact mappings.
  * </p>
  *
  * @see <a href="https://openid.net/specs/openid-connect-registration-1_0.html"
  *      >OpenID Connect Dynamic Client Registration 1.0</a>
  *
- * @see <a href="https://openid.net/specs/openid-financial-api-jarm.html"
- *      >Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc7591.html"
+ *      >RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol</a>
+ *
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc8705.html"
+ *      >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
+ *
+ * @see <a href="https://openid.net/specs/oauth-v2-jarm.html"
+ *      >JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
+ *
+ * @see <a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
+ *      >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
+ *
+ * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
+ *      >OAuth 2.0 Rich Authorization Requests</a>
+ *
+ * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+ *      >OpenID Connect for Identity Assurance 1.0</a>
+ *
+ * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+ *      >OpenID Connect Federation 1.0</a>
+ *
+ * @see <a href="https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#client-metadata"
+ *      >IANA OAuth Parameters / OAuth Dynamic Client Registration Metadata</a>
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 30L;
+    private static final long serialVersionUID = 31L;
 
 
     /*
@@ -4316,5 +4341,410 @@ public class Client implements Serializable
         this.rsRequestSigned = signed;
 
         return this;
+    }
+
+
+    /**
+     * Get a {@code Map} instance that represents a set of standard client
+     * metadata.
+     *
+     * <p>
+     * This method is an alias of {@link #toStandardMetadata(ClientMetadataControl)
+     * toStandardMetadata}{@code (null)}.
+     * </p>
+     *
+     * @return
+     *         A {@code Map} instance that represents a set of standard client
+     *         metadata.
+     */
+    public Map<String, Object> toStandardMetadata()
+    {
+        return toStandardMetadata(null);
+    }
+
+
+    /**
+     * Get a {@code Map} instance that represents a set of standard client
+     * metadata.
+     *
+     * <p>
+     * This method creates a new {@code Map} instance per call. Modifying the
+     * Map instance does not affect this {@link Client} instance.
+     * </p>
+     *
+     * @param control
+     *         Flags to control output of this method. If {@code null} is given,
+     *         a new {@link ClientMetadataControl} instance is created and used.
+     *
+     * @return
+     *         A {@code Map} instance that represents a set of standard client
+     *         metadata.
+     *
+     * @since 3.45
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-registration-1_0.html"
+     *      >OpenID Connect Dynamic Client Registration 1.0</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7591.html"
+     *      >RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8705.html"
+     *      >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
+     *
+     * @see <a href="https://openid.net/specs/oauth-v2-jarm.html"
+     *      >JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
+     *      >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
+     *      >OAuth 2.0 Rich Authorization Requests</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     *
+     * @see <a href="https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#client-metadata"
+     *      >IANA OAuth Parameters / OAuth Dynamic Client Registration Metadata</a>
+     */
+    public Map<String, Object> toStandardMetadata(ClientMetadataControl control)
+    {
+        if (control == null)
+        {
+            control = new ClientMetadataControl();
+        }
+
+        boolean nullIncluded  = control.isNullIncluded();
+        boolean zeroIncluded  = control.isZeroIncluded();
+        boolean falseIncluded = control.isFalseIncluded();
+
+        Map<String, Object> metadata = new LinkedHashMap<String, Object>();
+
+        // client_id
+        putClientId(metadata, control);
+
+        //----------------------------------------------------------------------
+        // OpenID Connect Dynamic Client Registration 1.0
+        //----------------------------------------------------------------------
+
+        // redirect_uris
+        put(metadata, "redirect_uris", getRedirectUris(), nullIncluded);
+
+        // response_types
+        put(metadata, "response_types", getResponseTypes(), nullIncluded);
+
+        // grant_types
+        put(metadata, "grant_types", getGrantTypes(), nullIncluded);
+
+        // application_type
+        put(metadata, "application_type", getApplicationType(), nullIncluded);
+
+        // contacts
+        put(metadata, "contacts", getContacts(), nullIncluded);
+
+        // client_name
+        put(metadata, "client_name", getClientName(), nullIncluded);
+
+        // client_name#{language-tag}
+        put(metadata, "client_name", getClientNames(), nullIncluded);
+
+        // logo_uri
+        put(metadata, "logo_uri", getLogoUri(), nullIncluded);
+
+        // logo_uri#{language-tag}
+        put(metadata, "logo_uri", getLogoUris(), nullIncluded);
+
+        // client_uri
+        put(metadata, "client_uri", getClientUri(), nullIncluded);
+
+        // client_uri#{language-tag}
+        put(metadata, "client_uri", getClientUris(), nullIncluded);
+
+        // policy_uri
+        put(metadata, "policy_uri", getPolicyUri(), nullIncluded);
+
+        // policy_uri#{language-tag}
+        put(metadata, "policy_uri", getPolicyUris(), nullIncluded);
+
+        // tos_uri
+        put(metadata, "tos_uri", getTosUri(), nullIncluded);
+
+        // tos_uri#{language-tag}
+        put(metadata, "tos_uri", getTosUris(), nullIncluded);
+
+        // jwks_uri
+        put(metadata, "jwks_uri", getJwksUri(), nullIncluded);
+
+        // jwks
+        putJsonObject(metadata, "jwks", getJwks(), nullIncluded);
+
+        // sector_identifier_uri
+        put(metadata, "sector_identifier_uri", getSectorIdentifierUri(), nullIncluded);
+
+        // subject_type
+        put(metadata, "subject_type", getSubjectType(), nullIncluded);
+
+        // id_token_signed_response_alg
+        put(metadata, "id_token_signed_response_alg", getIdTokenSignAlg(), nullIncluded);
+
+        // id_token_encrypted_response_alg
+        put(metadata, "id_token_encrypted_response_alg", getIdTokenEncryptionAlg(), nullIncluded);
+
+        // id_token_encrypted_response_enc
+        put(metadata, "id_token_encrypted_response_enc", getIdTokenEncryptionEnc(), nullIncluded);
+
+        // userinfo_signed_response_alg
+        put(metadata, "userinfo_signed_response_alg", getUserInfoSignAlg(), nullIncluded);
+
+        // userinfo_encrypted_response_alg
+        put(metadata, "userinfo_encrypted_response_alg", getUserInfoEncryptionAlg(), nullIncluded);
+
+        // userinfo_encrypted_response_enc
+        put(metadata, "userinfo_encrypted_response_enc", getUserInfoEncryptionEnc(), nullIncluded);
+
+        // request_object_signing_alg
+        put(metadata, "request_object_signing_alg", getRequestSignAlg(), nullIncluded);
+
+        // request_object_encryption_alg
+        put(metadata, "request_object_encryption_alg", getRequestEncryptionAlg(), nullIncluded);
+
+        // request_object_encryption_enc
+        put(metadata, "request_object_encryption_enc", getRequestEncryptionEnc(), nullIncluded);
+
+        // token_endpoint_auth_method
+        put(metadata, "token_endpoint_auth_method", getTokenAuthMethod(), nullIncluded);
+
+        // token_endpoint_auth_signing_alg
+        put(metadata, "token_endpoint_auth_signing_alg", getTokenAuthSignAlg(), nullIncluded);
+
+        // default_max_age
+        put(metadata, "default_max_age", getDefaultMaxAge(), zeroIncluded);
+
+        // require_auth_time
+        put(metadata, "require_auth_time", isAuthTimeRequired(), falseIncluded);
+
+        // default_acr_values
+        put(metadata, "default_acr_values", getDefaultAcrs(), nullIncluded);
+
+        // initiate_login_uri
+        put(metadata, "initiate_login_uri", getLoginUri(), nullIncluded);
+
+        // request_uris
+        put(metadata, "request_uris", getRequestUris(), nullIncluded);
+
+        //----------------------------------------------------------------------
+        // RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol
+        //----------------------------------------------------------------------
+
+        // scope
+        putScope(metadata, control);
+
+        // software_id
+        put(metadata, "software_id", getSoftwareId(), nullIncluded);
+
+        // software_version
+        put(metadata, "software_version", getSoftwareVersion(), nullIncluded);
+
+        // client_secret
+        putClientSecret(metadata, control);
+
+        // client_id_issued_at
+        putClientIdIssuedAt(metadata, control);
+
+        //----------------------------------------------------------------------
+        // RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens
+        //----------------------------------------------------------------------
+
+        // tls_client_auth_subject_dn
+        put(metadata, "tls_client_auth_subject_dn", getTlsClientAuthSubjectDn(), nullIncluded);
+
+        // tls_client_auth_san_dns
+        put(metadata, "tls_client_auth_san_dns", getTlsClientAuthSanDns(), nullIncluded);
+
+        // tls_client_auth_san_uri
+        put(metadata, "tls_client_auth_san_uri", getTlsClientAuthSanUri(), nullIncluded);
+
+        // tls_client_auth_san_ip
+        put(metadata, "tls_client_auth_san_ip", getTlsClientAuthSanIp(), nullIncluded);
+
+        // tls_client_auth_san_email
+        put(metadata, "tls_client_auth_san_email", getTlsClientAuthSanEmail(), nullIncluded);
+
+        // tls_client_certificate_bound_access_tokens
+        put(metadata, "tls_client_certificate_bound_access_tokens",
+                isTlsClientCertificateBoundAccessTokens(), falseIncluded);
+
+        //----------------------------------------------------------------------
+        // JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)
+        //----------------------------------------------------------------------
+
+        // authorization_signed_response_alg
+        put(metadata, "authorization_signed_response_alg", getAuthorizationSignAlg(), nullIncluded);
+
+        // authorization_encrypted_response_alg
+        put(metadata, "authorization_encrypted_response_alg", getAuthorizationEncryptionAlg(), nullIncluded);
+
+        // authorization_encrypted_response_enc
+        put(metadata, "authorization_encrypted_response_enc", getAuthorizationEncryptionEnc(), nullIncluded);
+
+        //----------------------------------------------------------------------
+        // OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0
+        //----------------------------------------------------------------------
+
+        // backchannel_token_delivery_mode
+        put(metadata, "backchannel_token_delivery_mode", getBcDeliveryMode(), nullIncluded);
+
+        // backchannel_client_notification_endpoint
+        put(metadata, "backchannel_client_notification_endpoint", getBcNotificationEndpoint(), nullIncluded);
+
+        // backchannel_authentication_request_signing_alg
+        put(metadata, "backchannel_authentication_request_signing_alg", getBcRequestSignAlg(), nullIncluded);
+
+        // backchannel_user_code_parameter
+        put(metadata, "backchannel_user_code_parameter", isBcUserCodeRequired(), falseIncluded);
+
+        //----------------------------------------------------------------------
+        // OAuth 2.0 Rich Authorization Requests
+        //----------------------------------------------------------------------
+
+        // authorization_details_types
+        put(metadata, "authorization_details_types", getAuthorizationDetailsTypes(), nullIncluded);
+
+        //----------------------------------------------------------------------
+        // OpenID Connect for Identity Assurance 1.0
+        //----------------------------------------------------------------------
+
+        // digest_algorithm
+        put(metadata, "digest_algorithm", getDigestAlgorithm(), nullIncluded);
+
+        //----------------------------------------------------------------------
+        // OpenID Connect Federation 1.0
+        //----------------------------------------------------------------------
+
+        // organization_name
+        put(metadata, "organization_name", getOrganizationName(), nullIncluded);
+
+        // signed_jwks_uri
+        put(metadata, "signed_jwks_uri", getSignedJwksUri(), nullIncluded);
+
+        // client_registration_types
+        put(metadata, "client_registration_types", getClientRegistrationTypes(), nullIncluded);
+
+        //----------------------------------------------------------------------
+        // Custom Metadata
+        //----------------------------------------------------------------------
+
+        putCustomMetadata(metadata, control);
+
+        return metadata;
+    }
+
+
+    private void putClientId(Map<String, Object> metadata, ClientMetadataControl control)
+    {
+        String value;
+
+        // If "alias" is preferred, enabled and available.
+        if (control.isAliasPreferred() && isClientIdAliasEnabled() && getClientIdAlias() != null)
+        {
+            // Use the client ID alias as the value of "client_id".
+            value = getClientIdAlias();
+        }
+        // If "entity ID" is preferred and available.
+        else if (control.isEntityIdPreferred() && getEntityId() != null)
+        {
+            // Use the entity ID as the value of "client_id".
+            value = getEntityId().toString();
+        }
+        else
+        {
+            // Use the original numeric client ID as the value of "client_id".
+            value = String.valueOf(getClientId());
+        }
+
+        metadata.put("client_id", value);
+    }
+
+
+    private void putClientSecret(Map<String, Object> metadata, ClientMetadataControl control)
+    {
+        if (!control.isSecretIncluded())
+        {
+            return;
+        }
+
+        // The client secret is available only when the client type is "confidential".
+        String value = (getClientType() == ClientType.CONFIDENTIAL)
+                     ? getClientSecret() : null;
+
+        put(metadata, "client_secret", value, control.isNullIncluded());
+    }
+
+
+    private void putClientIdIssuedAt(Map<String, Object> metadata, ClientMetadataControl control)
+    {
+        // Convert milliseconds to seconds.
+        long value = getCreatedAt() / 1000L;
+
+        put(metadata, "client_id_issued_at", value, control.isZeroIncluded());
+    }
+
+
+    private void putScope(Map<String, Object> metadata, ClientMetadataControl control)
+    {
+        ClientExtension extension = getExtension();
+
+        String value = null;
+
+        // If the "requestable scopes" feature is enabled.
+        if (extension != null && extension.isRequestableScopesEnabled())
+        {
+            // Concatenate the requestable scopes.
+            value = Utils.join(extension.getRequestableScopes(), " ");
+        }
+
+        put(metadata, "scope", value, control.isNullIncluded());
+    }
+
+
+    @SuppressWarnings("unchecked")
+    private void putCustomMetadata(Map<String, Object> metadata, ClientMetadataControl control)
+    {
+        if (!control.isCustomIncluded())
+        {
+            return;
+        }
+
+        String json = getCustomMetadata();
+
+        // If custom metadata are not set.
+        if (json == null)
+        {
+            return;
+        }
+
+        Map<String, Object> custom;
+
+        try
+        {
+            // Parse the custom metadata as JSON.
+            custom = (Map<String, Object>)Utils.fromJson(json, Map.class);
+        }
+        catch (Exception cause)
+        {
+            // Failed to parse the custom metadata as JSON.
+            return;
+        }
+
+        // If the result of parsing the custom metadata is unavailable.
+        if (custom == null)
+        {
+            return;
+        }
+
+        // Merge the custom metadata into the metadata.
+        put(metadata, custom, control);
     }
 }
