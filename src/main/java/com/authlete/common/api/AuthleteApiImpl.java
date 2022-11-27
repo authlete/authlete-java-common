@@ -65,6 +65,8 @@ import com.authlete.common.dto.DeviceVerificationRequest;
 import com.authlete.common.dto.DeviceVerificationResponse;
 import com.authlete.common.dto.FederationConfigurationRequest;
 import com.authlete.common.dto.FederationConfigurationResponse;
+import com.authlete.common.dto.FederationRegistrationRequest;
+import com.authlete.common.dto.FederationRegistrationResponse;
 import com.authlete.common.dto.GMRequest;
 import com.authlete.common.dto.GMResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
@@ -185,6 +187,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String GM_API_PATH                            = "/api/gm";
     private static final String CLIENT_LOCK_FLAG_UPDATE_API_PATH       = "/api/client/lock_flag/update";
     private static final String FEDERATION_CONFIGURATION_API_PATH      = "/api/federation/configuration";
+    private static final String FEDERATION_REGISTRATION_API_PATH       = "/api/federation/registration";
 
 
     private final String mBaseUrl;
@@ -1635,5 +1638,15 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 FEDERATION_CONFIGURATION_API_PATH, request,
                 FederationConfigurationResponse.class);
+    }
+
+
+    @Override
+    public FederationRegistrationResponse federationRegistration(
+            FederationRegistrationRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                FEDERATION_REGISTRATION_API_PATH, request,
+                FederationRegistrationResponse.class);
     }
 }

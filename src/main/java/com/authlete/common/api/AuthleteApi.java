@@ -48,6 +48,8 @@ import com.authlete.common.dto.DeviceVerificationRequest;
 import com.authlete.common.dto.DeviceVerificationResponse;
 import com.authlete.common.dto.FederationConfigurationRequest;
 import com.authlete.common.dto.FederationConfigurationResponse;
+import com.authlete.common.dto.FederationRegistrationRequest;
+import com.authlete.common.dto.FederationRegistrationResponse;
 import com.authlete.common.dto.GMRequest;
 import com.authlete.common.dto.GMResponse;
 import com.authlete.common.dto.GrantedScopesGetResponse;
@@ -1620,4 +1622,20 @@ public interface AuthleteApi
      */
     FederationConfigurationResponse federationConfiguration(
             FederationConfigurationRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /federation/registration} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.45
+     * @since Authlete 2.3
+     */
+    FederationRegistrationResponse federationRegistration(
+            FederationRegistrationRequest request) throws AuthleteApiException;
 }
