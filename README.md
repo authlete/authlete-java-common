@@ -36,7 +36,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>3.44</version>
+    <version>3.45</version>
 </dependency>
 ```
 
@@ -344,6 +344,7 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   20. Methods for OpenID Connect Federation 1.0
 
   - `federationConfiguration(FederationConfigurationRequest)`
+  - `federationRegistration(FederationRegistrationRequest)`
 
 *Examples*
 
@@ -420,7 +421,7 @@ Contact
 
 [1]: https://www.authlete.com/
 [2]: https://docs.authlete.com/
-[3]: https://tools.ietf.org/html/rfc6749
+[3]: https://www.rfc-editor.org/rfc/rfc6749.html
 [4]: https://openid.net/connect/
 [5]: https://www.authlete.com/developers/overview/
 [6]: https://github.com/authlete/java-oauth-server

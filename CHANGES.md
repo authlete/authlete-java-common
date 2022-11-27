@@ -1,6 +1,24 @@
 CHANGES
 =======
 
+3.45 (2022-11-28)
+-----------------
+
+- `AuthleteApi` interface
+    * Added `federationRegistration(FederationRegistrationRequest)` method.
+
+- `Client` class
+    * Added `toStandardMetadata()` method.
+    * Added `toStandardMetadata(ClientMetadataControl)` method.
+
+- New types
+    * `ClientMetadataControl` class
+    * `FederationRegistrationRequest` class
+    * `FederationRegistrationResponse` class
+    * `MapControl` class
+    * `MapUtils` class
+
+
 3.44 (2022-11-23)
 -----------------
 

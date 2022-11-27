@@ -35,7 +35,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>3.44</version>
+    <version>3.45</version>
 </dependency>
 ```
 
@@ -333,7 +333,7 @@ settings.setReadTimeout(5000);
   20. OpenID Connect Federation 1.0 に関するメソッド群
 
   - `federationConfiguration(FederationConfigurationRequest)`
-
+  - `federationRegistration(FederationRegistrationRequest)`
 
 *例*
 
@@ -409,7 +409,7 @@ Authlete 2.1 以降で利用できる機能：
 
 [1]: https://www.authlete.com/
 [2]: https://docs.authlete.com/
-[3]: https://tools.ietf.org/html/rfc6749
+[3]: https://www.rfc-editor.org/rfc/rfc6749.html
 [4]: https://openid.net/connect/
 [5]: https://www.authlete.com/ja/developers/overview/
 [6]: https://github.com/authlete/java-oauth-server

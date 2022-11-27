@@ -1,6 +1,24 @@
 変更点
 ======
 
+3.45 (2022 年 11 月 28 日)
+--------------------------
+
+- `AuthleteApi` インターフェース
+    * `federationRegistration(FederationRegistrationRequest)` メソッドを追加。
+
+- `Client` クラス
+    * `toStandardMetadata()` メソッドを追加。
+    * `toStandardMetadata(ClientMetadataControl)` メソッドを追加。
+
+- 新しい型
+    * `ClientMetadataControl` クラス
+    * `FederationRegistrationRequest` クラス
+    * `FederationRegistrationResponse` クラス
+    * `MapControl` クラス
+    * `MapUtils` クラス
+
+
 3.44 (2022 年 11 月 23 日)
 --------------------------
 
