@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.46 (2022-11-28)
+-----------------
+
 - `Client` class
     * Added `isAutomaticallyRegistered()` method.
     * Added `setAutomaticallyRegistered(boolean)` method.
