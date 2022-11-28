@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+- `Client` class
+    * Added `isAutomaticallyRegistered()` method.
+    * Added `setAutomaticallyRegistered(boolean)` method.
+    * Added `isExplicitlyRegistered()` method.
+    * Added `setExplicitlyRegistered(boolean)` method.
+
+
 3.45 (2022-11-28)
 -----------------
 

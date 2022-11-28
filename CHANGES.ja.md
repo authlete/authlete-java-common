@@ -1,6 +1,13 @@
 変更点
 ======
 
+- `Client` クラス
+    * `isAutomaticallyRegistered()` メソッドを追加。
+    * `setAutomaticallyRegistered(boolean)` メソッドを追加。
+    * `isExplicitlyRegistered()` メソッドを追加。
+    * `setExplicitlyRegistered(boolean)` メソッドを追加。
+
+
 3.45 (2022 年 11 月 28 日)
 --------------------------
 

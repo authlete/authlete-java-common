@@ -77,7 +77,7 @@ import com.authlete.common.util.Utils;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 31L;
+    private static final long serialVersionUID = 32L;
 
 
     /*
@@ -318,6 +318,8 @@ public class Client implements Serializable
     private String organizationName;
     private URI signedJwksUri;
     private ClientRegistrationType[] clientRegistrationTypes;
+    private boolean automaticallyRegistered;
+    private boolean explicitlyRegistered;
 
 
     /**
@@ -4339,6 +4341,96 @@ public class Client implements Serializable
     public Client setRsRequestSigned(boolean signed)
     {
         this.rsRequestSigned = signed;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether this client was registered by the
+     * "automatic" client registration of OIDC Federation.
+     *
+     * @return
+     *         {@code true} if this client was registered by the automatic
+     *         client registration.
+     *
+     * @since 3.46
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public boolean isAutomaticallyRegistered()
+    {
+        return automaticallyRegistered;
+    }
+
+
+    /**
+     * Set the flag indicating whether this client was registered by the
+     * "automatic" client registration of OIDC Federation.
+     *
+     * @param auto
+     *         {@code true} to indicate that this client was registered by
+     *         the automatic client registration.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.46
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Client setAutomaticallyRegistered(boolean auto)
+    {
+        this.automaticallyRegistered = auto;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether this client was registered by the
+     * "explicit" client registration of OIDC Federation.
+     *
+     * @return
+     *         {@code true} if this client was registered by the explicit
+     *         client registration.
+     *
+     * @since 3.46
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public boolean isExplicitlyRegistered()
+    {
+        return explicitlyRegistered;
+    }
+
+
+    /**
+     * Set the flag indicating whether this client was registered by the
+     * "explicit" client registration of OIDC Federation.
+     *
+     * @param explicit
+     *         {@code true} to indicate that this client was registered by
+     *         the explicit client registration.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.46
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
+     *      >OpenID Connect Federation 1.0</a>
+     */
+    public Client setExplicitlyRegistered(boolean explicit)
+    {
+        this.explicitlyRegistered = explicit;
 
         return this;
     }
