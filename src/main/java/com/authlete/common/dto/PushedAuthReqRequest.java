@@ -133,6 +133,24 @@ public class PushedAuthReqRequest implements Serializable
 
 
     /**
+     * DPoP Header
+     */
+    private String dpop;
+
+
+    /**
+     * HTTP Method (for DPoP validation).
+     */
+    private String htm;
+
+
+    /**
+     * HTTP URL base (for DPoP validation).
+     */
+    private String htu;
+
+
+    /**
      * Get the request parameters that the pushed authorization request
      * endpoint received from the client application.
      *
@@ -285,6 +303,163 @@ public class PushedAuthReqRequest implements Serializable
     public PushedAuthReqRequest setClientCertificatePath(String[] path)
     {
         this.clientCertificatePath = path;
+
+        return this;
+    }
+
+
+    /**
+     * Get the {@code DPoP} header presented by the client during the request
+     * to the token endpoint. The header contains a signed JWT which includes
+     * the public key that is paired with the private key used to sign the JWT.
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
+     * @return
+     *         The {@code DPoP} header string.
+     *
+     * @since 3.47
+     */
+    public String getDpop()
+    {
+        return dpop;
+    }
+
+
+    /**
+     * Set the {@code DPoP} header presented by the client during the request
+     * to the token endpoint. The header contains a signed JWT which includes
+     * the public key that is paired with the private key used to sign the JWT.
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
+     * @param dpop
+     *            The {@code DPoP} header string.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.47
+     */
+    public PushedAuthReqRequest setDpop(String dpop)
+    {
+        this.dpop = dpop;
+
+        return this;
+    }
+
+
+    /**
+     * Get the HTTP method of the token request. This field is used to
+     * validate the {@code DPoP} header.
+     *
+     * <p>
+     * In normal cases, the value is {@code "POST"}. When this parameter
+     * is omitted, {@code "POST"} is used as the default value.
+     * </p>
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
+     * @return
+     *         The HTTP method as a string. For example, {@code "POST"}.
+     *
+     * @since 3.47
+     */
+    public String getHtm()
+    {
+        return htm;
+    }
+
+
+    /**
+     * Set the HTTP method of the token request. This field is used to
+     * validate the {@code DPoP} header.
+     *
+     * <p>
+     * In normal cases, the value is {@code "POST"}. When this parameter
+     * is omitted, {@code "POST"} is used as the default value.
+     * </p>
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
+     * @param htm
+     *            The HTTP method as a string. For example, {@code "POST"}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.47
+     */
+    public PushedAuthReqRequest setHtm(String htm)
+    {
+        this.htm = htm;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URL of the token endpoint. This field is used to validate
+     * the {@code DPoP} header.
+     *
+     * <p>
+     * If this parameter is omitted, the {@code tokenEndpoint} property
+     * of the {@link Service} is used as the default value.
+     * </p>
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
+     * @return
+     *         The URL of the token endpoint.
+     *
+     * @since 3.47
+     */
+    public String getHtu()
+    {
+        return htu;
+    }
+
+
+    /**
+     * Set the URL of the token endpoint. This field is used to validate
+     * the {@code DPoP} header.
+     *
+     * <p>
+     * If this parameter is omitted, the {@code tokenEndpoint} property
+     * of the {@link Service} is used as the default value.
+     * </p>
+     *
+     * <p>
+     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
+     * Application Layer (DPoP)"</i> for details.
+     * </p>
+     *
+     * @param htu
+     *            The URL of the token endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.47
+     */
+    public PushedAuthReqRequest setHtu(String htu)
+    {
+        this.htu = htu;
 
         return this;
     }
