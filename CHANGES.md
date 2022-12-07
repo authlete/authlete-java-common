@@ -1,6 +1,18 @@
 CHANGES
 =======
 
+3.47 (2022-12-08)
+-----------------
+
+- `PushedAuthReqRequest` class
+    * Added `getDpop()` method.
+    * Added `setDpop(String)` method.
+    * Added `getHtm()` method.
+    * Added `setHtm(String)` method.
+    * Added `getHtu()` method.
+    * Added `setHtu(String)` method.
+
+
 3.46 (2022-11-28)
 -----------------
 
