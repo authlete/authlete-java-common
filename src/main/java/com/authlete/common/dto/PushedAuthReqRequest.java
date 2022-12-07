@@ -310,7 +310,7 @@ public class PushedAuthReqRequest implements Serializable
 
     /**
      * Get the {@code DPoP} header presented by the client during the request
-     * to the token endpoint. The header contains a signed JWT which includes
+     * to the PAR endpoint. The header contains a signed JWT which includes
      * the public key that is paired with the private key used to sign the JWT.
      *
      * <p>
@@ -331,7 +331,7 @@ public class PushedAuthReqRequest implements Serializable
 
     /**
      * Set the {@code DPoP} header presented by the client during the request
-     * to the token endpoint. The header contains a signed JWT which includes
+     * to the PAR endpoint. The header contains a signed JWT which includes
      * the public key that is paired with the private key used to sign the JWT.
      *
      * <p>
@@ -356,7 +356,7 @@ public class PushedAuthReqRequest implements Serializable
 
 
     /**
-     * Get the HTTP method of the token request. This field is used to
+     * Get the HTTP method of the pushed authorization request. This field is used to
      * validate the {@code DPoP} header.
      *
      * <p>
@@ -381,7 +381,7 @@ public class PushedAuthReqRequest implements Serializable
 
 
     /**
-     * Set the HTTP method of the token request. This field is used to
+     * Set the HTTP method of the pushed authorization request. This field is used to
      * validate the {@code DPoP} header.
      *
      * <p>
@@ -411,11 +411,11 @@ public class PushedAuthReqRequest implements Serializable
 
 
     /**
-     * Get the URL of the token endpoint. This field is used to validate
+     * Get the URL of the PAR endpoint. This field is used to validate
      * the {@code DPoP} header.
      *
      * <p>
-     * If this parameter is omitted, the {@code tokenEndpoint} property
+     * If this parameter is omitted, the {@code pushedAuthReqEndpoint} property
      * of the {@link Service} is used as the default value.
      * </p>
      *
@@ -425,7 +425,7 @@ public class PushedAuthReqRequest implements Serializable
      * </p>
      *
      * @return
-     *         The URL of the token endpoint.
+     *         The URL of the PAR endpoint.
      *
      * @since 3.47
      */
@@ -436,11 +436,11 @@ public class PushedAuthReqRequest implements Serializable
 
 
     /**
-     * Set the URL of the token endpoint. This field is used to validate
+     * Set the URL of the PAR endpoint. This field is used to validate
      * the {@code DPoP} header.
      *
      * <p>
-     * If this parameter is omitted, the {@code tokenEndpoint} property
+     * If this parameter is omitted, the {@code pushedAuthReqEndpoint} property
      * of the {@link Service} is used as the default value.
      * </p>
      *
@@ -450,7 +450,7 @@ public class PushedAuthReqRequest implements Serializable
      * </p>
      *
      * @param htu
-     *            The URL of the token endpoint.
+     *            The URL of the PAR endpoint.
      *
      * @return
      *         {@code this} object.
