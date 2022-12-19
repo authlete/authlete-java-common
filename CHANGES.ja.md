@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.48 (2022 年 12 月 19 日)
+--------------------------
+
 - `Service` クラス
     * `getSupportedDocumentsCheckMethods()` メソッドを追加。
     * `setSupportedDocumentsCheckMethods(String[])` メソッドを追加。

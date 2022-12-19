@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.48 (2022-12-19)
+-----------------
+
 - `Service` class
     * Added `getSupportedDocumentsCheckMethods()` method.
     * Added `setSupportedDocumentsCheckMethods(String[])` method.
