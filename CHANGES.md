@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `getSupportedDocumentsCheckMethods()` method.
+    * Added `setSupportedDocumentsCheckMethods(String[])` method.
+    * Deprecated `getSupportedDocumentsValidationMethods()` method.
+    * Deprecated `setSupportedDocumentsValidationMethods(String[])` method.
+    * Deprecated `getSupportedDocumentsVerificationMethods()` method.
+    * Deprecated `setSupportedDocumentsVerificationMethods(String[])` method.
+
+
 3.47 (2022-12-08)
 -----------------
 

@@ -788,8 +788,19 @@ public class Service implements Serializable
      * was added by the third implementer's draft of OpenID Connect for
      * Identity Assurance 1.0.
      *
+     * <p>
+     * The fourth implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0 replaced the {@code documents_validation_methods_supported} server
+     * metadata and the {@code documents_verification_methods_supported} server
+     * metadata with the {@code documents_check_methods_supported} server
+     * metadata.
+     * </p>
+     *
      * @since 3.13
+     *
+     * @deprecated
      */
+    @Deprecated
     private String[] supportedDocumentsValidationMethods;
 
 
@@ -799,9 +810,39 @@ public class Service implements Serializable
      * which was added by the third implementer's draft of OpenID Connect for
      * Identity Assurance 1.0.
      *
+     * <p>
+     * The fourth implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0 replaced the {@code documents_validation_methods_supported} server
+     * metadata and the {@code documents_verification_methods_supported} server
+     * metadata with the {@code documents_check_methods_supported} server
+     * metadata.
+     * </p>
+     *
      * @since 3.13
+     *
+     * @deprecated
      */
+    @Deprecated
     private String[] supportedDocumentsVerificationMethods;
+
+
+    /**
+     * Supported document check methods. This property corresponds to the
+     * {@code documents_check_methods_supported} server metadata which was
+     * added by the fourth implementer's draft of OpenID Connect for Identity
+     * Assurance 1.0.
+     *
+     * <p>
+     * The fourth implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0 replaced the {@code documents_validation_methods_supported} server
+     * metadata and the {@code documents_verification_methods_supported} server
+     * metadata with the {@code documents_check_methods_supported} server
+     * metadata.
+     * </p>
+     *
+     * @since 3.48
+     */
+    private String[] supportedDocumentsCheckMethods;
 
 
     /**
@@ -5553,7 +5594,11 @@ public class Service implements Serializable
      * >OpenID Connect for Identity Assurance 1.0</a>.
      *
      * <p>
-     * This property is recognized by Authlete 2.3 and newer versions.
+     * The fourth implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0 replaced the {@code documents_validation_methods_supported} server
+     * metadata and the {@code documents_verification_methods_supported} server
+     * metadata with the {@code documents_check_methods_supported} server
+     * metadata.
      * </p>
      *
      * @return
@@ -5563,7 +5608,10 @@ public class Service implements Serializable
      *      >OpenID Connect for Identity Assurance 1.0</a>
      *
      * @since 3.13
+     *
+     * @deprecated
      */
+    @Deprecated
     public String[] getSupportedDocumentsValidationMethods()
     {
         return supportedDocumentsValidationMethods;
@@ -5578,7 +5626,11 @@ public class Service implements Serializable
      * >OpenID Connect for Identity Assurance 1.0</a>.
      *
      * <p>
-     * This property is recognized by Authlete 2.3 and newer versions.
+     * The fourth implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0 replaced the {@code documents_validation_methods_supported} server
+     * metadata and the {@code documents_verification_methods_supported} server
+     * metadata with the {@code documents_check_methods_supported} server
+     * metadata.
      * </p>
      *
      * @param methods
@@ -5591,7 +5643,10 @@ public class Service implements Serializable
      *      >OpenID Connect for Identity Assurance 1.0</a>
      *
      * @since 3.13
+     *
+     * @deprecated
      */
+    @Deprecated
     public Service setSupportedDocumentsValidationMethods(String[] methods)
     {
         this.supportedDocumentsValidationMethods = methods;
@@ -5608,7 +5663,11 @@ public class Service implements Serializable
      * >OpenID Connect for Identity Assurance 1.0</a>.
      *
      * <p>
-     * This property is recognized by Authlete 2.3 and newer versions.
+     * The fourth implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0 replaced the {@code documents_validation_methods_supported} server
+     * metadata and the {@code documents_verification_methods_supported} server
+     * metadata with the {@code documents_check_methods_supported} server
+     * metadata.
      * </p>
      *
      * @return
@@ -5618,7 +5677,10 @@ public class Service implements Serializable
      *      >OpenID Connect for Identity Assurance 1.0</a>
      *
      * @since 3.13
+     *
+     * @deprecated
      */
+    @Deprecated
     public String[] getSupportedDocumentsVerificationMethods()
     {
         return supportedDocumentsVerificationMethods;
@@ -5633,7 +5695,11 @@ public class Service implements Serializable
      * >OpenID Connect for Identity Assurance 1.0</a>.
      *
      * <p>
-     * This property is recognized by Authlete 2.3 and newer versions.
+     * The fourth implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0 replaced the {@code documents_validation_methods_supported} server
+     * metadata and the {@code documents_verification_methods_supported} server
+     * metadata with the {@code documents_check_methods_supported} server
+     * metadata.
      * </p>
      *
      * @param methods
@@ -5646,10 +5712,76 @@ public class Service implements Serializable
      *      >OpenID Connect for Identity Assurance 1.0</a>
      *
      * @since 3.13
+     *
+     * @deprecated
      */
+    @Deprecated
     public Service setSupportedDocumentsVerificationMethods(String[] methods)
     {
         this.supportedDocumentsVerificationMethods = methods;
+
+        return this;
+    }
+
+
+    /**
+     * Get document check methods supported by this service. This property
+     * corresponds to the {@code documents_check_methods_supported} server
+     * metadata which was added by the fourth implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * The fourth implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0 replaced the {@code documents_validation_methods_supported} server
+     * metadata and the {@code documents_verification_methods_supported} server
+     * metadata with the {@code documents_check_methods_supported} server
+     * metadata.
+     * </p>
+     *
+     * @return
+     *         Document check methods supported by this service.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.48
+     */
+    public String[] getSupportedDocumentsCheckMethods()
+    {
+        return supportedDocumentsCheckMethods;
+    }
+
+
+    /**
+     * Set document check methods supported by this service. This property
+     * corresponds to the {@code documents_check_methods_supported} server
+     * metadata which was added by the fourth implementer's draft of <a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>.
+     *
+     * <p>
+     * The fourth implementer's draft of OpenID Connect for Identity Assurance
+     * 1.0 replaced the {@code documents_validation_methods_supported} server
+     * metadata and the {@code documents_verification_methods_supported} server
+     * metadata with the {@code documents_check_methods_supported} server
+     * metadata.
+     * </p>
+     *
+     * @param methods
+     *         Document check methods supported by this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @since 3.48
+     */
+    public Service setSupportedDocumentsCheckMethods(String[] methods)
+    {
+        this.supportedDocumentsCheckMethods = methods;
 
         return this;
     }

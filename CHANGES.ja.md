@@ -1,6 +1,15 @@
 変更点
 ======
 
+- `Service` クラス
+    * `getSupportedDocumentsCheckMethods()` メソッドを追加。
+    * `setSupportedDocumentsCheckMethods(String[])` メソッドを追加。
+    * `getSupportedDocumentsValidationMethods()` メソッドを deprecated 化。
+    * `setSupportedDocumentsValidationMethods(String[])` メソッドを deprecated 化。
+    * `getSupportedDocumentsVerificationMethods()` メソッドを deprecated 化。
+    * `setSupportedDocumentsVerificationMethods(String[])` メソッドを deprecated 化。
+
+
 3.47 (2022 年 12 月 08 日)
 --------------------------
 
