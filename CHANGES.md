@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+3.49 (2022-12-22)
+-----------------
+
+- `Client` class
+   * Added `isDpopRequired()` method.
+   * Added `setDpopRequired(boolean)` method.
+
+
 3.48 (2022-12-19)
 -----------------
 
