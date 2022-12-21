@@ -306,6 +306,7 @@ public class Client implements Serializable
     private boolean pkceS256Required;
     private String rsSignedRequestKeyId;
     private boolean rsRequestSigned;
+    private boolean dpopRequired;
 
     /*
      * For OpenID Connect Federation 1.0.
@@ -4431,6 +4432,47 @@ public class Client implements Serializable
     public Client setExplicitlyRegistered(boolean explicit)
     {
         this.explicitlyRegistered = explicit;
+
+        return this;
+    }
+
+
+    /**
+     * Set the flag indicating whether this client requires DPoP access tokens.
+     *
+     * @return
+     *         {@code true} to indicate that this client requires DPoP access tokens.
+     *
+     * @since 3.49
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop"
+     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
+     */
+    public boolean isDpopRequired()
+    {
+        return dpopRequired;
+    }
+
+
+    /**
+     * Get the flag indicating whether this client requires DPoP access tokens.
+     *
+     * @param required
+     *            {@code true} to indicate that this client requires DPoP access tokens.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.49
+     * @since Authlete 2.3
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop"
+     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
+     */
+    public Client setDpopRequired(boolean dpopRequired)
+    {
+        this.dpopRequired = dpopRequired;
 
         return this;
     }
