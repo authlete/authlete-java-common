@@ -40,8 +40,8 @@ package com.authlete.common.dto;
  * In this case, the implementation of the federation registration endpoint of
  * the authorization server should return an HTTP response to the API caller
  * with the HTTP status code "{@code 200 OK}" and the content type
- * "{@code application/jose}". The message body (= an entity statement in the
- * the JWT format) of the response has been prepared by Authlete's
+ * "{@code application/entity-statement+jwt}". The message body (= an entity
+ * statement in the the JWT format) of the response has been prepared by Authlete's
  * {@code /federation/registration} API and it is available as the
  * <code>{@link #getResponseContent() responseContent}</code> response parameter.
  * </p>
@@ -53,7 +53,7 @@ package com.authlete.common.dto;
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
  * 200 OK
- * Content-Type: application/jose
+ * Content-Type: application/entity-statement+jwt
  * (Other HTTP headers)
  *
  * <i>(the value of the {@link #getResponseContent() responseContent} response parameter)</i></pre>
@@ -192,7 +192,7 @@ public class FederationRegistrationResponse extends ApiResponse
          * The client registration request was processed successfully. The
          * implementation of the federation registration endpoint should
          * return the status code {@code 200 OK} with the content type
-         * {@code application/jose}.
+         * {@code application/entity-statement+jwt}.
          */
         OK,
 
