@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.50 (2023-01-06)
+-----------------
+
 - `TokenResponse` class
     * Added `isPreviousRefreshTokenUsed()` method.
     * Added `setPreviousRefreshTokenUsed(boolean)` method.

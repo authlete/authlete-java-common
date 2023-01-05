@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.50 (2023 年 01 月 06 日)
+--------------------------
+
 - `TokenResponse` クラス
     * `isPreviousRefreshTokenUsed()` メソッドを追加。
     * `setPreviousRefreshTokenUsed(boolean)` メソッドを追加。
