@@ -777,7 +777,7 @@ import com.authlete.common.util.Utils;
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 14L;
+    private static final long serialVersionUID = 15L;
 
 
     /**
@@ -915,6 +915,12 @@ public class TokenResponse extends ApiResponse
      * Client Authentication and Authorization Grants
      */
     private String assertion;
+
+    /*
+     * A flag indicating whether the previous refresh token that had been kept
+     * in the database for a short time was used.
+     */
+    private boolean previousRefreshTokenUsed;
 
 
     /**
@@ -2376,5 +2382,81 @@ public class TokenResponse extends ApiResponse
     public void setAssertion(String assertion)
     {
         this.assertion = assertion;
+    }
+
+
+    /**
+     * Get the flag indicating whether the previous refresh token that had been
+     * kept in the database for a short time was used.
+     *
+     * <p>
+     * If the {@code /auth/token} API succeeds and includes a refresh token and
+     * if this flag is true, the refresh token is the same renewed refresh token
+     * that was issued on the previous refresh token request.
+     * </p>
+     *
+     * <p>
+     * If the {@code /auth/token} API reports that the refresh token presented
+     * by the client application does not exist but if this flag is true, it
+     * implies that the previous refresh token was used but the short time had
+     * already passed.
+     * </p>
+     *
+     * <p>
+     * This flag will never become true if the feature of "Idempotent Refresh
+     * Token" is not enabled. See the description of
+     * {@link Service#isRefreshTokenIdempotent()} about the feature.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the previous refresh token that had been kept
+     *         in the database for a short time was used.
+     *
+     * @see Service#isRefreshTokenIdempotent()
+     *
+     * @since 3.50
+     * @since Authlete 2.3
+     */
+    public boolean isPreviousRefreshTokenUsed()
+    {
+        return previousRefreshTokenUsed;
+    }
+
+
+    /**
+     * Set the flag indicating whether the previous refresh token that had been
+     * kept in the database for a short time was used.
+     *
+     * <p>
+     * If the {@code /auth/token} API succeeds and includes a refresh token and
+     * if this flag is true, the refresh token is the same renewed refresh token
+     * that was issued on the previous refresh token request.
+     * </p>
+     *
+     * <p>
+     * If the {@code /auth/token} API reports that the refresh token presented
+     * by the client application does not exist but if this flag is true, it
+     * implies that the previous refresh token was used but the short time had
+     * already passed.
+     * </p>
+     *
+     * <p>
+     * This flag will never become true if the feature of "Idempotent Refresh
+     * Token" is not enabled. See the description of
+     * {@link Service#isRefreshTokenIdempotent()} about the feature.
+     * </p>
+     *
+     * @param used
+     *         {@code true} to indicate that the previous refresh token that
+     *         had been kept in the database for a short time was used.
+     *
+     * @see Service#isRefreshTokenIdempotent()
+     *
+     * @since 3.50
+     * @since Authlete 2.3
+     */
+    public void setPreviousRefreshTokenUsed(boolean used)
+    {
+        this.previousRefreshTokenUsed = used;
     }
 }

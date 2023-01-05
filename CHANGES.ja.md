@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `TokenResponse` クラス
+    * `isPreviousRefreshTokenUsed()` メソッドを追加。
+    * `setPreviousRefreshTokenUsed(boolean)` メソッドを追加。
+
+
 3.49 (2022 年 12 月 22 日)
 --------------------------
 
