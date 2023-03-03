@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2022 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -8079,7 +8079,7 @@ public class Service implements Serializable
      * <p>
      * When an OpenID Provider embeds URLs of external attachments in ID tokens
      * and userinfo responses, it may optionally embed access tokens with which
-     * the client application access the external attachments.
+     * the client application accesses the external attachments.
      * </p>
      *
      * <p>
@@ -8104,7 +8104,7 @@ public class Service implements Serializable
      *             },
      *             "url": "https://example.com/attachments/pGL9yz4hZQ",
      *             "access_token": "ksj3n283dke",
-     *             "expires_in": 30
+     *             "exp": 1676552089
      *           }
      *         ]
      *       }
@@ -8139,22 +8139,30 @@ public class Service implements Serializable
      * <li>Does nothing for the element if it already contains the
      *     {@code "access_token"} property.
      * <li>Computes the duration of the access token which is about to be
-     *     generated. If the element already contains the {@code "expires_in"}
-     *     property, its value is used as the duration. Otherwise, (1) the
-     *     duration of the ID token is used in the case where URLs of external
-     *     attachments are to be included in an ID token, or (2) the remaining
-     *     duration of the access token which was presented at the userinfo
-     *     endpoint is used in the case where URLs of external attachments are
-     *     to be included in a userinfo response.
+     *     generated. If the element already contains the {@code "exp"} property,
+     *     its value is used to compute the duration. Otherwise, (1) the duration
+     *     of the ID token is used as the duration of the access token for the
+     *     external attachment in the case where the URL of the external attachment
+     *     is going to be embedded in an ID token, or (2) the remaining duration
+     *     of the access token which was presented at the userinfo endpoint is
+     *     used as the duration of the access token for the external attachment
+     *     in the case where the URL of the external attachment is going to be
+     *     embedded in a userinfo response.
      * <li>Generates an access token which has the duration computed in the
      *     previous step. Also, the access token has the URL as an associated
      *     resource as if the {@code resource} request parameter defined in
      *     <a href="https://www.rfc-editor.org/rfc/rfc8707.html">RFC 8707</a>
      *     (Resource Indicators for OAuth 2.0) were used.
-     * <li>Puts the {@code "access_token"} and {@code "expires_in"} properties
+     * <li>Puts the {@code "access_token"} and {@code "exp"} properties
      *     in the element whose values are the generated access token and the
      *     computed duration.
      * </ol>
+     *
+     * <p>
+     * Note that the {@code expires_in} property was replaced with {@code exp}
+     * after the 4th draft of the OpenID Connect for Identity Assurance 1.0
+     * was published.
+     * </p>
      *
      * @return
      *         {@code true} if Authlete generates access tokens for external
@@ -8196,7 +8204,7 @@ public class Service implements Serializable
      * <p>
      * When an OpenID Provider embeds URLs of external attachments in ID tokens
      * and userinfo responses, it may optionally embed access tokens with which
-     * the client application access the external attachments.
+     * the client application accesses the external attachments.
      * </p>
      *
      * <p>
@@ -8221,7 +8229,7 @@ public class Service implements Serializable
      *             },
      *             "url": "https://example.com/attachments/pGL9yz4hZQ",
      *             "access_token": "ksj3n283dke",
-     *             "expires_in": 30
+     *             "exp": 1676552089
      *           }
      *         ]
      *       }
@@ -8256,22 +8264,30 @@ public class Service implements Serializable
      * <li>Does nothing for the element if it already contains the
      *     {@code "access_token"} property.
      * <li>Computes the duration of the access token which is about to be
-     *     generated. If the element already contains the {@code "expires_in"}
-     *     property, its value is used as the duration. Otherwise, (1) the
-     *     duration of the ID token is used in the case where URLs of external
-     *     attachments are to be included in an ID token, or (2) the remaining
-     *     duration of the access token which was presented at the userinfo
-     *     endpoint is used in the case where URLs of external attachments are
-     *     to be included in a userinfo response.
+     *     generated. If the element already contains the {@code "exp"} property,
+     *     its value is used to compute the duration. Otherwise, (1) the duration
+     *     of the ID token is used as the duration of the access token for the
+     *     external attachment in the case where the URL of the external attachment
+     *     is going to be embedded in an ID token, or (2) the remaining duration
+     *     of the access token which was presented at the userinfo endpoint is
+     *     used as the duration of the access token for the external attachment
+     *     in the case where the URL of the external attachment is going to be
+     *     embedded in a userinfo response.
      * <li>Generates an access token which has the duration computed in the
      *     previous step. Also, the access token has the URL as an associated
      *     resource as if the {@code resource} request parameter defined in
      *     <a href="https://www.rfc-editor.org/rfc/rfc8707.html">RFC 8707</a>
      *     (Resource Indicators for OAuth 2.0) were used.
-     * <li>Puts the {@code "access_token"} and {@code "expires_in"} properties
+     * <li>Puts the {@code "access_token"} and {@code "exp"} properties
      *     in the element whose values are the generated access token and the
      *     computed duration.
      * </ol>
+     *
+     * <p>
+     * Note that the {@code expires_in} property was replaced with {@code exp}
+     * after the 4th draft of the OpenID Connect for Identity Assurance 1.0
+     * was published.
+     * </p>
      *
      * @param embedded
      *         {@code true} to make Authlete generate access tokens for external
