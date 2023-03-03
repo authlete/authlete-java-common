@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `AuthorizationResponse` class
+    * Added `getClaimsAtUserInfo()` method.
+    * Added `setClaimsAtUserInfo(String[])` method.
+
+
 3.51 (2023-03-03)
 -----------------
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2022 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -964,7 +964,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 18L;
+    private static final long serialVersionUID = 19L;
 
 
     /**
@@ -1044,6 +1044,7 @@ public class AuthorizationResponse extends ApiResponse
     private String[] uiLocales;
     private String[] claimsLocales;
     private String[] claims;
+    private String[] claimsAtUserInfo;
     private boolean acrEssential;
     private boolean clientIdAliasUsed;
     private boolean clientEntityIdUsed;
@@ -1328,16 +1329,22 @@ public class AuthorizationResponse extends ApiResponse
 
     /**
      * Get the list of claims that the client application requests
-     * to be embedded in the ID token. The value comes from
+     * to be embedded in the ID token. The value comes from the
      * {@code "scope"} and {@code "claims"} request parameters of
      * the original authorization request.
      *
-     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
+     * @return
+     *         Claims that the client application requests to be embedded in
+     *         the ID token.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
      *      >OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values</a>
      *
-     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
      *      >OpenID Connect Core 1.0, 5.5. Requesting Claims using
      *      the "claims" Request Parameter</a>
+     *
+     * @see Service#isClaimShortcutRestrictive()
      */
     public String[] getClaims()
     {
@@ -1348,10 +1355,77 @@ public class AuthorizationResponse extends ApiResponse
     /**
      * Set the list of claims that the client application requests
      * to be embedded in the ID token.
+     *
+     * @param claims
+     *         Claims that the client application requests to be embedded in
+     *         the ID token.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
+     *      >OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
+     *      >OpenID Connect Core 1.0, 5.5. Requesting Claims using
+     *      the "claims" Request Parameter</a>
+     *
+     * @see Service#isClaimShortcutRestrictive()
      */
     public void setClaims(String[] claims)
     {
         this.claims = claims;
+    }
+
+
+    /**
+     * Get the list of claims that the client application requests to be
+     * embedded in userinfo responses. The value comes from the {@code "scope"}
+     * and {@code "claims"} request parameters of the original authorization
+     * request.
+     *
+     * @return
+     *         Claims that the client application requests to be embedded in
+     *         userinfo responses.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
+     *      >OpenID Connect Core 1.0, 5.3. UserInfo Endpoint</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
+     *      >OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
+     *      >OpenID Connect Core 1.0, 5.5. Requesting Claims using
+     *      the "claims" Request Parameter</a>
+     *
+     * @since 3.52
+     */
+    public String[] getClaimsAtUserInfo()
+    {
+        return claimsAtUserInfo;
+    }
+
+
+    /**
+     * Set the list of claims that the client application requests to be
+     * embedded in userinfo responses.
+     *
+     * @param claims
+     *         Claims that the client application requests to be embedded in
+     *         userinfo responses.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#UserInfo"
+     *      >OpenID Connect Core 1.0, 5.3. UserInfo Endpoint</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
+     *      >OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
+     *      >OpenID Connect Core 1.0, 5.5. Requesting Claims using
+     *      the "claims" Request Parameter</a>
+     *
+     * @since 3.52
+     */
+    public void setClaimsAtUserInfo(String[] claims)
+    {
+        this.claimsAtUserInfo = claims;
     }
 
 
