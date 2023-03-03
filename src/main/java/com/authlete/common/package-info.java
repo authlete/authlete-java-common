@@ -17,11 +17,11 @@
  * <span class="tag">&lt;dependency&gt;
  *     &lt;groupId&gt;</span>com.authlete<span class="tag">&lt;/groupId&gt;
  *     &lt;artifactId&gt;</span>authlete-java-common<span class="tag">&lt;/artifactId&gt;
- *     &lt;version&gt;</span>3.51<span class="tag">&lt;/version&gt;
+ *     &lt;version&gt;</span>3.52<span class="tag">&lt;/version&gt;
  * &lt;/dependency&gt;</span><!--
  * --></pre>
  *
- * @version 3.51
+ * @version 3.52
  */
 package com.authlete.common;
 

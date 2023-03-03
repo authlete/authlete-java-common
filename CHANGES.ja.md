@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.52 (2023 年 03 月 03 日)
+--------------------------
+
 - `AuthorizationResponse` クラス
     * `getClaimsAtUserInfo()` メソッドを追加。
     * `setClaimsAtUserInfo(String[])` メソッドを追加。

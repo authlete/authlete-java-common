@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.52 (2023-03-03)
+-----------------
+
 - `AuthorizationResponse` class
     * Added `getClaimsAtUserInfo()` method.
     * Added `setClaimsAtUserInfo(String[])` method.
