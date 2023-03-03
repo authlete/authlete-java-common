@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+3.51 (2023-03-03)
+-----------------
+
+- `Service` class
+    * Updated JavaDoc of `isAccessTokenForExternalAttachmentEmbedded()`
+      and `setAccessTokenForExternalAttachmentEmbedded(boolean)`.
+
+
 3.50 (2023-01-06)
 -----------------
 

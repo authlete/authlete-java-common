@@ -1,6 +1,15 @@
 変更点
 ======
 
+3.51 (2023 年 03 月 03 日)
+--------------------------
+
+- `Service` クラス
+    * `isAccessTokenForExternalAttachmentEmbedded()` と
+      `setAccessTokenForExternalAttachmentEmbedded(boolean)` の
+      JavaDoc を更新。
+
+
 3.50 (2023 年 01 月 06 日)
 --------------------------
 
