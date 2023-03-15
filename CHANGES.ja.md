@@ -5,7 +5,7 @@
 -----------------
 
 - `GrantType` 列挙型
-  * `PRE-AUTHORIZED_CODE` を追加。
+  * `PRE_AUTHORIZED_CODE` を追加。
 
 3.52 (2023 年 03 月 03 日)
 --------------------------
