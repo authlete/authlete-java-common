@@ -142,6 +142,20 @@ public enum GrantType
      * @since Authlete 2.3
      */
     JWT_BEARER((short)9, "urn:ietf:params:oauth:grant-type:jwt-bearer"),
+
+
+    /**
+     * {@code "urn:ietf:params:oauth:grant-type:pre-authorized_code"} (10), a
+     * {@code grant_type} to request an access token and optionally a
+     * refresh token, using Pre-Authorized Code Flow.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-pre-authorized-code-flow"
+     *      >OpenID for Verifiable Credential Issuance, 3.5. Pre-Authorized Code Flow</a>
+     *
+     * @since 3.53
+     * @since Authlete 3.0
+     */
+    PRE_AUTHORIZED_CODE((short)10, "urn:ietf:params:oauth:grant-type:pre-authorized_code"),
     ;
 
 

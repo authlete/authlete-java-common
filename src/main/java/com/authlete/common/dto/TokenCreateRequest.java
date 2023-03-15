@@ -48,6 +48,7 @@ import com.authlete.common.types.GrantType;
  * <li>{@link com.authlete.common.types.GrantType#DEVICE_CODE DEVICE_CODE} (Authlete 2.1 onwards)
  * <li>{@link com.authlete.common.types.GrantType#TOKEN_EXCHANGE TOKEN_EXCHANGE} (Authlete 2.3 onwards)
  * <li>{@link com.authlete.common.types.GrantType#JWT_BEARER JWT_BEARER} (Authlete 2.3 onwards)
+ * <li>{@link com.authlete.common.types.GrantType#PRE_AUTHORIZED_CODE PRE_AUTHORIZED_CODE} (Authlete 3.0 onwards)
  * </ol>
  * <p>
  * When {@code grantType} is either {@code IMPLICIT} or {@code CLIENT_CREDENTIALS},
