@@ -166,53 +166,53 @@ public enum ResponseType
     /**
      * {@code "none"} (0), a {@code response_type} to request no access credentials.
      */
-    NONE((short)0, "none", 0x0),
+    NONE((short)0, "none", 0x0,(short) 1),
 
 
     /**
      * {@code "code"} (1), a {@code response_type} to request an authorization code.
      */
-    CODE((short)1, "code", 0x1),
+    CODE((short)1, "code", 0x1,(short) 1),
 
 
     /**
      * {@code "token"} (2), a {@code response_type} to request an access token.
      */
-    TOKEN((short)2, "token", 0x2),
+    TOKEN((short)2, "token", 0x2,(short) 1),
 
 
     /**
      * {@code "id_token"} (3), a {@code response_type} to request an ID token.
      */
-    ID_TOKEN((short)3, "id_token", 0x4),
+    ID_TOKEN((short)3, "id_token", 0x4,(short) 1),
 
 
     /**
      * {@code "code token"} (4), a {@code response_type} to request
      * an authorization code and an access token.
      */
-    CODE_TOKEN((short)4, "code token", 0x3),
+    CODE_TOKEN((short)4, "code token", 0x3,(short) 1),
 
 
     /**
      * {@code "code id_token"} (5), a {@code response_type} to request
      * an authorization code and an ID token.
      */
-    CODE_ID_TOKEN((short)5, "code id_token", 0x5),
+    CODE_ID_TOKEN((short)5, "code id_token", 0x5,(short) 1),
 
 
     /**
      * {@code "id_token token"} (6), a {@code response_type} to request
      * an ID token and an access token.
      */
-    ID_TOKEN_TOKEN((short)6, "id_token token", 0x6),
+    ID_TOKEN_TOKEN((short)6, "id_token token", 0x6,(short) 1),
 
 
     /**
      * {@code "code id_token token"} (7), a {@code response_type} to request
      * an authorization code, an ID token and an access token.
      */
-    CODE_ID_TOKEN_TOKEN((short)7, "code id_token token", 0x7)
+    CODE_ID_TOKEN_TOKEN((short)7, "code id_token token", 0x7,(short) 1)
     ;
 
 
@@ -227,12 +227,15 @@ public enum ResponseType
     private final String mString;
     private final int mFlags;
 
+    private final short mVersion;
 
-    private ResponseType(short value, String string, int flags)
+
+    private ResponseType(short value, String string, int flags, short version)
     {
         mValue  = value;
         mString = string;
         mFlags  = flags;
+        mVersion=version;
     }
 
 
@@ -244,6 +247,9 @@ public enum ResponseType
         return mValue;
     }
 
+    public short getVersion() {
+        return mVersion;
+    }
 
     @Override
     public String toString()
