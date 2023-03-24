@@ -1,5 +1,11 @@
 CHANGES
 =======
+3.54 (2023-03-24)
+-----------------
+- `GrantType` enum
+  * Added a version attribute 
+- `Response type` enum
+  * Added a version attribute
 
 3.53 (2023-03-15)
 -----------------
