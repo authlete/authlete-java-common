@@ -16,6 +16,8 @@
 package com.authlete.common.types;
 
 
+import com.authlete.common.util.Version;
+
 import java.util.EnumSet;
 
 
@@ -27,72 +29,54 @@ import java.util.EnumSet;
 public enum GrantType
 {
     /**
-     * {@code "authorization_code"} (1), a {@code grant_type} to request
-     * an access token and/or an ID token, and optionally a refresh token,
-     * using an authorization code.
+     * {@code "authorization_code"} (1), a {@code grant_type} to request an access token and/or an ID token, and optionally a refresh token, using an authorization code.
      *
-     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.1.3"
-     *      >RFC 6749 (OAuth 2.0), 4.1.3. Access Token Request</a>
-     *
-     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint"
-     *      >OpenID Connect Core 1.0, 3.1.3. Token Endpoint</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.1.3" >RFC 6749 (OAuth 2.0), 4.1.3. Access Token Request</a>
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint" >OpenID Connect Core 1.0, 3.1.3. Token Endpoint</a>
      */
-    AUTHORIZATION_CODE((short)1, "authorization_code",(short)1),
+    AUTHORIZATION_CODE((short) 1, "authorization_code", new Version(1, 1, 0)),
 
 
     /**
      * {@code "implicit"} (2), representing Implicit Flow.
      *
      * <p>
-     * This is not a value for {@code grant_type} but listed in this enum
-     * because OpenID Connect Dynamic Client Registration 1.0 uses {@code
-     * "implicit"} as a value for {@code grant_types} of client metadata.
+     * This is not a value for {@code grant_type} but listed in this enum because OpenID Connect Dynamic Client Registration 1.0 uses {@code "implicit"} as a value for {@code grant_types} of client
+     * metadata.
      * </p>
      *
-     * @see <a href="https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
-     *      >OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata</a>
+     * @see <a href="https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata" >OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata</a>
      */
-    IMPLICIT((short)2, "implicit",(short)1),
+    IMPLICIT((short) 2, "implicit", new Version(1, 1, 0)),
 
 
     /**
-     * {@code "password"} (3), a {@code grant_type} to request an access token
-     * using a resource owner's username and password.
+     * {@code "password"} (3), a {@code grant_type} to request an access token using a resource owner's username and password.
      *
-     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.3.2"
-     *      >RFC 6749 (OAuth 2.0), 4.3.2. Access Token Request</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.3.2" >RFC 6749 (OAuth 2.0), 4.3.2. Access Token Request</a>
      */
-    PASSWORD((short)3, "password",(short)1),
+    PASSWORD((short) 3, "password", new Version(1, 1, 0)),
 
 
     /**
-     * {@code "client_credentials"} (4), a {@code grant_type} to request
-     * an access token using a client's credentials.
+     * {@code "client_credentials"} (4), a {@code grant_type} to request an access token using a client's credentials.
      *
-     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.4.2"
-     *      >RFC 6749 (OAuth 2.0), 4.4.2. Access Token Request</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.4.2" >RFC 6749 (OAuth 2.0), 4.4.2. Access Token Request</a>
      */
-    CLIENT_CREDENTIALS((short)4, "client_credentials",(short)1),
+    CLIENT_CREDENTIALS((short) 4, "client_credentials", new Version(1, 1, 0)),
 
 
     /**
-     * {@code "refresh_token"} (5), a {@code grant_type} to request an access
-     * token, and optionally an ID token and/or a refresh token, using a
-     * refresh token.
+     * {@code "refresh_token"} (5), a {@code grant_type} to request an access token, and optionally an ID token and/or a refresh token, using a refresh token.
      *
-     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-6"
-     *      >RFC 6749 (OAuth 2.0), 6. Refreshing an Access Token</a>
-     *
-     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#RefreshTokens"
-     *      >OpenID Connect Core 1.0, 12. Using Refresh Tokens</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-6" >RFC 6749 (OAuth 2.0), 6. Refreshing an Access Token</a>
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#RefreshTokens" >OpenID Connect Core 1.0, 12. Using Refresh Tokens</a>
      */
-    REFRESH_TOKEN((short)5, "refresh_token",(short)1),
+    REFRESH_TOKEN((short) 5, "refresh_token", new Version(1, 1, 0)),
 
 
     /**
-     * {@code "urn:openid:params:grant-type:ciba"} (6), a {@code grant_type} to
-     * request an ID token, an access token, and optionally a refresh token,
-     * using a CIBA flow.
+     * {@code "urn:openid:params:grant-type:ciba"} (6), a {@code grant_type} to request an ID token, an access token, and optionally a refresh token, using a CIBA flow.
      *
      * <p>
      * CIBA is short for Client Initiated Backchannel Authentication.
@@ -100,62 +84,49 @@ public enum GrantType
      *
      * @since 2.34
      */
-    CIBA((short)6, "urn:openid:params:grant-type:ciba",(short)2),
+    CIBA((short) 6, "urn:openid:params:grant-type:ciba", new Version(2, 1, 0)),
 
 
     /**
-     * {@code "urn:ietf:params:oauth:grant-type:device_code"} (7), a
-     * {@code grant_type} to request an access token and optionally a
-     * refresh token, using Device Flow.
+     * {@code "urn:ietf:params:oauth:grant-type:device_code"} (7), a {@code grant_type} to request an access token and optionally a refresh token, using Device Flow.
      *
      * @since 2.42
      */
-    DEVICE_CODE((short)7, "urn:ietf:params:oauth:grant-type:device_code",(short)2),
+    DEVICE_CODE((short) 7, "urn:ietf:params:oauth:grant-type:device_code", new Version(2, 1, 0)),
 
 
     /**
-     * {@code "urn:ietf:params:oauth:grant-type:token-exchange"} (8), a
-     * {@code grant_type} for token exchange.
+     * {@code "urn:ietf:params:oauth:grant-type:token-exchange"} (8), a {@code grant_type} for token exchange.
      *
-     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
-     *      >RFC 8693 OAuth 2.0 Token Exchange</a>
-     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html" >RFC 8693 OAuth 2.0 Token Exchange</a>
      * @since 3.26
      * @since Authlete 2.3
      */
-    TOKEN_EXCHANGE((short)8, "urn:ietf:params:oauth:grant-type:token-exchange",(short)3),
+    TOKEN_EXCHANGE((short) 8, "urn:ietf:params:oauth:grant-type:token-exchange", new Version(2, 3, 0)),
 
 
     /**
-     * {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"} (9), a
-     * {@code grant_type} using a JWT as an authorization grant.
+     * {@code "urn:ietf:params:oauth:grant-type:jwt-bearer"} (9), a {@code grant_type} using a JWT as an authorization grant.
      *
      * @see <a href="https://www.rfc-editor.org/rfc/rfc7521.html">RFC 7521
-     *      Assertion Framework for OAuth 2.0 Client Authentication and
-     *      Authorization Grants</a>
-     *
+     *         Assertion Framework for OAuth 2.0 Client Authentication and Authorization Grants</a>
      * @see <a href="https://www.rfc-editor.org/rfc/rfc7523.html">RFC 7523
-     *      JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication
-     *      and Authorization Grants</a>
-     *
+     *         JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants</a>
      * @since 3.30
      * @since Authlete 2.3
      */
-    JWT_BEARER((short)9, "urn:ietf:params:oauth:grant-type:jwt-bearer",(short)3),
+    JWT_BEARER((short) 9, "urn:ietf:params:oauth:grant-type:jwt-bearer", new Version(2, 3, 0)),
 
 
     /**
-     * {@code "urn:ietf:params:oauth:grant-type:pre-authorized_code"} (10), a
-     * {@code grant_type} to request an access token and optionally a
-     * refresh token, using Pre-Authorized Code Flow.
+     * {@code "urn:ietf:params:oauth:grant-type:pre-authorized_code"} (10), a {@code grant_type} to request an access token and optionally a refresh token, using Pre-Authorized Code Flow.
      *
-     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-pre-authorized-code-flow"
-     *      >OpenID for Verifiable Credential Issuance, 3.5. Pre-Authorized Code Flow</a>
-     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-pre-authorized-code-flow" >OpenID for Verifiable Credential Issuance, 3.5. Pre-Authorized Code
+     *         Flow</a>
      * @since 3.53
      * @since Authlete 3.0
      */
-    PRE_AUTHORIZED_CODE((short)10, "urn:ietf:params:oauth:grant-type:pre-authorized_code",(short)4),
+    PRE_AUTHORIZED_CODE((short) 10, "urn:ietf:params:oauth:grant-type:pre-authorized_code", new Version(3, 0, 0)),
     ;
 
 
@@ -164,14 +135,14 @@ public enum GrantType
     private final short mValue;
     private final String mString;
 
-    private final short mVersion;
+    private final Version mVersion;
 
 
-    private GrantType(short value, String string,short version)
+    private GrantType(short value, String string, Version version)
     {
-        mValue  = value;
+        mValue = value;
         mString = string;
-        mVersion=version;
+        mVersion = version;
     }
 
 
@@ -183,9 +154,6 @@ public enum GrantType
         return mValue;
     }
 
-    public short getVersion() {
-        return mVersion;
-    }
 
     @Override
     public String toString()
@@ -194,14 +162,18 @@ public enum GrantType
     }
 
 
+    public Version getVersion()
+    {
+        return mVersion;
+    }
+
+
     /**
      * Find an instance of this enum by a value.
      *
      * @param value
      *         The integer representation of the instance to find.
-     *
-     * @return
-     *         An instance of this enum, or {@code null} if not found.
+     * @return An instance of this enum, or {@code null} if not found.
      */
     public static GrantType getByValue(short value)
     {
@@ -220,9 +192,7 @@ public enum GrantType
      *
      * @param grantType
      *         A grant type. For example, {@code "authorization_code"}.
-     *
-     * @return
-     *         {@code GrantType} instance, or {@code null}.
+     * @return {@code GrantType} instance, or {@code null}.
      */
     public static GrantType parse(String grantType)
     {
