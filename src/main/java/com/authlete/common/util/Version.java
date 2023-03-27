@@ -1,7 +1,10 @@
 package com.authlete.common.util;
 
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 
 
 public class Version implements Comparable<Version>
@@ -79,4 +82,11 @@ public class Version implements Comparable<Version>
 
         return Integer.compare(this.patch, version.patch);
     }
+
+
+    public boolean higherThanOrEqual(Version version)
+    {
+        return this.compareTo(version) >= 0;
+    }
+
 }
