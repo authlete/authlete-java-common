@@ -21,7 +21,7 @@
  * &lt;/dependency&gt;</span><!--
  * --></pre>
  *
- * @version 3.53
+ * @version 3.54
  */
 package com.authlete.common;
 
