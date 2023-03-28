@@ -1,18 +1,21 @@
 package com.authlete.common.util;
 
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
 
-public class Version implements Comparable<Version>
+public class Version implements Comparable<Version>, Serializable
 {
 
     private int major;
     private int minor;
     private int patch;
+
+    private static final long serialVersionUID = 1L;
 
 
     public Version(int major, int minor, int patch)
@@ -81,12 +84,6 @@ public class Version implements Comparable<Version>
         }
 
         return Integer.compare(this.patch, version.patch);
-    }
-
-
-    public boolean higherThanOrEqual(Version version)
-    {
-        return this.compareTo(version) >= 0;
     }
 
 }
