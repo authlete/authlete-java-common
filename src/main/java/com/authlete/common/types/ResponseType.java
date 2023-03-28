@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@ package com.authlete.common.types;
 
 
 import com.authlete.common.util.Version;
-
 import java.util.EnumSet;
 
 
@@ -168,53 +167,53 @@ public enum ResponseType
     /**
      * {@code "none"} (0), a {@code response_type} to request no access credentials.
      */
-    NONE((short)0, "none", 0x0, new Version(1,1,0)),
+    NONE((short)0, "none", 0x0, new Version(1,1)),
 
 
     /**
      * {@code "code"} (1), a {@code response_type} to request an authorization code.
      */
-    CODE((short)1, "code", 0x1, new Version(1,1,0)),
+    CODE((short)1, "code", 0x1, new Version(1,1)),
 
 
     /**
      * {@code "token"} (2), a {@code response_type} to request an access token.
      */
-    TOKEN((short)2, "token", 0x2, new Version(1,1,0)),
+    TOKEN((short)2, "token", 0x2, new Version(1,1)),
 
 
     /**
      * {@code "id_token"} (3), a {@code response_type} to request an ID token.
      */
-    ID_TOKEN((short)3, "id_token", 0x4, new Version(1,1,0)),
+    ID_TOKEN((short)3, "id_token", 0x4, new Version(1,1)),
 
 
     /**
      * {@code "code token"} (4), a {@code response_type} to request
      * an authorization code and an access token.
      */
-    CODE_TOKEN((short)4, "code token", 0x3, new Version(1,1,0)),
+    CODE_TOKEN((short)4, "code token", 0x3, new Version(1,1)),
 
 
     /**
      * {@code "code id_token"} (5), a {@code response_type} to request
      * an authorization code and an ID token.
      */
-    CODE_ID_TOKEN((short)5, "code id_token", 0x5, new Version(1,1,0)),
+    CODE_ID_TOKEN((short)5, "code id_token", 0x5, new Version(1,1)),
 
 
     /**
      * {@code "id_token token"} (6), a {@code response_type} to request
      * an ID token and an access token.
      */
-    ID_TOKEN_TOKEN((short)6, "id_token token", 0x6, new Version(1,1,0)),
+    ID_TOKEN_TOKEN((short)6, "id_token token", 0x6, new Version(1,1)),
 
 
     /**
      * {@code "code id_token token"} (7), a {@code response_type} to request
      * an authorization code, an ID token and an access token.
      */
-    CODE_ID_TOKEN_TOKEN((short)7, "code id_token token", 0x7, new Version(1,1,0))
+    CODE_ID_TOKEN_TOKEN((short)7, "code id_token token", 0x7, new Version(1,1)),
     ;
 
 
@@ -228,16 +227,15 @@ public enum ResponseType
     private final short mValue;
     private final String mString;
     private final int mFlags;
-
     private final Version mVersion;
 
 
     private ResponseType(short value, String string, int flags, Version version)
     {
-        mValue  = value;
-        mString = string;
-        mFlags  = flags;
-        mVersion=version;
+        mValue   = value;
+        mString  = string;
+        mFlags   = flags;
+        mVersion = version;
     }
 
 
@@ -249,9 +247,19 @@ public enum ResponseType
         return mValue;
     }
 
+
+    /**
+     * Get the Authlete version since which this response type has been supported.
+     *
+     * @return
+     *         The Authlete version since which this response type has been supported.
+     *
+     * @since 3.54
+     */
     public Version getVersion() {
         return mVersion;
     }
+
 
     @Override
     public String toString()

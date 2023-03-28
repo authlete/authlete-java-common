@@ -1,23 +1,25 @@
 CHANGES
 =======
-3.54 (2023-03-24)
+
+3.54 (2023-03-28)
 -----------------
 
-- `Version` class
-    * Created a Version class
-
 - `GrantType` enum
-    * Added a version attribute 
-  
-- `Response type` enum 
-    * Added a version attribute
-  
+    * Added `getVersion()` method.
+
+- `ResponseType` enum
+    * Added `getVersion()` method.
+
+- New types
+    * `Version` class
+
 
 3.53 (2023-03-15)
 -----------------
 
 - `GrantType` enum
-  * Added `PRE_AUTHORIZED_CODE`.
+    * Added `PRE_AUTHORIZED_CODE`.
+
 
 3.52 (2023-03-03)
 -----------------
