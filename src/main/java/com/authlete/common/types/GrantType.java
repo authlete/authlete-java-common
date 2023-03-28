@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2022 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@ package com.authlete.common.types;
 
 
 import com.authlete.common.util.Version;
-
 import java.util.EnumSet;
 
 
@@ -39,7 +38,7 @@ public enum GrantType
      * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#TokenEndpoint"
      *      >OpenID Connect Core 1.0, 3.1.3. Token Endpoint</a>
      */
-    AUTHORIZATION_CODE((short)1, "authorization_code", new Version(1,1,0)),
+    AUTHORIZATION_CODE((short)1, "authorization_code", new Version(1,1)),
 
 
     /**
@@ -54,7 +53,7 @@ public enum GrantType
      * @see <a href="https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata"
      *      >OpenID Connect Dynamic Client Registration 1.0, 2. Client Metadata</a>
      */
-    IMPLICIT((short)2, "implicit", new Version(1,1,0)),
+    IMPLICIT((short)2, "implicit", new Version(1,1)),
 
 
     /**
@@ -64,7 +63,7 @@ public enum GrantType
      * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.3.2"
      *      >RFC 6749 (OAuth 2.0), 4.3.2. Access Token Request</a>
      */
-    PASSWORD((short)3, "password", new Version(1,1,0)),
+    PASSWORD((short)3, "password", new Version(1,1)),
 
 
     /**
@@ -74,7 +73,7 @@ public enum GrantType
      * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-4.4.2"
      *      >RFC 6749 (OAuth 2.0), 4.4.2. Access Token Request</a>
      */
-    CLIENT_CREDENTIALS((short)4, "client_credentials", new Version(1,1,0)),
+    CLIENT_CREDENTIALS((short)4, "client_credentials", new Version(1,1)),
 
 
     /**
@@ -88,7 +87,7 @@ public enum GrantType
      * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#RefreshTokens"
      *      >OpenID Connect Core 1.0, 12. Using Refresh Tokens</a>
      */
-    REFRESH_TOKEN((short)5, "refresh_token", new Version(1,1,0)),
+    REFRESH_TOKEN((short)5, "refresh_token", new Version(1,1)),
 
 
     /**
@@ -102,7 +101,7 @@ public enum GrantType
      *
      * @since 2.34
      */
-    CIBA((short)6, "urn:openid:params:grant-type:ciba", new Version(2,1,0)),
+    CIBA((short)6, "urn:openid:params:grant-type:ciba", new Version(2,1)),
 
 
     /**
@@ -112,7 +111,7 @@ public enum GrantType
      *
      * @since 2.42
      */
-    DEVICE_CODE((short)7, "urn:ietf:params:oauth:grant-type:device_code", new Version(2,1,0)),
+    DEVICE_CODE((short)7, "urn:ietf:params:oauth:grant-type:device_code", new Version(2,1)),
 
 
     /**
@@ -125,7 +124,7 @@ public enum GrantType
      * @since 3.26
      * @since Authlete 2.3
      */
-    TOKEN_EXCHANGE((short)8, "urn:ietf:params:oauth:grant-type:token-exchange", new Version(2,3,0)),
+    TOKEN_EXCHANGE((short)8, "urn:ietf:params:oauth:grant-type:token-exchange", new Version(2,3)),
 
 
     /**
@@ -143,7 +142,7 @@ public enum GrantType
      * @since 3.30
      * @since Authlete 2.3
      */
-    JWT_BEARER((short)9, "urn:ietf:params:oauth:grant-type:jwt-bearer", new Version(2,3,0)),
+    JWT_BEARER((short)9, "urn:ietf:params:oauth:grant-type:jwt-bearer", new Version(2,3)),
 
 
     /**
@@ -157,7 +156,7 @@ public enum GrantType
      * @since 3.53
      * @since Authlete 3.0
      */
-    PRE_AUTHORIZED_CODE((short)10, "urn:ietf:params:oauth:grant-type:pre-authorized_code", new Version(3,0,0)),
+    PRE_AUTHORIZED_CODE((short)10, "urn:ietf:params:oauth:grant-type:pre-authorized_code", new Version(3,0)),
     ;
 
 
@@ -165,14 +164,13 @@ public enum GrantType
     private static final Helper sHelper = new Helper(sValues);
     private final short mValue;
     private final String mString;
-
     private final Version mVersion;
 
 
     private GrantType(short value, String string, Version version)
     {
-        mValue  = value;
-        mString = string;
+        mValue   = value;
+        mString  = string;
         mVersion = version;
     }
 
@@ -186,6 +184,14 @@ public enum GrantType
     }
 
 
+    /**
+     * Get the Authlete version since which this grant type has been supported.
+     *
+     * @return
+     *         The Authlete version since which this grant type has been supported.
+     *
+     * @since 3.54
+     */
     public Version getVersion()
     {
         return mVersion;
