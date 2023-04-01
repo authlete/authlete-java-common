@@ -35,7 +35,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>3.54</version>
+    <version>3.55</version>
 </dependency>
 ```
 
@@ -334,6 +334,10 @@ settings.setReadTimeout(5000);
 
   - `federationConfiguration(FederationConfigurationRequest)`
   - `federationRegistration(FederationRegistrationRequest)`
+
+  21. Verifiable Credentials に関するメソッド群
+
+  - `credentialIssuerMetadata(CredentialIssuerMetadataRequest)`
 
 *例*
 

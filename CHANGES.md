@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.55 (2023-04-01)
+-----------------
+
 - `AuthleteApi` interface
     * Added `credentialIssuerMetadata(CredentialIssuerMetadataRequest)` method.
 

@@ -36,7 +36,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>3.54</version>
+    <version>3.55</version>
 </dependency>
 ```
 
@@ -345,6 +345,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
   - `federationConfiguration(FederationConfigurationRequest)`
   - `federationRegistration(FederationRegistrationRequest)`
+
+  21. Methods for Verifiable Credentials
+
+  - `credentialIssuerMetadata(CredentialIssuerMetadataRequest)`
 
 *Examples*
 
