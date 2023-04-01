@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2022 Authlete, Inc.
+ * Copyright (C) 2017-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,6 +57,8 @@ import com.authlete.common.dto.ClientRegistrationResponse;
 import com.authlete.common.dto.ClientSecretRefreshResponse;
 import com.authlete.common.dto.ClientSecretUpdateRequest;
 import com.authlete.common.dto.ClientSecretUpdateResponse;
+import com.authlete.common.dto.CredentialIssuerMetadataRequest;
+import com.authlete.common.dto.CredentialIssuerMetadataResponse;
 import com.authlete.common.dto.DeviceAuthorizationRequest;
 import com.authlete.common.dto.DeviceAuthorizationResponse;
 import com.authlete.common.dto.DeviceCompleteRequest;
@@ -188,6 +190,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String CLIENT_LOCK_FLAG_UPDATE_API_PATH       = "/api/client/lock_flag/update";
     private static final String FEDERATION_CONFIGURATION_API_PATH      = "/api/federation/configuration";
     private static final String FEDERATION_REGISTRATION_API_PATH       = "/api/federation/registration";
+    private static final String VCI_METADATA_API_PATH                  = "/api/vci/metadata";
 
 
     private final String mBaseUrl;
@@ -1648,5 +1651,15 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 FEDERATION_REGISTRATION_API_PATH, request,
                 FederationRegistrationResponse.class);
+    }
+
+
+    @Override
+    public CredentialIssuerMetadataResponse credentialIssuerMetadata(
+            CredentialIssuerMetadataRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                VCI_METADATA_API_PATH, request,
+                CredentialIssuerMetadataResponse.class);
     }
 }

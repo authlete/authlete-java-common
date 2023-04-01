@@ -327,7 +327,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 63L;
+    private static final long serialVersionUID = 64L;
 
 
     /*
@@ -1350,6 +1350,25 @@ public class Service implements Serializable
      * @since Authlete 2.2.36
      */
     private boolean openidDroppedOnRefreshWithoutOfflineAccess;
+
+
+    /**
+     * The flag indicating whether the feature of Verifiable Credentials for
+     * this service is enabled or not.
+     *
+     * @since 3.55
+     * @since Authlete 3.0
+     */
+    private boolean verifiableCredentialsEnabled;
+
+
+    /**
+     * Credential issuer metadata.
+     *
+     * @since 3.55
+     * @since Authlete 3.0
+     */
+    private CredentialIssuerMetadata credentialIssuerMetadata;
 
 
     /**
@@ -9990,6 +10009,85 @@ public class Service implements Serializable
     public Service setOpenidDroppedOnRefreshWithoutOfflineAccess(boolean dropped)
     {
         this.openidDroppedOnRefreshWithoutOfflineAccess = dropped;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether the feature of Verifiable Credentials
+     * for this service is enabled or not.
+     *
+     * @return
+     *         {@code true} if the feature of Verifiable Credentials is enabled.
+     *
+     * @since 3.55
+     * @since Authlete 3.0
+     */
+    public boolean isVerifiableCredentialsEnabled()
+    {
+        return verifiableCredentialsEnabled;
+    }
+
+
+    /**
+     * Set the flag indicating whether the feature of Verifiable Credentials
+     * for this service is enabled or not.
+     *
+     * @param enabled
+     *         {@code true} to indicate that the feature of Verifiable Credentials
+     *         is enabled.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.55
+     * @since Authlete 3.0
+     */
+    public Service setVerifiableCredentialsEnabled(boolean enabled)
+    {
+        this.verifiableCredentialsEnabled = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get the credential issuer metadata.
+     *
+     * @return
+     *         The credential issuer metadata.
+     *
+     * @since 3.55
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     */
+    public CredentialIssuerMetadata getCredentialIssuerMetadata()
+    {
+        return credentialIssuerMetadata;
+    }
+
+
+    /**
+     * Set the credential issuer metadata.
+     *
+     * @param metadata
+     *         The credential issuer metadata.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.55
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     */
+    public Service setCredentialIssuerMetadata(CredentialIssuerMetadata metadata)
+    {
+        this.credentialIssuerMetadata = metadata;
 
         return this;
     }

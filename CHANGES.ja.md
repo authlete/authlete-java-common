@@ -1,6 +1,22 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `credentialIssuerMetadata(CredentialIssuerMetadataRequest)` メソッドを追加。
+
+- `MapUtils` クラス
+    * `putJsonArray(Map, String, String, boolean)` メソッドを追加。
+
+- `Service` クラス
+    * Added `getCredentialIssuerMetadata()` メソッドを追加。
+    * Added `setCredentialIssuerMetadata(CredentialIssuerMetadata)` メソッドを追加。
+
+- 新しい型
+    * `CredentialIssuerMetadata` クラス
+    * `CredentialIssuerMetadataRequest` クラス
+    * `CredentialIssuerMetadataResponse` クラス
+
+
 3.54 (2023 年 03 月 28 日)
 --------------------------
 

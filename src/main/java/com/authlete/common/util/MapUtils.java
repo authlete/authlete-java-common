@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Authlete, Inc.
+ * Copyright (C) 2022-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -188,6 +188,31 @@ public class MapUtils
     {
         Map<String, Object> value = (json == null) ? null :
                 (Map<String, Object>)Utils.fromJson(json, Map.class);
+
+        if (value != null || nullIncluded)
+        {
+            target.put(key, value);
+        }
+    }
+
+
+    /**
+     * Convert the given {@code json} into a {@code List} instance and put
+     * the instance into the {@code target} map with the {@code key}.
+     *
+     * <p>
+     * If {@code nullIncluded} is {@code true}, the {@code key} is put into
+     * the {@code target} map even when the given {@code json} is {@code null}.
+     * </p>
+     *
+     * @since 3.55
+     */
+    public static void putJsonArray(
+            Map<String, Object> target, String key,
+            String json, boolean nullIncluded)
+    {
+        List<?> value = (json == null) ? null :
+            (List<?>)Utils.fromJson(json, List.class);
 
         if (value != null || nullIncluded)
         {
