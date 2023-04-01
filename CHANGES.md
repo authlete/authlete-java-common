@@ -1,6 +1,22 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `credentialIssuerMetadata(CredentialIssuerMetadataRequest)` method.
+
+- `MapUtils` class
+    * Added `putJsonArray(Map, String, String, boolean)` method.
+
+- `Service` class
+    * Added `getCredentialIssuerMetadata()` method.
+    * Added `setCredentialIssuerMetadata(CredentialIssuerMetadata)` method.
+
+- New types
+    * `CredentialIssuerMetadata` class
+    * `CredentialIssuerMetadataRequest` class
+    * `CredentialIssuerMetadataResponse` class
+
+
 3.54 (2023-03-28)
 -----------------
 
