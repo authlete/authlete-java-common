@@ -875,6 +875,16 @@ import com.authlete.common.util.Utils;
  *           </li>
  *         </ul>
  *       </li>
+ *       <li>
+ *         <p>
+ *           If the value returned from {@link #getPrompts()} includes {@link
+ *           Prompt#CREATE CREATE}, it indicates that the client desires that
+ *           the user be shown the account creation UX rather than the login
+ *           flow. See "<a href="https://openid.net/specs/openid-connect-prompt-create-1_0.html"
+ *           >Initiating User Registration via OpenID Connect 1.0</a>" for
+ *           details about the value "{@code create}".
+ *         </p>
+ *       </li>
  *     </ol>
  *     <br/>
  *     <p>
@@ -1672,8 +1682,11 @@ public class AuthorizationResponse extends ApiResponse
      * @return
      *         The list of prompts contained in the authorization request.
      *
-     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
      *      >OpenID Connect Core 1.0, 3.1.2.1. Authentication Request</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-prompt-create-1_0.html"
+     *      >Initiating User Registration via OpenID Connect 1.0</a>
      *
      * @since 1.34
      */
