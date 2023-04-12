@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `CredentialIssuerMetadataRequest` クラス
+    * `isPretty()` メソッドを追加。
+    * `setPretty(boolean)` メソッドを追加。
+
+
 3.55 (2023 年 04 月 01 日)
 --------------------------
 

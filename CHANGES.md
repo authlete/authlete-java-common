@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `CredentialIssuerMetadataRequest` class
+    * Added `isPretty()` method.
+    * Added `setPretty(boolean)` method.
+
+
 3.55 (2023-04-01)
 -----------------
 

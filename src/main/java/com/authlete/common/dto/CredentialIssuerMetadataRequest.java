@@ -36,5 +36,41 @@ import java.io.Serializable;
  */
 public class CredentialIssuerMetadataRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
+
+
+    private boolean pretty;
+
+
+    /**
+     * Get the flag indicating whether the metadata is written in the pretty
+     * format or not.
+     *
+     * @return
+     *         {@code true} if the metadata is written in the pretty format.
+     *
+     * @since 3.56
+     */
+    public boolean isPretty()
+    {
+        return pretty;
+    }
+
+
+    /**
+     * Set the flag indicating whether the metadata is written in the pretty
+     * format or not.
+     *
+     * @param pretty
+     *         {@code true} to write the metadata in the pretty format.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public CredentialIssuerMetadataRequest setPretty(boolean pretty)
+    {
+        this.pretty = pretty;
+
+        return this;
+    }
 }
