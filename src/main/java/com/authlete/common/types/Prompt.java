@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,10 +22,11 @@ import java.util.EnumSet;
 /**
  * Values for {@code prompt}.
  *
- * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+ * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
  *      >OpenID Connect Core 1.0, 3.1.2.1. Authentication Request</a>
  *
- * @author Takahiko Kawasaki
+ * @see <a href="https://openid.net/specs/openid-connect-prompt-create-1_0.html"
+ *      >Initiating User Registration via OpenID Connect 1.0</a>
  */
 public enum Prompt
 {
@@ -84,7 +85,28 @@ public enum Prompt
      * an error, typically {@code account_selection_required}.
      * </p>
      */
-    SELECT_ACCOUNT((short)3, "select_account")
+    SELECT_ACCOUNT((short)3, "select_account"),
+
+
+    /**
+     * {@code "create"} (4).
+     *
+     * <p>
+     * (Excerpted from the specification)<br>
+     * A value of {@code create} indicates to the OpenID Provider that the
+     * client desires that the user be shown the account creation UX rather
+     * than the login flow. Care must be taken if combining this value with
+     * other {@code prompt} values. Mutually exclusive conditions can arise
+     * so it is RECOMMENDED that {@code create} not be combined with any
+     * other values.
+     * </p>
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-prompt-create-1_0.html"
+     *      >Initiating User Registration via OpenID Connect 1.0</a>
+     *
+     * @since 3.56
+     */
+    CREATE((short)4, "create"),
     ;
 
 

@@ -5,6 +5,9 @@ CHANGES
     * Added `isPretty()` method.
     * Added `setPretty(boolean)` method.
 
+- `Prompt` enum
+    * Added `CREATE`.
+
 
 3.55 (2023-04-01)
 -----------------
