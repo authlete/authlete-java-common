@@ -41,9 +41,9 @@ import com.authlete.common.types.UserCodeCharset;
  *
  * <p>
  * Some properties correspond to the ones listed in <a href=
- * "http://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata"
+ * "https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata"
  * >OpenID Provider Metadata</a> in <a href=
- * "http://openid.net/specs/openid-connect-discovery-1_0.html"
+ * "https://openid.net/specs/openid-connect-discovery-1_0.html"
  * >OpenID Connect Discovery 1.0</a>
  * </p>
  *
@@ -313,7 +313,7 @@ import com.authlete.common.types.UserCodeCharset;
  * </p>
  * </blockquote>
  *
- * @see <a href="http://openid.net/specs/openid-connect-discovery-1_0.html"
+ * @see <a href="https://openid.net/specs/openid-connect-discovery-1_0.html"
  *      >OpenID Connect Discovery 1.0</a>
  *
  * @see <a href="https://www.rfc-editor.org/rfc/rfc8707.html"
@@ -327,7 +327,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 64L;
+    private static final long serialVersionUID = 65L;
 
 
     /*
@@ -1369,6 +1369,15 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private CredentialIssuerMetadata credentialIssuerMetadata;
+
+
+    /**
+     * The type of the {@code aud} claim in ID tokens.
+     *
+     * @since 3.57
+     * @since Authlete 2.3.3
+     */
+    private String idTokenAudType;
 
 
     /**
@@ -10088,6 +10097,99 @@ public class Service implements Serializable
     public Service setCredentialIssuerMetadata(CredentialIssuerMetadata metadata)
     {
         this.credentialIssuerMetadata = metadata;
+
+        return this;
+    }
+
+
+    /**
+     * Get the type of the {@code aud} claim in ID tokens.
+     * Valid values are as follows.
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <tr bgcolor="orange">
+     *     <th>Value</th>
+     *     <th>Description</th>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "array"}</td>
+     *     <td>The type of the {@code aud} claim is always an array of strings.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "string"}</td>
+     *     <td>The type of the {@code aud} claim is always a single string.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>null</td>
+     *     <td>The type of the {@code aud} claim remains the same as before.</td>
+     *   </tr>
+     * </table>
+     * </blockquote>
+     *
+     * <p>
+     * Authlete APIs that may trigger ID token issuance may accept the
+     * {@code idTokenAudType} request parameter (e.g.
+     * {@link AuthorizationIssueRequest#getIdTokenAudType()}). Such request
+     * parameters take precedence over this service property.
+     * </p>
+     *
+     * @return
+     *         The type of the {@code aud} claim in ID tokens.
+     *
+     * @since 3.57
+     * @since Authlete 2.3.3
+     */
+    public String getIdTokenAudType()
+    {
+        return idTokenAudType;
+    }
+
+
+    /**
+     * Set the type of the {@code aud} claim in ID tokens.
+     * Valid values are as follows.
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <tr bgcolor="orange">
+     *     <th>Value</th>
+     *     <th>Description</th>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "array"}</td>
+     *     <td>The type of the {@code aud} claim is always an array of strings.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "string"}</td>
+     *     <td>The type of the {@code aud} claim is always a single string.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>null</td>
+     *     <td>The type of the {@code aud} claim remains the same as before.</td>
+     *   </tr>
+     * </table>
+     * </blockquote>
+     *
+     * <p>
+     * Authlete APIs that may trigger ID token issuance may accept the
+     * {@code idTokenAudType} request parameter (e.g.
+     * {@link AuthorizationIssueRequest#getIdTokenAudType()}). Such request
+     * parameters take precedence over this service property.
+     * </p>
+     *
+     * @param type
+     *         The type of the {@code aud} claim in ID tokens.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.57
+     * @since Authlete 2.3.3
+     */
+    public Service setIdTokenAudType(String type)
+    {
+        this.idTokenAudType = type;
 
         return this;
     }

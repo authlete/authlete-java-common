@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2022 Authlete, Inc.
+ * Copyright (C) 2019-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ import com.authlete.common.util.Utils;
  */
 public class DeviceCompleteRequest implements Serializable
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     /**
@@ -249,6 +249,15 @@ public class DeviceCompleteRequest implements Serializable
      * @since 3.23
      */
     private String jwtAtClaims;
+
+
+    /**
+     * The type of the {@code aud} claim in the ID token being issued.
+     *
+     * @since 3.57
+     * @since Authlete 2.3.3
+     */
+    private String idTokenAudType;
 
 
     /**
@@ -994,6 +1003,95 @@ public class DeviceCompleteRequest implements Serializable
     public DeviceCompleteRequest setJwtAtClaims(String claims)
     {
         this.jwtAtClaims = claims;
+
+        return this;
+    }
+
+
+    /**
+     * Get the type of the {@code aud} claim of the ID token being issued.
+     * Valid values are as follows.
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <tr bgcolor="orange">
+     *     <th>Value</th>
+     *     <th>Description</th>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "array"}</td>
+     *     <td>The type of the {@code aud} claim is always an array of strings.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "string"}</td>
+     *     <td>The type of the {@code aud} claim is always a single string.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>null</td>
+     *     <td>The type of the {@code aud} claim remains the same as before.</td>
+     *   </tr>
+     * </table>
+     * </blockquote>
+     *
+     * <p>
+     * This request parameter takes precedence over the {@code idTokenAudType}
+     * property of {@link Service} (cf. {@link Service#getIdTokenAudType()}).
+     * </p>
+     *
+     * @return
+     *         The type of the {@code aud} claim in ID tokens.
+     *
+     * @since 3.57
+     * @since Authlete 2.3.3
+     */
+    public String getIdTokenAudType()
+    {
+        return idTokenAudType;
+    }
+
+
+    /**
+     * Set the type of the {@code aud} claim of the ID token being issued.
+     * Valid values are as follows.
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <tr bgcolor="orange">
+     *     <th>Value</th>
+     *     <th>Description</th>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "array"}</td>
+     *     <td>The type of the {@code aud} claim is always an array of strings.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "string"}</td>
+     *     <td>The type of the {@code aud} claim is always a single string.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>null</td>
+     *     <td>The type of the {@code aud} claim remains the same as before.</td>
+     *   </tr>
+     * </table>
+     * </blockquote>
+     *
+     * <p>
+     * This request parameter takes precedence over the {@code idTokenAudType}
+     * property of {@link Service} (cf. {@link Service#getIdTokenAudType()}).
+     * </p>
+     *
+     * @param type
+     *         The type of the {@code aud} claim in ID tokens.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.57
+     * @since Authlete 2.3.3
+     */
+    public DeviceCompleteRequest setIdTokenAudType(String type)
+    {
+        this.idTokenAudType = type;
 
         return this;
     }
