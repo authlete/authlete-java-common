@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.57 (2023-04-14)
+-----------------
+
 - `AuthorizationIssueRequest` class
     * Added `getIdTokenAudType()` method.
     * Added `setIdTokenAudType(String)` method.

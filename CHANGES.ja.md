@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.57 (2023 年 04 月 14 日)
+--------------------------
+
 - `AuthorizationIssueRequest` クラス
     * `getIdTokenAudType()` メソッドを追加。
     * `setIdTokenAudType(String)` メソッドを追加。
