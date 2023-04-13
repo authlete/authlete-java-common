@@ -368,7 +368,9 @@ public class CredentialIssuerMetadata implements Serializable
      *         "ES256K"
      *       ],
      *       "display": [
-     *         "name": "University Credential"
+     *         {
+     *           "name": "University Credential"
+     *         }
      *       ],
      *       "credentialSubject": {
      *         "given_name": {},
