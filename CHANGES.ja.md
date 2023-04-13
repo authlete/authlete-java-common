@@ -1,6 +1,23 @@
 変更点
 ======
 
+- `AuthorizationIssueRequest` クラス
+    * `getIdTokenAudType()` メソッドを追加。
+    * `setIdTokenAudType(String)` メソッドを追加。
+
+- `BackchannelAuthenticationCompleteRequest` クラス
+    * `getIdTokenAudType()` メソッドを追加。
+    * `setIdTokenAudType(String)` メソッドを追加。
+
+- `DeviceCompleteRequest` クラス
+    * `getIdTokenAudType()` メソッドを追加。
+    * `setIdTokenAudType(String)` メソッドを追加。
+
+- `Service` クラス
+    * `getIdTokenAudType()` メソッドを追加。
+    * `setIdTokenAudType(String)` メソッドを追加。
+
+
 3.56 (2023 年 04 月 12 日)
 --------------------------
 

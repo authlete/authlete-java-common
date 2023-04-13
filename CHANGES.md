@@ -1,6 +1,23 @@
 CHANGES
 =======
 
+- `AuthorizationIssueRequest` class
+    * Added `getIdTokenAudType()` method.
+    * Added `setIdTokenAudType(String)` method.
+
+- `BackchannelAuthenticationCompleteRequest` class
+    * Added `getIdTokenAudType()` method.
+    * Added `setIdTokenAudType(String)` method.
+
+- `DeviceCompleteRequest` class
+    * Added `getIdTokenAudType()` method.
+    * Added `setIdTokenAudType(String)` method.
+
+- `Service` class
+    * Added `getIdTokenAudType()` method.
+    * Added `setIdTokenAudType(String)` method.
+
+
 3.56 (2023-04-12)
 -----------------
 
