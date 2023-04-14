@@ -328,7 +328,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 65L;
+    private static final long serialVersionUID = 66L;
 
 
     /*
@@ -426,7 +426,6 @@ public class Service implements Serializable
     private String[] trustedRootCertificates;
     private boolean dynamicRegistrationSupported;
     private URI endSessionEndpoint;
-    private Prompt[] supportedPromptValues;
 
 
     /**
@@ -1380,6 +1379,15 @@ public class Service implements Serializable
      * @since Authlete 2.3.3
      */
     private String idTokenAudType;
+
+
+    /**
+     * Supported {@code prompt} values.
+     *
+     * @since 3.58
+     * @since Authlete 3.0
+     */
+    private Prompt[] supportedPromptValues;
 
 
     /**
@@ -10198,10 +10206,16 @@ public class Service implements Serializable
 
 
     /**
-     * Get the supported prompt values.
+     * Get the supported {@code prompt} values.
      *
      * @return
-     *         The supported prompt values.
+     *         The supported {@code prompt} values.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-prompt-create-1_0.html"
+     *      >Initiating User Registration via OpenID Connect 1.0</a>
+     *
+     * @since 3.58
+     * @since Authlete 3.0
      */
     public Prompt[] getSupportedPromptValues()
     {
@@ -10210,13 +10224,19 @@ public class Service implements Serializable
 
 
     /**
-     * Set the supported prompt values.
+     * Set the supported {@code prompt} values.
      *
      * @param promptValues
-     *         The supported prompt values.
+     *         The supported {@code prompt} values.
      *
      * @return
      *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-prompt-create-1_0.html"
+     *      >Initiating User Registration via OpenID Connect 1.0</a>
+     *
+     * @since 3.58
+     * @since Authlete 3.0
      */
     public Service setSupportedPromptValues(final Prompt[] promptValues)
     {
