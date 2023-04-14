@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+3.58 (2023-04-14)
+-----------------
+
+- `Service` class
+    * Added `getSupportedPromptValues()` method.
+    * Added `setSupportedPromptValues(Prompt[])` method.
+
+
 3.57 (2023-04-14)
 -----------------
 
