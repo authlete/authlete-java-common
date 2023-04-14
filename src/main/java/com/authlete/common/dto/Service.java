@@ -29,6 +29,7 @@ import com.authlete.common.types.ClientRegistrationType;
 import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.Display;
 import com.authlete.common.types.GrantType;
+import com.authlete.common.types.Prompt;
 import com.authlete.common.types.JWSAlg;
 import com.authlete.common.types.ResponseType;
 import com.authlete.common.types.ServiceProfile;
@@ -425,6 +426,7 @@ public class Service implements Serializable
     private String[] trustedRootCertificates;
     private boolean dynamicRegistrationSupported;
     private URI endSessionEndpoint;
+    private Prompt[] supportedPromptValues;
 
 
     /**
@@ -10190,6 +10192,35 @@ public class Service implements Serializable
     public Service setIdTokenAudType(String type)
     {
         this.idTokenAudType = type;
+
+        return this;
+    }
+
+
+    /**
+     * Get the supported prompt values.
+     *
+     * @return
+     *         The supported prompt values.
+     */
+    public Prompt[] getSupportedPromptValues()
+    {
+        return supportedPromptValues;
+    }
+
+
+    /**
+     * Set the supported prompt values.
+     *
+     * @param promptValues
+     *         The supported prompt values.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Service setSupportedPromptValues(final Prompt[] promptValues)
+    {
+        this.supportedPromptValues = promptValues;
 
         return this;
     }
