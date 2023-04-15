@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `Client` class
+    * Added `getCredentialOfferEndpoint()` method.
+    * Added `setCredentialOfferEndpoint(URI)` method.
+
 - `CredentialIssuerMetadata` class
     * Added `getDeferredCredentialEndpoint()` method.
     * Added `setDeferredCredentialEndpoint(URI)` method.

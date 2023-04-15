@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `Client` クラス
+    * `getCredentialOfferEndpoint()` メソッドを追加。
+    * `setCredentialOfferEndpoint(URI)` メソッドを追加。
+
 - `CredentialIssuerMetadata` クラス
     * `getDeferredCredentialEndpoint()` メソッドを追加。
     * `setDeferredCredentialEndpoint(URI)` メソッドを追加。

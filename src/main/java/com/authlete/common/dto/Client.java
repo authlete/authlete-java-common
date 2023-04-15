@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2022 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,10 +74,13 @@ import com.authlete.common.util.Utils;
  *
  * @see <a href="https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#client-metadata"
  *      >IANA OAuth Parameters / OAuth Dynamic Client Registration Metadata</a>
+ *
+ * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+ *      >OpenID for Verifiable Credential Issuance</a>
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 32L;
+    private static final long serialVersionUID = 33L;
 
 
     /*
@@ -321,6 +324,11 @@ public class Client implements Serializable
     private ClientRegistrationType[] clientRegistrationTypes;
     private boolean automaticallyRegistered;
     private boolean explicitlyRegistered;
+
+    /*
+     * For Verifiable Credentials
+     */
+    private URI credentialOfferEndpoint;
 
 
     /**
@@ -4479,6 +4487,63 @@ public class Client implements Serializable
 
 
     /**
+     * Get the URL of the credential offer endpoint at which this client
+     * (wallet) receives a credential offer from the credential issuer.
+     *
+     * <p>
+     * This property corresponds to the {@code credential_offer_endpoint}
+     * client metadata that is defined in <a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credential Issuance</a>.
+     * </p>
+     *
+     * @return
+     *         The URL of the credential offer endpoint.
+     *
+     * @since 3.59
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     */
+    public URI getCredentialOfferEndpoint()
+    {
+        return credentialOfferEndpoint;
+    }
+
+
+    /**
+     * Set the URL of the credential offer endpoint at which this client
+     * (wallet) receives a credential offer from the credential issuer.
+     *
+     * <p>
+     * This property corresponds to the {@code credential_offer_endpoint}
+     * client metadata that is defined in <a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credential Issuance</a>.
+     * </p>
+     *
+     * @param endpoint
+     *         The URL of the credential offer endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.59
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     */
+    public Client setCredentialOfferEndpoint(URI endpoint)
+    {
+        this.credentialOfferEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
      * Get a {@code Map} instance that represents a set of standard client
      * metadata.
      *
@@ -4542,6 +4607,9 @@ public class Client implements Serializable
      *
      * @see <a href="https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#client-metadata"
      *      >IANA OAuth Parameters / OAuth Dynamic Client Registration Metadata</a>
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
      */
     public Map<String, Object> toStandardMetadata(ClientMetadataControl control)
     {
@@ -4765,6 +4833,13 @@ public class Client implements Serializable
 
         // client_registration_types
         put(metadata, "client_registration_types", getClientRegistrationTypes(), nullIncluded);
+
+        //----------------------------------------------------------------------
+        // OpenID for Verifiable Credential Issuance
+        //----------------------------------------------------------------------
+
+        // credential_offer_endpoint
+        put(metadata, "credential_offer_endpoint", getCredentialOfferEndpoint(), nullIncluded);
 
         //----------------------------------------------------------------------
         // Custom Metadata
