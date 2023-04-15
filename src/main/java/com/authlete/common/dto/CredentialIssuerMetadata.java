@@ -32,6 +32,7 @@ import static com.authlete.common.util.MapUtils.*;
  * <li>{@code authorization_server}
  * <li>{@code credential_endpoint}
  * <li>{@code batch_credential_endpoint}
+ * <li>{@code deferred_credential_endpoint}
  * <li>{@code credentials_supported}
  * </ul>
  *
@@ -48,7 +49,7 @@ import static com.authlete.common.util.MapUtils.*;
  */
 public class CredentialIssuerMetadata implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -74,6 +75,12 @@ public class CredentialIssuerMetadata implements Serializable
      * The URL of the batch credential endpoint of the credential issuer.
      */
     private URI batchCredentialEndpoint;
+
+
+    /**
+     * The URL of the deferred credential endpoint of the credential issuer.
+     */
+    private URI deferredCredentialEndpoint;
 
 
     /**
@@ -103,11 +110,12 @@ public class CredentialIssuerMetadata implements Serializable
             return;
         }
 
-        credentialIssuer        = metadata.getCredentialIssuer();
-        authorizationServer     = metadata.getAuthorizationServer();
-        credentialEndpoint      = metadata.getCredentialEndpoint();
-        batchCredentialEndpoint = metadata.getBatchCredentialEndpoint();
-        credentialsSupported    = metadata.getCredentialsSupported();
+        credentialIssuer           = metadata.getCredentialIssuer();
+        authorizationServer        = metadata.getAuthorizationServer();
+        credentialEndpoint         = metadata.getCredentialEndpoint();
+        batchCredentialEndpoint    = metadata.getBatchCredentialEndpoint();
+        deferredCredentialEndpoint = metadata.getDeferredCredentialEndpoint();
+        credentialsSupported       = metadata.getCredentialsSupported();
     }
 
 
@@ -279,6 +287,51 @@ public class CredentialIssuerMetadata implements Serializable
 
 
     /**
+     * Get the URL of the deferred credential endpoint. This property corresponds
+     * to the {@code deferred_credential_endpoint} metadata.
+     *
+     * <p>
+     * If the credential issuer does not support the deferred credential endpoint,
+     * this property should be omitted.
+     * </p>
+     *
+     * @return
+     *         The URL of the deferred credential endpoint.
+     *
+     * @since 3.59
+     */
+    public URI getDeferredCredentialEndpoint()
+    {
+        return deferredCredentialEndpoint;
+    }
+
+
+    /**
+     * Set the URL of the deferred credential endpoint. This property corresponds
+     * to the {@code deferred_credential_endpoint} metadata.
+     *
+     * <p>
+     * If the credential issuer does not support the deferred credential endpoint,
+     * this property should be omitted.
+     * </p>
+     *
+     * @param endpoint
+     *         The URL of the deferred credential endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.59
+     */
+    public CredentialIssuerMetadata setDeferredCredentialEndpoint(URI endpoint)
+    {
+        this.deferredCredentialEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
      * Get the information about supported credentials in the JSON format.
      * This property corresponds to the {@code credentials_supported} metadata.
      *
@@ -329,11 +382,12 @@ public class CredentialIssuerMetadata implements Serializable
      */
     public boolean isEmpty()
     {
-        return (credentialIssuer        == null) &&
-               (authorizationServer     == null) &&
-               (credentialEndpoint      == null) &&
-               (batchCredentialEndpoint == null) &&
-               (credentialsSupported    == null);
+        return (credentialIssuer           == null) &&
+               (authorizationServer        == null) &&
+               (credentialEndpoint         == null) &&
+               (batchCredentialEndpoint    == null) &&
+               (deferredCredentialEndpoint == null) &&
+               (credentialsSupported       == null);
     }
 
 
@@ -353,6 +407,7 @@ public class CredentialIssuerMetadata implements Serializable
      *   "authorization_server": "https://authorization-server.example.com",
      *   "credential_endpoint": "https://credential-issuer.example.com/credential",
      *   "batch_credential_endpoint": "https://credential-issuer.example.com/batch_credential",
+     *   "deferred_credential_endpoint": "https://credential-issuer.example.com/deferred_credential",
      *   "credentials_supported": [
      *     {
      *       "format": "jwt_vc_json",
@@ -395,10 +450,11 @@ public class CredentialIssuerMetadata implements Serializable
     {
         Map<String, Object> map = new LinkedHashMap<>();
 
-        put(map, "credential_issuer",         credentialIssuer,        false);
-        put(map, "authorization_server",      authorizationServer,     false);
-        put(map, "credential_endpoint",       credentialEndpoint,      false);
-        put(map, "batch_credential_endpoint", batchCredentialEndpoint, false);
+        put(map, "credential_issuer",            credentialIssuer,           false);
+        put(map, "authorization_server",         authorizationServer,        false);
+        put(map, "credential_endpoint",          credentialEndpoint,         false);
+        put(map, "batch_credential_endpoint",    batchCredentialEndpoint,    false);
+        put(map, "deferred_credential_endpoint", deferredCredentialEndpoint, false);
 
         try
         {

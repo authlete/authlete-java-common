@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `CredentialIssuerMetadata` クラス
+    * `getDeferredCredentialEndpoint()` メソッドを追加。
+    * `setDeferredCredentialEndpoint(URI)` メソッドを追加。
+
+
 3.58 (2023 年 04 月 14 日)
 --------------------------
 

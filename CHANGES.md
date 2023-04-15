@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `CredentialIssuerMetadata` class
+    * Added `getDeferredCredentialEndpoint()` method.
+    * Added `setDeferredCredentialEndpoint(URI)` method.
+
+
 3.58 (2023-04-14)
 -----------------
 
