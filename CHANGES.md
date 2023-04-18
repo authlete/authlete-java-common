@@ -15,6 +15,13 @@ CHANGES
     * Added `getUserPinLength()` method.
     * Added `setUserPinLength(int)` method.
 
+- New types
+    * `CredentialOfferCreateRequest` class
+    * `CredentialOfferCreateResponse` class
+    * `CredentialOfferInfo` class
+    * `CredentialOfferInfoRequest` class
+    * `CredentialOfferInfoResponse` class
+
 
 3.58 (2023-04-14)
 -----------------

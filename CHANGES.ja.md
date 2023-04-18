@@ -15,6 +15,13 @@
     * `getUserPinLength()` メソッドを追加。
     * `setUserPinLength(int)` メソッドを追加。
 
+- 新しい型
+    * `CredentialOfferCreateRequest` クラス
+    * `CredentialOfferCreateResponse` クラス
+    * `CredentialOfferInfo` クラス
+    * `CredentialOfferInfoRequest` クラス
+    * `CredentialOfferInfoResponse` クラス
+
 
 3.58 (2023 年 04 月 14 日)
 --------------------------
