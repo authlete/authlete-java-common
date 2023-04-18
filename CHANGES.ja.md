@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `CredentialOfferInfo` クラス
+    * `getCredentialIssuer()` メソッドを追加。
+    * `setCredentialIssuer(URI)` メソッドを追加。
+
+
 3.59 (2023 年 04 月 18 日)
 --------------------------
 

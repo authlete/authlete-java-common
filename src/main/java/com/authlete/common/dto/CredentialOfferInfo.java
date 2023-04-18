@@ -17,6 +17,7 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.net.URI;
 
 
 /**
@@ -43,6 +44,14 @@ public class CredentialOfferInfo implements Serializable
      * The credential offer in the JSON format.
      */
     private String credentialOffer;
+
+
+    /**
+     * The identifier of the credential issuer.
+     *
+     * @since 3.60
+     */
+    private URI credentialIssuer;
 
 
     /**
@@ -242,6 +251,59 @@ public class CredentialOfferInfo implements Serializable
     public CredentialOfferInfo setCredentialOffer(String offer)
     {
         this.credentialOffer = offer;
+
+        return this;
+    }
+
+
+    /**
+     * Get the identifier of the credential issuer.
+     *
+     * <blockquote>
+     * <pre>
+     * {
+     *   <span style="color:darkred;">"credential_issuer": "..."</span>,
+     *   "credentials": [ ... ],
+     *   "grants": { ... }
+     * }
+     * </pre>
+     * </blockquote>
+     *
+     * @return
+     *         The identifier of the credential issuer.
+     *
+     * @since 3.60
+     */
+    public URI getCredentialIssuer()
+    {
+        return credentialIssuer;
+    }
+
+
+    /**
+     * Set the identifier of the credential issuer.
+     *
+     * <blockquote>
+     * <pre>
+     * {
+     *   <span style="color:darkred;">"credential_issuer": "..."</span>,
+     *   "credentials": [ ... ],
+     *   "grants": { ... }
+     * }
+     * </pre>
+     * </blockquote>
+     *
+     * @param issuer
+     *         The identifier of the credential issuer.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.60
+     */
+    public CredentialOfferInfo setCredentialIssuer(URI issuer)
+    {
+        this.credentialIssuer = issuer;
 
         return this;
     }
