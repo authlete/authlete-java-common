@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.59 (2023-04-18)
+-----------------
+
 - `AuthleteApi` interface
     * Added `credentialOfferCreate(CredentialOfferCreateRequest)` method.
     * Added `credentialOfferInfo(CredentialOfferInfoRequest)` method.

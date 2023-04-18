@@ -36,7 +36,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>3.58</version>
+    <version>3.59</version>
 </dependency>
 ```
 
@@ -349,6 +349,8 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   21. Methods for Verifiable Credentials
 
   - `credentialIssuerMetadata(CredentialIssuerMetadataRequest)`
+  - `credentialOfferCreate(CredentialOfferCreateRequest)`
+  - `credentialOfferInfo(CredentialOfferInfoRequest)`
 
 *Examples*
 

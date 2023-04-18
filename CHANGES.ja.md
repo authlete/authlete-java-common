@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.59 (2023 年 04 月 18 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `credentialOfferCreate(CredentialOfferCreateRequest)` メソッドを追加。
     * `credentialOfferInfo(CredentialOfferInfoRequest)` メソッドを追加。

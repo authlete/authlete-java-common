@@ -35,7 +35,7 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>3.58</version>
+    <version>3.59</version>
 </dependency>
 ```
 
@@ -338,6 +338,8 @@ settings.setReadTimeout(5000);
   21. Verifiable Credentials に関するメソッド群
 
   - `credentialIssuerMetadata(CredentialIssuerMetadataRequest)`
+  - `credentialOfferCreate(CredentialOfferCreateRequest)`
+  - `credentialOfferInfo(CredentialOfferInfoRequest)`
 
 *例*
 
