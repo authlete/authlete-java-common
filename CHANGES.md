@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.60 (2023-04-19)
+-----------------
+
 - `CredentialOfferInfo` class
     * Added `getCredentialIssuer()` method.
     * Added `setCredentialIssuer(URI)` method.
