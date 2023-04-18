@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `credentialOfferCreate(CredentialOfferCreateRequest)` メソッドを追加。
+    * `credentialOfferInfo(CredentialOfferInfoRequest)` メソッドを追加。
+
 - `Client` クラス
     * `getCredentialOfferEndpoint()` メソッドを追加。
     * `setCredentialOfferEndpoint(URI)` メソッドを追加。

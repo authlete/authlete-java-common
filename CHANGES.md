@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `credentialOfferCreate(CredentialOfferCreateRequest)` method.
+    * Added `credentialOfferInfo(CredentialOfferInfoRequest)` method.
+
 - `Client` class
     * Added `getCredentialOfferEndpoint()` method.
     * Added `setCredentialOfferEndpoint(URI)` method.

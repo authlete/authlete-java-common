@@ -59,6 +59,10 @@ import com.authlete.common.dto.ClientSecretUpdateRequest;
 import com.authlete.common.dto.ClientSecretUpdateResponse;
 import com.authlete.common.dto.CredentialIssuerMetadataRequest;
 import com.authlete.common.dto.CredentialIssuerMetadataResponse;
+import com.authlete.common.dto.CredentialOfferCreateRequest;
+import com.authlete.common.dto.CredentialOfferCreateResponse;
+import com.authlete.common.dto.CredentialOfferInfoRequest;
+import com.authlete.common.dto.CredentialOfferInfoResponse;
 import com.authlete.common.dto.DeviceAuthorizationRequest;
 import com.authlete.common.dto.DeviceAuthorizationResponse;
 import com.authlete.common.dto.DeviceCompleteRequest;
@@ -191,6 +195,8 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String FEDERATION_CONFIGURATION_API_PATH      = "/api/federation/configuration";
     private static final String FEDERATION_REGISTRATION_API_PATH       = "/api/federation/registration";
     private static final String VCI_METADATA_API_PATH                  = "/api/vci/metadata";
+    private static final String VCI_CREDENTIAL_OFFER_CREATE_API_PATH   = "/api/vci/offer/create";
+    private static final String VCI_CREDENTIAL_OFFER_INFO_API_PATH     = "/api/vci/offer/info/%s";
 
 
     private final String mBaseUrl;
@@ -1658,8 +1664,34 @@ class AuthleteApiImpl implements AuthleteApi
     public CredentialIssuerMetadataResponse credentialIssuerMetadata(
             CredentialIssuerMetadataRequest request) throws AuthleteApiException
     {
+        // This API call fails because the /vci/metadata API is unavailable
+        // in Authlete 2.x and older versions.
         return callServicePostApi(
                 VCI_METADATA_API_PATH, request,
                 CredentialIssuerMetadataResponse.class);
+    }
+
+
+    @Override
+    public CredentialOfferCreateResponse credentialOfferCreate(
+            CredentialOfferCreateRequest request) throws AuthleteApiException
+    {
+        // This API call fails because the /vci/offer/create API is unavailable
+        // in Authlete 2.x and older versions.
+        return callServicePostApi(
+                VCI_CREDENTIAL_OFFER_CREATE_API_PATH, request,
+                CredentialOfferCreateResponse.class);
+    }
+
+
+    @Override
+    public CredentialOfferInfoResponse credentialOfferInfo(
+            CredentialOfferInfoRequest request) throws AuthleteApiException
+    {
+        // This API call fails because the /vci/offer/info API is unavailable
+        // in Authlete 2.x and older versions.
+        return callServiceGetApi(
+                String.format(VCI_CREDENTIAL_OFFER_INFO_API_PATH, request.getIdentifier()),
+                CredentialOfferInfoResponse.class);
     }
 }

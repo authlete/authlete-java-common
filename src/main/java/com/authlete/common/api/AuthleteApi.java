@@ -42,6 +42,10 @@ import com.authlete.common.dto.ClientSecretRefreshResponse;
 import com.authlete.common.dto.ClientSecretUpdateResponse;
 import com.authlete.common.dto.CredentialIssuerMetadataRequest;
 import com.authlete.common.dto.CredentialIssuerMetadataResponse;
+import com.authlete.common.dto.CredentialOfferCreateRequest;
+import com.authlete.common.dto.CredentialOfferCreateResponse;
+import com.authlete.common.dto.CredentialOfferInfoRequest;
+import com.authlete.common.dto.CredentialOfferInfoResponse;
 import com.authlete.common.dto.DeviceAuthorizationRequest;
 import com.authlete.common.dto.DeviceAuthorizationResponse;
 import com.authlete.common.dto.DeviceCompleteRequest;
@@ -1656,4 +1660,36 @@ public interface AuthleteApi
      */
     CredentialIssuerMetadataResponse credentialIssuerMetadata(
             CredentialIssuerMetadataRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /vci/offer/create} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.59
+     * @since Authlete 3.0
+     */
+    CredentialOfferCreateResponse credentialOfferCreate(
+            CredentialOfferCreateRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /vci/offer/info} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.59
+     * @since Authlete 3.0
+     */
+    CredentialOfferInfoResponse credentialOfferInfo(
+            CredentialOfferInfoRequest request) throws AuthleteApiException;
 }
