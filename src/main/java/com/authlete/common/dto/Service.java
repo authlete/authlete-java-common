@@ -328,7 +328,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 66L;
+    private static final long serialVersionUID = 67L;
 
 
     /*
@@ -1370,6 +1370,24 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private CredentialIssuerMetadata credentialIssuerMetadata;
+
+
+    /**
+     * The default duration of credential offers in seconds.
+     *
+     * @since 3.59
+     * @since Authlete 3.0
+     */
+    private long credentialOfferDuration;
+
+
+    /**
+     * The default length of user PINs.
+     *
+     * @since 3.59
+     * @since Authlete 3.0
+     */
+    private int userPinLength;
 
 
     /**
@@ -10107,6 +10125,134 @@ public class Service implements Serializable
     public Service setCredentialIssuerMetadata(CredentialIssuerMetadata metadata)
     {
         this.credentialIssuerMetadata = metadata;
+
+        return this;
+    }
+
+
+    /**
+     * Get the default duration of credential offers in seconds.
+     *
+     * <p>
+     * When an API call to the {@code /vci/offer/create} API does not contain
+     * the {@code duration} request parameter or the value of the parameter is
+     * 0 or negative, the value of this property is used as the default value.
+     * </p>
+     *
+     * <p>
+     * If the value of this property is 0 or negative, the default value per
+     * Authlete server is used as the default value.
+     * </p>
+     *
+     * @return
+     *         The default duration of credential offers in seconds.
+     *
+     * @since 3.59
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @see CredentialOfferCreateRequest#getDuration()
+     */
+    public long getCredentialOfferDuration()
+    {
+        return credentialOfferDuration;
+    }
+
+
+    /**
+     * Set the default duration of credential offers in seconds.
+     *
+     * <p>
+     * When an API call to the {@code /vci/offer/create} API does not contain
+     * the {@code duration} request parameter or the value of the parameter is
+     * 0 or negative, the value of this property is used as the default value.
+     * </p>
+     *
+     * <p>
+     * If the value of this property is 0 or negative, the default value per
+     * Authlete server is used as the default value.
+     * </p>
+     *
+     * @param duration
+     *         The default duration of credential offers in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.59
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @see CredentialOfferCreateRequest#setDuration(long)
+     */
+    public Service setCredentialOfferDuration(long duration)
+    {
+        this.credentialOfferDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the default length of user PINs.
+     *
+     * <p>
+     * When an API call to the {@code /vci/offer/create} API does not contain
+     * the {@code userPinLength} request parameter or the value of the parameter
+     * is 0 or negative, the value of this property is used as the default value.
+     * </p>
+     *
+     * <p>
+     * If the value of this property is 0 or negative, the default value per
+     * Authlete server is used as the default value.
+     * </p>
+     *
+     * @return
+     *         The default length of user PINs.
+     *
+     * @since 3.59
+     * @since Authlete 3.0
+     *
+     * @see CredentialOfferCreateRequest#getUserPinLength()
+     */
+    public int getUserPinLength()
+    {
+        return userPinLength;
+    }
+
+
+    /**
+     * Set the default length of user PINs.
+     *
+     * <p>
+     * When an API call to the {@code /vci/offer/create} API does not contain
+     * the {@code userPinLength} request parameter or the value of the parameter
+     * is 0 or negative, the value of this property is used as the default value.
+     * </p>
+     *
+     * <p>
+     * If the value of this property is 0 or negative, the default value per
+     * Authlete server is used as the default value.
+     * </p>
+     *
+     * @param length
+     *         The default length of user PINs.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.59
+     * @since Authlete 3.0
+     *
+     * @see CredentialOfferCreateRequest#setUserPinLength(int)
+     */
+    public Service setUserPinLength(int length)
+    {
+        this.userPinLength = length;
 
         return this;
     }

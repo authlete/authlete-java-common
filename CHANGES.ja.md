@@ -9,6 +9,12 @@
     * `getDeferredCredentialEndpoint()` メソッドを追加。
     * `setDeferredCredentialEndpoint(URI)` メソッドを追加。
 
+- `Service` クラス
+    * `getCredentialOfferDuration()` メソッドを追加。
+    * `setCredentialOfferDuration(long)` メソッドを追加。
+    * `getUserPinLength()` メソッドを追加。
+    * `setUserPinLength(int)` メソッドを追加。
+
 
 3.58 (2023 年 04 月 14 日)
 --------------------------

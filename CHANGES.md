@@ -9,6 +9,12 @@ CHANGES
     * Added `getDeferredCredentialEndpoint()` method.
     * Added `setDeferredCredentialEndpoint(URI)` method.
 
+- `Service` class
+    * Added `getCredentialOfferDuration()` method.
+    * Added `setCredentialOfferDuration(long)` method.
+    * Added `getUserPinLength()` method.
+    * Added `setUserPinLength(int)` method.
+
 
 3.58 (2023-04-14)
 -----------------
