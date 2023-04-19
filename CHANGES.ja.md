@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.61 (2023 年 04 月 20 日)
+--------------------------
+
 - `Service` クラス
     * `getVerifiedClaimsValidationSchemaSet()` メソッドを追加。
     * `setVerifiedClaimsValidationSchemaSet(String)` メソッドを追加。
