@@ -328,7 +328,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 67L;
+    private static final long serialVersionUID = 68L;
 
 
     /*
@@ -1406,6 +1406,16 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private Prompt[] supportedPromptValues;
+
+
+    /**
+     * The name of the validation schema set that is used to validate the
+     * content of {@code "verified_claims"}.
+     *
+     * @since 3.61
+     * @since Authlete 2.3.4
+     */
+    private String verifiedClaimsValidationSchemaSet;
 
 
     /**
@@ -10387,6 +10397,153 @@ public class Service implements Serializable
     public Service setSupportedPromptValues(final Prompt[] promptValues)
     {
         this.supportedPromptValues = promptValues;
+
+        return this;
+    }
+
+
+    /**
+     * Get the name of the validation schema set that is used to validate the
+     * content of {@code "verified_claims"}.
+     *
+     * <p>
+     * Since version 2.3, Authlete validates the content of
+     * {@code "verified_claims"} based on the JSON schema files that accompany
+     * the specification (<a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>). They are found in the
+     * <code><a href="https://bitbucket.org/openid/ekyc-ida/src/master/schema/"
+     * >/schema/</a></code> folder of the Git repository of the specification.
+     * </p>
+     *
+     * <p>
+     * Usually, Authlete uses the legitimate JSON schema files that conform to
+     * the specification. But, it is possible to make Authlete use a different
+     * set of JSON schema files by specifying a name of validation schema set
+     * through this property ({@code Service.verifiedClaimsValidationSchemaSet}).
+     * </p>
+     *
+     * <p>
+     * Authlete recognizes the following names of validation schema set at least.
+     * </p>
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <tr bgcolor="orange">
+     *     <th>name</th>
+     *     <th>description</th>
+     *   </tr>
+     *   <tr>
+     *     <td>null</td>
+     *     <td>Same as {@code "standard"}.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "standard"}</td>
+     *     <td>The set of the legitimate JSON schema files.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "standard+id_document"}</td>
+     *     <td>
+     *       A set of customized JSON schema files that mostly conform to the
+     *       standard but additionally accept {@code "id_document"} as a valid
+     *       name of {@code evidence}. This is for backward compatibility. Note
+     *       that {@code "id_document"} was deprecated by Implementer's Draft 4
+     *       (cf. <a href="https://bitbucket.org/openid/ekyc-ida/pull-requests/152"
+     *       >eKYC-IDA PR 152</a>).
+     *     </td>
+     *   </tr>
+     * </table>
+     * </blockquote>
+     *
+     * @return
+     *         The name of the validation schema set.
+     *
+     * @since 3.61
+     * @since Authlete 2.3.4
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/pull-requests/152"
+     *       >eKYC-IDA PR 152: removal of deprecated items - issue 1334</a>
+     */
+    public String getVerifiedClaimsValidationSchemaSet()
+    {
+        return verifiedClaimsValidationSchemaSet;
+    }
+
+
+    /**
+     * Set the name of the validation schema set that is used to validate the
+     * content of {@code "verified_claims"}.
+     *
+     * <p>
+     * Since version 2.3, Authlete validates the content of
+     * {@code "verified_claims"} based on the JSON schema files that accompany
+     * the specification (<a href=
+     * "https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     * >OpenID Connect for Identity Assurance 1.0</a>). They are found in the
+     * <code><a href="https://bitbucket.org/openid/ekyc-ida/src/master/schema/"
+     * >/schema/</a></code> folder of the Git repository of the specification.
+     * </p>
+     *
+     * <p>
+     * Usually, Authlete uses the legitimate JSON schema files that conform to
+     * the specification. But, it is possible to make Authlete use a different
+     * set of JSON schema files by specifying a name of validation schema set
+     * through this property ({@code Service.verifiedClaimsValidationSchemaSet}).
+     * </p>
+     *
+     * <p>
+     * Authlete recognizes the following names of validation schema set at least.
+     * </p>
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <tr bgcolor="orange">
+     *     <th>name</th>
+     *     <th>description</th>
+     *   </tr>
+     *   <tr>
+     *     <td>null</td>
+     *     <td>Same as {@code "standard"}.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "standard"}</td>
+     *     <td>The set of the legitimate JSON schema files.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "standard+id_document"}</td>
+     *     <td>
+     *       A set of customized JSON schema files that mostly conform to the
+     *       standard but additionally accept {@code "id_document"} as a valid
+     *       name of {@code evidence}. This is for backward compatibility. Note
+     *       that {@code "id_document"} was deprecated by Implementer's Draft 4
+     *       (cf. <a href="https://bitbucket.org/openid/ekyc-ida/pull-requests/152"
+     *       >eKYC-IDA PR 152</a>).
+     *     </td>
+     *   </tr>
+     * </table>
+     * </blockquote>
+     *
+     * @param schemaSet
+     *         The name of the validation schema set.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.61
+     * @since Authlete 2.3.4
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
+     *      >OpenID Connect for Identity Assurance 1.0</a>
+     *
+     * @see <a href="https://bitbucket.org/openid/ekyc-ida/pull-requests/152"
+     *       >eKYC-IDA PR 152: removal of deprecated items - issue 1334</a>
+     */
+    public Service setVerifiedClaimsValidationSchemaSet(String schemaSet)
+    {
+        this.verifiedClaimsValidationSchemaSet = schemaSet;
 
         return this;
     }

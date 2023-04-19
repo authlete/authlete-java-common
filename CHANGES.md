@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `getVerifiedClaimsValidationSchemaSet()` method.
+    * Added `setVerifiedClaimsValidationSchemaSet(String)` method.
+
+
 3.60 (2023-04-19)
 -----------------
 
