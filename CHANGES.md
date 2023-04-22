@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `isPreAuthorizedGrantAnonymousAccessSupported()` method.
+    * Added `setPreAuthorizedGrantAnonymousAccessSupported(boolean)` method.
+
+
 3.61 (2023-04-20)
 -----------------
 

@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isPreAuthorizedGrantAnonymousAccessSupported()` メソッドを追加。
+    * `setPreAuthorizedGrantAnonymousAccessSupported(boolean)` メソッドを追加。
+
+
 3.61 (2023 年 04 月 20 日)
 --------------------------
 

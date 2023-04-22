@@ -328,7 +328,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 68L;
+    private static final long serialVersionUID = 69L;
 
 
     /*
@@ -1416,6 +1416,16 @@ public class Service implements Serializable
      * @since Authlete 2.3.4
      */
     private String verifiedClaimsValidationSchemaSet;
+
+
+    /**
+     * The flag indicating whether token requests using the pre-authorized
+     * code grant flow by unidentifiable clients are allowed.
+     *
+     * @since 3.62
+     * @since Authlete 3.0
+     */
+    private boolean preAuthorizedGrantAnonymousAccessSupported;
 
 
     /**
@@ -10544,6 +10554,67 @@ public class Service implements Serializable
     public Service setVerifiedClaimsValidationSchemaSet(String schemaSet)
     {
         this.verifiedClaimsValidationSchemaSet = schemaSet;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether token requests using the pre-authorized
+     * code grant flow by unidentifiable clients are allowed.
+     *
+     * <p>
+     * This property corresponds to the
+     * {@code pre-authorized_grant_anonymous_access_supported} server metadata
+     * defined in "<a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credentials Issuance</a>".
+     * </p>
+     *
+     * @return
+     *         {@code true} if token requests using the pre-authorized code
+     *         grant flow by unidentifiable clients are allows.
+     *
+     * @since 3.62
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public boolean isPreAuthorizedGrantAnonymousAccessSupported()
+    {
+        return preAuthorizedGrantAnonymousAccessSupported;
+    }
+
+
+    /**
+     * Set the flag indicating whether token requests using the pre-authorized
+     * code grant flow by unidentifiable clients are allowed.
+     *
+     * <p>
+     * This property corresponds to the
+     * {@code pre-authorized_grant_anonymous_access_supported} server metadata
+     * defined in "<a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credentials Issuance</a>".
+     * </p>
+     *
+     * @param supported
+     *         {@code true} to allow unidentifiable clients to make token
+     *         requests using the pre-authorized code grant flow.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.62
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public Service setPreAuthorizedGrantAnonymousAccessSupported(boolean supported)
+    {
+        this.preAuthorizedGrantAnonymousAccessSupported = supported;
 
         return this;
     }
