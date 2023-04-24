@@ -31,7 +31,7 @@ import java.net.URI;
  */
 public class CredentialOfferInfo implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -128,6 +128,14 @@ public class CredentialOfferInfo implements Serializable
      * The general-purpose arbitrary string.
      */
     private String context;
+
+
+    /**
+     * Extra properties to associate with the credential offer.
+     *
+     * @since 3.62
+     */
+    private Property[] properties;
 
 
     /**
@@ -905,6 +913,52 @@ public class CredentialOfferInfo implements Serializable
     public CredentialOfferInfo setContext(String context)
     {
         this.context = context;
+
+        return this;
+    }
+
+
+    /**
+     * Get the extra properties associated with the credential offer.
+     * Extra properties are general-purpose key-value pairs.
+     *
+     * <p>
+     * The extra properties will be eventually associated with an access token
+     * which will be created based on the credential offer.
+     * </p>
+     *
+     * @return
+     *         The extra properties associated with the credential offer.
+     *
+     * @since 3.62
+     */
+    public Property[] getProperties()
+    {
+        return properties;
+    }
+
+
+    /**
+     * Set the extra properties associated with the credential offer.
+     * Extra properties are general-purpose key-value pairs.
+     *
+     * <p>
+     * The extra properties will be eventually associated with an access token
+     * which will be created based on the credential offer.
+     * </p>
+     *
+     *
+     * @param properties
+     *         The extra properties associated with the credential offer.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.62
+     */
+    public CredentialOfferInfo setProperties(Property[] properties)
+    {
+        this.properties = properties;
 
         return this;
     }

@@ -65,7 +65,7 @@ import java.io.Serializable;
  */
 public class CredentialOfferCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -128,6 +128,14 @@ public class CredentialOfferCreateRequest implements Serializable
 
 
     /**
+     * Extra properties to associate with the credential offer.
+     *
+     * @since 3.62
+     */
+    private Property[] properties;
+
+
+    /**
      * Get the value of the {@code credentials} object in the JSON format.
      *
      * <blockquote>
@@ -141,15 +149,11 @@ public class CredentialOfferCreateRequest implements Serializable
      * </blockquote>
      *
      * <p>
-     * If this property is omitted, the value of the {@code credentials_supported}
-     * metadata of the credential issuer is used
-     * (cf. {@code Service.credentialIssuerMetadata.credentialsSupported}).
+     * This property is mandatory.
      * </p>
      *
      * @return
      *         The value of the {@code credentials} object.
-     *
-     * @see CredentialIssuerMetadata#getCredentialsSupported()
      */
     public String getCredentials()
     {
@@ -171,9 +175,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * </blockquote>
      *
      * <p>
-     * If this property is omitted, the value of the {@code credentials_supported}
-     * metadata of the credential issuer is used
-     * (cf. {@code Service.credentialIssuerMetadata.credentialsSupported}).
+     * This property is mandatory.
      * </p>
      *
      * @param credentials
@@ -181,8 +183,6 @@ public class CredentialOfferCreateRequest implements Serializable
      *
      * @return
      *         {@code this} object.
-     *
-     * @see CredentialIssuerMetadata#setCredentialsSupported(String)
      */
     public CredentialOfferCreateRequest setCredentials(String credentials)
     {
@@ -636,6 +636,52 @@ public class CredentialOfferCreateRequest implements Serializable
     public CredentialOfferCreateRequest setContext(String context)
     {
         this.context = context;
+
+        return this;
+    }
+
+
+    /**
+     * Get the extra properties associated with the credential offer.
+     * Extra properties are general-purpose key-value pairs.
+     *
+     * <p>
+     * The extra properties will be eventually associated with an access token
+     * which will be created based on the credential offer.
+     * </p>
+     *
+     * @return
+     *         The extra properties associated with the credential offer.
+     *
+     * @since 3.62
+     */
+    public Property[] getProperties()
+    {
+        return properties;
+    }
+
+
+    /**
+     * Set the extra properties associated with the credential offer.
+     * Extra properties are general-purpose key-value pairs.
+     *
+     * <p>
+     * The extra properties will be eventually associated with an access token
+     * which will be created based on the credential offer.
+     * </p>
+     *
+     *
+     * @param properties
+     *         The extra properties associated with the credential offer.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.62
+     */
+    public CredentialOfferCreateRequest setProperties(Property[] properties)
+    {
+        this.properties = properties;
 
         return this;
     }

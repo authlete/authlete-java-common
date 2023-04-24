@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+- `CredentialOfferCreateRequest` class
+    * Added `getProperties()` method.
+    * Added `setProperties(Property[])` method.
+
+- `CredentialOfferInfo` class
+    * Added `getProperties()` method.
+    * Added `setProperties(Property[])` method.
+
 - `Service` class
     * Added `isPreAuthorizedGrantAnonymousAccessSupported()` method.
     * Added `setPreAuthorizedGrantAnonymousAccessSupported(boolean)` method.

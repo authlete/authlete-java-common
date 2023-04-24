@@ -1,6 +1,14 @@
 変更点
 ======
 
+- `CredentialOfferCreateRequest` クラス
+    * `getProperties()` メソッドを追加。
+    * `setProperties(Property[])` メソッドを追加。
+
+- `CredentialOfferInfo` クラス
+    * `getProperties()` メソッドを追加。
+    * `setProperties(Property[])` メソッドを追加。
+
 - `Service` クラス
     * `isPreAuthorizedGrantAnonymousAccessSupported()` メソッドを追加。
     * `setPreAuthorizedGrantAnonymousAccessSupported(boolean)` メソッドを追加。
