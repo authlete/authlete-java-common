@@ -9,6 +9,12 @@ CHANGES
     * Added `getProperties()` method.
     * Added `setProperties(Property[])` method.
 
+- `IntrospectionResponse` class
+    * Added `isForCredentialIssuance()` method.
+    * Added `setForCredentialIssuance(boolean)` method.
+    * Added `getCredentials()` method.
+    * Added `setCredentials(String)` method.
+
 - `Service` class
     * Added `isPreAuthorizedGrantAnonymousAccessSupported()` method.
     * Added `setPreAuthorizedGrantAnonymousAccessSupported(boolean)` method.

@@ -477,6 +477,24 @@ public class IntrospectionResponse extends ApiResponse
 
 
     /**
+     * The flag indicating whether the token is for credential issuance.
+     *
+     * @since 3.62
+     * @since Authlete 3.0
+     */
+    private boolean forCredentialIssuance;
+
+
+    /**
+     * The credentials offered by the token.
+     *
+     * @since 3.62
+     * @since Authlete 3.0
+     */
+    private String credentials;
+
+
+    /**
      * Get the next action the service implementation should take.
      */
     public Action getAction()
@@ -1526,5 +1544,139 @@ public class IntrospectionResponse extends ApiResponse
     public void setGrantType(GrantType grantType)
     {
         this.grantType = grantType;
+    }
+
+
+    /**
+     * Get the flag indicating whether the token is for credential issuance.
+     *
+     * <p>
+     * <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credential Issuance</a> defines flows to issue
+     * Verifiable Credentials. In the flows, a wallet presents an access token
+     * at the credential endpoint of a credential issuer and gets a Verifiable
+     * Credential in return.
+     * </p>
+     *
+     * <p>
+     * To get an access token for the purpose, a client application uses either
+     * the pre-authorized code flow or the authorization code flow with the
+     * {@code authorization_details} request parameter whose {@code type} is
+     * {@code openid_credential}.
+     * </p>
+     *
+     * <p>
+     * For access tokens obtained by the flows described above, this
+     * {@code forCredentialIssuance} flag is set.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the token is for credential issuance.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.62
+     * @since Authlete 3.0
+     */
+    public boolean isForCredentialIssuance()
+    {
+        return forCredentialIssuance;
+    }
+
+
+    /**
+     * Set the flag indicating whether the token is for credential issuance.
+     *
+     * <p>
+     * <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credential Issuance</a> defines flows to issue
+     * Verifiable Credentials. In the flows, a wallet presents an access token
+     * at the credential endpoint of a credential issuer and gets a Verifiable
+     * Credential in return.
+     * </p>
+     *
+     * <p>
+     * To get an access token for the purpose, a client application uses either
+     * the pre-authorized code flow or the authorization code flow with the
+     * {@code authorization_details} request parameter whose {@code type} is
+     * {@code openid_credential}.
+     * </p>
+     *
+     * <p>
+     * For access tokens obtained by the flows described above, this
+     * {@code forCredentialIssuance} flag should be set.
+     * </p>
+     *
+     * @param forCredentialIssuance
+     *         {@code true} to indicate that the token is for credential issuance.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.62
+     * @since Authlete 3.0
+     */
+    public void setForCredentialIssuance(boolean forCredentialIssuance)
+    {
+        this.forCredentialIssuance = forCredentialIssuance;
+    }
+
+
+    /**
+     * Get the credentials that the credential issuer can offer when the token
+     * is presented at the credential endpoint.
+     *
+     * <p>
+     * The value of this property corresponds to (1) the {@code credentials}
+     * property in the credential offer based on which the token was issued or
+     * (2) the content of the {@code authorization_details} element (whose type
+     * is {@code openid_credential}) that was included in the authorization
+     * request based on which the token was issued.
+     * </p>
+     *
+     * @return
+     *         The credentials that the credential issuer can offer when the
+     *         token is presented at the credential endpoint. The format is
+     *         a JSON array.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.62
+     * @since Authlete 3.0
+     */
+    public String getCredentials()
+    {
+        return credentials;
+    }
+
+
+    /**
+     * Set the credentials that the credential issuer can offer when the token
+     * is presented at the credential endpoint.
+     *
+     * <p>
+     * The value of this property corresponds to (1) the {@code credentials}
+     * property in the credential offer based on which the token was issued or
+     * (2) the content of the {@code authorization_details} element (whose type
+     * is {@code openid_credential}) that was included in the authorization
+     * request based on which the token was issued.
+     * </p>
+     *
+     * @param credentials
+     *         The credentials that the credential issuer can offer when the
+     *         token is presented at the credential endpoint. The format is
+     *         a JSON array.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.62
+     * @since Authlete 3.0
+     */
+    public void setCredentials(String credentials)
+    {
+        this.credentials = credentials;
     }
 }
