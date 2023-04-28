@@ -2,6 +2,8 @@
 ======
 
 - `CredentialOfferCreateRequest` クラス
+    * `getAcr()` メソッドを追加。
+    * `setAcr(String)` メソッドを追加。
     * `getAuthTime()` メソッドを追加。
     * `setAuthTime(long)` メソッドを追加。
     * `getJwtAtClaims()` メソッドを追加。
@@ -10,6 +12,8 @@
     * `setProperties(Property[])` メソッドを追加。
 
 - `CredentialOfferInfo` クラス
+    * `getAcr()` メソッドを追加。
+    * `setAcr(String)` メソッドを追加。
     * `getAuthTime()` メソッドを追加。
     * `setAuthTime(long)` メソッドを追加。
     * `getJwtAtClaims()` メソッドを追加。

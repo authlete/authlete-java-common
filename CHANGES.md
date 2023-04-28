@@ -2,6 +2,8 @@ CHANGES
 =======
 
 - `CredentialOfferCreateRequest` class
+    * Added `getAcr()` method.
+    * Added `setAcr(String)` method.
     * Added `getAuthTime()` method.
     * Added `setAuthTime(long)` method.
     * Added `getJwtAtClaims()` method.
@@ -10,6 +12,8 @@ CHANGES
     * Added `setProperties(Property[])` method.
 
 - `CredentialOfferInfo` class
+    * Added `getAcr()` method.
+    * Added `setAcr(String)` method.
     * Added `getAuthTime()` method.
     * Added `setAuthTime(long)` method.
     * Added `getJwtAtClaims()` method.

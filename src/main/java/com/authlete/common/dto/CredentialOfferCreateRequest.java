@@ -154,6 +154,15 @@ public class CredentialOfferCreateRequest implements Serializable
 
 
     /**
+     * The Authentication Context Class Reference of the user authentication
+     * performed during the course of issuing the credential offer.
+     *
+     * @since 3.62
+     */
+    private String acr;
+
+
+    /**
      * Get the value of the {@code credentials} object in the JSON format.
      *
      * <blockquote>
@@ -801,6 +810,41 @@ public class CredentialOfferCreateRequest implements Serializable
     public CredentialOfferCreateRequest setAuthTime(long authTime)
     {
         this.authTime = authTime;
+
+        return this;
+    }
+
+
+    /**
+     * Get the Authentication Context Class Reference of the user authentication
+     * performed during the course of issuing the credential offer.
+     *
+     * @return
+     *         The Authentication Context Class Reference.
+     *
+     * @since 3.62
+     */
+    public String getAcr()
+    {
+        return acr;
+    }
+
+
+    /**
+     * Set the Authentication Context Class Reference of the user authentication
+     * performed during the course of issuing the credential offer.
+     *
+     * @param acr
+     *         The Authentication Context Class Reference.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.62
+     */
+    public CredentialOfferCreateRequest setAcr(String acr)
+    {
+        this.acr = acr;
 
         return this;
     }

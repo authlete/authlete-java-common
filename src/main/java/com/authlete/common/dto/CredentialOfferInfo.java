@@ -157,6 +157,15 @@ public class CredentialOfferInfo implements Serializable
 
 
     /**
+     * The Authentication Context Class Reference of the user authentication
+     * performed during the course of issuing the credential offer.
+     *
+     * @since 3.62
+     */
+    private String acr;
+
+
+    /**
      * Get the identifier of the credential offer.
      *
      * <p>
@@ -1077,6 +1086,41 @@ public class CredentialOfferInfo implements Serializable
     public CredentialOfferInfo setAuthTime(long authTime)
     {
         this.authTime = authTime;
+
+        return this;
+    }
+
+
+    /**
+     * Get the Authentication Context Class Reference of the user authentication
+     * performed during the course of issuing the credential offer.
+     *
+     * @return
+     *         The Authentication Context Class Reference.
+     *
+     * @since 3.62
+     */
+    public String getAcr()
+    {
+        return acr;
+    }
+
+
+    /**
+     * Set the Authentication Context Class Reference of the user authentication
+     * performed during the course of issuing the credential offer.
+     *
+     * @param acr
+     *         The Authentication Context Class Reference.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.62
+     */
+    public CredentialOfferInfo setAcr(String acr)
+    {
+        this.acr = acr;
 
         return this;
     }
