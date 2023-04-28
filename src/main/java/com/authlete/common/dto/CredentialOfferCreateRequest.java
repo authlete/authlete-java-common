@@ -136,6 +136,15 @@ public class CredentialOfferCreateRequest implements Serializable
 
 
     /**
+     * Additional claims that are added to the payload part of the JWT
+     * access token.
+     *
+     * @since 3.62
+     */
+    private String jwtAtClaims;
+
+
+    /**
      * Get the value of the {@code credentials} object in the JSON format.
      *
      * <blockquote>
@@ -682,6 +691,71 @@ public class CredentialOfferCreateRequest implements Serializable
     public CredentialOfferCreateRequest setProperties(Property[] properties)
     {
         this.properties = properties;
+
+        return this;
+    }
+
+
+    /**
+     * Get the additional claims in JSON object format that are added to the
+     * payload part of the JWT access token.
+     *
+     * <p>
+     * This request parameter has a meaning only when the format of access
+     * tokens issued by the service is JWT. In other words, it has a meaning
+     * only when the {@code accessTokenSignAlg} property of the {@link Service}
+     * holds a non-null value. See the description of the {@link
+     * Service#getAccessTokenSignAlg() getAccessTokenSignAlg()} method for
+     * details.
+     * </p>
+     *
+     * <p>
+     * The additional claims will be eventually associated with an access token
+     * which will be created based on the credential offer.
+     * </p>
+     *
+     * @return
+     *         Additional claims that are added to the payload part of the JWT
+     *         access token.
+     *
+     * @since 3.62
+     */
+    public String getJwtAtClaims()
+    {
+        return jwtAtClaims;
+    }
+
+
+    /**
+     * Set the additional claims in JSON object format that are added to the
+     * payload part of the JWT access token.
+     *
+     * <p>
+     * This request parameter has a meaning only when the format of access
+     * tokens issued by the service is JWT. In other words, it has a meaning
+     * only when the {@code accessTokenSignAlg} property of the {@link Service}
+     * holds a non-null value. See the description of the {@link
+     * Service#getAccessTokenSignAlg() getAccessTokenSignAlg()} method for
+     * details.
+     * </p>
+     *
+     * <p>
+     * The additional claims will be eventually associated with an access token
+     * which will be created based on the credential offer.
+     * </p>
+     *
+     * @param claims
+     *         Additional claims that are added to the payload part of the JWT
+     *         access token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.62
+     */
+    public CredentialOfferCreateRequest setJwtAtClaims(String claims)
+    {
+        this.jwtAtClaims = claims;
 
         return this;
     }

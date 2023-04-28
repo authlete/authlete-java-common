@@ -4,10 +4,14 @@
 - `CredentialOfferCreateRequest` クラス
     * `getProperties()` メソッドを追加。
     * `setProperties(Property[])` メソッドを追加。
+    * `getJwtAtClaims()` メソッドを追加。
+    * `setJwtAtClaims(String)` メソッドを追加。
 
 - `CredentialOfferInfo` クラス
     * `getProperties()` メソッドを追加。
     * `setProperties(Property[])` メソッドを追加。
+    * `getJwtAtClaims()` メソッドを追加。
+    * `setJwtAtClaims(String)` メソッドを追加。
 
 - `IntrospectionResponse` クラス
     * `isForCredentialIssuance()` メソッドを追加。

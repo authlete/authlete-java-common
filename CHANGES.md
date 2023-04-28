@@ -4,10 +4,14 @@ CHANGES
 - `CredentialOfferCreateRequest` class
     * Added `getProperties()` method.
     * Added `setProperties(Property[])` method.
+    * Added `getJwtAtClaims()` method.
+    * Added `setJwtAtClaims(String)` method.
 
 - `CredentialOfferInfo` class
     * Added `getProperties()` method.
     * Added `setProperties(Property[])` method.
+    * Added `getJwtAtClaims()` method.
+    * Added `setJwtAtClaims(String)` method.
 
 - `IntrospectionResponse` class
     * Added `isForCredentialIssuance()` method.
