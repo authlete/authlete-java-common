@@ -2,22 +2,26 @@
 ======
 
 - `CredentialOfferCreateRequest` クラス
-    * `getProperties()` メソッドを追加。
-    * `setProperties(Property[])` メソッドを追加。
+    * `getAuthTime()` メソッドを追加。
+    * `setAuthTime(long)` メソッドを追加。
     * `getJwtAtClaims()` メソッドを追加。
     * `setJwtAtClaims(String)` メソッドを追加。
+    * `getProperties()` メソッドを追加。
+    * `setProperties(Property[])` メソッドを追加。
 
 - `CredentialOfferInfo` クラス
-    * `getProperties()` メソッドを追加。
-    * `setProperties(Property[])` メソッドを追加。
+    * `getAuthTime()` メソッドを追加。
+    * `setAuthTime(long)` メソッドを追加。
     * `getJwtAtClaims()` メソッドを追加。
     * `setJwtAtClaims(String)` メソッドを追加。
+    * `getProperties()` メソッドを追加。
+    * `setProperties(Property[])` メソッドを追加。
 
 - `IntrospectionResponse` クラス
-    * `isForCredentialIssuance()` メソッドを追加。
-    * `setForCredentialIssuance(boolean)` メソッドを追加。
     * `getCredentials()` メソッドを追加。
     * `setCredentials(String)` メソッドを追加。
+    * `isForCredentialIssuance()` メソッドを追加。
+    * `setForCredentialIssuance(boolean)` メソッドを追加。
 
 - `Service` クラス
     * `isPreAuthorizedGrantAnonymousAccessSupported()` メソッドを追加。

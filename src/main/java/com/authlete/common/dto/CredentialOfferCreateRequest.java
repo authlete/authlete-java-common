@@ -145,6 +145,15 @@ public class CredentialOfferCreateRequest implements Serializable
 
 
     /**
+     * The time at which the user authentication was performed during
+     * the course of issuing the credential offer.
+     *
+     * @since 3.62
+     */
+    private long authTime;
+
+
+    /**
      * Get the value of the {@code credentials} object in the JSON format.
      *
      * <blockquote>
@@ -756,6 +765,42 @@ public class CredentialOfferCreateRequest implements Serializable
     public CredentialOfferCreateRequest setJwtAtClaims(String claims)
     {
         this.jwtAtClaims = claims;
+
+        return this;
+    }
+
+
+    /**
+     * Get the time when the user authentication was performed during the course
+     * of issuing the credential offer.
+     *
+     * @return
+     *         The time of the user authentication in seconds since the Unix epoch.
+     *
+     * @since 3.62
+     */
+    public long getAuthTime()
+    {
+        return authTime;
+    }
+
+
+    /**
+     * Set the time when the user authentication was performed during the course
+     * of issuing the credential offer.
+     *
+     * @param authTime
+     *         The time of the user authentication in seconds since the Unix epoch.
+     *         Must not be negative.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.62
+     */
+    public CredentialOfferCreateRequest setAuthTime(long authTime)
+    {
+        this.authTime = authTime;
 
         return this;
     }

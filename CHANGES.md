@@ -2,22 +2,26 @@ CHANGES
 =======
 
 - `CredentialOfferCreateRequest` class
-    * Added `getProperties()` method.
-    * Added `setProperties(Property[])` method.
+    * Added `getAuthTime()` method.
+    * Added `setAuthTime(long)` method.
     * Added `getJwtAtClaims()` method.
     * Added `setJwtAtClaims(String)` method.
+    * Added `getProperties()` method.
+    * Added `setProperties(Property[])` method.
 
 - `CredentialOfferInfo` class
-    * Added `getProperties()` method.
-    * Added `setProperties(Property[])` method.
+    * Added `getAuthTime()` method.
+    * Added `setAuthTime(long)` method.
     * Added `getJwtAtClaims()` method.
     * Added `setJwtAtClaims(String)` method.
+    * Added `getProperties()` method.
+    * Added `setProperties(Property[])` method.
 
 - `IntrospectionResponse` class
-    * Added `isForCredentialIssuance()` method.
-    * Added `setForCredentialIssuance(boolean)` method.
     * Added `getCredentials()` method.
     * Added `setCredentials(String)` method.
+    * Added `isForCredentialIssuance()` method.
+    * Added `setForCredentialIssuance(boolean)` method.
 
 - `Service` class
     * Added `isPreAuthorizedGrantAnonymousAccessSupported()` method.
