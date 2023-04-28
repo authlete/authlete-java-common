@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.62 (2023-04-28)
+-----------------
+
 - `CredentialOfferCreateRequest` class
     * Added `getAcr()` method.
     * Added `setAcr(String)` method.

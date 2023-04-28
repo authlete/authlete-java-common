@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.62 (2023 年 04 月 28 日)
+--------------------------
+
 - `CredentialOfferCreateRequest` クラス
     * `getAcr()` メソッドを追加。
     * `setAcr(String)` メソッドを追加。
