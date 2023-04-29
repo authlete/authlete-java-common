@@ -1,6 +1,12 @@
 変更点
 ======
 
+- `IntrospectionResponse` クラス
+    * `getCNonce()` メソッドを追加。
+    * `setCNonce(String)` メソッドを追加。
+    * `getCNonceExpiresAt()` メソッドを追加。
+    * `setCNonceExpiresAt(long)` メソッドを追加。
+
 - `Service` クラス
     * `getCNonceDuration()` メソッドを追加。
     * `setCNonceDuration(long)` メソッドを追加。

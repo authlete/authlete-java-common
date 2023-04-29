@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+- `IntrospectionResponse` class
+    * Added `getCNonce()` method.
+    * Added `setCNonce(String)` method.
+    * Added `getCNonceExpiresAt()` method.
+    * Added `setCNonceExpiresAt(long)` method.
+
 - `Service` class
     * Added `getCNonceDuration()` method.
     * Added `setCNonceDuration(long)` method.

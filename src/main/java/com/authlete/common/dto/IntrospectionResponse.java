@@ -220,7 +220,7 @@ import com.authlete.common.util.Utils;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 18L;
+    private static final long serialVersionUID = 19L;
 
 
     /**
@@ -492,6 +492,24 @@ public class IntrospectionResponse extends ApiResponse
      * @since Authlete 3.0
      */
     private String credentials;
+
+
+    /**
+     * The {@code c_nonce}.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     */
+    private String cNonce;
+
+
+    /**
+     * The time at which the {@code c_nonce} expires.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     */
+    private long cNonceExpiresAt;
 
 
     /**
@@ -1678,5 +1696,119 @@ public class IntrospectionResponse extends ApiResponse
     public void setCredentials(String credentials)
     {
         this.credentials = credentials;
+    }
+
+
+    /**
+     * Get the {@code c_nonce} associated with the access token.
+     *
+     * <p>
+     * {@code c_nonce} is issued from the token endpoint of an authorization
+     * server in the pre-authorized code flow, and from the credential endpoint
+     * and the batch credential endpoint of a credential issuer.
+     * </p>
+     *
+     * <p>
+     * In Authlete's implementation, {@code c_nonce} is managed in an access
+     * token record. Therefore, when the database record is deleted, the
+     * {@code c_nonce} is deleted together.
+     * </p>
+     *
+     * <p>
+     * See <a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credentials Issuance</a> for details about {@code
+     * c_nonce}.
+     * </p>
+     *
+     * @return
+     *         The {@code c_nonce}.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public String getCNonce()
+    {
+        return cNonce;
+    }
+
+
+    /**
+     * Set the {@code c_nonce} associated with the access token.
+     *
+     * <p>
+     * {@code c_nonce} is issued from the token endpoint of an authorization
+     * server in the pre-authorized code flow, and from the credential endpoint
+     * and the batch credential endpoint of a credential issuer.
+     * </p>
+     *
+     * <p>
+     * In Authlete's implementation, {@code c_nonce} is managed in an access
+     * token record. Therefore, when the database record is deleted, the
+     * {@code c_nonce} is deleted together.
+     * </p>
+     *
+     * <p>
+     * See <a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credentials Issuance</a> for details about {@code
+     * c_nonce}.
+     * </p>
+     *
+     * @param nonce
+     *         The {@code c_nonce}.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public void setCNonce(String nonce)
+    {
+        this.cNonce = nonce;
+    }
+
+
+    /**
+     * Get the time at which the {@code c_nonce} expires in milliseconds since
+     * the Unix epoch (1970-01-01).
+     *
+     * @return
+     *         The time at which the {@code c_nonce} expires in milliseconds
+     *         since the Unix epoch (1970-01-01).
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public long getCNonceExpiresAt()
+    {
+        return cNonceExpiresAt;
+    }
+
+
+    /**
+     * Set the time at which the {@code c_nonce} expires in milliseconds since
+     * the Unix epoch (1970-01-01).
+     *
+     * @param expiresAt
+     *         The time at which the {@code c_nonce} expires in milliseconds
+     *         since the Unix epoch (1970-01-01).
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public void setCNonceExpiresAt(long expiresAt)
+    {
+        this.cNonceExpiresAt = expiresAt;
     }
 }
