@@ -328,7 +328,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 69L;
+    private static final long serialVersionUID = 70L;
 
 
     /*
@@ -1426,6 +1426,15 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private boolean preAuthorizedGrantAnonymousAccessSupported;
+
+
+    /**
+     * The duration of {@code c_nonce}.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     */
+    private long cNonceDuration;
 
 
     /**
@@ -10615,6 +10624,85 @@ public class Service implements Serializable
     public Service setPreAuthorizedGrantAnonymousAccessSupported(boolean supported)
     {
         this.preAuthorizedGrantAnonymousAccessSupported = supported;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of {@code c_nonce} in seconds.
+     *
+     * <p>
+     * {@code c_nonce} is issued from the token endpoint of an authorization
+     * server in the pre-authorized code flow, and from the credential endpoint
+     * and the batch credential endpoint of a credential issuer. This property
+     * is used as the lifetime of the {@code c_nonce}.
+     * </p>
+     *
+     * <p>
+     * If the value of this property is 0 or negative, the default value per
+     * Authlete server is used as the default value.
+     * </p>
+     *
+     * <p>
+     * See <a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credentials Issuance</a> for details about {@code
+     * c_nonce}.
+     * </p>
+     *
+     * @return
+     *         The duration of {@code c_nonce} in seconds.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public long getCNonceDuration()
+    {
+        return cNonceDuration;
+    }
+
+
+    /**
+     * Set the duration of {@code c_nonce} in seconds.
+     *
+     * <p>
+     * {@code c_nonce} is issued from the token endpoint of an authorization
+     * server in the pre-authorized code flow, and from the credential endpoint
+     * and the batch credential endpoint of a credential issuer. This property
+     * is used as the lifetime of the {@code c_nonce}.
+     * </p>
+     *
+     * <p>
+     * If the value of this property is 0 or negative, the default value per
+     * Authlete server is used as the default value.
+     * </p>
+     *
+     * <p>
+     * See <a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credentials Issuance</a> for details about {@code
+     * c_nonce}.
+     * </p>
+     *
+     * @param duration
+     *         The duration of {@code c_nonce} in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public Service setCNonceDuration(long duration)
+    {
+        this.cNonceDuration = duration;
 
         return this;
     }

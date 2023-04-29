@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `getCNonceDuration()` method.
+    * Added `setCNonceDuration(long)` method.
+
+
 3.62 (2023-04-28)
 -----------------
 

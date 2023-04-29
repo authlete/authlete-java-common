@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` クラス
+    * `getCNonceDuration()` メソッドを追加。
+    * `setCNonceDuration(long)` メソッドを追加。
+
+
 3.62 (2023 年 04 月 28 日)
 --------------------------
 
