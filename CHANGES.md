@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.63 (2023-04-30)
+-----------------
+
 - `IntrospectionResponse` class
     * Added `getCNonce()` method.
     * Added `setCNonce(String)` method.

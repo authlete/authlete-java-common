@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.63 (2023 年 04 月 30 日)
+--------------------------
+
 - `IntrospectionResponse` クラス
     * `getCNonce()` メソッドを追加。
     * `setCNonce(String)` メソッドを追加。
