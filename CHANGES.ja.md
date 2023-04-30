@@ -11,6 +11,14 @@
     * `getCNonceDuration()` メソッドを追加。
     * `setCNonceDuration(long)` メソッドを追加。
 
+- `TokenResponse` クラス
+    * `getCNonce()` メソッドを追加。
+    * `setCNonce(String)` メソッドを追加。
+    * `getCNonceDuration()` メソッドを追加。
+    * `setCNonceDuration(long)` メソッドを追加。
+    * `getCNonceExpiresAt()` メソッドを追加。
+    * `setCNonceExpiresAt(long)` メソッドを追加。
+
 
 3.62 (2023 年 04 月 28 日)
 --------------------------

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2022 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -777,7 +777,7 @@ import com.authlete.common.util.Utils;
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 15L;
+    private static final long serialVersionUID = 16L;
 
 
     /**
@@ -921,6 +921,14 @@ public class TokenResponse extends ApiResponse
      * in the database for a short time was used.
      */
     private boolean previousRefreshTokenUsed;
+
+    /*
+     * For the pre-authorized code flow defined in
+     * OpenID for Verifiable Credential Issuance.
+     */
+    private String cNonce;
+    private long cNonceExpiresAt;
+    private long cNonceDuration;
 
 
     /**
@@ -2458,5 +2466,129 @@ public class TokenResponse extends ApiResponse
     public void setPreviousRefreshTokenUsed(boolean used)
     {
         this.previousRefreshTokenUsed = used;
+    }
+
+
+    /**
+     * Get the {@code c_nonce}.
+     *
+     * <p>
+     * {@code c_nonce} is issued in the pre-authorized code flow. In addition,
+     * a new {@code c_nonce} may be issued in the refresh token flow. See <a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credentials Issuance</a> for details.
+     * </p>
+     *
+     * @return
+     *         The {@code c_nonce}.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public String getCNonce()
+    {
+        return cNonce;
+    }
+
+
+    /**
+     * Set the {@code c_nonce}.
+     *
+     * <p>
+     * {@code c_nonce} is issued in the pre-authorized code flow. In addition,
+     * a new {@code c_nonce} may be issued in the refresh token flow. See <a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     * >OpenID for Verifiable Credentials Issuance</a> for details.
+     * </p>
+     *
+     * @param nonce
+     *         The {@code c_nonce}.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public void setCNonce(String nonce)
+    {
+        this.cNonce = nonce;
+    }
+
+
+    /**
+     * Get the time at which the {@code c_nonce} expires in milliseconds since
+     * the Unix epoch (1970-01-01).
+     *
+     * @return
+     *         The time at which the {@code c_nonce} expires.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public long getCNonceExpiresAt()
+    {
+        return cNonceExpiresAt;
+    }
+
+
+    /**
+     * Set the time at which the {@code c_nonce} expires in milliseconds since
+     * the Unix epoch (1970-01-01).
+     *
+     * @param expiresAt
+     *         The time at which the {@code c_nonce} expires.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public void setCNonceExpiresAt(long expiresAt)
+    {
+        this.cNonceExpiresAt = expiresAt;
+    }
+
+
+    /**
+     * Get the duration of the {@code c_nonce} in seconds.
+     *
+     * @return
+     *         The duration of the {@code c_nonce} in seconds.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public long getCNonceDuration()
+    {
+        return cNonceDuration;
+    }
+
+
+    /**
+     * Set the duration of the {@code c_nonce} in seconds.
+     *
+     * @param duration
+     *         The duration of the {@code c_nonce} in seconds.
+     *
+     * @since 3.63
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credentials Issuance</a>
+     */
+    public void setCNonceDuration(long duration)
+    {
+        this.cNonceDuration = duration;
     }
 }

@@ -11,6 +11,14 @@ CHANGES
     * Added `getCNonceDuration()` method.
     * Added `setCNonceDuration(long)` method.
 
+- `TokenResponse` class
+    * Added `getCNonce()` method.
+    * Added `setCNonce(String)` method.
+    * Added `getCNonceDuration()` method.
+    * Added `setCNonceDuration(long)` method.
+    * Added `getCNonceExpiresAt()` method.
+    * Added `setCNonceExpiresAt(long)` method.
+
 
 3.62 (2023-04-28)
 -----------------
