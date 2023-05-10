@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `ErrorCode` enum
+    * Added `invalid_proof`.
+
+
 3.63 (2023-04-30)
 -----------------
 

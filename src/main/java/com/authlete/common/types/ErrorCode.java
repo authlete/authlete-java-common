@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2022 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -516,5 +516,22 @@ public enum ErrorCode
      * @since Authlete 2.3
      */
     insufficient_user_authentication,
+
+
+    /**
+     * The {@code proof} in the Credential Request was invalid, for example:
+     *
+     * <ul>
+     * <li>No proof was provided (the {@code proof} field was not present).
+     * <li>The provided proof was not bound to a nonce provided by the Credential Issuer.
+     * </ul>
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.64
+     * @since Authlete 3.0
+     */
+    invalid_proof,
     ;
 }
