@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.64 (2023-05-22)
+-----------------
+
 - `ErrorCode` enum
     * Added `invalid_proof`.
 
