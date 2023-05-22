@@ -4,6 +4,10 @@ CHANGES
 - `ErrorCode` enum
     * Added `invalid_proof`.
 
+- `TokenRequest` class
+    * Added `getAccessTokenDuration()` method.
+    * Added `setAccessTokenDuration(long)` method.
+
 
 3.63 (2023-04-30)
 -----------------

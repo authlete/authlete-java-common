@@ -4,6 +4,10 @@
 - `ErrorCode` 列挙型
     * `invalid_proof` を追加。
 
+- `TokenRequest` クラス
+    * `getAccessTokenDuration()` メソッドを追加。
+    * `setAccessTokenDuration(long)` メソッドを追加。
+
 
 3.63 (2023 年 04 月 30 日)
 --------------------------
