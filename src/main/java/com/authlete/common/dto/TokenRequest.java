@@ -255,6 +255,7 @@ public class TokenRequest implements Serializable
      * The duration of the access token that may be issued as a result
      * of the Authlete API call.
      *
+     * @since 3.64
      * @since Authlete 2.2.41
      * @since Authlete 2.3.5
      * @since Authlete 3.0
