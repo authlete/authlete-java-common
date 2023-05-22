@@ -213,6 +213,14 @@ import com.authlete.common.util.Utils;
  * are {@code "string"} and {@code "array"}.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>accessTokenDuration</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The duration of the access token that may be issued as a result of the
+ * Authlete API call. See {@link #getAccessTokenDuration()} for details.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
@@ -225,7 +233,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 15L;
+    private static final long serialVersionUID = 16L;
 
 
     /**
@@ -350,6 +358,18 @@ public class AuthorizationIssueRequest implements Serializable
      * @since Authlete 2.3.3
      */
     private String idTokenAudType;
+
+
+    /**
+     * The duration of the access token that may be issued as a result
+     * of the Authlete API call.
+     *
+     * @since 3.65
+     * @since Authlete 2.2.41
+     * @since Authlete 2.3.5
+     * @since Authlete 3.0
+     */
+    private long accessTokenDuration;
 
 
     /**
@@ -1556,6 +1576,59 @@ public class AuthorizationIssueRequest implements Serializable
     public AuthorizationIssueRequest setIdTokenAudType(String type)
     {
         this.idTokenAudType = type;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of the access token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the access token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @return
+     *         The duration of the access token in seconds.
+     *
+     * @since 3.65
+     * @since Authlete 2.2.41
+     * @since Authlete 2.3.5
+     * @since Authlete 3.0
+     */
+    public long getAccessTokenDuration()
+    {
+        return accessTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the access token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the access token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @param duration
+     *         The duration of the access token in seconds.
+     *
+     * @return
+     *         {@code this} request parameter.
+     *
+     * @since 3.65
+     * @since Authlete 2.2.41
+     * @since Authlete 2.3.5
+     * @since Authlete 3.0
+     */
+    public AuthorizationIssueRequest setAccessTokenDuration(long duration)
+    {
+        this.accessTokenDuration = duration;
 
         return this;
     }

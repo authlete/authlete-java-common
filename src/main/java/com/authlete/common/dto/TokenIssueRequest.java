@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2022 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,6 +70,14 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
+ * <dt><b><code>accessTokenDuration</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The duration of the access token that may be issued as a result of the
+ * Authlete API call. See {@link #getAccessTokenDuration()} for details.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -84,7 +92,7 @@ import java.io.Serializable;
  */
 public class TokenIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -122,6 +130,18 @@ public class TokenIssueRequest implements Serializable
      * @since Authlete 2.2.27
      */
     private String accessToken;
+
+
+    /**
+     * The duration of the access token that may be issued as a result
+     * of the Authlete API call.
+     *
+     * @since 3.65
+     * @since Authlete 2.2.41
+     * @since Authlete 2.3.5
+     * @since Authlete 3.0
+     */
+    private long accessTokenDuration;
 
 
     /**
@@ -424,6 +444,59 @@ public class TokenIssueRequest implements Serializable
     public TokenIssueRequest setAccessToken(String accessToken)
     {
         this.accessToken = accessToken;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of the access token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the access token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @return
+     *         The duration of the access token in seconds.
+     *
+     * @since 3.65
+     * @since Authlete 2.2.41
+     * @since Authlete 2.3.5
+     * @since Authlete 3.0
+     */
+    public long getAccessTokenDuration()
+    {
+        return accessTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the access token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the access token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @param duration
+     *         The duration of the access token in seconds.
+     *
+     * @return
+     *         {@code this} request parameter.
+     *
+     * @since 3.65
+     * @since Authlete 2.2.41
+     * @since Authlete 2.3.5
+     * @since Authlete 3.0
+     */
+    public TokenIssueRequest setAccessTokenDuration(long duration)
+    {
+        this.accessTokenDuration = duration;
 
         return this;
     }

@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+- `AuthorizationIssueRequest` class
+    * Added `getAccessTokenDuration()` method.
+    * Added `setAccessTokenDuration(long)` method.
+
+- `TokenIssueRequest` class
+    * Added `getAccessTokenDuration()` method.
+    * Added `setAccessTokenDuration(long)` method.
+
+
 3.64 (2023-05-22)
 -----------------
 

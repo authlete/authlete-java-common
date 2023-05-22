@@ -1,6 +1,15 @@
 変更点
 ======
 
+- `AuthorizationIssueRequest` クラス
+    * `getAccessTokenDuration()` メソッドを追加。
+    * `setAccessTokenDuration(long)` メソッドを追加。
+
+- `TokenIssueRequest` クラス
+    * `getAccessTokenDuration()` メソッドを追加。
+    * `setAccessTokenDuration(long)` メソッドを追加。
+
+
 3.64 (2023 年 05 月 22 日)
 --------------------------
 
