@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` クラス
+    * `getCredentialTransactionDuration()` メソッドを追加。
+    * `setCredentialTransactionDuration(long)` メソッドを追加。
+
+
 3.65 (2023 年 05 月 22 日)
 --------------------------
 

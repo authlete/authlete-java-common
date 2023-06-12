@@ -328,7 +328,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 70L;
+    private static final long serialVersionUID = 71L;
 
 
     /*
@@ -426,6 +426,7 @@ public class Service implements Serializable
     private String[] trustedRootCertificates;
     private boolean dynamicRegistrationSupported;
     private URI endSessionEndpoint;
+    // Don't add new properties here.
 
 
     /**
@@ -1435,6 +1436,15 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private long cNonceDuration;
+
+
+    /**
+     * The duration of credential transaction in seconds.
+     *
+     * @since 3.66
+     * @since Authlete 3.0
+     */
+    private long credentialTransactionDuration;
 
 
     /**
@@ -10703,6 +10713,53 @@ public class Service implements Serializable
     public Service setCNonceDuration(long duration)
     {
         this.cNonceDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of transaction ID in seconds that may be issued as a
+     * result of a credential request or a batch credential request.
+     *
+     * <p>
+     * If the value of this property is 0 or negative, the default value per
+     * Authlete server is used.
+     * </p>
+     *
+     * @return
+     *         The duration of transaction ID in seconds.
+     *
+     * @since 3.66
+     * @since Authlete 3.0
+     */
+    public long getCredentialTransactionDuration()
+    {
+        return credentialTransactionDuration;
+    }
+
+
+    /**
+     * Set the duration of transaction ID in seconds that may be issued as a
+     * result of a credential request or a batch credential request.
+     *
+     * <p>
+     * If the value of this property is 0 or negative, the default value per
+     * Authlete server is used.
+     * </p>
+     *
+     * @param duration
+     *         The duration of transaction ID in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.66
+     * @since Authlete 3.0
+     */
+    public Service setCredentialTransactionDuration(long duration)
+    {
+        this.credentialTransactionDuration = duration;
 
         return this;
     }

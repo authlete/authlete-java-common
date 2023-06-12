@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `getCredentialTransactionDuration()` method.
+    * Added `setCredentialTransactionDuration(long)` method.
+
+
 3.65 (2023-05-22)
 -----------------
 
