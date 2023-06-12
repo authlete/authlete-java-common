@@ -351,6 +351,7 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   - `credentialIssuerMetadata(CredentialIssuerMetadataRequest)`
   - `credentialOfferCreate(CredentialOfferCreateRequest)`
   - `credentialOfferInfo(CredentialOfferInfoRequest)`
+  - `credentialSingleParse(CredentialSingleParseRequest)`
 
 *Examples*
 

@@ -1,9 +1,17 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `credentialSingleParse(CredentialSingleParseRequest)` メソッドを追加。
+
 - `Service` クラス
     * `getCredentialTransactionDuration()` メソッドを追加。
     * `setCredentialTransactionDuration(long)` メソッドを追加。
+
+- 新しい型
+    * `CredentialRequestInfo` クラス
+    * `CredentialSingleParseRequest` クラス
+    * `CredentialSingleParseResponse` クラス
 
 
 3.65 (2023 年 05 月 22 日)

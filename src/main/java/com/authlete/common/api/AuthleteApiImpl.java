@@ -63,6 +63,8 @@ import com.authlete.common.dto.CredentialOfferCreateRequest;
 import com.authlete.common.dto.CredentialOfferCreateResponse;
 import com.authlete.common.dto.CredentialOfferInfoRequest;
 import com.authlete.common.dto.CredentialOfferInfoResponse;
+import com.authlete.common.dto.CredentialSingleParseRequest;
+import com.authlete.common.dto.CredentialSingleParseResponse;
 import com.authlete.common.dto.DeviceAuthorizationRequest;
 import com.authlete.common.dto.DeviceAuthorizationResponse;
 import com.authlete.common.dto.DeviceCompleteRequest;
@@ -197,6 +199,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String VCI_METADATA_API_PATH                  = "/api/vci/metadata";
     private static final String VCI_CREDENTIAL_OFFER_CREATE_API_PATH   = "/api/vci/offer/create";
     private static final String VCI_CREDENTIAL_OFFER_INFO_API_PATH     = "/api/vci/offer/info/%s";
+    private static final String VCI_CREDENTIAL_SINGLE_PARSE_API_PATH   = "/api/vci/single/parse";
 
 
     private final String mBaseUrl;
@@ -1693,5 +1696,17 @@ class AuthleteApiImpl implements AuthleteApi
         return callServiceGetApi(
                 String.format(VCI_CREDENTIAL_OFFER_INFO_API_PATH, request.getIdentifier()),
                 CredentialOfferInfoResponse.class);
+    }
+
+
+    @Override
+    public CredentialSingleParseResponse credentialSingleParse(
+            CredentialSingleParseRequest request) throws AuthleteApiException
+    {
+        // This API call fails because the /vci/single/parse API is unavailable
+        // in Authlete 2.x and older versions.
+        return callServicePostApi(
+                VCI_CREDENTIAL_SINGLE_PARSE_API_PATH, request,
+                CredentialSingleParseResponse.class);
     }
 }

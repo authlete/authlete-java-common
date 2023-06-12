@@ -46,6 +46,8 @@ import com.authlete.common.dto.CredentialOfferCreateRequest;
 import com.authlete.common.dto.CredentialOfferCreateResponse;
 import com.authlete.common.dto.CredentialOfferInfoRequest;
 import com.authlete.common.dto.CredentialOfferInfoResponse;
+import com.authlete.common.dto.CredentialSingleParseRequest;
+import com.authlete.common.dto.CredentialSingleParseResponse;
 import com.authlete.common.dto.DeviceAuthorizationRequest;
 import com.authlete.common.dto.DeviceAuthorizationResponse;
 import com.authlete.common.dto.DeviceCompleteRequest;
@@ -1692,4 +1694,20 @@ public interface AuthleteApi
      */
     CredentialOfferInfoResponse credentialOfferInfo(
             CredentialOfferInfoRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /vci/single/parse} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.66
+     * @since Authlete 3.0
+     */
+    CredentialSingleParseResponse credentialSingleParse(
+            CredentialSingleParseRequest request) throws AuthleteApiException;
 }

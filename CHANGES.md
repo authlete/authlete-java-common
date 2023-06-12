@@ -1,9 +1,17 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `credentialSingleParse(CredentialSingleParseRequest)` method.
+
 - `Service` class
     * Added `getCredentialTransactionDuration()` method.
     * Added `setCredentialTransactionDuration(long)` method.
+
+- New types
+    * `CredentialRequestInfo` class
+    * `CredentialSingleParseRequest` class
+    * `CredentialSingleParseResponse` class
 
 
 3.65 (2023-05-22)

@@ -340,6 +340,7 @@ settings.setReadTimeout(5000);
   - `credentialIssuerMetadata(CredentialIssuerMetadataRequest)`
   - `credentialOfferCreate(CredentialOfferCreateRequest)`
   - `credentialOfferInfo(CredentialOfferInfoRequest)`
+  - `credentialSingleParse(CredentialSingleParseRequest)`
 
 *例*
 
