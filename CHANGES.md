@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.66 (2023-06-12)
+-----------------
+
 - `AuthleteApi` interface
     * Added `credentialSingleParse(CredentialSingleParseRequest)` method.
 

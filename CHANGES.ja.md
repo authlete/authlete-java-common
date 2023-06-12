@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.66 (2023 年 06 月 12 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `credentialSingleParse(CredentialSingleParseRequest)` メソッドを追加。
 
