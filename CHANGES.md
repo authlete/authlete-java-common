@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.67 (2023-06-27)
+-----------------
+
 - `AuthleteApi` interface
     * Added `credentialSingleIssue(CredentialSingleIssueRequest)` method.
 

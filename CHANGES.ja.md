@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.67 (2023 年 06 月 27 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `credentialSingleIssue(CredentialSingleIssueRequest)` メソッドを追加。
 
