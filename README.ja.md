@@ -35,9 +35,12 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>3.66</version>
+    <version>${authlete-java-common.version}</version>
 </dependency>
 ```
+
+`${authlete-java-common.version}` の箇所に書き込む最新バージョンについては
+[CHANGES.ja.md](CHANGES.ja.md) ファイルを参照してください。
 
 
 ソースコード
@@ -341,6 +344,7 @@ settings.setReadTimeout(5000);
   - `credentialOfferCreate(CredentialOfferCreateRequest)`
   - `credentialOfferInfo(CredentialOfferInfoRequest)`
   - `credentialSingleParse(CredentialSingleParseRequest)`
+  - `credentialSingleIssue(CredentialSingleIssueRequest)`
 
 *例*
 

@@ -36,9 +36,12 @@ Maven
 <dependency>
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>3.66</version>
+    <version>${authlete-java-common.version}</version>
 </dependency>
 ```
+
+Please refer to the [CHANGES.md](CHANGES.md) file to know the latest version
+to write in place of `${authlete-java-common.version}`.
 
 
 Source Code
@@ -352,6 +355,7 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   - `credentialOfferCreate(CredentialOfferCreateRequest)`
   - `credentialOfferInfo(CredentialOfferInfoRequest)`
   - `credentialSingleParse(CredentialSingleParseRequest)`
+  - `credentialSingleIssue(CredentialSingleIssueRequest)`
 
 *Examples*
 

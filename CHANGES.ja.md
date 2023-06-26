@@ -1,6 +1,9 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `credentialSingleIssue(CredentialSingleIssueRequest)` メソッドを追加。
+
 - `ErrorCode` 列挙型
     * `unsupported_credential_format` を追加。
     * `issuance_pending` を追加。
@@ -11,6 +14,11 @@
     * `setCredentialDuration(long)` メソッドを追加。
     * `getCredentialJwks()` メソッドを追加。
     * `setCredentialJwks(String)` メソッドを追加。
+
+- 新しい型
+    * `CredentialIssuanceOrder` クラス
+    * `CredentialSingleIssueRequest` クラス
+    * `CredentialSingleIssueResponse` クラス
 
 
 3.66 (2023 年 06 月 12 日)

@@ -112,7 +112,7 @@ public class CredentialRequestInfo implements Serializable
      *
      * @return
      *         The value of the {@code format} parameter in the credential request.
-     *         Such as {@code "jwt_vc_json"} and {@code "vc+sd_jwt"}.
+     *         Such as {@code "vc+sd-jwt"}.
      */
     public String getFormat()
     {

@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `credentialSingleIssue(CredentialSingleIssueRequest)` method.
+
 - `ErrorCode` enum
     * Added `unsupported_credential_format`.
     * Added `issuance_pending`.
@@ -11,6 +14,11 @@ CHANGES
     * Added `setCredentialDuration(long)` method.
     * Added `getCredentialJwks()` method.
     * Added `setCredentialJwks(String)` method.
+
+- New types
+    * `CredentialIssuanceOrder` class
+    * `CredentialSingleIssueRequest` class
+    * `CredentialSingleIssueResponse` class
 
 
 3.66 (2023-06-12)

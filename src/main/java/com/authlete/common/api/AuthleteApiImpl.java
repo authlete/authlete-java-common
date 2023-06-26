@@ -63,6 +63,8 @@ import com.authlete.common.dto.CredentialOfferCreateRequest;
 import com.authlete.common.dto.CredentialOfferCreateResponse;
 import com.authlete.common.dto.CredentialOfferInfoRequest;
 import com.authlete.common.dto.CredentialOfferInfoResponse;
+import com.authlete.common.dto.CredentialSingleIssueRequest;
+import com.authlete.common.dto.CredentialSingleIssueResponse;
 import com.authlete.common.dto.CredentialSingleParseRequest;
 import com.authlete.common.dto.CredentialSingleParseResponse;
 import com.authlete.common.dto.DeviceAuthorizationRequest;
@@ -200,6 +202,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String VCI_CREDENTIAL_OFFER_CREATE_API_PATH   = "/api/vci/offer/create";
     private static final String VCI_CREDENTIAL_OFFER_INFO_API_PATH     = "/api/vci/offer/info/%s";
     private static final String VCI_CREDENTIAL_SINGLE_PARSE_API_PATH   = "/api/vci/single/parse";
+    private static final String VCI_CREDENTIAL_SINGLE_ISSUE_API_PATH   = "/api/vci/single/issue";
 
 
     private final String mBaseUrl;
@@ -1708,5 +1711,17 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 VCI_CREDENTIAL_SINGLE_PARSE_API_PATH, request,
                 CredentialSingleParseResponse.class);
+    }
+
+
+    @Override
+    public CredentialSingleIssueResponse credentialSingleIssue(
+            CredentialSingleIssueRequest request) throws AuthleteApiException
+    {
+        // This API call fails because the /vci/single/issue API is unavailable
+        // in Authlete 2.x and older versions.
+        return callServicePostApi(
+                VCI_CREDENTIAL_SINGLE_ISSUE_API_PATH, request,
+                CredentialSingleIssueResponse.class);
     }
 }
