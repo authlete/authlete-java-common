@@ -519,11 +519,15 @@ public enum ErrorCode
 
 
     /**
-     * The {@code proof} in the Credential Request was invalid, for example:
+     * The proof in the credential request is invalid.
+     *
+     * <p>
+     * For example:
+     * </p>
      *
      * <ul>
-     * <li>No proof was provided (the {@code proof} field was not present).
-     * <li>The provided proof was not bound to a nonce provided by the Credential Issuer.
+     * <li>No proof is provided (the {@code proof} field was not present).
+     * <li>The provided proof is not bound to a nonce provided by the server.
      * </ul>
      *
      * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
@@ -533,5 +537,41 @@ public enum ErrorCode
      * @since Authlete 3.0
      */
     invalid_proof,
+
+
+    /**
+     * The credential format is not supported.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.67
+     * @since Authlete 3.0
+     */
+    unsupported_credential_format,
+
+
+    /**
+     * The credential issuance is still pending.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.67
+     * @since Authlete 3.0
+     */
+    issuance_pending,
+
+
+    /**
+     * The transaction ID contained in the deferred credential request is invalid.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.67
+     * @since Authlete 3.0
+     */
+    invalid_transaction_id,
     ;
 }

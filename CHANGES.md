@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `ErrorCode` enum
+    * Added `unsupported_credential_format`.
+    * Added `issuance_pending`.
+    * Added `invalid_transaction_id`.
+
 - `Service` class
     * Added `getCredentialDuration()` method.
     * Added `setCredentialDuration(long)` method.

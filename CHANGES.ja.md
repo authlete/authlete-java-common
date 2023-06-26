@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `ErrorCode` 列挙型
+    * `unsupported_credential_format` を追加。
+    * `issuance_pending` を追加。
+    * `invalid_transaction_id` を追加。
+
 - `Service` クラス
     * `getCredentialDuration()` メソッドを追加。
     * `setCredentialDuration(long)` メソッドを追加。
