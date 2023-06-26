@@ -1,6 +1,13 @@
 変更点
 ======
 
+- `Service` クラス
+    * `getCredentialDuration()` メソッドを追加。
+    * `setCredentialDuration(long)` メソッドを追加。
+    * `getCredentialJwks()` メソッドを追加。
+    * `setCredentialJwks(String)` メソッドを追加。
+
+
 3.66 (2023 年 06 月 12 日)
 --------------------------
 

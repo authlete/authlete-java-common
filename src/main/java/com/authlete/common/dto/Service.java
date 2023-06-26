@@ -260,6 +260,10 @@ import com.authlete.common.types.UserCodeCharset;
  *           <td>{@code "urn:ietf:params:oauth:grant-type:jwt-bearer"}</td>
  *           <td>2.3</td>
  *         </tr>
+ *         <tr>
+ *           <td>{@code "urn:ietf:params:oauth:grant-type:pre-authorized_code"}</td>
+ *           <td>3.0</td>
+ *         </tr>
  *       </table>
  *     </td>
  *   </tr>
@@ -328,7 +332,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 71L;
+    private static final long serialVersionUID = 72L;
 
 
     /*
@@ -1445,6 +1449,25 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private long credentialTransactionDuration;
+
+
+    /**
+     * The default duration of credentials in seconds.
+     *
+     * @since 3.67
+     * @since Authlete 3.0
+     */
+    private long credentialDuration;
+
+
+    /**
+     * JWK Set document containing private keys that are used to sign
+     * verifiable credentials.
+     *
+     * @since 3.67
+     * @since Authlete 3.0
+     */
+    private String credentialJwks;
 
 
     /**
@@ -10760,6 +10783,198 @@ public class Service implements Serializable
     public Service setCredentialTransactionDuration(long duration)
     {
         this.credentialTransactionDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the default duration of verifiable credentials in seconds.
+     *
+     * <p>
+     * Some Authlete APIs such as the {@code /vci/single/issue} API and the
+     * {@code /vci/batch/issue} API may issue one or more verifiable
+     * credentials. The value of this property specifies the default duration
+     * of such verifiable credentials.
+     * </p>
+     *
+     * <p>
+     * The value 0 indicates that verifiable credentials will not expire.
+     * In the case, verifiable credentials will not have a property that
+     * indicates the expiration time. For example, JWT-based verifiable
+     * credentials will not contain the "{@code exp}" claim (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc7519.html">RFC 7519</a>, <a href=
+     * "https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.4">Section
+     * 4.1.4</a>).
+     * </p>
+     *
+     * <p>
+     * Authlete APIs that may issue verifiable credentials recognize a request
+     * parameter that can override the duration. For example, a request to the
+     * {@code /vci/single/issue} API ({@link CredentialSingleIssueRequest})
+     * contains an "{@code order}" object ({@link CredentialIssuanceOrder})
+     * that has a "{@code credentialDuration}" parameter
+     * ({@link CredentialIssuanceOrder#getCredentialDuration() credentialDuration})
+     * that can override the default duration.
+     * </p>
+     *
+     * @return
+     *         The default duration of verifiable credentials in seconds.
+     *
+     * @since 3.67
+     * @since Authlete 3.0
+     */
+    public long getCredentialDuration()
+    {
+        return credentialDuration;
+    }
+
+
+    /**
+     * Set the default duration of verifiable credentials in seconds.
+     *
+     * <p>
+     * Some Authlete APIs such as the {@code /vci/single/issue} API and the
+     * {@code /vci/batch/issue} API may issue one or more verifiable
+     * credentials. The value of this property specifies the default duration
+     * of such verifiable credentials.
+     * </p>
+     *
+     * <p>
+     * The value 0 indicates that verifiable credentials will not expire.
+     * In the case, verifiable credentials will not have a property that
+     * indicates the expiration time. For example, JWT-based verifiable
+     * credentials will not contain the "{@code exp}" claim (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc7519.html">RFC 7519</a>, <a href=
+     * "https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.4">Section
+     * 4.1.4</a>).
+     * </p>
+     *
+     * <p>
+     * Authlete APIs that may issue verifiable credentials recognize a request
+     * parameter that can override the duration. For example, a request to the
+     * {@code /vci/single/issue} API ({@link CredentialSingleIssueRequest})
+     * contains an "{@code order}" object ({@link CredentialIssuanceOrder})
+     * that has a "{@code credentialDuration}" parameter
+     * ({@link CredentialIssuanceOrder#getCredentialDuration() credentialDuration})
+     * that can override the default duration.
+     * </p>
+     *
+     * @param duration
+     *         The default duration of verifiable credentials in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.67
+     * @since Authlete 3.0
+     */
+    public Service setCredentialDuration(long duration)
+    {
+        this.credentialDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWK Set document containing private keys that are used to sign
+     * verifiable credentials.
+     *
+     * <p>
+     * Some Authlete APIs such as the {@code /vci/single/issue} API and the
+     * {@code /vci/batch/issue} API may issue one or more verifiable
+     * credentials. The content of this property is referred to by such APIs.
+     * </p>
+     *
+     * <p>
+     * Authlete APIs that may issue verifiable credentials recognize a request
+     * parameter that can specify the key ID of a private key that should be
+     * used for signing. For example, a request to the {@code /vci/single/issue}
+     * API ({@link CredentialSingleIssueRequest}) contains an "{@code order}"
+     * object ({@link CredentialIssuanceOrder}) that has a "{@code signingKeyId}"
+     * parameter ({@link CredentialIssuanceOrder#getSigningKeyId() signingKeyId})
+     * that can specify the key ID of a private key to be used for signing.
+     * When a key ID is not specified, Authlete will select a private key
+     * automatically.
+     * </p>
+     *
+     * <p>
+     * If JWKs in the JWK Set do not contain the "{@code kid}" property (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc7517.html">RFC 7517</a>, <a href=
+     * "https://www.rfc-editor.org/rfc/rfc7517.html#section-4.5">Section 4.5</a>)
+     * when this {@code credentialJwks} property is updated, Authlete will
+     * automatically insert the "{@code kid}" property into such JWKs. The JWK
+     * thumbprint (<a href="https://www.rfc-editor.org/rfc/rfc7638.html">RFC
+     * 7638</a>) computed with the SHA-256 hash algorithm is used as the value
+     * of the "{@code kid}" property.
+     * </p>
+     *
+     * @return
+     *         The JWK Set document containing private keys that are used to
+     *         sign verifiable credentials.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7517.html"
+     *      >RFC 7517 JSON Web Key (JWK)</a>
+     *
+     * @since 3.67
+     * @since Authlete 3.0
+     */
+    public String getCredentialJwks()
+    {
+        return credentialJwks;
+    }
+
+
+    /**
+     * Set the JWK Set document containing private keys that are used to sign
+     * verifiable credentials.
+     *
+     * <p>
+     * Some Authlete APIs such as the {@code /vci/single/issue} API and the
+     * {@code /vci/batch/issue} API may issue one or more verifiable
+     * credentials. The content of this property is referred to by such APIs.
+     * </p>
+     *
+     * <p>
+     * Authlete APIs that may issue verifiable credentials recognize a request
+     * parameter that can specify the key ID of a private key that should be
+     * used for signing. For example, a request to the {@code /vci/single/issue}
+     * API ({@link CredentialSingleIssueRequest}) contains an "{@code order}"
+     * object ({@link CredentialIssuanceOrder}) that has a "{@code signingKeyId}"
+     * parameter ({@link CredentialIssuanceOrder#getSigningKeyId() signingKeyId})
+     * that can specify the key ID of a private key to be used for signing.
+     * When a key ID is not specified, Authlete will select a private key
+     * automatically.
+     * </p>
+     *
+     * <p>
+     * If JWKs in the JWK Set do not contain the "{@code kid}" property (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc7517.html">RFC 7517</a>, <a href=
+     * "https://www.rfc-editor.org/rfc/rfc7517.html#section-4.5">Section 4.5</a>)
+     * when this {@code credentialJwks} property is updated, Authlete will
+     * automatically insert the "{@code kid}" property into such JWKs. The JWK
+     * thumbprint (<a href="https://www.rfc-editor.org/rfc/rfc7638.html">RFC
+     * 7638</a>) computed with the SHA-256 hash algorithm is used as the value
+     * of the "{@code kid}" property.
+     * </p>
+     *
+     * @param jwks
+     *         The JWK Set document containing private keys that are used to
+     *         sign verifiable credentials.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7517.html"
+     *      >RFC 7517 JSON Web Key (JWK)</a>
+     *
+     * @since 3.67
+     * @since Authlete 3.0
+     */
+    public Service setCredentialJwks(String jwks)
+    {
+        this.credentialJwks = jwks;
 
         return this;
     }

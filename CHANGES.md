@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added `getCredentialDuration()` method.
+    * Added `setCredentialDuration(long)` method.
+    * Added `getCredentialJwks()` method.
+    * Added `setCredentialJwks(String)` method.
+
+
 3.66 (2023-06-12)
 -----------------
 
