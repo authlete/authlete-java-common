@@ -199,10 +199,10 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String FEDERATION_CONFIGURATION_API_PATH      = "/api/federation/configuration";
     private static final String FEDERATION_REGISTRATION_API_PATH       = "/api/federation/registration";
     private static final String VCI_METADATA_API_PATH                  = "/api/vci/metadata";
-    private static final String VCI_CREDENTIAL_OFFER_CREATE_API_PATH   = "/api/vci/offer/create";
-    private static final String VCI_CREDENTIAL_OFFER_INFO_API_PATH     = "/api/vci/offer/info/%s";
-    private static final String VCI_CREDENTIAL_SINGLE_PARSE_API_PATH   = "/api/vci/single/parse";
-    private static final String VCI_CREDENTIAL_SINGLE_ISSUE_API_PATH   = "/api/vci/single/issue";
+    private static final String VCI_OFFER_CREATE_API_PATH              = "/api/vci/offer/create";
+    private static final String VCI_OFFER_INFO_API_PATH                = "/api/vci/offer/info";
+    private static final String VCI_SINGLE_PARSE_API_PATH              = "/api/vci/single/parse";
+    private static final String VCI_SINGLE_ISSUE_API_PATH              = "/api/vci/single/issue";
 
 
     private final String mBaseUrl;
@@ -1685,7 +1685,7 @@ class AuthleteApiImpl implements AuthleteApi
         // This API call fails because the /vci/offer/create API is unavailable
         // in Authlete 2.x and older versions.
         return callServicePostApi(
-                VCI_CREDENTIAL_OFFER_CREATE_API_PATH, request,
+                VCI_OFFER_CREATE_API_PATH, request,
                 CredentialOfferCreateResponse.class);
     }
 
@@ -1696,8 +1696,8 @@ class AuthleteApiImpl implements AuthleteApi
     {
         // This API call fails because the /vci/offer/info API is unavailable
         // in Authlete 2.x and older versions.
-        return callServiceGetApi(
-                String.format(VCI_CREDENTIAL_OFFER_INFO_API_PATH, request.getIdentifier()),
+        return callServicePostApi(
+                VCI_OFFER_INFO_API_PATH, request,
                 CredentialOfferInfoResponse.class);
     }
 
@@ -1709,7 +1709,7 @@ class AuthleteApiImpl implements AuthleteApi
         // This API call fails because the /vci/single/parse API is unavailable
         // in Authlete 2.x and older versions.
         return callServicePostApi(
-                VCI_CREDENTIAL_SINGLE_PARSE_API_PATH, request,
+                VCI_SINGLE_PARSE_API_PATH, request,
                 CredentialSingleParseResponse.class);
     }
 
@@ -1721,7 +1721,7 @@ class AuthleteApiImpl implements AuthleteApi
         // This API call fails because the /vci/single/issue API is unavailable
         // in Authlete 2.x and older versions.
         return callServicePostApi(
-                VCI_CREDENTIAL_SINGLE_ISSUE_API_PATH, request,
+                VCI_SINGLE_ISSUE_API_PATH, request,
                 CredentialSingleIssueResponse.class);
     }
 }
