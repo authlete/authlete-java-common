@@ -431,7 +431,7 @@ public class Service implements Serializable
     private boolean dynamicRegistrationSupported;
     private URI endSessionEndpoint;
     // Don't add new properties here.
-
+    private boolean idTokenWithRefreshTokenEnabled;
 
     /**
      * Description of this service.
@@ -10976,6 +10976,39 @@ public class Service implements Serializable
     {
         this.credentialJwks = jwks;
 
+        return this;
+    }
+
+
+    /**
+     * Get the idToken with refresh token flag value.
+     *
+     * @return
+     *         idToken with refresh token feature enable/disable.
+     */
+    public boolean isIdTokenWithRefreshTokenEnabled() {
+        return idTokenWithRefreshTokenEnabled;
+    }
+
+
+    /**
+     * Set the idToken with refresh token flag value.
+     *
+     * <p>
+     * Note that the idToken with refresh token feature enable only when
+     * this Service's {@code idTokenWithRefreshTokenEnabled} property is {@code true}
+     * </p>
+     *
+     * @param enabled
+     *         enable/disable of the feature.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.3
+     */
+    public Service setIdTokenWithRefreshTokenEnabled(boolean enabled) {
+        this.idTokenWithRefreshTokenEnabled = idTokenWithRefreshTokenEnabled;
         return this;
     }
 }

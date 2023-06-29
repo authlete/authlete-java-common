@@ -264,6 +264,40 @@ public class TokenRequest implements Serializable
 
 
     /**
+     * Claims in JSON format.
+     */
+    private String claims;
+
+
+    /**
+     * The subject (end-user) managed by the service.
+     */
+    private String subject;
+
+
+    /**
+     * The value of the 'sub' claim in an ID token.
+     * When this field is empty, 'subject' is used.
+     */
+    private String sub;
+
+
+    /**
+     * The type of the {@code aud} claim in the ID token being issued.
+     *
+     * @since 3.57
+     * @since Authlete 2.3.3
+     */
+    private String idTokenAudType;
+
+
+    /**
+     * The time when the end-user was authenticated.
+     */
+    private long authTime;
+
+
+    /**
      * Get the value of {@code parameters} which are the request
      * parameters that the OAuth 2.0 token endpoint of the service
      * implementation received from the client application.
@@ -946,4 +980,309 @@ public class TokenRequest implements Serializable
 
         return this;
     }
+
+
+    /**
+     * Get the value of {@code "claims"} which is the claims of the subject
+     * in JSON format.
+     *
+     * @return
+     *         The claims of the subject in JSON format. See the description
+     *         of {@link #setClaims(String)} for details about the format.
+     *
+     * @see #setClaims(String)
+     */
+    public String getClaims() {
+        return claims;
+    }
+
+
+    /**
+     * Set the value of {@code "claims"} which is the claims of the subject
+     * in JSON format.
+     *
+     * <p>
+     * The service implementation is required to retrieve claims of the subject
+     * (= information about the end-user) from its database and format them in
+     * JSON format.
+     * </p>
+     *
+     * <p>
+     * For example, if <code>"given_name"</code> claim, <code>"family_name"</code>
+     * claim and <code>"email"</code> claim are requested, the service implementation
+     * should generate a JSON object like the following:
+     * </p>
+     *
+     * <pre>
+     * {
+     *   "given_name": "Takahiko",
+     *   "family_name": "Kawasaki",
+     *   "email": "takahiko.kawasaki@example.com"
+     * }
+     * </pre>
+     *
+     * <p>
+     * and set its String representation by this method.
+     * </p>
+     *
+     * <p>
+     * See <a href="http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+     * >OpenID Connect Core 1.0, 5.1. Standard Claims</a> for further details
+     * about the format.
+     * </p>
+     *
+     * @param claims
+     *         The claims of the subject in JSON format.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+     *      >OpenID Connect Core 1.0, 5.1. Standard Claims</a>
+     */
+    public void setClaims(String claims)
+    {
+        this.claims = claims;
+    }
+
+
+    /**
+     * Get the value of {@code "subject"} which is the subject
+     * (= a user account managed by the service) who has granted
+     * authorization to the client application.
+     *
+     * <p>
+     * This {@code subject} property is used as the value of the
+     * subject associated with the access token (if one is issued)
+     * and as the value of the {@code sub} claim in the ID token
+     * (if one is issued).
+     * </p>
+     *
+     * <p>
+     * Note that, if {@link #getSub()} returns a non-empty value,
+     * it is used as the value of the {@code sub} claim in the ID
+     * token. However, even in such a case, the value of the
+     * subject associated with the access token is still the value
+     * of this {@code subject} property.
+     * </p>
+     *
+     * @return
+     *         The subject.
+     *
+     * @see #getSub()
+     */
+    public String getSubject()
+    {
+        return subject;
+    }
+
+
+    /**
+     * Set the value of {@code "subject"} which is the subject
+     * (= a user account managed by the service) who has granted
+     * authorization to the client application.
+     *
+     * <p>
+     * This {@code subject} property is used as the value of the
+     * subject associated with the access token (if one is issued)
+     * and as the value of the {@code sub} claim in the ID token
+     * (if one is issued).
+     * </p>
+     *
+     * <p>
+     * Note that, if a non-empty value is set by {@link #setSub(String)}
+     * method, the value is used as the value of the {@code sub} claim
+     * in the ID token. However, even in such a case, the value of the
+     * subject associated with the access token is still the value set
+     * by this method.
+     * </p>
+     *
+     * @param subject
+     *         The subject.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since {@link #setSub(String)}
+     */
+    public void setSubject(String subject)
+    {
+        this.subject = subject;
+    }
+
+
+    /**
+     * Get the value of the {@code sub} claim that should be used in
+     * the ID token which is to be issued. If this method returns
+     * {@code null} or its value is empty, the value of the {@code
+     * subject} is used. The main purpose of this {@code sub} property
+     * is to hide the actual value of the subject from client applications.
+     *
+     * <p>
+     * Note that the value of the {@code subject} request parameter is
+     * used as the value of the subject associated with the access token
+     * regardless of whether this {@code sub} property is a non-empty
+     * value or not.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code sub} claim.
+     *
+     * @since 1.35
+     *
+     * @see #getSubject()
+     */
+    public String getSub()
+    {
+        return sub;
+    }
+
+
+    /**
+     * Set the value of the {@code sub} claim that should be used in
+     * the ID token which is to be issued. If {@code null} (the default
+     * value) or an empty string is given, the value of the {@code
+     * subject} is used. The main purpose of this {@code sub} property
+     * is to hide the actual value of the subject from client applications.
+     *
+     * <p>
+     * Note that the value of the {@code subject} request parameter is
+     * used as the value of the subject associated with the access token
+     * regardless of whether this {@code sub} property is a non-empty
+     * value or not.
+     * </p>
+     *
+     * @param sub
+     *         The value of the {@code sub} claim.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 1.35
+     *
+     * @see #setSubject(String)
+     */
+    public void setSub(String sub)
+    {
+        this.sub = sub;
+    }
+
+
+    /**
+     * Get the type of the {@code aud} claim of the ID token being issued.
+     * Valid values are as follows.
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <tr bgcolor="orange">
+     *     <th>Value</th>
+     *     <th>Description</th>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "array"}</td>
+     *     <td>The type of the {@code aud} claim is always an array of strings.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "string"}</td>
+     *     <td>The type of the {@code aud} claim is always a single string.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>null</td>
+     *     <td>The type of the {@code aud} claim remains the same as before.</td>
+     *   </tr>
+     * </table>
+     * </blockquote>
+     *
+     * <p>
+     * This request parameter takes precedence over the {@code idTokenAudType}
+     * property of {@link Service} (cf. {@link Service#getIdTokenAudType()}).
+     * </p>
+     *
+     * @return
+     *         The type of the {@code aud} claim in ID tokens.
+     *
+     * @since 3.57
+     * @since Authlete 2.3.3
+     */
+    public String getIdTokenAudType()
+    {
+        return idTokenAudType;
+    }
+
+
+    /**
+     * Set the type of the {@code aud} claim of the ID token being issued.
+     * Valid values are as follows.
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <tr bgcolor="orange">
+     *     <th>Value</th>
+     *     <th>Description</th>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "array"}</td>
+     *     <td>The type of the {@code aud} claim is always an array of strings.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "string"}</td>
+     *     <td>The type of the {@code aud} claim is always a single string.</td>
+     *   </tr>
+     *   <tr>
+     *     <td>null</td>
+     *     <td>The type of the {@code aud} claim remains the same as before.</td>
+     *   </tr>
+     * </table>
+     * </blockquote>
+     *
+     * <p>
+     * This request parameter takes precedence over the {@code idTokenAudType}
+     * property of {@link Service} (cf. {@link Service#getIdTokenAudType()}).
+     * </p>
+     *
+     * @param type
+     *         The type of the {@code aud} claim in ID tokens.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.57
+     * @since Authlete 2.3.3
+     */
+    public void setIdTokenAudType(String type)
+    {
+        this.idTokenAudType = type;
+    }
+
+
+    /**
+     * Get the value of {@code "authTime"} which is the time
+     * when the authentication of the end-user occurred.
+     *
+     * @return
+     *         The time when the end-user authentication occurred.
+     *         It is the number of seconds since 1970-01-01.
+     */
+    public long getAuthTime()
+    {
+        return authTime;
+    }
+
+
+    /**
+     * Set the value of {@code "authTime"} which is the time
+     * when the authentication of the end-user occurred.
+     *
+     * @param authTime
+     *         The time when the end-user authentication occurred.
+     *         It is the number of seconds since 1970-01-01.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public void setAuthTime(long authTime)
+    {
+        this.authTime = authTime;
+    }
+
 }

@@ -329,6 +329,7 @@ public class Client implements Serializable
      * For Verifiable Credentials
      */
     private URI credentialOfferEndpoint;
+    private boolean idTokenWithRefreshTokenEnabled;
 
 
     /**
@@ -4539,6 +4540,39 @@ public class Client implements Serializable
     {
         this.credentialOfferEndpoint = endpoint;
 
+        return this;
+    }
+
+
+    /**
+     * Get the idToken with refresh token flag value.
+     *
+     * @return
+     *         idToken with refresh token feature enable/disable.
+     */
+    public boolean isIdTokenWithRefreshTokenEnabled() {
+        return idTokenWithRefreshTokenEnabled;
+    }
+
+
+    /**
+     * Set the idToken with refresh token flag value.
+     *
+     * <p>
+     * Note that the idToken with refresh token feature enable only when
+     * this client's {@code idTokenWithRefreshTokenEnabled} property is {@code true}
+     * </p>
+     *
+     * @param enabled
+     *         enable/disable of the feature.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 2.3
+     */
+    public Client setIdTokenWithRefreshTokenEnabled(boolean enabled) {
+        this.idTokenWithRefreshTokenEnabled = enabled;
         return this;
     }
 
