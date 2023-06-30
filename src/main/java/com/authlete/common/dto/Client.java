@@ -329,6 +329,14 @@ public class Client implements Serializable
      * For Verifiable Credentials
      */
     private URI credentialOfferEndpoint;
+
+
+    /**
+     * enabling/disabling id token with refresh token feature.
+     *
+     * @since 3.69
+     * @since Authlete 2.3.5
+     */
     private boolean idTokenWithRefreshTokenEnabled;
 
 

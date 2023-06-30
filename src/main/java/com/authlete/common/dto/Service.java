@@ -431,7 +431,7 @@ public class Service implements Serializable
     private boolean dynamicRegistrationSupported;
     private URI endSessionEndpoint;
     // Don't add new properties here.
-    private boolean idTokenWithRefreshTokenEnabled;
+
 
     /**
      * Description of this service.
@@ -1468,6 +1468,15 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private String credentialJwks;
+
+
+    /**
+     * enabling/disabling id token with refresh token feature.
+     *
+     * @since 3.69
+     * @since Authlete 2.3.5
+     */
+    private boolean idTokenWithRefreshTokenEnabled;
 
 
     /**
