@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.68 (2023-07-03)
+-----------------
+
 - `AuthleteApi` interface
     * Added `idTokenReissue(IDTokenReissueRequest)` method.
 
