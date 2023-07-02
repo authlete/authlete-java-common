@@ -1,6 +1,25 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `idTokenReissue(IDTokenReissueRequest)` method.
+
+- `Service` class
+    * Added `isIdTokenReissuable()` method.
+    * Added `setIdTokenReissuable(boolean)` method.
+
+- `TokenResponse` class
+    * Added `getRequestedIdTokenClaims()` method.
+    * Added `setRequestedIdTokenClaims(String[])` method.
+
+- `TokenResponse.Action` enum
+    * Added `ID_TOKEN_REISSUABLE`.
+
+- New types
+    * `IDTokenReissueRequest` class
+    * `IDTokenReissueResponse` class
+
+
 3.67 (2023-06-27)
 -----------------
 

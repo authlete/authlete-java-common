@@ -83,6 +83,8 @@ import com.authlete.common.dto.GrantedScopesGetResponse;
 import com.authlete.common.dto.HskCreateRequest;
 import com.authlete.common.dto.HskListResponse;
 import com.authlete.common.dto.HskResponse;
+import com.authlete.common.dto.IDTokenReissueRequest;
+import com.authlete.common.dto.IDTokenReissueResponse;
 import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
 import com.authlete.common.dto.JoseVerifyRequest;
@@ -203,6 +205,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String VCI_OFFER_INFO_API_PATH                = "/api/vci/offer/info";
     private static final String VCI_SINGLE_PARSE_API_PATH              = "/api/vci/single/parse";
     private static final String VCI_SINGLE_ISSUE_API_PATH              = "/api/vci/single/issue";
+    private static final String ID_TOKEN_REISSUE_API_PATH              = "/api/idtoken/reissue";
 
 
     private final String mBaseUrl;
@@ -1723,5 +1726,15 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 VCI_SINGLE_ISSUE_API_PATH, request,
                 CredentialSingleIssueResponse.class);
+    }
+
+
+    @Override
+    public IDTokenReissueResponse idTokenReissue(
+            IDTokenReissueRequest request) throws AuthleteApiException
+    {
+        return callServicePostApi(
+                ID_TOKEN_REISSUE_API_PATH, request,
+                IDTokenReissueResponse.class);
     }
 }
