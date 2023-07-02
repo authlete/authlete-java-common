@@ -332,7 +332,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 72L;
+    private static final long serialVersionUID = 73L;
 
 
     /*
@@ -430,7 +430,8 @@ public class Service implements Serializable
     private String[] trustedRootCertificates;
     private boolean dynamicRegistrationSupported;
     private URI endSessionEndpoint;
-    // Don't add new properties here.
+    // Don't add new properties here. Instead, new properties
+    // should be added right above the getNumber() method.
 
 
     /**
@@ -1468,6 +1469,17 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private String credentialJwks;
+
+
+    /**
+     * The flag indicating whether to enable the feature of ID token reissuance
+     * in the refresh token flow.
+     *
+     * @since 3.68
+     * @since Authlete 2.3.8
+     * @since Authlete 3.0
+     */
+    private boolean idTokenReissuable;
 
 
     /**
@@ -10975,6 +10987,90 @@ public class Service implements Serializable
     public Service setCredentialJwks(String jwks)
     {
         this.credentialJwks = jwks;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to enable the feature of ID token
+     * reissuance in the refresh token flow.
+     *
+     * <p>
+     * If this property is {@code true}, the {@code action} response parameter
+     * in a response from the {@code /auth/token} API becomes
+     * {@link TokenResponse.Action#ID_TOKEN_REISSUABLE ID_TOKEN_REISSUABLE}
+     * when the following conditions are met.
+     * </p>
+     *
+     * <ol>
+     * <li>The flow of the token request is the refresh token flow.
+     * <li>The scope set after processing the token request still contains the
+     *     "{@code openid}" scope.
+     * <li>The access token is associated with the subject of a user.
+     * <li>The access token is associated with a client application.
+     * </ol>
+     *
+     * <p>
+     * See the description of the {@link TokenResponse} class for details.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the feature of ID token reissuance in the
+     *         refresh token flow is enabled. {@code false} if the feature
+     *         is disabled.
+     *
+     * @since 3.68
+     * @since Authlete 2.3.8
+     * @since Authlete 3.0
+     *
+     * @see TokenResponse
+     */
+    public boolean isIdTokenReissuable()
+    {
+        return idTokenReissuable;
+    }
+
+
+    /**
+     * Set the flag indicating whether to enable the feature of ID token
+     * reissuance in the refresh token flow.
+     *
+     * <p>
+     * If this property is {@code true}, the {@code action} response parameter
+     * in a response from the {@code /auth/token} API becomes
+     * {@link TokenResponse.Action#ID_TOKEN_REISSUABLE ID_TOKEN_REISSUABLE}
+     * when the following conditions are met.
+     * </p>
+     *
+     * <ol>
+     * <li>The flow of the token request is the refresh token flow.
+     * <li>The scope set after processing the token request still contains the
+     *     "{@code openid}" scope.
+     * <li>The access token is associated with the subject of a user.
+     * <li>The access token is associated with a client application.
+     * </ol>
+     *
+     * <p>
+     * See the description of the {@link TokenResponse} class for details.
+     * </p>
+     *
+     * @param reissuable
+     *         {@code true} to enable the feature of ID token reissuance in
+     *         the refresh token flow. {@code false} to disable the feature.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.68
+     * @since Authlete 2.3.8
+     * @since Authlete 3.0
+     *
+     * @see TokenResponse
+     */
+    public Service setIdTokenReissuable(boolean reissuable)
+    {
+        this.idTokenReissuable = reissuable;
 
         return this;
     }

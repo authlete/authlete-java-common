@@ -1,6 +1,25 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `idTokenReissue(IDTokenReissueRequest)` メソッドを追加。
+
+- `Service` クラス
+    * `isIdTokenReissuable()` メソッドを追加。
+    * `setIdTokenReissuable(boolean)` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getRequestedIdTokenClaims()` メソッドを追加。
+    * `setRequestedIdTokenClaims(String[])` メソッドを追加。
+
+- `TokenResponse.Action` 列挙型
+    * `ID_TOKEN_REISSUABLE` を追加。
+
+- 新しい型
+    * `IDTokenReissueRequest` クラス
+    * `IDTokenReissueResponse` クラス
+
+
 3.67 (2023 年 06 月 27 日)
 --------------------------
 

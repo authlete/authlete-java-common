@@ -33,9 +33,9 @@ import com.authlete.common.util.Utils;
  * according to the value.
  * </p>
  *
- * <dl>
- * <dt><b>{@link Action#INVALID_CLIENT INVALID_CLIENT}</b></dt>
- * <dd>
+ * <hr>
+ * <h3>{@link Action#INVALID_CLIENT INVALID_CLIENT}</h3>
+ *
  * <p>
  * When the value of {@code "action"} is {@code "INVALID_CLIENT"}, it means
  * that authentication of the client failed. In this case, the HTTP status
@@ -45,6 +45,7 @@ import com.authlete.common.util.Utils;
  * Error Response</a>. The description about {@code "invalid_client"} shown
  * below is an excerpt from RFC 6749.
  * </p>
+ *
  * <blockquote>
  *   <dl>
  *     <dt><code>invalid_client</code></dt>
@@ -64,6 +65,7 @@ import com.authlete.common.util.Utils;
  *     </dd>
  *   </dl>
  * </blockquote>
+ *
  * <p>
  * In either case, the JSON string returned by {@link #getResponseContent()}
  * can be used as the entity body of the response to the client application.
@@ -90,10 +92,10 @@ import com.authlete.common.util.Utils;
  * Pragma: no-cache
  *
  * <i>(The value returned from {@link #getResponseContent()})</i></pre>
- * </dd>
  *
- * <dt><b>{@link Action#INTERNAL_SERVER_ERROR INTERNAL_SERVER_ERROR}</b></dt>
- * <dd>
+ * <hr>
+ * <h3>{@link Action#INTERNAL_SERVER_ERROR INTERNAL_SERVER_ERROR}</h3>
+ *
  * <p>
  * When the value of {@code "action"} is {@code "INTERNAL_SERVER_ERROR"},
  * it means that the request from the service implementation
@@ -125,10 +127,10 @@ import com.authlete.common.util.Utils;
  * Pragma: no-cache
  *
  * <i>(The value returned from {@link #getResponseContent()})</i></pre>
- * </dd>
  *
- * <dt><b>{@link Action#BAD_REQUEST BAD_REQUEST}</b></dt>
- * <dd>
+ * <hr>
+ * <h3>{@link Action#BAD_REQUEST BAD_REQUEST}</h3>
+ *
  * <p>
  * When the value of {@code "action"} is {@code "BAD_REQUEST"}, it means
  * that the request from the client application is invalid.
@@ -157,10 +159,10 @@ import com.authlete.common.util.Utils;
  * Pragma: no-cache
  *
  * <i>(The value returned from {@link #getResponseContent()})</i></pre>
- * </dd>
  *
- * <dt><b>{@link Action#PASSWORD PASSWORD}</b></dt>
- * <dd>
+ * <hr>
+ * <h3>{@link Action#PASSWORD PASSWORD}</h3>
+ *
  * <p>
  * When the value of {@code "action"} is {@code "PASSWORD"}, it means that
  * the request from the client application is valid and {@code grant_type}
@@ -211,10 +213,10 @@ import com.authlete.common.util.Utils;
  *     to the client application.
  *   </p>
  * </ol>
- * </dd>
  *
- * <dt><b>{@link Action#OK OK}</b></dt>
- * <dd>
+ * <hr>
+ * <h3>{@link Action#OK OK}</h3>
+ *
  * <p>
  * When the value of {@code "action"} is {@code "OK"}, it means that
  * the request from the client application is valid and an access token,
@@ -245,10 +247,10 @@ import com.authlete.common.util.Utils;
  * Pragma: no-cache
  *
  * <i>(The value returned from {@link #getResponseContent()})</i></pre>
- * </dd>
  *
- * <dt><b>{@link Action#TOKEN_EXCHANGE TOKEN_EXCHANGE}</b> (Authlete 2.3 onwards)</dt>
- * <dd>
+ * <hr>
+ * <h3>{@link Action#TOKEN_EXCHANGE TOKEN_EXCHANGE}</b> (Authlete 2.3 onwards)</h3>
+ *
  * <p>
  * When the value of {@code "action"} is {@code "TOKEN_EXCHANGE"}, it means
  * that the request from the client application is a valid token exchange
@@ -601,10 +603,9 @@ import com.authlete.common.util.Utils;
  *   "scope":             "String.join(" ", {@link TokenCreateResponse#getScopes()})"
  * }</pre>
  *
- * </dd>
+ * <hr>
+ * <h3>{@link Action#JWT_BEARER JWT_BEARER}</b> (Authlete 2.3 onwards)</h3>
  *
- * <dt><b>{@link Action#JWT_BEARER JWT_BEARER}</b> (Authlete 2.3 onwards)</dt>
- * <dd>
  * <p>
  * When the value of {@code "action"} is {@code "JWT_BEARER"}, it means that
  * the request from the client application is a valid token request with the
@@ -758,8 +759,72 @@ import com.authlete.common.util.Utils;
  * signature by yourself.
  * </p>
  *
- * </dd>
- * </dl>
+ * <hr>
+ * <h3>{@link Action#ID_TOKEN_REISSUABLE ID_TOKEN_REISSUABLE}</b> (Authlete 2.3.8 onwards)</h3>
+ *
+ * <p>
+ * The "{@code action}" value "{@code ID_TOKEN_REISSUABLE}" indicates that an
+ * ID token can be reissued by the token request. This {@code action} value
+ * is returned when the following conditions are met.
+ * </p>
+ *
+ * <ol>
+ * <li>The service's "{@code idTokenReissuable}" property is {@code true} (cf.
+ *     {@link Service#isIdTokenReissuable()}).
+ * <li>The flow of the token request is the refresh token flow.
+ * <li>The scope set after processing the token request still contains the
+ *     "{@code openid}" scope.
+ * <li>The access token is associated with the subject of a user.
+ * <li>The access token is associated with a client application.
+ * </ol>
+ *
+ * <p>
+ * When receiving this {@code action} value, the implementation of the token
+ * endpoint can take either of the following actions.
+ * </p>
+ *
+ * <ol>
+ * <li>Execute the same steps as for the case of the "{@code OK}" action. This
+ *     will result in that the token endpoint behaves as before, and no ID
+ *     token is reissued.
+ * <li>Call Authlete's {@code /idtoken/reissue} API to reissue an ID token
+ *     and let the API prepare a token response including a new ID token
+ *     together with the new access token and a refresh token.
+ * </ol>
+ *
+ * <p>
+ * If you choose to reissue a new ID token, the following steps should be taken.
+ * </p>
+ *
+ * <ol>
+ * <li>Identify the user associated with the access token based on the
+ *     "{@code subject}" parameter in the response from the {@code /auth/token}
+ *     API (cf. {@link #getSubject()}).
+ * <li>Get the list of requested claims for ID tokens by referring to the value
+ *     of the "{@code requestedIdTokenClaims}" parameter in the response from
+ *     the {@code /auth/token} API. Note that, however, the parameter always
+ *     holds null when the Authlete server you are using is older than the
+ *     version 3.0. See the description of the {@link #getRequestedIdTokenClaims()}
+ *     method for details.
+ * <li>Get the values of the requested claims of the user from your user
+ *     database.
+ * <li>Construct a JSON object that includes the name-value pairs of the
+ *     requested claims. The JSON is used as the value of the "{@code claims}"
+ *     request parameter passed to the {@code /idtoken/reissue} API.
+ * <li>Select the representation of the access token based on the following
+ *     logic: if the value of the "{@code jwtAccessToken}" parameter (cf.
+ *     {@link #getJwtAccessToken()}) is not null, use the value. Otherwise,
+ *     use the value of the "{@code accessToken}" parameter (cf. {@link
+ *     #getAccessToken()}). The selected representation is used as the value
+ *     of the "{@code accessToken}" parameter passed to the
+ *     {@code /idtoken/reissue} API.
+ * <li>Get the value of the refresh token (cf. {@link #getRefreshToken()}).
+ *     The value is used as the value of the "{@code refreshToken}" parameter
+ *     passed to the {@code /idtoken/reissue} API.
+ * <li>Call the {@code /idtoken/reissue} API and follow the instruction of
+ *     the API. See the descriptions of the {@link IDTokenReissueRequest}
+ *     class and the {@link IDTokenReissueResponse} class for details.
+ * </ol>
  *
  * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html"
  *      >RFC 6749 The OAuth 2.0 Authorization Framework</a>
@@ -777,7 +842,7 @@ import com.authlete.common.util.Utils;
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 16L;
+    private static final long serialVersionUID = 17L;
 
 
     /**
@@ -855,6 +920,28 @@ public class TokenResponse extends ApiResponse
          * @since Authlete 2.3
          */
         JWT_BEARER,
+
+        /**
+         * The token request from the client was a valid token request using
+         * the refresh token flow and an ID token can be reissued.
+         *
+         * <p>
+         * The implementation of the token endpoint can choose either (1) to
+         * execute the same steps as for the "{@code OK}" action which results
+         * in the same behavior as before, or (2) to call the
+         * {@code /idtoken/reissue} API to reissue a new ID token together with
+         * a new access token and a refresh token.
+         * </p>
+         *
+         * <p>
+         * See the description of the {@link TokenResponse} class for details.
+         * </p>
+         *
+         * @since 3.68
+         * @since Authlete 2.3.8
+         * @since Authlete 3.0
+         */
+        ID_TOKEN_REISSUABLE,
     }
 
 
@@ -929,6 +1016,15 @@ public class TokenResponse extends ApiResponse
     private String cNonce;
     private long cNonceExpiresAt;
     private long cNonceDuration;
+
+    /**
+     * The names of the claims that the authorization request (which resulted in
+     * generation of the access token) requested to be embedded in ID tokens.
+     *
+     * @since 3.68
+     * @since Authlete 3.0
+     */
+    private String[] requestedIdTokenClaims;
 
 
     /**
@@ -2590,5 +2686,79 @@ public class TokenResponse extends ApiResponse
     public void setCNonceDuration(long duration)
     {
         this.cNonceDuration = duration;
+    }
+
+
+    /**
+     * Get the names of the claims that the authorization request (which resulted
+     * in generation of the access token) requested to be embedded in ID tokens.
+     *
+     * <p>
+     * Basically the value of this parameter corresponds to the content of the
+     * {@code id_token} object in the {@code claims} request parameter (<a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
+     * >OpenID Connect Core 1.0, Section 5.5</a>) of the authorization request.
+     * </p>
+     *
+     * <p>
+     * Note that, however, the value of this parameter is always null when the
+     * Authlete server you are using is older than the version 3.0. It's because
+     * database records for access tokens issued by old Authlete servers do not
+     * maintain information about "requested claims for ID tokens".
+     * </p>
+     *
+     * <p>
+     * It is expected that this response parameter is referred to when the
+     * {@code action} parameter in the response from the {@code /auth/token}
+     * API is {@link Action#ID_TOKEN_REISSUABLE ID_TOKEN_REISSUABLE}.
+     * </p>
+     *
+     * @return
+     *         The names of the claims that the authorization request requested
+     *         to be embedded in ID tokens.
+     *
+     * @since 3.68
+     * @since Authlete 3.0
+     */
+    public String[] getRequestedIdTokenClaims()
+    {
+        return requestedIdTokenClaims;
+    }
+
+
+    /**
+     * Set the names of the claims that the authorization request (which resulted
+     * in generation of the access token) requested to be embedded in ID tokens.
+     *
+     * <p>
+     * Basically the value of this parameter corresponds to the content of the
+     * {@code id_token} object in the {@code claims} request parameter (<a href=
+     * "https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter"
+     * >OpenID Connect Core 1.0, Section 5.5</a>) of the authorization request.
+     * </p>
+     *
+     * <p>
+     * Note that, however, the value of this parameter is always null when the
+     * Authlete server you are using is older than the version 3.0. It's because
+     * database records for access tokens issued by old Authlete servers do not
+     * maintain information about "requested claims for ID tokens".
+     * </p>
+     *
+     * <p>
+     * It is expected that this response parameter is referred to when the
+     * {@code action} parameter in the response from the {@code /auth/token}
+     * API is {@link Action#ID_TOKEN_REISSUABLE ID_TOKEN_REISSUABLE}.
+     * </p>
+     *
+     * @param claims
+     *         The names of the claims that the authorization request requested
+     *         to be embedded in ID tokens.
+     *
+     * @since 3.68
+     * @since Authlete 3.0
+     */
+    public void setRequestedIdTokenClaims(String[] claims)
+    {
+        this.requestedIdTokenClaims = claims;
     }
 }

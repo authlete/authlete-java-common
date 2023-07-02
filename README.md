@@ -235,6 +235,7 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   - `token(TokenRequest request)`
   - `tokenFail(TokenFailRequest request)`
   - `tokenIssue(TokenIssueRequest request)`
+  - `idTokenReissue(IDTokenReissueRequest request)`
 
   3. Methods for Service Management
 

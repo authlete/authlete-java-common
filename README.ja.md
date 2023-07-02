@@ -224,6 +224,7 @@ settings.setReadTimeout(5000);
   - `token(TokenRequest request)`
   - `tokenFail(TokenFailRequest request)`
   - `tokenIssue(TokenIssueRequest request)`
+  - `idTokenReissue(IDTokenReissueRequest request)`
 
   3. サービス管理のためのメソッド群
 

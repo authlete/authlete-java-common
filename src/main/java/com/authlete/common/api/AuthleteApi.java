@@ -66,6 +66,8 @@ import com.authlete.common.dto.GrantedScopesGetResponse;
 import com.authlete.common.dto.HskCreateRequest;
 import com.authlete.common.dto.HskListResponse;
 import com.authlete.common.dto.HskResponse;
+import com.authlete.common.dto.IDTokenReissueRequest;
+import com.authlete.common.dto.IDTokenReissueResponse;
 import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
 import com.authlete.common.dto.JoseVerifyRequest;
@@ -1728,4 +1730,21 @@ public interface AuthleteApi
      */
     CredentialSingleIssueResponse credentialSingleIssue(
             CredentialSingleIssueRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /idtoken/reissue} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.68
+     * @since Authlete 2.3.8
+     * @since Authlete 3.0
+     */
+    IDTokenReissueResponse idTokenReissue(
+            IDTokenReissueRequest request) throws AuthleteApiException;
 }
