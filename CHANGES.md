@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.69 (2023-07-09)
+-----------------
+
 - `AuthleteApi` interface
     * Added `credentialDeferredParse(CredentialDeferredParseRequest)` method.
 

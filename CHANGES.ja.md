@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.69 (2023 年 07 月 09 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `credentialDeferredParse(CredentialDeferredParseRequest)` メソッドを追加。
 
