@@ -1,6 +1,14 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `credentialBatchParse(CredentialBatchParseRequest)` メソッドを追加。
+
+- 新しい型
+    * `CredentialBatchParseRequest` クラス
+    * `CredentialBatchParseResponse` クラス
+
+
 3.70 (2023 年 07 月 09 日)
 --------------------------
 

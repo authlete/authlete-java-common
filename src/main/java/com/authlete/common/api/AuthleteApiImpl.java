@@ -57,6 +57,8 @@ import com.authlete.common.dto.ClientRegistrationResponse;
 import com.authlete.common.dto.ClientSecretRefreshResponse;
 import com.authlete.common.dto.ClientSecretUpdateRequest;
 import com.authlete.common.dto.ClientSecretUpdateResponse;
+import com.authlete.common.dto.CredentialBatchParseRequest;
+import com.authlete.common.dto.CredentialBatchParseResponse;
 import com.authlete.common.dto.CredentialDeferredIssueRequest;
 import com.authlete.common.dto.CredentialDeferredIssueResponse;
 import com.authlete.common.dto.CredentialDeferredParseRequest;
@@ -209,6 +211,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String VCI_OFFER_INFO_API_PATH                = "/api/vci/offer/info";
     private static final String VCI_SINGLE_PARSE_API_PATH              = "/api/vci/single/parse";
     private static final String VCI_SINGLE_ISSUE_API_PATH              = "/api/vci/single/issue";
+    private static final String VCI_BATCH_PARSE_API_PATH               = "/api/vci/batch/parse";
     private static final String VCI_DEFERRED_PARSE_API_PATH            = "/api/vci/deferred/parse";
     private static final String VCI_DEFERRED_ISSUE_API_PATH            = "/api/vci/deferred/issue";
     private static final String ID_TOKEN_REISSUE_API_PATH              = "/api/idtoken/reissue";
@@ -1732,6 +1735,18 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 VCI_SINGLE_ISSUE_API_PATH, request,
                 CredentialSingleIssueResponse.class);
+    }
+
+
+    @Override
+    public CredentialBatchParseResponse credentialBatchParse(
+            CredentialBatchParseRequest request) throws AuthleteApiException
+    {
+        // This API call fails because the /vci/batch/parse API is unavailable
+        // in Authlete 2.x and older versions.
+        return callServicePostApi(
+                VCI_BATCH_PARSE_API_PATH, request,
+                CredentialBatchParseResponse.class);
     }
 
 
