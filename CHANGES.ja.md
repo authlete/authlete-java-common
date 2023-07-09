@@ -1,6 +1,14 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `credentialDeferredParse(CredentialDeferredParseRequest)` メソッドを追加。
+
+- 新しい型
+    * `CredentialDeferredParseRequest` クラス
+    * `CredentialDeferredParseResponse` クラス
+
+
 3.68 (2023 年 07 月 03 日)
 --------------------------
 
