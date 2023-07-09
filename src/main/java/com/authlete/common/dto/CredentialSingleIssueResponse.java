@@ -15,6 +15,7 @@
  */
 package com.authlete.common.dto;
 
+
 /**
  * A response from Authlete's {@code /vci/single/issue} API.
  *
@@ -31,13 +32,12 @@ package com.authlete.common.dto;
  * <p>
  * The {@code action} value {@link Action#OK OK} means that a credential
  * has been issued successfully. In this case, the implementation of the
- * credential endpoint should return a successful response to the
- * verifiable credential holder. The HTTP status code and the content
- * type of the response should be 200 and {@code application/json},
- * respectively. The value of the {@code responseContent} parameter can
- * be used as the message body of the response. It contains the
- * "{@code credential}" parameter that conforms to the specification of
- * "Credential Response".
+ * credential endpoint should return a successful response to the request
+ * sender. The HTTP status code and the content type of the response
+ * should be 200 and {@code application/json}, respectively. The value of
+ * the {@code responseContent} parameter can be used as the message body
+ * of the response. It contains the "{@code credential}" parameter that
+ * conforms to the specification of "Credential Response".
  * </p>
  *
  * <pre>
@@ -55,12 +55,12 @@ package com.authlete.common.dto;
  * The {@code action} value {@link Action#ACCEPTED ACCEPTED} means that
  * a transaction ID has been issued successfully. In this case, the
  * implementation of the credential endpoint should return a successful
- * response to the verifiable credential holder. The HTTP status code
- * and the content type of the response should be 202 and
- * {@code application/json}, respectively. The value of the
- * {@code responseContent} parameter can be used as the message body of
- * the response. It contains the "{@code transaction_id}" parameter that
- * conforms to the specification of "Credential Response".
+ * response to the request sender. The HTTP status code and the content
+ * type of the response should be 202 and {@code application/json},
+ * respectively. The value of the {@code responseContent} parameter can
+ * be used as the message body of the response. It contains the
+ * "{@code transaction_id}" parameter that conforms to the specification
+ * of "Credential Response".
  * </p>
  *
  * <pre>
@@ -77,10 +77,10 @@ package com.authlete.common.dto;
  * <p>
  * The {@code action} value {@link Action#UNAUTHORIZED UNAUTHORIZED} means
  * that the access token is invalid. In this case, the implementation of the
- * credential endpoint should return an error response to the verifiable
- * credential holder. The HTTP status code of the error response should be
- * 401. The value of the {@code responseContent} parameter can be used as
- * the value of the {@code WWW-Authenticate} HTTP header of the error response.
+ * credential endpoint should return an error response to the request sender.
+ * The HTTP status code of the error response should be 401. The value of the
+ * {@code responseContent} parameter can be used as the value of the
+ * {@code WWW-Authenticate} HTTP header of the error response.
  * </p>
  *
  * <pre>
@@ -100,12 +100,12 @@ package com.authlete.common.dto;
  * <p>
  * The {@code action} value {@link Action#FORBIDDEN FORBIDDEN} means that
  * the use of the Authlete API is forbidden. In this case, the implementation
- * of the credential endpoint should return an error response to the verifiable
- * credential holder. The HTTP status code and the content type of the error
- * response should be 403 and {@code application/json}, respectively. The
- * value of the {@code responseContent} parameter can be used as the message
- * body of the error response as it conforms to the specification of
- * "Credential Error Response".
+ * of the credential endpoint should return an error response to the request
+ * sender. The HTTP status code and the content type of the error response
+ * should be 403 and {@code application/json}, respectively. The value of the
+ * {@code responseContent} parameter can be used as the message body of the
+ * error response as it conforms to the specification of "Credential Error
+ * Response".
  * </p>
  *
  * <pre>
@@ -131,11 +131,11 @@ package com.authlete.common.dto;
  * The {@code action} value {@link Action#INTERNAL_SERVER_ERROR INTERNAL_SERVER_ERROR}
  * means that something wrong happened on Authlete side. In this case, the
  * implementation of the credential endpoint should return an error response
- * to the verifiable credential holder. The HTTP status code and the content
- * type of the error response should be 500 and {@code application/json},
- * respectively. The value of the {@code responseContent} parameter can be
- * used as the message body of the error response as it conforms to the
- * specification of "Credential Error Response".
+ * to the request sender. The HTTP status code and the content type of the
+ * error response should be 500 and {@code application/json}, respectively.
+ * The value of the {@code responseContent} parameter can be used as the
+ * message body of the error response as it conforms to the specification of
+ * "Credential Error Response".
  * </p>
  *
  * <pre>
