@@ -40,6 +40,8 @@ import com.authlete.common.dto.ClientRegistrationRequest;
 import com.authlete.common.dto.ClientRegistrationResponse;
 import com.authlete.common.dto.ClientSecretRefreshResponse;
 import com.authlete.common.dto.ClientSecretUpdateResponse;
+import com.authlete.common.dto.CredentialDeferredIssueRequest;
+import com.authlete.common.dto.CredentialDeferredIssueResponse;
 import com.authlete.common.dto.CredentialDeferredParseRequest;
 import com.authlete.common.dto.CredentialDeferredParseResponse;
 import com.authlete.common.dto.CredentialIssuerMetadataRequest;
@@ -1748,6 +1750,22 @@ public interface AuthleteApi
      */
     CredentialDeferredParseResponse credentialDeferredParse(
             CredentialDeferredParseRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /vci/deferred/issue} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.70
+     * @since Authlete 3.0
+     */
+    CredentialDeferredIssueResponse credentialDeferredIssue(
+            CredentialDeferredIssueRequest request) throws AuthleteApiException;
 
 
     /**

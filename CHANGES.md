@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `credentialDeferredIssue(CredentialDeferredIssueRequest)` method.
+
+- New types
+    * `CredentialDeferredIssueRequest` class
+    * `CredentialDeferredIssueResponse` class
+
+
 3.69 (2023-07-09)
 -----------------
 
