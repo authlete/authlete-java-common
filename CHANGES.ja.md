@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.70 (2023 年 07 月 09 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `credentialDeferredIssue(CredentialDeferredIssueRequest)` メソッドを追加。
 
