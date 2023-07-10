@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `credentialIssuerJwks(CredentialIssuerJwksRequest)` method.
+
+- New types
+    * `CredentialIssuerJwksRequest` class
+    * `CredentialIssuerJwksResponse` class
+
+
 3.71 (2023-07-10)
 -----------------
 

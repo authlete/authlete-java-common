@@ -48,6 +48,8 @@ import com.authlete.common.dto.CredentialDeferredIssueRequest;
 import com.authlete.common.dto.CredentialDeferredIssueResponse;
 import com.authlete.common.dto.CredentialDeferredParseRequest;
 import com.authlete.common.dto.CredentialDeferredParseResponse;
+import com.authlete.common.dto.CredentialIssuerJwksRequest;
+import com.authlete.common.dto.CredentialIssuerJwksResponse;
 import com.authlete.common.dto.CredentialIssuerMetadataRequest;
 import com.authlete.common.dto.CredentialIssuerMetadataResponse;
 import com.authlete.common.dto.CredentialOfferCreateRequest;
@@ -1674,6 +1676,22 @@ public interface AuthleteApi
      */
     CredentialIssuerMetadataResponse credentialIssuerMetadata(
             CredentialIssuerMetadataRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /vci/jwks} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.72
+     * @since Authlete 3.0
+     */
+    CredentialIssuerJwksResponse credentialIssuerJwks(
+            CredentialIssuerJwksRequest request) throws AuthleteApiException;
 
 
     /**

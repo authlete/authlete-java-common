@@ -65,6 +65,8 @@ import com.authlete.common.dto.CredentialDeferredIssueRequest;
 import com.authlete.common.dto.CredentialDeferredIssueResponse;
 import com.authlete.common.dto.CredentialDeferredParseRequest;
 import com.authlete.common.dto.CredentialDeferredParseResponse;
+import com.authlete.common.dto.CredentialIssuerJwksRequest;
+import com.authlete.common.dto.CredentialIssuerJwksResponse;
 import com.authlete.common.dto.CredentialIssuerMetadataRequest;
 import com.authlete.common.dto.CredentialIssuerMetadataResponse;
 import com.authlete.common.dto.CredentialOfferCreateRequest;
@@ -209,6 +211,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String FEDERATION_CONFIGURATION_API_PATH      = "/api/federation/configuration";
     private static final String FEDERATION_REGISTRATION_API_PATH       = "/api/federation/registration";
     private static final String VCI_METADATA_API_PATH                  = "/api/vci/metadata";
+    private static final String VCI_JWKS_API_PATH                      = "/api/vci/jwks";
     private static final String VCI_OFFER_CREATE_API_PATH              = "/api/vci/offer/create";
     private static final String VCI_OFFER_INFO_API_PATH                = "/api/vci/offer/info";
     private static final String VCI_SINGLE_PARSE_API_PATH              = "/api/vci/single/parse";
@@ -1690,6 +1693,18 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 VCI_METADATA_API_PATH, request,
                 CredentialIssuerMetadataResponse.class);
+    }
+
+
+    @Override
+    public CredentialIssuerJwksResponse credentialIssuerJwks(
+            CredentialIssuerJwksRequest request) throws AuthleteApiException
+    {
+        // This API call fails because the /vci/jwks API is unavailable
+        // in Authlete 2.x and older versions.
+        return callServicePostApi(
+                VCI_JWKS_API_PATH, request,
+                CredentialIssuerJwksResponse.class);
     }
 
 
