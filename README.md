@@ -353,6 +353,7 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   21. Methods for Verifiable Credentials
 
   - `credentialIssuerMetadata(CredentialIssuerMetadataRequest)`
+  - `credentialIssuerJwks(CredentialIssuerJwksRequest)`
   - `credentialOfferCreate(CredentialOfferCreateRequest)`
   - `credentialOfferInfo(CredentialOfferInfoRequest)`
   - `credentialSingleParse(CredentialSingleParseRequest)`

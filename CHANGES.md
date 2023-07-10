@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.72 (2023-07-11)
+-----------------
+
 - `AuthleteApi` interface
     * Added `credentialIssuerJwks(CredentialIssuerJwksRequest)` method.
 

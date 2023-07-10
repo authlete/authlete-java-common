@@ -342,6 +342,7 @@ settings.setReadTimeout(5000);
   21. Verifiable Credentials に関するメソッド群
 
   - `credentialIssuerMetadata(CredentialIssuerMetadataRequest)`
+  - `credentialIssuerJwks(CredentialIssuerJwksRequest)`
   - `credentialOfferCreate(CredentialOfferCreateRequest)`
   - `credentialOfferInfo(CredentialOfferInfoRequest)`
   - `credentialSingleParse(CredentialSingleParseRequest)`

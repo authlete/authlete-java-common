@@ -66,6 +66,8 @@ public class CredentialIssuerMetadataRequest implements Serializable
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 3.56
      */
     public CredentialIssuerMetadataRequest setPretty(boolean pretty)
     {

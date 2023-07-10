@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.72 (2023 年 07 月 11 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `credentialIssuerJwks(CredentialIssuerJwksRequest)` メソッドを追加。
 
