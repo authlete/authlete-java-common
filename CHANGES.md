@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.71 (2023-07-10)
+-----------------
+
 - `AuthleteApi` interface
     * Added `credentialBatchParse(CredentialBatchParseRequest)` method.
     * Added `credentialBatchIssue(CredentialBatchIssueRequest)` method.

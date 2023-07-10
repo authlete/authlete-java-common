@@ -346,6 +346,8 @@ settings.setReadTimeout(5000);
   - `credentialOfferInfo(CredentialOfferInfoRequest)`
   - `credentialSingleParse(CredentialSingleParseRequest)`
   - `credentialSingleIssue(CredentialSingleIssueRequest)`
+  - `credentialBatchParse(CredentialBatchParseRequest)`
+  - `credentialBatchIssue(CredentialBatchIssueRequest)`
   - `credentialDeferredParse(CredentialDeferredParseRequest)`
   - `credentialDeferredIssue(CredentialDeferredIssueRequest)`
 
