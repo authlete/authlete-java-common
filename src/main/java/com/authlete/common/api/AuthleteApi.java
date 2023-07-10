@@ -40,6 +40,8 @@ import com.authlete.common.dto.ClientRegistrationRequest;
 import com.authlete.common.dto.ClientRegistrationResponse;
 import com.authlete.common.dto.ClientSecretRefreshResponse;
 import com.authlete.common.dto.ClientSecretUpdateResponse;
+import com.authlete.common.dto.CredentialBatchIssueRequest;
+import com.authlete.common.dto.CredentialBatchIssueResponse;
 import com.authlete.common.dto.CredentialBatchParseRequest;
 import com.authlete.common.dto.CredentialBatchParseResponse;
 import com.authlete.common.dto.CredentialDeferredIssueRequest;
@@ -1752,6 +1754,22 @@ public interface AuthleteApi
      */
     CredentialBatchParseResponse credentialBatchParse(
             CredentialBatchParseRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /vci/batch/issue} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.71
+     * @since Authlete 3.0
+     */
+    CredentialBatchIssueResponse credentialBatchIssue(
+            CredentialBatchIssueRequest request) throws AuthleteApiException;
 
 
     /**
