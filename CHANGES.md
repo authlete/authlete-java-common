@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+3.74 (2023-08-02)
+-----------------
+
+- `ClientAuthMethod` enum
+    * Added `ATTEST_JWT_CLIENT_AUTH`.
+
+- New Types
+    * `ClientAssertionType` enum
+
+
 3.73 (2023-07-14)
 -----------------
 
