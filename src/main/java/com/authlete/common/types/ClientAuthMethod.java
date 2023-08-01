@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -141,6 +141,19 @@ public enum ClientAuthMethod
      * @since 2.11
      */
     SELF_SIGNED_TLS_CLIENT_AUTH((short)6, "self_signed_tls_client_auth", 0x4),
+
+
+    /**
+     * {@code "attest_jwt_client_auth"} (7).
+     *
+     * <p>
+     * OAuth 2.0 Attestation-Based Client Authentication.
+     * </p>
+     *
+     * @since 3.74
+     * @since Authlete 3.0
+     */
+    ATTEST_JWT_CLIENT_AUTH((short)7, "attest_jwt_client_auth", 0x2),
     ;
 
 
@@ -301,9 +314,10 @@ public enum ClientAuthMethod
      * method.
      *
      * @return
-     *         {@code true} if this instance is either
-     *         {@link ClientAuthMethod#CLIENT_SECRET_JWT CLIENT_SECRET_JWT} or
-     *         {@link ClientAuthMethod#PRIVATE_KEY_JWT PRIVATE_KEY_JWT}.
+     *         {@code true} if this instance is one of
+     *         {@link ClientAuthMethod#CLIENT_SECRET_JWT CLIENT_SECRET_JWT},
+     *         {@link ClientAuthMethod#PRIVATE_KEY_JWT PRIVATE_KEY_JWT} or
+     *         {@link ClientAuthMethod#ATTEST_JWT_CLIENT_AUTH ATTEST_JWT_CLIENT_AUTH}.
      *
      * @since 2.47
      */
