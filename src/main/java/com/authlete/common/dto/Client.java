@@ -255,6 +255,9 @@ public class Client implements Serializable
     private URI sectorIdentifierUri;
 
 
+    private boolean locked;
+
+
     private SubjectType subjectType;
     private JWSAlg idTokenSignAlg;
     private JWEAlg idTokenEncryptionAlg;
@@ -4538,6 +4541,39 @@ public class Client implements Serializable
     public Client setCredentialOfferEndpoint(URI endpoint)
     {
         this.credentialOfferEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether this record is locked.
+     *
+     * @return
+     *         {@code true} if this record is locked.
+     *
+     * @since 3.75
+     */
+    public boolean isLocked()
+    {
+        return locked;
+    }
+
+
+    /**
+     * Set the value to which this request updates the lock flag of a client
+     * application.
+     *
+     * @param clientLocked
+     *         The value to which this request updates the lock flag of a client
+     *         application.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Client setLocked(boolean clientLocked)
+    {
+        this.locked = clientLocked;
 
         return this;
     }
