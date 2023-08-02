@@ -80,7 +80,7 @@ import com.authlete.common.util.Utils;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 33L;
+    private static final long serialVersionUID = 34L;
 
 
     /*
@@ -255,9 +255,6 @@ public class Client implements Serializable
     private URI sectorIdentifierUri;
 
 
-    private boolean locked;
-
-
     private SubjectType subjectType;
     private JWSAlg idTokenSignAlg;
     private JWEAlg idTokenEncryptionAlg;
@@ -313,6 +310,7 @@ public class Client implements Serializable
     private String rsSignedRequestKeyId;
     private boolean rsRequestSigned;
     private boolean dpopRequired;
+    private boolean locked;
 
     /*
      * For OpenID Connect Federation 1.0.
@@ -4547,10 +4545,10 @@ public class Client implements Serializable
 
 
     /**
-     * Get the flag which indicates whether this record is locked.
+     * Get the flag which indicates whether this client is locked.
      *
      * @return
-     *         {@code true} if this record is locked.
+     *         {@code true} if this client is locked.
      *
      * @since 3.75
      */
@@ -4561,19 +4559,19 @@ public class Client implements Serializable
 
 
     /**
-     * Set the value to which this request updates the lock flag of a client
-     * application.
+     * Set the flag which indicates whether this client is locked.
      *
-     * @param clientLocked
-     *         The value to which this request updates the lock flag of a client
-     *         application.
+     * @param locked
+     *         {@code true} to indicate that this client is locked.
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 3.75
      */
-    public Client setLocked(boolean clientLocked)
+    public Client setLocked(boolean locked)
     {
-        this.locked = clientLocked;
+        this.locked = locked;
 
         return this;
     }
