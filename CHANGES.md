@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+3.75 (2023-08-02)
+-----------------
+
+- `Client` class
+    * Added `isLocked()` method.
+    * Added `setLocked(boolean)` method.
+
+
 3.74 (2023-08-02)
 -----------------
 
