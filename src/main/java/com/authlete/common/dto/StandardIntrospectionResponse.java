@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Authlete, Inc.
+ * Copyright (C) 2017-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,10 +47,10 @@ import com.authlete.common.api.AuthleteApi;
  * </p>
  *
  * <p>
- * In either case, from the viewpoint of the client application, it is an
+ * In either case, from the viewpoint of the resource server, it is an
  * error on the server side. Therefore, the introspection endpoint of
- * your authorization server should generate a response to the client
- * application with the HTTP status of {@code "500 Internal Server Error"}.
+ * your authorization server should generate a response to the resource
+ * server with the HTTP status of {@code "500 Internal Server Error"}.
  * </p>
  *
  * <p>
@@ -64,7 +64,7 @@ import com.authlete.common.api.AuthleteApi;
  * <p>
  * The following illustrates an example response which the introspection
  * endpoint of your authorization server generates and returns to the
- * client application.
+ * resource server.
  * </p>
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
@@ -78,16 +78,16 @@ import com.authlete.common.api.AuthleteApi;
  * <dd>
  * <p>
  * When the value of {@code "action"} is {@code "BAD_REQUEST"}, it means
- * that the request from the client application is invalid. This happens
- * when the request from the client did not include the {@code token}
- * request parameter. See "<a href=
+ * that the request from the resource server is invalid. This happens
+ * when the request from the resource server did not include the {@code
+ * token} request parameter. See "<a href=
  * "https://tools.ietf.org/html/rfc7662#section-2.1">2.1. Introspection
  * Request</a>" in RFC 7662 for details about requirements for
  * introspection requests.
  * </p>
  *
  * <p>
- * The HTTP status of the response returned to the client application
+ * The HTTP status of the response returned to the resource server
  * should be {@code "400 Bad Request"}.
  * </p>
  *
@@ -102,7 +102,7 @@ import com.authlete.common.api.AuthleteApi;
  * <p>
  * The following illustrates an example response which the introspection
  * endpoint of your authorization server generates and returns to the
- * client application.
+ * resource server.
  * </p>
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
@@ -116,11 +116,11 @@ import com.authlete.common.api.AuthleteApi;
  * <dd>
  * <p>
  * When the value of {@code "action"} is {@code "OK"}, it means that
- * the request from the client application is valid.
+ * the request from the resource server is valid.
  * </p>
  *
  * <p>
- * The HTTP status of the response returned to the client application
+ * The HTTP status of the response returned to the resource server
  * must be {@code "200 OK"} and its content type must be {@code
  * "application/json"}.
  * </p>
@@ -134,13 +134,47 @@ import com.authlete.common.api.AuthleteApi;
  *
  * <p>
  * The following illustrates the response which the introspection endpoint
- * of your authorization server should generate and return to the client
- * application.
+ * of your authorization server should generate and return to the resource
+ * server.
  * </p>
  *
  * <pre style="border: solid 1px black; padding: 0.5em;">
  * HTTP/1.1 200 OK
  * Content-Type: application/json
+ *
+ * <i>(The value returned from {@link #getResponseContent()})</i></pre>
+ * </dd>
+ *
+ * <dt><b>{@link Action#JWT JWT}</b></dt>
+ * <dd>
+ * <p>
+*  When the value of {@code "action"} is {@code "JWT"}, it means that
+ * the request from the resource server is valid and a JWT is returned
+ * to the resource server as the introspection response.
+ * </p>
+ *
+ * <p>
+ * The HTTP status of the response returned to the resource server
+ * must be {@code "200 OK"} and its content type must be {@code
+ * "application/token-introspection+jwt"}.
+ * </p>
+ *
+ * <p>
+ * {@link #getResponseContent()} returns a JWT which complies with the
+ * introspection response defined in "<a href="
+ * https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+ * >JWT Response for OAuth Token Introspection</a>".
+ * </p>
+ *
+ * <p>
+ * The following illustrates the response which the introspection endpoint
+ * of your authorization server should generate and return to the resource
+ * server.
+ * </p>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;">
+ * HTTP/1.1 200 OK
+ * Content-Type: application/token-introspection+jwt
  *
  * <i>(The value returned from {@link #getResponseContent()})</i></pre>
  * </dd>
@@ -160,10 +194,13 @@ import com.authlete.common.api.AuthleteApi;
  * </p>
  *
  * @see <a href="http://tools.ietf.org/html/rfc7662">RFC 7662, OAuth 2.0 Token Introspection</a>
+ * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+ *      >JWT Response for OAuth Token Introspection</a>
  * @see StandardIntrospectionRequest
  * @see AuthleteApi#standardIntrospection(StandardIntrospectionRequest)
  *
  * @author Takahiko Kawasaki
+ * @author Hideki Ikeda
  *
  * @since 2.7
  */
@@ -183,23 +220,34 @@ public class StandardIntrospectionResponse extends ApiResponse
          * StandardIntrospectionRequest}) was wrong or an error occurred
          * in Authlete. The introspection endpoint of your authorization
          * server should return {@code "500 Internal Server Error"} to
-         * the client application.
+         * the resource server.
          */
         INTERNAL_SERVER_ERROR,
 
         /**
-         * The request from the client was wrong. The introspection endpoint
-         * of your authorization server should return {@code "400 Bad Request"}
-         * to the client application.
+         * The request from the resource server was wrong. The introspection
+         * endpoint of your authorization server should return {@code
+         * "400 Bad Request"} to the resource server.
          */
         BAD_REQUEST,
 
         /**
-         * The request from the client was valid. The introspection endpoint
-         * of your authorization server should return {@code "200 OK"} to
-         * the client application.
+         * The request from the resource server was valid. The introspection
+         * endpoint of your authorization server should return {@code
+         * "200 OK"} to the resource server.
          */
-        OK
+        OK,
+
+        /**
+         * The request from the resource server was valid and a JWT is
+         * returned to the resource server as the introspection response.
+         * The introspection endpoint of your authorization server should
+         * return {@code "200 OK"} to the resource server.
+         *
+         * @since 3.76
+         * @since Authlete 3.0
+         */
+        JWT
     }
 
 
@@ -224,15 +272,17 @@ public class StandardIntrospectionResponse extends ApiResponse
      * Set the next action that the introspection endpoint of the
      * authorization server should take.
      */
-    public void setAction(Action action)
+    public StandardIntrospectionResponse setAction(Action action)
     {
         this.action = action;
+
+        return this;
     }
 
 
     /**
      * Get the response content which can be used as the entity body
-     * of the response returned to the client application.
+     * of the response returned to the resource server.
      */
     public String getResponseContent()
     {
@@ -242,11 +292,13 @@ public class StandardIntrospectionResponse extends ApiResponse
 
     /**
      * Set the response content which can be used as the entity body
-     * of the response returned to the client application.
+     * of the response returned to the resource server.
      */
-    public void setResponseContent(String responseContent)
+    public StandardIntrospectionResponse setResponseContent(String responseContent)
     {
         this.responseContent = responseContent;
+
+        return this;
     }
 
 

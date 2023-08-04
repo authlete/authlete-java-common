@@ -29,6 +29,8 @@ import com.authlete.common.types.ClientRegistrationType;
 import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.Display;
 import com.authlete.common.types.GrantType;
+import com.authlete.common.types.JWEAlg;
+import com.authlete.common.types.JWEEnc;
 import com.authlete.common.types.Prompt;
 import com.authlete.common.types.JWSAlg;
 import com.authlete.common.types.ResponseType;
@@ -1480,6 +1482,42 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private boolean idTokenReissuable;
+
+
+    /**
+     * Supported JWS alg algorithms for signing introspection responses.
+     * This property corresponds to the {@code introspection_signing_alg_values_supported}
+     * metadata defined in "7. Authorization Server Metadata" of "JWT
+     * Response for OAuth Token Introspection".
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private JWSAlg[] supportedIntrospectionSignAlgs;
+
+
+    /**
+     * Supported JWE alg algorithms for encrypting introspection responses.
+     * This property corresponds to the {@code introspection_encryption_alg_values_supported}
+     * metadata defined in "7. Authorization Server Metadata" of "JWT Response
+     * for OAuth Token Introspection".
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private JWEAlg[] supportedIntrospectionEncryptionAlgs;
+
+
+    /**
+     * Supported JWE enc algorithms for encrypting introspection responses.
+     * This property corresponds to the {@code introspection_encryption_alg_values_supported}
+     * metadata defined in "7. Authorization Server Metadata" of "JWT
+     * Response for OAuth Token Introspection".
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private JWEEnc[] supportedIntrospectionEncryptionEncs;
 
 
     /**
@@ -11071,6 +11109,171 @@ public class Service implements Serializable
     public Service setIdTokenReissuable(boolean reissuable)
     {
         this.idTokenReissuable = reissuable;
+
+        return this;
+    }
+
+
+    /**
+     * Get the supported JWS {@code alg} algorithms for signing introspection
+     * responses. This property corresponds to the {@code introspection_signing_alg_values_supported}
+     * metadata defined in "<a href="
+     * https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-7"
+     * >7. Authorization Server Metadata</a>" of "<a href=
+     * "https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     * >JWT Response for OAuth Token Introspection</a>".
+     *
+     * @return
+     *         The supported JWS {@code alg} algorithms for signing
+     *         introspection responses.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public JWSAlg[] getSupportedIntrospectionSignAlgs()
+    {
+        return supportedIntrospectionSignAlgs;
+    }
+
+
+    /**
+     * Set the supported JWS {@code alg} algorithms for signing introspection
+     * responses. This property corresponds to the {@code introspection_signing_alg_values_supported}
+     * metadata defined in "<a href="
+     * https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-7"
+     * >7. Authorization Server Metadata</a>" of "<a href=
+     * "https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     * >JWT Response for OAuth Token Introspection</a>".
+     *
+     * @param algs
+     *         The supported JWS {@code alg} algorithms for signing
+     *         introspection responses.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public Service setSupportedIntrospectionSignAlgs(JWSAlg[] algs)
+    {
+        this.supportedIntrospectionSignAlgs = algs;
+
+        return this;
+    }
+
+
+    /**
+     * Get the supported JWE {@code alg} algorithms for encrypting introspection
+     * responses. This property corresponds to the {@code introspection_encryption_alg_values_supported}
+     * metadata defined in "<a href="
+     * https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-7"
+     * >7. Authorization Server Metadata</a>" of "<a href=
+     * "https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     * >JWT Response for OAuth Token Introspection</a>".
+     *
+     * @return
+     *         The supported JWE {@code alg} algorithms for encrypting
+     *         introspection responses.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public JWEAlg[] getSupportedIntrospectionEncryptionAlgs()
+    {
+        return supportedIntrospectionEncryptionAlgs;
+    }
+
+
+    /**
+     * Set the supported JWE {@code alg} algorithms for encrypting introspection
+     * responses. This property corresponds to the {@code introspection_encryption_alg_values_supported}
+     * metadata defined in "<a href="
+     * https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-7"
+     * >7. Authorization Server Metadata</a>" of "<a href=
+     * "https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     * >JWT Response for OAuth Token Introspection</a>".
+     *
+     * @param algs
+     *         The supported JWE {@code alg} algorithms for encrypting
+     *         introspection responses.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public Service setSupportedIntrospectionEncryptionAlgs(JWEAlg[] algs)
+    {
+        this.supportedIntrospectionEncryptionAlgs = algs;
+
+        return this;
+    }
+
+
+    /**
+     * Get the supported JWE {@code enc} algorithms for encrypting introspection
+     * response. This property corresponds to the {@code introspection_encryption_enc_values_supported}
+     * metadata defined in "<a href=
+     * "https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-7"
+     * >7. Authorization Server Metadata</a>" of "<a href="
+     * https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     * >JWT Response for OAuth Token Introspection</a>".
+     *
+     * @return
+     *         The supported JWE {@code enc} algorithms for encrypting
+     *         introspection responses.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public JWEEnc[] getSupportedIntrospectionEncryptionEncs()
+    {
+        return supportedIntrospectionEncryptionEncs;
+    }
+
+
+    /**
+     * Set the supported JWE {@code enc} algorithms for encrypting introspection
+     * responses. This property corresponds to the {@code introspection_encryption_enc_values_supported}
+     * metadata defined in "<a href=
+     * "https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-7"
+     * >7. Authorization Server Metadata</a>" of "<a href="
+     * https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     * >JWT Response for OAuth Token Introspection</a>".
+     *
+     * @param encs
+     *         The supported JWE {@code enc} algorithms for encrypting
+     *         introspection responses.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public Service setSupportedIntrospectionEncryptionEncs(JWEEnc[] encs)
+    {
+        this.supportedIntrospectionEncryptionEncs = encs;
 
         return this;
     }

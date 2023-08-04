@@ -1,6 +1,43 @@
 変更点
 ======
 
+3.76 (2023 年 09 月 02 日)
+--------------------------
+
+- `StandardIntrospectionResponse` クラス
+    * JavaDoc を修正。
+
+- `StandardIntrospectionResponse.Action` 列挙型
+    * `JWT` を追加。
+
+- `StandardIntrospectionRequest` クラス
+    * `getRsUri()` メソッドを追加。
+    * `setRsUri(URI)` メソッドを追加。
+    * `getHttpAcceptHeader()` メソッドを追加。
+    * `setHttpAcceptHeader(String)` メソッドを追加。
+    * `getIntrospectionSignAlg()` メソッドを追加。
+    * `setIntrospectionSignAlg(JWSAlg)` メソッドを追加。
+    * `getIntrospectionEncryptionAlg()` メソッドを追加。
+    * `setIntrospectionEncryptionAlg(JWEAlg)` メソッドを追加。
+    * `getIntrospectionEncryptionEnc()` メソッドを追加。
+    * `setIntrospectionEncryptionEnc(JWEEnc)` メソッドを追加。
+    * `getSharedKeyForSign()` メソッドを追加。
+    * `setSharedKeyForSign(String)` メソッドを追加。
+    * `getSharedKeyForEncryption()` メソッドを追加。
+    * `setSharedKeyForEncryption(String)` メソッドを追加。
+    * `getPublicKeyForSign()` メソッドを追加。
+    * `setPublicKeyForSign(String)` メソッドを追加。
+    * `getIntrospectionSignatureKeyId()` メソッドを追加。
+    * `setIntrospectionSignatureKeyId(String)` メソッドを追加。
+
+- `Service` クラス
+    * `getSupportedIntrospectionSignAlgs()` メソッドを追加。
+    * `setSupportedIntrospectionSignAlgs(JWSAlg[])` メソッドを追加。
+    * `getSupportedIntrospectionEncryptionAlgs()` メソッドを追加。
+    * `setSupportedIntrospectionEncryptionAlgs(JWEAlg[])` メソッドを追加。
+    * `getSupportedIntrospectionEncryptionEncs()` メソッドを追加。
+    * `setSupportedIntrospectionEncryptionEncs(JWEEnc[])` メソッドを追加。
+
 - `ErrorCode` 列挙型
     * `invalid_encryption_parameters` を追加。
 
