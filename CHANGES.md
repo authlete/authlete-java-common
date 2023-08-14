@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `ErrorCode` enum
+    * Added `invalid_encryption_parameters`.
+
+
 3.75 (2023-08-02)
 -----------------
 

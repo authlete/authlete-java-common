@@ -573,5 +573,17 @@ public enum ErrorCode
      * @since Authlete 3.0
      */
     invalid_transaction_id,
+
+
+    /**
+     * The encryption parameters in the credential request are either invalid or missing.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    invalid_encryption_parameters,
     ;
 }
