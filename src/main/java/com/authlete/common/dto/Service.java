@@ -334,7 +334,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 73L;
+    private static final long serialVersionUID = 74L;
 
 
     /*
@@ -1510,7 +1510,7 @@ public class Service implements Serializable
 
     /**
      * Supported JWE enc algorithms for encrypting introspection responses.
-     * This property corresponds to the {@code introspection_encryption_alg_values_supported}
+     * This property corresponds to the {@code introspection_encryption_enc_values_supported}
      * metadata defined in "7. Authorization Server Metadata" of "JWT
      * Response for OAuth Token Introspection".
      *

@@ -206,7 +206,7 @@ import com.authlete.common.api.AuthleteApi;
  */
 public class StandardIntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -247,7 +247,7 @@ public class StandardIntrospectionResponse extends ApiResponse
          * @since 3.76
          * @since Authlete 3.0
          */
-        JWT
+        JWT,
     }
 
 
