@@ -1,6 +1,43 @@
 CHANGES
 =======
 
+3.76 (2023-09-02)
+-----------------
+
+- `StandardIntrospectionResponse` class
+    * Fixed JavaDoc.
+
+- `StandardIntrospectionResponse.Action` enum
+    * Added `JWT`.
+
+- `StandardIntrospectionRequest` class
+    * Added `getRsUri()` method.
+    * Added `setRsUri(URI)` method.
+    * Added `getHttpAcceptHeader()` method.
+    * Added `setHttpAcceptHeader(String)` method.
+    * Added `getIntrospectionSignAlg()` method.
+    * Added `setIntrospectionSignAlg(JWSAlg)` method.
+    * Added `getIntrospectionEncryptionAlg()` method.
+    * Added `setIntrospectionEncryptionAlg(JWEAlg)` method.
+    * Added `getIntrospectionEncryptionEnc()` method.
+    * Added `setIntrospectionEncryptionEnc(JWEEnc)` method.
+    * Added `getSharedKeyForSign()` method.
+    * Added `setSharedKeyForSign(String)` method.
+    * Added `getSharedKeyForEncryption()` method.
+    * Added `setSharedKeyForEncryption(String)` method.
+    * Added `getPublicKeyForSign()` method.
+    * Added `setPublicKeyForSign(String)` method.
+    * Added `getIntrospectionSignatureKeyId()` method.
+    * Added `setIntrospectionSignatureKeyId(String)` method.
+
+- `Service` class
+    * Added `getSupportedIntrospectionSignAlgs()` method.
+    * Added `setSupportedIntrospectionSignAlgs(JWSAlg[])` method.
+    * Added `getSupportedIntrospectionEncryptionAlgs()` method.
+    * Added `setSupportedIntrospectionEncryptionAlgs(JWEAlg[])` method.
+    * Added `getSupportedIntrospectionEncryptionEncs()` method.
+    * Added `setSupportedIntrospectionEncryptionEncs(JWEEnc[])` method.
+
 - `ErrorCode` enum
     * Added `invalid_encryption_parameters`.
 

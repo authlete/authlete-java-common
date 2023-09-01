@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2020 Authlete, Inc.
+ * Copyright (C) 2017-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,11 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.net.URI;
 import com.authlete.common.api.AuthleteApi;
+import com.authlete.common.types.JWEAlg;
+import com.authlete.common.types.JWEEnc;
+import com.authlete.common.types.JWSAlg;
 
 
 /**
@@ -71,14 +75,139 @@ import com.authlete.common.api.AuthleteApi;
  * of the value of the {@code hidden} attribute.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>rsUri</code></b> (CONDITIONALLY REQUIRED)</dt>
+ * <dd>
+ * <p>
+ * The URI of the resource server making the introspection request.
+ * </p>
+ * <p>
+ * If the {@code rsUri} request parameter is given and the token has
+ * audience values, Authlete checks if the value of the {@code rsUri}
+ * request parameter is contained in the audience values. If not contained,
+ * Authlete generates an introspection response with the {@code active}
+ * property set to {@code false}.
+ * </p>
+ * <p>
+ * The {@code rsUri} request parameter is required when the resource server
+ * requests a JWT introspection response, i.e., when the value of the
+ * {@code httpAcceptHeader} request parameter is set to {@code "application/token-introspection+jwt"}.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>httpAcceptHeader</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the HTTP {@code Accept} header in the introspection
+ * request.
+ * </p>
+ * <p>
+ * If the value of the {@code httpAcceptHeader} request parameter is
+ * {@code "application/token-introspection+jwt"}, Authlete generates
+ * a JWT introspection response. See "<a href="
+ * https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-4">
+ * 4. Requesting a JWT Response</a>" of "<a href="
+ * https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response">
+ * JWT Response for OAuth Token Introspection</a>" for more details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>introspectionSignAlg</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The JWS {@code alg} algorithm for signing the introspection response.
+ * This parameter corresponds to {@code introspection_signed_response_alg}
+ * defined in "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-6">
+ * 6. Client Metadata</a>" of "JWT Response for OAuth Token Introspection".
+ * </p>
+ * <p>
+ * The default value is {@code RS256}.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>introspectionEncryptionAlg</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The JWE {@code alg} algorithm for encrypting the introspection response.
+ * This parameter corresponds to {@code introspection_encrypted_response_alg}
+ * defined in "6. Client Metadata" of "JWT Response for OAuth Token Introspection".
+ * </p>
+ * <p>
+ * If the {@code introspectionEncryptionAlg} request parameter is specified,
+ * Authlete generates a JWT introspection response encrypted with the
+ * algorithm by this property and the algorithm specified by the {@code
+ * introspectionEncryptionEnc} request parameter.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>introspectionEncryptionEnc</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The JWE {@code enc} algorithm for encrypting the introspection
+ * response. This parameter corresponds to {@code introspection_encrypted_response_enc}
+ * defined in "6. Client Metadata" of "JWT Response for OAuth Token Introspection".
+ * </p>
+ * <p>
+ * The default value is {@code A128CBC_HS256}.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>sharedKeyForSign</code></b> (CONDITIONALLY REQUIRED)</dt>
+ * <dd>
+ * <p>
+ * The shared key for signing the introspection response with a symmetric
+ * algorithm.
+ * </p>
+ * <p>
+ * The {@code sharedKeyForSign} request parameter is required when the
+ * introspection response is requested to be signed with a symmetric
+ * algorithm.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>sharedKeyForEncryption</code></b> (CONDITIONALLY REQUIRED)</dt>
+ * <dd>
+ * <p>
+ * The shared key for encrypting the introspection response with a symmetric
+ * algorithm.
+ * </p>
+ * <p>
+ * The {@code sharedKeyForEncryption} request parameter is required
+ * when the introspection response is requested to be encrypted with a
+ * symmetric algorithm.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>publicKeyForEncryption</code></b> (CONDITIONALLY REQUIRED)</dt>
+ * <dd>
+ * <p>
+ * The public key for signing the introspection response with an asymmetric
+ * algorithm.
+ * </p>
+ * <p>
+ * The {@code publicKeyForEncryption} request parameter is required
+ * when the introspection response is requested to be encrypted with an
+ * asymmetric algorithm.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>introspectionSignatureKeyId</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The key ID of the key for signing the introspection response.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
  * @see <a href="https://tools.ietf.org/html/rfc7662">RFC 7662, OAuth 2.0 Token Introspection</a>
+ * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+ *      >JWT Response for OAuth Token Introspection</a>
  * @see StandardIntrospectionResponse
  * @see AuthleteApi#standardIntrospection(StandardIntrospectionRequest)
  *
  * @author Takahiko Kawasaki
+ * @author Hideki Ikeda
  *
  * @since 2.7
  */
@@ -99,6 +228,93 @@ public class StandardIntrospectionRequest implements Serializable
      * @since 2.83
      */
     private boolean withHiddenProperties;
+
+
+    /**
+     * The URI of the resource server making the introspection request.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private URI rsUri;
+
+
+    /**
+     * The value of the HTTP {@code Accept} header in the introspection request.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private String httpAcceptHeader;
+
+
+    /**
+     * The JWS {@code alg} algorithm for signing the introspection
+     * response.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private JWSAlg introspectionSignAlg;
+
+
+    /**
+     * The JWE {@code alg} algorithm for encrypting the content encryption
+     * key for the introspection response.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private JWEAlg introspectionEncryptionAlg;
+
+
+    /**
+     * The JWE {@code enc} algorithm for encrypting the content of the
+     * introspection response.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private JWEEnc introspectionEncryptionEnc;
+
+
+    /**
+     * The shared key for signing the introspection response with a symmetric
+     * algorithm.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private String sharedKeyForSign;
+
+
+    /**
+     * The shared key for encrypting the introspection response with a
+     * symmetric algorithm.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private String sharedKeyForEncryption;
+
+
+    /**
+     * The public key for encrypting the introspection response with an
+     * asymmetric algorithm.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private String publicKeyForEncryption;
+
+
+    /**
+     * The key ID of the key for signing the introspection response.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    private String introspectionSignatureKeyId;
 
 
     /**
@@ -188,6 +404,410 @@ public class StandardIntrospectionRequest implements Serializable
     public StandardIntrospectionRequest setWithHiddenProperties(boolean with)
     {
         this.withHiddenProperties = with;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the resource server making the introspection request.
+     *
+     * @return The URI of the resource server making the introspection
+     *         request.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    public URI getRsUri()
+    {
+        return rsUri;
+    }
+
+
+    /**
+     * Set the URI of the resource server making the introspection request.
+     *
+     * @param rsUri
+     *         The URI of the resource server making the introspection
+     *         request.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    public StandardIntrospectionRequest setRsUri(URI uri)
+    {
+        this.rsUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the HTTP {@code Accept} header in the introspection
+     * request.
+     *
+     * @return
+     *         The value of the HTTP {@code Accept} header in the introspection
+     *         request.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    public String getHttpAcceptHeader()
+    {
+        return httpAcceptHeader;
+    }
+
+
+    /**
+     * Set the value of the HTTP {@code Accept} header in the introspection
+     * request.
+     *
+     * @param header
+     *         The value of the HTTP {@code Accept} header in the introspection
+     *         request.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     */
+    public StandardIntrospectionRequest setHttpAcceptHeader(String header)
+    {
+        this.httpAcceptHeader = header;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWS {@code alg} algorithm for signing the introspection
+     * response. This property corresponds to {@code introspection_signed_response_alg}
+     * defined in "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-6">
+     * 6. Client Metadata</a>" of "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response">
+     * JWT Response for OAuth Token Introspection</a>".
+     *
+     * @return
+     *         The JWS {@code alg} algorithm for signing the introspection
+     *         response.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public JWSAlg getIntrospectionSignAlg()
+    {
+        return introspectionSignAlg;
+    }
+
+
+    /**
+     * Set the JWS {@code alg} algorithm for signing the introspection
+     * response. This property corresponds to {@code introspection_signed_response_alg}
+     * defined in "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-6">
+     * 6. Client Metadata</a>" of "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response">
+     * JWT Response for OAuth Token Introspection</a>".
+     *
+     * @param alg
+     *         The JWS {@code alg} algorithm for signing the introspection
+     *         response.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public StandardIntrospectionRequest setIntrospectionSignAlg(JWSAlg alg)
+    {
+        this.introspectionSignAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWE {@code alg} algorithm for encrypting the introspection
+     * response. This property corresponds to {@code introspection_encrypted_response_alg}
+     * defined in "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-6">
+     * 6. Client Metadata</a>" of "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response">
+     * JWT Response for OAuth Token Introspection</a>".
+     *
+     * @return
+     *         The JWE {@code alg} algorithm for encrypting the
+     *         introspection response.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public JWEAlg getIntrospectionEncryptionAlg()
+    {
+        return introspectionEncryptionAlg;
+    }
+
+
+    /**
+     * Set the JWE {@code alg} algorithm for encrypting the introspection
+     * response. This property corresponds to {@code introspection_encrypted_response_alg}
+     * defined in "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-6">
+     * 6. Client Metadata</a>" of "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response">
+     * JWT Response for OAuth Token Introspection</a>".
+     *
+     * @param alg
+     *         The JWE {@code alg} algorithm for encrypting the
+     *         introspection response.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public StandardIntrospectionRequest setIntrospectionEncryptionAlg(JWEAlg alg)
+    {
+        this.introspectionEncryptionAlg = alg;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWE {@code enc} algorithm for encrypting the introspection
+     * response. This property corresponds to {@code introspection_encrypted_response_enc}
+     * defined in "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-6">
+     * 6. Client Metadata</a>" of "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response">
+     * JWT Response for OAuth Token Introspection</a>".
+     *
+     * @return
+     *         The JWE {@code enc} algorithm for encrypting the introspection
+     *         response.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public JWEEnc getIntrospectionEncryptionEnc()
+    {
+        return introspectionEncryptionEnc;
+    }
+
+
+    /**
+     * Set the JWE {@code enc} algorithm for encrypting the introspection
+     * response. This property corresponds to {@code introspection_encrypted_response_enc}
+     * defined in "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response#section-6">
+     * 6. Client Metadata</a>" of "<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response">
+     * JWT Response for OAuth Token Introspection</a>".
+     *
+     * @param enc
+     *         The JWE {@code enc} algorithm for encrypting the introspection
+     *         response.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public StandardIntrospectionRequest setIntrospectionEncryptionEnc(JWEEnc enc)
+    {
+        this.introspectionEncryptionEnc = enc;
+
+        return this;
+    }
+
+
+    /**
+     * Get the shared key for signing the introspection response with
+     * a symmetric algorithm.
+     *
+     * @return
+     *         The shared key for signing the introspection response
+     *         with a symmetric algorithm.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public String getSharedKeyForSign()
+    {
+        return sharedKeyForSign;
+    }
+
+
+    /**
+     * Set the shared key for signing the introspection response with
+     * a symmetric algorithm.
+     *
+     * @param key
+     *         The shared key for signing the introspection response
+     *         with a symmetric algorithm.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public StandardIntrospectionRequest setSharedKeyForSign(String key)
+    {
+        this.sharedKeyForSign = key;
+
+        return this;
+    }
+
+
+    /**
+     * Get the shared key for encrypting the introspection response with
+     * a symmetric algorithm.
+     *
+     * @return
+     *         The shared key for encrypting the introspection response
+     *         with a symmetric algorithm.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public String getSharedKeyForEncryption()
+    {
+        return sharedKeyForEncryption;
+    }
+
+
+    /**
+     * Set the shared key for encrypting the introspection response with
+     * a symmetric algorithm.
+     *
+     * @param key
+     *         The shared key for encrypting the introspection response
+     *         with a symmetric algorithm.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public StandardIntrospectionRequest setSharedKeyForEncryption(String key)
+    {
+        this.sharedKeyForEncryption = key;
+
+        return this;
+    }
+
+
+    /**
+     * Get the public key for encrypting the introspection response with
+     * an asymmetric algorithm.
+     *
+     * @return
+     *         The public key for encrypting the introspection response
+     *         with an asymmetric algorithm.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public String getPublicKeyForEncryption()
+    {
+        return publicKeyForEncryption;
+    }
+
+
+    /**
+     * Set the public key for encrypting the introspection response with
+     * an asymmetric algorithm.
+     *
+     * @param key
+     *         The public key for encrypting the introspection response
+     *         with an asymmetric algorithm.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public StandardIntrospectionRequest setPublicKeyForEncryption(String key)
+    {
+        this.publicKeyForEncryption = key;
+
+        return this;
+    }
+
+
+    /**
+     * Get the key ID of the key for signing the introspection response.
+     *
+     * @return
+     *         The key ID of the key for signing the introspection response.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public String getIntrospectionSignatureKeyId()
+    {
+        return introspectionSignatureKeyId;
+    }
+
+
+    /**
+     * Set the key ID of the key for signing the introspection response.
+     *
+     * @param
+     *         The key ID of the key for signing the introspection response.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.76
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public StandardIntrospectionRequest setIntrospectionSignatureKeyId(String keyId)
+    {
+        this.introspectionSignatureKeyId = keyId;
 
         return this;
     }
