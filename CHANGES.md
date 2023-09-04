@@ -1,6 +1,18 @@
 CHANGES
 =======
 
+3.77 (2023-09-04)
+-----------------
+
+- `StandardIntrospectionRequest` class
+    * Removed `getIntrospectionSignatureKeyId()` method.
+    * Removed `setIntrospectionSignatureKeyId(String)` method.
+
+- `Service` class
+    * Added `getIntrospectionSignatureKeyId()` method.
+    * Added `setIntrospectionSignatureKeyId(String)` method.
+
+
 3.76 (2023-09-02)
 -----------------
 

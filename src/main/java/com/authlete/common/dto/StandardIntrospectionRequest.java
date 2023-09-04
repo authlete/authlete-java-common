@@ -191,15 +191,6 @@ import com.authlete.common.types.JWSAlg;
  * </p>
  * </dd>
  *
- * <dt><b><code>introspectionSignatureKeyId</code></b> (OPTIONAL)</dt>
- * <dd>
- * <p>
- * The key ID of the key for signing the introspection response.
- * </p>
- * </dd>
- * </dl>
- * </blockquote>
- *
  * @see <a href="https://tools.ietf.org/html/rfc7662">RFC 7662, OAuth 2.0 Token Introspection</a>
  * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
  *      >JWT Response for OAuth Token Introspection</a>
@@ -306,15 +297,6 @@ public class StandardIntrospectionRequest implements Serializable
      * @since Authlete 3.0
      */
     private String publicKeyForEncryption;
-
-
-    /**
-     * The key ID of the key for signing the introspection response.
-     *
-     * @since 3.76
-     * @since Authlete 3.0
-     */
-    private String introspectionSignatureKeyId;
 
 
     /**
@@ -767,47 +749,6 @@ public class StandardIntrospectionRequest implements Serializable
     public StandardIntrospectionRequest setPublicKeyForEncryption(String key)
     {
         this.publicKeyForEncryption = key;
-
-        return this;
-    }
-
-
-    /**
-     * Get the key ID of the key for signing the introspection response.
-     *
-     * @return
-     *         The key ID of the key for signing the introspection response.
-     *
-     * @since 3.76
-     * @since Authlete 3.0
-     *
-     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
-     *      >JWT Response for OAuth Token Introspection</a>
-     */
-    public String getIntrospectionSignatureKeyId()
-    {
-        return introspectionSignatureKeyId;
-    }
-
-
-    /**
-     * Set the key ID of the key for signing the introspection response.
-     *
-     * @param
-     *         The key ID of the key for signing the introspection response.
-     *
-     * @return
-     *         {@code this} object.
-     *
-     * @since 3.76
-     * @since Authlete 3.0
-     *
-     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
-     *      >JWT Response for OAuth Token Introspection</a>
-     */
-    public StandardIntrospectionRequest setIntrospectionSignatureKeyId(String keyId)
-    {
-        this.introspectionSignatureKeyId = keyId;
 
         return this;
     }
