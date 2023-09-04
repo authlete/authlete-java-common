@@ -1521,6 +1521,15 @@ public class Service implements Serializable
 
 
     /**
+     * The key ID of the key for signing introspection responses.
+     *
+     * @since 3.77
+     * @since Authlete 3.0
+     */
+    private String introspectionSignatureKeyId;
+
+
+    /**
      * Get the service number.
      *
      * @return
@@ -11274,6 +11283,47 @@ public class Service implements Serializable
     public Service setSupportedIntrospectionEncryptionEncs(JWEEnc[] encs)
     {
         this.supportedIntrospectionEncryptionEncs = encs;
+
+        return this;
+    }
+
+
+    /**
+     * Get the key ID of the key for signing introspection responses.
+     *
+     * @return
+     *         The key ID of the key for signing introspection responses.
+     *
+     * @since 3.77
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public String getIntrospectionSignatureKeyId()
+    {
+        return introspectionSignatureKeyId;
+    }
+
+
+    /**
+     * Set the key ID of the key for signing introspection responses.
+     *
+     * @param keyId
+     *         The key ID of the key for signing introspection responses.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.77
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-jwt-introspection-response"
+     *      >JWT Response for OAuth Token Introspection</a>
+     */
+    public Service setIntrospectionSignatureKeyId(String keyId)
+    {
+        this.introspectionSignatureKeyId = keyId;
 
         return this;
     }

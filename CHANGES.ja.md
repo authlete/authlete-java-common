@@ -1,6 +1,18 @@
 変更点
 ======
 
+3.77 (2023 年 09 月 04 日)
+--------------------------
+
+- `StandardIntrospectionResponse` クラス
+    * `getIntrospectionSignatureKeyId()` メソッドを削除。
+    * `setIntrospectionSignatureKeyId(String)` メソッドを削除。
+
+- `Service` クラス
+    * `getIntrospectionSignatureKeyId()` メソッドを追加。
+    * `setIntrospectionSignatureKeyId(String)` メソッドを追加。
+
+
 3.76 (2023 年 09 月 02 日)
 --------------------------
 
