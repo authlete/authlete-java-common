@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.78 (2023-09-16)
+-----------------
+
 - `AuthorizationResopnse` class
     * Added `getCredentialOfferInfo()` method.
     * Added `setCredentialOfferInfo(CredentialOfferInfo)` method.
