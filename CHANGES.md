@@ -7,6 +7,12 @@ CHANGES
     * Added `getIssuableCredentials()` method.
     * Added `setIssuableCredentials(String)` method.
 
+- `IntrospectionResponse` class
+    * Removed `getCredentials()` method.
+    * Removed `setCredentials(String)` method.
+    * Added `getIssuableCredentials()` method.
+    * Added `setIssuableCredentials(String)` method.
+
 
 3.77 (2023-09-04)
 -----------------

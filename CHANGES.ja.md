@@ -7,6 +7,12 @@
     * `getIssuableCredentials()` メソッドを追加。
     * `setIssuableCredentials(String)` メソッドを追加。
 
+- `IntrospectionResponse` クラス
+    * `getCredentials()` メソッドを削除。
+    * `setCredentials(String)` メソッドを削除。
+    * `getIssuableCredentials()` メソッドを追加。
+    * `setIssuableCredentials(String)` メソッドを追加。
+
 
 3.77 (2023 年 09 月 04 日)
 --------------------------

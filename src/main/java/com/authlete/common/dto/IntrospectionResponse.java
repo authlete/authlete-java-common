@@ -220,7 +220,7 @@ import com.authlete.common.util.Utils;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 19L;
+    private static final long serialVersionUID = 20L;
 
 
     /**
@@ -486,15 +486,6 @@ public class IntrospectionResponse extends ApiResponse
 
 
     /**
-     * The credentials offered by the token.
-     *
-     * @since 3.62
-     * @since Authlete 3.0
-     */
-    private String credentials;
-
-
-    /**
      * The {@code c_nonce}.
      *
      * @since 3.63
@@ -510,6 +501,15 @@ public class IntrospectionResponse extends ApiResponse
      * @since Authlete 3.0
      */
     private long cNonceExpiresAt;
+
+
+    /**
+     * The credentials that can be obtained by presenting the access token.
+     *
+     * @since 3.78
+     * @since Authlete 3.0
+     */
+    private String issuableCredentials;
 
 
     /**
@@ -1642,64 +1642,6 @@ public class IntrospectionResponse extends ApiResponse
 
 
     /**
-     * Get the credentials that the credential issuer can offer when the token
-     * is presented at the credential endpoint.
-     *
-     * <p>
-     * The value of this property corresponds to (1) the {@code credentials}
-     * property in the credential offer based on which the token was issued or
-     * (2) the content of the {@code authorization_details} element (whose type
-     * is {@code openid_credential}) that was included in the authorization
-     * request based on which the token was issued.
-     * </p>
-     *
-     * @return
-     *         The credentials that the credential issuer can offer when the
-     *         token is presented at the credential endpoint. The format is
-     *         a JSON array.
-     *
-     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
-     *      >OpenID for Verifiable Credential Issuance</a>
-     *
-     * @since 3.62
-     * @since Authlete 3.0
-     */
-    public String getCredentials()
-    {
-        return credentials;
-    }
-
-
-    /**
-     * Set the credentials that the credential issuer can offer when the token
-     * is presented at the credential endpoint.
-     *
-     * <p>
-     * The value of this property corresponds to (1) the {@code credentials}
-     * property in the credential offer based on which the token was issued or
-     * (2) the content of the {@code authorization_details} element (whose type
-     * is {@code openid_credential}) that was included in the authorization
-     * request based on which the token was issued.
-     * </p>
-     *
-     * @param credentials
-     *         The credentials that the credential issuer can offer when the
-     *         token is presented at the credential endpoint. The format is
-     *         a JSON array.
-     *
-     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
-     *      >OpenID for Verifiable Credential Issuance</a>
-     *
-     * @since 3.62
-     * @since Authlete 3.0
-     */
-    public void setCredentials(String credentials)
-    {
-        this.credentials = credentials;
-    }
-
-
-    /**
      * Get the {@code c_nonce} associated with the access token.
      *
      * <p>
@@ -1810,5 +1752,93 @@ public class IntrospectionResponse extends ApiResponse
     public void setCNonceExpiresAt(long expiresAt)
     {
         this.cNonceExpiresAt = expiresAt;
+    }
+
+
+    /**
+     * Get the credentials that can be obtained by presenting the access token.
+     *
+     * <p>
+     * The value of this property comes from one or more of the following sources.
+     * </p>
+     *
+     * <ol>
+     * <li>
+     * The "{@code credentials}" property in the credential offer that was used
+     * when the access token was issued. A credential offer may contain either
+     * or both an issuer state and a pre-authorized code. The issuer state can
+     * be used as the value of the "{@code issuer_state}" request parameter of
+     * an authorization request. The pre-authorized code can be used as the
+     * value of the "{@code pre-authorized_code}" request parameter of a token
+     * request whose "{@code grant_type}" is
+     * "{@code urn:ietf:params:oauth:grant-type:pre-authorized_code}".
+     *
+     * <li>
+     * The content of a RAR object whose "{@code type}" is
+     * "{@code openid_credential}". RAR objects can be listed in the
+     * "{@code authorization_details}" request parameter, which is defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc9396.html">RFC 9396 OAuth 2.0
+     * Rich Authorization Requests</a>.
+     *
+     * <li>
+     * The content of an entry in the "{@code credentials_supported}" metadata
+     * of the credential issuer. The identifier of an entry in the
+     * "{@code credentials_supported}" metadata can be used as a value in the
+     * "{@code scope}" request parameter.
+     * </ol>
+     *
+     * <p>
+     * The format of this property is a JSON array whose elements are JSON
+     * objects. The following is a simple example.
+     * </p>
+     *
+     * <pre>
+     * [
+     *   {
+     *     "format": "vc+sd-jwt",
+     *     "credential_definition": {
+     *       "type": "IdentityCredential"
+     *     }
+     *   }
+     * ]
+     * </pre>
+     *
+     * @return
+     *         The credentials that can be obtained by presenting the access
+     *         token.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.78
+     * @since Authlete 3.0
+     */
+    public String getIssuableCredentials()
+    {
+        return issuableCredentials;
+    }
+
+
+    /**
+     * Set the credentials that can be obtained by presenting the access token.
+     *
+     * <p>
+     * See the description of the {@link #getIssuableCredentials()} method for
+     * details about the content of this property.
+     * </p>
+     *
+     * @param credentials
+     *         The credentials that can be obtained by presenting the access
+     *         token.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.78
+     * @since Authlete 3.0
+     */
+    public void setIssuableCredentials(String credentials)
+    {
+        this.issuableCredentials = credentials;
     }
 }
