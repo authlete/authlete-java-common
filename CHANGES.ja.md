@@ -1,6 +1,13 @@
 変更点
 ======
 
+- `AuthorizationResopnse` クラス
+    * `getCredentialOfferInfo()` メソッドを追加。
+    * `setCredentialOfferInfo(CredentialOfferInfo)` メソッドを追加。
+    * `getIssuableCredentials()` メソッドを追加。
+    * `setIssuableCredentials(String)` メソッドを追加。
+
+
 3.77 (2023 年 09 月 04 日)
 --------------------------
 

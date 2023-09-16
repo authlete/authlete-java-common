@@ -768,6 +768,31 @@ import com.authlete.common.util.Utils;
  *     <br/>
  *
  *   <li>
+ *     <p><b>[ISSUABLE CREDENTIALS]</b>
+ *       An authorization request may specify issuable credentials by using
+ *       one or more of the following mechanisms in combination.
+ *     </p>
+ *     <br/>
+ *     <ol style="list-style-type: lower-roman;">
+ *       <li>The "{@code issuer_state}" request parameter.
+ *       <li>The "{@code authorization_details}" request parameter.
+ *       <li>The "{@code scope}" request parameter.
+ *     </ol>
+ *     <p>
+ *       When the authorization request specifies one or more issuable credentials,
+ *       the {@link #getIssuableCredentials()} method returns the information about
+ *       the issuable credentials. When the information is available, the
+ *       authorization server implementation should show the information to the user.
+ *     </p>
+ *     <br/>
+ *     <p>
+ *       Note that if scope values specifying issuable credentials are dropped
+ *       due to user disapproval, the resulting set of issuable credentials will
+ *       differ from the originally requested set in the authorization request.
+ *     </p>
+ *     <br/>
+ *
+ *   <li>
  *     <p><b>[END-USER AUTHENTICATION]</b>
  *       Necessarily, the end-user must be authenticated (= must login your
  *       service) before granting authorization to the client application.
@@ -805,6 +830,17 @@ import com.authlete.common.util.Utils;
  *           request parameter.
  *         </p>
  *         <br/>
+ *         <p>
+ *           Also, if {@link #getCredentialOfferInfo()} returns a non-null
+ *           value, it may be appropriate to use the value returned from
+ *           {@link #getCredentialOfferInfo()}{@code .}{@link
+ *           CredentialOfferInfo#getSubject() getSubject()} as a hint. The
+ *           value represents the unique identifier of the user who was
+ *           authenticated when the credential offer was issued by the
+ *           credential issuer. See the "OpenID for Verifiable Credential
+ *           Issuance" specification for details about the credential offer.
+ *         </p>
+ *         <br/>
  *       </li>
  *       <li>
  *         <p>
@@ -820,6 +856,17 @@ import com.authlete.common.util.Utils;
  *           the value of the login ID. {@link #getLoginHint()} method
  *           simply returns the value of the {@code login_hint} request
  *           parameter.
+ *         </p>
+ *         <br/>
+ *         <p>
+ *           Also, if {@link #getCredentialOfferInfo()} returns a non-null
+ *           value, it may be appropriate to use the value returned from
+ *           {@link #getCredentialOfferInfo()}{@code .}{@link
+ *           CredentialOfferInfo#getSubject() getSubject()} as a hint. The
+ *           value represents the unique identifier of the user who was
+ *           authenticated when the credential offer was issued by the
+ *           credential issuer. See the "OpenID for Verifiable Credential
+ *           Issuance" specification for details about the credential offer.
  *         </p>
  *         <br/>
  *       </li>
@@ -974,7 +1021,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 19L;
+    private static final long serialVersionUID = 20L;
 
 
     /**
@@ -1076,6 +1123,8 @@ public class AuthorizationResponse extends ApiResponse
     private Grant grant;
     private String[] requestedClaimsForTx;
     private StringArray[] requestedVerifiedClaimsForTx;
+    private CredentialOfferInfo credentialOfferInfo;
+    private String issuableCredentials;
     private String responseContent;
     private String ticket;
 
@@ -2643,6 +2692,149 @@ public class AuthorizationResponse extends ApiResponse
     public void setRequestedVerifiedClaimsForTx(StringArray[] claimsArray)
     {
         this.requestedVerifiedClaimsForTx = claimsArray;
+    }
+
+
+    /**
+     * Get the information about the credential offer identified by the
+     * "{@code issuer_state}" request parameter.
+     *
+     * <p>
+     * Before making an authorization request, a client application may obtain
+     * a <b>credential offer</b> from a <b>credential issuer</b>. If the
+     * credential offer contains an <b>issuer state</b>, the client can include
+     * the issuer state in an authorization request by using the request
+     * parameter, "{@code issuer_state}". The request parameter is defined in
+     * the "OpenID for Verifiable Credential Issuance" specification.
+     * </p>
+     *
+     * <p>
+     * When the feature of "Verifiable Credentials" is enabled, the Authlete
+     * server recognizes the "{@code issuer_state}" request parameter. When
+     * an authorization request contains the request parameter, Authlete
+     * retrieves information about the credential offer identified by the
+     * issuer state from the database and sets the information to this
+     * "{@code credentialOfferInfo}" response parameter.
+     * </p>
+     *
+     * @return
+     *         Information about the credential offer identified by the
+     *         "{@code issuer_state}" request parameter.
+     *
+     * @since 3.78
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     */
+    public CredentialOfferInfo getCredentialOfferInfo()
+    {
+        return credentialOfferInfo;
+    }
+
+
+    /**
+     * Set the information about the credential offer identified by the
+     * "{@code issuer_state}" request parameter.
+     *
+     * <p>
+     * See the description of the {@link #getCredentialOfferInfo()} method
+     * for details.
+     * </p>
+     *
+     * @param info
+     *         Information about the credential offer identified by the
+     *         "{@code issuer_state}" request parameter.
+     *
+     * @since 3.78
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     */
+    public void setCredentialOfferInfo(CredentialOfferInfo info)
+    {
+        this.credentialOfferInfo = info;
+    }
+
+
+    /**
+     * Get the information about the <b>issuable credentials</b> that can
+     * be obtained by presenting the access token that will be issued as a
+     * result of the authorization request.
+     *
+     * <p>
+     * An authorization request can specify <b>issuable credentials</b>
+     * by using one or more of the following mechanisms in combination.
+     * </p>
+     *
+     * <ol>
+     * <li>The "{@code issuer_state}" request parameter.
+     * <li>The "{@code authorization_details}" request parameter.
+     * <li>The "{@code scope}" request parameter.
+     * </ol>
+     *
+     * <p>
+     * When the authorization request specifies one or more issuable
+     * credentials, this property contains the information about the
+     * issuable credentials.
+     * </p>
+     *
+     * <p>
+     * The format of this property is a JSON array whose elements are JSON
+     * objects. The following is a simple example.
+     * </p>
+     *
+     * <pre>
+     * [
+     *   {
+     *     "format": "vc+sd-jwt",
+     *     "credential_definition": {
+     *       "type": "IdentityCredential"
+     *     }
+     *   }
+     * ]
+     * </pre>
+     *
+     * @return
+     *         Information about the issuable credentials specified by the
+     *         authorization request.
+     *
+     * @since 3.78
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     */
+    public String getIssuableCredentials()
+    {
+        return issuableCredentials;
+    }
+
+
+    /**
+     * Set the information about the <b>issuable credentials</b> that can
+     * be obtained by presenting the access token that will be issued as a
+     * result of the authorization request.
+     *
+     * <p>
+     * See the description of the {@link #getIssuableCredentials()} method
+     * for details.
+     * </p>
+     *
+     * @param credentials
+     *         Information about the issuable credentials specified by the
+     *         authorization request.
+     *
+     * @since 3.78
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     */
+    public void setIssuableCredentials(String credentials)
+    {
+        this.issuableCredentials = credentials;
     }
 
 
