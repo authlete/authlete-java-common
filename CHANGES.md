@@ -1,6 +1,18 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `credentialJwtIssuerMetadata(CredentialJwtIssuerMetadataRequest)` method.
+
+- `Service` class
+    * Added `getCredentialJwksUri()` method.
+    * Added `setCredentialJwksUri(URI)` method.
+
+- New types
+    * `CredentialJwtIssuerMetadataRequest` class
+    * `CredentialJwtIssuerMetadataResponse` class
+
+
 3.78 (2023-09-16)
 -----------------
 
@@ -84,7 +96,7 @@ CHANGES
 - `ClientAuthMethod` enum
     * Added `ATTEST_JWT_CLIENT_AUTH`.
 
-- New Types
+- New types
     * `ClientAssertionType` enum
 
 

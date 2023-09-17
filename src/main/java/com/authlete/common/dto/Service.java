@@ -334,7 +334,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 75L;
+    private static final long serialVersionUID = 76L;
 
 
     /*
@@ -1471,6 +1471,15 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private String credentialJwks;
+
+
+    /**
+     * The URL at which the JWK Set document of the credential issuer is exposed.
+     *
+     * @since 3.79
+     * @since Authlete 3.0
+     */
+    private URI credentialJwksUri;
 
 
     /**
@@ -11034,6 +11043,83 @@ public class Service implements Serializable
     public Service setCredentialJwks(String jwks)
     {
         this.credentialJwks = jwks;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URL at which the JWK Set document of the credential issuer is
+     * exposed.
+     *
+     * <p>
+     * The value of this property is referenced when Authlete's
+     * {@code /vci/jwtissuer} API generates the JSON representing the JWT
+     * issuer metadata. The JSON will be generated like below.
+     * </p>
+     *
+     * <blockquote>
+     * <pre>
+     * {
+     *   "issuer": "{@link Service#getCredentialIssuerMetadata()
+     *              getCredentialIssuerMetadata()}.{@link CredentialIssuerMetadata#getCredentialIssuer()
+     *              getCredentialIssuer()}",
+     *   "jwks_uri": "{@link Service#getCredentialJwksUri() getCredentialJwksUri()}"
+     * }
+     * </pre>
+     * </blockquote>
+     *
+     * @return
+     *         The URL at which the JWK Set document of the credential issuer
+     *         is exposed.
+     *
+     * @since 3.79
+     * @since Authlete 3.0
+     *
+     * @see com.authlete.common.api.AuthleteApi#credentialJwtIssuerMetadata(CredentialJwtIssuerMetadataRequest)
+     */
+    public URI getCredentialJwksUri()
+    {
+        return credentialJwksUri;
+    }
+
+
+    /**
+     * Set the URL at which the JWK Set document of the credential issuer is
+     * exposed.
+     *
+     * <p>
+     * The value of this property is referenced when Authlete's
+     * {@code /vci/jwtissuer} API generates the JSON representing the JWT
+     * issuer metadata. The JSON will be generated like below.
+     * </p>
+     *
+     * <blockquote>
+     * <pre>
+     * {
+     *   "issuer": "{@link Service#getCredentialIssuerMetadata()
+     *              getCredentialIssuerMetadata()}.{@link CredentialIssuerMetadata#getCredentialIssuer()
+     *              getCredentialIssuer()}",
+     *   "jwks_uri": "{@link Service#getCredentialJwksUri() getCredentialJwksUri()}"
+     * }
+     * </pre>
+     * </blockquote>
+     *
+     * @param uri
+     *         The URL at which the JWK Set document of the credential issuer
+     *         is exposed.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.79
+     * @since Authlete 3.0
+     *
+     * @see com.authlete.common.api.AuthleteApi#credentialJwtIssuerMetadata(CredentialJwtIssuerMetadataRequest)
+     */
+    public Service setCredentialJwksUri(URI uri)
+    {
+        this.credentialJwksUri = uri;
 
         return this;
     }

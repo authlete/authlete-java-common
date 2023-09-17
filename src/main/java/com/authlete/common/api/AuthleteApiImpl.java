@@ -69,6 +69,8 @@ import com.authlete.common.dto.CredentialIssuerJwksRequest;
 import com.authlete.common.dto.CredentialIssuerJwksResponse;
 import com.authlete.common.dto.CredentialIssuerMetadataRequest;
 import com.authlete.common.dto.CredentialIssuerMetadataResponse;
+import com.authlete.common.dto.CredentialJwtIssuerMetadataRequest;
+import com.authlete.common.dto.CredentialJwtIssuerMetadataResponse;
 import com.authlete.common.dto.CredentialOfferCreateRequest;
 import com.authlete.common.dto.CredentialOfferCreateResponse;
 import com.authlete.common.dto.CredentialOfferInfoRequest;
@@ -211,6 +213,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String FEDERATION_CONFIGURATION_API_PATH      = "/api/federation/configuration";
     private static final String FEDERATION_REGISTRATION_API_PATH       = "/api/federation/registration";
     private static final String VCI_METADATA_API_PATH                  = "/api/vci/metadata";
+    private static final String VCI_JWT_ISSUER_API_PATH                = "/api/vci/jwtissuer";
     private static final String VCI_JWKS_API_PATH                      = "/api/vci/jwks";
     private static final String VCI_OFFER_CREATE_API_PATH              = "/api/vci/offer/create";
     private static final String VCI_OFFER_INFO_API_PATH                = "/api/vci/offer/info";
@@ -1693,6 +1696,18 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 VCI_METADATA_API_PATH, request,
                 CredentialIssuerMetadataResponse.class);
+    }
+
+
+    @Override
+    public CredentialJwtIssuerMetadataResponse credentialJwtIssuerMetadata(
+            CredentialJwtIssuerMetadataRequest request) throws AuthleteApiException
+    {
+        // This API call fails because the /vci/jwtissuer API is unavailable
+        // in Authlete 2.x and older versions.
+        return callServicePostApi(
+                VCI_JWT_ISSUER_API_PATH, request,
+                CredentialJwtIssuerMetadataResponse.class);
     }
 
 
