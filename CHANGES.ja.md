@@ -1,6 +1,18 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `credentialJwtIssuerMetadata(CredentialJwtIssuerMetadataRequest)` メソッドを追加。
+
+- `Service` クラス
+    * `getCredentialJwksUri()` メソッドを追加。
+    * `setCredentialJwksUri(URI)` メソッドを追加。
+
+- 新しい型
+    * `CredentialJwtIssuerMetadataRequest` クラス
+    * `CredentialJwtIssuerMetadataResponse` クラス
+
+
 3.78 (2023 年 09 月 16 日)
 --------------------------
 
