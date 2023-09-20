@@ -93,150 +93,175 @@ public class Client implements Serializable
 
     /**
      * Client number.
+     * @since Authlete 0.1
      */
     private int number;
 
 
     /**
      * Service number.
+     * @since Authlete 0.1
      */
     private int serviceNumber;
 
 
     /**
      * Developer unique ID.
+     * @since Authlete 0.1
      */
     private String developer;
 
 
     /**
      * Client ID.
+     * @since Authlete 0.1
      */
     private long clientId;
 
 
     /**
      * Alias of Client ID.
+     * @since Authlete 0.1
      */
     private String clientIdAlias;
 
 
     /**
      * True when the client ID alias is enabled.
+     * @since Authlete 0.1
      */
     private boolean clientIdAliasEnabled;
 
 
     /**
      * Client secret.
+     * @since Authlete 0.1
      */
     private String clientSecret;
 
 
     /**
      * Client type.
+     * @since Authlete 0.1
      */
     private ClientType clientType;
 
 
     /**
      * Redirect URIs.
+     * @since Authlete 0.1
      */
     private String[] redirectUris;
 
 
     /**
      * Response types.
+     * @since Authlete 0.1
      */
     private ResponseType[] responseTypes;
 
 
     /**
      * Grant types.
+     * @since Authlete 0.1
      */
     private GrantType[] grantTypes;
 
 
     /**
      * Application type.
+     * @since Authlete 0.1
      */
     private ApplicationType applicationType;
 
 
     /**
      * Email addresses of contacts.
+     * @since Authlete 0.1
      */
     private String[] contacts;
 
 
     /**
      * Client name.
+     * @since Authlete 0.1
      */
     private String clientName;
 
 
     /**
      * Client names.
+     * @since Authlete 0.1
      */
     private TaggedValue[] clientNames;
 
 
     /**
      * Logo URI.
+     * @since Authlete 0.1
      */
     private URI logoUri;
 
 
     /**
      * Logo URIs.
+     * @since Authlete 0.1
      */
     private TaggedValue[] logoUris;
 
 
     /**
      * Client URI.
+     * @since Authlete 0.1
      */
     private URI clientUri;
 
 
     /**
      * Client URIs.
+     * @since Authlete 0.1
      */
     private TaggedValue[] clientUris;
 
 
     /**
      * Policy URI.
+     * @since Authlete 0.1
      */
     private URI policyUri;
 
 
     /**
      * Policy URIs.
+     * @since Authlete 0.1
      */
     private TaggedValue[] policyUris;
 
 
     /**
      * Terms of Service URI.
+     * @since Authlete 0.1
      */
     private URI tosUri;
 
 
     /**
      * Terms of Service URIs.
+     * @since Authlete 0.1
      */
     private TaggedValue[] tosUris;
 
 
     /**
      * JSON Web Key Set URI.
+     * @since Authlete 0.1
      */
     private URI jwksUri;
 
 
     /**
      * JSON Web Key Set.
+     * @since Authlete 0.1
      */
     private String jwks;
 
@@ -245,6 +270,7 @@ public class Client implements Serializable
      * Calculated sector identifier host component
      *
      * @since 2.61
+     * @since Authlete 2.2.1
      */
     private String derivedSectorIdentifier;
 
@@ -253,84 +279,281 @@ public class Client implements Serializable
      * Sector identifier URI.
      *
      * @since 2.50
+     * @since Authlete 2.2.1
      */
     private URI sectorIdentifierUri;
 
-
+    /**
+     * @since Authlete 0.1
+     */
     private SubjectType subjectType;
+    /**
+     * @since Authlete 0.1
+     */
     private JWSAlg idTokenSignAlg;
+    /**
+     * @since Authlete 0.1
+     */
     private JWEAlg idTokenEncryptionAlg;
+    /**
+     * @since Authlete 0.1
+     */
     private JWEEnc idTokenEncryptionEnc;
+    /**
+     * @since Authlete 0.1
+     */
     private JWSAlg userInfoSignAlg;
+    /**
+     * @since Authlete 0.1
+     */
     private JWEAlg userInfoEncryptionAlg;
+    /**
+     * @since Authlete 0.1
+     */
     private JWEEnc userInfoEncryptionEnc;
+    /**
+     * @since Authlete 0.1
+     */
     private JWSAlg requestSignAlg;
+    /**
+     * @since Authlete 0.1
+     */
     private JWEAlg requestEncryptionAlg;
+    /**
+     * @since Authlete 0.1
+     */
     private JWEEnc requestEncryptionEnc;
+    /**
+     * @since Authlete 0.1
+     */
     private ClientAuthMethod tokenAuthMethod;
+    /**
+     * @since Authlete 0.1
+     */
     private JWSAlg tokenAuthSignAlg;
+    /**
+     * @since Authlete 0.1
+     */
     private int defaultMaxAge;
+    /**
+     * @since Authlete 0.1
+     */
     private String[] defaultAcrs;
+    /**
+     * @since Authlete 0.1
+     */
     private boolean authTimeRequired;
+    /**
+     * @since Authlete 0.1
+     */
     private URI loginUri;
+    /**
+     * @since Authlete 0.1
+     */
     private String[] requestUris;
+    /**
+     * @since Authlete 0.1
+     */
     private String description;
+    /**
+     * @since Authlete 0.1
+     */
     private TaggedValue[] descriptions;
+    /**
+     * @since Authlete 0.1
+     */
     private long createdAt;
+    /**
+     * @since Authlete 0.1
+     */
     private long modifiedAt;
+    /**
+     * @since Authlete 0.1
+     */
     private ClientExtension extension;
+    /**
+     * @since Authlete 1.1.17
+     */
     private String tlsClientAuthSubjectDn;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String tlsClientAuthSanDns;
+    /**
+     * @since Authlete 2.0.0
+     */
     private URI tlsClientAuthSanUri;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String tlsClientAuthSanIp;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String tlsClientAuthSanEmail;
+    /**
+     * @since Authlete 1.1.19
+     */
     private boolean tlsClientCertificateBoundAccessTokens;
+    /**
+     * @since Authlete 1.1.19
+     */
     private String selfSignedCertificateKeyId;
+    /**
+     * @since Authlete 2.3.0
+     */
     private String softwareId;
+    /**
+     * @since Authlete 2.3.0
+     */
     private String softwareVersion;
+    /**
+     * @since Authlete 2.0.0
+     */
     private JWSAlg authorizationSignAlg;
+    /**
+     * @since Authlete 2.0.0
+     */
     private JWEAlg authorizationEncryptionAlg;
+    /**
+     * @since Authlete 2.0.0
+     */
     private JWEEnc authorizationEncryptionEnc;
+    /**
+     * @since Authlete 2.0.0
+     */
     private DeliveryMode bcDeliveryMode;
+    /**
+     * @since Authlete 2.0.0
+     */
     private URI bcNotificationEndpoint;
+    /**
+     * @since Authlete 2.0.0
+     */
     private JWSAlg bcRequestSignAlg;
+    /**
+     * @since Authlete 2.0.0
+     */
     private boolean bcUserCodeRequired;
+    /**
+     * @since Authlete 2.0.0
+     */
     private boolean dynamicallyRegistered;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String registrationAccessTokenHash;
+    /**
+     * @since Authlete 2.2.7
+     */
     private String[] authorizationDetailsTypes;
+    /**
+     * @since Authlete 2.2.1
+     */
     private boolean parRequired;
+    /**
+     * @since Authlete 2.2.1
+     */
     private boolean requestObjectRequired;
+    /**
+     * @since Authlete 2.2.3
+     */
     private Pair[] attributes;
+    /**
+     * @since Authlete 2.2.10
+     */
     private String customMetadata;
+    /**
+     * @since Authlete 2.2.10
+     */
     private boolean frontChannelRequestObjectEncryptionRequired;
+    /**
+     * @since Authlete 2.2.10
+     */
     private boolean requestObjectEncryptionAlgMatchRequired;
+    /**
+     * @since Authlete 2.2.10
+     */
     private boolean requestObjectEncryptionEncMatchRequired;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String digestAlgorithm;
+    /**
+     * @since Authlete 3.0.0
+     */
     private boolean singleAccessTokenPerSubject;
+    /**
+     * @since Authlete 3.0.0
+     */
     private boolean pkceRequired;
+    /**
+     * @since Authlete 3.0.0
+     */
     private boolean pkceS256Required;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String rsSignedRequestKeyId;
+    /**
+     * @since Authlete 3.0.0
+     */
     private boolean rsRequestSigned;
+    /**
+     * @since Authlete 3.0.0
+     */
     private boolean dpopRequired;
+    /**
+     * @since Authlete 2.3.7
+     */
     private boolean locked;
     private FapiMode[] fapiModes;
 
-    /*
+    /**
      * For OpenID Federation 1.0.
+     * @since Authlete 2.3.0
      */
     private URI entityId;
+    /**
+     * @since Authlete 2.3.0
+     */
     private URI trustAnchorId;
+    /**
+     * @since Authlete 2.3.0
+     */
     private String[] trustChain;
+    /**
+     * @since Authlete 2.3.0
+     */
     private long trustChainExpiresAt;
+    /**
+     * @since Authlete 2.3.0
+     */
     private long trustChainUpdatedAt;
+    /**
+     * @since Authlete 2.3.0
+     */
     private String organizationName;
+    /**
+     * @since Authlete 2.3.0
+     */
     private URI signedJwksUri;
+    /**
+     * @since Authlete 3.0.0
+     */
     private ClientRegistrationType[] clientRegistrationTypes;
+    /**
+     * @since Authlete 3.0.0
+     */
     private boolean automaticallyRegistered;
+    /**
+     * @since Authlete 3.0.0
+     */
     private boolean explicitlyRegistered;
 
-    /*
+    /**
      * For Verifiable Credentials
+     * @since Authlete 3.0
      */
     private URI credentialOfferEndpoint;
 

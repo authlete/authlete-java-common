@@ -48,7 +48,13 @@ public class HskListResponse extends ApiResponse
     }
 
 
+    /**
+     * @since Authlete 2.2.12
+     */
     private Action action;
+    /**
+     * @since Authlete 2.2.12
+     */
     private Hsk[] hsks;
 
 

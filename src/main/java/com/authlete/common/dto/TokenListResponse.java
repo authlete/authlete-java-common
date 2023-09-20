@@ -37,36 +37,42 @@ public class TokenListResponse implements Serializable
 
     /**
      * The start index (inclusive) for the result set of the query.
+     * @since Authlete 1.1.21
      */
     private int start;
 
 
     /**
      * The end index (exclusive) for the result set of the query.
+     * @since Authlete 1.1.21
      */
     private int end;
 
 
     /**
      * The client associated with the access tokens.
+     * @since Authlete 1.1.21
      */
     private Client client;
 
 
     /**
      * The identifier of the user associated with the access tokens.
+     * @since Authlete 1.1.21
      */
     private String subject;
 
 
     /**
      * The total count of access tokens.
+     * @since Authlete 1.1.21
      */
     private int totalCount;
 
 
     /**
      * The access token list extracted from the database.
+     * @since Authlete 1.1.21
      */
     private AccessToken[] accessTokens;
 

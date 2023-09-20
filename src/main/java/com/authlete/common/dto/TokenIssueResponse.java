@@ -138,29 +138,90 @@ public class TokenIssueResponse extends ApiResponse
 
     /**
      * The next action that the service implementation should take.
+     * @since Authlete 0.1
      */
     private Action action;
 
 
+    /**
+     * @since Authlete 0.1
+     */
     private String responseContent;
+    /**
+     * @since Authlete 0.1
+     */
     private String accessToken;
+    /**
+     * @since Authlete 0.1
+     */
     private long accessTokenExpiresAt;
+    /**
+     * @since Authlete 0.1
+     */
     private long accessTokenDuration;
+    /**
+     * @since Authlete 0.1
+     */
     private String refreshToken;
+    /**
+     * @since Authlete 0.1
+     */
     private long refreshTokenExpiresAt;
+    /**
+     * @since Authlete 0.1
+     */
     private long refreshTokenDuration;
+    /**
+     * @since Authlete 1.1.9
+     */
     private long clientId;
+    /**
+     * @since Authlete 1.1.9
+     */
     private String clientIdAlias;
+    /**
+     * @since Authlete 0.1
+     */
     private boolean clientIdAliasUsed;
+    /**
+     * @since Authlete 2.3.0
+     */
     private URI clientEntityId;
+    /**
+     * @since Authlete 2.3.0
+     */
     private boolean clientEntityIdUsed;
+    /**
+     * @since Authlete 0.1
+     */
     private String subject;
+    /**
+     * @since Authlete 0.1
+     */
     private String[] scopes;
+    /**
+     * @since Authlete 0.1
+     */
     private Property[] properties;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String jwtAccessToken;
+    /**
+     * @since Authlete 2.2.1
+     */
     private URI[] accessTokenResources;
+    /**
+     * @since Authlete 2.2.0
+     */
     private AuthzDetails authorizationDetails;
+    /**
+     * @since Authlete 2.2.3
+     */
     private Pair[] serviceAttributes;
+    /**
+     * @since Authlete 2.2.3
+     */
     private Pair[] clientAttributes;
 
 

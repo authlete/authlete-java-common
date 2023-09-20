@@ -1091,41 +1091,143 @@ public class AuthorizationResponse extends ApiResponse
      */
 
 
+    /**
+     * @since Authlete 0.1
+     */
     private Action action;
+    /**
+     * @since Authlete 0.1
+     */
     private Service service;
+    /**
+     * @since Authlete 0.1
+     */
     private Client client;
+    /**
+     * @since Authlete 0.1
+     */
     private Display display;
+    /**
+     * @since Authlete 0.1
+     */
     private int maxAge;
+    /**
+     * @since Authlete 0.1
+     */
     private Scope[] scopes;
+    /**
+     * @since Authlete 2.2.8
+     */
     private DynamicScope[] dynamicScopes;
+    /**
+     * @since Authlete 0.1
+     */
     private String[] uiLocales;
+    /**
+     * @since Authlete 0.1
+     */
     private String[] claimsLocales;
+    /**
+     * @since Authlete 0.1
+     */
     private String[] claims;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String[] claimsAtUserInfo;
+    /**
+     * @since Authlete 0.1
+     */
     private boolean acrEssential;
+    /**
+     * @since Authlete 0.1
+     */
     private boolean clientIdAliasUsed;
+    /**
+     * @since Authlete 2.3
+     */
     private boolean clientEntityIdUsed;
+    /**
+     * @since Authlete 0.1
+     */
     private String[] acrs;
+    /**
+     * @since Authlete 0.1
+     */
     private String subject;
+    /**
+     * @since Authlete 0.1
+     */
     private String loginHint;
+    /**
+     * @since Authlete 0.1
+     */
     private Prompt lowestPrompt;
+    /**
+     * @since Authlete 0.1
+     */
     private Prompt[] prompts;
+    /**
+     * @since Authlete 1.1.22
+     */
     private String requestObjectPayload;
+    /**
+     * @since Authlete 0.1
+     */
     private String idTokenClaims;
+    /**
+     * @since Authlete 0.1
+     */
     private String userInfoClaims;
+    /**
+     * @since Authlete 2.3
+     */
     private String transformedClaims;
+    /**
+     * @since Authlete 2.2.1
+     */
     private URI[] resources;
+    /**
+     * @since Authlete 2.2.0
+     */
     private AuthzDetails authorizationDetails;
+    /**
+     * @since Authlete 2.2.1
+     */
     private String purpose;
+    /**
+     * @since Authlete 3.0.0
+     */
     private GMAction gmAction;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String grantId;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String grantSubject;
+    /**
+     * @since Authlete 3.0.0
+     */
     private Grant grant;
+    /**
+     * @since Authlete 2.3
+     */
     private String[] requestedClaimsForTx;
+    /**
+     * @since Authlete 2.3
+     */
     private StringArray[] requestedVerifiedClaimsForTx;
     private CredentialOfferInfo credentialOfferInfo;
     private String issuableCredentials;
+    /**
+     * @since Authlete 0.1
+     */
     private String responseContent;
+    /**
+     * @since Authlete 0.1
+     */
     private String ticket;
 
 

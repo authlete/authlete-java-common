@@ -985,66 +985,182 @@ public class TokenResponse extends ApiResponse
         + "clientAuthMethod=%s";
 
 
+    /**
+     * @since Authlete 0.1
+     */
     private Action action;
+    /**
+     * @since Authlete 0.1
+     */
     private String responseContent;
+    /**
+     * @since Authlete 0.1
+     */
     private String username;
+    /**
+     * @since Authlete 0.1
+     */
     private String password;
+    /**
+     * @since Authlete 0.1
+     */
     private String ticket;
+    /**
+     * @since Authlete 2.2.0
+     */
     private String accessToken;
+    /**
+     * @since Authlete 2.2.0
+     */
     private long accessTokenExpiresAt;
+    /**
+     * @since Authlete 2.2.0
+     */
     private long accessTokenDuration;
+    /**
+     * @since Authlete 2.2.0
+     */
     private String refreshToken;
+    /**
+     * @since Authlete 2.2.0
+     */
     private long refreshTokenExpiresAt;
+    /**
+     * @since Authlete 2.2.0
+     */
     private long refreshTokenDuration;
+    /**
+     * @since Authlete 2.2.0
+     */
     private String idToken;
+    /**
+     * @since Authlete 1.1.9
+     */
     private GrantType grantType;
+    /**
+     * @since Authlete 1.1.9
+     */
     private long clientId;
+    /**
+     * @since Authlete 1.1.9
+     */
     private String clientIdAlias;
+    /**
+     * @since Authlete 1.1.9
+     */
     private boolean clientIdAliasUsed;
+    /**
+     * @since Authlete 2.3
+     */
     private URI clientEntityId;
+    /**
+     * @since Authlete 2.3
+     */
     private boolean clientEntityIdUsed;
+    /**
+     * @since Authlete 1.1.9
+     */
     private String subject;
+    /**
+     * @since Authlete 1.1.9
+     */
     private String[] scopes;
+    /**
+     * @since Authlete 1.1.9
+     */
     private Property[] properties;
+    /**
+     * @since Authlete 2.1
+     */
     private String jwtAccessToken;
     private ClientAuthMethod clientAuthMethod;
+    /**
+     * @since Authlete 2.2.1
+     */
     private URI[] resources;
+    /**
+     * @since Authlete 2.2.0
+     */
     private URI[] accessTokenResources;
+    /**
+     * @since Authlete 2.2.0
+     */
     private AuthzDetails authorizationDetails;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String grantId;
+    /**
+     * @since Authlete 2.2.3
+     */
     private Pair[] serviceAttributes;
+    /**
+     * @since Authlete 2.2.3
+     */
     private Pair[] clientAttributes;
 
-    /*
+    /**
      * For RFC 8693 OAuth 2.0 Token Exchange
+     *
+     * @since Authlete 2.3
      */
     private String[] audiences;
+    /**
+     * @since Authlete 2.3.0
+     */
     private TokenType requestedTokenType;
+    /**
+     * @since Authlete 2.3.0
+     */
     private String subjectToken;
+    /**
+     * @since Authlete 2.3.0
+     */
     private TokenType subjectTokenType;
+    /**
+     * @since Authlete 2.3.0
+     */
     private TokenInfo subjectTokenInfo;
+    /**
+     * @since Authlete 2.3.0
+     */
     private String actorToken;
+    /**
+     * @since Authlete 2.3.0
+     */
     private TokenType actorTokenType;
+    /**
+     * @since Authlete 2.3.0
+     */
     private TokenInfo actorTokenInfo;
 
-    /*
+    /**
      * For RFC 7523 JSON Web Token (JWT) Profile for OAuth 2.0
      * Client Authentication and Authorization Grants
+     * @since Authlete 2.3.0
      */
     private String assertion;
 
-    /*
+    /**
      * A flag indicating whether the previous refresh token that had been kept
      * in the database for a short time was used.
+     * @since Authlete 2.3.0
      */
     private boolean previousRefreshTokenUsed;
 
-    /*
+    /**
      * For the pre-authorized code flow defined in
      * OpenID for Verifiable Credential Issuance.
+     * @since Authlete 3.0.0
      */
     private String cNonce;
+    /**
+     * @since Authlete 3.0.0
+     */
     private long cNonceExpiresAt;
+    /**
+     * @since Authlete 3.0.0
+     */
     private long cNonceDuration;
 
     /**

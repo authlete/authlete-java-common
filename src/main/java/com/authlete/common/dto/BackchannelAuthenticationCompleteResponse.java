@@ -183,29 +183,101 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     }
 
 
+    /**
+     * @since Authlete 2.0.0
+     */
     private Action action;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String responseContent;
+    /**
+     * @since Authlete 2.0.0
+     */
     private long clientId;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String clientIdAlias;
+    /**
+     * @since Authlete 2.0.0
+     */
     private boolean clientIdAliasUsed;
+    /**
+     * @since Authlete 3.0.0
+     */
     private URI clientEntityId;
+    /**
+     * @since Authlete 3.0.0
+     */
     private boolean clientEntityIdUsed;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String clientName;
+    /**
+     * @since Authlete 2.0.0
+     */
     private DeliveryMode deliveryMode;
+    /**
+     * @since Authlete 2.0.0
+     */
     private URI clientNotificationEndpoint;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String clientNotificationToken;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String authReqId;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String accessToken;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String refreshToken;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String idToken;
+    /**
+     * @since Authlete 2.0.0
+     */
     private long accessTokenDuration;
+    /**
+     * @since Authlete 2.0.0
+     */
     private long refreshTokenDuration;
+    /**
+     * @since Authlete 2.0.0
+     */
     private long idTokenDuration;
+    /**
+     * @since Authlete 2.2.0
+     */
     private String jwtAccessToken;
+    /**
+     * @since Authlete 2.2.0
+     */
     private URI[] resources;
+    /**
+     * @since Authlete 2.2.0
+     */
     private AuthzDetails authorizationDetails;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String grantId;
+    /**
+     * @since Authlete 2.2.3
+     */
     private Pair[] serviceAttributes;
+    /**
+     * @since Authlete 2.2.3
+     */
     private Pair[] clientAttributes;
 
 

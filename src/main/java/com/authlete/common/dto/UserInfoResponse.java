@@ -303,48 +303,56 @@ public class UserInfoResponse extends ApiResponse
 
     /**
      * The next action the service implementation should take.
+     * @since Authlete 0.1
      */
     private Action action;
 
 
     /**
      * The client ID.
+     * @since Authlete 0.1
      */
     private long clientId;
 
 
     /**
      * Resource owner's user account.
+     * @since Authlete 0.1
      */
     private String subject;
 
 
     /**
      * Scopes.
+     * @since Authlete 0.1
      */
     private String[] scopes;
 
 
     /**
      * Claims that are requested by the client application.
+     * @since Authlete 0.1
      */
     private String[] claims;
 
 
     /**
      * The access token that came along with the userinfo request.
+     * @since Authlete 0.1
      */
     private String token;
 
 
     /**
      * Entity body of the response to the client.
+     * @since Authlete 0.1
      */
     private String responseContent;
 
 
     /**
      * Extra properties associated with the access token.
+     * @since Authlete 0.1
      */
     private Property[] properties;
 
@@ -352,6 +360,7 @@ public class UserInfoResponse extends ApiResponse
     /**
      * The client ID alias when the authorization request for
      * the access token was made.
+     * @since Authlete 0.1
      */
     private String clientIdAlias;
 
@@ -359,6 +368,7 @@ public class UserInfoResponse extends ApiResponse
     /**
      * Flag which indicates whether the client ID alias was used
      * when the authorization request for the access token was made.
+     * @since Authlete 0.1
      */
     private boolean clientIdAliasUsed;
 
@@ -384,18 +394,21 @@ public class UserInfoResponse extends ApiResponse
 
     /**
      * "userinfo" in "claims" of an authorization request.
+     * @since Authlete 2.2.1
      */
     private String userInfoClaims;
 
 
     /**
      * "transformed_claims" in "claims" of an authorization request.
+     * @since Authlete 2.3
      */
     private String transformedClaims;
 
 
     /**
      * Claims that the user has consented for the client application to know.
+     * @since Authlete 2.3
      */
     private String[] consentedClaims;
 
@@ -403,6 +416,7 @@ public class UserInfoResponse extends ApiResponse
     /**
      * Names of claims that will be referenced when transformed claims are
      * computed.
+     * @since Authlete 2.3
      */
     private String[] requestedClaimsForTx;
 
@@ -410,18 +424,21 @@ public class UserInfoResponse extends ApiResponse
     /**
      * Names of verified claims that will be referenced when transformed claims
      * are computed.
+     * @since Authlete 2.3
      */
     private StringArray[] requestedVerifiedClaimsForTx;
 
 
     /**
      * The attributes of the service that the client belongs to.
+     * @since Authlete 2.2.3
      */
     private Pair[] serviceAttributes;
 
 
     /**
      * The attributes of the client that the access token has been issued to.
+     * @since Authlete 2.2.3
      */
     private Pair[] clientAttributes;
 

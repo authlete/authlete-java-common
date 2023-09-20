@@ -254,7 +254,13 @@ public class StandardIntrospectionResponse extends ApiResponse
     private static final String SUMMARY_FORMAT = "action=%s, responseContent=%s";
 
 
+    /**
+     * @since Authlete 1.1.7
+     */
     private Action action;
+    /**
+     * @since Authlete 1.1.7
+     */
     private String responseContent;
 
 

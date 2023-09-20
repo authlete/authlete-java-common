@@ -226,8 +226,17 @@ public class FederationRegistrationResponse extends ApiResponse
     }
 
 
+    /**
+     * @since Authlete 2.3
+     */
     private Action action;
+    /**
+     * @since Authlete 2.3
+     */
     private String responseContent;
+    /**
+     * @since Authlete 2.3
+     */
     private Client client;
 
 

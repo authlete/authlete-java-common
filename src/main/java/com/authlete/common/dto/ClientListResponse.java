@@ -37,30 +37,35 @@ public class ClientListResponse implements Serializable
 
     /**
      * The start index (inclusive) for the result set of the query.
+     * @since Authlete 0.1
      */
     private int start;
 
 
     /**
      * The end index (exclusive) for the result set of the query.
+     * @since Authlete 0.1
      */
     private int end;
 
 
     /**
      * The developer of the targeted client applications.
+     * @since Authlete 0.1
      */
     private String developer;
 
 
     /**
      * The total count of client applications.
+     * @since Authlete 0.1
      */
     private int totalCount;
 
 
     /**
      * The client list extracted from the database.
+     * @since Authlete 0.1
      */
     private Client[] clients;
 

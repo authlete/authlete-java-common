@@ -70,7 +70,13 @@ public class BackchannelAuthenticationFailResponse extends ApiResponse
     }
 
 
+    /**
+     * @since Authlete 2.0.0
+     */
     private Action action;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String responseContent;
 
 

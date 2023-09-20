@@ -253,7 +253,13 @@ public class GMResponse extends ApiResponse
     }
 
 
+    /**
+     * @since Authlete 3.0.0
+     */
     private Action action;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String responseContent;
     private String dpopNonce;
 

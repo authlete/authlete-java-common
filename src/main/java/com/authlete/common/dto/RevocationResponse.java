@@ -246,7 +246,13 @@ public class RevocationResponse extends ApiResponse
     private static final String SUMMARY_FORMAT = "action=%s, responseContent=%s";
 
 
+    /**
+     * @since Authlete 0.1
+     */
     private Action action;
+    /**
+     * @since Authlete 0.1
+     */
     private String responseContent;
 
 

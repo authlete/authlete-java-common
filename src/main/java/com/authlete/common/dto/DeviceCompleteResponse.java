@@ -128,6 +128,9 @@ public class DeviceCompleteResponse extends ApiResponse
     }
 
 
+    /**
+     * @since Authlete 2.0.0
+     */
     private Action action;
 
 

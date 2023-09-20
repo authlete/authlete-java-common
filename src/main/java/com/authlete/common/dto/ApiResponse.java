@@ -29,7 +29,13 @@ public class ApiResponse implements Serializable
     private static final long serialVersionUID = 1L;
 
 
+    /**
+     * @since Authlete 0.1
+     */
     private String resultCode;
+    /**
+     * @since Authlete 0.1
+     */
     private String resultMessage;
 
 

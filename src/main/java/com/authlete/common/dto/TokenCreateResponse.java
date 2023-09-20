@@ -125,20 +125,65 @@ public class TokenCreateResponse extends ApiResponse
         + "accessToken=%s, tokenType=%s, expiresIn=%d, expiresAt=%d, refreshToken=%s";
 
 
+    /**
+     * @since Authlete 0.1
+     */
     private Action action;
+    /**
+     * @since Authlete 0.1
+     */
     private GrantType grantType;
+    /**
+     * @since Authlete 0.1
+     */
     private long clientId;
+    /**
+     * @since Authlete 0.1
+     */
     private String subject;
+    /**
+     * @since Authlete 0.1
+     */
     private String[] scopes;
+    /**
+     * @since Authlete 0.1
+     */
     private String accessToken;
+    /**
+     * @since Authlete 0.1
+     */
     private String tokenType;
+    /**
+     * @since Authlete 0.1
+     */
     private long expiresIn;
+    /**
+     * @since Authlete 0.1
+     */
     private long expiresAt;
+    /**
+     * @since Authlete 0.1
+     */
     private String refreshToken;
+    /**
+     * @since Authlete 0.1
+     */
     private Property[] properties;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String jwtAccessToken;
+    /**
+     * @since Authlete 2.2.14
+     */
     private AuthzDetails authorizationDetails;
+    /**
+     * @since Authlete 3.0.0
+     */
     private boolean forExternalAttachment;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String tokenId;
 
 

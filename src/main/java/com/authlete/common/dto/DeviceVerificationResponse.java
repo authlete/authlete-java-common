@@ -118,25 +118,85 @@ public class DeviceVerificationResponse extends ApiResponse
     }
 
 
+    /**
+     * @since Authlete 2.0.0
+     */
     private Action action;
+    /**
+     * @since Authlete 2.0.0
+     */
     private long clientId;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String clientIdAlias;
+    /**
+     * @since Authlete 2.0.0
+     */
     private boolean clientIdAliasUsed;
+    /**
+     * @since Authlete 3.0.0
+     */
     private URI clientEntityId;
+    /**
+     * @since Authlete 3.0.0
+     */
     private boolean clientEntityIdUsed;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String clientName;
+    /**
+     * @since Authlete 2.0.0
+     */
     private Scope[] scopes;
+    /**
+     * @since Authlete 2.2.0
+     */
     private DynamicScope[] dynamicScopes;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String[] claimNames;
+    /**
+     * @since Authlete 2.0.0
+     */
     private String[] acrs;
+    /**
+     * @since Authlete 2.0.0
+     */
     private long expiresAt;
+    /**
+     * @since Authlete 2.2.1
+     */
     private URI[] resources;
+    /**
+     * @since Authlete 2.2.0
+     */
     private AuthzDetails authorizationDetails;
+    /**
+     * @since Authlete 3.0.0
+     */
     private GMAction gmAction;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String grantId;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String grantSubject;
+    /**
+     * @since Authlete 3.0.0
+     */
     private Grant grant;
+    /**
+     * @since Authlete 2.2.3
+     */
     private Pair[] serviceAttributes;
+    /**
+     * @since Authlete 2.2.3
+     */
     private Pair[] clientAttributes;
 
 

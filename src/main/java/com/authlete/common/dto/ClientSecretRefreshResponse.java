@@ -29,7 +29,13 @@ public class ClientSecretRefreshResponse extends ApiResponse
     private static final long serialVersionUID = 1L;
 
 
+    /**
+     * @since Authlete 1.1.12
+     */
     private String newClientSecret;
+    /**
+     * @since Authlete 1.1.12
+     */
     private String oldClientSecret;
 
 

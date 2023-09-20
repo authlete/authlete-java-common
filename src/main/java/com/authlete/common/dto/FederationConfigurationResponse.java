@@ -184,8 +184,13 @@ public class FederationConfigurationResponse extends ApiResponse
         INTERNAL_SERVER_ERROR,
     }
 
-
+    /**
+     * @since Authlete 2.3
+     */
     private Action action;
+    /**
+     * @since Authlete 2.3
+     */
     private String responseContent;
 
 
