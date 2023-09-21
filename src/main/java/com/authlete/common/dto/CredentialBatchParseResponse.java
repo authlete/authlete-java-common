@@ -191,14 +191,12 @@ public class CredentialBatchParseResponse extends ApiResponse
 
     /**
      * The next action that the batch credential endpoint should take.
-     * @since Authlete 3.0
      */
     private Action action;
 
 
     /**
      * The content of the response to the request sender.
-     * @since Authlete 3.0
      */
     private String responseContent;
 
@@ -206,7 +204,6 @@ public class CredentialBatchParseResponse extends ApiResponse
     /**
      * Information about the credential requests in the batch credential
      * request.
-     * @since Authlete 3.0
      */
     private CredentialRequestInfo[] info;
 

@@ -22,34 +22,17 @@ package com.authlete.common.dto;
  * @author Takahiko Kawasaki
  *
  * @since 1.38
+ * @since Authlete 1.1
  */
 public class GrantedScopesGetResponse extends ApiResponse
 {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * @since Authlete 1.1
-     */
     private long serviceApiKey;
-    /**
-     * @since Authlete 1.1
-     */
     private long clientId;
-    /**
-     * @since Authlete 1.1
-     */
     private String subject;
-    /**
-     * @since Authlete 1.1
-     */
     private String[] latestGrantedScopes;
-    /**
-     * @since Authlete 1.1
-     */
     private String[] mergedGrantedScopes;
-    /**
-     * @since Authlete 1.1
-     */
     private long modifiedAt;
 
 

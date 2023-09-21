@@ -189,6 +189,7 @@ package com.authlete.common.dto;
  *      >Grant Management for OAuth 2.0</a>
  *
  * @since 3.1
+ * @since Authlete 3.0.0
  */
 public class GMResponse extends ApiResponse
 {
@@ -253,13 +254,7 @@ public class GMResponse extends ApiResponse
     }
 
 
-    /**
-     * @since Authlete 3.0.0
-     */
     private Action action;
-    /**
-     * @since Authlete 3.0.0
-     */
     private String responseContent;
     private String dpopNonce;
 

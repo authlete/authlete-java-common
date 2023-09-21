@@ -23,19 +23,14 @@ package com.authlete.common.dto;
  * @author Takahiko Kawasaki
  *
  * @since 2.11
+ * @since Authlete 1.1.12
  */
 public class ClientSecretUpdateResponse extends ApiResponse
 {
     private static final long serialVersionUID = 1L;
 
 
-    /**
-     * @since Authlete 1.1.12
-     */
     private String newClientSecret;
-    /**
-     * @since Authlete 1.1.12
-     */
     private String oldClientSecret;
 
 

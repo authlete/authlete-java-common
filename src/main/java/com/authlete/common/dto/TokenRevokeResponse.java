@@ -27,9 +27,6 @@ public class TokenRevokeResponse extends ApiResponse
     private static final long serialVersionUID = 1L;
 
 
-    /**
-     * @since Authlete 2.2.29
-     */
     private int count;
 
 

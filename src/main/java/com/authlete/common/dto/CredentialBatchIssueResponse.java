@@ -192,7 +192,6 @@ public class CredentialBatchIssueResponse extends ApiResponse
     /**
      * The next action that the implementation of the batch credential
      * endpoint should take.
-     * @since Authlete 3.0
      */
     private Action action;
 
@@ -200,7 +199,6 @@ public class CredentialBatchIssueResponse extends ApiResponse
     /**
      * The content of the response that the implementation of the batch
      * credential endpoint should return.
-     * @since Authlete 3.0
      */
     private String responseContent;
 

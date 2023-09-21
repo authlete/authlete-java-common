@@ -21,6 +21,7 @@ package com.authlete.common.dto;
  * Response from Authlete's {@code /api/jose/verify} API.
  *
  * @since 2.23
+ * @since Authlete 1.1.22
  */
 public class JoseVerifyResponse extends ApiResponse
 {
@@ -29,14 +30,12 @@ public class JoseVerifyResponse extends ApiResponse
 
     /**
      * The result of the verification on the JOSE object.
-     * @since Authlete 1.1.22
      */
     private boolean valid;
 
 
     /**
      * The result of the signature verification.
-     * @since Authlete 1.1.22
      */
     private boolean signatureValid;
 
@@ -44,21 +43,18 @@ public class JoseVerifyResponse extends ApiResponse
     /**
      * Claims that are not included although they are specified by the
      * mandatoryClaims request parameter.
-     * @since Authlete 1.1.22
      */
     private String[] missingClaims;
 
 
     /**
      * Invalid claims.
-     * @since Authlete 1.1.22
      */
     private String[] invalidClaims;
 
 
     /**
      * Error messages.
-     * @since Authlete 1.1.22
      */
     private String[] errorDescriptions;
 

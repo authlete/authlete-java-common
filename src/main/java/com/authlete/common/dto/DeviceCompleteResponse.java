@@ -77,6 +77,7 @@ package com.authlete.common.dto;
  * </dl>
  *
  * @since 2.42
+ * @since Authlete 2.0.0
  */
 public class DeviceCompleteResponse extends ApiResponse
 {
@@ -128,9 +129,6 @@ public class DeviceCompleteResponse extends ApiResponse
     }
 
 
-    /**
-     * @since Authlete 2.0.0
-     */
     private Action action;
 
 

@@ -187,21 +187,18 @@ public class CredentialSingleParseResponse extends ApiResponse
 
     /**
      * The next action that the credential endpoint should take.
-     * @since Authlete 3.0
      */
     private Action action;
 
 
     /**
      * The content of the response to the request sender.
-     * @since Authlete 3.0
      */
     private String responseContent;
 
 
     /**
      * Information about the credential request.
-     * @since Authlete 3.0
      */
     private CredentialRequestInfo info;
 

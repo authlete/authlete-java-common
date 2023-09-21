@@ -222,7 +222,6 @@ public class CredentialSingleIssueResponse extends ApiResponse
     /**
      * The next action that the implementation of the credential endpoint
      * should take.
-     * @since Authlete 3.0
      */
     private Action action;
 
@@ -230,14 +229,12 @@ public class CredentialSingleIssueResponse extends ApiResponse
     /**
      * The content of the response that the implementation of the credential
      * endpoint should return.
-     * @since Authlete 3.0
      */
     private String responseContent;
 
 
     /**
      * The issued transaction ID.
-     * @since Authlete 3.0
      */
     private String transactionId;
 

@@ -88,7 +88,6 @@ package com.authlete.common.dto;
  *
  * @since 3.68
  * @since Authlete 2.3.8
- * @since Authlete 3.0
  *
  * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#RefreshTokens"
  *      >OpenID Connect Core 1.0, 12.2. Successful Refresh Response</a>
@@ -111,17 +110,8 @@ public class IDTokenReissueResponse extends ApiResponse
     }
 
 
-    /**
-     * @since Authlete 2.3.8
-     */
     private Action action;
-    /**
-     * @since Authlete 2.3.8
-     */
     private String responseContent;
-    /**
-     * @since Authlete 2.3.8
-     */
     private String idToken;
 
 

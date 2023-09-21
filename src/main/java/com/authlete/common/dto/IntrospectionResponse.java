@@ -502,7 +502,7 @@ public class IntrospectionResponse extends ApiResponse
      * The Authentication Context Class Reference of the user authentication
      * that the authorization server performed during the course of issuing
      * the access token.
-     *ForExternalAttachment
+     *
      * @since 3.40
      * @since Authlete 2.3
      */

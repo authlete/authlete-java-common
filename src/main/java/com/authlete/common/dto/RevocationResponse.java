@@ -204,6 +204,7 @@ package com.authlete.common.dto;
  * @author Takahiko Kawasaki
  *
  * @since 1.16
+ * @since Authlete 1.1
  */
 public class RevocationResponse extends ApiResponse
 {
@@ -246,13 +247,7 @@ public class RevocationResponse extends ApiResponse
     private static final String SUMMARY_FORMAT = "action=%s, responseContent=%s";
 
 
-    /**
-     * @since Authlete 1.1
-     */
     private Action action;
-    /**
-     * @since Authlete 1.1
-     */
     private String responseContent;
 
 

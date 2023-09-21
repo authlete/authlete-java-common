@@ -380,234 +380,292 @@ public class Service implements Serializable
      * @since Authlete 1.1
      */
     private URI issuer;
+
     /**
      * @since Authlete 1.1
      */
     private URI authorizationEndpoint;
+
     /**
      * @since Authlete 1.1
      */
     private URI tokenEndpoint;
+
     /**
      * @since Authlete 1.1
      */
     private URI revocationEndpoint;
+
     /**
      * @since Authlete 1.1.19
      */
     private ClientAuthMethod[] supportedRevocationAuthMethods;
+
     /**
      * @since Authlete 1.1
      */
     private URI userInfoEndpoint;
+
     /**
      * @since Authlete 1.1
      */
     private URI jwksUri;
+
     /**
      * @since Authlete 1.1
      */
     private String jwks;
+
     /**
      * @since Authlete 1.1
      */
     private URI registrationEndpoint;
+
     /**
      * @since Authlete 2.0.0
      */
     private URI registrationManagementEndpoint;
+
     /**
      * @since Authlete 1.1
      */
     private Scope[] supportedScopes;
+
     /**
      * @since Authlete 1.1
      */
     private ResponseType[] supportedResponseTypes;
+
     /**
      * @since Authlete 1.1
      */
     private GrantType[] supportedGrantTypes;
+
     /**
      * @since Authlete 1.1
      */
     private String[] supportedAcrs;
+
     /**
      * @since Authlete 1.1
      */
     private ClientAuthMethod[] supportedTokenAuthMethods;
+
     /**
      * @since Authlete 1.1
      */
     private Display[] supportedDisplays;
+
     /**
      * @since Authlete 1.1
      */
     private ClaimType[] supportedClaimTypes;
+
     /**
      * @since Authlete 1.1
      */
     private String[] supportedClaims;
+
     /**
      * @since Authlete 1.1
      */
     private URI serviceDocumentation;
+
     /**
      * @since Authlete 1.1
      */
     private String[] supportedClaimLocales;
+
     /**
      * @since Authlete 1.1
      */
     private String[] supportedUiLocales;
+
     /**
      * @since Authlete 1.1
      */
     private URI policyUri;
+
     /**
      * @since Authlete 1.1
      */
     private URI tosUri;
+
     /**
      * @since Authlete 1.1
      */
     private URI authenticationCallbackEndpoint;
+
     /**
      * @since Authlete 1.1
      */
     private String authenticationCallbackApiKey;
+
     /**
      * @since Authlete 1.1
      */
     private String authenticationCallbackApiSecret;
+
     /**
      * @since Authlete 1.1
      */
     private Sns[] supportedSnses;
+
     /**
      * @since Authlete 1.1
      */
     private SnsCredentials[] snsCredentials;
+
     /**
      * @since Authlete 1.1
      */
     private long createdAt;
+
     /**
      * @since Authlete 1.1
      */
     private long modifiedAt;
+
     /**
      * @since Authlete 1.1
      */
     private URI developerAuthenticationCallbackEndpoint;
+
     /**
      * @since Authlete 1.1
      */
     private String developerAuthenticationCallbackApiKey;
+
     /**
      * @since Authlete 1.1
      */
     private String developerAuthenticationCallbackApiSecret;
+
     /**
      * @since Authlete 1.1
      */
     private Sns[] supportedDeveloperSnses;
+
     /**
      * @since Authlete 1.1
      */
     private SnsCredentials[] developerSnsCredentials;
+
     /**
      * @since Authlete 1.1
      */
     private int clientsPerDeveloper;
+
     /**
      * @since Authlete 1.1
      */
     private boolean directAuthorizationEndpointEnabled;
+
     /**
      * @since Authlete 1.1
      */
     private boolean directTokenEndpointEnabled;
+
     /**
      * @since Authlete 1.1
      */
     private boolean directRevocationEndpointEnabled;
+
     /**
      * @since Authlete 1.1
      */
     private boolean directUserInfoEndpointEnabled;
+
     /**
      * @since Authlete 1.1
      */
     private boolean directJwksEndpointEnabled;
+
     /**
      * @since Authlete 1.1
      */
     private boolean directIntrospectionEndpointEnabled;
+
     /**
      * @since Authlete 1.1
      */
     private boolean singleAccessTokenPerSubject;
+
     /**
      * @since Authlete 1.1
      */
     private boolean pkceRequired;
+
     /**
      * @since Authlete 1.1
      */
     private boolean pkceS256Required;
+
     /**
      * @since Authlete 1.1
      */
     private boolean refreshTokenKept;
+
     /**
      * @since Authlete 2.2.1
      */
     private boolean refreshTokenDurationKept;
+
     /**
      * @since Authlete 2.2.13
      */
     private boolean refreshTokenDurationReset;
+
     /**
      * @since Authlete 1.1
      */
     private boolean errorDescriptionOmitted;
+
     /**
      * @since Authlete 1.1
      */
     private boolean errorUriOmitted;
+
     /**
      * @since Authlete 1.1
      */
     private boolean clientIdAliasEnabled;
+
     /**
      * @since Authlete 1.1.19
      */
     private ServiceProfile[] supportedServiceProfiles;
+
     /**
      * @since Authlete 1.1.19
      */
     private boolean tlsClientCertificateBoundAccessTokens;
+
     /**
      * @since Authlete 1.1.19
      */
     private URI introspectionEndpoint;
+
     /**
      * @since Authlete 1.1.19
      */
     private ClientAuthMethod[] supportedIntrospectionAuthMethods;
+
     /**
      * @since Authlete 1.1.19
      */
     private boolean mutualTlsValidatePkiCertChain;
+
     /**
      * @since Authlete 1.1.19
      */
     private String[] trustedRootCertificates;
+
     /**
      * @since Authlete 2.0.0
      */
     private boolean dynamicRegistrationSupported;
+
     /**
      * @since Authlete 2.2.1
      */

@@ -203,6 +203,7 @@ import com.authlete.common.api.AuthleteApi;
  * @author Hideki Ikeda
  *
  * @since 2.7
+ * @since Authlete 1.1.7
  */
 public class StandardIntrospectionResponse extends ApiResponse
 {
@@ -254,13 +255,7 @@ public class StandardIntrospectionResponse extends ApiResponse
     private static final String SUMMARY_FORMAT = "action=%s, responseContent=%s";
 
 
-    /**
-     * @since Authlete 1.1.7
-     */
     private Action action;
-    /**
-     * @since Authlete 1.1.7
-     */
     private String responseContent;
 
 

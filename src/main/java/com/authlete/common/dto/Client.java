@@ -287,222 +287,277 @@ public class Client implements Serializable
      * @since Authlete 1.1
      */
     private SubjectType subjectType;
+
     /**
      * @since Authlete 1.1
      */
     private JWSAlg idTokenSignAlg;
+
     /**
      * @since Authlete 1.1
      */
     private JWEAlg idTokenEncryptionAlg;
+
     /**
      * @since Authlete 1.1
      */
     private JWEEnc idTokenEncryptionEnc;
+
     /**
      * @since Authlete 1.1
      */
     private JWSAlg userInfoSignAlg;
+
     /**
      * @since Authlete 1.1
      */
     private JWEAlg userInfoEncryptionAlg;
+
     /**
      * @since Authlete 1.1
      */
     private JWEEnc userInfoEncryptionEnc;
+
     /**
      * @since Authlete 1.1
      */
     private JWSAlg requestSignAlg;
+
     /**
      * @since Authlete 1.1
      */
     private JWEAlg requestEncryptionAlg;
+
     /**
      * @since Authlete 1.1
      */
     private JWEEnc requestEncryptionEnc;
+
     /**
      * @since Authlete 1.1
      */
     private ClientAuthMethod tokenAuthMethod;
+
     /**
      * @since Authlete 1.1
      */
     private JWSAlg tokenAuthSignAlg;
+
     /**
      * @since Authlete 1.1
      */
     private int defaultMaxAge;
+
     /**
      * @since Authlete 1.1
      */
     private String[] defaultAcrs;
+
     /**
      * @since Authlete 1.1
      */
     private boolean authTimeRequired;
+
     /**
      * @since Authlete 1.1
      */
     private URI loginUri;
+
     /**
      * @since Authlete 1.1
      */
     private String[] requestUris;
+
     /**
      * @since Authlete 1.1
      */
     private String description;
+
     /**
      * @since Authlete 1.1
      */
     private TaggedValue[] descriptions;
+
     /**
      * @since Authlete 1.1
      */
     private long createdAt;
+
     /**
      * @since Authlete 1.1
      */
     private long modifiedAt;
+
     /**
      * @since Authlete 1.1
      */
     private ClientExtension extension;
+
     /**
      * @since Authlete 1.1.17
      */
     private String tlsClientAuthSubjectDn;
+
     /**
      * @since Authlete 2.0.0
      */
     private String tlsClientAuthSanDns;
+
     /**
      * @since Authlete 2.0.0
      */
     private URI tlsClientAuthSanUri;
+
     /**
      * @since Authlete 2.0.0
      */
     private String tlsClientAuthSanIp;
+
     /**
      * @since Authlete 2.0.0
      */
     private String tlsClientAuthSanEmail;
+
     /**
      * @since Authlete 1.1.19
      */
     private boolean tlsClientCertificateBoundAccessTokens;
+
     /**
      * @since Authlete 1.1.19
      */
     private String selfSignedCertificateKeyId;
+
     /**
      * @since Authlete 2.3.0
      */
     private String softwareId;
+
     /**
      * @since Authlete 2.3.0
      */
     private String softwareVersion;
+
     /**
      * @since Authlete 2.0.0
      */
     private JWSAlg authorizationSignAlg;
+
     /**
      * @since Authlete 2.0.0
      */
     private JWEAlg authorizationEncryptionAlg;
+
     /**
      * @since Authlete 2.0.0
      */
     private JWEEnc authorizationEncryptionEnc;
+
     /**
      * @since Authlete 2.0.0
      */
     private DeliveryMode bcDeliveryMode;
+
     /**
      * @since Authlete 2.0.0
      */
     private URI bcNotificationEndpoint;
+
     /**
      * @since Authlete 2.0.0
      */
     private JWSAlg bcRequestSignAlg;
+
     /**
      * @since Authlete 2.0.0
      */
     private boolean bcUserCodeRequired;
+
     /**
      * @since Authlete 2.0.0
      */
     private boolean dynamicallyRegistered;
+
     /**
      * @since Authlete 2.0.0
      */
     private String registrationAccessTokenHash;
+
     /**
      * @since Authlete 2.2.7
      */
     private String[] authorizationDetailsTypes;
+
     /**
      * @since Authlete 2.2.1
      */
     private boolean parRequired;
+
     /**
      * @since Authlete 2.2.1
      */
     private boolean requestObjectRequired;
+
     /**
      * @since Authlete 2.2.3
      */
     private Pair[] attributes;
+
     /**
      * @since Authlete 2.2.10
      */
     private String customMetadata;
+
     /**
      * @since Authlete 2.2.10
      */
     private boolean frontChannelRequestObjectEncryptionRequired;
+
     /**
      * @since Authlete 2.2.10
      */
     private boolean requestObjectEncryptionAlgMatchRequired;
+
     /**
      * @since Authlete 2.2.10
      */
     private boolean requestObjectEncryptionEncMatchRequired;
+
     /**
      * @since Authlete 3.0.0
      */
     private String digestAlgorithm;
+
     /**
      * @since Authlete 3.0.0
      */
     private boolean singleAccessTokenPerSubject;
+
     /**
      * @since Authlete 3.0.0
      */
     private boolean pkceRequired;
+
     /**
      * @since Authlete 3.0.0
      */
     private boolean pkceS256Required;
+
     /**
      * @since Authlete 3.0.0
      */
     private String rsSignedRequestKeyId;
+
     /**
      * @since Authlete 3.0.0
      */
     private boolean rsRequestSigned;
+
     /**
      * @since Authlete 3.0.0
      */
     private boolean dpopRequired;
+
     /**
      * @since Authlete 2.3.7
      */
@@ -514,38 +569,47 @@ public class Client implements Serializable
      * @since Authlete 2.3.0
      */
     private URI entityId;
+
     /**
      * @since Authlete 2.3.0
      */
     private URI trustAnchorId;
+
     /**
      * @since Authlete 2.3.0
      */
     private String[] trustChain;
+
     /**
      * @since Authlete 2.3.0
      */
     private long trustChainExpiresAt;
+
     /**
      * @since Authlete 2.3.0
      */
     private long trustChainUpdatedAt;
+
     /**
      * @since Authlete 2.3.0
      */
     private String organizationName;
+
     /**
      * @since Authlete 2.3.0
      */
     private URI signedJwksUri;
+
     /**
      * @since Authlete 3.0.0
      */
     private ClientRegistrationType[] clientRegistrationTypes;
+
     /**
      * @since Authlete 3.0.0
      */
     private boolean automaticallyRegistered;
+
     /**
      * @since Authlete 3.0.0
      */

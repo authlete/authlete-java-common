@@ -22,6 +22,7 @@ package com.authlete.common.dto;
  * <code>/api/hsk/get/{handle}</code> API.
  *
  * @since 2.97
+ * @since Authlete 2.2.12
  */
 public class HskResponse extends ApiResponse
 {
@@ -55,13 +56,7 @@ public class HskResponse extends ApiResponse
     }
 
 
-    /**
-     * @since Authlete 2.2.12
-     */
     private Action action;
-    /**
-     * @since Authlete 2.2.12
-     */
     private Hsk hsk;
 
 

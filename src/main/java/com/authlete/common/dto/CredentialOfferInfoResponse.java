@@ -75,14 +75,12 @@ public class CredentialOfferInfoResponse extends ApiResponse
 
     /**
      * The result of the {@code /vci/offer/info} API call.
-     * @since Authlete 3.0
      */
     private Action action;
 
 
     /**
      * Information about the credential offer.
-     * @since Authlete 3.0
      */
     private CredentialOfferInfo info;
 

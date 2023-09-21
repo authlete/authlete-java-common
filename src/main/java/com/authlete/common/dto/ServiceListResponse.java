@@ -23,6 +23,7 @@ import java.io.Serializable;
  * Response from Authlete's {@code /service/get/list} API.
  *
  * @author Takahiko Kawasaki
+ * @since Authlete 1.1
  */
 public class ServiceListResponse implements Serializable
 {
@@ -37,28 +38,24 @@ public class ServiceListResponse implements Serializable
 
     /**
      * The start index (inclusive) for the result set of the query.
-     * @since Authlete 1.1
      */
     private int start;
 
 
     /**
      * The end index (exclusive) for the result set of the query.
-     * @since Authlete 1.1
      */
     private int end;
 
 
     /**
      * The total count of services.
-     * @since Authlete 1.1
      */
     private int totalCount;
 
 
     /**
      * The service list extracted from the database.
-     * @since Authlete 1.1
      */
     private Service[] services;
 

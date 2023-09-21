@@ -340,6 +340,7 @@ public class UserInfoIssueResponse extends ApiResponse
      * @since Authlete 1.1
      */
     private Action action;
+
     /**
      * @since Authlete 1.1
      */

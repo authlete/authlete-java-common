@@ -989,111 +989,139 @@ public class TokenResponse extends ApiResponse
      * @since Authlete 1.1
      */
     private Action action;
+
     /**
      * @since Authlete 1.1
      */
     private String responseContent;
+
     /**
      * @since Authlete 1.1
      */
     private String username;
+
     /**
      * @since Authlete 1.1
      */
     private String password;
+
     /**
      * @since Authlete 1.1
      */
     private String ticket;
+
     /**
      * @since Authlete 2.2.0
      */
     private String accessToken;
+
     /**
      * @since Authlete 2.2.0
      */
     private long accessTokenExpiresAt;
+
     /**
      * @since Authlete 2.2.0
      */
     private long accessTokenDuration;
+
     /**
      * @since Authlete 2.2.0
      */
     private String refreshToken;
+
     /**
      * @since Authlete 2.2.0
      */
     private long refreshTokenExpiresAt;
+
     /**
      * @since Authlete 2.2.0
      */
     private long refreshTokenDuration;
+
     /**
      * @since Authlete 2.2.0
      */
     private String idToken;
+
     /**
      * @since Authlete 1.1.9
      */
     private GrantType grantType;
+
     /**
      * @since Authlete 1.1.9
      */
     private long clientId;
+
     /**
      * @since Authlete 1.1.9
      */
     private String clientIdAlias;
+
     /**
      * @since Authlete 1.1.9
      */
     private boolean clientIdAliasUsed;
+
     /**
      * @since Authlete 2.3
      */
     private URI clientEntityId;
+
     /**
      * @since Authlete 2.3
      */
     private boolean clientEntityIdUsed;
+
     /**
      * @since Authlete 1.1.9
      */
     private String subject;
+
     /**
      * @since Authlete 1.1.9
      */
     private String[] scopes;
+
     /**
      * @since Authlete 1.1.9
      */
     private Property[] properties;
+
     /**
      * @since Authlete 2.1
      */
     private String jwtAccessToken;
+
     private ClientAuthMethod clientAuthMethod;
+
     /**
      * @since Authlete 2.2.1
      */
     private URI[] resources;
+
     /**
      * @since Authlete 2.2.0
      */
     private URI[] accessTokenResources;
+
     /**
      * @since Authlete 2.2.0
      */
     private AuthzDetails authorizationDetails;
+
     /**
      * @since Authlete 3.0.0
      */
     private String grantId;
+
     /**
      * @since Authlete 2.2.3
      */
     private Pair[] serviceAttributes;
+
     /**
      * @since Authlete 2.2.3
      */
@@ -1105,30 +1133,37 @@ public class TokenResponse extends ApiResponse
      * @since Authlete 2.3
      */
     private String[] audiences;
+
     /**
      * @since Authlete 2.3.0
      */
     private TokenType requestedTokenType;
+
     /**
      * @since Authlete 2.3.0
      */
     private String subjectToken;
+
     /**
      * @since Authlete 2.3.0
      */
     private TokenType subjectTokenType;
+
     /**
      * @since Authlete 2.3.0
      */
     private TokenInfo subjectTokenInfo;
+
     /**
      * @since Authlete 2.3.0
      */
     private String actorToken;
+
     /**
      * @since Authlete 2.3.0
      */
     private TokenType actorTokenType;
+
     /**
      * @since Authlete 2.3.0
      */
@@ -1154,10 +1189,12 @@ public class TokenResponse extends ApiResponse
      * @since Authlete 3.0.0
      */
     private String cNonce;
+
     /**
      * @since Authlete 3.0.0
      */
     private long cNonceExpiresAt;
+
     /**
      * @since Authlete 3.0.0
      */
