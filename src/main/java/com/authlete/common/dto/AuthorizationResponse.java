@@ -1219,7 +1219,13 @@ public class AuthorizationResponse extends ApiResponse
      * @since Authlete 2.3
      */
     private StringArray[] requestedVerifiedClaimsForTx;
+    /**
+     * @since Authlete 3.0.0
+     */
     private CredentialOfferInfo credentialOfferInfo;
+    /**
+     * @since Authlete 3.0.0
+     */
     private String issuableCredentials;
     /**
      * @since Authlete 0.1
