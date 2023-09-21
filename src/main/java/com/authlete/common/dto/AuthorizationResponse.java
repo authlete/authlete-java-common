@@ -1092,27 +1092,27 @@ public class AuthorizationResponse extends ApiResponse
 
 
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Action action;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Service service;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Client client;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Display display;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private int maxAge;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Scope[] scopes;
     /**
@@ -1120,15 +1120,15 @@ public class AuthorizationResponse extends ApiResponse
      */
     private DynamicScope[] dynamicScopes;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] uiLocales;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] claimsLocales;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] claims;
     /**
@@ -1136,11 +1136,11 @@ public class AuthorizationResponse extends ApiResponse
      */
     private String[] claimsAtUserInfo;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean acrEssential;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean clientIdAliasUsed;
     /**
@@ -1148,23 +1148,23 @@ public class AuthorizationResponse extends ApiResponse
      */
     private boolean clientEntityIdUsed;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] acrs;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String subject;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String loginHint;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Prompt lowestPrompt;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Prompt[] prompts;
     /**
@@ -1172,11 +1172,11 @@ public class AuthorizationResponse extends ApiResponse
      */
     private String requestObjectPayload;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String idTokenClaims;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String userInfoClaims;
     /**
@@ -1228,11 +1228,11 @@ public class AuthorizationResponse extends ApiResponse
      */
     private String issuableCredentials;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String responseContent;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String ticket;
 

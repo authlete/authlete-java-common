@@ -343,53 +343,53 @@ public class Service implements Serializable
 
     /**
      * Service number.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private int number;
 
 
     /**
      * Service owner number.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private int serviceOwnerNumber;
 
 
     /**
      * Service name.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String serviceName;
 
 
     /**
      * API key.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long apiKey;
 
 
     /**
      * API secret.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String apiSecret;
 
 
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI issuer;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI authorizationEndpoint;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI tokenEndpoint;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI revocationEndpoint;
     /**
@@ -397,19 +397,19 @@ public class Service implements Serializable
      */
     private ClientAuthMethod[] supportedRevocationAuthMethods;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI userInfoEndpoint;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI jwksUri;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String jwks;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI registrationEndpoint;
     /**
@@ -417,147 +417,147 @@ public class Service implements Serializable
      */
     private URI registrationManagementEndpoint;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Scope[] supportedScopes;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private ResponseType[] supportedResponseTypes;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private GrantType[] supportedGrantTypes;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] supportedAcrs;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private ClientAuthMethod[] supportedTokenAuthMethods;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Display[] supportedDisplays;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private ClaimType[] supportedClaimTypes;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] supportedClaims;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI serviceDocumentation;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] supportedClaimLocales;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] supportedUiLocales;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI policyUri;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI tosUri;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI authenticationCallbackEndpoint;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String authenticationCallbackApiKey;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String authenticationCallbackApiSecret;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Sns[] supportedSnses;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private SnsCredentials[] snsCredentials;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long createdAt;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long modifiedAt;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI developerAuthenticationCallbackEndpoint;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String developerAuthenticationCallbackApiKey;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String developerAuthenticationCallbackApiSecret;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Sns[] supportedDeveloperSnses;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private SnsCredentials[] developerSnsCredentials;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private int clientsPerDeveloper;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean directAuthorizationEndpointEnabled;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean directTokenEndpointEnabled;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean directRevocationEndpointEnabled;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean directUserInfoEndpointEnabled;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean directJwksEndpointEnabled;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean directIntrospectionEndpointEnabled;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean singleAccessTokenPerSubject;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean pkceRequired;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean pkceS256Required;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean refreshTokenKept;
     /**
@@ -569,15 +569,15 @@ public class Service implements Serializable
      */
     private boolean refreshTokenDurationReset;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean errorDescriptionOmitted;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean errorUriOmitted;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean clientIdAliasEnabled;
     /**
@@ -618,7 +618,7 @@ public class Service implements Serializable
 
     /**
      * Description of this service.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String description;
 
@@ -629,7 +629,7 @@ public class Service implements Serializable
      * @see <a href="https://tools.ietf.org/html/rfc6749#section-7.1"
      *      >RFC 6749 (OAuth 2.0), 7.1. Access Token Types</a>
      *
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String accessTokenType;
 
@@ -651,21 +651,21 @@ public class Service implements Serializable
 
     /**
      * Duration of access tokens in seconds.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long accessTokenDuration;
 
 
     /**
      * Duration of refresh tokens in seconds.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long refreshTokenDuration;
 
 
     /**
      * Duration of ID tokens in seconds.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long idTokenDuration;
 
@@ -692,7 +692,7 @@ public class Service implements Serializable
      * Metadata.
      *
      * @since 1.39
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Pair[] metadata;
 
@@ -723,7 +723,7 @@ public class Service implements Serializable
      * Key ID to identify a JWK used for ID token signature using an asymmetric key.
      *
      * @since 2.1
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String idTokenSignatureKeyId;
 
@@ -732,7 +732,7 @@ public class Service implements Serializable
      * Key ID to identify a JWK used for User Info signature using an asymmetric key.
      *
      * @since 2.1
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String userInfoSignatureKeyId;
 

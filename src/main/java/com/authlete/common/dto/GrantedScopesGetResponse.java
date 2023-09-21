@@ -28,27 +28,27 @@ public class GrantedScopesGetResponse extends ApiResponse
     private static final long serialVersionUID = 1L;
 
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long serviceApiKey;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long clientId;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String subject;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] latestGrantedScopes;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] mergedGrantedScopes;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long modifiedAt;
 

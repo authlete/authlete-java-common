@@ -680,7 +680,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
      */
     private String clientName;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private ClientAuthMethod clientAuthMethod;
     /**

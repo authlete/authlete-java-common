@@ -138,37 +138,37 @@ public class TokenIssueResponse extends ApiResponse
 
     /**
      * The next action that the service implementation should take.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Action action;
 
 
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String responseContent;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String accessToken;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long accessTokenExpiresAt;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long accessTokenDuration;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String refreshToken;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long refreshTokenExpiresAt;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long refreshTokenDuration;
     /**
@@ -180,7 +180,7 @@ public class TokenIssueResponse extends ApiResponse
      */
     private String clientIdAlias;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean clientIdAliasUsed;
     /**
@@ -192,15 +192,15 @@ public class TokenIssueResponse extends ApiResponse
      */
     private boolean clientEntityIdUsed;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String subject;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] scopes;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Property[] properties;
     /**

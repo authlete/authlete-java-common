@@ -201,31 +201,31 @@ public class AuthorizationIssueResponse extends ApiResponse
 
 
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Action action;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String responseContent;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String accessToken;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long accessTokenExpiresAt;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long accessTokenDuration;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String idToken;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String authorizationCode;
     /**

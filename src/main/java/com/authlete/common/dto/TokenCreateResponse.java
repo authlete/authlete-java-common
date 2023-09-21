@@ -126,47 +126,47 @@ public class TokenCreateResponse extends ApiResponse
 
 
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Action action;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private GrantType grantType;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long clientId;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String subject;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] scopes;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String accessToken;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String tokenType;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long expiresIn;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long expiresAt;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String refreshToken;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Property[] properties;
     /**

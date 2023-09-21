@@ -337,11 +337,11 @@ public class UserInfoIssueResponse extends ApiResponse
 
 
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Action action;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String responseContent;
 

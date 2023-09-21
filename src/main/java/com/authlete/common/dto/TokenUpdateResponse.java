@@ -128,11 +128,11 @@ public class TokenUpdateResponse extends ApiResponse
 
 
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Action action;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String accessToken;
     /**
@@ -140,16 +140,16 @@ public class TokenUpdateResponse extends ApiResponse
      */
     private String tokenType;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long accessTokenExpiresAt;
     private long refreshTokenExpiresAt;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] scopes;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Property[] properties;
     /**

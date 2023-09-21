@@ -986,23 +986,23 @@ public class TokenResponse extends ApiResponse
 
 
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Action action;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String responseContent;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String username;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String password;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String ticket;
     /**

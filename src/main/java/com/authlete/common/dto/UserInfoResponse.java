@@ -303,56 +303,56 @@ public class UserInfoResponse extends ApiResponse
 
     /**
      * The next action the service implementation should take.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Action action;
 
 
     /**
      * The client ID.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long clientId;
 
 
     /**
      * Resource owner's user account.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String subject;
 
 
     /**
      * Scopes.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] scopes;
 
 
     /**
      * Claims that are requested by the client application.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] claims;
 
 
     /**
      * The access token that came along with the userinfo request.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String token;
 
 
     /**
      * Entity body of the response to the client.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String responseContent;
 
 
     /**
      * Extra properties associated with the access token.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Property[] properties;
 
@@ -360,7 +360,7 @@ public class UserInfoResponse extends ApiResponse
     /**
      * The client ID alias when the authorization request for
      * the access token was made.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String clientIdAlias;
 
@@ -368,7 +368,7 @@ public class UserInfoResponse extends ApiResponse
     /**
      * Flag which indicates whether the client ID alias was used
      * when the authorization request for the access token was made.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean clientIdAliasUsed;
 

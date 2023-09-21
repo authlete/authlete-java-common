@@ -304,28 +304,28 @@ public class IntrospectionResponse extends ApiResponse
 
     /**
      * The next action the service implementation should take.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Action action;
 
 
     /**
      * The client ID.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long clientId;
 
 
     /**
      * Resource owner's user account.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String subject;
 
 
     /**
      * Scopes.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] scopes;
 
@@ -341,7 +341,7 @@ public class IntrospectionResponse extends ApiResponse
 
     /**
      * Flag to indicate whether the access token exists.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean existent;
 
@@ -349,42 +349,42 @@ public class IntrospectionResponse extends ApiResponse
     /**
      * Flag to indicate whether the access token is usable
      * (= exists and has not expired).
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean usable;
 
 
     /**
      * Flag to indicate whether the access token covers the required scopes.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean sufficient;
 
 
     /**
      * Flag to indicate whether the access token is refreshable.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean refreshable;
 
 
     /**
      * Entity body of the response to the client.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String responseContent;
 
 
     /**
      * The time at which the access token expires.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long expiresAt;
 
 
     /**
      * Extra properties associated with the access token.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private Property[] properties;
 
@@ -392,7 +392,7 @@ public class IntrospectionResponse extends ApiResponse
     /**
      * The client ID alias when the authorization request or the token request for
      * the access token was made.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String clientIdAlias;
 
@@ -400,7 +400,7 @@ public class IntrospectionResponse extends ApiResponse
     /**
      * Flag which indicates whether the client ID alias was used when the authorization
      * request or the token request for the access token was made.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean clientIdAliasUsed;
 

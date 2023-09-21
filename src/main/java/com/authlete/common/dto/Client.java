@@ -93,175 +93,175 @@ public class Client implements Serializable
 
     /**
      * Client number.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private int number;
 
 
     /**
      * Service number.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private int serviceNumber;
 
 
     /**
      * Developer unique ID.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String developer;
 
 
     /**
      * Client ID.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long clientId;
 
 
     /**
      * Alias of Client ID.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String clientIdAlias;
 
 
     /**
      * True when the client ID alias is enabled.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean clientIdAliasEnabled;
 
 
     /**
      * Client secret.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String clientSecret;
 
 
     /**
      * Client type.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private ClientType clientType;
 
 
     /**
      * Redirect URIs.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] redirectUris;
 
 
     /**
      * Response types.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private ResponseType[] responseTypes;
 
 
     /**
      * Grant types.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private GrantType[] grantTypes;
 
 
     /**
      * Application type.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private ApplicationType applicationType;
 
 
     /**
      * Email addresses of contacts.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] contacts;
 
 
     /**
      * Client name.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String clientName;
 
 
     /**
      * Client names.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private TaggedValue[] clientNames;
 
 
     /**
      * Logo URI.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI logoUri;
 
 
     /**
      * Logo URIs.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private TaggedValue[] logoUris;
 
 
     /**
      * Client URI.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI clientUri;
 
 
     /**
      * Client URIs.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private TaggedValue[] clientUris;
 
 
     /**
      * Policy URI.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI policyUri;
 
 
     /**
      * Policy URIs.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private TaggedValue[] policyUris;
 
 
     /**
      * Terms of Service URI.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI tosUri;
 
 
     /**
      * Terms of Service URIs.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private TaggedValue[] tosUris;
 
 
     /**
      * JSON Web Key Set URI.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI jwksUri;
 
 
     /**
      * JSON Web Key Set.
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String jwks;
 
@@ -284,91 +284,91 @@ public class Client implements Serializable
     private URI sectorIdentifierUri;
 
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private SubjectType subjectType;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private JWSAlg idTokenSignAlg;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private JWEAlg idTokenEncryptionAlg;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private JWEEnc idTokenEncryptionEnc;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private JWSAlg userInfoSignAlg;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private JWEAlg userInfoEncryptionAlg;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private JWEEnc userInfoEncryptionEnc;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private JWSAlg requestSignAlg;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private JWEAlg requestEncryptionAlg;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private JWEEnc requestEncryptionEnc;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private ClientAuthMethod tokenAuthMethod;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private JWSAlg tokenAuthSignAlg;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private int defaultMaxAge;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] defaultAcrs;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private boolean authTimeRequired;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private URI loginUri;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String[] requestUris;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String description;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private TaggedValue[] descriptions;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long createdAt;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private long modifiedAt;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private ClientExtension extension;
     /**

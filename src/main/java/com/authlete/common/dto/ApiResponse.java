@@ -30,11 +30,11 @@ public class ApiResponse implements Serializable
 
 
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String resultCode;
     /**
-     * @since Authlete 0.1
+     * @since Authlete 1.1
      */
     private String resultMessage;
 
