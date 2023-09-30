@@ -1,6 +1,21 @@
 CHANGES
 =======
 
+3.80 (2023-10-01)
+-----------------
+
+- `Client` class
+    * Added `getRequestTypes()` method.
+    * Added `setRequestTypes(RequestType[])` method.
+
+- `Service` class
+    * Added `getRequestTypes()` method.
+    * Added `setRequestTypes(RequestType[])` method.
+
+- New types
+    * `RequestType` enum
+
+
 3.79 (2023-09-17)
 -----------------
 

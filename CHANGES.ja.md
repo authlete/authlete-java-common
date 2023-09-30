@@ -1,6 +1,21 @@
 変更点
 ======
 
+3.80 (2023 年 10 月 01 日)
+-----------------
+
+- `Client` クラス
+    * `getRequestTypes()` メソッドを追加。
+    * `setRequestTypes(RequestType[])` メソッドを追加。
+
+- `Service` クラス
+    * `getRequestTypes()` メソッドを追加。
+    * `setRequestTypes(RequestType[])` メソッドを追加。
+
+- 新しい型
+    * `RequestType` 列挙型
+
+
 3.79 (2023 年 09 月 17 日)
 --------------------------
 
