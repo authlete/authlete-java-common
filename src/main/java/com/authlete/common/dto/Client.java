@@ -29,11 +29,13 @@ import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.ClientRegistrationType;
 import com.authlete.common.types.ClientType;
 import com.authlete.common.types.DeliveryMode;
+import com.authlete.common.types.FapiMode;
 import com.authlete.common.types.GrantType;
 import com.authlete.common.types.JWEAlg;
 import com.authlete.common.types.JWEEnc;
 import com.authlete.common.types.JWSAlg;
 import com.authlete.common.types.ResponseType;
+import com.authlete.common.types.ServiceProfile;
 import com.authlete.common.types.SubjectType;
 import com.authlete.common.util.ClientMetadataControl;
 import com.authlete.common.util.Utils;
@@ -80,7 +82,7 @@ import com.authlete.common.util.Utils;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 34L;
+    private static final long serialVersionUID = 35L;
 
 
     /*
@@ -311,6 +313,7 @@ public class Client implements Serializable
     private boolean rsRequestSigned;
     private boolean dpopRequired;
     private boolean locked;
+    private FapiMode[] fapiModes;
 
     /*
      * For OpenID Connect Federation 1.0.
@@ -4572,6 +4575,77 @@ public class Client implements Serializable
     public Client setLocked(boolean locked)
     {
         this.locked = locked;
+
+        return this;
+    }
+
+
+    /**
+     * Get the FAPI modes for this client.
+     *
+     * <p>
+     * When the value of this property is not {@code null}, Authlete always processes
+     * requests from this client based on the specified FAPI modes if the FAPI feature
+     * is enabled in Authlete, the {@link ServiceProfile#FAPI FAPI} profile is supported
+     * by the service, and the FAPI modes for the service are set to {@code null}.
+     * </p>
+     * <p>
+     * For instance, when this property is set to an array containing {@link
+     * FapiMode#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
+     * requests from this client based on "<a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html">
+     * Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>" if the FAPI feature
+     * is enabled in Authlete, the {@link ServiceProfile#FAPI FAPI} profile is supported
+     * by the service, and the FAPI modes for the service are set to {@code null}.
+     * </p>
+     *
+     * @return
+     *         The FAPI modes for this client.
+     *
+     * @since 3.80
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html"
+     *      >Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>
+     */
+    public FapiMode[] getFapiModes()
+    {
+        return fapiModes;
+    }
+
+
+    /**
+     * Set the FAPI modes for this client.
+     *
+     * <p>
+     * When the value of this property is not {@code null}, Authlete always processes
+     * requests from this client based on the specified FAPI modes if the FAPI feature
+     * is enabled in Authlete, the {@link ServiceProfile#FAPI FAPI} profile is supported
+     * by the service, and the FAPI modes for the service are set to {@code null}.
+     * </p>
+     * <p>
+     * For instance, when this property is set to an array containing {@link
+     * FapiMode#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
+     * requests from this client based on "<a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html">
+     * Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>" if the FAPI feature
+     * is enabled in Authlete, the {@link ServiceProfile#FAPI FAPI} profile is supported
+     * by the service, and the FAPI modes for the service are set to {@code null}.
+     * </p>
+     *
+     * @param modes
+     *         The FAPI modes for this client.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.80
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html"
+     *      >Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>
+     */
+    public Client setFapiModes(FapiMode[] modes)
+    {
+        this.fapiModes = modes;
 
         return this;
     }

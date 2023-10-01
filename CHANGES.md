@@ -1,6 +1,21 @@
 CHANGES
 =======
 
+3.80 (2023-10-01)
+-----------------
+
+- `Client` class
+    * Added `getFapiModes()` method.
+    * Added `setFapiModes(FapiMode[])` method.
+
+- `Service` class
+    * Added `getFapiModes()` method.
+    * Added `setFapiModes(FapiMode[])` method.
+
+- New types
+    * `FapiMode` enum
+
+
 3.79 (2023-09-17)
 -----------------
 

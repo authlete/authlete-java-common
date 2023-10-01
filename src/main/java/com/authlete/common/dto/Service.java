@@ -28,6 +28,7 @@ import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.ClientRegistrationType;
 import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.Display;
+import com.authlete.common.types.FapiMode;
 import com.authlete.common.types.GrantType;
 import com.authlete.common.types.JWEAlg;
 import com.authlete.common.types.JWEEnc;
@@ -334,7 +335,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 76L;
+    private static final long serialVersionUID = 77L;
 
 
     /*
@@ -1536,6 +1537,15 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private String introspectionSignatureKeyId;
+
+
+    /**
+     * The FAPI modes for this service.
+     *
+     * @since 3.80
+     * @since Authlete 3.0
+     */
+    private FapiMode[] fapiModes;
 
 
     /**
@@ -11410,6 +11420,77 @@ public class Service implements Serializable
     public Service setIntrospectionSignatureKeyId(String keyId)
     {
         this.introspectionSignatureKeyId = keyId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the FAPI modes for this service.
+     *
+     * <p>
+     * When the value of this property is not {@code null}, Authlete always processes
+     * requests to this service based on the specified FAPI modes if the FAPI
+     * feature is enabled in Authlete and the {@link ServiceProfile#FAPI FAPI}
+     * profile is supported by this service.
+     * </p>
+     * <p>
+     * For instance, when this property is set to an array containing {@link
+     * FapiMode#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
+     * requests to this service based on "<a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html">
+     * Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>" if the
+     * FAPI feature is enabled in Authlete and the {@link ServiceProfile#FAPI FAPI}
+     * profile is supported by this service.
+     * </p>
+     *
+     * @return
+     *         The FAPI modes for this service.
+     *
+     * @since 3.80
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html"
+     *      >Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>
+     */
+    public FapiMode[] getFapiModes()
+    {
+        return fapiModes;
+    }
+
+
+    /**
+     * Set the FAPI modes for this service.
+     *
+     * <p>
+     * When the value of this property is not {@code null}, Authlete always processes
+     * requests to this service based on the specified FAPI modes if the FAPI
+     * feature is enabled in Authlete and the {@link ServiceProfile#FAPI FAPI}
+     * profile is supported by this service.
+     * </p>
+     * <p>
+     * For instance, when this property is set to an array containing {@link
+     * FapiMode#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
+     * requests to this service based on "<a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html">
+     * Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>" if the
+     * FAPI feature is enabled in Authlete and the {@link ServiceProfile#FAPI FAPI}
+     * profile is supported by this service.
+     * </p>
+     *
+     * @param modes
+     *         The FAPI modes for this service.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.80
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html"
+     *      >Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>
+     */
+    public Service setFapiModes(FapiMode[] modes)
+    {
+        this.fapiModes = modes;
 
         return this;
     }

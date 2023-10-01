@@ -1,6 +1,21 @@
 変更点
 ======
 
+3.80 (2023 年 10 月 01 日)
+-----------------
+
+- `Client` クラス
+    * `getFapiModes()` メソッドを追加。
+    * `setFapiModes(FapiMode[])` メソッドを追加。
+
+- `Service` クラス
+    * `getFapiModees()` メソッドを追加。
+    * `setFapiModes(FapiMode[])` メソッドを追加。
+
+- 新しい型
+    * `FapiMode` 列挙型
+
+
 3.79 (2023 年 09 月 17 日)
 --------------------------
 
