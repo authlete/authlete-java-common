@@ -5,15 +5,15 @@ CHANGES
 -----------------
 
 - `Client` class
-    * Added `getRequestTypes()` method.
-    * Added `setRequestTypes(RequestType[])` method.
+    * Added `getFapiModes()` method.
+    * Added `setFapiModes(FapiMode[])` method.
 
 - `Service` class
-    * Added `getRequestTypes()` method.
-    * Added `setRequestTypes(RequestType[])` method.
+    * Added `getFapiModes()` method.
+    * Added `setFapiModes(FapiMode[])` method.
 
 - New types
-    * `RequestType` enum
+    * `FapiMode` enum
 
 
 3.79 (2023-09-17)

@@ -7,7 +7,7 @@ import java.util.EnumSet;
 /**
  * FAPI mode.
  *
- * @author Hideki Ikeda
+ * @since 3.80
  */
 public enum FapiMode
 {
@@ -34,14 +34,14 @@ public enum FapiMode
 
 
     /**
-     * {@code "fapi2_security_profile"} (3).
+     * {@code "fapi2_security"} (3).
      *
      * <p>
      * The request type for "<a href="https://openid.net/specs/fapi-2_0-security-02.html">
      * FAPI 2.0 Security Profile</a>".
      * </p>
      */
-    FAPI2_SECURITY_PROFILE((short)3, "fapi2_security_profile"),
+    FAPI2_SECURITY((short)3, "fapi2_security"),
 
 
     /**
@@ -51,10 +51,10 @@ public enum FapiMode
      * The request type for "<a href="https://openid.net/specs/fapi-2_0-message-signing.html#section-5.3">
      * 5.3. Signing Authorization Requests</a>" of "<a href="
      * https://openid.net/specs/fapi-2_0-message-signing.html">FAPI 2.0
-     * Message Signing</a>".
+     * Message Signing Profile</a>".
      * </p>
      */
-    FAPI2_MS_AUTH_REQ((short)4, "fapi2_ms_auth_req"),
+    FAPI2_MESSAGE_SIGNING_AUTH_REQ((short)4, "fapi2_message_signing_auth_req"),
 
 
     /**
@@ -64,10 +64,10 @@ public enum FapiMode
      * The request type for "<a href="https://openid.net/specs/fapi-2_0-message-signing.html#section-5.4">
      * 5.4. Signing Authorization Responses</a>" of "<a href="
      * https://openid.net/specs/fapi-2_0-message-signing.html">FAPI 2.0
-     * Message Signing</a>".
+     * Message Signing Profile</a>".
      * </p>
      */
-    FAPI2_MS_AUTH_RES((short)5, "fapi2_ms_auth_res"),
+    FAPI2_MESSAGE_SIGNING_AUTH_RES((short)5, "fapi2_message_signing_auth_res"),
 
 
     /**
@@ -77,10 +77,10 @@ public enum FapiMode
      * The request type for "<a href="https://openid.net/specs/fapi-2_0-message-signing.html#section-5.5">
      * 5.5. Signing Introspection Responses</a>" of "<a href="
      * https://openid.net/specs/fapi-2_0-message-signing.html">FAPI 2.0
-     * Message Signing</a>".
+     * Message Signing Profile</a>".
      * </p>
      */
-    FAPI2_MS_INTROSPECTION_RES((short)6, "fapi2_ms_introspection_res"),
+    FAPI2_MESSAGE_SIGNING_INTROSPECTION_RES((short)6, "fapi2_message_signing_introspection_res"),
     ;
 
 
@@ -144,24 +144,24 @@ public enum FapiMode
 
 
     /**
-     * Convert {@code String} to {@code RequestType}.
+     * Convert {@code String} to {@code FapiMode}.
      *
-     * @param requestType
-     *         A request type. For example, {@code "fapi2_security_profile"}.
+     * @param fapiMode
+     *         A FAPI mode. For example, {@code "fapi1_advanced"}.
      *
      * @return
-     *         {@code RequestType} instance, or {@code null}.
+     *         {@code FapiMode} instance, or {@code null}.
      */
-    public static FapiMode parse(String requestType)
+    public static FapiMode parse(String fapiMode)
     {
-        if (requestType == null)
+        if (fapiMode == null)
         {
             return null;
         }
 
         for (FapiMode value : sValues)
         {
-            if (value.mString.equals(requestType))
+            if (value.mString.equals(fapiMode))
             {
                 // Found.
                 return value;
