@@ -4587,15 +4587,15 @@ public class Client implements Serializable
      * When the value of this property is not {@code null}, Authlete always processes
      * requests from this client based on the specified FAPI modes if the FAPI feature
      * is enabled in Authlete, the {@link ServiceProfile#FAPI FAPI} profile is supported
-     * by this service, and the FAPI modes for the service are set to {@code null}.
+     * by the service, and the FAPI modes for the service are set to {@code null}.
      * </p>
      * <p>
      * For instance, when this property is set to an array containing {@link
-     * RequestType#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
+     * FapiMode#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
      * requests from this client based on "<a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html">
      * Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>" if the FAPI feature
      * is enabled in Authlete, the {@link ServiceProfile#FAPI FAPI} profile is supported
-     * by this service, and the FAPI modes for the service are set to {@code null}.
+     * by the service, and the FAPI modes for the service are set to {@code null}.
      * </p>
      *
      * @return
@@ -4620,15 +4620,15 @@ public class Client implements Serializable
      * When the value of this property is not {@code null}, Authlete always processes
      * requests from this client based on the specified FAPI modes if the FAPI feature
      * is enabled in Authlete, the {@link ServiceProfile#FAPI FAPI} profile is supported
-     * by this service, and the FAPI modes for the service are set to {@code null}.
+     * by the service, and the FAPI modes for the service are set to {@code null}.
      * </p>
      * <p>
      * For instance, when this property is set to an array containing {@link
-     * RequestType#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
+     * FapiMode#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
      * requests from this client based on "<a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html">
      * Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>" if the FAPI feature
      * is enabled in Authlete, the {@link ServiceProfile#FAPI FAPI} profile is supported
-     * by this service, and the FAPI modes for the service are set to {@code null}.
+     * by the service, and the FAPI modes for the service are set to {@code null}.
      * </p>
      *
      * @param modes

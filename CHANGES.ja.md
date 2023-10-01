@@ -5,15 +5,15 @@
 -----------------
 
 - `Client` クラス
-    * `getRequestTypes()` メソッドを追加。
-    * `setRequestTypes(RequestType[])` メソッドを追加。
+    * `getFapiModes()` メソッドを追加。
+    * `setFapiModes(FapiMode[])` メソッドを追加。
 
 - `Service` クラス
-    * `getRequestTypes()` メソッドを追加。
-    * `setRequestTypes(RequestType[])` メソッドを追加。
+    * `getFapiModees()` メソッドを追加。
+    * `setFapiModes(FapiMode[])` メソッドを追加。
 
 - 新しい型
-    * `RequestType` 列挙型
+    * `FapiMode` 列挙型
 
 
 3.79 (2023 年 09 月 17 日)

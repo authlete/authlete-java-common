@@ -144,24 +144,24 @@ public enum FapiMode
 
 
     /**
-     * Convert {@code String} to {@code RequestType}.
+     * Convert {@code String} to {@code FapiMode}.
      *
-     * @param requestType
-     *         A request type. For example, {@code "fapi2_security_profile"}.
+     * @param fapiMode
+     *         A FAPI mode. For example, {@code "fapi2_security_profile"}.
      *
      * @return
-     *         {@code RequestType} instance, or {@code null}.
+     *         {@code FapiMode} instance, or {@code null}.
      */
-    public static FapiMode parse(String requestType)
+    public static FapiMode parse(String fapiMode)
     {
-        if (requestType == null)
+        if (fapiMode == null)
         {
             return null;
         }
 
         for (FapiMode value : sValues)
         {
-            if (value.mString.equals(requestType))
+            if (value.mString.equals(fapiMode))
             {
                 // Found.
                 return value;

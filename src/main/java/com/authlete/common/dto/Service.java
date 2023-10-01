@@ -11436,7 +11436,7 @@ public class Service implements Serializable
      * </p>
      * <p>
      * For instance, when this property is set to an array containing {@link
-     * RequestType#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
+     * FapiMode#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
      * requests to this service based on "<a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html">
      * Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>" if the
      * FAPI feature is enabled in Authlete and the {@link ServiceProfile#FAPI FAPI}
@@ -11469,7 +11469,7 @@ public class Service implements Serializable
      * </p>
      * <p>
      * For instance, when this property is set to an array containing {@link
-     * RequestType#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
+     * FapiMode#FAPI1_ADVANCED FAPI1_ADVANCED} only, Authlete always processes
      * requests to this service based on "<a href="https://openid.net/specs/openid-financial-api-part-2-1_0.html">
      * Financial-grade API Security Profile 1.0 - Part 2: Advanced</a>" if the
      * FAPI feature is enabled in Authlete and the {@link ServiceProfile#FAPI FAPI}
