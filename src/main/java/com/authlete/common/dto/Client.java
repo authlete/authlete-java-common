@@ -4614,7 +4614,7 @@ public class Client implements Serializable
 
 
     /**
-     * Set the request types for this client.
+     * Set the FAPI modes for this client.
      *
      * <p>
      * When the value of this property is not {@code null}, Authlete always processes
