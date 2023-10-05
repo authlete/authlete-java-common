@@ -456,21 +456,21 @@ public class IntrospectionResponse extends ApiResponse
 
     /**
      * Grant ID that this access token is tied to.
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String grantId;
 
 
     /**
      * Grant that this access token has inherited.
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private Grant grant;
 
 
     /**
      * Claims that the user has consented for the client application to know.
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String[] consentedClaims;
 
@@ -493,7 +493,7 @@ public class IntrospectionResponse extends ApiResponse
      * Flag that indicates whether the token is for an external attachment.
      *
      * @since 3.16
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean forExternalAttachment;
 

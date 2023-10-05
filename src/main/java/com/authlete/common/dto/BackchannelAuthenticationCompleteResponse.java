@@ -209,12 +209,12 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     private boolean clientIdAliasUsed;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private URI clientEntityId;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean clientEntityIdUsed;
 
@@ -289,7 +289,7 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
     private AuthzDetails authorizationDetails;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String grantId;
 

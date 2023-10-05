@@ -348,19 +348,19 @@ public class UserInfoIssueResponse extends ApiResponse
 
     /**
      * The signature header of the response message.
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String signature;
 
     /**
      * The signature-input header of the response message
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String signatureInput;
 
     /**
      * The content-digest header of the response message
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String contentDigest;
 

@@ -524,37 +524,37 @@ public class Client implements Serializable
     private boolean requestObjectEncryptionEncMatchRequired;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String digestAlgorithm;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean singleAccessTokenPerSubject;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean pkceRequired;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean pkceS256Required;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String rsSignedRequestKeyId;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean rsRequestSigned;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean dpopRequired;
 
@@ -601,17 +601,17 @@ public class Client implements Serializable
     private URI signedJwksUri;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private ClientRegistrationType[] clientRegistrationTypes;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean automaticallyRegistered;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean explicitlyRegistered;
 

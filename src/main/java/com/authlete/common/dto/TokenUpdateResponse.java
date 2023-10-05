@@ -164,7 +164,7 @@ public class TokenUpdateResponse extends ApiResponse
     private AuthzDetails authorizationDetails;
 
     /**
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean forExternalAttachment;
 

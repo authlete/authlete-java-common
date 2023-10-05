@@ -1025,7 +1025,7 @@ public class Service implements Serializable
      * 1.0.
      *
      * @since 3.13
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String[] supportedDocuments;
 
@@ -1061,7 +1061,7 @@ public class Service implements Serializable
      * 1.0.
      *
      * @since 3.13
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String[] supportedDocumentsMethods;
 
@@ -1081,7 +1081,7 @@ public class Service implements Serializable
      * </p>
      *
      * @since 3.13
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      *
      * @deprecated
      */
@@ -1104,7 +1104,7 @@ public class Service implements Serializable
      * </p>
      *
      * @since 3.13
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      *
      * @deprecated
      */
@@ -1127,7 +1127,7 @@ public class Service implements Serializable
      * </p>
      *
      * @since 3.48
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String[] supportedDocumentsCheckMethods;
 
@@ -1138,7 +1138,7 @@ public class Service implements Serializable
      * the third implementer's draft of OpenID Connect for Identity Assurance 1.0.
      *
      * @since 3.13
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String[] supportedElectronicRecords;
 
@@ -1160,7 +1160,7 @@ public class Service implements Serializable
      * implementer's draft of OpenID Connect for Identity Assurance 1.0.
      *
      * @since 3.13
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private AttachmentType[] supportedAttachments;
 
@@ -1173,7 +1173,7 @@ public class Service implements Serializable
      * Assurance 1.0.
      *
      * @since 3.13
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String[] supportedDigestAlgorithms;
 
@@ -1348,7 +1348,7 @@ public class Service implements Serializable
      * The URL of the grant management endpoint.
      *
      * @since 3.1
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private URI grantManagementEndpoint;
 
@@ -1358,7 +1358,7 @@ public class Service implements Serializable
      * {@code grant_management_action} request parameter.
      *
      * @since 3.1
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean grantManagementActionRequired;
 
@@ -1368,7 +1368,7 @@ public class Service implements Serializable
      * ClientRegistrationResponse.Action.UNAUTHORIZED whenever appropriate.
      *
      * @since 3.4
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean unauthorizedOnClientConfigSupported;
 
@@ -1379,7 +1379,7 @@ public class Service implements Serializable
      * scopes.
      *
      * @since 3.5
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean dcrScopeUsedAsRequestable;
 
@@ -1389,7 +1389,7 @@ public class Service implements Serializable
      * Authlete 2.3 onwards.
      *
      * @since 3.8
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private String predefinedTransformedClaims;
 
@@ -1399,7 +1399,7 @@ public class Service implements Serializable
      * URIs can be variable when the host component indicates loopback.
      *
      * @since 3.12
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean loopbackRedirectionUriVariable;
 
@@ -1409,7 +1409,7 @@ public class Service implements Serializable
      * of request objects matches the issuer identifier of this service.
      *
      * @since 3.14
-     * @since Authlete 3.0.0
+     * @since Authlete 2.3.0
      */
     private boolean requestObjectAudienceChecked;
 
@@ -1726,7 +1726,7 @@ public class Service implements Serializable
      * content of {@code "verified_claims"}.
      *
      * @since 3.61
-     * @since Authlete 2.3.4
+     * @since Authlete 2.3.0
      */
     private String verifiedClaimsValidationSchemaSet;
 
