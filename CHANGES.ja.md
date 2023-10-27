@@ -1,6 +1,9 @@
 変更点
 ======
 
+- `ErrorCode` 列挙型
+    * `unsupported_credential_type` を追加。
+
 - `FederationConfigurationRequest` クラス
     * `getEntityTypes()` メソッドを追加。
     * `setEntityTypes(EntityType[])` メソッドを追加。

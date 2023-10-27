@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+- `ErrorCode` enum
+    * Added `unsupported_credential_type`.
+
 - `FederationConfigurationRequest` class
     * Added `getEntityTypes()` method.
     * Added `setEntityTypes(EntityType[])` method.
