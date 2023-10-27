@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.81 (2023-10-27)
+-----------------
+
 - `ErrorCode` enum
     * Added `unsupported_credential_type`.
 

@@ -77,13 +77,15 @@ public static AuthleteApi
 Web API にアクセスするのに必要な設定値を保持するインターフェースです。
 具体的には、このインターフェースには次のようなメソッド群があります。
 
-| メソッド                     | 説明                                  |
-|:-----------------------------|:--------------------------------------|
-| `getBaseUrl()`               | Authlete サーバーの URL               |
-| `getServiceApiKey()`         | サービスの API キー                   |
-| `getServiceApiSecret()`      | サービスの API シークレット           |
-| `getServiceOwnerApiKey()`    | あなたのアカウントの API キー         |
-| `getServiceOwnerApiSecret()` | あなたのアカウントの API シークレット |
+| メソッド                     | Authlete バージョン | 説明                                  |
+|:-----------------------------|:--------------------|:--------------------------------------|
+| `getBaseUrl()`               | 共通                | Authlete サーバーの URL               |
+| `getServiceApiKey()`         | 共通                | サービスの API キー                   |
+| `getServiceApiSecret()`      | バージョン 2.x まで | サービスの API シークレット           |
+| `getServiceOwnerApiKey()`    | バージョン 2.x まで | あなたのアカウントの API キー         |
+| `getServiceOwnerApiSecret()` | バージョン 2.x まで | あなたのアカウントの API シークレット |
+| `getApiVersion()`            | バージョン 3.0 以降 | Authlete API のバージョン             |
+| `getServiceAccessToken()`    | バージョン 3.0 以降 | あなたの API アクセストークン         |
 
 authlete-java-common ライブラリには、`AuthleteConfiguration` インターフェースの実装が三つ含まれています。
 
@@ -141,6 +143,8 @@ AuthleteApi api = AuthleteApiFactory.getDefaultApi();
 | `service_owner.api_key`              | あなたのアカウントの API キー                         |
 | `service_owner.api_secret`           | あなたのアカウントの API シークレット                 |
 | `service_owner.api_secret.encrypted` | あなたのアカウントの API シークレットを暗号化したもの |
+| `api_version`                        | Authlete API バージョン。3.0 用には "V3" を指定する。 |
+| `service.access_token`               | あなたの API アクセストークン                         |
 
 API シークレットを平文で書きたくなければ、`*.api_secret` キーのかわりに
 `*.api_secret.encrypted` キーを使用してください。 暗号化したシークレットを
@@ -343,6 +347,7 @@ settings.setReadTimeout(5000);
 
   - `credentialIssuerMetadata(CredentialIssuerMetadataRequest)`
   - `credentialIssuerJwks(CredentialIssuerJwksRequest)`
+  - `credentialJwtIssuerMetadata(CredentialJwtIssuerMetadataRequest)`
   - `credentialOfferCreate(CredentialOfferCreateRequest)`
   - `credentialOfferInfo(CredentialOfferInfoRequest)`
   - `credentialSingleParse(CredentialSingleParseRequest)`

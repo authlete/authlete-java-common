@@ -79,13 +79,15 @@ As you can see, both methods take `AuthleteConfiguration` as their first argumen
 Authlete Web APIs such as the URL of Authlete server and API credentials of a
 service. To be concrete, the interface has the following methods.
 
-| Method                       | Description                |
-|:-----------------------------|:---------------------------|
-| `getBaseUrl()`               | URL of Authlete server     |
-| `getServiceApiKey()`         | API key of a service       |
-| `getServiceApiSecret()`      | API secret of a service    |
-| `getServiceOwnerApiKey()`    | API key of your account    |
-| `getServiceOwnerApiSecret()` | API secret of your account |
+| Method                       | Authlete Version  | Description                |
+|:-----------------------------|:------------------|:---------------------------|
+| `getBaseUrl()`               | Common            | URL of Authlete server     |
+| `getServiceApiKey()`         | Common            | API key of a service       |
+| `getServiceApiSecret()`      | Up to version 2.x | API secret of a service    |
+| `getServiceOwnerApiKey()`    | Up to version 2.x | API key of your account    |
+| `getServiceOwnerApiSecret()` | Up to version 2.x | API secret of your account |
+| `getApiVersion()`            | Since version 3.0 | API version                |
+| `getServiceAccessToken()`    | Since version 3.0 | API access token           |
 
 authlete-java-common library includes three implementations of
 `AuthleteConfiguration` interface as listed below.
@@ -122,7 +124,7 @@ AuthleteApi api = AuthleteApiFactory.getDefaultApi();
 ```
 
 `AuthleteApiFactory.getDefaultApi()` method caches the search result, so you can
-call th emethod as many times as you like without worrying about the overhead of
+call the method as many times as you like without worrying about the overhead of
 file loading.
 
 
@@ -146,6 +148,8 @@ Valid property keys in a properties file and their meanings are as follows.
 | `service_owner.api_key`              | API key of your account              |
 | `service_owner.api_secret`           | API secret of your account           |
 | `service_owner.api_secret.encrypted` | Encrypted API secret of your account |
+| `api_version`                        | API version. "V3" for Authlete 3.0   |
+| `service.access_token`               | API access token                     |
 
 If you don't want to write API secrets in plain text, use
 `*.api_secret.encrypted` keys instead of `*.api_secret` keys. You can set
@@ -354,6 +358,7 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
   - `credentialIssuerMetadata(CredentialIssuerMetadataRequest)`
   - `credentialIssuerJwks(CredentialIssuerJwksRequest)`
+  - `credentialJwtIssuerMetadata(CredentialJwtIssuerMetadataRequest)`
   - `credentialOfferCreate(CredentialOfferCreateRequest)`
   - `credentialOfferInfo(CredentialOfferInfoRequest)`
   - `credentialSingleParse(CredentialSingleParseRequest)`
