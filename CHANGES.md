@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `FederationConfigurationRequest` class
+    * Added `getEntityTypes()` method.
+    * Added `setEntityTypes(EntityType[])` method.
+
 - New types
     * `EntityType` enum
 

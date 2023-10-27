@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `FederationConfigurationRequest` クラス
+    * `getEntityTypes()` メソッドを追加。
+    * `setEntityTypes(EntityType[])` メソッドを追加。
+
 - 新しい型
     * `EntityType` 列挙型
 
