@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- New types
+    * `EntityType` enum
+
+
 3.80 (2023-10-01)
 -----------------
 
