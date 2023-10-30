@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.82 (2023-10-30)
+-----------------
+
 - `ErrorCode` enum
     * Added `use_dpop_nonce`.
 
