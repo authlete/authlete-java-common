@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Authlete, Inc.
+ * Copyright (C) 2021-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,7 +98,7 @@ import java.util.Objects;
  * After years of experience and discussion, experts in the OAuth community
  * reached a consensus that "parameterized scopes" is not a good approach.
  * And the community has developed a new specification titled "<a href=
- * "https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/">OAuth 2.0 Rich
+ * "https://www.rfc-editor.org/rfc/rfc9396.html">RFC 9396 OAuth 2.0 Rich
  * Authorization Requests</a>" (RAR). The specification introduces a new
  * parameter "{@code authorization_details}" by which client applications
  * can express variable information in a flexible way. Therefore, new

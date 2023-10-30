@@ -1551,8 +1551,8 @@ public class AuthorizationResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * <p>
@@ -1567,8 +1567,8 @@ public class AuthorizationResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public boolean isClientEntityIdUsed()
     {
@@ -1583,8 +1583,8 @@ public class AuthorizationResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * <p>
@@ -1599,8 +1599,8 @@ public class AuthorizationResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public void setClientEntityIdUsed(boolean used)
     {

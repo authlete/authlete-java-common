@@ -26,8 +26,7 @@ import com.authlete.common.util.Utils;
  * Request to Authlete's {@code /api/device/complete} API.
  *
  * <p>
- * In the <a href=
- * "https://datatracker.ietf.org/doc/draft-ietf-oauth-device-flow/?include_text=1"
+ * In the <a href="https://www.rfc-editor.org/rfc/rfc8628.html"
  * >device flow</a>, an end-user accesses the verification endpoint of the
  * authorization server where she interacts with the verification endpoint
  * and inputs a user code. The verification endpoint checks if the user code

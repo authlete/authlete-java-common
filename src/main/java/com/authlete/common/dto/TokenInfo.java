@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Authlete, Inc.
+ * Copyright (C) 2022-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -354,8 +354,8 @@ public class TokenInfo implements Serializable
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @return
@@ -364,8 +364,8 @@ public class TokenInfo implements Serializable
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public URI getClientEntityId()
     {
@@ -378,8 +378,8 @@ public class TokenInfo implements Serializable
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @param entityId
@@ -391,8 +391,8 @@ public class TokenInfo implements Serializable
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public TokenInfo setClientEntityId(URI entityId)
     {
@@ -408,8 +408,8 @@ public class TokenInfo implements Serializable
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @return
@@ -419,8 +419,8 @@ public class TokenInfo implements Serializable
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public boolean isClientEntityIdUsed()
     {
@@ -434,8 +434,8 @@ public class TokenInfo implements Serializable
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @param used
@@ -448,8 +448,8 @@ public class TokenInfo implements Serializable
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public TokenInfo setClientEntityIdUsed(boolean used)
     {
@@ -513,8 +513,8 @@ public class TokenInfo implements Serializable
      * @return
      *         The authorization details.
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
-     *      >OAuth 2.0 Rich Authorization Requests</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9396.html"
+     *      >RFC 9396 OAuth 2.0 Rich Authorization Requests</a>
      */
     public AuthzDetails getAuthorizationDetails()
     {
@@ -536,8 +536,8 @@ public class TokenInfo implements Serializable
      * @return
      *         {@code this} instance.
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
-     *      >OAuth 2.0 Rich Authorization Requests</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9396.html"
+     *      >RFC 9396 OAuth 2.0 Rich Authorization Requests</a>
      */
     public TokenInfo setAuthorizationDetails(AuthzDetails details)
     {

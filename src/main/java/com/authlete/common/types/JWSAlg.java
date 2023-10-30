@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2020 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -113,8 +113,10 @@ public enum JWSAlg
     /**
      * {@code "ES256K"} (13); ECDSA using secp256k1 curve and SHA-256.
      *
-     * @see <a href="https://tools.ietf.org/html/draft-ietf-cose-webauthn-algorithms"
-     *      >COSE and JOSE Registrations for WebAuthn Algorithms</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc8812.html"
+     *      >RFC 8812 CBOR Object Signing and Encryption (COSE) and JSON Object
+     *       Signing and Encryption (JOSE) Registrations for Web Authentication
+     *       (WebAuthn) Algorithms</a>
      *
      * @since 2.75
      */

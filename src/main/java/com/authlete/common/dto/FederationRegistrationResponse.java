@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Authlete, Inc.
+ * Copyright (C) 2022-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -95,9 +95,8 @@ package com.authlete.common.dto;
  * When the value of the <code>{@link #getAction() action}</code> response
  * parameter is <code>{@link Action#NOT_FOUND NOT_FOUND}</code>, it means that
  * the service configuration has not enabled the feature of <a href=
- * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID Connect
- * Federation 1.0</a> and so the federation registration endpoint should not be
- * accessed.
+ * "https://openid.net/specs/openid-federation-1_0.html">OpenID Federation 1.0</a>
+ * and so the federation registration endpoint should not be accessed.
  * </p>
  *
  * </p>
@@ -168,8 +167,8 @@ package com.authlete.common.dto;
  * @since 3.45
  * @since Authlete 2.3
  *
- * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
- *      >OpenID Connect Federation 1.0</a>
+ * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+ *      >OpenID Federation 1.0</a>
  */
 public class FederationRegistrationResponse extends ApiResponse
 {
@@ -183,8 +182,8 @@ public class FederationRegistrationResponse extends ApiResponse
      * @since 3.45
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public enum Action
     {
@@ -207,7 +206,7 @@ public class FederationRegistrationResponse extends ApiResponse
 
 
         /**
-         * The feature of "OpenID Connect Federation 1&#x002E;0" is not
+         * The feature of "OpenID Federation 1&#x002E;0" is not
          * enabled on the Authlete server or by the service, so the
          * federation registration endpoint does not work. The endpoint
          * should return the status code {@code 404 Bad Request} with the

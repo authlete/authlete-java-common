@@ -65,14 +65,14 @@ import com.authlete.common.util.Utils;
  * @see <a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
  *      >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
  *
- * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
- *      >OAuth 2.0 Rich Authorization Requests</a>
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc9396.html"
+ *      >RFC 9396 OAuth 2.0 Rich Authorization Requests</a>
  *
  * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
  *      >OpenID Connect for Identity Assurance 1.0</a>
  *
- * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
- *      >OpenID Connect Federation 1.0</a>
+ * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+ *      >OpenID Federation 1.0</a>
  *
  * @see <a href="https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#client-metadata"
  *      >IANA OAuth Parameters / OAuth Dynamic Client Registration Metadata</a>
@@ -316,7 +316,7 @@ public class Client implements Serializable
     private FapiMode[] fapiModes;
 
     /*
-     * For OpenID Connect Federation 1.0.
+     * For OpenID Federation 1.0.
      */
     private URI entityId;
     private URI trustAnchorId;
@@ -3135,14 +3135,14 @@ public class Client implements Serializable
      *     >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
      * <li><a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
      *     >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-jwsreq/"
-     *     >The OAuth 2.0 Authorization Framework: JWT Secured Authorization Request (JAR)</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9101.html"
+     *     >RFC 9101 The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)</a>
      * <li><a href="https://openid.net/specs/openid-financial-api-jarm.html"
      *     >Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-par/"
-     *     >OAuth 2.0 Pushed Authorization Requests (PAR)</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
-     *     >OAuth 2.0 Rich Authorization Requests (RAR)</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9126.html"
+     *     >RFC 9126 OAuth 2.0 Pushed Authorization Requests</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9396.html"
+     *      >RFC 9396 OAuth 2.0 Rich Authorization Requests</a>
      * </ol>
      *
      * <p>
@@ -3196,14 +3196,14 @@ public class Client implements Serializable
      *     >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
      * <li><a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
      *     >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-jwsreq/"
-     *     >The OAuth 2.0 Authorization Framework: JWT Secured Authorization Request (JAR)</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9101.html"
+     *     >RFC 9101 The OAuth 2.0 Authorization Framework: JWT-Secured Authorization Request (JAR)</a>
      * <li><a href="https://openid.net/specs/openid-financial-api-jarm.html"
      *     >Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-par/"
-     *     >OAuth 2.0 Pushed Authorization Requests (PAR)</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
-     *     >OAuth 2.0 Rich Authorization Requests (RAR)</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9126.html"
+     *     >RFC 9126 OAuth 2.0 Pushed Authorization Requests</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9396.html"
+     *      >RFC 9396 OAuth 2.0 Rich Authorization Requests</a>
      * </ol>
      *
      * <p>
@@ -3252,7 +3252,7 @@ public class Client implements Serializable
      * <p>
      * This flag does not affect the processing of request objects at the
      * Pushed Authorization Request Endpoint, which is defined in <a href=
-     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-par/">OAuth 2.0
+     * "https://www.rfc-editor.org/rfc/rfc9126.html">RFC 9126 OAuth 2.0
      * Pushed Authorization Requests</a>. Unecrypted request objects are
      * accepted at the endpoint even if this flag is {@code true}.
      * </p>
@@ -3291,7 +3291,7 @@ public class Client implements Serializable
      * <p>
      * This flag does not affect the processing of request objects at the
      * Pushed Authorization Request Endpoint, which is defined in <a href=
-     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-par/">OAuth 2.0
+     * "https://www.rfc-editor.org/rfc/rfc9126.html">RFC 9126 OAuth 2.0
      * Pushed Authorization Requests</a>. Unecrypted request objects are
      * accepted at the endpoint even if this flag is {@code true}.
      * </p>
@@ -3876,8 +3876,8 @@ public class Client implements Serializable
      * <p>
      * This property holds a non-null value only when this client has been
      * registered by the mechanism defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @return
@@ -3886,8 +3886,8 @@ public class Client implements Serializable
      * @since 3.33
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public URI getEntityId()
     {
@@ -3901,8 +3901,8 @@ public class Client implements Serializable
      * <p>
      * This property holds a non-null value only when this client has been
      * registered by the mechanism defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @param entityId
@@ -3914,8 +3914,8 @@ public class Client implements Serializable
      * @since 3.33
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Client setEntityId(URI entityId)
     {
@@ -3928,8 +3928,8 @@ public class Client implements Serializable
     /**
      * Get the entity ID of the trust anchor of the trust chain that was used
      * when this client was registered or updated by the mechanism defined in
-     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     * >OpenID Connect Federation 1&#x002E;0</a>.
+     * <a href="https://openid.net/specs/openid-federation-1_0.html"
+     * >OpenID Federation 1&#x002E;0</a>.
      *
      * @return
      *         The entity ID of the trust anchor.
@@ -3937,8 +3937,8 @@ public class Client implements Serializable
      * @since 3.33
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public URI getTrustAnchorId()
     {
@@ -3949,8 +3949,8 @@ public class Client implements Serializable
     /**
      * Set the entity ID of the trust anchor of the trust chain that was used
      * when this client was registered or updated by the mechanism defined in
-     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     * >OpenID Connect Federation 1&#x002E;0</a>.
+     * <a href="https://openid.net/specs/openid-federation-1_0.html"
+     * >OpenID Federation 1&#x002E;0</a>.
      *
      * @param trustAnchorId
      *         The entity ID of the trust anchor.
@@ -3961,8 +3961,8 @@ public class Client implements Serializable
      * @since 3.33
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Client setTrustAnchorId(URI trustAnchorId)
     {
@@ -3975,8 +3975,8 @@ public class Client implements Serializable
     /**
      * Get the trust chain that was used when this client was registered or
      * updated by the mechanism defined in
-     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     * >OpenID Connect Federation 1&#x002E;0</a>.
+     * <a href="https://openid.net/specs/openid-federation-1_0.html"
+     * >OpenID Federation 1&#x002E;0</a>.
      *
      * <p>
      * The elements in the array are entity statements that are ordered from
@@ -3991,8 +3991,8 @@ public class Client implements Serializable
      * @since 3.33
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public String[] getTrustChain()
     {
@@ -4003,8 +4003,8 @@ public class Client implements Serializable
     /**
      * Set the trust chain that was used when this client was registered or
      * updated by the mechanism defined in
-     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     * >OpenID Connect Federation 1&#x002E;0</a>.
+     * <a href="https://openid.net/specs/openid-federation-1_0.html"
+     * >OpenID Federation 1&#x002E;0</a>.
      *
      * <p>
      * The elements in the array are entity statements that are ordered from
@@ -4022,8 +4022,8 @@ public class Client implements Serializable
      * @since 3.33
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Client setTrustChain(String[] trustChain)
     {
@@ -4036,8 +4036,8 @@ public class Client implements Serializable
     /**
      * Get the expiration time of the trust chain that was used when this client
      * was registered or updated by the mechanism defined in
-     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     * >OpenID Connect Federation 1&#x002E;0</a>. The value is represented as
+     * <a href="https://openid.net/specs/openid-federation-1_0.html"
+     * >OpenID Federation 1&#x002E;0</a>. The value is represented as
      * milliseconds elapsed since the Unix epoch (1970-01-01).
      *
      * @return
@@ -4046,8 +4046,8 @@ public class Client implements Serializable
      * @since 3.33
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public long getTrustChainExpiresAt()
     {
@@ -4058,8 +4058,8 @@ public class Client implements Serializable
     /**
      * Set the expiration time of the trust chain that was used when this client
      * was registered or updated by the mechanism defined in
-     * <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     * >OpenID Connect Federation 1&#x002E;0</a>. The value is represented as
+     * <a href="https://openid.net/specs/openid-federation-1_0.html"
+     * >OpenID Federation 1&#x002E;0</a>. The value is represented as
      * milliseconds elapsed since the Unix epoch (1970-01-01).
      *
      * @param expiresAt
@@ -4071,8 +4071,8 @@ public class Client implements Serializable
      * @since 3.33
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Client setTrustChainExpiresAt(long expiresAt)
     {
@@ -4084,8 +4084,8 @@ public class Client implements Serializable
 
     /**
      * Get the time at which the trust chain was updated by the mechanism defined
-     * in <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     * >OpenID Connect Federation 1&#x002E;0</a>.
+     * in <a href="https://openid.net/specs/openid-federation-1_0.html"
+     * >OpenID Federation 1&#x002E;0</a>.
      *
      * @return
      *         The time at which the trust chain was updated.
@@ -4093,8 +4093,8 @@ public class Client implements Serializable
      * @since 3.33
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public long getTrustChainUpdatedAt()
     {
@@ -4104,8 +4104,8 @@ public class Client implements Serializable
 
     /**
      * Set the time at which the trust chain was updated by the mechanism defined
-     * in <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     * >OpenID Connect Federation 1&#x002E;0</a>.
+     * in <a href="https://openid.net/specs/openid-federation-1_0.html"
+     * >OpenID Federation 1&#x002E;0</a>.
      *
      * @param updatedAt
      *         The time at which the trust chain was updated.
@@ -4116,8 +4116,8 @@ public class Client implements Serializable
      * @since 3.33
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Client setTrustChainUpdatedAt(long updatedAt)
     {
@@ -4131,8 +4131,8 @@ public class Client implements Serializable
      * Get the human-readable name representing the organization that manages
      * this client. This property corresponds to the {@code organization_name}
      * client metadata that is defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * @return
      *         The name of the organization that manages this client.
@@ -4140,8 +4140,8 @@ public class Client implements Serializable
      * @since 3.34
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public String getOrganizationName()
     {
@@ -4153,8 +4153,8 @@ public class Client implements Serializable
      * Set the human-readable name representing the organization that manages
      * this client. This property corresponds to the {@code organization_name}
      * client metadata that is defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * @param name
      *         The name of the organization that manages this client.
@@ -4165,8 +4165,8 @@ public class Client implements Serializable
      * @since 3.34
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Client setOrganizationName(String name)
     {
@@ -4180,8 +4180,8 @@ public class Client implements Serializable
      * Get the URI of the endpoint that returns this client's JWK Set document in
      * the JWT format. This property corresponds to the {@code signed_jwks_uri}
      * client metadata defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * @return
      *         The URI of the endpoint that returns this client's JWK Set
@@ -4190,8 +4190,8 @@ public class Client implements Serializable
      * @since 3.34
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public URI getSignedJwksUri()
     {
@@ -4203,8 +4203,8 @@ public class Client implements Serializable
      * Set the URI of the endpoint that returns this client's JWK Set document in
      * the JWT format. This property corresponds to the {@code signed_jwks_uri}
      * client metadata defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * @param uri
      *         The URI of the endpoint that returns this client's JWK Set
@@ -4216,8 +4216,8 @@ public class Client implements Serializable
      * @since 3.34
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Client setSignedJwksUri(URI uri)
     {
@@ -4233,8 +4233,8 @@ public class Client implements Serializable
      * <p>
      * This property corresponds to the {@code client_registration_types} client
      * metadata defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @return
@@ -4243,8 +4243,8 @@ public class Client implements Serializable
      * @since 3.36
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public ClientRegistrationType[] getClientRegistrationTypes()
     {
@@ -4258,8 +4258,8 @@ public class Client implements Serializable
      * <p>
      * This property corresponds to the {@code client_registration_types} client
      * metadata defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @param types
@@ -4268,8 +4268,8 @@ public class Client implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Client setClientRegistrationTypes(ClientRegistrationType[] types)
     {
@@ -4361,7 +4361,7 @@ public class Client implements Serializable
 
     /**
      * Get the flag indicating whether this client was registered by the
-     * "automatic" client registration of OIDC Federation.
+     * "automatic" client registration of OpenID Federation.
      *
      * @return
      *         {@code true} if this client was registered by the automatic
@@ -4370,8 +4370,8 @@ public class Client implements Serializable
      * @since 3.46
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public boolean isAutomaticallyRegistered()
     {
@@ -4381,7 +4381,7 @@ public class Client implements Serializable
 
     /**
      * Set the flag indicating whether this client was registered by the
-     * "automatic" client registration of OIDC Federation.
+     * "automatic" client registration of OpenID Federation.
      *
      * @param auto
      *         {@code true} to indicate that this client was registered by
@@ -4393,8 +4393,8 @@ public class Client implements Serializable
      * @since 3.46
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Client setAutomaticallyRegistered(boolean auto)
     {
@@ -4406,7 +4406,7 @@ public class Client implements Serializable
 
     /**
      * Get the flag indicating whether this client was registered by the
-     * "explicit" client registration of OIDC Federation.
+     * "explicit" client registration of OpenID Federation.
      *
      * @return
      *         {@code true} if this client was registered by the explicit
@@ -4415,8 +4415,8 @@ public class Client implements Serializable
      * @since 3.46
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public boolean isExplicitlyRegistered()
     {
@@ -4426,7 +4426,7 @@ public class Client implements Serializable
 
     /**
      * Set the flag indicating whether this client was registered by the
-     * "explicit" client registration of OIDC Federation.
+     * "explicit" client registration of OpenID Federation.
      *
      * @param explicit
      *         {@code true} to indicate that this client was registered by
@@ -4438,8 +4438,8 @@ public class Client implements Serializable
      * @since 3.46
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Client setExplicitlyRegistered(boolean explicit)
     {
@@ -4458,8 +4458,8 @@ public class Client implements Serializable
      * @since 3.49
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop"
-     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public boolean isDpopRequired()
     {
@@ -4479,8 +4479,8 @@ public class Client implements Serializable
      * @since 3.49
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop"
-     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public Client setDpopRequired(boolean dpopRequired)
     {
@@ -4704,14 +4704,14 @@ public class Client implements Serializable
      * @see <a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
      *      >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
-     *      >OAuth 2.0 Rich Authorization Requests</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9396.html"
+     *      >RFC 9396 OAuth 2.0 Rich Authorization Requests</a>
      *
      * @see <a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *      >OpenID Connect for Identity Assurance 1.0</a>
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      *
      * @see <a href="https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#client-metadata"
      *      >IANA OAuth Parameters / OAuth Dynamic Client Registration Metadata</a>
@@ -4930,7 +4930,7 @@ public class Client implements Serializable
         put(metadata, "digest_algorithm", getDigestAlgorithm(), nullIncluded);
 
         //----------------------------------------------------------------------
-        // OpenID Connect Federation 1.0
+        // OpenID Federation 1.0
         //----------------------------------------------------------------------
 
         // organization_name

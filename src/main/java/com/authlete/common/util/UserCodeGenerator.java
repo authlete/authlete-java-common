@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,8 @@ import com.authlete.common.types.UserCodeCharset;
 /**
  * Generator for end-user verification codes ({@code user_code}) in Device Flow.
  * See "6.1. User Code Recommendations" of <a href=
- * "https://datatracker.ietf.org/doc/draft-ietf-oauth-device-flow/?include_text=1"
- * >OAuth 2.0 Device Authorization Grant</a> for recommendations for user code values.
+ * "https://www.rfc-editor.org/rfc/rfc8628.html">RFC 8628 OAuth 2.0 Device
+ * Authorization Grant</a> for recommendations for user code values.
  *
  * <pre>
  * // The simplest example
@@ -42,8 +42,8 @@ import com.authlete.common.types.UserCodeCharset;
  *         ;
  * </pre>
  *
- * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-device-flow/?include_text=1"
- *      >OAuth 2.0 Device Authorization Grant</a>
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc8628.html"
+ *      >RFC 8628 OAuth 2.0 Device Authorization Grant</a>
  *
  * @since 2.43
  */

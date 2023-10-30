@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Authlete, Inc.
+ * Copyright (C) 2018-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,8 @@ package com.authlete.common.types;
 public enum HokMethod
 {
     /**
-     * This represents <a href="https://tools.ietf.org/html/draft-ietf-oauth-mtls#section-3">
-     * Mutual TLS Client Certificate Bound Access Tokens</a>.
+     * This represents <a href="https://www.rfc-editor.org/rfc/rfc8705.html#section-3">
+     * Mutual-TLS Client Certificate-Bound Access Tokens</a>.
      */
     MTLS,
 

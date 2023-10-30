@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@ import java.io.Serializable;
  * <p>
  * A response from the device authorization endpoint of the authorization server
  * is JSON which contains the following response parameters (excerpted from
- * "3.2. Device Authorization Response" of <a
- * href="https://datatracker.ietf.org/doc/draft-ietf-oauth-device-flow/?include_text=1"
- * >OAuth 2.0 Device Authorization Grant</a>).
+ * "3.2. Device Authorization Response" of <a href=
+ * "https://www.rfc-editor.org/rfc/rfc8628.html">RFC 8628 OAuth 2.0 Device
+ * Authorization Grant</a>).
  * </p>
  *
  * <blockquote>

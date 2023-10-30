@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Authlete, Inc.
+ * Copyright (C) 2022-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ import java.net.URI;
  *
  * @since 3.22
  *
- * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
- *      >OpenID Connect Federation 1.0</a>
+ * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+ *      >OpenID Federation 1.0</a>
  */
 public class TrustAnchor implements Serializable
 {

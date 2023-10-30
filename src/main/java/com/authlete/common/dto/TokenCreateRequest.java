@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2022 Authlete, Inc.
+ * Copyright (C) 2015-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1187,8 +1187,8 @@ public class TokenCreateRequest implements Serializable
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public String getAcr()
     {
@@ -1215,8 +1215,8 @@ public class TokenCreateRequest implements Serializable
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public TokenCreateRequest setAcr(String acr)
     {
@@ -1241,8 +1241,8 @@ public class TokenCreateRequest implements Serializable
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public long getAuthTime()
     {
@@ -1269,8 +1269,8 @@ public class TokenCreateRequest implements Serializable
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public TokenCreateRequest setAuthTime(long authTime)
     {
