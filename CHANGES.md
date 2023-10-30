@@ -1,6 +1,56 @@
 CHANGES
 =======
 
+- `ErrorCode` enum
+    * Added `use_dpop_nonce`.
+
+- `GMRequest` class
+    * Added `isDpopNonceRequired()` method.
+    * Added `setDpopNonceRequired(boolean)` method.
+
+- `GMResponse` class
+    * Added `getDpopNonce()` method.
+    * Added `setDpopNonce(String)` method.
+
+- `IntrospectionRequest` class
+    * Added `isDpopNonceRequired()` method.
+    * Added `setDpopNonceRequired(boolean)` method.
+
+- `IntrospectionResponse` class
+    * Added `getDpopNonce()` method.
+    * Added `setDpopNonce(String)` method.
+
+- `PushedAuthReqRequest` class
+    * Added `isDpopNonceRequired()` method.
+    * Added `setDpopNonceRequired(boolean)` method.
+
+- `PushedAuthReqResponse` class
+    * Added `getDpopNonce()` method.
+    * Added `setDpopNonce(String)` method.
+
+- `Service` class
+    * Added `isDpopNonceRequired()` method.
+    * Added `setDpopNonceRequired(boolean)` method.
+    * Added `getDpopNonceDuration()` method.
+    * Added `setDpopNonceDuration(long)` method.
+
+- `TokenRequest` class
+    * Added `isDpopNonceRequired()` method.
+    * Added `setDpopNonceRequired(boolean)` method.
+
+- `TokenResponse` class
+    * Added `getDpopNonce()` method.
+    * Added `setDpopNonce(String)` method.
+
+- `UserInfoRequest` class
+    * Added `isDpopNonceRequired()` method.
+    * Added `setDpopNonceRequired(boolean)` method.
+
+- `UserInfoResponse` class
+    * Added `getDpopNonce()` method.
+    * Added `setDpopNonce(String)` method.
+
+
 3.81 (2023-10-27)
 -----------------
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2022 Authlete, Inc.
+ * Copyright (C) 2015-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -247,7 +247,7 @@ import com.authlete.common.util.Utils;
  */
 public class UserInfoResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -424,6 +424,16 @@ public class UserInfoResponse extends ApiResponse
      * The attributes of the client that the access token has been issued to.
      */
     private Pair[] clientAttributes;
+
+
+    /**
+     * The expected nonce value for DPoP proof JWT, which should be used
+     * as the value of the {@code DPoP-Nonce} HTTP header.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     */
+    private String dpopNonce;
 
 
     /**
@@ -679,8 +689,8 @@ public class UserInfoResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @return
@@ -689,8 +699,8 @@ public class UserInfoResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public URI getClientEntityId()
     {
@@ -703,8 +713,8 @@ public class UserInfoResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @param entityId
@@ -713,8 +723,8 @@ public class UserInfoResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public void setClientEntityId(URI entityId)
     {
@@ -728,8 +738,8 @@ public class UserInfoResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @return
@@ -739,8 +749,8 @@ public class UserInfoResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public boolean isClientEntityIdUsed()
     {
@@ -754,8 +764,8 @@ public class UserInfoResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @param used
@@ -765,8 +775,8 @@ public class UserInfoResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public void setClientEntityIdUsed(boolean used)
     {
@@ -1363,5 +1373,65 @@ public class UserInfoResponse extends ApiResponse
     public void setClientAttributes(Pair[] attributes)
     {
         this.clientAttributes = attributes;
+    }
+
+
+    /**
+     * Get the expected nonce value for DPoP proof JWT, which should be used
+     * as the value of the {@code DPoP-Nonce} HTTP header.
+     *
+     * <p>
+     * When this response parameter is not null, the implementation of the
+     * userinfo endpoint should add the {@code DPoP-Nonce} HTTP header in the
+     * response from the endpoint to the client application, using the value
+     * of this response parameter as the value of the HTTP header.
+     * </p>
+     *
+     * <pre>
+     * DPoP-Nonce: (<i>The value of this {@code dpopNonce} response parameter</i>)
+     * </pre>
+     *
+     * @return
+     *         The expected nonce value for DPoP proof JWT.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public String getDpopNonce()
+    {
+        return dpopNonce;
+    }
+
+
+    /**
+     * Set the expected nonce value for DPoP proof JWT, which should be used
+     * as the value of the {@code DPoP-Nonce} HTTP header.
+     *
+     * <p>
+     * When this response parameter is not null, the implementation of the
+     * userinfo endpoint should add the {@code DPoP-Nonce} HTTP header in the
+     * response from the endpoint to the client application, using the value
+     * of this response parameter as the value of the HTTP header.
+     * </p>
+     *
+     * <pre>
+     * DPoP-Nonce: (<i>The value of this {@code dpopNonce} response parameter</i>)
+     * </pre>
+     *
+     * @param dpopNonce
+     *         The expected nonce value for DPoP proof JWT.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public void setDpopNonce(String dpopNonce)
+    {
+        this.dpopNonce = dpopNonce;
     }
 }

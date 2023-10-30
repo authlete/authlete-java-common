@@ -826,6 +826,33 @@ import com.authlete.common.util.Utils;
  *     class and the {@link IDTokenReissueResponse} class for details.
  * </ol>
  *
+ * <hr>
+ * <h3>DPoP Nonce (Authlete 3.0 onwards)</h3>
+ *
+ * <p>
+ * Since version 3.0, Authlete recognizes the {@code nonce} claim in DPoP
+ * proof JWTs. If the {@code nonce} claim is required (= if the service's
+ * {@code dpopNonceRequired} property is {@code true}, or the value of the
+ * {@code dpopNonceRequired} request parameter passed to the Authlete API
+ * is {@code true}), the Authlete API checks whether the {@code nonce}
+ * claim in the presented DPoP proof JWT is identical to the expected value.
+ * </p>
+ *
+ * <p>
+ * If the {@code dpopNonce} response parameter from the API is not null, its
+ * value is the expected nonce value for DPoP proof JWT. The expected value
+ * needs to be conveyed to the client application as the value of the
+ * {@code DPoP-Nonce} HTTP header.
+ * </p>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;"
+ * >DPoP-Nonce: (The value returned from {@link #getDpopNonce()})</pre>
+ *
+ * <p>
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
+ * </p>
+ *
  * @see <a href="https://www.rfc-editor.org/rfc/rfc6749.html"
  *      >RFC 6749 The OAuth 2.0 Authorization Framework</a>
  *
@@ -839,10 +866,13 @@ import com.authlete.common.util.Utils;
  *
  * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html"
  *      >RFC 8693 OAuth 2.0 Token Exchange</a>
+ *
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+ *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 17L;
+    private static final long serialVersionUID = 18L;
 
 
     /**
@@ -1025,6 +1055,15 @@ public class TokenResponse extends ApiResponse
      * @since Authlete 3.0
      */
     private String[] requestedIdTokenClaims;
+
+    /**
+     * The expected nonce value for DPoP proof JWT, which should be used
+     * as the value of the {@code DPoP-Nonce} HTTP header.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     */
+    private String dpopNonce;
 
 
     /**
@@ -1523,8 +1562,8 @@ public class TokenResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @return
@@ -1533,8 +1572,8 @@ public class TokenResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public URI getClientEntityId()
     {
@@ -1547,8 +1586,8 @@ public class TokenResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @param entityId
@@ -1557,8 +1596,8 @@ public class TokenResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public void setClientEntityId(URI entityId)
     {
@@ -1572,8 +1611,8 @@ public class TokenResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @return
@@ -1583,8 +1622,8 @@ public class TokenResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public boolean isClientEntityIdUsed()
     {
@@ -1598,8 +1637,8 @@ public class TokenResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @param used
@@ -1609,8 +1648,8 @@ public class TokenResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public void setClientEntityIdUsed(boolean used)
     {
@@ -2760,5 +2799,65 @@ public class TokenResponse extends ApiResponse
     public void setRequestedIdTokenClaims(String[] claims)
     {
         this.requestedIdTokenClaims = claims;
+    }
+
+
+    /**
+     * Get the expected nonce value for DPoP proof JWT, which should be used
+     * as the value of the {@code DPoP-Nonce} HTTP header.
+     *
+     * <p>
+     * When this response parameter is not null, the implementation of the
+     * token endpoint should add the {@code DPoP-Nonce} HTTP header in the
+     * response from the endpoint to the client application, using the value
+     * of this response parameter as the value of the HTTP header.
+     * </p>
+     *
+     * <pre>
+     * DPoP-Nonce: (<i>The value of this {@code dpopNonce} response parameter</i>)
+     * </pre>
+     *
+     * @return
+     *         The expected nonce value for DPoP proof JWT.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public String getDpopNonce()
+    {
+        return dpopNonce;
+    }
+
+
+    /**
+     * Set the expected nonce value for DPoP proof JWT, which should be used
+     * as the value of the {@code DPoP-Nonce} HTTP header.
+     *
+     * <p>
+     * When this response parameter is not null, the implementation of the
+     * token endpoint should add the {@code DPoP-Nonce} HTTP header in the
+     * response from the endpoint to the client application, using the value
+     * of this response parameter as the value of the HTTP header.
+     * </p>
+     *
+     * <pre>
+     * DPoP-Nonce: (<i>The value of this {@code dpopNonce} response parameter</i>)
+     * </pre>
+     *
+     * @param dpopNonce
+     *         The expected nonce value for DPoP proof JWT.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public void setDpopNonce(String dpopNonce)
+    {
+        this.dpopNonce = dpopNonce;
     }
 }

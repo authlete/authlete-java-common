@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2022 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,9 +61,8 @@ import java.net.URI;
  * <dd>
  * <p>
  * The value of the {@code DPoP} HTTP header.
- * See <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
- * >OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)</a>
- * for details.
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
  * </p>
  * </dd>
  *
@@ -71,9 +70,8 @@ import java.net.URI;
  * <dd>
  * <p>
  * The HTTP method of the request to the protected resource endpoint.
- * See <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
- * >OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)</a>
- * for details.
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
  * </p>
  * </dd>
  *
@@ -81,9 +79,8 @@ import java.net.URI;
  * <dd>
  * <p>
  * The URL of the protected resource endpoint.
- * See <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
- * >OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)</a>
- * for details.
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
  * </p>
  * </dd>
  *
@@ -150,6 +147,17 @@ import java.net.URI;
  * </p>
  * </dd>
  *
+ * <dt><b><code>dpopNonceRequired</code></b> (OPTIONAL; Authlete 3.0 onwards)</dt>
+ * <dd>
+ * <p>
+ * The flag indicating whether to require the DPoP proof JWT to include the
+ * {@code nonce} claim. Even if the service's {@code dpopNonceRequired} property
+ * is false, calling the {@code /auth/introspection} API with this
+ * {@code dpopNonceRequired} parameter true will force the Authlete API to check
+ * whether the DPoP proof JWT includes the expected nonce value.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -164,15 +172,15 @@ import java.net.URI;
  * @see <a href="https://www.rfc-editor.org/rfc/rfc8707.html"
  *      >RFC 8707 Resource Indicators for OAuth 2.0</a>
  *
- * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
- *      >OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer (DPoP)</a>
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+ *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
  *
- * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
- *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+ *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
  */
 public class IntrospectionRequest implements Serializable
 {
-    private static final long serialVersionUID = 6L;
+    private static final long serialVersionUID = 7L;
 
 
     /**
@@ -284,6 +292,15 @@ public class IntrospectionRequest implements Serializable
      * @since Authlete 2.3
      */
     private int maxAge;
+
+
+    /**
+     * Whether to check if the DPoP proof JWT includes the expected nonce value.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     */
+    private boolean dpopNonceRequired;
 
 
     /**
@@ -452,8 +469,8 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 2.70
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
-     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public String getDpop()
     {
@@ -480,8 +497,8 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 2.70
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
-     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public IntrospectionRequest setDpop(String dpop)
     {
@@ -501,8 +518,8 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 2.70
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
-     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public String getHtm()
     {
@@ -528,8 +545,8 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 2.70
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
-     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public IntrospectionRequest setHtm(String htm)
     {
@@ -548,8 +565,8 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 2.70
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
-     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public String getHtu()
     {
@@ -574,8 +591,8 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 2.70
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
-     *      >OAuth 2.0 Demonstrating Proof-of-Possession at the Application Layer (DPoP)</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public IntrospectionRequest setHtu(String htu)
     {
@@ -798,8 +815,8 @@ public class IntrospectionRequest implements Serializable
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public String[] getAcrValues()
     {
@@ -823,8 +840,8 @@ public class IntrospectionRequest implements Serializable
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public IntrospectionRequest setAcrValues(String[] acrValues)
     {
@@ -845,8 +862,8 @@ public class IntrospectionRequest implements Serializable
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public int getMaxAge()
     {
@@ -870,12 +887,81 @@ public class IntrospectionRequest implements Serializable
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public IntrospectionRequest setMaxAge(int maxAge)
     {
         this.maxAge = maxAge;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to check if the DPoP proof JWT includes
+     * the expected {@code nonce} value.
+     *
+     * <p>
+     * If this request parameter is {@code true} or if the service's
+     * {@code dpopNonceRequired} property ({@link Service#isDpopNonceRequired()})
+     * is {@code true}, the {@code /auth/introspection} API checks if the DPoP
+     * proof JWT includes the expected {@code nonce} value. In this case, the
+     * response from the {@code /auth/introspection} API will include the
+     * {@code dpopNonce} response parameter, which should be used as the value
+     * of the {@code DPoP-Nonce} HTTP header.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the {@code /auth/introspection} API checks
+     *         whether the DPoP proof JWT includes the expected {@code nonce}
+     *         value, even if the service's {@code dpopNonceRequired} property
+     *         is false.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public boolean isDpopNonceRequired()
+    {
+        return dpopNonceRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether to check if the DPoP proof JWT includes
+     * the expected {@code nonce} value.
+     *
+     * <p>
+     * If this request parameter is {@code true} or if the service's
+     * {@code dpopNonceRequired} property ({@link Service#isDpopNonceRequired()})
+     * is {@code true}, the {@code /auth/introspection} API checks if the DPoP
+     * proof JWT includes the expected {@code nonce} value. In this case, the
+     * response from the {@code /auth/introspection} API will include the
+     * {@code dpopNonce} response parameter, which should be used as the value
+     * of the {@code DPoP-Nonce} HTTP header.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to have the {@code /auth/introspection} API check
+     *         whether the DPoP proof JWT includes the expected {@code nonce}
+     *         value, even if the service's {@code dpopNonceRequired} property
+     *         is false.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public IntrospectionRequest setDpopNonceRequired(boolean required)
+    {
+        this.dpopNonceRequired = required;
 
         return this;
     }

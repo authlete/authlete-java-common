@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -235,11 +235,38 @@ import com.authlete.common.types.ClientAuthMethod;
  * </dd>
  *
  * </dl>
+ *
+ * <h3>DPoP Nonce (Authlete 3.0 onwards)</h3>
+ *
+ * <p>
+ * Since version 3.0, Authlete recognizes the {@code nonce} claim in DPoP
+ * proof JWTs. If the {@code nonce} claim is required (= if the service's
+ * {@code dpopNonceRequired} property is {@code true}, or the value of the
+ * {@code dpopNonceRequired} request parameter passed to the Authlete API
+ * is {@code true}), the Authlete API checks whether the {@code nonce}
+ * claim in the presented DPoP proof JWT is identical to the expected value.
+ * </p>
+ *
+ * <p>
+ * If the {@code dpopNonce} response parameter from the API is not null, its
+ * value is the expected nonce value for DPoP proof JWT. The expected value
+ * needs to be conveyed to the client application as the value of the
+ * {@code DPoP-Nonce} HTTP header.
+ * </p>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;"
+ * >DPoP-Nonce: (The value returned from {@link #getDpopNonce()})</pre>
+ *
+ * <p>
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
+ * </p>
+ *
  * @since 2.51
  */
 public class PushedAuthReqResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -305,6 +332,7 @@ public class PushedAuthReqResponse extends ApiResponse
     private String responseContent;
     private ClientAuthMethod clientAuthMethod;
     private URI requestUri;
+    private String dpopNonce;
 
 
     /**
@@ -432,6 +460,71 @@ public class PushedAuthReqResponse extends ApiResponse
     public PushedAuthReqResponse setRequestUri(URI uri)
     {
         this.requestUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the expected nonce value for DPoP proof JWT, which should be used
+     * as the value of the {@code DPoP-Nonce} HTTP header.
+     *
+     * <p>
+     * When this response parameter is not null, the implementation of the
+     * PAR endpoint should add the {@code DPoP-Nonce} HTTP header in the
+     * response from the endpoint to the client application, using the value
+     * of this response parameter as the value of the HTTP header.
+     * </p>
+     *
+     * <pre>
+     * DPoP-Nonce: (<i>The value of this {@code dpopNonce} response parameter</i>)
+     * </pre>
+     *
+     * @return
+     *         The expected nonce value for DPoP proof JWT.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public String getDpopNonce()
+    {
+        return dpopNonce;
+    }
+
+
+    /**
+     * Set the expected nonce value for DPoP proof JWT, which should be used
+     * as the value of the {@code DPoP-Nonce} HTTP header.
+     *
+     * <p>
+     * When this response parameter is not null, the implementation of the
+     * PAR endpoint should add the {@code DPoP-Nonce} HTTP header in the
+     * response from the endpoint to the client application, using the value
+     * of this response parameter as the value of the HTTP header.
+     * </p>
+     *
+     * <pre>
+     * DPoP-Nonce: (<i>The value of this {@code dpopNonce} response parameter</i>)
+     * </pre>
+     *
+     * @param dpopNonce
+     *         The expected nonce value for DPoP proof JWT.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public PushedAuthReqResponse setDpopNonce(String dpopNonce)
+    {
+        this.dpopNonce = dpopNonce;
 
         return this;
     }

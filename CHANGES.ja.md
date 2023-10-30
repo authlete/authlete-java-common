@@ -1,6 +1,56 @@
 変更点
 ======
 
+- `ErrorCode` 列挙型
+    * `use_dpop_nonce` を追加。
+
+- `GMRequest` クラス
+    * `isDpopNonceRequired()` メソッドを追加。
+    * `setDpopNonceRequired(boolean)` メソッドを追加。
+
+- `GMResponse` クラス
+    * `getDpopNonce()` メソッドを追加。
+    * `setDpopNonce(String)` メソッドを追加。
+
+- `IntrospectionRequest` クラス
+    * `isDpopNonceRequired()` メソッドを追加。
+    * `setDpopNonceRequired(boolean)` メソッドを追加。
+
+- `IntrospectionResponse` クラス
+    * `getDpopNonce()` メソッドを追加。
+    * `setDpopNonce(String)` メソッドを追加。
+
+- `PushedAuthReqRequest` クラス
+    * `isDpopNonceRequired()` メソッドを追加。
+    * `setDpopNonceRequired(boolean)` メソッドを追加。
+
+- `PushedAuthReqResponse` クラス
+    * `getDpopNonce()` メソッドを追加。
+    * `setDpopNonce(String)` メソッドを追加。
+
+- `Service` クラス
+    * `isDpopNonceRequired()` メソッドを追加。
+    * `setDpopNonceRequired(boolean)` メソッドを追加。
+    * `getDpopNonceDuration()` メソッドを追加。
+    * `setDpopNonceDuration(long)` メソッドを追加。
+
+- `TokenRequest` クラス
+    * `isDpopNonceRequired()` メソッドを追加。
+    * `setDpopNonceRequired(boolean)` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getDpopNonce()` メソッドを追加。
+    * `setDpopNonce(String)` メソッドを追加。
+
+- `UserInfoRequest` クラス
+    * `isDpopNonceRequired()` メソッドを追加。
+    * `setDpopNonceRequired(boolean)` メソッドを追加。
+
+- `UserInfoResponse` クラス
+    * `getDpopNonce()` メソッドを追加。
+    * `setDpopNonce(String)` メソッドを追加。
+
+
 3.81 (2023 年 10 月 27 日)
 --------------------------
 

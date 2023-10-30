@@ -439,9 +439,8 @@ public enum ErrorCode
      * The DPoP proof JWT included in the {@code DPoP} HTTP header is invalid.
      *
      * <p>
-     * See "<a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-dpop/"
-     * >OAuth 2.0 Demonstration of Proof-of-Possession at the Application Layer
-     * (DPoP)"</a> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @since 2.74
@@ -463,8 +462,8 @@ public enum ErrorCode
     /**
      * No trusted Trust Anchor could be found.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      *
      * @since 3.33
      * @since Authlete 2.3
@@ -475,8 +474,8 @@ public enum ErrorCode
     /**
      * Trust chain validation failed.
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      *
      * @since 3.33
      * @since Authlete 2.3
@@ -509,8 +508,8 @@ public enum ErrorCode
      * The authentication event associated with the access token does not
      * meet the authentication requirements of the resource server.
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      *
      * @since 3.40
      * @since Authlete 2.3
@@ -597,5 +596,17 @@ public enum ErrorCode
      * @since Authlete 3.0
      */
     invalid_encryption_parameters,
+
+
+    /**
+     * The DPoP proof JWT must contain the {@code nonce} claim.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     */
+    use_dpop_nonce,
     ;
 }

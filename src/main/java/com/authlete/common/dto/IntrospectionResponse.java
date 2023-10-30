@@ -205,22 +205,52 @@ import com.authlete.common.util.Utils;
  * Since version 2.1, Authlete provides a feature to issue access tokens in
  * JWT format. This feature can be enabled by setting a non-null value to the
  * {@code accessTokenSignAlg} property of the service (see the description of
- * the {@link Service} class for details). {@code /api/auth/introspection} API
+ * the {@link Service} class for details). {@code /auth/introspection} API
  * can accept access tokens in JWT format. However, note that the API does not
  * return information contained in a given JWT-based access token but returns
  * information stored in the database record which corresponds to the given
  * JWT-based access token. Because attributes of the database record can be
  * modified after the access token is issued (for example, by using {@code
- * /api/auth/token/update} API), information returned by {@code
- * /api/auth/introspection} API and information the given JWT-based access
+ * /auth/token/update} API), information returned by {@code
+ * /auth/introspection} API and information the given JWT-based access
  * token holds may be different.
  * </p>
  *
+ * <h3>DPoP Nonce (Authlete 3.0 onwards)</h3>
+ *
+ * <p>
+ * Since version 3.0, Authlete recognizes the {@code nonce} claim in DPoP
+ * proof JWTs. If the presented access token is bound to a public key through
+ * the DPoP mechanism, and if the {@code nonce} claim is required (= if the
+ * service's {@code dpopNonceRequired} property is {@code true}, or the value
+ * of the {@code dpopNonceRequired} request parameter passed to the Authlete
+ * API is {@code true}), the Authlete API checks whether the {@code nonce}
+ * claim in the presented DPoP proof JWT is identical to the expected value.
+ * </p>
+ *
+ * <p>
+ * If the {@code dpopNonce} response parameter from the API is not null, its
+ * value is the expected nonce value for DPoP proof JWT. The expected value
+ * needs to be conveyed to the client application as the value of the
+ * {@code DPoP-Nonce} HTTP header.
+ * </p>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;"
+ * >DPoP-Nonce: (The value returned from {@link #getDpopNonce()})</pre>
+ *
+ * <p>
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
+ * </p>
+ *
  * @author Takahiko Kawasaki
+ *
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+ *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 20L;
+    private static final long serialVersionUID = 21L;
 
 
     /**
@@ -510,6 +540,16 @@ public class IntrospectionResponse extends ApiResponse
      * @since Authlete 3.0
      */
     private String issuableCredentials;
+
+
+    /**
+     * The expected nonce value for DPoP proof JWT, which should be used
+     * as the value of the {@code DPoP-Nonce} HTTP header.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     */
+    private String dpopNonce;
 
 
     /**
@@ -893,8 +933,8 @@ public class IntrospectionResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @return
@@ -903,8 +943,8 @@ public class IntrospectionResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public URI getClientEntityId()
     {
@@ -917,8 +957,8 @@ public class IntrospectionResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @param entityId
@@ -927,8 +967,8 @@ public class IntrospectionResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public void setClientEntityId(URI entityId)
     {
@@ -942,8 +982,8 @@ public class IntrospectionResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @return
@@ -953,8 +993,8 @@ public class IntrospectionResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public boolean isClientEntityIdUsed()
     {
@@ -968,8 +1008,8 @@ public class IntrospectionResponse extends ApiResponse
      *
      * <p>
      * "Entity ID" is a technical term defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      * </p>
      *
      * @param used
@@ -979,8 +1019,8 @@ public class IntrospectionResponse extends ApiResponse
      * @since 3.37
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public void setClientEntityIdUsed(boolean used)
     {
@@ -1261,9 +1301,9 @@ public class IntrospectionResponse extends ApiResponse
      * </p>
      *
      * <ul>
-     * <li>{@code /api/auth/authorization/issue}
-     * <li>{@code /api/backchannel/authentication/complete}
-     * <li>{@code /api/device/complete}
+     * <li>{@code /auth/authorization/issue}
+     * <li>{@code /backchannel/authentication/complete}
+     * <li>{@code /device/complete}
      * </ul>
      *
      * <p>
@@ -1298,9 +1338,9 @@ public class IntrospectionResponse extends ApiResponse
      * </p>
      *
      * <ul>
-     * <li>{@code /api/auth/authorization/issue}
-     * <li>{@code /api/backchannel/authentication/complete}
-     * <li>{@code /api/device/complete}
+     * <li>{@code /auth/authorization/issue}
+     * <li>{@code /backchannel/authentication/complete}
+     * <li>{@code /device/complete}
      * </ul>
      *
      * <p>
@@ -1405,7 +1445,7 @@ public class IntrospectionResponse extends ApiResponse
      * for external attachments and embed them in ID tokens and userinfo responses
      * by setting true to the {@code accessTokenForExternalAttachmentEmbedded}
      * property of the service. If the token presented at Authlete's
-     * {@code /api/auth/introspection} API has been generated by the feature,
+     * {@code /auth/introspection} API has been generated by the feature,
      * this {@code forExternalAttachment} property in the response from the
      * Authlete API becomes true. See the description of
      * {@link Service#isAccessTokenForExternalAttachmentEmbedded()} for details
@@ -1464,8 +1504,8 @@ public class IntrospectionResponse extends ApiResponse
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public String getAcr()
     {
@@ -1484,8 +1524,8 @@ public class IntrospectionResponse extends ApiResponse
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public void setAcr(String acr)
     {
@@ -1503,8 +1543,8 @@ public class IntrospectionResponse extends ApiResponse
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public long getAuthTime()
     {
@@ -1522,8 +1562,8 @@ public class IntrospectionResponse extends ApiResponse
      * @since 3.40
      * @since Authlete 2.3
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
-     *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+     *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
      */
     public void setAuthTime(long authTime)
     {
@@ -1840,5 +1880,67 @@ public class IntrospectionResponse extends ApiResponse
     public void setIssuableCredentials(String credentials)
     {
         this.issuableCredentials = credentials;
+    }
+
+
+    /**
+     * Get the expected nonce value for DPoP proof JWT, which should be used
+     * as the value of the {@code DPoP-Nonce} HTTP header.
+     *
+     * <p>
+     * When this response parameter is not null, the implementation of the
+     * protected resource endpoint should add the {@code DPoP-Nonce} HTTP
+     * header in the response from the endpoint to the client application,
+     * using the value of this response parameter as the value of the HTTP
+     * header.
+     * </p>
+     *
+     * <pre>
+     * DPoP-Nonce: (<i>The value of this {@code dpopNonce} response parameter</i>)
+     * </pre>
+     *
+     * @return
+     *         The expected nonce value for DPoP proof JWT.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public String getDpopNonce()
+    {
+        return dpopNonce;
+    }
+
+
+    /**
+     * Set the expected nonce value for DPoP proof JWT, which should be used
+     * as the value of the {@code DPoP-Nonce} HTTP header.
+     *
+     * <p>
+     * When this response parameter is not null, the implementation of the
+     * protected resource endpoint should add the {@code DPoP-Nonce} HTTP
+     * header in the response from the endpoint to the client application,
+     * using the value of this response parameter as the value of the HTTP
+     * header.
+     * </p>
+     *
+     * <pre>
+     * DPoP-Nonce: (<i>The value of this {@code dpopNonce} response parameter</i>)
+     * </pre>
+     *
+     * @param dpopNonce
+     *         The expected nonce value for DPoP proof JWT.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public void setDpopNonce(String dpopNonce)
+    {
+        this.dpopNonce = dpopNonce;
     }
 }

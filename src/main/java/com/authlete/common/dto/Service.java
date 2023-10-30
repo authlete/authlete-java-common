@@ -141,9 +141,9 @@ import com.authlete.common.types.UserCodeCharset;
  *       If this access token is bound to a public key of DPoP, this claim
  *       is included. The type of its value is object and the sub object
  *       contains a {@code "jkt"} claim. The value of the {@code "jkt"}
- *       claim is the thumbprint of the public key. See <i>"OAuth 2.0
- *       Demonstration of Proof-of-Possession at the Application Layer"</i>
- *       for details.
+ *       claim is the thumbprint of the public key.
+ *       See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449
+ *       OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
  *       </p>
  *     </td>
  *   </tr>
@@ -161,9 +161,9 @@ import com.authlete.common.types.UserCodeCharset;
  *     <td>array</td>
  *     <td>
  *       If this access token has been generated with {@code authorization_details},
- *       this claim is included. See <i>"<a href=
- *       "https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/">OAuth 2.0
- *       Rich Authorization Requests</a>"</i> for details.
+ *       this claim is included.
+ *       See <a href="https://www.rfc-editor.org/rfc/rfc9396.html">RFC 9396</a>
+ *       (OAuth 2.0 Rich Authorization Requests) for details.
  *     </td>
  *   </tr>
  *   <tr>
@@ -200,10 +200,9 @@ import com.authlete.common.types.UserCodeCharset;
  *     <td>
  *       The authentication context class of the user authentication that the
  *       authorization server performed during the course of issuing the access
- *       token. See <i>"<a href=
- *       "https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
- *       >OAuth 2.0 Step-up Authentication Challenge Protocol</a>"</i> for
- *       details.
+ *       token.
+ *       See <a href="https://www.rfc-editor.org/rfc/rfc9470.html">RFC 9470</a>
+ *       (OAuth 2.0 Step Up Authentication Challenge Protocol) for details.
  *     </td>
  *   </tr>
  *   <tr>
@@ -212,10 +211,9 @@ import com.authlete.common.types.UserCodeCharset;
  *     <td>
  *       The time when the user authentication was performed for the access
  *       token. The value represents the number of seconds elapsed since the
- *       Unix epoch. See <i>"<a href=
- *       "https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
- *       >OAuth 2.0 Step-up Authentication Challenge Protocol</a>"</i> for
- *       details.
+ *       Unix epoch.
+ *       See <a href="https://www.rfc-editor.org/rfc/rfc9470.html">RFC 9470</a>
+ *       (OAuth 2.0 Step Up Authentication Challenge Protocol) for details.
  *     </td>
  *   </tr>
  *   <tr>
@@ -284,16 +282,15 @@ import com.authlete.common.types.UserCodeCharset;
  * </p>
  *
  * <p>
- * <i>"Resource Indicators for OAuth 2.0"</i> (<a href=
- * "https://www.rfc-editor.org/rfc/rfc8707.html">RFC 8707</a>) is supported
- * since Authlete 2.2.
+ * <a href="https://www.rfc-editor.org/rfc/rfc8707.html">RFC 8707</a>
+ * (Resource Indicators for OAuth 2.0) is supported since Authlete 2.2.
  * The {@code resource} request parameter given to older Authlete versions is
  * just ignored, so JWT-based access tokens won't include the {@code aud} claim.
  * </p>
  *
  * <p>
- * <i>"<a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/">OAuth
- * 2.0 Rich Authorization Requests</a>"</i> is supported since Authlete 2.2.
+ * <a href="https://www.rfc-editor.org/rfc/rfc9396.html">RFC 9396</a>
+ * (OAuth 2.0 Rich Authorization Requests) is supported since Authlete 2.2.
  * The {@code authorization_details} request parameter given to older Authlete
  * versions is just ignored, so JWT-based access tokens won't include the
  * {@code authorization_details} claim.
@@ -307,8 +304,8 @@ import com.authlete.common.types.UserCodeCharset;
  * </p>
  *
  * <p>
- * <i>"<a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
- * >OAuth 2.0 Step-up Authentication Challenge Protocol</a>"</i> is supported
+ * <a href="https://www.rfc-editor.org/rfc/rfc9470.html">RFC 9470</a>
+ * (OAuth 2.0 Step Up Authentication Challenge Protocol) is supported
  * since Authlete 2.3. JWT access tokens issued by older Authlete versions
  * won't include the {@code acr} and {@code auth_time} claims.
  * </p>
@@ -327,15 +324,15 @@ import com.authlete.common.types.UserCodeCharset;
  * @see <a href="https://www.rfc-editor.org/rfc/rfc8707.html"
  *      >RFC 8707 Resource Indicators for OAuth 2.0</a>
  *
- * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
- *      >OAuth 2.0 Rich Authorization Requests</a>
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc9396.html"
+ *      >RFC 9396 OAuth 2.0 Rich Authorization Requests</a>
  *
- * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-step-up-authn-challenge/"
- *      >OAuth 2.0 Step-up Authentication Challenge Protocol</a>
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc9470.html"
+ *      >RFC 9470 OAuth 2.0 Step Up Authentication Challenge Protocol</a>
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 77L;
+    private static final long serialVersionUID = 78L;
 
 
     /*
@@ -1134,7 +1131,7 @@ public class Service implements Serializable
 
 
     /**
-     * The flag indicating whether this service supports OpenID Connect
+     * The flag indicating whether this service supports OpenID
      * Federation 1&#002E0.
      *
      * @since 3.22
@@ -1146,7 +1143,7 @@ public class Service implements Serializable
     /**
      * The human-readable name representing the organization that operates
      * this service. This property corresponds to the {@code organization_name}
-     * server metadata that is defined in OpenID Connect Federation 1.0.
+     * server metadata that is defined in OpenID Federation 1.0.
      *
      * @since 3.22
      * @since Authlete 2.3
@@ -1158,7 +1155,7 @@ public class Service implements Serializable
      * Identifiers of entities that can issue entity statements for this
      * service. This property corresponds to the {@code authority_hints}
      * property that appears in a self-signed entity statement that is
-     * defined in OpenID Connect Federation 1.0.
+     * defined in OpenID Federation 1.0.
      *
      * @since 3.22
      * @since Authlete 2.3
@@ -1209,7 +1206,7 @@ public class Service implements Serializable
     /**
      * The URI of the endpoint that returns this service's JWK Set document in
      * the JWT format. This property corresponds to the {@code signed_jwks_uri}
-     * server metadata defined in OpenID Connect Federation 1.0.
+     * server metadata defined in OpenID Federation 1.0.
      *
      * @since 3.22
      * @since Authlete 2.3
@@ -1220,7 +1217,7 @@ public class Service implements Serializable
     /**
      * The URI of the federation registration endpoint. This property corresponds
      * to the {@code federation_registration_endpoint} server metadata that is
-     * defined in OpenID Connect Federation 1.0.
+     * defined in OpenID Federation 1.0.
      *
      * @since 3.22
      * @since Authlete 2.3
@@ -1231,7 +1228,7 @@ public class Service implements Serializable
     /**
      * Supported client registration types. This property corresponds to the
      * {@code client_registration_types_supported} server metadata that is
-     * defined in OpenID Connect Federation 1.0.
+     * defined in OpenID Federation 1.0.
      *
      * @since 3.22
      * @since Authlete 2.3
@@ -1546,6 +1543,25 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private FapiMode[] fapiModes;
+
+
+    /**
+     * Whether to require DPoP proof JWTs to include the {@code nonce} claim
+     * whenever they are presented.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     */
+    private boolean dpopNonceRequired;
+
+
+    /**
+     * The duration of nonce values for DPoP proof JWTs in seconds.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     */
+    private long dpopNonceDuration;
 
 
     /**
@@ -5311,10 +5327,9 @@ public class Service implements Serializable
      *
      * <p>
      * This property corresponds to the {@code mtls_endpoint_aliases} metadata
-     * defined in "5. Metadata for Mutual TLS Endpoint Aliases" of <a href=
-     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-mtls/?include_text=1"
-     * >OAuth 2.0 Mutual TLS Client Authentication and Certificate-Bound Access
-     * Tokens</a>.
+     * defined in "5. Metadata for Mutual-TLS Endpoint Aliases" of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8705.html">RFC 8705 OAuth 2.0
+     * Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>.
      * </p>
      *
      * @return
@@ -5333,10 +5348,9 @@ public class Service implements Serializable
      *
      * <p>
      * This property corresponds to the {@code mtls_endpoint_aliases} metadata
-     * defined in "5. Metadata for Mutual TLS Endpoint Aliases" of <a href=
-     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-mtls/?include_text=1"
-     * >OAuth 2.0 Mutual TLS Client Authentication and Certificate-Bound Access
-     * Tokens</a>.
+     * defined in "5. Metadata for Mutual-TLS Endpoint Aliases" of <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8705.html">RFC 8705 OAuth 2.0
+     * Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>.
      * </p>
      *
      * <p>
@@ -6919,14 +6933,14 @@ public class Service implements Serializable
      *     >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
      * <li><a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
      *     >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-jwsreq/"
-     *     >The OAuth 2.0 Authorization Framework: JWT Secured Authorization Request (JAR)</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9101.html"
+     *     >RFC 9101 The OAuth 2.0 Authorization Framework: JWT Secured Authorization Request (JAR)</a>
      * <li><a href="https://openid.net/specs/openid-financial-api-jarm.html"
      *     >Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-par/"
-     *     >OAuth 2.0 Pushed Authorization Requests (PAR)</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
-     *     >OAuth 2.0 Rich Authorization Requests (RAR)</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9126.html"
+     *     >RFC 9126 OAuth 2.0 Pushed Authorization Requests</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9396.html"
+     *      >RFC 9396 OAuth 2.0 Rich Authorization Requests</a>
      * </ol>
      *
      * <p>
@@ -6981,14 +6995,14 @@ public class Service implements Serializable
      *     >RFC 8705 OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
      * <li><a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
      *     >OpenID Connect Client-Initiated Backchannel Authentication Flow - Core 1.0</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-jwsreq/"
-     *     >The OAuth 2.0 Authorization Framework: JWT Secured Authorization Request (JAR)</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9101.html"
+     *     >RFC 9101 The OAuth 2.0 Authorization Framework: JWT Secured Authorization Request (JAR)</a>
      * <li><a href="https://openid.net/specs/openid-financial-api-jarm.html"
      *     >Financial-grade API: JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-par/"
-     *     >OAuth 2.0 Pushed Authorization Requests (PAR)</a>
-     * <li><a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-rar/"
-     *     >OAuth 2.0 Rich Authorization Requests (RAR)</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9126.html"
+     *     >RFC 9126 OAuth 2.0 Pushed Authorization Requests</a>
+     * <li><a href="https://www.rfc-editor.org/rfc/rfc9396.html"
+     *      >RFC 9396 OAuth 2.0 Rich Authorization Requests</a>
      * </ol>
      *
      * <p>
@@ -7136,7 +7150,7 @@ public class Service implements Serializable
      * <p>
      * This flag does not affect the processing of request objects at the
      * Pushed Authorization Request Endpoint, which is defined in <a href=
-     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-par/">OAuth 2.0
+     * "https://www.rfc-editor.org/rfc/rfc9126.html"> RFC 9126 OAuth 2.0
      * Pushed Authorization Requests</a>. Unecrypted request objects are
      * accepted at the endpoint even if this flag is {@code true}.
      * </p>
@@ -7175,7 +7189,7 @@ public class Service implements Serializable
      * <p>
      * This flag does not affect the processing of request objects at the
      * Pushed Authorization Request Endpoint, which is defined in <a href=
-     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-par/">OAuth 2.0
+     * "https://www.rfc-editor.org/rfc/rfc9126.html">RFC 9126 OAuth 2.0
      * Pushed Authorization Requests</a>. Unecrypted request objects are
      * accepted at the endpoint even if this flag is {@code true}.
      * </p>
@@ -8557,28 +8571,28 @@ public class Service implements Serializable
 
     /**
      * Get the flag indicating whether this service supports <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1&#x002E;0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1&#x002E;0</a>.
      *
      * <p>
-     * If the feature of OpenID Connect Federation 1.0 is not enabled in the
+     * If the feature of OpenID Federation 1.0 is not enabled in the
      * Authlete server on which this service is hosted, functions related to
-     * OpenID Connect Federation 1.0 are not usable regardless of the setting
+     * OpenID Federation 1.0 are not usable regardless of the setting
      * of this property.
      * </p>
      *
      * <p>
-     * OpenID Connect Federation 1.0 is supported by Authlete 2.3 onwards.
+     * OpenID Federation 1.0 is supported by Authlete 2.3 onwards.
      * </p>
      *
      * @return
-     *         {@code true} if this service supports OpenID Connect Federation 1.0.
+     *         {@code true} if this service supports OpenID Federation 1.0.
      *
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public boolean isFederationEnabled()
     {
@@ -8588,22 +8602,22 @@ public class Service implements Serializable
 
     /**
      * Set the flag indicating whether this service supports <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1&#x002E;0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1&#x002E;0</a>.
      *
      * <p>
-     * If the feature of OpenID Connect Federation 1.0 is not enabled in the
+     * If the feature of OpenID Federation 1.0 is not enabled in the
      * Authlete server on which this service is hosted, functions related to
-     * OpenID Connect Federation 1.0 are not usable regardless of the setting
+     * OpenID Federation 1.0 are not usable regardless of the setting
      * of this property.
      * </p>
      *
      * <p>
-     * OpenID Connect Federation 1.0 is supported by Authlete 2.3 onwards.
+     * OpenID Federation 1.0 is supported by Authlete 2.3 onwards.
      * </p>
      *
      * @param enabled
-     *         {@code true} to enable the feature of OpenID Connect
+     *         {@code true} to enable the feature of OpenID
      *         Federation 1.0.
      *
      * @return
@@ -8612,8 +8626,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Service setFederationEnabled(boolean enabled)
     {
@@ -8627,8 +8641,8 @@ public class Service implements Serializable
      * Get the human-readable name representing the organization that operates
      * this service. This property corresponds to the {@code organization_name}
      * server metadata that is defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * <p>
      * If this property is not empty, the {@code organization_name} property
@@ -8641,8 +8655,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public String getOrganizationName()
     {
@@ -8654,8 +8668,8 @@ public class Service implements Serializable
      * Set the human-readable name representing the organization that operates
      * this service. This property corresponds to the {@code organization_name}
      * server metadata that is defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * <p>
      * If this property is not empty, the {@code organization_name} property
@@ -8671,8 +8685,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Service setOrganizationName(String name)
     {
@@ -8686,8 +8700,8 @@ public class Service implements Serializable
      * Get the identifiers of entities that can issue entity statements for
      * this service. This property corresponds to the {@code authority_hints}
      * property that appears in a self-signed entity statement that is defined
-     * in <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     * >OpenID Connect Federation 1.0</a>.
+     * in <a href="https://openid.net/specs/openid-federation-1_0.html"
+     * >OpenID Federation 1.0</a>.
      *
      * <p>
      * OpenID providers participating in one or more federations are supposed
@@ -8700,7 +8714,7 @@ public class Service implements Serializable
      * statements of OpenID providers is mandatory, if this property is empty,
      * the configuration endpoint ({@code /.well-known/openid-federation})
      * cannot generate a valid entity statement. It means that OpenID
-     * Connect Federation 1.0 does not work.
+     * Federation 1.0 does not work.
      * </p>
      *
      * @return
@@ -8710,8 +8724,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public URI[] getAuthorityHints()
     {
@@ -8723,8 +8737,8 @@ public class Service implements Serializable
      * Set the identifiers of entities that can issue entity statements for
      * this service. This property corresponds to the {@code authority_hints}
      * property that appears in a self-signed entity statement that is defined
-     * in <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     * >OpenID Connect Federation 1.0</a>.
+     * in <a href="https://openid.net/specs/openid-federation-1_0.html"
+     * >OpenID Federation 1.0</a>.
      *
      * <p>
      * OpenID providers participating in one or more federations are supposed
@@ -8737,7 +8751,7 @@ public class Service implements Serializable
      * statements of OpenID providers is mandatory, if this property is empty,
      * the configuration endpoint ({@code /.well-known/openid-federation})
      * cannot generate a valid entity statement. It means that OpenID
-     * Connect Federation 1.0 does not work.
+     * Federation 1.0 does not work.
      * </p>
      *
      * @param authorityHints
@@ -8750,8 +8764,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Service setAuthorityHints(URI[] authorityHints)
     {
@@ -8768,7 +8782,7 @@ public class Service implements Serializable
      * <p>
      * If this property is empty, client registration fails regardless of
      * whether its type is {@code automatic} or {@code explicit}. It means
-     * that OpenID Connect Federation 1.0 does not work.
+     * that OpenID Federation 1.0 does not work.
      * </p>
      *
      * @return
@@ -8778,8 +8792,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      *
      * @see TrustAnchor
      */
@@ -8796,7 +8810,7 @@ public class Service implements Serializable
      * <p>
      * If this property is empty, client registration fails regardless of
      * whether its type is {@code automatic} or {@code explicit}. It means
-     * that OpenID Connect Federation 1.0 does not work.
+     * that OpenID Federation 1.0 does not work.
      * </p>
      *
      * @param trustAnchors
@@ -8809,8 +8823,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      *
      * @see TrustAnchor
      */
@@ -8829,7 +8843,7 @@ public class Service implements Serializable
      *
      * <p>
      * If this property is empty, this service cannot generate a valid
-     * self-signed entity statement. It means that OpenID Connect Federation
+     * self-signed entity statement. It means that OpenID Federation
      * 1.0 does not work.
      * </p>
      *
@@ -8840,8 +8854,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public String getFederationJwks()
     {
@@ -8856,7 +8870,7 @@ public class Service implements Serializable
      *
      * <p>
      * If this property is empty, this service cannot generate a valid
-     * self-signed entity statement. It means that OpenID Connect Federation
+     * self-signed entity statement. It means that OpenID Federation
      * 1.0 does not work.
      * </p>
      *
@@ -8870,8 +8884,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Service setFederationJwks(String jwks)
     {
@@ -8909,8 +8923,8 @@ public class Service implements Serializable
      * @since 3.31
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public String getFederationSignatureKeyId()
     {
@@ -8949,8 +8963,8 @@ public class Service implements Serializable
      * @since 3.31
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Service setFederationSignatureKeyId(String keyId)
     {
@@ -8983,8 +8997,8 @@ public class Service implements Serializable
      * @since 3.31
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public long getFederationConfigurationDuration()
     {
@@ -9018,8 +9032,8 @@ public class Service implements Serializable
      * @since 3.31
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Service setFederationConfigurationDuration(long duration)
     {
@@ -9033,8 +9047,8 @@ public class Service implements Serializable
      * Get the URI of the endpoint that returns this service's JWK Set document in
      * the JWT format. This property corresponds to the {@code signed_jwks_uri}
      * server metadata defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * <p>
      * The JWT returned from the endpoint is signed with a key in the JWK Set
@@ -9057,8 +9071,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public URI getSignedJwksUri()
     {
@@ -9070,8 +9084,8 @@ public class Service implements Serializable
      * Set the URI of the endpoint that returns this service's JWK Set document in
      * the JWT format. This property corresponds to the {@code signed_jwks_uri}
      * server metadata defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * <p>
      * The JWT returned from the endpoint is signed with a key in the JWK Set
@@ -9097,8 +9111,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Service setSignedJwksUri(URI uri)
     {
@@ -9112,8 +9126,8 @@ public class Service implements Serializable
      * Get the URI of the federation registration endpoint. This property
      * corresponds to the {@code federation_registration_endpoint} server
      * metadata that is defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * <p>
      * If this service declares it supports the "{@code explicit}" client
@@ -9126,8 +9140,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public URI getFederationRegistrationEndpoint()
     {
@@ -9139,8 +9153,8 @@ public class Service implements Serializable
      * Set the URI of the federation registration endpoint. This property
      * corresponds to the {@code federation_registration_endpoint} server
      * metadata that is defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * <p>
      * If this service declares it supports the "{@code explicit}" client
@@ -9156,8 +9170,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      */
     public Service setFederationRegistrationEndpoint(URI endpoint)
     {
@@ -9171,8 +9185,8 @@ public class Service implements Serializable
      * Get the client registration types supported by this service. This
      * property corresponds to the {@code client_registration_types_supported}
      * server metadata that is defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * <p>
      * If this property includes {@link ClientRegistrationType#EXPLICIT
@@ -9186,8 +9200,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      *
      * @see ClientRegistrationType
      */
@@ -9201,8 +9215,8 @@ public class Service implements Serializable
      * Set the client registration types supported by this service. This
      * property corresponds to the {@code client_registration_types_supported}
      * server metadata that is defined in <a href=
-     * "https://openid.net/specs/openid-connect-federation-1_0.html">OpenID
-     * Connect Federation 1.0</a>.
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID
+     * Federation 1.0</a>.
      *
      * <p>
      * If this property includes {@link ClientRegistrationType#EXPLICIT
@@ -9219,8 +9233,8 @@ public class Service implements Serializable
      * @since 3.22
      * @since Authlete 2.3
      *
-     * @see <a href="https://openid.net/specs/openid-connect-federation-1_0.html"
-     *      >OpenID Connect Federation 1.0</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html"
+     *      >OpenID Federation 1.0</a>
      *
      * @see ClientRegistrationType
      */
@@ -11491,6 +11505,107 @@ public class Service implements Serializable
     public Service setFapiModes(FapiMode[] modes)
     {
         this.fapiModes = modes;
+
+        return this;
+    }
+
+    /**
+     * Get the flag indicating whether to require DPoP proof JWTs to include
+     * the {@code nonce} claim whenever they are presented.
+     *
+     * <p>
+     * DPoP-aware Authlete APIs such as the {@code /auth/introspection} API and
+     * the {@code /auth/token} API recognize the {@code dpopNonceRequired}
+     * request parameter, which enables API callers to require DPoP proof JWTs
+     * to include the {@code nonce} claim at runtime, even if this service
+     * property is false.
+     * </p>
+     *
+     * @return
+     *         {@code true} if DPoP proof JWTs are required to include the
+     *         {@code nonce} claim whenever they are presented.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public boolean isDpopNonceRequired()
+    {
+        return dpopNonceRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether to require DPoP proof JWTs to include
+     * the {@code nonce} claim whenever they are presented.
+     *
+     * <p>
+     * DPoP-aware Authlete APIs such as the {@code /auth/introspection} API and
+     * the {@code /auth/token} API recognize the {@code dpopNonceRequired}
+     * request parameter, which enables API callers to require DPoP proof JWTs
+     * to include the {@code nonce} claim at runtime, even if this service
+     * property is false.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require DPoP proof JWTs to include the
+     *         {@code nonce} claim whenever they are presented.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public Service setDpopNonceRequired(boolean required)
+    {
+        this.dpopNonceRequired = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of nonce values for DPoP proof JWTs in seconds.
+     *
+     * @return
+     *         The duration of nonce values for DPoP proof JWTs in seconds.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public long getDpopNonceDuration()
+    {
+        return dpopNonceDuration;
+    }
+
+
+    /**
+     * Set the duration of nonce values for DPoP proof JWTs in seconds.
+     *
+     * @param duration
+     *         The duration of nonce values for DPoP proof JWTs in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public Service setDpopNonceDuration(long duration)
+    {
+        this.dpopNonceDuration = duration;
 
         return this;
     }

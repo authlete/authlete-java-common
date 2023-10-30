@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Authlete, Inc.
+ * Copyright (C) 2019-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,6 +91,48 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
+ * <dt><b><code>dpop</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code DPoP} HTTP header.
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>htm</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The HTTP method of the PAR request. In normal cases, the value is
+ * {@code "POST"}. When this parameter is omitted, {@code "POST"} is used
+ * as the default value.
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>htu</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The URL of the PAR endpoint, without query or path components. If omitted,
+ * the {@code pushedAuthReqEndpoint} property of {@link Service} is used as
+ * the default value.
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>dpopNonceRequired</code></b> (OPTIONAL; Authlete 3.0 onwards)</dt>
+ * <dd>
+ * <p>
+ * The flag indicating whether to require the DPoP proof JWT to include
+ * the {@code nonce} claim. Even if the service's {@code dpopNonceRequired}
+ * property is false, calling the {@code /pushed_auth_req} API with this
+ * {@code dpopNonceRequired} parameter true will force the Authlete API to
+ * check whether the DPoP proof JWT includes the expected nonce value.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -98,7 +140,7 @@ import java.io.Serializable;
  */
 public class PushedAuthReqRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -148,6 +190,15 @@ public class PushedAuthReqRequest implements Serializable
      * HTTP URL base (for DPoP validation).
      */
     private String htu;
+
+
+    /**
+     * Whether to check if the DPoP proof JWT includes the expected nonce value.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     */
+    private boolean dpopNonceRequired;
 
 
     /**
@@ -314,14 +365,17 @@ public class PushedAuthReqRequest implements Serializable
      * the public key that is paired with the private key used to sign the JWT.
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @return
      *         The {@code DPoP} header string.
      *
      * @since 3.47
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public String getDpop()
     {
@@ -335,8 +389,8 @@ public class PushedAuthReqRequest implements Serializable
      * the public key that is paired with the private key used to sign the JWT.
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @param dpop
@@ -346,6 +400,9 @@ public class PushedAuthReqRequest implements Serializable
      *         {@code this} object.
      *
      * @since 3.47
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public PushedAuthReqRequest setDpop(String dpop)
     {
@@ -365,14 +422,17 @@ public class PushedAuthReqRequest implements Serializable
      * </p>
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @return
      *         The HTTP method as a string. For example, {@code "POST"}.
      *
      * @since 3.47
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public String getHtm()
     {
@@ -390,8 +450,8 @@ public class PushedAuthReqRequest implements Serializable
      * </p>
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @param htm
@@ -401,6 +461,9 @@ public class PushedAuthReqRequest implements Serializable
      *         {@code this} object.
      *
      * @since 3.47
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public PushedAuthReqRequest setHtm(String htm)
     {
@@ -420,14 +483,17 @@ public class PushedAuthReqRequest implements Serializable
      * </p>
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @return
      *         The URL of the PAR endpoint.
      *
      * @since 3.47
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public String getHtu()
     {
@@ -445,8 +511,8 @@ public class PushedAuthReqRequest implements Serializable
      * </p>
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @param htu
@@ -456,10 +522,81 @@ public class PushedAuthReqRequest implements Serializable
      *         {@code this} object.
      *
      * @since 3.47
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public PushedAuthReqRequest setHtu(String htu)
     {
         this.htu = htu;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to check if the DPoP proof JWT includes
+     * the expected {@code nonce} value.
+     *
+     * <p>
+     * If this request parameter is {@code true} or if the service's
+     * {@code dpopNonceRequired} property ({@link Service#isDpopNonceRequired()})
+     * is {@code true}, the {@code /pushed_auth_req} API checks if the DPoP
+     * proof JWT includes the expected {@code nonce} value. In this case, the
+     * response from the {@code /pushed_auth_req} API will include the
+     * {@code dpopNonce} response parameter, which should be used as the value
+     * of the {@code DPoP-Nonce} HTTP header.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the {@code /pushed_auth_req} API checks
+     *         whether the DPoP proof JWT includes the expected {@code nonce}
+     *         value, even if the service's {@code dpopNonceRequired} property
+     *         is false.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public boolean isDpopNonceRequired()
+    {
+        return dpopNonceRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether to check if the DPoP proof JWT includes
+     * the expected {@code nonce} value.
+     *
+     * <p>
+     * If this request parameter is {@code true} or if the service's
+     * {@code dpopNonceRequired} property ({@link Service#isDpopNonceRequired()})
+     * is {@code true}, the {@code /pushed_auth_req} API checks if the DPoP
+     * proof JWT includes the expected {@code nonce} value. In this case, the
+     * response from the {@code /pushed_auth_req} API will include the
+     * {@code dpopNonce} response parameter, which should be used as the value
+     * of the {@code DPoP-Nonce} HTTP header.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to have the {@code /pushed_auth_req} API check
+     *         whether the DPoP proof JWT includes the expected {@code nonce} value,
+     *         even if the service's {@code dpopNonceRequired} property is false.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public PushedAuthReqRequest setDpopNonceRequired(boolean required)
+    {
+        this.dpopNonceRequired = required;
 
         return this;
     }

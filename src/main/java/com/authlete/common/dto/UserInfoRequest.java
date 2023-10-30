@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2022 Authlete, Inc.
+ * Copyright (C) 2015-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,8 +46,8 @@ import java.io.Serializable;
  * <dd>
  * <p>
  * The value of the {@code DPoP} HTTP header.
- * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
- * Layer (DPoP)"</i> for details.
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
  * </p>
  * </dd>
  *
@@ -56,8 +56,8 @@ import java.io.Serializable;
  * <p>
  * The HTTP method of the userinfo request. In normal cases, the value should
  * be either {@code "GET"} or {@code "POST"}.
- * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
- * Layer (DPoP)"</i> for details.
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
  * </p>
  * </dd>
  *
@@ -67,8 +67,8 @@ import java.io.Serializable;
  * The URL of the userinfo endpoint, without query or path components.
  * If omitted, the {@code userInfoEndpoint}
  * property of {@link Service} is used as the default value.
- * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the Application
- * Layer (DPoP)"</i> for details.
+ * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+ * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
  * </p>
  * </dd>
  *
@@ -99,6 +99,17 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
+ * <dt><b><code>dpopNonceRequired</code></b> (OPTIONAL; Authlete 3.0 onwards)</dt>
+ * <dd>
+ * <p>
+ * The flag indicating whether to require the DPoP proof JWT to include
+ * the {@code nonce} claim. Even if the service's {@code dpopNonceRequired}
+ * property is false, calling the {@code /auth/userinfo} API with this
+ * {@code dpopNonceRequired} parameter true will force the Authlete API to
+ * check whether the DPoP proof JWT includes the expected nonce value.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -106,7 +117,7 @@ import java.io.Serializable;
  */
 public class UserInfoRequest implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -180,6 +191,15 @@ public class UserInfoRequest implements Serializable
 
 
     /**
+     * Whether to check if the DPoP proof JWT includes the expected nonce value.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     */
+    private boolean dpopNonceRequired;
+
+
+    /**
      * Get the access token which has come along with the userinfo
      * request from the client application.
      */
@@ -223,11 +243,10 @@ public class UserInfoRequest implements Serializable
      * <p>
      * The value of this request parameter is referred to when the access
      * token given to the userinfo endpoint was bound to a client certificate
-     * when it was issued. See <i>"<a href=
-     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-mtls/?include_text=1"
-     * >OAuth 2.0 Mutual TLS Client Authentication and Certificate-Bound Access
-     * Tokens</a>"</i> for details about the specification of certificate-bound
-     * access tokens.
+     * when it was issued. See <a href=
+     * "https://www.rfc-editor.org/rfc/rfc8705.html">RFC 8705 OAuth 2.0
+     * Mutual-TLS Client Authentication and Certificate-Bound Access Tokens</a>
+     * for details about the specification of certificate-bound access tokens.
      * </p>
      *
      * @param certificate
@@ -253,14 +272,17 @@ public class UserInfoRequest implements Serializable
      * sign the JWT.
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @return
      *         The {@code DPoP} header string.
      *
      * @since 2.70
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public String getDpop()
     {
@@ -275,8 +297,8 @@ public class UserInfoRequest implements Serializable
      * sign the JWT.
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @param dpop
@@ -286,6 +308,9 @@ public class UserInfoRequest implements Serializable
      *         {@code this} object.
      *
      * @since 2.70
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public UserInfoRequest setDpop(String dpop)
     {
@@ -304,14 +329,17 @@ public class UserInfoRequest implements Serializable
      * </p>
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @return
      *         The HTTP method as a string. For example, {@code "GET"}.
      *
      * @since 2.70
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public String getHtm()
     {
@@ -328,8 +356,8 @@ public class UserInfoRequest implements Serializable
      * </p>
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @param htm
@@ -339,6 +367,9 @@ public class UserInfoRequest implements Serializable
      *         {@code this} object.
      *
      * @since 2.70
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public UserInfoRequest setHtm(String htm)
     {
@@ -358,14 +389,17 @@ public class UserInfoRequest implements Serializable
      * </p>
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @return
      *         The URL of the userinfo endpoint.
      *
      * @since 2.70
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public String getHtu()
     {
@@ -383,8 +417,8 @@ public class UserInfoRequest implements Serializable
      * </p>
      *
      * <p>
-     * See <i>"OAuth 2.0 Demonstration of Proof-of-Possession at the
-     * Application Layer (DPoP)"</i> for details.
+     * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
+     * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
      * @param htu
@@ -394,6 +428,9 @@ public class UserInfoRequest implements Serializable
      *         {@code this} object.
      *
      * @since 2.70
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
      */
     public UserInfoRequest setHtu(String htu)
     {
@@ -523,6 +560,73 @@ public class UserInfoRequest implements Serializable
     public UserInfoRequest setMessage(String message)
     {
         this.message = message;
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to check if the DPoP proof JWT includes
+     * the expected {@code nonce} value.
+     *
+     * <p>
+     * If this request parameter is {@code true} or if the service's
+     * {@code dpopNonceRequired} property ({@link Service#isDpopNonceRequired()})
+     * is {@code true}, the {@code /auth/userinfo} API checks if the DPoP proof
+     * JWT includes the expected {@code nonce} value. In this case, the response
+     * from the {@code /auth/userinfo} API will include the {@code dpopNonce}
+     * response parameter, which should be used as the value of the
+     * {@code DPoP-Nonce} HTTP header.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the {@code /auth/userinfo} API checks whether the
+     *         DPoP proof JWT includes the expected {@code nonce} value, even
+     *         if the service's {@code dpopNonceRequired} property is false.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public boolean isDpopNonceRequired()
+    {
+        return dpopNonceRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether to check if the DPoP proof JWT includes
+     * the expected {@code nonce} value.
+     *
+     * <p>
+     * If this request parameter is {@code true} or if the service's
+     * {@code dpopNonceRequired} property ({@link Service#isDpopNonceRequired()})
+     * is {@code true}, the {@code /auth/userinfo} API checks if the DPoP proof
+     * JWT includes the expected {@code nonce} value. In this case, the response
+     * from the {@code /auth/userinfo} API will include the {@code dpopNonce}
+     * response parameter, which should be used as the value of the
+     * {@code DPoP-Nonce} HTTP header.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to have the {@code /auth/userinfo} API check whether
+     *         the DPoP proof JWT includes the expected {@code nonce} value,
+     *         even if the service's {@code dpopNonceRequired} property is false.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.82
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
+     *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     */
+    public UserInfoRequest setDpopNonceRequired(boolean required)
+    {
+        this.dpopNonceRequired = required;
+
         return this;
     }
 }
