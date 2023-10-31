@@ -157,6 +157,7 @@ public class TokenUpdateRequest implements Serializable
 
     private String accessToken;
     private long accessTokenExpiresAt;
+    private long refreshTokenExpiresAt;
     private String[] scopes;
     private Property[] properties;
     private boolean accessTokenExpiresAtUpdatedOnScopeUpdate;
@@ -228,6 +229,40 @@ public class TokenUpdateRequest implements Serializable
     public TokenUpdateRequest setAccessTokenExpiresAt(long expiresAt)
     {
         this.accessTokenExpiresAt = expiresAt;
+
+        return this;
+    }
+
+
+    /**
+     * Get the new date at which the refresh token will expire.
+     *
+     * @return
+     *         The new expiration date in milliseconds since the Unix epoch (1970-01-01).
+     */
+    public long getRefreshTokenExpiresAt()
+    {
+        return refreshTokenExpiresAt;
+    }
+
+
+    /**
+     * Set the new date at which the refresh token will expire.
+     *
+     * <p>
+     * If 0 or a negative value is given, the expiration date of the refresh token
+     * is not changed.
+     * </p>
+     *
+     * @param expiresAt
+     *         The new expiration date in milliseconds since the Unix epoch (1970-01-01).
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public TokenUpdateRequest setRefreshTokenExpiresAt(long expiresAt)
+    {
+        this.refreshTokenExpiresAt = expiresAt;
 
         return this;
     }
