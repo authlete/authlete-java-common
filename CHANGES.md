@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `ErrorCode` enum
+    * Added `invalid_credential_request`.
+
+
 3.82 (2023-10-30)
 -----------------
 

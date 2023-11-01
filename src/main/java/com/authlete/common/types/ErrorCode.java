@@ -518,6 +518,18 @@ public enum ErrorCode
 
 
     /**
+     * The credential request is invalid.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     *
+     * @since 3.83
+     * @since Authlete 3.0
+     */
+    invalid_credential_request,
+
+
+    /**
      * The proof in the credential request is invalid.
      *
      * <p>
