@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2022 Authlete, Inc.
+ * Copyright (C) 2016-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -239,6 +239,8 @@ public class TokenUpdateRequest implements Serializable
      *
      * @return
      *         The new expiration date in milliseconds since the Unix epoch (1970-01-01).
+     *
+     * @since 3.84
      */
     public long getRefreshTokenExpiresAt()
     {
@@ -259,6 +261,8 @@ public class TokenUpdateRequest implements Serializable
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 3.84
      */
     public TokenUpdateRequest setRefreshTokenExpiresAt(long expiresAt)
     {
