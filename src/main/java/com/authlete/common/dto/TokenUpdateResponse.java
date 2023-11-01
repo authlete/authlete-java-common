@@ -131,6 +131,7 @@ public class TokenUpdateResponse extends ApiResponse
     private String accessToken;
     private String tokenType;
     private long accessTokenExpiresAt;
+    private long refreshTokenExpiresAt;
     private String[] scopes;
     private Property[] properties;
     private AuthzDetails authorizationDetails;
@@ -224,6 +225,35 @@ public class TokenUpdateResponse extends ApiResponse
     public TokenUpdateResponse setAccessTokenExpiresAt(long expiresAt)
     {
         this.accessTokenExpiresAt = expiresAt;
+
+        return this;
+    }
+
+
+    /**
+     * Get the date at which the refresh token will expire.
+     *
+     * @return
+     *         The expiration date in milliseconds since the Unix epoch (1970-01-01).
+     */
+    public long getRefreshTokenExpiresAt()
+    {
+        return refreshTokenExpiresAt;
+    }
+
+
+    /**
+     * Set the date at which the refresh token will expire.
+     *
+     * @param expiresAt
+     *         The expiration date in milliseconds since the Unix epoch (1970-01-01).
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public TokenUpdateResponse setRefreshTokenExpiresAt(long expiresAt)
+    {
+        this.refreshTokenExpiresAt = expiresAt;
 
         return this;
     }
