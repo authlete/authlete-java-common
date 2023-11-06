@@ -344,6 +344,10 @@ public class PushedAuthReqResponse extends ApiResponse
      * @since Authlete 2.2.0
      */
     private URI requestUri;
+
+    /**
+     * @since Authlete 3.0.0
+     */
     private String dpopNonce;
 
 

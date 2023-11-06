@@ -562,6 +562,10 @@ public class Client implements Serializable
      * @since Authlete 2.3.7
      */
     private boolean locked;
+
+    /**
+     * @since Authlete 3.0.0
+     */
     private FapiMode[] fapiModes;
 
     /**
