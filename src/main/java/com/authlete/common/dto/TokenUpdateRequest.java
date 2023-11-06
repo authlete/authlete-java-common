@@ -161,6 +161,7 @@ public class TokenUpdateRequest implements Serializable
     private String[] scopes;
     private Property[] properties;
     private boolean accessTokenExpiresAtUpdatedOnScopeUpdate;
+    private boolean refreshTokenExpiresAtUpdatedOnScopeUpdate;
     private boolean accessTokenPersistent;
     private String accessTokenHash;
     private boolean accessTokenValueUpdated;
@@ -463,6 +464,138 @@ public class TokenUpdateRequest implements Serializable
     public TokenUpdateRequest setAccessTokenExpiresAtUpdatedOnScopeUpdate(boolean updated)
     {
         this.accessTokenExpiresAtUpdatedOnScopeUpdate = updated;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether {@code /auth/token/update} API attempts
+     * to update the expiration date of the refresh token when the scopes linked to
+     * the refresh token are changed by this request.
+     *
+     * @return
+     *         The flag which indicates whether {@code /auth/token/update} API
+     *         attempts to update the expiration date of the refresh token when
+     *         the scopes linked to the refresh token are changed by this request.
+     *
+     * @since 3.85
+     */
+    public boolean isRefreshTokenExpiresAtUpdatedOnScopeUpdate()
+    {
+        return refreshTokenExpiresAtUpdatedOnScopeUpdate;
+    }
+
+
+    /**
+     * Set the flag which indicates whether {@code /auth/token/update} API attempts
+     * to update the expiration date of the refresh token when the scopes linked to
+     * the refresh token are changed by this request. This request parameter is optional
+     * and its default value is {@code false}. If this request parameter is set
+     * to {@code true} and all of the following conditions are satisfied, the API
+     * performs an update on the expiration date of the refresh token even if the
+     * <code>refreshTokenExpiresAt</code> request parameter is not explicitly specified
+     * in the request.
+     *
+     * <ol>
+     * <li>The <code>refreshTokenExpiresAt</code> request parameter is not included
+     * in the request or its value is <code>0</code> (or negative).
+     * <li>The scopes linked to the refresh token are changed by the <code>scopes</code>
+     *     request parameter in the request.
+     * <li>Any of the new scopes to be linked to the refresh token has one or more
+     *     attributes specifying refresh token duration.
+     * </ol>
+     *
+     * <p>
+     * When multiple refresh token duration values are found in the attributes of
+     * the specified scopes, the smallest value among them is used.
+     * </p>
+     *
+     * <p>
+     * For more details, see the following examples.
+     * </p>
+     *
+     * <p>
+     * <b>Example 1.</b>
+     *
+     * <p>
+     * Let's say we send the following request to {@code /auth/token/update} API
+     * </p>
+     *
+     * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
+     * {
+     *   "refreshToken" : "JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs",
+     *   "scopes" : ["read_profile"]
+     * }</pre>
+     *
+     * <p>
+     * and <code>"read_profile"</code> has the following attributes.
+     * </p>
+     *
+     * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
+     * {
+     *   "key" : "refresh_token.duration",
+     *   "value" : "10000"
+     * }</pre>
+     *
+     * <p>
+     * In this case, the API evaluates <code>"10000"</code> as a new value of the
+     * duration of the refresh token (in seconds) and updates the expiration date
+     * of the refresh token using the duration.
+     * </p>
+     *
+     * <b>Example 2.</b>
+     *
+     * <p>
+     * Let's say we send the following request to {@code /auth/token/update} API
+     * </p>
+     *
+     * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
+     * {
+     *   "refreshToken" : "JDGiiM9PuWT63FIwGjG9eYlGi-aZMq6CQ2IB475JUxs",
+     *   "scopes" : ["read_profile", "write_profile"]
+     * }</pre>
+     *
+     * <p>
+     * and <code>"read_profile"</code> has the following attributes
+     * </p>
+     *
+     * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
+     * {
+     *   "key" : "refresh_token.duration",
+     *   "value" : "10000"
+     * }</pre>
+     *
+     * <p>
+     * and <code>"write_profile"</code> has the following attributes.
+     * </p>
+     *
+     * <pre style="border: 1px solid black; padding: 0.5em; margin: 0.5em;">
+     * {
+     *   "key" : "refresh_token.duration",
+     *   "value" : "5000"
+     * }</pre>
+     *
+     * <p>
+     * In this case, the API evaluates <code>"10000"</code> and <code>"5000"</code>
+     * as candidate values for new duration of the refresh token (in seconds) and
+     * chooses the smallest value of them (i.e. "5000" is adopted) and updates the
+     * expiration date of the refresh token using the duration.
+     * </p>
+     *
+     * @param updated
+     *         The flag which indicates whether {@code /auth/token/update} API
+     *         attempts to update the expiration date of the refresh token when
+     *         the scopes linked to the refresh token are changed by this request.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.85
+     */
+    public TokenUpdateRequest setRefreshTokenExpiresAtUpdatedOnScopeUpdate(boolean updated)
+    {
+        this.refreshTokenExpiresAtUpdatedOnScopeUpdate = updated;
 
         return this;
     }
