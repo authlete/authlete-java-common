@@ -1,6 +1,18 @@
 変更点
 ======
 
+3.84 (2023 年 11 月 02 日)
+--------------------------
+
+- `TokenUpdateRequest` クラス
+    * `getRefreshTokenExpiresAt()` メソッドを追加。
+    * `setRefreshTokenExpiresAt(long)` メソッドを追加。
+
+- `TokenUpdateResponse` クラス
+    * `getRefreshTokenExpiresAt()` メソッドを追加。
+    * `setRefreshTokenExpiresAt(long)` メソッドを追加。
+
+
 3.83 (2023 年 11 月 01 日)
 --------------------------
 

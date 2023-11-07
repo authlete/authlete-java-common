@@ -1,6 +1,18 @@
 CHANGES
 =======
 
+3.84 (2023-11-02)
+-----------------
+
+- `TokenUpdateRequest` class
+    * Added `getRefreshTokenExpiresAt()` method.
+    * Added `setRefreshTokenExpiresAt(long)` method.
+
+- `TokenUpdateResponse` class
+    * Added `getRefreshTokenExpiresAt()` method.
+    * Added `setRefreshTokenExpiresAt(long)` method.
+
+
 3.83 (2023-11-01)
 -----------------
 
