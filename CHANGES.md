@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+3.85 (2023-11-08)
+-----------------
+
+- `TokenUpdateRequest` class
+    * Added `isRefreshTokenExpiresAtUpdatedOnScopeUpdate()` method.
+    * Added `setRefreshTokenExpiresAtUpdatedOnScopeUpdate(boolean)` method.
+
+
 3.84 (2023-11-02)
 -----------------
 

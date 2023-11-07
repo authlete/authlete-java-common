@@ -1,6 +1,14 @@
 変更点
 ======
 
+3.85 (2023 年 11 月 08 日)
+--------------------------
+
+- `TokenUpdateRequest` クラス
+    * `isRefreshTokenExpiresAtUpdatedOnScopeUpdate()` メソッドを追加。
+    * `setRefreshTokenExpiresAtUpdatedOnScopeUpdate(boolean)` メソッドを追加。
+
+
 3.84 (2023 年 11 月 02 日)
 --------------------------
 
