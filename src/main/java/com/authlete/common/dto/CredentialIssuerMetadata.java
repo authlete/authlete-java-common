@@ -20,6 +20,8 @@ import java.io.Serializable;
 import java.net.URI;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import com.authlete.common.types.JWEAlg;
+import com.authlete.common.types.JWEEnc;
 import static com.authlete.common.util.MapUtils.*;
 
 
@@ -29,10 +31,13 @@ import static com.authlete.common.util.MapUtils.*;
  *
  * <ul>
  * <li>{@code credential_issuer}
- * <li>{@code authorization_server}
+ * <li>{@code authorization_servers}
  * <li>{@code credential_endpoint}
  * <li>{@code batch_credential_endpoint}
  * <li>{@code deferred_credential_endpoint}
+ * <li>{@code credential_response_encryption_alg_values_supported}
+ * <li>{@code credential_response_encryption_enc_values_supported}
+ * <li>{@code require_credential_response_encryption}
  * <li>{@code credentials_supported}
  * </ul>
  *
@@ -41,15 +46,36 @@ import static com.authlete.common.util.MapUtils.*;
  * {@code /.well-known/openid-credential-issuer}.
  * </p>
  *
+ * <h3>Breaking Changes</h3>
+ *
+ * <p>
+ * The "OpenID for Verifiable Credential Issuance" specification tends to
+ * repeat breaking changes. Such changes affect this Java class.
+ * The following are notable changes.
+ * </p>
+ *
+ * <ol>
+ * <li>
+ * The type of the "{@code credentials_supported}" metadata has been changed
+ * from a JSON array to a JSON object.
+ * <li>
+ * The "{@code authorization_server}" metadata has been renamed to
+ * "{@code authorization_servers}", and its type has been changed from a string
+ * to a JSON array.
+ * </ol>
+ *
  * @since 3.55
  * @since Authlete 3.0
  *
  * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
  *      >OpenID for Verifiable Credential Issuance</a>
+ *
+ * @see <a href="https://openid.github.io/OpenID4VCI/openid-4-verifiable-credential-issuance-wg-draft.html"
+ *      >OpenID for Verifiable Credential Issuance, Working Draft</a>
  */
 public class CredentialIssuerMetadata implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -59,10 +85,12 @@ public class CredentialIssuerMetadata implements Serializable
 
 
     /**
-     * The identifier of the authorization server that the credential issuer
+     * The identifiers of the authorization servers that the credential issuer
      * relies on for authorization.
+     *
+     * @since 3.86
      */
-    private URI authorizationServer;
+    private URI[] authorizationServers;
 
 
     /**
@@ -84,7 +112,32 @@ public class CredentialIssuerMetadata implements Serializable
 
 
     /**
-     * A JSON array describing supported credentials.
+     * The supported JWE alg algorithms for credential response encryption.
+     *
+     * @since 3.86
+     */
+    private JWEAlg[] credentialResponseEncryptionAlgValuesSupported;
+
+
+    /**
+     * The supported JWE enc algorithms for credential response encryption.
+     *
+     * @since 3.86
+     */
+    private JWEEnc[] credentialResponseEncryptionEncValuesSupported;
+
+
+    /**
+     * The boolean flag indicating whether credential response encryption is
+     * required.
+     *
+     * @since 3.86
+     */
+    private boolean requireCredentialResponseEncryption;
+
+
+    /**
+     * A JSON object describing supported credentials.
      */
     private String credentialsSupported;
 
@@ -110,12 +163,15 @@ public class CredentialIssuerMetadata implements Serializable
             return;
         }
 
-        credentialIssuer           = metadata.getCredentialIssuer();
-        authorizationServer        = metadata.getAuthorizationServer();
-        credentialEndpoint         = metadata.getCredentialEndpoint();
-        batchCredentialEndpoint    = metadata.getBatchCredentialEndpoint();
-        deferredCredentialEndpoint = metadata.getDeferredCredentialEndpoint();
-        credentialsSupported       = metadata.getCredentialsSupported();
+        credentialIssuer                               = metadata.getCredentialIssuer();
+        authorizationServers                           = metadata.getAuthorizationServers();
+        credentialEndpoint                             = metadata.getCredentialEndpoint();
+        batchCredentialEndpoint                        = metadata.getBatchCredentialEndpoint();
+        deferredCredentialEndpoint                     = metadata.getDeferredCredentialEndpoint();
+        credentialResponseEncryptionAlgValuesSupported = metadata.getCredentialResponseEncryptionAlgValuesSupported();
+        credentialResponseEncryptionEncValuesSupported = metadata.getCredentialResponseEncryptionEncValuesSupported();
+        requireCredentialResponseEncryption            = metadata.isRequireCredentialResponseEncryption();
+        credentialsSupported                           = metadata.getCredentialsSupported();
     }
 
 
@@ -161,9 +217,9 @@ public class CredentialIssuerMetadata implements Serializable
 
 
     /**
-     * Get the identifier of the authorization server that the credential
+     * Get the identifiers of the authorization servers that the credential
      * issuer relies on for authorization. This property corresponds to the
-     * {@code authorization_server} metadata.
+     * {@code authorization_servers} metadata.
      *
      * <p>
      * When the credential issuer works as an authorization server for itself,
@@ -171,35 +227,39 @@ public class CredentialIssuerMetadata implements Serializable
      * </p>
      *
      * @return
-     *         The identifier of the authorization server that the credential
+     *         The identifiers of the authorization servers that the credential
      *         issuer relies on for authorization.
+     *
+     * @since 3.86
      */
-    public URI getAuthorizationServer()
+    public URI[] getAuthorizationServers()
     {
-        return authorizationServer;
+        return authorizationServers;
     }
 
 
     /**
-     * Set the identifier of the authorization server that the credential
+     * Set the identifiers of the authorization servers that the credential
      * issuer relies on for authorization. This property corresponds to the
-     * {@code authorization_server} metadata.
+     * {@code authorization_servers} metadata.
      *
      * <p>
      * When the credential issuer works as an authorization server for itself,
      * this property should be omitted.
      * </p>
      *
-     * @param server
-     *         The identifier of the authorization server that the credential
+     * @param servers
+     *         The identifiers of the authorization servers that the credential
      *         issuer relies on for authorization.
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 3.86
      */
-    public CredentialIssuerMetadata setAuthorizationServer(URI server)
+    public CredentialIssuerMetadata setAuthorizationServers(URI[] servers)
     {
-        this.authorizationServer = server;
+        this.authorizationServers = servers;
 
         return this;
     }
@@ -332,6 +392,134 @@ public class CredentialIssuerMetadata implements Serializable
 
 
     /**
+     * Get the supported JWE {@code alg} algorithms for credential response
+     * encryption. This property corresponds to the
+     * {@code credential_response_encryption_alg_values_supported} metadata.
+     *
+     * @return
+     *         The supported JWE {@code alg} algorithms for credential response
+     *         encryption.
+     *
+     * @since 3.86
+     */
+    public JWEAlg[] getCredentialResponseEncryptionAlgValuesSupported()
+    {
+        return credentialResponseEncryptionAlgValuesSupported;
+    }
+
+
+    /**
+     * Set the supported JWE {@code alg} algorithms for credential response
+     * encryption. This property corresponds to the
+     * {@code credential_response_encryption_alg_values_supported} metadata.
+     *
+     * @param algs
+     *         The supported JWE {@code alg} algorithms for credential response
+     *         encryption.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.86
+     */
+    public CredentialIssuerMetadata setCredentialResponseEncryptionAlgValuesSupported(JWEAlg[] algs)
+    {
+        this.credentialResponseEncryptionAlgValuesSupported = algs;
+
+        return this;
+    }
+
+
+    /**
+     * Get the supported JWE {@code enc} algorithms for credential response
+     * encryption. This property corresponds to the
+     * {@code credential_response_encryption_enc_values_supported} metadata.
+     *
+     * @return
+     *         The supported JWE {@code enc} algorithms for credential response
+     *         encryption.
+     *
+     * @since 3.86
+     */
+    public JWEEnc[] getCredentialResponseEncryptionEncValuesSupported()
+    {
+        return credentialResponseEncryptionEncValuesSupported;
+    }
+
+
+    /**
+     * Set the supported JWE {@code enc} algorithms for credential response
+     * encryption. This property corresponds to the
+     * {@code credential_response_encryption_enc_values_supported} metadata.
+     *
+     *
+     * @param encs
+     *         The supported JWE {@code enc} algorithms for credential response
+     *         encryption.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.86
+     */
+    public CredentialIssuerMetadata setCredentialResponseEncryptionEncValuesSupported(JWEEnc[] encs)
+    {
+        this.credentialResponseEncryptionEncValuesSupported = encs;
+
+        return this;
+    }
+
+
+    /**
+     * Get the boolean flag indicating whether credential response encryption
+     * is required. This property corresponds to the
+     * {@code require_credential_response_encryption} metadata.
+     *
+     * <p>
+     * If this flag is {@code true}, every credential request to the credential
+     * issuer must include encryption-related parameters such as
+     * {@code credential_response_encryption_alg}.
+     * </p>
+     *
+     * @return
+     *         {@code true} if credential response encryption is required.
+     *
+     * @since 3.86
+     */
+    public boolean isRequireCredentialResponseEncryption()
+    {
+        return requireCredentialResponseEncryption;
+    }
+
+
+    /**
+     * Set the boolean flag indicating whether credential response encryption
+     * is required. This property corresponds to the
+     * {@code require_credential_response_encryption} metadata.
+     *
+     * <p>
+     * If this flag is {@code true}, every credential request to the credential
+     * issuer must include encryption-related parameters such as
+     * {@code credential_response_encryption_alg}.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require credential response encryption.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.86
+     */
+    public CredentialIssuerMetadata setRequireCredentialResponseEncryption(boolean required)
+    {
+        this.requireCredentialResponseEncryption = required;
+
+        return this;
+    }
+
+
+    /**
      * Get the information about supported credentials in the JSON format.
      * This property corresponds to the {@code credentials_supported} metadata.
      *
@@ -340,9 +528,16 @@ public class CredentialIssuerMetadata implements Serializable
      * be set.
      * </p>
      *
+     * <p>
+     * NOTE: Due to the breaking change of the "OpenID for Verifiable
+     * Credential Issuance" specification, the type of the content of this
+     * "{@code credentialsSupported}" property has been changed from a JSON
+     * array to a JSON object.
+     * </p>
+     *
      * @return
      *         The supported credentials. If not null, the value is a string
-     *         representing a JSON array.
+     *         representing a JSON object.
      */
     public String getCredentialsSupported()
     {
@@ -359,9 +554,16 @@ public class CredentialIssuerMetadata implements Serializable
      * be set.
      * </p>
      *
+     * <p>
+     * NOTE: Due to the breaking change of the "OpenID for Verifiable
+     * Credential Issuance" specification, the type of the content of this
+     * "{@code credentialsSupported}" property has been changed from a JSON
+     * array to a JSON object.
+     * </p>
+     *
      * @param credentialsSupported
      *         The supported credentials. If not null, the value must be a
-     *         string representing a JSON array.
+     *         string representing a JSON object.
      *
      * @return
      *         {@code this} object.
@@ -382,12 +584,14 @@ public class CredentialIssuerMetadata implements Serializable
      */
     public boolean isEmpty()
     {
-        return (credentialIssuer           == null) &&
-               (authorizationServer        == null) &&
-               (credentialEndpoint         == null) &&
-               (batchCredentialEndpoint    == null) &&
-               (deferredCredentialEndpoint == null) &&
-               (credentialsSupported       == null);
+        return (credentialIssuer                               == null) &&
+               (authorizationServers                           == null) &&
+               (credentialEndpoint                             == null) &&
+               (batchCredentialEndpoint                        == null) &&
+               (deferredCredentialEndpoint                     == null) &&
+               (credentialResponseEncryptionAlgValuesSupported == null) &&
+               (credentialResponseEncryptionEncValuesSupported == null) &&
+               (credentialsSupported                           == null);
     }
 
 
@@ -403,40 +607,51 @@ public class CredentialIssuerMetadata implements Serializable
      * <blockquote>
      * <pre>
      * {
-     *   "credential_issuer": "https://credential-issuer.example.com",
-     *   "authorization_server": "https://authorization-server.example.com",
-     *   "credential_endpoint": "https://credential-issuer.example.com/credential",
-     *   "batch_credential_endpoint": "https://credential-issuer.example.com/batch_credential",
-     *   "deferred_credential_endpoint": "https://credential-issuer.example.com/deferred_credential",
-     *   "credentials_supported": [
-     *     {
+     *   "credential_issuer":
+     *     "https://credential-issuer.example.com",
+     *   "authorization_servers": [
+     *     "https://authorization-server.example.com"
+     *   ],
+     *   "credential_endpoint":
+     *     "https://credential-issuer.example.com/credential",
+     *   "batch_credential_endpoint":
+     *     "https://credential-issuer.example.com/batch_credential",
+     *   "deferred_credential_endpoint":
+     *     "https://credential-issuer.example.com/deferred_credential",
+     *   "credentials_supported": {
+     *     "UniversityDegreeCredential": {
      *       "format": "jwt_vc_json",
-     *       "id": "UniversityDegree_JWT",
-     *       "type": [
-     *         "VerifiableCredential",
-     *         "UniversityDegreeCredential"
-     *       ],
+     *       "scope": "UniversityDegree",
      *       "cryptographic_binding_methods_supported": [
      *         "did:example"
      *       ],
      *       "cryptographic_suites_supported": [
      *         "ES256K"
      *       ],
-     *       "display": [
-     *         {
-     *           "name": "University Credential"
+     *       "credential_definition": {
+     *         "type": [
+     *           "VerifiableCredential",
+     *           "UniversityDegreeCredential"
+     *         ],
+     *         "credentialSubject": {
+     *           "given_name": {},
+     *           "family_name": {},
+     *           "degree": {},
+     *           "gpa": {}
      *         }
-     *       ],
-     *       "credentialSubject": {
-     *         "given_name": {},
-     *         "last_name": {},
-     *         "degree": {}
      *       }
      *     }
-     *   ]
+     *   }
      * }
      * </pre>
      * </blockquote>
+     *
+     * <p>
+     * NOTE: Due to the breaking change of the "OpenID for Verifiable
+     * Credential Issuance" specification, the type of the
+     * "{@code credentials_supported}" property has been changed from
+     * a JSON array to a JSON object.
+     * </p>
      *
      * @return
      *         A {@code Map} instance that represents a JSON object conforming
@@ -444,27 +659,30 @@ public class CredentialIssuerMetadata implements Serializable
      *
      * @throws IllegalStateException
      *         The value of the {@code credentialsSupported} property failed
-     *         to be parsed as a JSON array.
+     *         to be parsed as a JSON object.
      */
     public Map<String, Object> toMap()
     {
         Map<String, Object> map = new LinkedHashMap<>();
 
-        put(map, "credential_issuer",            credentialIssuer,           false);
-        put(map, "authorization_server",         authorizationServer,        false);
-        put(map, "credential_endpoint",          credentialEndpoint,         false);
-        put(map, "batch_credential_endpoint",    batchCredentialEndpoint,    false);
-        put(map, "deferred_credential_endpoint", deferredCredentialEndpoint, false);
+        put(map, "credential_issuer",                                   credentialIssuer,                               false);
+        put(map, "authorization_servers",                               authorizationServers,                           false);
+        put(map, "credential_endpoint",                                 credentialEndpoint,                             false);
+        put(map, "batch_credential_endpoint",                           batchCredentialEndpoint,                        false);
+        put(map, "deferred_credential_endpoint",                        deferredCredentialEndpoint,                     false);
+        put(map, "credential_response_encryption_alg_values_supported", credentialResponseEncryptionAlgValuesSupported, false);
+        put(map, "credential_response_encryption_enc_values_supported", credentialResponseEncryptionEncValuesSupported, false);
+        put(map, "require_credential_response_encryption",              requireCredentialResponseEncryption,            false);
 
         try
         {
-            // Parse the value of 'credentialsSupported' as a JSON array.
-            putJsonArray(map, "credentials_supported", credentialsSupported, false);
+            // Parse the value of 'credentialsSupported' as a JSON object.
+            putJsonObject(map, "credentials_supported", credentialsSupported, false);
         }
         catch (Exception cause)
         {
             throw new IllegalStateException(
-                    "The value of the 'credentialsSupported' property failed to be parsed as a JSON array.", cause);
+                    "The value of the 'credentialsSupported' property failed to be parsed as a JSON object.", cause);
         }
 
         return map;
