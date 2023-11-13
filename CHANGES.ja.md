@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.86 (2023 年 11 月 13 日)
+--------------------------
+
 - `Client` クラス
     * `isCredentialResponseEncryptionRequired()` メソッドを追加。
     * `setCredentialResponseEncryptionRequired(boolean)` メソッドを追加。

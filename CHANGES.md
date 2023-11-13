@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.86 (2023-11-13)
+-----------------
+
 - `Client` class
     * Added `isCredentialResponseEncryptionRequired()` method.
     * Added `setCredentialResponseEncryptionRequired(boolean)` method.
