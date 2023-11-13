@@ -82,7 +82,7 @@ import com.authlete.common.util.Utils;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 35L;
+    private static final long serialVersionUID = 36L;
 
 
     /*
@@ -333,6 +333,7 @@ public class Client implements Serializable
      * For Verifiable Credentials
      */
     private URI credentialOfferEndpoint;
+    private boolean credentialResponseEncryptionRequired;
 
 
     /**
@@ -4646,6 +4647,78 @@ public class Client implements Serializable
     public Client setFapiModes(FapiMode[] modes)
     {
         this.fapiModes = modes;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether credential responses to this client
+     * must be always encrypted or not.
+     *
+     * <p>
+     * When this flag is {@code true}, credential requests from this client
+     * must always include encryption-related parameters such as
+     * {@code credential_response_encryption_alg}.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is {@code false}, encryption-related parameters
+     * are always required when the service's
+     * {@code credentialIssuerMetadata.requireCredentialResponseEncryption}
+     * property is {@code true}.
+     * </p>
+     *
+     * @return
+     *         {@code true} if credential responses to this client must be
+     *         always encrypted.
+     *
+     * @since 3.86
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     */
+    public boolean isCredentialResponseEncryptionRequired()
+    {
+        return credentialResponseEncryptionRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether credential responses to this client
+     * must be always encrypted or not.
+     *
+     * <p>
+     * When this flag is {@code true}, credential requests from this client
+     * must always include encryption-related parameters such as
+     * {@code credential_response_encryption_alg}.
+     * </p>
+     *
+     * <p>
+     * Even if this flag is {@code false}, encryption-related parameters
+     * are always required when the service's
+     * {@code credentialIssuerMetadata.requireCredentialResponseEncryption}
+     * property is {@code true}.
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require credential requests from this client
+     *         to always include encryption-related parameters such as
+     *         {@code credential_response_encryption_alg}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.86
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
+     *      >OpenID for Verifiable Credential Issuance</a>
+     */
+    public Client setCredentialResponseEncryptionRequired(boolean required)
+    {
+        this.credentialResponseEncryptionRequired = required;
 
         return this;
     }

@@ -1,6 +1,46 @@
 CHANGES
 =======
 
+- `Client` class
+    * Added `isCredentialResponseEncryptionRequired()` method.
+    * Added `setCredentialResponseEncryptionRequired(boolean)` method.
+
+- `CredentialIssuerMetadata` class
+    * Removed `getAuthorizationServer()` method.
+    * Removed `setAuthorizationServer(String)` method.
+    * Added `getAuthorizationServers()` method.
+    * Added `setAuthorizationServers(String[])` method.
+    * Added `getCredentialResponseEncryptionAlgValuesSupported()` method.
+    * Added `setCredentialResponseEncryptionAlgValuesSupported(JWEAlg[])` method.
+    * Added `getCredentialResponseEncryptionEncValuesSupported()` method.
+    * Added `setCredentialResponseEncryptionEncValuesSupported(JWEEnc[])` method.
+    * Added `isRequireCredentialResponseEncryption()` method.
+    * Added `setRequireCredentialResponseEncryption(boolean)` method.
+
+- `CredentialBatchIssueResponse.Action` enum
+    * Added `OK_JWT`.
+    * Added `BAD_REQUEST`.
+
+- `CredentialDeferredIssueResponse.Action` enum
+    * Added `OK_JWT`.
+    * Added `BAD_REQUEST`.
+
+- `CredentialOfferCreateRequest` class
+    * Removed `setCredentials(String)` method.
+    * Added `setCredentials(String[])` method.
+    * Changed the return type of the `getCredentials()` method from `String` to `String[]`.
+
+- `CredentialOfferInfo` class
+    * Removed `setCredentials(String)` method.
+    * Added `setCredentials(String[])` method.
+    * Changed the return type of the `getCredentials()` method from `String` to `String[]`.
+
+- `CredentialSingleIssueResponse.Action` enum
+    * Added `OK_JWT`.
+    * Added `ACCEPTED_JWT`.
+    * Added `BAD_REQUEST`.
+
+
 3.85 (2023-11-08)
 -----------------
 

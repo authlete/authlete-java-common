@@ -49,6 +49,51 @@ package com.authlete.common.dto;
  * </pre>
  *
  * <hr>
+ * <h3>{@code action} = {@link Action#OK_JWT OK_JWT}</h3>
+ *
+ * <p>
+ * The {@code action} value {@link Action#OK_JWT OK_JWT} means that a
+ * credential has been issued successfully and the deferred credential
+ * response should be encrypted. In this case, the implementation of the
+ * deferred credential endpoint should return a successful response to the
+ * request sender. The HTTP status code and the content type of the response
+ * should be 200 and {@code application/jwt}, respectively. The value of the
+ * {@code responseContent} parameter is an encrypted JWT and can be used as
+ * the message body of the response.
+ * </p>
+ *
+ * <pre>
+ * HTTP/1.1 200 OK
+ * Content-Type: application/jwt
+ * Cache-Control: no-store
+ *
+ * (Put the value of the "responseContent" parameter here.)
+ * </pre>
+ *
+ * <hr>
+ * <h3>{@code action} = {@link Action#BAD_REQUEST BAD_REQUEST}</h3>
+ *
+ * <p>
+ * The {@code action} value {@link Action#BAD_REQUEST BAD_REQUEST} means
+ * that the original deferred credential request is wrong. In this case,
+ * the implementation of the deferred credential endpoint should return
+ * an error response to the request sender. The HTTP status code and the
+ * content type of the error response should be 400 and
+ * {@code application/json}, respectively. The value of the
+ * {@code responseContent} parameter can be used as the message body of
+ * the error response as it conforms to the specification of "Deferred
+ * Credential Error Response".
+ * </p>
+ *
+ * <pre>
+ * HTTP/1.1 400 Bad Request
+ * Content-Type: application/json
+ * Cache-Control: no-store
+ *
+ * (Put the value of the "responseContent" parameter here.)
+ * </pre>
+ *
+ * <hr>
  * <h3>{@code action} = {@link Action#FORBIDDEN FORBIDDEN}</h3>
  *
  * <p>
@@ -124,7 +169,7 @@ package com.authlete.common.dto;
  */
 public class CredentialDeferredIssueResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -140,6 +185,27 @@ public class CredentialDeferredIssueResponse extends ApiResponse
          * {@code application/json}.
          */
         OK,
+
+        /**
+         * A credential was issued successfully and the deferred credential
+         * response should be encrypted. The implementation of the deferred
+         * credential endpoint should return a successful response with the
+         * TTP status code "200 OK" and the content type
+         * {@code application/jwt}.
+         *
+         * @since 3.86
+         */
+        OK_JWT,
+
+        /**
+         * The original deferred credential request is wrong. This can happen,
+         * for example, when the process for encrypting the deferred credential
+         * response with the encryption parameters specified in the deferred
+         * credential request failed.
+         *
+         * @since 3.86
+         */
+        BAD_REQUEST,
 
         /**
          * The feature of Verifiable Credentials is not enabled in the service

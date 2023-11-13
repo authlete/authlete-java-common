@@ -1,6 +1,46 @@
 変更点
 ======
 
+- `Client` クラス
+    * `isCredentialResponseEncryptionRequired()` メソッドを追加。
+    * `setCredentialResponseEncryptionRequired(boolean)` メソッドを追加。
+
+- `CredentialIssuerMetadata` クラス
+    * `getAuthorizationServer()` メソッドを削除。
+    * `setAuthorizationServer(String)` メソッドを削除。
+    * `getAuthorizationServers()` メソッドを追加。
+    * `setAuthorizationServers(String[])` メソッドを追加。
+    * `getCredentialResponseEncryptionAlgValuesSupported()` メソッドを追加。
+    * `setCredentialResponseEncryptionAlgValuesSupported(JWEAlg[])` メソッドを追加。
+    * `getCredentialResponseEncryptionEncValuesSupported()` メソッドを追加。
+    * `setCredentialResponseEncryptionEncValuesSupported(JWEEnc[])` メソッドを追加。
+    * `isRequireCredentialResponseEncryption()` メソッドを追加。
+    * `setRequireCredentialResponseEncryption(boolean)` メソッドを追加。
+
+- `CredentialBatchIssueResponse.Action` 列挙型
+    * `OK_JWT` を追加。
+    * `BAD_REQUEST` を追加。
+
+- `CredentialDeferredIssueResponse.Action` 列挙型
+    * `OK_JWT` を追加。
+    * `BAD_REQUEST` を追加。
+
+- `CredentialOfferCreateRequest` クラス
+    * `setCredentials(String)` メソッドを削除。
+    * `setCredentials(String[])` メソッドを追加。
+    * `getCredentials()` メソッドの戻り値の型を `String` から `String[]` に変更。
+
+- `CredentialOfferInfo` クラス
+    * `setCredentials(String)` メソッドを削除。
+    * `setCredentials(String[])` メソッドを追加。
+    * `getCredentials()` メソッドの戻り値の型を `String` から `String[]` に変更。
+
+- `CredentialSingleIssueResponse.Action` 列挙型
+    * `OK_JWT` を追加。
+    * `ACCEPTED_JWT` を追加。
+    * `BAD_REQUEST` を追加。
+
+
 3.85 (2023 年 11 月 08 日)
 --------------------------
 

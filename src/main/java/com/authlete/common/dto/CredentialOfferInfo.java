@@ -23,6 +23,25 @@ import java.net.URI;
 /**
  * Information about a credential offer.
  *
+ * <h3>Breaking Changes</h3>
+ *
+ * <p>
+ * The "OpenID for Verifiable Credential Issuance" specification tends to
+ * repeat breaking changes. Such changes affect this Java class.
+ * </p>
+ *
+ * <p>
+ * In the past draft of the specification, elements in the "{@code credentials}"
+ * array in a credential offer are either strings or JSON objects. Therefore, the
+ * type of the "{@code credentials}" property in the previous implementation of
+ * this class was a "string" whose content must be able to be parsed as a JSON
+ * array. However, as a result of a breaking change in the specification, it is
+ * ensured that all elements in the "{@code credentials}" array in a credential
+ * offer are strings. To make it easier to treat the "{@code credentials}"
+ * property of this class, the type of the property has been changed from a
+ * string to an array of strings.
+ * </p>
+ *
  * @since 3.59
  * @since Authlete 3.0
  *
@@ -31,7 +50,7 @@ import java.net.URI;
  */
 public class CredentialOfferInfo implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -55,9 +74,9 @@ public class CredentialOfferInfo implements Serializable
 
 
     /**
-     * The value of the {@code credentials} object in the JSON format.
+     * The value of the {@code credentials} array.
      */
-    private String credentials;
+    private String[] credentials;
 
 
     /**
@@ -346,7 +365,7 @@ public class CredentialOfferInfo implements Serializable
 
     /**
      * Get the value of the {@code credentials} property of the credential
-     * offer in the JSON format.
+     * offer.
      *
      * <blockquote>
      * <pre>
@@ -359,14 +378,16 @@ public class CredentialOfferInfo implements Serializable
      * </blockquote>
      *
      * <p>
-     * The value represents a JSON array.
+     * The type of the object returned from this method has been changed
+     * from {@code String} to {@code String[]} since version 3.86 to align
+     * with the breaking change of the OID4VCI specification.
      * </p>
      *
      * @return
      *         The value of the {@code credentials} property of the credential
-     *         offer in the JSON format.
+     *         offer.
      */
-    public String getCredentials()
+    public String[] getCredentials()
     {
         return credentials;
     }
@@ -374,7 +395,7 @@ public class CredentialOfferInfo implements Serializable
 
     /**
      * Set the value of the {@code credentials} property of the credential
-     * offer in the JSON format.
+     * offer.
      *
      * <blockquote>
      * <pre>
@@ -386,18 +407,16 @@ public class CredentialOfferInfo implements Serializable
      * </pre>
      * </blockquote>
      *
-     * <p>
-     * The value should represent a JSON array.
-     * </p>
-     *
      * @param credentials
      *         The value of the {@code credentials} property of the credential
-     *         offer in the JSON format.
+     *         offer.
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 3.86
      */
-    public CredentialOfferInfo setCredentials(String credentials)
+    public CredentialOfferInfo setCredentials(String[] credentials)
     {
         this.credentials = credentials;
 
