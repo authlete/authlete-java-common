@@ -44,6 +44,20 @@ public class AuthleteApiFactory
 
 
     /**
+     * An implementation of {@link AuthleteApi} using JAKARTA.
+     * This implementation exists in authlete/authlete-java-jakarta.
+     */
+    private static final String IMPL_JAKARTA_V2 = "com.authlete.jakarta.api.AuthleteApiImpl";
+
+
+    /**
+     * An implementation of {@link AuthleteApi} using JAKARTA.
+     * This implementation exists in authlete/authlete-java-jakarta.
+     */
+    private static final String IMPL_JAKARTA_V3 = "com.authlete.jakarta.api.AuthleteApiImplV3";
+
+
+    /**
      * An implementation of {@link AuthleteApi} using {@link java.net.HttpURLConnection HttpURLConnection}.
      * This implementation exists in authlete/authlete-java-common.
      */
@@ -55,7 +69,8 @@ public class AuthleteApiFactory
      */
     private static final String[] sKnownImplsV2 = {
         IMPL_JAX_RS_V2,
-        IMPL_HTTP_URL_CONNECTION
+        IMPL_HTTP_URL_CONNECTION,
+        IMPL_JAKARTA_V2
     };
 
 
@@ -63,7 +78,8 @@ public class AuthleteApiFactory
      * Known implementations of AuthleteApi V3.
      */
     private static final String[] sKnownImplsV3 = {
-        IMPL_JAX_RS_V3
+        IMPL_JAX_RS_V3,
+        IMPL_JAKARTA_V3
     };
 
 
