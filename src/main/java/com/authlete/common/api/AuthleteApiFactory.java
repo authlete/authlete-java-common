@@ -69,8 +69,8 @@ public class AuthleteApiFactory
      */
     private static final String[] sKnownImplsV2 = {
         IMPL_JAX_RS_V2,
-        IMPL_HTTP_URL_CONNECTION,
-        IMPL_JAKARTA_V2
+        IMPL_JAKARTA_V2,
+        IMPL_HTTP_URL_CONNECTION
     };
 
 
