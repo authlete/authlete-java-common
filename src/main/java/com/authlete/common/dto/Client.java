@@ -568,8 +568,11 @@ public class Client implements Serializable
      */
     private FapiMode[] fapiModes;
 
-    /**
+    /*
      * For OpenID Federation 1.0.
+     */
+
+    /**
      * @since Authlete 2.3.0
      */
     private URI entityId;
@@ -619,8 +622,11 @@ public class Client implements Serializable
      */
     private boolean explicitlyRegistered;
 
-    /**
+    /*
      * For Verifiable Credentials
+     */
+
+    /**
      * @since Authlete 3.0
      */
     private URI credentialOfferEndpoint;
