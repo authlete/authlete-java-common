@@ -84,7 +84,7 @@ import java.io.Serializable;
  *
  * <p>
  * When the credential format is "{@code vc+sd-jwt}", the {@code credentialPayload}
- * parameter is mandatory. It must contain at least the "{@code type}" claim
+ * parameter is mandatory. It must contain at least the "{@code vct}" claim
  * whose value is a string, and typically it is expected to contain some claims
  * about the user such as the "{@code sub}" claim and the "{@code family_name}"
  * claim.
@@ -92,7 +92,7 @@ import java.io.Serializable;
  *
  * <pre>
  * {
- *   "type": "Diploma",
+ *   "vct": "Diploma",
  *   "sub": "79301273",
  *   "family_name": "Kawasaki"
  * }

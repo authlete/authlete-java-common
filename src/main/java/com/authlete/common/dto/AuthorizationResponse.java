@@ -2933,7 +2933,7 @@ public class AuthorizationResponse extends ApiResponse
      *   {
      *     "format": "vc+sd-jwt",
      *     "credential_definition": {
-     *       "type": "IdentityCredential"
+     *       "vct": "https://credentials.example.com/identity_credential"
      *     }
      *   }
      * ]

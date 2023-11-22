@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+3.87 (2023-11-23)
+-----------------
+
+- `AuthleteApiFactory` class
+    * Added the class names of new `AuthleteApi` implementations for Jakarta
+      to the lists of known implementations. (#83)
+
+- Many classes
+    * Added `@since` annotations. (#76)
+
+
 3.86 (2023-11-13)
 -----------------
 
