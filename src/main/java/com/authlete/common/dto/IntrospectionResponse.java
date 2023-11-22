@@ -304,24 +304,28 @@ public class IntrospectionResponse extends ApiResponse
 
     /**
      * The next action the service implementation should take.
+     * @since Authlete 1.1
      */
     private Action action;
 
 
     /**
      * The client ID.
+     * @since Authlete 1.1
      */
     private long clientId;
 
 
     /**
      * Resource owner's user account.
+     * @since Authlete 1.1
      */
     private String subject;
 
 
     /**
      * Scopes.
+     * @since Authlete 1.1
      */
     private String[] scopes;
 
@@ -330,12 +334,14 @@ public class IntrospectionResponse extends ApiResponse
      * Scope details.
      *
      * @since 3.16
+     * @since Authlete 2.3.0
      */
     private Scope[] scopeDetails;
 
 
     /**
      * Flag to indicate whether the access token exists.
+     * @since Authlete 1.1
      */
     private boolean existent;
 
@@ -343,36 +349,42 @@ public class IntrospectionResponse extends ApiResponse
     /**
      * Flag to indicate whether the access token is usable
      * (= exists and has not expired).
+     * @since Authlete 1.1
      */
     private boolean usable;
 
 
     /**
      * Flag to indicate whether the access token covers the required scopes.
+     * @since Authlete 1.1
      */
     private boolean sufficient;
 
 
     /**
      * Flag to indicate whether the access token is refreshable.
+     * @since Authlete 1.1
      */
     private boolean refreshable;
 
 
     /**
      * Entity body of the response to the client.
+     * @since Authlete 1.1
      */
     private String responseContent;
 
 
     /**
      * The time at which the access token expires.
+     * @since Authlete 1.1
      */
     private long expiresAt;
 
 
     /**
      * Extra properties associated with the access token.
+     * @since Authlete 1.1
      */
     private Property[] properties;
 
@@ -380,6 +392,7 @@ public class IntrospectionResponse extends ApiResponse
     /**
      * The client ID alias when the authorization request or the token request for
      * the access token was made.
+     * @since Authlete 1.1
      */
     private String clientIdAlias;
 
@@ -387,6 +400,7 @@ public class IntrospectionResponse extends ApiResponse
     /**
      * Flag which indicates whether the client ID alias was used when the authorization
      * request or the token request for the access token was made.
+     * @since Authlete 1.1
      */
     private boolean clientIdAliasUsed;
 
@@ -413,18 +427,21 @@ public class IntrospectionResponse extends ApiResponse
     /**
      * Confirmation hash for MTLS-bound access tokens. Currently only the S256
      * type is supported and is assumed.
+     * @since Authlete 1.1.17
      */
     private String certificateThumbprint;
 
 
     /**
      * The target resources specified by the initial request.
+     * @since Authlete 2.2.1
      */
     private URI[] resources;
 
 
     /**
      * The target resources of the access token.
+     * @since Authlete 2.2.0
      */
     private URI[] accessTokenResources;
 
@@ -432,36 +449,42 @@ public class IntrospectionResponse extends ApiResponse
     /**
      * The content of the {@code "authorization_details"} request parameter which was
      * included in the request that obtained the token.
+     * @since Authlete 2.2.0
      */
     private AuthzDetails authorizationDetails;
 
 
     /**
      * Grant ID that this access token is tied to.
+     * @since Authlete 2.3.0
      */
     private String grantId;
 
 
     /**
      * Grant that this access token has inherited.
+     * @since Authlete 2.3.0
      */
     private Grant grant;
 
 
     /**
      * Claims that the user has consented for the client application to know.
+     * @since Authlete 2.3.0
      */
     private String[] consentedClaims;
 
 
     /**
      * The attributes of the service that the client belongs to.
+     * @since Authlete 2.2.3
      */
     private Pair[] serviceAttributes;
 
 
     /**
      * The attributes of the client that the access token has been issued to.
+     * @since Authlete 2.2.3
      */
     private Pair[] clientAttributes;
 
@@ -470,6 +493,7 @@ public class IntrospectionResponse extends ApiResponse
      * Flag that indicates whether the token is for an external attachment.
      *
      * @since 3.16
+     * @since Authlete 2.3.0
      */
     private boolean forExternalAttachment;
 

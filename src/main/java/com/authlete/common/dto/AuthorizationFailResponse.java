@@ -154,6 +154,7 @@ package com.authlete.common.dto;
  * </dl>
  *
  * @author Takahiko Kawasaki
+ * @since Authlete 1.1
  */
 public class AuthorizationFailResponse extends ApiResponse
 {

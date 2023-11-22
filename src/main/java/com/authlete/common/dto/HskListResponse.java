@@ -20,6 +20,7 @@ package com.authlete.common.dto;
  * Response from Authlete's {@code /api/hsk/get/list} API.
  *
  * @since 2.97
+ * @since Authlete 2.2.12
  */
 public class HskListResponse extends ApiResponse
 {

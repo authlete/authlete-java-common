@@ -111,6 +111,7 @@ package com.authlete.common.dto;
  * </dl>
  *
  * @since 2.32
+ * @since Authlete 2.0.0
  */
 public class BackchannelAuthenticationIssueResponse extends ApiResponse
 {
@@ -144,6 +145,7 @@ public class BackchannelAuthenticationIssueResponse extends ApiResponse
          */
         INVALID_TICKET,
     }
+
 
 
     private Action action;

@@ -22,6 +22,7 @@ package com.authlete.common.dto;
  * @author Takahiko Kawasaki
  *
  * @since 1.38
+ * @since Authlete 1.1
  */
 public class GrantedScopesGetResponse extends ApiResponse
 {

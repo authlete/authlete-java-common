@@ -20,6 +20,7 @@ package com.authlete.common.dto;
  * Response from Authlete's {@code /api/backchannel/authentication/fail} API.
  *
  * @since 2.32
+ * @since Authlete 2.0.0
  */
 public class BackchannelAuthenticationFailResponse extends ApiResponse
 {

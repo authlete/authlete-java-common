@@ -184,7 +184,6 @@ public class FederationConfigurationResponse extends ApiResponse
         INTERNAL_SERVER_ERROR,
     }
 
-
     private Action action;
     private String responseContent;
 

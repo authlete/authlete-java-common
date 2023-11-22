@@ -23,6 +23,7 @@ import java.io.Serializable;
  * The base class of an API response from an Authlete API call.
  *
  * @author Takahiko Kawasaki
+ * @since Authlete 1.1
  */
 public class ApiResponse implements Serializable
 {

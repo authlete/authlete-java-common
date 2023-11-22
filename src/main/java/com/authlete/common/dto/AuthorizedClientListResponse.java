@@ -31,6 +31,7 @@ public class AuthorizedClientListResponse extends ClientListResponse
     /**
      * The identifier of the user who has granted authorization
      * to the client applications.
+     * @since Authlete 1.1
      */
     private String subject;
 

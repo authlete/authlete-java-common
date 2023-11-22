@@ -341,92 +341,332 @@ public class Service implements Serializable
 
     /**
      * Service number.
+     * @since Authlete 1.1
      */
     private int number;
 
 
     /**
      * Service owner number.
+     * @since Authlete 1.1
      */
     private int serviceOwnerNumber;
 
 
     /**
      * Service name.
+     * @since Authlete 1.1
      */
     private String serviceName;
 
 
     /**
      * API key.
+     * @since Authlete 1.1
      */
     private long apiKey;
 
 
     /**
      * API secret.
+     * @since Authlete 1.1
      */
     private String apiSecret;
 
 
+    /**
+     * @since Authlete 1.1
+     */
     private URI issuer;
+
+    /**
+     * @since Authlete 1.1
+     */
     private URI authorizationEndpoint;
+
+    /**
+     * @since Authlete 1.1
+     */
     private URI tokenEndpoint;
+
+    /**
+     * @since Authlete 1.1
+     */
     private URI revocationEndpoint;
+
+    /**
+     * @since Authlete 1.1.19
+     */
     private ClientAuthMethod[] supportedRevocationAuthMethods;
+
+    /**
+     * @since Authlete 1.1
+     */
     private URI userInfoEndpoint;
+
+    /**
+     * @since Authlete 1.1
+     */
     private URI jwksUri;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String jwks;
+
+    /**
+     * @since Authlete 1.1
+     */
     private URI registrationEndpoint;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private URI registrationManagementEndpoint;
+
+    /**
+     * @since Authlete 1.1
+     */
     private Scope[] supportedScopes;
+
+    /**
+     * @since Authlete 1.1
+     */
     private ResponseType[] supportedResponseTypes;
+
+    /**
+     * @since Authlete 1.1
+     */
     private GrantType[] supportedGrantTypes;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String[] supportedAcrs;
+
+    /**
+     * @since Authlete 1.1
+     */
     private ClientAuthMethod[] supportedTokenAuthMethods;
+
+    /**
+     * @since Authlete 1.1
+     */
     private Display[] supportedDisplays;
+
+    /**
+     * @since Authlete 1.1
+     */
     private ClaimType[] supportedClaimTypes;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String[] supportedClaims;
+
+    /**
+     * @since Authlete 1.1
+     */
     private URI serviceDocumentation;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String[] supportedClaimLocales;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String[] supportedUiLocales;
+
+    /**
+     * @since Authlete 1.1
+     */
     private URI policyUri;
+
+    /**
+     * @since Authlete 1.1
+     */
     private URI tosUri;
+
+    /**
+     * @since Authlete 1.1
+     */
     private URI authenticationCallbackEndpoint;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String authenticationCallbackApiKey;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String authenticationCallbackApiSecret;
+
+    /**
+     * @since Authlete 1.1
+     */
     private Sns[] supportedSnses;
+
+    /**
+     * @since Authlete 1.1
+     */
     private SnsCredentials[] snsCredentials;
+
+    /**
+     * @since Authlete 1.1
+     */
     private long createdAt;
+
+    /**
+     * @since Authlete 1.1
+     */
     private long modifiedAt;
+
+    /**
+     * @since Authlete 1.1
+     */
     private URI developerAuthenticationCallbackEndpoint;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String developerAuthenticationCallbackApiKey;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String developerAuthenticationCallbackApiSecret;
+
+    /**
+     * @since Authlete 1.1
+     */
     private Sns[] supportedDeveloperSnses;
+
+    /**
+     * @since Authlete 1.1
+     */
     private SnsCredentials[] developerSnsCredentials;
+
+    /**
+     * @since Authlete 1.1
+     */
     private int clientsPerDeveloper;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean directAuthorizationEndpointEnabled;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean directTokenEndpointEnabled;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean directRevocationEndpointEnabled;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean directUserInfoEndpointEnabled;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean directJwksEndpointEnabled;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean directIntrospectionEndpointEnabled;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean singleAccessTokenPerSubject;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean pkceRequired;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean pkceS256Required;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean refreshTokenKept;
+
+    /**
+     * @since Authlete 2.2.1
+     */
     private boolean refreshTokenDurationKept;
+
+    /**
+     * @since Authlete 2.2.13
+     */
     private boolean refreshTokenDurationReset;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean errorDescriptionOmitted;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean errorUriOmitted;
+
+    /**
+     * @since Authlete 1.1
+     */
     private boolean clientIdAliasEnabled;
+
+    /**
+     * @since Authlete 1.1.19
+     */
     private ServiceProfile[] supportedServiceProfiles;
+
+    /**
+     * @since Authlete 1.1.19
+     */
     private boolean tlsClientCertificateBoundAccessTokens;
+
+    /**
+     * @since Authlete 1.1.19
+     */
     private URI introspectionEndpoint;
+
+    /**
+     * @since Authlete 1.1.19
+     */
     private ClientAuthMethod[] supportedIntrospectionAuthMethods;
+
+    /**
+     * @since Authlete 1.1.19
+     */
     private boolean mutualTlsValidatePkiCertChain;
+
+    /**
+     * @since Authlete 1.1.19
+     */
     private String[] trustedRootCertificates;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private boolean dynamicRegistrationSupported;
+
+    /**
+     * @since Authlete 2.2.1
+     */
     private URI endSessionEndpoint;
     // Don't add new properties here. Instead, new properties
     // should be added right above the getNumber() method.
@@ -434,6 +674,7 @@ public class Service implements Serializable
 
     /**
      * Description of this service.
+     * @since Authlete 1.1
      */
     private String description;
 
@@ -443,6 +684,8 @@ public class Service implements Serializable
      *
      * @see <a href="https://tools.ietf.org/html/rfc6749#section-7.1"
      *      >RFC 6749 (OAuth 2.0), 7.1. Access Token Types</a>
+     *
+     * @since Authlete 1.1
      */
     private String accessTokenType;
 
@@ -457,24 +700,28 @@ public class Service implements Serializable
      * </p>
      *
      * @since 2.37
+     * @since Authlete 2.0.0
      */
     private JWSAlg accessTokenSignAlg;
 
 
     /**
      * Duration of access tokens in seconds.
+     * @since Authlete 1.1
      */
     private long accessTokenDuration;
 
 
     /**
      * Duration of refresh tokens in seconds.
+     * @since Authlete 1.1
      */
     private long refreshTokenDuration;
 
 
     /**
      * Duration of ID tokens in seconds.
+     * @since Authlete 1.1
      */
     private long idTokenDuration;
 
@@ -483,6 +730,7 @@ public class Service implements Serializable
      * Duration of authorization response JWTs.
      *
      * @since 2.28
+     * @since Authlete 2.0.0
      */
     private long authorizationResponseDuration;
 
@@ -491,6 +739,7 @@ public class Service implements Serializable
      * Duration of pushed authorization requests.
      *
      * @since 2.51
+     * @since Authlete 2.2.0
      */
     private long pushedAuthReqDuration;
 
@@ -499,6 +748,7 @@ public class Service implements Serializable
      * Metadata.
      *
      * @since 1.39
+     * @since Authlete 1.1
      */
     private Pair[] metadata;
 
@@ -508,6 +758,7 @@ public class Service implements Serializable
      * asymmetric key.
      *
      * @since 2.37
+     * @since Authlete 2.0.0
      */
     private String accessTokenSignatureKeyId;
 
@@ -519,6 +770,7 @@ public class Service implements Serializable
      * JWT Secured Authorization Response Mode for OAuth 2.0 (JARM)</a>
      *
      * @since 2.28
+     * @since Authlete 2.0.0
      */
     private String authorizationSignatureKeyId;
 
@@ -527,6 +779,7 @@ public class Service implements Serializable
      * Key ID to identify a JWK used for ID token signature using an asymmetric key.
      *
      * @since 2.1
+     * @since Authlete 1.1
      */
     private String idTokenSignatureKeyId;
 
@@ -535,6 +788,7 @@ public class Service implements Serializable
      * Key ID to identify a JWK used for User Info signature using an asymmetric key.
      *
      * @since 2.1
+     * @since Authlete 1.1
      */
     private String userInfoSignatureKeyId;
 
@@ -544,6 +798,7 @@ public class Service implements Serializable
      * to the {@code backchannel_token_delivery_modes_supported} metadata.
      *
      * @since 2.32
+     * @since Authlete 2.0.0
      */
     private DeliveryMode[] supportedBackchannelTokenDeliveryModes;
 
@@ -553,6 +808,7 @@ public class Service implements Serializable
      * the {@code backchannel_authentication_endpoint} metadata.
      *
      * @since 2.32
+     * @since Authlete 2.0.0
      */
     private URI backchannelAuthenticationEndpoint;
 
@@ -563,6 +819,7 @@ public class Service implements Serializable
      * {@code backchannel_user_code_parameter_supported} metadata.
      *
      * @since 2.32
+     * @since Authlete 2.0.0
      */
     private boolean backchannelUserCodeParameterSupported;
 
@@ -574,6 +831,7 @@ public class Service implements Serializable
      * backchannel authentication endpoint.
      *
      * @since 2.32
+     * @since Authlete 2.0.0
      */
     private int backchannelAuthReqIdDuration;
 
@@ -585,6 +843,7 @@ public class Service implements Serializable
      * authentication endpoint.
      *
      * @since 2.32
+     * @since Authlete 2.0.0
      */
     private int backchannelPollingInterval;
 
@@ -596,6 +855,7 @@ public class Service implements Serializable
      * API.
      *
      * @since 2.48
+     * @since Authlete 2.0.0
      */
     private boolean backchannelBindingMessageRequiredInFapi;
 
@@ -604,6 +864,7 @@ public class Service implements Serializable
      * The allowable clock skew between the server and clients.
      *
      * @since 2.32
+     * @since Authlete 2.0.0
      */
     private int allowableClockSkew;
 
@@ -613,6 +874,7 @@ public class Service implements Serializable
      * the {@code device_authorization_endpoint} metadata.
      *
      * @since 2.42
+     * @since Authlete 2.0.0
      */
     private URI deviceAuthorizationEndpoint;
 
@@ -621,6 +883,7 @@ public class Service implements Serializable
      * The verification URI for the device flow.
      *
      * @since 2.42
+     * @since Authlete 2.0.0
      */
     private URI deviceVerificationUri;
 
@@ -630,6 +893,7 @@ public class Service implements Serializable
      * user code.
      *
      * @since 2.42
+     * @since Authlete 2.0.0
      */
     private URI deviceVerificationUriComplete;
 
@@ -641,6 +905,7 @@ public class Service implements Serializable
      * device authorization endpoint.
      *
      * @since 2.42
+     * @since Authlete 2.0.0
      */
     private int deviceFlowCodeDuration;
 
@@ -652,6 +917,7 @@ public class Service implements Serializable
      * authorization endpoint.
      *
      * @since 2.42
+     * @since Authlete 2.0.0
      */
     private int deviceFlowPollingInterval;
 
@@ -660,6 +926,7 @@ public class Service implements Serializable
      * Character set for end-user verification codes (user_code) for Device Flow.
      *
      * @since 2.43
+     * @since Authlete 2.0.0
      */
     private UserCodeCharset userCodeCharset;
 
@@ -668,6 +935,7 @@ public class Service implements Serializable
      * Length of end-user verification codes (user_code) for Device Flow.
      *
      * @since 2.43
+     * @since Authlete 2.0.0
      */
     private int userCodeLength;
 
@@ -676,6 +944,7 @@ public class Service implements Serializable
      * The URI of the pushed authorization request endpoint.
      *
      * @since 2.52
+     * @since Authlete 2.2.0
      */
     private URI pushedAuthReqEndpoint;
 
@@ -684,6 +953,7 @@ public class Service implements Serializable
      * MTLS endpoint aliases.
      *
      * @since 2.49
+     * @since Authlete 2.0.0
      */
     private NamedUri[] mtlsEndpointAliases;
 
@@ -697,6 +967,7 @@ public class Service implements Serializable
      * </p>
      *
      * @since 2.91
+     * @since Authlete 2.2.7
      */
     private String[] supportedAuthorizationDetailsTypes;
 
@@ -707,6 +978,7 @@ public class Service implements Serializable
      * OpenID Connect for Identity Assurance 1.0.
      *
      * @since 2.63
+     * @since Authlete 2.2.1
      */
     private String[] supportedTrustFrameworks;
 
@@ -717,6 +989,7 @@ public class Service implements Serializable
      * OpenID Connect for Identity Assurance 1.0.
      *
      * @since 2.63
+     * @since Authlete 2.2.1
      */
     private String[] supportedEvidence;
 
@@ -733,6 +1006,7 @@ public class Service implements Serializable
      * </p>
      *
      * @since 2.63
+     * @since Authlete 2.2.1
      *
      * @see supportedDocuments
      *
@@ -749,6 +1023,7 @@ public class Service implements Serializable
      * 1.0.
      *
      * @since 3.13
+     * @since Authlete 2.3.0
      */
     private String[] supportedDocuments;
 
@@ -766,6 +1041,7 @@ public class Service implements Serializable
      * </p>
      *
      * @since 2.63
+     * @since Authlete 2.2.1
      *
      * @see supportedDocumentsMethods
      *
@@ -783,6 +1059,7 @@ public class Service implements Serializable
      * 1.0.
      *
      * @since 3.13
+     * @since Authlete 2.3.0
      */
     private String[] supportedDocumentsMethods;
 
@@ -802,6 +1079,7 @@ public class Service implements Serializable
      * </p>
      *
      * @since 3.13
+     * @since Authlete 2.3.0
      *
      * @deprecated
      */
@@ -824,6 +1102,7 @@ public class Service implements Serializable
      * </p>
      *
      * @since 3.13
+     * @since Authlete 2.3.0
      *
      * @deprecated
      */
@@ -846,6 +1125,7 @@ public class Service implements Serializable
      * </p>
      *
      * @since 3.48
+     * @since Authlete 2.3.0
      */
     private String[] supportedDocumentsCheckMethods;
 
@@ -856,6 +1136,7 @@ public class Service implements Serializable
      * the third implementer's draft of OpenID Connect for Identity Assurance 1.0.
      *
      * @since 3.13
+     * @since Authlete 2.3.0
      */
     private String[] supportedElectronicRecords;
 
@@ -866,6 +1147,7 @@ public class Service implements Serializable
      * defined in OpenID Connect for Identity Assurance 1.0.
      *
      * @since 2.63
+     * @since Authlete 2.2.1
      */
     private String[] supportedVerifiedClaims;
 
@@ -876,6 +1158,7 @@ public class Service implements Serializable
      * implementer's draft of OpenID Connect for Identity Assurance 1.0.
      *
      * @since 3.13
+     * @since Authlete 2.3.0
      */
     private AttachmentType[] supportedAttachments;
 
@@ -888,6 +1171,7 @@ public class Service implements Serializable
      * Assurance 1.0.
      *
      * @since 3.13
+     * @since Authlete 2.3.0
      */
     private String[] supportedDigestAlgorithms;
 
@@ -902,6 +1186,7 @@ public class Service implements Serializable
      * </p>
      *
      * @since 2.68
+     * @since Authlete 2.2.1
      */
     private boolean missingClientIdAllowed;
 
@@ -911,6 +1196,7 @@ public class Service implements Serializable
      * pushed authorization request endpoint.
      *
      * @since 2.77
+     * @since Authlete 2.2.1
      */
     private boolean parRequired;
 
@@ -920,6 +1206,7 @@ public class Service implements Serializable
      * request object.
      *
      * @since 2.80
+     * @since Authlete 2.2.1
      */
     private boolean requestObjectRequired;
 
@@ -929,6 +1216,7 @@ public class Service implements Serializable
      * (rules defined in OIDC Core 1.0) is applied.
      *
      * @since 2.80
+     * @since Authlete 2.2.1
      */
     private boolean traditionalRequestObjectProcessingApplied;
 
@@ -939,6 +1227,7 @@ public class Service implements Serializable
      * access token is issued.
      *
      * @since 2.81
+     * @since Authlete 2.2.1
      */
     private boolean claimShortcutRestrictive;
 
@@ -948,6 +1237,7 @@ public class Service implements Serializable
      * rejected or not.
      *
      * @since 2.81
+     * @since Authlete 2.2.1
      */
     private boolean scopeRequired;
 
@@ -958,6 +1248,7 @@ public class Service implements Serializable
      * as a FAPI-Part2 request.
      *
      * @since 2.86
+     * @since Authlete 2.2.1
      */
     private boolean nbfOptional;
 
@@ -967,6 +1258,7 @@ public class Service implements Serializable
      * parameter is suppressed.
      *
      * @since 2.86
+     * @since Authlete 2.2.1
      */
     private boolean issSuppressed;
 
@@ -975,6 +1267,7 @@ public class Service implements Serializable
      * Arbitrary attributes associated with this service.
      *
      * @since 2.87
+     * @since Authlete 2.2.3
      */
     private Pair[] attributes;
 
@@ -983,6 +1276,7 @@ public class Service implements Serializable
      * Custom client metadata supported by this service.
      *
      * @since 2.93
+     * @since Authlete 2.2.10
      */
     private String[] supportedCustomClientMetadata;
 
@@ -992,6 +1286,7 @@ public class Service implements Serializable
      * never exceeds that of the corresponding refresh token.
      *
      * @since 2.95
+     * @since Authlete 2.2.12
      */
     private boolean tokenExpirationLinked;
 
@@ -1001,6 +1296,7 @@ public class Service implements Serializable
      * when the request object is passed through the front channel.
      *
      * @since 2.96
+     * @since Authlete 2.2.10
      */
     private boolean frontChannelRequestObjectEncryptionRequired;
 
@@ -1011,6 +1307,7 @@ public class Service implements Serializable
      * client metadata.
      *
      * @since 2.96
+     * @since Authlete 2.2.10
      */
     private boolean requestObjectEncryptionAlgMatchRequired;
 
@@ -1021,6 +1318,7 @@ public class Service implements Serializable
      * client metadata.
      *
      * @since 2.96
+     * @since Authlete 2.2.10
      */
     private boolean requestObjectEncryptionEncMatchRequired;
 
@@ -1030,6 +1328,7 @@ public class Service implements Serializable
      * enabled for this service.
      *
      * @since 2.97
+     * @since Authlete 2.2.13
      */
     private boolean hsmEnabled;
 
@@ -1038,6 +1337,7 @@ public class Service implements Serializable
      * Hardware-secured keys. Output only.
      *
      * @since 2.97
+     * @since Authlete 2.2.13
      */
     private Hsk[] hsks;
 
@@ -1046,6 +1346,7 @@ public class Service implements Serializable
      * The URL of the grant management endpoint.
      *
      * @since 3.1
+     * @since Authlete 2.3.0
      */
     private URI grantManagementEndpoint;
 
@@ -1055,6 +1356,7 @@ public class Service implements Serializable
      * {@code grant_management_action} request parameter.
      *
      * @since 3.1
+     * @since Authlete 2.3.0
      */
     private boolean grantManagementActionRequired;
 
@@ -1064,6 +1366,7 @@ public class Service implements Serializable
      * ClientRegistrationResponse.Action.UNAUTHORIZED whenever appropriate.
      *
      * @since 3.4
+     * @since Authlete 2.3.0
      */
     private boolean unauthorizedOnClientConfigSupported;
 
@@ -1074,6 +1377,7 @@ public class Service implements Serializable
      * scopes.
      *
      * @since 3.5
+     * @since Authlete 2.3.0
      */
     private boolean dcrScopeUsedAsRequestable;
 
@@ -1083,6 +1387,7 @@ public class Service implements Serializable
      * Authlete 2.3 onwards.
      *
      * @since 3.8
+     * @since Authlete 2.3.0
      */
     private String predefinedTransformedClaims;
 
@@ -1092,6 +1397,7 @@ public class Service implements Serializable
      * URIs can be variable when the host component indicates loopback.
      *
      * @since 3.12
+     * @since Authlete 2.3.0
      */
     private boolean loopbackRedirectionUriVariable;
 
@@ -1101,6 +1407,7 @@ public class Service implements Serializable
      * of request objects matches the issuer identifier of this service.
      *
      * @since 3.14
+     * @since Authlete 2.3.0
      */
     private boolean requestObjectAudienceChecked;
 
@@ -1417,7 +1724,7 @@ public class Service implements Serializable
      * content of {@code "verified_claims"}.
      *
      * @since 3.61
-     * @since Authlete 2.3.4
+     * @since Authlete 2.3.0
      */
     private String verifiedClaimsValidationSchemaSet;
 
@@ -1780,7 +2087,7 @@ public class Service implements Serializable
      * @return
      *         Client authentication methods supported at the revocation endpoint.
      *
-     * @since 2.13
+     * @since 2.17
      */
     public ClientAuthMethod[] getSupportedRevocationAuthMethods()
     {
@@ -1797,7 +2104,7 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 2.13
+     * @since 2.17
      */
     public Service setSupportedRevocationAuthMethods(ClientAuthMethod[] methods)
     {

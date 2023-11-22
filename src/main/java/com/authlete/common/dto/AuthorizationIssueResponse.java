@@ -200,13 +200,44 @@ public class AuthorizationIssueResponse extends ApiResponse
         + "accessTokenDuration=%d, idToken=%s, authorizationCode=%s, jwtAccessToken=%s";
 
 
+    /**
+     * @since Authlete 1.1
+     */
     private Action action;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String responseContent;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String accessToken;
+
+    /**
+     * @since Authlete 1.1
+     */
     private long accessTokenExpiresAt;
+
+    /**
+     * @since Authlete 1.1
+     */
     private long accessTokenDuration;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String idToken;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String authorizationCode;
+
+    /**
+     * @since Authlete 2.1
+     */
     private String jwtAccessToken;
 
 

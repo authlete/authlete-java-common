@@ -23,6 +23,7 @@ import java.io.Serializable;
  * Response from Authlete's {@code /client/get/list} API.
  *
  * @author Takahiko Kawasaki
+ * @since Authlete 1.1
  */
 public class ClientListResponse implements Serializable
 {

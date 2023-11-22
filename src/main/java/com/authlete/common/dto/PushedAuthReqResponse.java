@@ -328,10 +328,26 @@ public class PushedAuthReqResponse extends ApiResponse
             + "clientAuthMethod=%s, requestUri=%s";
 
 
+    /**
+     * @since Authlete 2.2.0
+     */
     private Action action;
+
+    /**
+     * @since Authlete 2.2.0
+     */
     private String responseContent;
+
     private ClientAuthMethod clientAuthMethod;
+
+    /**
+     * @since Authlete 2.2.0
+     */
     private URI requestUri;
+
+    /**
+     * @since Authlete 3.0.0
+     */
     private String dpopNonce;
 
 

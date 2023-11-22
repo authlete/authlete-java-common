@@ -127,15 +127,50 @@ public class TokenUpdateResponse extends ApiResponse
             "action=%s, accessToken=%s, accessTokenExpiresAt=%d, scopes=%s, tokenType=%s";
 
 
+    /**
+     * @since Authlete 1.1
+     */
     private Action action;
+
+    /**
+     * @since Authlete 1.1
+     */
     private String accessToken;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String tokenType;
+
+    /**
+     * @since Authlete 1.1
+     */
     private long accessTokenExpiresAt;
+
     private long refreshTokenExpiresAt;
+    /**
+     * @since Authlete 1.1
+     */
     private String[] scopes;
+
+    /**
+     * @since Authlete 1.1
+     */
     private Property[] properties;
+
+    /**
+     * @since Authlete 2.2.14
+     */
     private AuthzDetails authorizationDetails;
+
+    /**
+     * @since Authlete 2.3.0
+     */
     private boolean forExternalAttachment;
+
+    /**
+     * @since Authlete 3.0.0
+     */
     private String tokenId;
 
 

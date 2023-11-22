@@ -203,6 +203,7 @@ import com.authlete.common.api.AuthleteApi;
  * @author Hideki Ikeda
  *
  * @since 2.7
+ * @since Authlete 1.1.7
  */
 public class StandardIntrospectionResponse extends ApiResponse
 {

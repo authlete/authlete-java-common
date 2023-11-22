@@ -647,38 +647,166 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     }
 
 
+    /**
+     * @since Authlete 2.0.0
+     */
     private Action action;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String responseContent;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private long clientId;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String clientIdAlias;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private boolean clientIdAliasUsed;
+
+    /**
+     * @since Authlete 2.3.0
+     */
     private URI clientEntityId;
+
+    /**
+     * @since Authlete 2.3.0
+     */
     private boolean clientEntityIdUsed;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String clientName;
+
     private ClientAuthMethod clientAuthMethod;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private DeliveryMode deliveryMode;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private Scope[] scopes;
+
+    /**
+     * @since Authlete 2.2.8
+     */
     private DynamicScope[] dynamicScopes;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String[] claimNames;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String clientNotificationToken;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String[] acrs;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private UserIdentificationHintType hintType;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String hint;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String sub;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String bindingMessage;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String userCode;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private boolean userCodeRequired;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private int requestedExpiry;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String requestContext;
+
+    /**
+     * @since Authlete 2.2.1
+     */
     private URI[] resources;
+
+    /**
+     * @since Authlete 2.2.0
+     */
     private AuthzDetails authorizationDetails;
+
+    /**
+     * @since Authlete 2.3.0
+     */
     private GMAction gmAction;
+
+    /**
+     * @since Authlete 2.3.0
+     */
     private String grantId;
+
+    /**
+     * @since Authlete 2.3.0
+     */
     private String grantSubject;
+
+    /**
+     * @since Authlete 2.3.0
+     */
     private Grant grant;
+
+    /**
+     * @since Authlete 2.2.3
+     */
     private Pair[] serviceAttributes;
+
+    /**
+     * @since Authlete 2.2.3
+     */
     private Pair[] clientAttributes;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String[] warnings;
+
+    /**
+     * @since Authlete 2.0.0
+     */
     private String ticket;
 
 

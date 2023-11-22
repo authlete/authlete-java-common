@@ -23,6 +23,7 @@ import java.io.Serializable;
  * Response from Authlete's {@code /auth/token/get/list} API.
  *
  * @since 2.22
+ * @since Authlete 1.1.21
  */
 public class TokenListResponse implements Serializable
 {

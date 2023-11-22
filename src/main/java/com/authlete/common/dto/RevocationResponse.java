@@ -204,6 +204,7 @@ package com.authlete.common.dto;
  * @author Takahiko Kawasaki
  *
  * @since 1.16
+ * @since Authlete 1.1
  */
 public class RevocationResponse extends ApiResponse
 {

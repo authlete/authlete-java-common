@@ -21,6 +21,7 @@ package com.authlete.common.dto;
  * Response from Authlete's {@code /api/jose/verify} API.
  *
  * @since 2.23
+ * @since Authlete 1.1.22
  */
 public class JoseVerifyResponse extends ApiResponse
 {
