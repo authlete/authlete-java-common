@@ -524,6 +524,8 @@ public class IntrospectionResponse extends ApiResponse
      *
      * @since 3.41
      * @since Authlete 2.1.24
+     * @since Authlete 2.2.36
+     * @since Authlete 2.3
      */
     private GrantType grantType;
 
