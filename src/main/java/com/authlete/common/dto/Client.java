@@ -108,6 +108,7 @@ public class Client implements Serializable
     /**
      * Developer unique ID.
      * @since Authlete 1.1
+     * @deprecated Authlete 3.0
      */
     private String developer;
 
