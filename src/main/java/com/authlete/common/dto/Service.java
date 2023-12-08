@@ -513,6 +513,7 @@ public class Service implements Serializable
 
     /**
      * @since Authlete 1.1
+     * @deprecated Authlete 3.0
      */
     private SnsCredentials[] snsCredentials;
 
@@ -551,6 +552,7 @@ public class Service implements Serializable
 
     /**
      * @since Authlete 1.1
+     * @deprecated Authlete 3.0
      */
     private SnsCredentials[] developerSnsCredentials;
 
