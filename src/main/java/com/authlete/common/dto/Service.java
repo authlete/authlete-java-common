@@ -349,6 +349,7 @@ public class Service implements Serializable
     /**
      * Service owner number.
      * @since Authlete 1.1
+     * @deprecated Authlete 3.0
      */
     private int serviceOwnerNumber;
 
@@ -370,6 +371,7 @@ public class Service implements Serializable
     /**
      * API secret.
      * @since Authlete 1.1
+     * @deprecated Authlete 3.0
      */
     private String apiSecret;
 
@@ -511,6 +513,7 @@ public class Service implements Serializable
 
     /**
      * @since Authlete 1.1
+     * @deprecated Authlete 3.0
      */
     private SnsCredentials[] snsCredentials;
 
@@ -526,16 +529,19 @@ public class Service implements Serializable
 
     /**
      * @since Authlete 1.1
+     * @deprecated Authlete 3.0
      */
     private URI developerAuthenticationCallbackEndpoint;
 
     /**
      * @since Authlete 1.1
+     * @deprecated Authlete 3.0
      */
     private String developerAuthenticationCallbackApiKey;
 
     /**
      * @since Authlete 1.1
+     * @deprecated Authlete 3.0
      */
     private String developerAuthenticationCallbackApiSecret;
 
@@ -546,6 +552,7 @@ public class Service implements Serializable
 
     /**
      * @since Authlete 1.1
+     * @deprecated Authlete 3.0
      */
     private SnsCredentials[] developerSnsCredentials;
 
