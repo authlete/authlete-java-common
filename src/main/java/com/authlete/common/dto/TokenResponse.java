@@ -1095,6 +1095,9 @@ public class TokenResponse extends ApiResponse
      */
     private String jwtAccessToken;
 
+    /**
+     * @since Authlete 2.3.13
+     */
     private ClientAuthMethod clientAuthMethod;
 
     /**

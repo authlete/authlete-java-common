@@ -631,6 +631,10 @@ public class Client implements Serializable
      * @since Authlete 3.0
      */
     private URI credentialOfferEndpoint;
+
+    /**
+     * @since Authlete 3.0
+     */
     private boolean credentialResponseEncryptionRequired;
 
 
