@@ -338,6 +338,9 @@ public class PushedAuthReqResponse extends ApiResponse
      */
     private String responseContent;
 
+    /**
+     * @since Authlete 2.3.13
+     */
     private ClientAuthMethod clientAuthMethod;
 
     /**

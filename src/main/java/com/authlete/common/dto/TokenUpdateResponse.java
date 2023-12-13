@@ -147,7 +147,11 @@ public class TokenUpdateResponse extends ApiResponse
      */
     private long accessTokenExpiresAt;
 
+    /**
+     * @since Authlete 2.1
+     */
     private long refreshTokenExpiresAt;
+
     /**
      * @since Authlete 1.1
      */
