@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.88 (2023-12-14)
+-----------------
+
 - `AuthleteApi` interface
     * Added `authorizationTicketInfo(AuthorizationTicketInfoRequest)` method.
     * Added `authorizationTicketUpdate(AuthorizationTicketUpdateRequest)` method.

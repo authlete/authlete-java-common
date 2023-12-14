@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.88 (2023 年 12 月 14 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `authorizationTicketInfo(AuthorizationTicketInfoRequest)` メソッドを追加。
     * `authorizationTicketUpdate(AuthorizationTicketUpdateRequest)` メソッドを追加。
