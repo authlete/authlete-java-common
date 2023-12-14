@@ -240,6 +240,14 @@ public class AuthorizationIssueResponse extends ApiResponse
      */
     private String jwtAccessToken;
 
+    /**
+     * Information attached to the ticket.
+     *
+     * @since 3.88
+     * @since Authlete 3.0
+     */
+    private AuthorizationTicketInfo ticketInfo;
+
 
     /**
      * Get the next action that the service implementation should take.
@@ -481,6 +489,38 @@ public class AuthorizationIssueResponse extends ApiResponse
     public void setJwtAccessToken(String jwtAccessToken)
     {
         this.jwtAccessToken = jwtAccessToken;
+    }
+
+
+    /**
+     * Get the information attached to the ticket that was presented to the
+     * {@code /auth/authorization/issue} API.
+     *
+     * @return
+     *         The information about the ticket.
+     *
+     * @since 3.88
+     * @since Authlete 3.0
+     */
+    public AuthorizationTicketInfo getTicketInfo()
+    {
+        return ticketInfo;
+    }
+
+
+    /**
+     * Set the information attached to the ticket that was presented to the
+     * {@code /auth/authorization/issue} API.
+     *
+     * @param ticketInfo
+     *         The information about the ticket.
+     *
+     * @since 3.88
+     * @since Authlete 3.0
+     */
+    public void setTicketInfo(AuthorizationTicketInfo ticketInfo)
+    {
+        this.ticketInfo = ticketInfo;
     }
 
 

@@ -9,6 +9,10 @@ CHANGES
     * Added `getContext()` method.
     * Added `setContext(String)` method.
 
+- `AuthorizationIssueResponse` class
+    * Added `getTicketInfo()` method.
+    * Added `setTicketInfo(AuthorizationTicketInfo)` method.
+
 - New types
     * `AuthorizationTicketInfo` class
     * `AuthorizationTicketInfoRequest` class

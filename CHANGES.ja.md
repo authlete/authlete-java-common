@@ -9,6 +9,10 @@
     * `getContext()` メソッドを追加。
     * `setContext(String)` メソッドを追加。
 
+- `AuthorizationIssueResponse` クラス
+    * `getTicketInfo()` メソッドを追加。
+    * `setTicketInfo(AuthorizationTicketInfo)` メソッドを追加。
+
 - 新しい型
     * `AuthorizationTicketInfo` クラス
     * `AuthorizationTicketInfoRequest` クラス
