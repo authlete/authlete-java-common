@@ -1,6 +1,22 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `authorizationTicketInfo(AuthorizationTicketInfoRequest)` メソッドを追加。
+    * `authorizationTicketUpdate(AuthorizationTicketUpdateRequest)` メソッドを追加。
+
+- `AuthorizationRequest` クラス
+    * `getContext()` メソッドを追加。
+    * `setContext(String)` メソッドを追加。
+
+- 新しい型
+    * `AuthorizationTicketInfo` クラス
+    * `AuthorizationTicketInfoRequest` クラス
+    * `AuthorizationTicketInfoResponse` クラス
+    * `AuthorizationTicketUpdateRequest` クラス
+    * `AuthorizationTicketUpdateResponse` クラス
+
+
 3.87 (2023 年 11 月 23 日)
 --------------------------
 

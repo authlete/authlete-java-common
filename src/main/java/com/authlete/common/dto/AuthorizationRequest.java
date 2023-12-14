@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2015 Authlete, Inc.
+ * Copyright (C) 2014-2023 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,13 +50,23 @@ import com.authlete.common.web.URLCoder;
  */
 public class AuthorizationRequest implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
      * OAuth 2.0 authorization request parameters.
      */
     private String parameters;
+
+
+    /**
+     * An arbitrary text to be attached to the ticket that will be issued
+     * from the {@code /auth/authorization} API.
+     *
+     * @since 3.88
+     * @since Authlete 3.0
+     */
+    private String context;
 
 
     /**
@@ -116,5 +126,62 @@ public class AuthorizationRequest implements Serializable
     public AuthorizationRequest setParameters(Map<String, String[]> parameters)
     {
         return setParameters(URLCoder.formUrlEncode(parameters));
+    }
+
+
+    /**
+     * Get the arbitrary text to be attached to the ticket that will be issued
+     * from the {@code /auth/authorization} API.
+     *
+     * <p>
+     * The text can be retrieved later by the {@code /auth/authorization/ticket/info}
+     * API and can be updated by the {@code /auth/authorization/ticket/update} API.
+     * </p>
+     *
+     * <p>
+     * The text will be compressed and encrypted when it is saved in the Authlete
+     * database.
+     * </p>
+     *
+     * @return
+     *         The arbitrary text to be attached to the ticket.
+     *
+     * @since 3.88
+     * @since Authlete 3.0
+     */
+    public String getContext()
+    {
+        return context;
+    }
+
+
+    /**
+     * Set the arbitrary text to be attached to the ticket that will be issued
+     * from the {@code /auth/authorization} API.
+     *
+     * <p>
+     * The text can be retrieved later by the {@code /auth/authorization/ticket/info}
+     * API and can be updated by the {@code /auth/authorization/ticket/update} API.
+     * </p>
+     *
+     * <p>
+     * The text will be compressed and encrypted when it is saved in the Authlete
+     * database.
+     * </p>
+     *
+     * @param context
+     *         The arbitrary text to be attached to the ticket.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.88
+     * @since Authlete 3.0
+     */
+    public AuthorizationRequest setContext(String context)
+    {
+        this.context = context;
+
+        return this;
     }
 }

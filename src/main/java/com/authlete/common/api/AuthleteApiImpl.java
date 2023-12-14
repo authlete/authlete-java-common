@@ -30,103 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import com.authlete.common.conf.AuthleteConfiguration;
-import com.authlete.common.dto.ApiResponse;
-import com.authlete.common.dto.AuthorizationFailRequest;
-import com.authlete.common.dto.AuthorizationFailResponse;
-import com.authlete.common.dto.AuthorizationIssueRequest;
-import com.authlete.common.dto.AuthorizationIssueResponse;
-import com.authlete.common.dto.AuthorizationRequest;
-import com.authlete.common.dto.AuthorizationResponse;
-import com.authlete.common.dto.AuthorizedClientListResponse;
-import com.authlete.common.dto.BackchannelAuthenticationCompleteRequest;
-import com.authlete.common.dto.BackchannelAuthenticationCompleteResponse;
-import com.authlete.common.dto.BackchannelAuthenticationFailRequest;
-import com.authlete.common.dto.BackchannelAuthenticationFailResponse;
-import com.authlete.common.dto.BackchannelAuthenticationIssueRequest;
-import com.authlete.common.dto.BackchannelAuthenticationIssueResponse;
-import com.authlete.common.dto.BackchannelAuthenticationRequest;
-import com.authlete.common.dto.BackchannelAuthenticationResponse;
-import com.authlete.common.dto.Client;
-import com.authlete.common.dto.ClientAuthorizationDeleteRequest;
-import com.authlete.common.dto.ClientAuthorizationGetListRequest;
-import com.authlete.common.dto.ClientAuthorizationUpdateRequest;
-import com.authlete.common.dto.ClientListResponse;
-import com.authlete.common.dto.ClientLockFlagUpdateRequest;
-import com.authlete.common.dto.ClientRegistrationRequest;
-import com.authlete.common.dto.ClientRegistrationResponse;
-import com.authlete.common.dto.ClientSecretRefreshResponse;
-import com.authlete.common.dto.ClientSecretUpdateRequest;
-import com.authlete.common.dto.ClientSecretUpdateResponse;
-import com.authlete.common.dto.CredentialBatchIssueRequest;
-import com.authlete.common.dto.CredentialBatchIssueResponse;
-import com.authlete.common.dto.CredentialBatchParseRequest;
-import com.authlete.common.dto.CredentialBatchParseResponse;
-import com.authlete.common.dto.CredentialDeferredIssueRequest;
-import com.authlete.common.dto.CredentialDeferredIssueResponse;
-import com.authlete.common.dto.CredentialDeferredParseRequest;
-import com.authlete.common.dto.CredentialDeferredParseResponse;
-import com.authlete.common.dto.CredentialIssuerJwksRequest;
-import com.authlete.common.dto.CredentialIssuerJwksResponse;
-import com.authlete.common.dto.CredentialIssuerMetadataRequest;
-import com.authlete.common.dto.CredentialIssuerMetadataResponse;
-import com.authlete.common.dto.CredentialJwtIssuerMetadataRequest;
-import com.authlete.common.dto.CredentialJwtIssuerMetadataResponse;
-import com.authlete.common.dto.CredentialOfferCreateRequest;
-import com.authlete.common.dto.CredentialOfferCreateResponse;
-import com.authlete.common.dto.CredentialOfferInfoRequest;
-import com.authlete.common.dto.CredentialOfferInfoResponse;
-import com.authlete.common.dto.CredentialSingleIssueRequest;
-import com.authlete.common.dto.CredentialSingleIssueResponse;
-import com.authlete.common.dto.CredentialSingleParseRequest;
-import com.authlete.common.dto.CredentialSingleParseResponse;
-import com.authlete.common.dto.DeviceAuthorizationRequest;
-import com.authlete.common.dto.DeviceAuthorizationResponse;
-import com.authlete.common.dto.DeviceCompleteRequest;
-import com.authlete.common.dto.DeviceCompleteResponse;
-import com.authlete.common.dto.DeviceVerificationRequest;
-import com.authlete.common.dto.DeviceVerificationResponse;
-import com.authlete.common.dto.FederationConfigurationRequest;
-import com.authlete.common.dto.FederationConfigurationResponse;
-import com.authlete.common.dto.FederationRegistrationRequest;
-import com.authlete.common.dto.FederationRegistrationResponse;
-import com.authlete.common.dto.GMRequest;
-import com.authlete.common.dto.GMResponse;
-import com.authlete.common.dto.GrantedScopesGetResponse;
-import com.authlete.common.dto.HskCreateRequest;
-import com.authlete.common.dto.HskListResponse;
-import com.authlete.common.dto.HskResponse;
-import com.authlete.common.dto.IDTokenReissueRequest;
-import com.authlete.common.dto.IDTokenReissueResponse;
-import com.authlete.common.dto.IntrospectionRequest;
-import com.authlete.common.dto.IntrospectionResponse;
-import com.authlete.common.dto.JoseVerifyRequest;
-import com.authlete.common.dto.JoseVerifyResponse;
-import com.authlete.common.dto.PushedAuthReqRequest;
-import com.authlete.common.dto.PushedAuthReqResponse;
-import com.authlete.common.dto.RevocationRequest;
-import com.authlete.common.dto.RevocationResponse;
-import com.authlete.common.dto.Service;
-import com.authlete.common.dto.ServiceConfigurationRequest;
-import com.authlete.common.dto.ServiceListResponse;
-import com.authlete.common.dto.StandardIntrospectionRequest;
-import com.authlete.common.dto.StandardIntrospectionResponse;
-import com.authlete.common.dto.TokenCreateRequest;
-import com.authlete.common.dto.TokenCreateResponse;
-import com.authlete.common.dto.TokenFailRequest;
-import com.authlete.common.dto.TokenFailResponse;
-import com.authlete.common.dto.TokenIssueRequest;
-import com.authlete.common.dto.TokenIssueResponse;
-import com.authlete.common.dto.TokenListResponse;
-import com.authlete.common.dto.TokenRequest;
-import com.authlete.common.dto.TokenResponse;
-import com.authlete.common.dto.TokenRevokeRequest;
-import com.authlete.common.dto.TokenRevokeResponse;
-import com.authlete.common.dto.TokenUpdateRequest;
-import com.authlete.common.dto.TokenUpdateResponse;
-import com.authlete.common.dto.UserInfoIssueRequest;
-import com.authlete.common.dto.UserInfoIssueResponse;
-import com.authlete.common.dto.UserInfoRequest;
-import com.authlete.common.dto.UserInfoResponse;
+import com.authlete.common.dto.*;
 import com.authlete.common.util.Utils;
 import com.authlete.common.web.BasicCredentials;
 
@@ -155,6 +59,8 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String AUTH_AUTHORIZATION_API_PATH            = "/api/auth/authorization";
     private static final String AUTH_AUTHORIZATION_FAIL_API_PATH       = "/api/auth/authorization/fail";
     private static final String AUTH_AUTHORIZATION_ISSUE_API_PATH      = "/api/auth/authorization/issue";
+    private static final String AUTH_AUTHORIZATION_TICKET_INFO_API_PATH   = "/api/auth/authorization/ticket/info";
+    private static final String AUTH_AUTHORIZATION_TICKET_UPDATE_API_PATH = "/api/auth/authorization/ticket/update";
     private static final String AUTH_TOKEN_API_PATH                    = "/api/auth/token";
     private static final String AUTH_TOKEN_CREATE_API_PATH             = "/api/auth/token/create";
     private static final String AUTH_TOKEN_DELETE_API_PATH             = "/api/auth/token/delete/%s";
@@ -1826,5 +1732,29 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 ID_TOKEN_REISSUE_API_PATH, request,
                 IDTokenReissueResponse.class);
+    }
+
+
+    @Override
+    public AuthorizationTicketInfoResponse authorizationTicketInfo(
+            AuthorizationTicketInfoRequest request) throws AuthleteApiException
+    {
+        // This API call fails because the /auth/authorization/ticket/info API
+        // is unavailable in Authlete 2.x and older versions.
+        return callServicePostApi(
+                AUTH_AUTHORIZATION_TICKET_INFO_API_PATH, request,
+                AuthorizationTicketInfoResponse.class);
+    }
+
+
+    @Override
+    public AuthorizationTicketUpdateResponse authorizationTicketUpdate(
+            AuthorizationTicketUpdateRequest request) throws AuthleteApiException
+    {
+        // This API call fails because the /auth/authorization/ticket/update API
+        // is unavailable in Authlete 2.x and older versions.
+        return callServicePostApi(
+                AUTH_AUTHORIZATION_TICKET_UPDATE_API_PATH, request,
+                AuthorizationTicketUpdateResponse.class);
     }
 }
