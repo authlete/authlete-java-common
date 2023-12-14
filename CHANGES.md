@@ -1,6 +1,22 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added `authorizationTicketInfo(AuthorizationTicketInfoRequest)` method.
+    * Added `authorizationTicketUpdate(AuthorizationTicketUpdateRequest)` method.
+
+- `AuthorizationRequest` class
+    * Added `getContext()` method.
+    * Added `setContext(String)` method.
+
+- New types
+    * `AuthorizationTicketInfo` class
+    * `AuthorizationTicketInfoRequest` class
+    * `AuthorizationTicketInfoResponse` class
+    * `AuthorizationTicketUpdateRequest` class
+    * `AuthorizationTicketUpdateResponse` class
+
+
 3.87 (2023-11-23)
 -----------------
 

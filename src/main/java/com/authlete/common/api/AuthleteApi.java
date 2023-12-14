@@ -23,6 +23,10 @@ import com.authlete.common.dto.AuthorizationIssueRequest;
 import com.authlete.common.dto.AuthorizationIssueResponse;
 import com.authlete.common.dto.AuthorizationRequest;
 import com.authlete.common.dto.AuthorizationResponse;
+import com.authlete.common.dto.AuthorizationTicketInfoRequest;
+import com.authlete.common.dto.AuthorizationTicketInfoResponse;
+import com.authlete.common.dto.AuthorizationTicketUpdateRequest;
+import com.authlete.common.dto.AuthorizationTicketUpdateResponse;
 import com.authlete.common.dto.AuthorizedClientListResponse;
 import com.authlete.common.dto.BackchannelAuthenticationCompleteRequest;
 import com.authlete.common.dto.BackchannelAuthenticationCompleteResponse;
@@ -1855,4 +1859,36 @@ public interface AuthleteApi
      */
     IDTokenReissueResponse idTokenReissue(
             IDTokenReissueRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/authorization/ticket/info} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.88
+     * @since Authlete 3.0
+     */
+    AuthorizationTicketInfoResponse authorizationTicketInfo(
+            AuthorizationTicketInfoRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/authorization/ticket/update} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.88
+     * @since Authlete 3.0
+     */
+    AuthorizationTicketUpdateResponse authorizationTicketUpdate(
+            AuthorizationTicketUpdateRequest request) throws AuthleteApiException;
 }
