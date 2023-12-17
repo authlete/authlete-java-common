@@ -872,7 +872,7 @@ import com.authlete.common.util.Utils;
  */
 public class TokenResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 18L;
+    private static final long serialVersionUID = 19L;
 
 
     /**
@@ -1220,6 +1220,14 @@ public class TokenResponse extends ApiResponse
      * @since Authlete 3.0
      */
     private String dpopNonce;
+
+    /**
+     * Scopes associated with the refresh token.
+     *
+     * @since 3.89
+     * @since Authlete 3.0.0
+     */
+    private String[] refreshTokenScopes;
 
 
     /**
@@ -3015,5 +3023,36 @@ public class TokenResponse extends ApiResponse
     public void setDpopNonce(String dpopNonce)
     {
         this.dpopNonce = dpopNonce;
+    }
+
+
+    /**
+     * Get the scopes associated with the refresh token.
+     *
+     * @return
+     *         The scopes associated with the refresh token. May be
+     *         {@code null}.
+     *
+     * @since 3.89
+     * @since Authlete API 3.0
+     */
+    public String[] getRefreshTokenScopes()
+    {
+        return refreshTokenScopes;
+    }
+
+
+    /**
+     * Set the scopes associated with the refresh token.
+     *
+     * @param refreshTokenScopes
+     *         The scopes associated with the refresh token.
+     *
+     * @since 3.89
+     * @since Authlete API 3.0
+     */
+    public void setRefreshTokenScopes(String[] refreshTokenScopes)
+    {
+        this.refreshTokenScopes = refreshTokenScopes;
     }
 }
