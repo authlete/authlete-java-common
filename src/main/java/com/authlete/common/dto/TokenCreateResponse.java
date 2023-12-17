@@ -119,7 +119,7 @@ public class TokenCreateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
     private static final String SUMMARY_FORMAT
         = "action=%s, grantType=%s, clientId=%d, subject=%s, scopes=%s, "
         + "accessToken=%s, tokenType=%s, expiresIn=%d, expiresAt=%d, refreshToken=%s";
@@ -199,6 +199,11 @@ public class TokenCreateResponse extends ApiResponse
      * @since Authlete 3.0.0
      */
     private String tokenId;
+
+    /**
+     * @since Authlete 3.0.0
+     */
+    private String[] refreshTokenScopes;
 
 
     /**
@@ -706,6 +711,42 @@ public class TokenCreateResponse extends ApiResponse
     public TokenCreateResponse setTokenId(String tokenId)
     {
         this.tokenId = tokenId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the scopes associated with the refresh token.
+     *
+     * @return
+     *         The scopes associated with the refresh token. May be
+     *         {@code null}.
+     *
+     * @since 3.89
+     * @since Authlete API 3.0
+     */
+    public String[] getRefreshTokenScopes()
+    {
+        return refreshTokenScopes;
+    }
+
+
+    /**
+     * Set the scopes associated with the refresh token.
+     *
+     * @param refreshTokenScopes
+     *         The scopes associated with the refresh token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.89
+     * @since Authlete API 3.0
+     */
+    public TokenCreateResponse setRefreshTokenScopes(String[] refreshTokenScopes)
+    {
+        this.refreshTokenScopes = refreshTokenScopes;
 
         return this;
     }

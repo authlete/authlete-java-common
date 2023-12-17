@@ -27,7 +27,7 @@ import com.authlete.common.types.GrantType;
  */
 public class AccessToken implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     private String accessTokenHash;
@@ -41,6 +41,7 @@ public class AccessToken implements Serializable
     private long createdAt;
     private long lastRefreshedAt;
     private Property[] properties;
+    private String[] refreshTokenScopes;
 
 
     /**
@@ -375,6 +376,41 @@ public class AccessToken implements Serializable
     public AccessToken setProperties(Property[] properties)
     {
         this.properties = properties;
+
+        return this;
+    }
+
+
+    /**
+     * Get the scopes associated with the refresh token.
+     *
+     * @return
+     *         The scopes associated with the refresh token. May be {@code null}.
+     *
+     * @since 3.89
+     * @since Authlete API 3.0
+     */
+    public String[] getRefreshTokenScopes()
+    {
+        return refreshTokenScopes;
+    }
+
+
+    /**
+     * Set the scopes associated with the refresh token.
+     *
+     * @param refreshTokenScopes
+     *         The scopes associated with the refresh token.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.89
+     * @since Authlete API 3.0
+     */
+    public AccessToken setRefreshTokenScopes(String[] refreshTokenScopes)
+    {
+        this.refreshTokenScopes = refreshTokenScopes;
 
         return this;
     }

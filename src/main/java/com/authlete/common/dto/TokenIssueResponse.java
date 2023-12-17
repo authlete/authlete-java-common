@@ -103,7 +103,7 @@ import com.authlete.common.util.Utils;
  */
 public class TokenIssueResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 9L;
+    private static final long serialVersionUID = 10L;
 
 
     /**
@@ -241,6 +241,11 @@ public class TokenIssueResponse extends ApiResponse
      * @since Authlete 2.2.3
      */
     private Pair[] clientAttributes;
+
+    /**
+     * @since Authlete 3.0.0
+     */
+    private String[] refreshTokenScopes;
 
 
     /**
@@ -935,5 +940,35 @@ public class TokenIssueResponse extends ApiResponse
     public void setClientAttributes(Pair[] attributes)
     {
         this.clientAttributes = attributes;
+    }
+
+
+    /**
+     * Get the scopes associated with the refresh token.
+     *
+     * @return
+     *         The scopes associated with the refresh token. May be {@code null}.
+     *
+     * @since 3.89
+     * @since Authlete API 3.0
+     */
+    public String[] getRefreshTokenScopes()
+    {
+        return refreshTokenScopes;
+    }
+
+
+    /**
+     * Set the scopes associated with the refresh token.
+     *
+     * @param refreshTokenScopes
+     *         The scopes associated with the refresh token.
+     *
+     * @since 3.89
+     * @since Authlete API 3.0
+     */
+    public void setRefreshTokenScopes(String[] refreshTokenScopes)
+    {
+        this.refreshTokenScopes = refreshTokenScopes;
     }
 }
