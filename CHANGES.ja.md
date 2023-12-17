@@ -1,6 +1,26 @@
 変更点
 ======
 
+3.89 (2023 年 12 月 17 日)
+--------------------------
+
+- `AccessToken` クラス
+    * `getRefreshTokenScopes()` メソッドを追加。
+    * `setRefreshTokenScopes(String[])` メソッドを追加。
+
+- `TokenCreateResponse` クラス
+    * `getRefreshTokenScopes()` メソッドを追加。
+    * `setRefreshTokenScopes(String[])` メソッドを追加。
+
+- `TokenIssueResponse` クラス
+    * `getRefreshTokenScopes()` メソッドを追加。
+    * `setRefreshTokenScopes(String[])` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getRefreshTokenScopes()` メソッドを追加。
+    * `setRefreshTokenScopes(String[])` メソッドを追加。
+
+
 3.88 (2023 年 12 月 14 日)
 --------------------------
 

@@ -1,6 +1,26 @@
 CHANGES
 =======
 
+3.89 (2023-12-17)
+-----------------
+
+- `AccessToken` class
+    * Added `getRefreshTokenScopes()` method.
+    * Added `setRefreshTokenScopes(String[])` method.
+
+- `TokenCreateResponse` class
+    * Added `getRefreshTokenScopes()` method.
+    * Added `setRefreshTokenScopes(String[])` method.
+
+- `TokenIssueResponse` class
+    * Added `getRefreshTokenScopes()` method.
+    * Added `setRefreshTokenScopes(String[])` method.
+
+- `TokenResponse` class
+    * Added `getRefreshTokenScopes()` method.
+    * Added `setRefreshTokenScopes(String[])` method.
+
+
 3.88 (2023-12-14)
 -----------------
 
