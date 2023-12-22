@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 79L;
+    private static final long serialVersionUID = 80L;
 
 
     /*
@@ -351,6 +351,7 @@ public class Service implements Serializable
      * @since Authlete 1.1
      * @deprecated Authlete 3.0
      */
+    @Deprecated
     private int serviceOwnerNumber;
 
 
@@ -373,6 +374,7 @@ public class Service implements Serializable
      * @since Authlete 1.1
      * @deprecated Authlete 3.0
      */
+    @Deprecated
     private String apiSecret;
 
 
@@ -515,6 +517,7 @@ public class Service implements Serializable
      * @since Authlete 1.1
      * @deprecated Authlete 3.0
      */
+    @Deprecated
     private SnsCredentials[] snsCredentials;
 
     /**
@@ -531,18 +534,21 @@ public class Service implements Serializable
      * @since Authlete 1.1
      * @deprecated Authlete 3.0
      */
+    @Deprecated
     private URI developerAuthenticationCallbackEndpoint;
 
     /**
      * @since Authlete 1.1
      * @deprecated Authlete 3.0
      */
+    @Deprecated
     private String developerAuthenticationCallbackApiKey;
 
     /**
      * @since Authlete 1.1
      * @deprecated Authlete 3.0
      */
+    @Deprecated
     private String developerAuthenticationCallbackApiSecret;
 
     /**
@@ -554,6 +560,7 @@ public class Service implements Serializable
      * @since Authlete 1.1
      * @deprecated Authlete 3.0
      */
+    @Deprecated
     private SnsCredentials[] developerSnsCredentials;
 
     /**
@@ -675,8 +682,6 @@ public class Service implements Serializable
      * @since Authlete 2.2.1
      */
     private URI endSessionEndpoint;
-    // Don't add new properties here. Instead, new properties
-    // should be added right above the getNumber() method.
 
 
     /**
@@ -1749,10 +1754,15 @@ public class Service implements Serializable
     /**
      * The duration of {@code c_nonce}.
      *
-     * @since 3.63
+     * <p>
+     * The {@code cNonceDuration} field added by the version 3.63 has been
+     * renamed to {@code cnonceDuration} by the version 3.90.
+     * </p>
+     *
+     * @since 3.90
      * @since Authlete 3.0
      */
-    private long cNonceDuration;
+    private long cnonceDuration;
 
 
     /**
@@ -11052,18 +11062,23 @@ public class Service implements Serializable
      * c_nonce}.
      * </p>
      *
+     * <p>
+     * The {@code getCNonceDuration()} method added by the version 3.63 has
+     * been renamed to {@code getCnonceDuration()} by the version 3.90.
+     * </p>
+     *
      * @return
      *         The duration of {@code c_nonce} in seconds.
      *
-     * @since 3.63
+     * @since 3.90
      * @since Authlete 3.0
      *
      * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
      *      >OpenID for Verifiable Credentials Issuance</a>
      */
-    public long getCNonceDuration()
+    public long getCnonceDuration()
     {
-        return cNonceDuration;
+        return cnonceDuration;
     }
 
 
@@ -11089,21 +11104,26 @@ public class Service implements Serializable
      * c_nonce}.
      * </p>
      *
+     * <p>
+     * The {@code setCNonceDuration(long)} method added by the version 3.63 has
+     * been renamed to {@code setCnonceDuration(long)} by the version 3.90.
+     * </p>
+     *
      * @param duration
      *         The duration of {@code c_nonce} in seconds.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 3.63
+     * @since 3.90
      * @since Authlete 3.0
      *
      * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
      *      >OpenID for Verifiable Credentials Issuance</a>
      */
-    public Service setCNonceDuration(long duration)
+    public Service setCnonceDuration(long duration)
     {
-        this.cNonceDuration = duration;
+        this.cnonceDuration = duration;
 
         return this;
     }

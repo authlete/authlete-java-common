@@ -1,6 +1,25 @@
 変更点
 ======
 
+- `IntrospectionResponse` クラス
+    * `getCNonce()` メソッドを `getCnonce()` へ名称変更。
+    * `setCNonce(String)` メソッドを `setCnonce(String)` へ名称変更。
+    * `getCNonceExpiresAt()` メソッドを `getCnonceExpiresAt()` へ名称変更。
+    * `setCNonceExpiresAt(long)` メソッドを `setCnonceExpiresAt(long)` へ名称変更。
+
+- `Service` クラス
+    * `getCNonceDuration()` メソッドを `getCnonceDuration()` へ名称変更。
+    * `setCNonceDuration(long)` メソッドを `setCnonceDuration(long)` へ名称変更。
+
+- `TokenResponse` クラス
+    * `getCNonce()` メソッドを `getCnonce()` へ名称変更。
+    * `setCNonce(String)` メソッドを `setCnonce(String)` へ名称変更。
+    * `getCNonceExpiresAt()` メソッドを `getCnonceExpiresAt()` へ名称変更。
+    * `setCNonceExpiresAt(long)` メソッドを `setCnonceExpiresAt(long)` へ名称変更。
+    * `getCNonceDuration()` メソッドを `getCnonceDuration()` へ名称変更。
+    * `setCNonceDuration(long)` メソッドを `setCnonceDuration(long)` へ名称変更。
+
+
 3.89 (2023 年 12 月 17 日)
 --------------------------
 

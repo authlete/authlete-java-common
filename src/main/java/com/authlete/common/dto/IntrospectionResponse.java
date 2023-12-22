@@ -250,7 +250,7 @@ import com.authlete.common.util.Utils;
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 21L;
+    private static final long serialVersionUID = 22L;
 
 
     /**
@@ -542,19 +542,29 @@ public class IntrospectionResponse extends ApiResponse
     /**
      * The {@code c_nonce}.
      *
-     * @since 3.63
+     * <p>
+     * The {@code cNonce} field added by the version 3.63 has been renamed
+     * to {@code cnonce} by the version 3.90.
+     * </p>
+     *
+     * @since 3.90
      * @since Authlete 3.0
      */
-    private String cNonce;
+    private String cnonce;
 
 
     /**
      * The time at which the {@code c_nonce} expires.
      *
-     * @since 3.63
+     * <p>
+     * The {@code cNonceExpiresAt} field added by the version 3.63 has been
+     * renamed to {@code cnonceExpiresAt} by the version 3.90.
+     * </p>
+     *
+     * @since 3.90
      * @since Authlete 3.0
      */
-    private long cNonceExpiresAt;
+    private long cnonceExpiresAt;
 
 
     /**
@@ -1727,18 +1737,23 @@ public class IntrospectionResponse extends ApiResponse
      * c_nonce}.
      * </p>
      *
+     * <p>
+     * The {@code getCNonce()} method added by the version 3.63 has been renamed
+     * to {@code getCnonce()} by the version 3.90.
+     * </p>
+     *
      * @return
      *         The {@code c_nonce}.
      *
-     * @since 3.63
+     * @since 3.90
      * @since Authlete 3.0
      *
      * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
      *      >OpenID for Verifiable Credentials Issuance</a>
      */
-    public String getCNonce()
+    public String getCnonce()
     {
-        return cNonce;
+        return cnonce;
     }
 
 
@@ -1764,18 +1779,23 @@ public class IntrospectionResponse extends ApiResponse
      * c_nonce}.
      * </p>
      *
+     * <p>
+     * The {@code setCNonce(String)} method added by the version 3.63 has been
+     * renamed to {@code setCnonce(String)} by the version 3.90.
+     * </p>
+     *
      * @param nonce
      *         The {@code c_nonce}.
      *
-     * @since 3.63
+     * @since 3.90
      * @since Authlete 3.0
      *
      * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
      *      >OpenID for Verifiable Credentials Issuance</a>
      */
-    public void setCNonce(String nonce)
+    public void setCnonce(String nonce)
     {
-        this.cNonce = nonce;
+        this.cnonce = nonce;
     }
 
 
@@ -1783,19 +1803,24 @@ public class IntrospectionResponse extends ApiResponse
      * Get the time at which the {@code c_nonce} expires in milliseconds since
      * the Unix epoch (1970-01-01).
      *
+     * <p>
+     * The {@code getCNonceExpiresAt()} method added by the version 3.63 has
+     * been renamed to {@code getCnonceExpiresAt()} by the version 3.90.
+     * </p>
+     *
      * @return
      *         The time at which the {@code c_nonce} expires in milliseconds
      *         since the Unix epoch (1970-01-01).
      *
-     * @since 3.63
+     * @since 3.90
      * @since Authlete 3.0
      *
      * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
      *      >OpenID for Verifiable Credentials Issuance</a>
      */
-    public long getCNonceExpiresAt()
+    public long getCnonceExpiresAt()
     {
-        return cNonceExpiresAt;
+        return cnonceExpiresAt;
     }
 
 
@@ -1803,19 +1828,24 @@ public class IntrospectionResponse extends ApiResponse
      * Set the time at which the {@code c_nonce} expires in milliseconds since
      * the Unix epoch (1970-01-01).
      *
+     * <p>
+     * The {@code setCNonceExpiresAt(long)} method added by the version 3.63 has
+     * been renamed to {@code setCnonceExpiresAt(long)} by the version 3.90.
+     * </p>
+     *
      * @param expiresAt
      *         The time at which the {@code c_nonce} expires in milliseconds
      *         since the Unix epoch (1970-01-01).
      *
-     * @since 3.63
+     * @since 3.90
      * @since Authlete 3.0
      *
      * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
      *      >OpenID for Verifiable Credentials Issuance</a>
      */
-    public void setCNonceExpiresAt(long expiresAt)
+    public void setCnonceExpiresAt(long expiresAt)
     {
-        this.cNonceExpiresAt = expiresAt;
+        this.cnonceExpiresAt = expiresAt;
     }
 
 

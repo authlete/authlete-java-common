@@ -1,6 +1,25 @@
 CHANGES
 =======
 
+- `IntrospectionResponse` class
+    * Renamed `getCNonce()` method to `getCnonce()`.
+    * Renamed `setCNonce(String)` method to `setCnonce(String)`.
+    * Renamed `getCNonceExpiresAt()` method to `getCnonceExpiresAt()`.
+    * Renamed `setCNonceExpiresAt(long)` method to `setCnonceExpiresAt(long)`.
+
+- `Service` class
+    * Renamed `getCNonceDuration()` method to `getCnonceDuration()`.
+    * Renamed `setCNonceDuration(long)` method to `setCnonceDuration(long)`.
+
+- `TokenResponse` class
+    * Renamed `getCNonce()` method to `getCnonce()`.
+    * Renamed `setCNonce(String)` method to `setCnonce(String)`.
+    * Renamed `getCNonceExpiresAt()` method to `getCnonceExpiresAt()`.
+    * Renamed `setCNonceExpiresAt(long)` method to `setCnonceExpiresAt(long)`.
+    * Renamed `getCNonceDuration()` method to `getCnonceDuration()`.
+    * Renamed `setCNonceDuration(long)` method to `setCnonceDuration(long)`.
+
+
 3.89 (2023-12-17)
 -----------------
 
