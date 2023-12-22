@@ -151,6 +151,137 @@ import java.io.Serializable;
  * <p>
  * Authlete may provide an advanced mechanism to control the behavior in the future.
  * </p>
+ *
+ * <h4>The {@code mso_mdoc} Format</h4>
+ *
+ * <p>
+ * This format identifier represents the <b>mdoc</b> format which is defined in
+ * the "ISO/IEC 18013-5:2021" standard.
+ * </p>
+ *
+ * <p>
+ * When the credential format is "{@code mso_mdoc}", the {@code credentialPayload}
+ * parameter is mandatory. It must contain at least the "{@code doctype}" property
+ * and the "{@code claims}" property.
+ * </p>
+ *
+ * <p>
+ * The value of the "{@code doctype}" property must be a string which represents
+ * the document type of the mdoc being issued. For example, in the case of mDL,
+ * the value should be "{@code org.iso.18013.5.1.mDL}".
+ * </p>
+ *
+ * <p>
+ * The value of the "{@code claims}" property must be a JSON object. The keys of
+ * the top-level properties in the JSON object must be strings representing name
+ * spaces, and their values must be JSON objects, each of which contains claims
+ * under the corresponding name space.
+ * </p>
+ *
+ * <p>
+ * The following JSON shows the structure that the {@code credentialPayload}
+ * should have.
+ * </p>
+ *
+ * <pre>
+ * {
+ *   "doctype": "org.iso.18013.5.1.mDL",
+ *   "claims": {
+ *     "org.iso.18013.5.1": {
+ *       "family_name": "Doe",
+ *       "issue_date": "cbor:1004(\"2019-10-20\")",
+ *       "expiry_date": "cbor:1004(\"2024-10-20\")",
+ *       "document_number": "123456789",
+ *       "portrait": "cbor:h'ffd8ffe...'",
+ *       "driving_privileges": [
+ *         {
+ *           "vehicle_category_code": "A",
+ *           "issue_date": "cbor:1004(\"2018-08-09\")",
+ *           "expiry_date": "cbor:1004(\"2024-10-20\")"
+ *         },
+ *         {
+ *           "vehicle_category_code": "B",
+ *           "issue_date": "cbor:1004(\"2017-08-09\")",
+ *           "expiry_date": "cbor:1004(\"2024-10-20\")"
+ *         }
+ *       ]
+ *     }
+ *   }
+ * }
+ * </pre>
+ *
+ * <p>
+ * The "{@code doctype}" property in the example above specifies "{@code
+ * org.iso.18013.5.1.mDL}" as the document type. The "{@code claims}" JSON
+ * object contains one name space, "{@code org.iso.18013.5.1}". Under the
+ * name space, 6 claims are listed. The names of the claims are "{@code
+ * family_name}", "{@code issue_date}", "{@code expiry_date}", "{@code
+ * document_number}", "{@code portrait}", and "{@code driving_privileges}".
+ * </p>
+ *
+ * <p>
+ * According to the mdoc specification, claim names must be strings. On the
+ * other hand, the restriction is not imposed on claim values. Claim values
+ * can have any CBOR data type.
+ * </p>
+ *
+ * <p>
+ * Authlete converts claim values to corresponding CBOR items properly. For
+ * example, Authlete converts JSON strings into CBOR text strings, JSON
+ * arrays into CBOR arrays, and JSON objects into CBOR maps. However, some
+ * CBOR data types cannot be expressed by JSON primitive data types. For
+ * instance, CBOR tags and binary data cannot be expressed. For such CBOR
+ * data types, Authlete provides a mechanism to specify CBOR-specific data
+ * using CBOR Diagnostic Notation (RFC 8949, <a href=
+ * "https://www.rfc-editor.org/rfc/rfc8949#section-8">8. Diagnostic
+ * Notation</a>) and CBOR Extended Diagnostic Notation (RFC 8610, <a href=
+ * "https://www.rfc-editor.org/rfc/rfc8610#appendix-G">Appendix G. Extended
+ * Diagnostic Notation</a>).
+ * </p>
+ *
+ * <p>
+ * When the type of a claim value is a string and the value starts from the
+ * prefix "{@code cbor:}", Authlete parses the substring after the prefix
+ * as CBOR (Extended) Diagnostic Notation. For example, using one of the
+ * syntaxes below, binary data can be embedded.
+ * </p>
+ *
+ * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+ *   <tr bgcolor="orange">
+ *     <th>syntax</th>
+ *     <th>example</th>
+ *   </tr>
+ *   <tr>
+ *     <td><code>h'<i>base16-string</i>'</code></td>
+ *     <td>{@code h'12345678'}</td>
+ *   </tr>
+ *   <tr>
+ *     <td><code>b32'<i>base32-string</i>'</code></td>
+ *     <td>{@code b32'CI2FM6A'}</td>
+ *   </tr>
+ *   <tr>
+ *     <td><code>h32'<i>base32hex-string</i>'</code></td>
+ *     <td>{@code h32'28Q5CU0'}</td>
+ *   </tr>
+ *   <tr>
+ *     <td><code>b64'<i>base64(url)-string</i>'</code></td>
+ *     <td>{@code b64'EjRWeA'}</td>
+ *   </tr>
+ *   <tr>
+ *     <td><code>'<i>string</i>'</code></td>
+ *     <td>{@code 'hello world'}<br>
+ *         (equivalent to {@code h'68656c6c6f20776f726c64'})</td>
+ *   </tr>
+ * </table>
+ *
+ * <p>
+ * The syntax "<code><i>TagNumber</i>(<i>CBOR item</i>)</code>" can prepend
+ * a CBOR tag to any CBOR item. For instance, to prepend a CBOR tag 1004 (cf.
+ * <a href="https://www.rfc-editor.org/rfc/rfc8943.html">RFC 8943</a>) to the
+ * string "{@code 2019-10-20}", the following expression works:
+ * {@code 1004("2019-10-20")}
+ * </p>
+ *
  * </blockquote>
  *
  * <h3>The {@code issuanceDeferred} Parameter</h3>
