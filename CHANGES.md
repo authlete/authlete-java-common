@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.90 (2023-12-22)
+-----------------
+
 - `IntrospectionResponse` class
     * Renamed `getCNonce()` method to `getCnonce()`.
     * Renamed `setCNonce(String)` method to `setCnonce(String)`.
