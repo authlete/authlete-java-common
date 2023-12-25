@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.91 (2023 年 12 月 26 日)
+--------------------------
+
 - `CredentialIssuerMetadata` クラス
     * `credentials_supported` から `credential_configurations_supported`
        への名称変更に対応するため `toMap()` メソッドの実装を更新。

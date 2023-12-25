@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.91 (2023-12-26)
+-----------------
+
 - `CredentialIssuerMetadata` class
     * Updated the implementation of the `toMap()` method to cope with the remaining
       from `credentials_supported` to `credential_configurations_supported`.
