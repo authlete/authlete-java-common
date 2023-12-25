@@ -38,7 +38,7 @@ import static com.authlete.common.util.MapUtils.*;
  * <li>{@code credential_response_encryption_alg_values_supported}
  * <li>{@code credential_response_encryption_enc_values_supported}
  * <li>{@code require_credential_response_encryption}
- * <li>{@code credentials_supported}
+ * <li>{@code credential_configurations_supported}
  * </ul>
  *
  * <p>
@@ -62,6 +62,9 @@ import static com.authlete.common.util.MapUtils.*;
  * The "{@code authorization_server}" metadata has been renamed to
  * "{@code authorization_servers}", and its type has been changed from a string
  * to a JSON array.
+ * <li>
+ * The "{@code credentials_supported}" metadata has been renamed to
+ * "{@code credential_configurations_supported}". (December, 2023)
  * </ol>
  *
  * @since 3.55
@@ -137,7 +140,7 @@ public class CredentialIssuerMetadata implements Serializable
 
 
     /**
-     * A JSON object describing supported credentials.
+     * A JSON object describing supported credential configurations.
      */
     private String credentialsSupported;
 
@@ -477,8 +480,7 @@ public class CredentialIssuerMetadata implements Serializable
      *
      * <p>
      * If this flag is {@code true}, every credential request to the credential
-     * issuer must include encryption-related parameters such as
-     * {@code credential_response_encryption_alg}.
+     * issuer must include the {@code credential_response_encryption} property.
      * </p>
      *
      * @return
@@ -499,8 +501,7 @@ public class CredentialIssuerMetadata implements Serializable
      *
      * <p>
      * If this flag is {@code true}, every credential request to the credential
-     * issuer must include encryption-related parameters such as
-     * {@code credential_response_encryption_alg}.
+     * issuer must include the {@code credential_response_encryption} property.
      * </p>
      *
      * @param required
@@ -520,8 +521,9 @@ public class CredentialIssuerMetadata implements Serializable
 
 
     /**
-     * Get the information about supported credentials in the JSON format.
-     * This property corresponds to the {@code credentials_supported} metadata.
+     * Get the information about supported credential configurations in the
+     * JSON format. This property corresponds to the
+     * {@code credential_configurations_supported} metadata.
      *
      * <p>
      * To make the feature of credential issuance function, this property must
@@ -535,9 +537,15 @@ public class CredentialIssuerMetadata implements Serializable
      * array to a JSON object.
      * </p>
      *
+     * <p>
+     * NOTE: Due to another breaking change made in December 2023, the
+     * {@code credentials_supported} metadata has been renamed to
+     * {@code credential_configurations_supported}.
+     * </p>
+     *
      * @return
-     *         The supported credentials. If not null, the value is a string
-     *         representing a JSON object.
+     *         The supported credential configurations. If not null, the value
+     *         is a string representing a JSON object.
      */
     public String getCredentialsSupported()
     {
@@ -546,8 +554,9 @@ public class CredentialIssuerMetadata implements Serializable
 
 
     /**
-     * Set the information about supported credentials in the JSON format.
-     * This property corresponds to the {@code credentials_supported} metadata.
+     * Set the information about supported credential configurations in the
+     * JSON format. This property corresponds to the
+     * {@code credential_configurations_supported} metadata.
      *
      * <p>
      * To make the feature of credential issuance function, this property must
@@ -561,9 +570,15 @@ public class CredentialIssuerMetadata implements Serializable
      * array to a JSON object.
      * </p>
      *
+     * <p>
+     * NOTE: Due to another breaking change made in December 2023, the
+     * {@code credentials_supported} metadata has been renamed to
+     * {@code credential_configurations_supported}.
+     * </p>
+     *
      * @param credentialsSupported
-     *         The supported credentials. If not null, the value must be a
-     *         string representing a JSON object.
+     *         The supported credential configurations. If not null, the value
+     *         is a string representing a JSON object.
      *
      * @return
      *         {@code this} object.
@@ -618,7 +633,7 @@ public class CredentialIssuerMetadata implements Serializable
      *     "https://credential-issuer.example.com/batch_credential",
      *   "deferred_credential_endpoint":
      *     "https://credential-issuer.example.com/deferred_credential",
-     *   "credentials_supported": {
+     *   "credential_configurations_supported": {
      *     "UniversityDegreeCredential": {
      *       "format": "jwt_vc_json",
      *       "scope": "UniversityDegree",
@@ -653,6 +668,12 @@ public class CredentialIssuerMetadata implements Serializable
      * a JSON array to a JSON object.
      * </p>
      *
+     * <p>
+     * NOTE: Due to another breaking change made in December 2023, the
+     * {@code credentials_supported} metadata has been renamed to
+     * {@code credential_configurations_supported}.
+     * </p>
+     *
      * @return
      *         A {@code Map} instance that represents a JSON object conforming
      *         to the format of the credential issuer metadata.
@@ -677,7 +698,7 @@ public class CredentialIssuerMetadata implements Serializable
         try
         {
             // Parse the value of 'credentialsSupported' as a JSON object.
-            putJsonObject(map, "credentials_supported", credentialsSupported, false);
+            putJsonObject(map, "credential_configurations_supported", credentialsSupported, false);
         }
         catch (Exception cause)
         {

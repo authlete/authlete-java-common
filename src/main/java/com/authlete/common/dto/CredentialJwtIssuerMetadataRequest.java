@@ -24,8 +24,8 @@ import java.io.Serializable;
  *
  * <p>
  * The Authlete API is supposed to be called from within the implementation of
- * the JWT issuer metadata endpoint ({@code /.well-known/jwt-issuer}) of the
- * credential issuer.
+ * the JWT VC issuer metadata endpoint ({@code /.well-known/jwt-vc-issuer}) of
+ * the credential issuer.
  * </p>
  *
  * <p>
@@ -45,9 +45,15 @@ import java.io.Serializable;
  * </blockquote>
  *
  * <p>
- * Note that the JWT issuer metadata endpoint ({@code /.well-known/jwt-issuer})
+ * Note that the JWT VC issuer metadata endpoint ({@code /.well-known/jwt-vc-issuer})
  * is different from the credential issuer metadata endpoint
  * ({@code /.well-known/openid-credential-issuer}).
+ * </p>
+ *
+ * <p>
+ * NOTE: The well-known path has been changed from {@code /.well-known/jwt-issuer}
+ * to {@code /.well-known/jwt-vc-issuer} by a breaking change of the SD-JWT VC
+ * specification.
  * </p>
  *
  * @since 3.79

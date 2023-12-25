@@ -1858,13 +1858,13 @@ public class IntrospectionResponse extends ApiResponse
      *
      * <ol>
      * <li>
-     * The "{@code credentials}" property in the credential offer that was used
-     * when the access token was issued. A credential offer may contain either
-     * or both an issuer state and a pre-authorized code. The issuer state can
-     * be used as the value of the "{@code issuer_state}" request parameter of
-     * an authorization request. The pre-authorized code can be used as the
-     * value of the "{@code pre-authorized_code}" request parameter of a token
-     * request whose "{@code grant_type}" is
+     * The "{@code credential_configurations}" property in the credential offer
+     * that was used when the access token was issued. A credential offer may
+     * contain either or both an issuer state and a pre-authorized code. The
+     * issuer state can be used as the value of the "{@code issuer_state}"
+     * request parameter of an authorization request. The pre-authorized code
+     * can be used as the value of the "{@code pre-authorized_code}" request
+     * parameter of a token request whose "{@code grant_type}" is
      * "{@code urn:ietf:params:oauth:grant-type:pre-authorized_code}".
      *
      * <li>
@@ -1875,10 +1875,10 @@ public class IntrospectionResponse extends ApiResponse
      * Rich Authorization Requests</a>.
      *
      * <li>
-     * The content of an entry in the "{@code credentials_supported}" metadata
-     * of the credential issuer. The identifier of an entry in the
-     * "{@code credentials_supported}" metadata can be used as a value in the
-     * "{@code scope}" request parameter.
+     * The content of an entry in the "{@code credential_configurations_supported}"
+     * metadata of the credential issuer. The "{@code scope}" property of an entry
+     * in the "{@code credential_configurations_supported}" metadata can be used
+     * as a value in the "{@code scope}" request parameter.
      * </ol>
      *
      * <p>

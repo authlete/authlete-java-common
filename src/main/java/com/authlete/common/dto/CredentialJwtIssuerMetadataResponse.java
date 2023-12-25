@@ -21,8 +21,8 @@ package com.authlete.common.dto;
  *
  * <p>
  * The Authlete API is supposed to be called from within the implementation of
- * the JWT issuer metadata endpoint ({@code /.well-known/jwt-issuer}) of the
- * credential issuer.
+ * the JWT VC issuer metadata endpoint ({@code /.well-known/jwt-vc-issuer}) of
+ * the credential issuer.
  * </p>
  *
  * <p>
@@ -42,7 +42,7 @@ package com.authlete.common.dto;
  *
  * </p>
  * In this case, the implementation of the JWT issuer metadata endpoint
- * ({@code /.well-known/jwt-issuer}) of the credential issuer should return
+ * ({@code /.well-known/jwt-vc-issuer}) of the credential issuer should return
  * an HTTP response with the HTTP status code "{@code 200 OK}" and the content
  * type "{@code application/json}". The message body of the response has been
  * prepared by Authlete's {@code /vci/jwtissuer} API and it is available as
@@ -131,6 +131,12 @@ package com.authlete.common.dto;
  * what they actually return in the case of internal server error.
  * </p>
  *
+ * <p>
+ * NOTE: The well-known path has been changed from {@code /.well-known/jwt-issuer}
+ * to {@code /.well-known/jwt-vc-issuer} by a breaking change of the SD-JWT VC
+ * specification.
+ * </p>
+ *
  * @since 3.79
  * @since Authlete 3.0
  *
@@ -145,7 +151,7 @@ public class CredentialJwtIssuerMetadataResponse extends ApiResponse
 
     /**
      * The next action that the implementation of the JWT issuer metadata
-     * endpoint ({@code /.well-known/jwt-issuer}) should take after getting
+     * endpoint ({@code /.well-known/jwt-vc-issuer}) should take after getting
      * a response from Authlete's {@code /vci/jwtissuer} API.
      *
      * @since 3.79
