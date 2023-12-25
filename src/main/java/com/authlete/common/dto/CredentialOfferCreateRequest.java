@@ -43,14 +43,18 @@ import java.io.Serializable;
  * <pre>
  * {
  *   "credential_issuer": "...",
- *   "credentials": [ ... ],
+ *   "credential_configurations": [ ... ],
  *   "grants": {
  *     "authorization_code": {
  *       "issuer_state": "..."
  *     },
  *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
  *       "pre-authorized_code": "...",
- *       "user_pin_required": true
+ *       "tx_code": {
+ *         "input_mode": "numeric",
+ *         "length": 6,
+ *         "description": "..."
+ *       }
  *     }
  *   }
  * }
@@ -76,6 +80,13 @@ import java.io.Serializable;
  * string to an array of strings.
  * </p>
  *
+ * <p>
+ * Due to another breaking change made in December 2023, the {@code credentials}
+ * property in a credential offer has been renamed to
+ * {@code credential_configurations}. In addition, the {@code user_pin_required}
+ * boolean property has been replaced with the {@code tx_code} JSON object.
+ * </p>
+ *
  * @since 3.59
  * @since Authlete 3.0
  *
@@ -84,13 +95,15 @@ import java.io.Serializable;
  */
 public class CredentialOfferCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
-     * The value of the {@code credentials} array.
+     * The value of the {@code credential_configurations} array.
+     *
+     * @since 3.91
      */
-    private String[] credentials;
+    private String[] credentialConfigurations;
 
 
     /**
@@ -113,19 +126,6 @@ public class CredentialOfferCreateRequest implements Serializable
      * in the {@code grants} object.
      */
     private boolean preAuthorizedCodeGrantIncluded;
-
-
-    /**
-     * The flag to include the {@code user_pin_required} property with the
-     * value {@code true}.
-     */
-    private boolean userPinRequired;
-
-
-    /**
-     * The length of the user PIN to generate.
-     */
-    private int userPinLength;
 
 
     /**
@@ -182,13 +182,37 @@ public class CredentialOfferCreateRequest implements Serializable
 
 
     /**
-     * Get the value of the {@code credentials} array.
+     * The transaction code.
+     *
+     * @since 3.91
+     */
+    private String txCode;
+
+
+    /**
+     * The input mode of the transaction code.
+     *
+     * @since 3.91
+     */
+    private String txCodeInputMode;
+
+
+    /**
+     * The description of the transaction code.
+     *
+     * @since 3.91
+     */
+    private String txCodeDescription;
+
+
+    /**
+     * Get the value of the {@code credential_configurations} array.
      *
      * <blockquote>
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   <span style="color:darkred;">"credentials": [ ... ]</span>,
+     *   <span style="color:darkred;">"credential_configurations": [ ... ]</span>,
      *   "grants": { ... }
      * }
      * </pre>
@@ -204,23 +228,31 @@ public class CredentialOfferCreateRequest implements Serializable
      * with the breaking change of the OID4VCI specification.
      * </p>
      *
+     * <p>
+     * NOTE: Due to the breaking change made in December 2023, the
+     * {@code credentials} property in a credential offer has been renamed to
+     * {@code credential_configurations}.
+     * </p>
+     *
      * @return
-     *         The value of the {@code credentials} array.
+     *         The value of the {@code credential_configurations} array.
+     *
+     * @since 3.91
      */
-    public String[] getCredentials()
+    public String[] getCredentialConfigurations()
     {
-        return credentials;
+        return credentialConfigurations;
     }
 
 
     /**
-     * Set the value of the {@code credentials} array.
+     * Set the value of the {@code credential_configurations} array.
      *
      * <blockquote>
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   <span style="color:darkred;">"credentials": [ ... ]</span>,
+     *   <span style="color:darkred;">"credential_configurations": [ ... ]</span>,
      *   "grants": { ... }
      * }
      * </pre>
@@ -230,17 +262,23 @@ public class CredentialOfferCreateRequest implements Serializable
      * This property is mandatory.
      * </p>
      *
-     * @param credentials
-     *         The value of the {@code credentials} array.
+     * <p>
+     * NOTE: Due to the breaking change made in December 2023, the
+     * {@code credentials} property in a credential offer has been renamed to
+     * {@code credential_configurations}.
+     * </p>
+     *
+     * @param configurations
+     *         The value of the {@code credential_configurations} array.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 3.86
+     * @since 3.91
      */
-    public CredentialOfferCreateRequest setCredentials(String[] credentials)
+    public CredentialOfferCreateRequest setCredentialConfigurations(String[] configurations)
     {
-        this.credentials = credentials;
+        this.credentialConfigurations = configurations;
 
         return this;
     }
@@ -254,7 +292,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"authorization_code"</span>: { ... }
      *   }
@@ -280,7 +318,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"authorization_code"</span>: { ... }
      *   }
@@ -310,7 +348,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     "authorization_code": {
      *       <span style="color:darkred;">"issuer_state"</span>: "..."
@@ -344,7 +382,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     "authorization_code": {
      *       <span style="color:darkred;">"issuer_state"</span>: "..."
@@ -383,7 +421,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"urn:ietf:params:oauth:grant-type:pre-authorized_code"</span>: { ... }
      *   }
@@ -423,7 +461,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"urn:ietf:params:oauth:grant-type:pre-authorized_code"</span>: { ... }
      *   }
@@ -454,119 +492,6 @@ public class CredentialOfferCreateRequest implements Serializable
     public CredentialOfferCreateRequest setPreAuthorizedCodeGrantIncluded(boolean included)
     {
         this.preAuthorizedCodeGrantIncluded = included;
-
-        return this;
-    }
-
-
-    /**
-     * Get the flag to include the {@code user_pin_required} property with the
-     * value {@code true}.
-     *
-     * <blockquote>
-     * <pre>
-     * {
-     *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
-     *   "grants": {
-     *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
-     *       "pre-authorized_code": "...",
-     *       <span style="color:darkred;">"user_pin_required": true</span>
-     *     }
-     *   }
-     * }
-     * </pre>
-     * </blockquote>
-     *
-     * @return
-     *         {@code true} if the {@code user_pin_required} property will be
-     *         included with the value {@code true}.
-     *         {@code false} if the property will be omitted.
-     */
-    public boolean isUserPinRequired()
-    {
-        return userPinRequired;
-    }
-
-
-    /**
-     * Set the flag to include the {@code user_pin_required} property with the
-     * value {@code true}.
-     *
-     * <blockquote>
-     * <pre>
-     * {
-     *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
-     *   "grants": {
-     *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
-     *       "pre-authorized_code": "...",
-     *       <span style="color:darkred;">"user_pin_required": true</span>
-     *     }
-     *   }
-     * }
-     * </pre>
-     * </blockquote>
-     *
-     * @param included
-     *         {@code true} to include the {@code user_pin_required} property
-     *         with the value {@code true}. {@code false} to omit the property.
-     *
-     * @return
-     *         {@code this} object.
-     */
-    public CredentialOfferCreateRequest setUserPinRequired(boolean included)
-    {
-        this.userPinRequired = included;
-
-        return this;
-    }
-
-
-    /**
-     * Get the length of the user PIN associated with the credential offer.
-     *
-     * <p>
-     * Authlete generates a user PIN of the specified length when necessary.
-     * The maximum length that can be specified is 8 as the specification
-     * requires so. When this property is omitted or its value is 0 or
-     * negative, the value of the {@code userPinLength} property of the
-     * service is used.
-     * </p>
-     *
-     * @return
-     *         The length of the user PIN.
-     *
-     * @see Service#getUserPinLength()
-     */
-    public int getUserPinLength()
-    {
-        return userPinLength;
-    }
-
-
-    /**
-     * Set the length of the user PIN associated with the credential offer.
-     *
-     * <p>
-     * Authlete generates a user PIN of the specified length when necessary.
-     * The maximum length that can be specified is 8 as the specification
-     * requires so. When this property is omitted or its value is 0 or
-     * negative, the value of the {@code userPinLength} property of the
-     * service is used.
-     * </p>
-     *
-     * @param length
-     *         The length of the user PIN.
-     *
-     * @return
-     *         {@code this} object.
-     *
-     * @see Service#setUserPinLength(int)
-     */
-    public CredentialOfferCreateRequest setUserPinLength(int length)
-    {
-        this.userPinLength = length;
 
         return this;
     }
@@ -872,6 +797,265 @@ public class CredentialOfferCreateRequest implements Serializable
     public CredentialOfferCreateRequest setAcr(String acr)
     {
         this.acr = acr;
+
+        return this;
+    }
+
+
+    /**
+     * Get the transaction code that should be associated with the credential
+     * offer.
+     *
+     * <p>
+     * If this parameter is not empty and the
+     * {@code preAuthorizedCodeGrantIncluded} parameter is true, the
+     * {@code urn:ietf:params:oauth:grant-type:pre-authorized_code} object
+     * will include the {@code tx_code} object.
+     * </p>
+     *
+     * <p>
+     * The length of the value of this parameter will be used as the value of
+     * the {@code length} property in the {@code tx_code} object.
+     * </p>
+     *
+     * <blockquote>
+     * <pre>
+     * {
+     *   "credential_issuer": "...",
+     *   "credential_configurations": [ ... ],
+     *   "grants": {
+     *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+     *       "pre-authorized_code": "...",
+     *       <span style="color:darkred;">"tx_code"</span>: {
+     *         "length": length
+     *       }
+     *     }
+     *   }
+     * }
+     * </pre>
+     * </blockquote>
+     *
+     * @return
+     *         The transaction code.
+     *
+     * @since 3.91
+     */
+    public String getTxCode()
+    {
+        return txCode;
+    }
+
+
+    /**
+     * Set the transaction code that should be associated with the credential
+     * offer.
+     *
+     * <p>
+     * If this parameter is not empty and the
+     * {@code preAuthorizedCodeGrantIncluded} parameter is true, the
+     * {@code urn:ietf:params:oauth:grant-type:pre-authorized_code} object
+     * will include the {@code tx_code} object.
+     * </p>
+     *
+     * <p>
+     * The length of the value of this parameter will be used as the value of
+     * the {@code length} property in the {@code tx_code} object.
+     * </p>
+     *
+     * <blockquote>
+     * <pre>
+     * {
+     *   "credential_issuer": "...",
+     *   "credential_configurations": [ ... ],
+     *   "grants": {
+     *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+     *       "pre-authorized_code": "...",
+     *       <span style="color:darkred;">"tx_code"</span>: {
+     *         "length": length
+     *       }
+     *     }
+     *   }
+     * }
+     * </pre>
+     * </blockquote>
+     *
+     * @param txCode
+     *         The transaction code.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.91
+     */
+    public CredentialOfferCreateRequest setTxCode(String txCode)
+    {
+        this.txCode = txCode;
+
+        return this;
+    }
+
+
+    /**
+     * Get the input mode of the transaction code.
+     *
+     * <p>
+     * The value of this property will be used as the value of the
+     * {@code input_mode} property in the {@code tx_code} object.
+     * </p>
+     *
+     * <blockquote>
+     * <pre>
+     * {
+     *   "credential_issuer": "...",
+     *   "credential_configurations": [ ... ],
+     *   "grants": {
+     *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+     *       "pre-authorized_code": "...",
+     *       "tx_code": {
+     *         "length": length,
+     *         <span style="color:darkred;">"input_mode": "..."</span>
+     *       }
+     *     }
+     *   }
+     * }
+     * </pre>
+     * </blockquote>
+     *
+     * @return
+     *         The input mode of the transaction code.
+     *
+     * @since 3.91
+     */
+    public String getTxCodeInputMode()
+    {
+        return txCodeInputMode;
+    }
+
+
+    /**
+     * Set the input mode of the transaction code.
+     *
+     * <p>
+     * The value of this property will be used as the value of the
+     * {@code input_mode} property in the {@code tx_code} object.
+     * </p>
+     *
+     * <blockquote>
+     * <pre>
+     * {
+     *   "credential_issuer": "...",
+     *   "credential_configurations": [ ... ],
+     *   "grants": {
+     *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+     *       "pre-authorized_code": "...",
+     *       "tx_code": {
+     *         "length": length,
+     *         <span style="color:darkred;">"input_mode": "..."</span>
+     *       }
+     *     }
+     *   }
+     * }
+     * </pre>
+     * </blockquote>
+     *
+     * <p>
+     * Possible values listed in the current draft of the OID4VCI specification
+     * are "{@code numeric}" and "{@code text}" only, but the
+     * {@code /vci/offer/create} API accepts other values for the future
+     * extension in addition to the predefined ones.
+     * </p>
+     *
+     * @param inputMode
+     *         The input mode of the transaction code.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.91
+     */
+    public CredentialOfferCreateRequest setTxCodeInputMode(String inputMode)
+    {
+        this.txCodeInputMode = inputMode;
+
+        return this;
+    }
+
+
+    /**
+     * Get the description of the transaction code.
+     *
+     * <p>
+     * The value of this property will be used as the value of the
+     * {@code description} property in the {@code tx_code} object.
+     * </p>
+     *
+     * <blockquote>
+     * <pre>
+     * {
+     *   "credential_issuer": "...",
+     *   "credential_configurations": [ ... ],
+     *   "grants": {
+     *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+     *       "pre-authorized_code": "...",
+     *       "tx_code": {
+     *         "length": length,
+     *         <span style="color:darkred;">"description": "..."</span>
+     *       }
+     *     }
+     *   }
+     * }
+     * </pre>
+     * </blockquote>
+     *
+     * @return
+     *         The description of the transaction code.
+     *
+     * @since 3.91
+     */
+    public String getTxCodeDescription()
+    {
+        return txCodeDescription;
+    }
+
+
+    /**
+     * Set the description of the transaction code.
+     *
+     * <p>
+     * The value of this property will be used as the value of the
+     * {@code description} property in the {@code tx_code} object.
+     * </p>
+     *
+     * <blockquote>
+     * <pre>
+     * {
+     *   "credential_issuer": "...",
+     *   "credential_configurations": [ ... ],
+     *   "grants": {
+     *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
+     *       "pre-authorized_code": "...",
+     *       "tx_code": {
+     *         "length": length,
+     *         <span style="color:darkred;">"description": "..."</span>
+     *       }
+     *     }
+     *   }
+     * }
+     * </pre>
+     * </blockquote>
+     *
+     * @param description
+     *         The description of the transaction code. The length of the
+     *         description must not exceed 300.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.91
+     */
+    public CredentialOfferCreateRequest setTxCodeDescription(String description)
+    {
+        this.txCodeDescription = description;
 
         return this;
     }

@@ -1,6 +1,43 @@
 CHANGES
 =======
 
+- `CredentialIssuerMetadata` class
+    * Updated the implementation of the `toMap()` method to cope with the remaining
+      from `credentials_supported` to `credential_configurations_supported`.
+
+- `CredentialOfferCreateRequest` class
+    * Added `getTxCode()` method.
+    * Added `setTxCode(String)` method.
+    * Added `getTxCodeInputMode()` method.
+    * Added `setTxCodeInputMode(String)` method.
+    * Added `getTxCodeDescription()` method.
+    * Added `setTxCodeDescription(String)` method.
+    * Renamed `getCredentials()` method to `getCredentialConfigurations()`.
+    * Renamed `setCredentials(String[])` method to `setCredentialConfigurations(String[])`.
+    * Removed `isUserPinRequired()` method.
+    * Removed `setUserPinRequired(boolean)` method.
+    * Removed `getUserPinLength()` method.
+    * Removed `setUserPinLength(int)` method.
+
+- `CredetialOfferInfo` class
+    * Added `getTxCode()` method.
+    * Added `setTxCode(String)` method.
+    * Added `getTxCodeInputMode()` method.
+    * Added `setTxCodeInputMode(String)` method.
+    * Added `getTxCodeDescription()` method.
+    * Added `setTxCodeDescription(String)` method.
+    * Renamed `getCredentials()` method to `getCredentialConfigurations()`.
+    * Renamed `setCredentials(String[])` method to `setCredentialConfigurations(String[])`.
+    * Removed `isUserPinRequired()` method.
+    * Removed `setUserPinRequired(boolean)` method.
+    * Removed `getUserPin()` method.
+    * Removed `setUserPin(String)` method.
+
+- `Service` class
+    * Deprecated `getUserPinLength()` method.
+    * Deprecated `setUserPinLength(int)` method.
+
+
 3.90 (2023-12-22)
 -----------------
 

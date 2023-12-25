@@ -1709,7 +1709,9 @@ public class Service implements Serializable
      *
      * @since 3.59
      * @since Authlete 3.0
+     * @deprecated
      */
+    @Deprecated
     private int userPinLength;
 
 
@@ -10651,6 +10653,12 @@ public class Service implements Serializable
      * Authlete server is used as the default value.
      * </p>
      *
+     * <p>
+     * NOTE: This property has been deprecated due to a breaking change of the
+     * OID4VCI specification. The {@code /vci/offer/create} API no longer
+     * recognizes the {@code userPinLength} request parameter.
+     * </p>
+     *
      * @return
      *         The default length of user PINs.
      *
@@ -10658,7 +10666,10 @@ public class Service implements Serializable
      * @since Authlete 3.0
      *
      * @see CredentialOfferCreateRequest#getUserPinLength()
+     *
+     * @deprecated
      */
+    @Deprecated
     public int getUserPinLength()
     {
         return userPinLength;
@@ -10679,6 +10690,12 @@ public class Service implements Serializable
      * Authlete server is used as the default value.
      * </p>
      *
+     * <p>
+     * NOTE: This property has been deprecated due to a breaking change of the
+     * OID4VCI specification. The {@code /vci/offer/create} API no longer
+     * recognizes the {@code userPinLength} request parameter.
+     * </p>
+     *
      * @param length
      *         The default length of user PINs.
      *
@@ -10689,7 +10706,10 @@ public class Service implements Serializable
      * @since Authlete 3.0
      *
      * @see CredentialOfferCreateRequest#setUserPinLength(int)
+     *
+     * @deprecated
      */
+    @Deprecated
     public Service setUserPinLength(int length)
     {
         this.userPinLength = length;

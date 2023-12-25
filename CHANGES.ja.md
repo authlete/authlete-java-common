@@ -1,6 +1,43 @@
 変更点
 ======
 
+- `CredentialIssuerMetadata` クラス
+    * `credentials_supported` から `credential_configurations_supported`
+       への名称変更に対応するため `toMap()` メソッドの実装を更新。
+
+- `CredentialOfferCreateRequest` クラス
+    * `getTxCode()` メソッドを追加。
+    * `setTxCode(String)` メソッドを追加。
+    * `getTxCodeInputMode()` メソッドを追加。
+    * `setTxCodeInputMode(String)` メソッドを追加。
+    * `getTxCodeDescription()` メソッドを追加。
+    * `setTxCodeDescription(String)` メソッドを追加。
+    * `getCredentials()` メソッドを `getCredentialConfigurations()` へ名称変更。
+    * `setCredentials(String[])` メソッドを `setCredentialConfigurations(String[])` へ名称変更。
+    * `isUserPinRequired()` メソッドを削除。
+    * `setUserPinRequired(boolean)` メソッドを削除。
+    * `getUserPinLength()` メソッドを削除。
+    * `setUserPinLength(int)` メソッドを削除。
+
+- `CredetialOfferInfo` クラス
+    * `getTxCode()` メソッドを追加。
+    * `setTxCode(String)` メソッドを追加。
+    * `getTxCodeInputMode()` メソッドを追加。
+    * `setTxCodeInputMode(String)` メソッドを追加。
+    * `getTxCodeDescription()` メソッドを追加。
+    * `setTxCodeDescription(String)` メソッドを追加。
+    * `getCredentials()` メソッドを `getCredentialConfigurations()` へ名称変更。
+    * `setCredentials(String[])` メソッドを `setCredentialConfigurations(String[])` へ名称変更。
+    * `isUserPinRequired()` メソッドを削除。
+    * `setUserPinRequired(boolean)` メソッドを削除。
+    * `getUserPin()` メソッドを削除。
+    * `setUserPin(String)` メソッドを削除。
+
+- `Service` クラス
+    * `getUserPinLength()` メソッドを廃止。
+    * `setUserPinLength(int)` メソッドを廃止。
+
+
 3.90 (2023 年 12 月 22 日)
 --------------------------
 

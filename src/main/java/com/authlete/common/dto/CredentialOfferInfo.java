@@ -42,6 +42,13 @@ import java.net.URI;
  * string to an array of strings.
  * </p>
  *
+ * <p>
+ * Due to another breaking change made in December 2023, the {@code credentials}
+ * property in a credential offer has been renamed to
+ * {@code credential_configurations}. In addition, the {@code user_pin_required}
+ * boolean property has been replaced with the {@code tx_code} JSON object.
+ * </p>
+ *
  * @since 3.59
  * @since Authlete 3.0
  *
@@ -50,7 +57,7 @@ import java.net.URI;
  */
 public class CredentialOfferInfo implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -74,9 +81,11 @@ public class CredentialOfferInfo implements Serializable
 
 
     /**
-     * The value of the {@code credentials} array.
+     * The value of the {@code credential_configurations} array.
+     *
+     * @since 3.91
      */
-    private String[] credentials;
+    private String[] credentialConfigurations;
 
 
     /**
@@ -115,20 +124,6 @@ public class CredentialOfferInfo implements Serializable
      * the {@code grants} object.
      */
     private String preAuthorizedCode;
-
-
-    /**
-     * The value of the {@code user_pin_required} property in the
-     * {@code urn:ietf:params:oauth:grant-type:pre-authorized_code} object in
-     * the {@code grants} object.
-     */
-    private boolean userPinRequired;
-
-
-    /**
-     * The value of the user PIN associated with the credential offer.
-     */
-    private String userPin;
 
 
     /**
@@ -182,6 +177,30 @@ public class CredentialOfferInfo implements Serializable
      * @since 3.62
      */
     private String acr;
+
+
+    /**
+     * The transaction code.
+     *
+     * @since 3.91
+     */
+    private String txCode;
+
+
+    /**
+     * The input mode of the transaction code.
+     *
+     * @since 3.91
+     */
+    private String txCodeInputMode;
+
+
+    /**
+     * The description of the transaction code.
+     *
+     * @since 3.91
+     */
+    private String txCodeDescription;
 
 
     /**
@@ -241,14 +260,18 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     "authorization_code": {
      *       "issuer_state": "..."
      *     },
      *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
      *       "pre-authorized_code": "...",
-     *       "user_pin_required": true
+     *       "tx_code": {
+     *         "input_mode": "numeric",
+     *         "length": 6,
+     *         "description": "..."
+     *       }
      *     }
      *   }
      * }
@@ -282,14 +305,18 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     "authorization_code": {
      *       "issuer_state": "..."
      *     },
      *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
      *       "pre-authorized_code": "...",
-     *       "user_pin_required": true
+     *       "tx_code": {
+     *         "input_mode": "numeric",
+     *         "length": 6,
+     *         "description": "..."
+     *       }
      *     }
      *   }
      * }
@@ -317,7 +344,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   <span style="color:darkred;">"credential_issuer": "..."</span>,
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": { ... }
      * }
      * </pre>
@@ -341,7 +368,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   <span style="color:darkred;">"credential_issuer": "..."</span>,
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": { ... }
      * }
      * </pre>
@@ -364,14 +391,14 @@ public class CredentialOfferInfo implements Serializable
 
 
     /**
-     * Get the value of the {@code credentials} property of the credential
-     * offer.
+     * Get the value of the {@code credential_configurations} property of
+     * the credential offer.
      *
      * <blockquote>
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   <span style="color:darkred;">"credentials": [ ... ]</span>,
+     *   <span style="color:darkred;">"credential_configurations": [ ... ]</span>,
      *   "grants": { ... }
      * }
      * </pre>
@@ -383,42 +410,56 @@ public class CredentialOfferInfo implements Serializable
      * with the breaking change of the OID4VCI specification.
      * </p>
      *
+     * <p>
+     * NOTE: Due to the breaking change made in December 2023, the
+     * {@code credentials} property in a credential offer has been renamed to
+     * {@code credential_configurations}.
+     * </p>
+     *
      * @return
-     *         The value of the {@code credentials} property of the credential
-     *         offer.
+     *         The value of the {@code credential_configurations} property of
+     *         the credential offer.
+     *
+     * @since 3.91
      */
-    public String[] getCredentials()
+    public String[] getCredentialConfigurations()
     {
-        return credentials;
+        return credentialConfigurations;
     }
 
 
     /**
-     * Set the value of the {@code credentials} property of the credential
-     * offer.
+     * Set the value of the {@code credential_configurations} property of
+     * the credential offer.
      *
      * <blockquote>
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   <span style="color:darkred;">"credentials": [ ... ]</span>,
+     *   <span style="color:darkred;">"credential_configurations": [ ... ]</span>,
      *   "grants": { ... }
      * }
      * </pre>
      * </blockquote>
      *
-     * @param credentials
-     *         The value of the {@code credentials} property of the credential
-     *         offer.
+     * <p>
+     * NOTE: Due to the breaking change made in December 2023, the
+     * {@code credentials} property in a credential offer has been renamed to
+     * {@code credential_configurations}.
+     * </p>
+     *
+     * @param configurations
+     *         The value of the {@code credential_configurations} property of
+     *         the credential offer.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 3.86
+     * @since 3.91
      */
-    public CredentialOfferInfo setCredentials(String[] credentials)
+    public CredentialOfferInfo setCredentialConfigurations(String[] configurations)
     {
-        this.credentials = credentials;
+        this.credentialConfigurations = configurations;
 
         return this;
     }
@@ -432,7 +473,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"authorization_code"</span>: { ... }
      *   }
@@ -458,7 +499,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"authorization_code"</span>: { ... }
      *   }
@@ -490,7 +531,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     "authorization_code": {
      *       <span style="color:darkred;">"issuer_state"</span>: "..."
@@ -520,7 +561,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     "authorization_code": {
      *       <span style="color:darkred;">"issuer_state"</span>: "..."
@@ -554,7 +595,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     "authorization_code": {
      *       <span style="color:darkred;">"issuer_state": "..."</span>
@@ -583,7 +624,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     "authorization_code": {
      *       <span style="color:darkred;">"issuer_state": "..."</span>
@@ -618,7 +659,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"urn:ietf:params:oauth:grant-type:pre-authorized_code"</span>: { ... }
      *   }
@@ -646,7 +687,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"urn:ietf:params:oauth:grant-type:pre-authorized_code"</span>: { ... }
      *   }
@@ -679,7 +720,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
      *       <span style="color:darkred;">"pre-authorized_code": "..."</span>
@@ -709,7 +750,7 @@ public class CredentialOfferInfo implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
+     *   "credential_configurations": [ ... ],
      *   "grants": {
      *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
      *       <span style="color:darkred;">"pre-authorized_code": "..."</span>
@@ -730,118 +771,6 @@ public class CredentialOfferInfo implements Serializable
     public CredentialOfferInfo setPreAuthorizedCode(String code)
     {
         this.preAuthorizedCode = code;
-
-        return this;
-    }
-
-
-    /**
-     * Get the value of the {@code user_pin_required} property in the
-     * {@code urn:ietf:params:oauth:grant-type:pre-authorized_code} object in
-     * the {@code grants} object.
-     *
-     * <blockquote>
-     * <pre>
-     * {
-     *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
-     *   "grants": {
-     *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
-     *       "pre-authorized_code": "...",
-     *       <span style="color:darkred;">"user_pin_required": true</span>
-     *     }
-     *   }
-     * }
-     * </pre>
-     * </blockquote>
-     *
-     * <p>
-     * Note that this method returns {@code false} also in the case where the
-     * {@code user_pin_required} property is not included.
-     * </p>
-     *
-     * @return
-     *         The value of the {@code user_pin_required} property in the
-     *         {@code urn:ietf:params:oauth:grant-type:pre-authorized_code}
-     *         object in the {@code grants} object.
-     */
-    public boolean isUserPinRequired()
-    {
-        return userPinRequired;
-    }
-
-
-    /**
-     * Set the value of the {@code user_pin_required} property in the
-     * {@code urn:ietf:params:oauth:grant-type:pre-authorized_code} object in
-     * the {@code grants} object.
-     *
-     * <blockquote>
-     * <pre>
-     * {
-     *   "credential_issuer": "...",
-     *   "credentials": [ ... ],
-     *   "grants": {
-     *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
-     *       "pre-authorized_code": "...",
-     *       <span style="color:darkred;">"user_pin_required": true</span>
-     *     }
-     *   }
-     * }
-     * </pre>
-     * </blockquote>
-     *
-     * @param required
-     *         {@code true} to indicate that the value of the
-     *         {@code user_pin_required} property is {@code true}.
-     *         {@code false} to indicate that the value of the property
-     *         is {@code false} or that the property is missing.
-     *
-     * @return
-     *         {@code this} object.
-     */
-    public CredentialOfferInfo setUserPinRequired(boolean required)
-    {
-        this.userPinRequired = required;
-
-        return this;
-    }
-
-
-    /**
-     * Get the value of the user PIN associated with the credential offer.
-     *
-     * <p>
-     * The value consists of maximum 8 numeric characters. For example,
-     * {@code 493536}.
-     * </p>
-     *
-     * @return
-     *         The value of the user PIN.
-     */
-    public String getUserPin()
-    {
-        return userPin;
-    }
-
-
-    /**
-     * Set the value of the user PIN associated with the credential offer.
-     *
-     * <p>
-     * The value consists of maximum 8 numeric characters. For example,
-     * {@code 493536}.
-     * </p>
-     *
-     * @param pin
-     *         The value of the user PIN.
-     *
-     * @return
-     *         {@code this} object.
-     */
-    public CredentialOfferInfo setUserPin(String pin)
-    {
-        this.userPin = pin;
 
         return this;
     }
@@ -1140,6 +1069,106 @@ public class CredentialOfferInfo implements Serializable
     public CredentialOfferInfo setAcr(String acr)
     {
         this.acr = acr;
+
+        return this;
+    }
+
+
+    /**
+     * Get the transaction code.
+     *
+     * @return
+     *         The transaction code.
+     *
+     * @since 3.91
+     */
+    public String getTxCode()
+    {
+        return txCode;
+    }
+
+
+    /**
+     * Set the transaction code.
+     *
+     * @param txCode
+     *         The transaction code.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.91
+     */
+    public CredentialOfferInfo setTxCode(String txCode)
+    {
+        this.txCode = txCode;
+
+        return this;
+    }
+
+
+    /**
+     * Get the input mode of the transaction code.
+     *
+     * @return
+     *         The input mode of the transaction code.
+     *
+     * @since 3.91
+     */
+    public String getTxCodeInputMode()
+    {
+        return txCodeInputMode;
+    }
+
+
+    /**
+     * Set the input mode of the transaction code.
+     *
+     * @param inputMode
+     *         The input mode of the transaction code.
+     *         Such as "{@code numeric}" and "{@code text}".
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.91
+     */
+    public CredentialOfferInfo setTxCodeInputMode(String inputMode)
+    {
+        this.txCodeInputMode = inputMode;
+
+        return this;
+    }
+
+
+    /**
+     * Get the description of the transaction code.
+     *
+     * @return
+     *         The description of the transaction code.
+     *
+     * @since 3.91
+     */
+    public String getTxCodeDescription()
+    {
+        return txCodeDescription;
+    }
+
+
+    /**
+     * Set the description of the transaction code.
+     *
+     * @param description
+     *         The description of the transaction code.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.91
+     */
+    public CredentialOfferInfo setTxCodeDescription(String description)
+    {
+        this.txCodeDescription = description;
 
         return this;
     }
