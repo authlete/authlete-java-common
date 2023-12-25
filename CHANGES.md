@@ -22,7 +22,7 @@ CHANGES
     * Removed `getUserPinLength()` method.
     * Removed `setUserPinLength(int)` method.
 
-- `CredetialOfferInfo` class
+- `CredentialOfferInfo` class
     * Added `getTxCode()` method.
     * Added `setTxCode(String)` method.
     * Added `getTxCodeInputMode()` method.

@@ -22,7 +22,7 @@
     * `getUserPinLength()` メソッドを削除。
     * `setUserPinLength(int)` メソッドを削除。
 
-- `CredetialOfferInfo` クラス
+- `CredentialOfferInfo` クラス
     * `getTxCode()` メソッドを追加。
     * `setTxCode(String)` メソッドを追加。
     * `getTxCodeInputMode()` メソッドを追加。
