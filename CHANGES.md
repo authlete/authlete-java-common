@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+3.92 (2023-12-31)
+--------------------------
+
+- `Client` class
+    * Added `getResponseModes()` method.
+    * Added `setResponseModes(ResponseMode[])` method.
+
+
 3.91 (2023-12-26)
 -----------------
 
