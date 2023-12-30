@@ -34,6 +34,7 @@ import com.authlete.common.types.GrantType;
 import com.authlete.common.types.JWEAlg;
 import com.authlete.common.types.JWEEnc;
 import com.authlete.common.types.JWSAlg;
+import com.authlete.common.types.ResponseMode;
 import com.authlete.common.types.ResponseType;
 import com.authlete.common.types.ServiceProfile;
 import com.authlete.common.types.SubjectType;
@@ -82,7 +83,7 @@ import com.authlete.common.util.Utils;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 36L;
+    private static final long serialVersionUID = 37L;
 
 
     /*
@@ -110,6 +111,7 @@ public class Client implements Serializable
      * @since Authlete 1.1
      * @deprecated Authlete 3.0
      */
+    @Deprecated
     private String developer;
 
 
@@ -568,6 +570,12 @@ public class Client implements Serializable
      * @since Authlete 3.0.0
      */
     private FapiMode[] fapiModes;
+
+    /**
+     * @since Authlete 3.0.0
+     */
+    private ResponseMode[] responseModes;
+
 
     /*
      * For OpenID Federation 1.0.
@@ -5046,6 +5054,59 @@ public class Client implements Serializable
 
 
     /**
+     * Get the response modes that this client may use.
+     *
+     * <p>
+     * This property corresponds to the {@code response_modes} client metadata
+     * that is defined in <a href="https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.3"
+     * >FAPI 2.0 Message Signing, 5.3.3. Client Metadata</a>.
+     * </p>
+     *
+     * @return
+     *         The response modes that this client may use.
+     *
+     * @since 3.92
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.3"
+     *      >FAPI 2.0 Message Signing, 5.3.3. Client Metadata</a>
+     */
+    public ResponseMode[] getResponseModes()
+    {
+        return responseModes;
+    }
+
+
+    /**
+     * Set the response modes that this client may use.
+     *
+     * <p>
+     * This property corresponds to the {@code response_modes} client metadata
+     * that is defined in <a href="https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.3"
+     * >FAPI 2.0 Message Signing, 5.3.3. Client Metadata</a>.
+     * </p>
+     *
+     * @param modes
+     *         The response modes that this client may use.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.92
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.3.3"
+     *      >FAPI 2.0 Message Signing, 5.3.3. Client Metadata</a>
+     */
+    public Client setResponseModes(ResponseMode[] modes)
+    {
+        this.responseModes = modes;
+
+        return this;
+    }
+
+
+    /**
      * Get a {@code Map} instance that represents a set of standard client
      * metadata.
      *
@@ -5325,6 +5386,13 @@ public class Client implements Serializable
         put(metadata, "credential_offer_endpoint", getCredentialOfferEndpoint(), nullIncluded);
 
         //----------------------------------------------------------------------
+        // FAPI 2.0 Message Signing, 5.3.3. Client Metadata
+        //----------------------------------------------------------------------
+
+        // response_modes
+        put(metadata, "response_modes", getResponseModes(), nullIncluded);
+
+        //----------------------------------------------------------------------
         // Custom Metadata
         //----------------------------------------------------------------------
 
@@ -5422,7 +5490,7 @@ public class Client implements Serializable
         try
         {
             // Parse the custom metadata as JSON.
-            custom = (Map<String, Object>)Utils.fromJson(json, Map.class);
+            custom = Utils.fromJson(json, Map.class);
         }
         catch (Exception cause)
         {
