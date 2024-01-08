@@ -39,7 +39,7 @@ public class AuthzDetailsElementDeserializer extends BaseJsonDeserializer
 implements JsonDeserializer<AuthzDetailsElement>
 {
     private static String[] INDEPENDENT_FIELDS = new String[] {
-            "type", "locations", "actions", "datatypes", "identifier", "privileges"
+            "type", "locations", "actions", "dataTypes", "identifier", "privileges"
     };
 
 
@@ -58,7 +58,7 @@ implements JsonDeserializer<AuthzDetailsElement>
                 .setType(getAsStringFromObject(jobject, "type"))
                 .setLocations(getAsStringArrayFromObject(jobject, "locations"))
                 .setActions(getAsStringArrayFromObject(jobject, "actions"))
-                .setDataTypes(getAsStringArrayFromObject(jobject, "datatypes"))
+                .setDataTypes(getAsStringArrayFromObject(jobject, "dataTypes"))
                 .setIdentifier(getAsStringFromObject(jobject, "identifier"))
                 .setPrivileges(getAsStringArrayFromObject(jobject, "privileges"))
                 .setOtherFields(getOtherFieldsFromObject(jobject))
