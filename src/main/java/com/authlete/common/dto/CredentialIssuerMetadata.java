@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Authlete, Inc.
+ * Copyright (C) 2023-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,9 +35,7 @@ import static com.authlete.common.util.MapUtils.*;
  * <li>{@code credential_endpoint}
  * <li>{@code batch_credential_endpoint}
  * <li>{@code deferred_credential_endpoint}
- * <li>{@code credential_response_encryption_alg_values_supported}
- * <li>{@code credential_response_encryption_enc_values_supported}
- * <li>{@code require_credential_response_encryption}
+ * <li>{@code credential_response_encryption}
  * <li>{@code credential_configurations_supported}
  * </ul>
  *
@@ -65,6 +63,12 @@ import static com.authlete.common.util.MapUtils.*;
  * <li>
  * The "{@code credentials_supported}" metadata has been renamed to
  * "{@code credential_configurations_supported}". (December, 2023)
+ * <li>
+ * The "{@code credential_response_encryption_alg_values_supported}" metadata,
+ * the "{@code credential_response_encryption_enc_values_supported}" metadata,
+ * and the "{@code require_credential_response_encryption}" metadata have been
+ * packed into one JSON object, "{@code credential_response_encryption}".
+ * (January, 2024)
  * </ol>
  *
  * @since 3.55
@@ -78,7 +82,7 @@ import static com.authlete.common.util.MapUtils.*;
  */
 public class CredentialIssuerMetadata implements Serializable
 {
-    private static final long serialVersionUID = 3L;
+    private static final long serialVersionUID = 4L;
 
 
     /**
@@ -397,7 +401,7 @@ public class CredentialIssuerMetadata implements Serializable
     /**
      * Get the supported JWE {@code alg} algorithms for credential response
      * encryption. This property corresponds to the
-     * {@code credential_response_encryption_alg_values_supported} metadata.
+     * {@code credential_response_encryption.alg_values_supported} metadata.
      *
      * @return
      *         The supported JWE {@code alg} algorithms for credential response
@@ -414,7 +418,7 @@ public class CredentialIssuerMetadata implements Serializable
     /**
      * Set the supported JWE {@code alg} algorithms for credential response
      * encryption. This property corresponds to the
-     * {@code credential_response_encryption_alg_values_supported} metadata.
+     * {@code credential_response_encryption.alg_values_supported} metadata.
      *
      * @param algs
      *         The supported JWE {@code alg} algorithms for credential response
@@ -436,7 +440,7 @@ public class CredentialIssuerMetadata implements Serializable
     /**
      * Get the supported JWE {@code enc} algorithms for credential response
      * encryption. This property corresponds to the
-     * {@code credential_response_encryption_enc_values_supported} metadata.
+     * {@code credential_response_encryption.enc_values_supported} metadata.
      *
      * @return
      *         The supported JWE {@code enc} algorithms for credential response
@@ -453,7 +457,7 @@ public class CredentialIssuerMetadata implements Serializable
     /**
      * Set the supported JWE {@code enc} algorithms for credential response
      * encryption. This property corresponds to the
-     * {@code credential_response_encryption_enc_values_supported} metadata.
+     * {@code credential_response_encryption.enc_values_supported} metadata.
      *
      *
      * @param encs
@@ -476,7 +480,7 @@ public class CredentialIssuerMetadata implements Serializable
     /**
      * Get the boolean flag indicating whether credential response encryption
      * is required. This property corresponds to the
-     * {@code require_credential_response_encryption} metadata.
+     * {@code credential_response_encryption.encryption_required} metadata.
      *
      * <p>
      * If this flag is {@code true}, every credential request to the credential
@@ -497,7 +501,7 @@ public class CredentialIssuerMetadata implements Serializable
     /**
      * Set the boolean flag indicating whether credential response encryption
      * is required. This property corresponds to the
-     * {@code require_credential_response_encryption} metadata.
+     * {@code credential_response_encryption.encryption_required} metadata.
      *
      * <p>
      * If this flag is {@code true}, every credential request to the credential
@@ -686,14 +690,12 @@ public class CredentialIssuerMetadata implements Serializable
     {
         Map<String, Object> map = new LinkedHashMap<>();
 
-        put(map, "credential_issuer",                                   credentialIssuer,                               false);
-        put(map, "authorization_servers",                               authorizationServers,                           false);
-        put(map, "credential_endpoint",                                 credentialEndpoint,                             false);
-        put(map, "batch_credential_endpoint",                           batchCredentialEndpoint,                        false);
-        put(map, "deferred_credential_endpoint",                        deferredCredentialEndpoint,                     false);
-        put(map, "credential_response_encryption_alg_values_supported", credentialResponseEncryptionAlgValuesSupported, false);
-        put(map, "credential_response_encryption_enc_values_supported", credentialResponseEncryptionEncValuesSupported, false);
-        put(map, "require_credential_response_encryption",              requireCredentialResponseEncryption,            false);
+        put(map, "credential_issuer",              credentialIssuer,               false);
+        put(map, "authorization_servers",          authorizationServers,           false);
+        put(map, "credential_endpoint",            credentialEndpoint,             false);
+        put(map, "batch_credential_endpoint",      batchCredentialEndpoint,        false);
+        put(map, "deferred_credential_endpoint",   deferredCredentialEndpoint,     false);
+        put(map, "credential_response_encryption", credentialResponseEncryption(), false);
 
         try
         {
@@ -705,6 +707,26 @@ public class CredentialIssuerMetadata implements Serializable
             throw new IllegalStateException(
                     "The value of the 'credentialsSupported' property failed to be parsed as a JSON object.", cause);
         }
+
+        return map;
+    }
+
+
+    private Map<String, Object> credentialResponseEncryption()
+    {
+        if (credentialResponseEncryptionAlgValuesSupported        == null ||
+            credentialResponseEncryptionAlgValuesSupported.length == 0    ||
+            credentialResponseEncryptionEncValuesSupported        == null ||
+            credentialResponseEncryptionEncValuesSupported.length == 0)
+        {
+            return null;
+        }
+
+        Map<String, Object> map = new LinkedHashMap<>();
+
+        put(map, "alg_values_supported", credentialResponseEncryptionAlgValuesSupported, true);
+        put(map, "enc_values_supported", credentialResponseEncryptionEncValuesSupported, true);
+        put(map, "encryption_required",  requireCredentialResponseEncryption,            true);
 
         return map;
     }

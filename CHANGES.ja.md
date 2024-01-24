@@ -1,6 +1,10 @@
 変更点
 ======
 
+- `CredentialIssuerMetadata` クラス
+    * クレデンシャルレスポンス暗号化関連のメタデータ群を `credential_response_encryption` という一つの
+      JSON オブジェクトにまとめる、という変更に対応するため `toMap()` メソッドの実装を更新。
+
 - `CredentialOfferInfo` クラス
     * `getCredentialConfigurations()` メソッドを `getCredentialConfigurationIds()` へ名称変更。
     * `setCredentialConfigurations(String[])` メソッドを `setCredentialConfigurationIds(String[])` へ名称変更。

@@ -1,5 +1,9 @@
 CHANGES
 =======
+- `CredentialIssuerMetadata` class
+    * Updated the implementation of the `toMap()` method to cope with the change
+      where metadata related credential response encryption have been packed
+      into one JSON object, `credential_response_encryption`.
 
 - `CredentialOfferInfo` class
     * Renamed `getCredentialConfigurations()` to `getCredentialConfigurationIds()`.
@@ -18,7 +22,7 @@ CHANGES
 -----------------
 
 - `CredentialIssuerMetadata` class
-    * Updated the implementation of the `toMap()` method to cope with the remaining
+    * Updated the implementation of the `toMap()` method to cope with the renaming
       from `credentials_supported` to `credential_configurations_supported`.
 
 - `CredentialOfferCreateRequest` class
