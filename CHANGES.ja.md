@@ -1,6 +1,9 @@
 変更点
 ======
 
+3.94 (2024 年 01 月 24 日)
+--------------------------
+
 - `CredentialOfferCreateRequest` クラス
     * `getCredentialConfigurations()` メソッドを `getCredentialConfigurationIds()` へ名称変更。
     * `setCredentialConfigurations(String[])` メソッドを `setCredentialConfigurationIds(String[])` へ名称変更。
