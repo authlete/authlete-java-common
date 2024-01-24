@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Authlete, Inc.
+ * Copyright (C) 2023-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -43,7 +43,7 @@ import java.io.Serializable;
  * <pre>
  * {
  *   "credential_issuer": "...",
- *   "credential_configurations": [ ... ],
+ *   "credential_configuration_ids": [ ... ],
  *   "grants": {
  *     "authorization_code": {
  *       "issuer_state": "..."
@@ -87,6 +87,12 @@ import java.io.Serializable;
  * boolean property has been replaced with the {@code tx_code} JSON object.
  * </p>
  *
+ * <p>
+ * Another breaking change. The {@code credential_configurations} property in a
+ * credential offer has been renamed to {@code credential_configuration_ids}.
+ * (January, 2024)
+ * </p>
+ *
  * @since 3.59
  * @since Authlete 3.0
  *
@@ -95,15 +101,15 @@ import java.io.Serializable;
  */
 public class CredentialOfferCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
-     * The value of the {@code credential_configurations} array.
+     * The value of the {@code credential_configuration_ids} array.
      *
-     * @since 3.91
+     * @since 3.94
      */
-    private String[] credentialConfigurations;
+    private String[] credentialConfigurationIds;
 
 
     /**
@@ -206,13 +212,13 @@ public class CredentialOfferCreateRequest implements Serializable
 
 
     /**
-     * Get the value of the {@code credential_configurations} array.
+     * Get the value of the {@code credential_configuration_ids} array.
      *
      * <blockquote>
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   <span style="color:darkred;">"credential_configurations": [ ... ]</span>,
+     *   <span style="color:darkred;">"credential_configuration_ids": [ ... ]</span>,
      *   "grants": { ... }
      * }
      * </pre>
@@ -234,25 +240,30 @@ public class CredentialOfferCreateRequest implements Serializable
      * {@code credential_configurations}.
      * </p>
      *
-     * @return
-     *         The value of the {@code credential_configurations} array.
+     * <p>
+     * Another breaking change. The {@code credential_configurations} property
+     * has been renamed to {@code credential_configuration_ids}. (January, 2024)
+     * </p>
      *
-     * @since 3.91
+     * @return
+     *         The value of the {@code credential_configuration_ids} array.
+     *
+     * @since 3.94
      */
-    public String[] getCredentialConfigurations()
+    public String[] getCredentialConfigurationIds()
     {
-        return credentialConfigurations;
+        return credentialConfigurationIds;
     }
 
 
     /**
-     * Set the value of the {@code credential_configurations} array.
+     * Set the value of the {@code credential_configuration_ids} array.
      *
      * <blockquote>
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   <span style="color:darkred;">"credential_configurations": [ ... ]</span>,
+     *   <span style="color:darkred;">"credential_configuration_ids": [ ... ]</span>,
      *   "grants": { ... }
      * }
      * </pre>
@@ -268,17 +279,22 @@ public class CredentialOfferCreateRequest implements Serializable
      * {@code credential_configurations}.
      * </p>
      *
-     * @param configurations
-     *         The value of the {@code credential_configurations} array.
+     * <p>
+     * Another breaking change. The {@code credential_configurations} property
+     * has been renamed to {@code credential_configuration_ids}. (January, 2024)
+     * </p>
+     *
+     * @param ids
+     *         The value of the {@code credential_configuration_ids} array.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 3.91
+     * @since 3.94
      */
-    public CredentialOfferCreateRequest setCredentialConfigurations(String[] configurations)
+    public CredentialOfferCreateRequest setCredentialConfigurationIds(String[] ids)
     {
-        this.credentialConfigurations = configurations;
+        this.credentialConfigurationIds = ids;
 
         return this;
     }
@@ -292,7 +308,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"authorization_code"</span>: { ... }
      *   }
@@ -318,7 +334,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"authorization_code"</span>: { ... }
      *   }
@@ -348,7 +364,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     "authorization_code": {
      *       <span style="color:darkred;">"issuer_state"</span>: "..."
@@ -382,7 +398,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     "authorization_code": {
      *       <span style="color:darkred;">"issuer_state"</span>: "..."
@@ -421,7 +437,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"urn:ietf:params:oauth:grant-type:pre-authorized_code"</span>: { ... }
      *   }
@@ -461,7 +477,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     <span style="color:darkred;">"urn:ietf:params:oauth:grant-type:pre-authorized_code"</span>: { ... }
      *   }
@@ -822,7 +838,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
      *       "pre-authorized_code": "...",
@@ -866,7 +882,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
      *       "pre-authorized_code": "...",
@@ -907,7 +923,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
      *       "pre-authorized_code": "...",
@@ -944,7 +960,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
      *       "pre-authorized_code": "...",
@@ -993,7 +1009,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
      *       "pre-authorized_code": "...",
@@ -1030,7 +1046,7 @@ public class CredentialOfferCreateRequest implements Serializable
      * <pre>
      * {
      *   "credential_issuer": "...",
-     *   "credential_configurations": [ ... ],
+     *   "credential_configuration_ids": [ ... ],
      *   "grants": {
      *     "urn:ietf:params:oauth:grant-type:pre-authorized_code": {
      *       "pre-authorized_code": "...",
