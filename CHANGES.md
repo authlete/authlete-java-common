@@ -1,5 +1,9 @@
 CHANGES
 =======
+
+3.93 (2024-01-24)
+-----------------
+
 - `CredentialIssuerMetadata` class
     * Updated the implementation of the `toMap()` method to cope with the change
       where metadata related credential response encryption have been packed
@@ -11,7 +15,7 @@ CHANGES
 
 
 3.92 (2023-12-31)
---------------------------
+-----------------
 
 - `Client` class
     * Added `getResponseModes()` method.
