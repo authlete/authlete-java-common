@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-3.93 (2024-01-24)
+3.94 (2024-01-24)
 -----------------
 
 - `CredentialOfferCreateRequest` class
