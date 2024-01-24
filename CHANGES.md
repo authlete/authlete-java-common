@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `CredentialOfferInfo` class
+    * Renamed `getCredentialConfigurations()` to `getCredentialConfigurationIds()`.
+    * Renamed `setCredentialConfigurations(String[])` to `setCredentialConfigurationIds(String[])`.
+
+
 3.92 (2023-12-31)
 --------------------------
 
