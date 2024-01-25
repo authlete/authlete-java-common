@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022-2023 Authlete, Inc.
+ * Copyright (C) 2022-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public class MapUtils
 
     /**
      * Put the given key-value pair into the {@code target} map when the
-     * {@code value} is 0 or {@code zeroIncluded} is {@code true}.
+     * {@code value} is not 0 or {@code zeroIncluded} is {@code true}.
      */
     public static void put(
             Map<String, Object> target, String key,
@@ -62,7 +62,7 @@ public class MapUtils
 
     /**
      * Put the given key-value pair into the {@code target} map when the
-     * {@code value} is 0 or {@code zeroIncluded} is {@code true}.
+     * {@code value} is not 0 or {@code zeroIncluded} is {@code true}.
      */
     public static void put(
             Map<String, Object> target, String key,
@@ -71,6 +71,27 @@ public class MapUtils
         if (value != 0 || zeroIncluded)
         {
             target.put(key, value);
+        }
+    }
+
+
+    /**
+     * Put the given key-value pair into the {@code target} map when the
+     * {@code value} is not null or {@code nullIncluded} is {@code true}.
+     *
+     * @since 3.95
+     */
+    public static void put(
+            Map<String, Object> target, String key,
+            Map<String, Object> value, boolean nullIncluded)
+    {
+        if (value != null)
+        {
+            target.put(key, value);
+        }
+        else if (nullIncluded)
+        {
+            target.put(key, null);
         }
     }
 

@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `MapUtils` class
+    * Added `put(Map, String, Map, boolean)` method.
+      (to fix a bug of the `toMap()` method of `CredentialIssuerMetadata`)
+
+
 3.94 (2024-01-24)
 -----------------
 

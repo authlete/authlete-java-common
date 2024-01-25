@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `MapUtils` クラス
+    * `put(Map, String, Map, boolean)` メソッドを追加。
+      (`CredentialIssuerMetadata` の `toMap()` メソッドの不具合を修正するため)
+
+
 3.94 (2024 年 01 月 24 日)
 --------------------------
 
