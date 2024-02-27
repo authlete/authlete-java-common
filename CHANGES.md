@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `AuthleteApiImpl` class
+    * Fixed a bug that may cause a `NullPointerException`. (PR #91)
+
+
 3.95 (2024-01-26)
 -----------------
 
