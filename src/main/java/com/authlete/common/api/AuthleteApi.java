@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2023 Authlete, Inc.
+ * Copyright (C) 2014-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -97,6 +97,9 @@ import com.authlete.common.dto.ServiceConfigurationRequest;
 import com.authlete.common.dto.ServiceListResponse;
 import com.authlete.common.dto.StandardIntrospectionRequest;
 import com.authlete.common.dto.StandardIntrospectionResponse;
+import com.authlete.common.dto.TokenCreateBatchResponse;
+import com.authlete.common.dto.TokenCreateBatchStatusRequest;
+import com.authlete.common.dto.TokenCreateBatchStatusResponse;
 import com.authlete.common.dto.TokenCreateRequest;
 import com.authlete.common.dto.TokenCreateResponse;
 import com.authlete.common.dto.TokenFailRequest;
