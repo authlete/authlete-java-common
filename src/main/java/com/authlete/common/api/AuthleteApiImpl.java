@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 import com.authlete.common.conf.AuthleteConfiguration;
 import com.authlete.common.dto.*;
+import com.authlete.common.types.TokenStatus;
 import com.authlete.common.util.Utils;
 import com.authlete.common.web.BasicCredentials;
 
@@ -920,7 +921,7 @@ class AuthleteApiImpl implements AuthleteApi
     {
         return callServiceGetApi(
                 AUTH_TOKEN_GET_LIST_API_PATH,
-                buildMap( "tokenStatus", tokenStatus),
+                buildMap("tokenStatus", tokenStatus),
                 TokenListResponse.class);
     }
 

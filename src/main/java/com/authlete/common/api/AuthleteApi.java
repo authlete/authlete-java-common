@@ -111,7 +111,7 @@ import com.authlete.common.dto.TokenRequest;
 import com.authlete.common.dto.TokenResponse;
 import com.authlete.common.dto.TokenRevokeRequest;
 import com.authlete.common.dto.TokenRevokeResponse;
-import com.authlete.common.dto.TokenStatus;
+import com.authlete.common.types.TokenStatus;
 import com.authlete.common.dto.TokenUpdateRequest;
 import com.authlete.common.dto.TokenUpdateResponse;
 import com.authlete.common.dto.UserInfoIssueRequest;
@@ -288,7 +288,7 @@ public interface AuthleteApi
      * @return
      *         The list of access tokens.
      *
-     * @since 2.29
+     * @since 3.96
      */
     TokenListResponse getTokenList(TokenStatus tokenStatus) throws AuthleteApiException;
 
@@ -391,7 +391,7 @@ public interface AuthleteApi
      * @return
      *         The list of access tokens.
      *
-     * @since 2.29
+     * @since 3.96
      */
     TokenListResponse getTokenList(String clientIdentifier, String subject, TokenStatus tokenStatus) throws AuthleteApiException;
 
@@ -490,7 +490,7 @@ public interface AuthleteApi
      * @return
      *         The list of access tokens.
      *
-     * @since 2.29
+     * @since 3.96
      */
     TokenListResponse getTokenList(int start, int end, TokenStatus tokenStatus) throws AuthleteApiException;
 
@@ -650,7 +650,7 @@ public interface AuthleteApi
      * @return
      *         The list of access tokens.
      *
-     * @since 2.29
+     * @since 3.96
      */
     TokenListResponse getTokenList(String clientIdentifier, String subject, int start, int end, TokenStatus tokenStatus) throws AuthleteApiException;
 
