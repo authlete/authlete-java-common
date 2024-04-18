@@ -471,6 +471,7 @@ public interface AuthleteApi
      * </p>
      *
      * <pre>
+     * int totalCount = api.{@link #getTokenList(int, int)
      * getTokenList(0, 0)}.{@link TokenListResponse#getTotalCount()
      * getTotalCount()};
      * </pre>
@@ -623,6 +624,7 @@ public interface AuthleteApi
      * </p>
      *
      * <pre>
+     * int totalCount = api.{@link #getTokenList(String, String, int, int)
      * getTokenList(clientIdentifier, subject, 0, 0)}.{@link TokenListResponse#getTotalCount()
      * getTotalCount()};
      * </pre>
