@@ -269,7 +269,7 @@ public interface AuthleteApi
      *
      * @since 2.29
      */
-    public TokenListResponse getTokenList() throws AuthleteApiException;
+    TokenListResponse getTokenList() throws AuthleteApiException;
 
 
     /**

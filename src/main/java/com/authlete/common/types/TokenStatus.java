@@ -18,19 +18,31 @@ package com.authlete.common.types;
 
 /**
  * TokenStatus filtering options for using in getTokenList API.
- * {@link com.authlete.common.api.AuthleteApi#getTokenList(TokenStatus)}
- * {@link com.authlete.common.api.AuthleteApi#getTokenList(int, int, TokenStatus)}
- * {@link com.authlete.common.api.AuthleteApi#getTokenList(String, String, TokenStatus)}
- * {@link com.authlete.common.api.AuthleteApi#getTokenList(String, String, int, int, TokenStatus)}
  *
  * @since 3.96
+ *
+ * @see com.authlete.common.api.AuthleteApi#getTokenList(TokenStatus)
+ * @see com.authlete.common.api.AuthleteApi#getTokenList(int, int, TokenStatus)
+ * @see com.authlete.common.api.AuthleteApi#getTokenList(String, String, TokenStatus)
+ * @see com.authlete.common.api.AuthleteApi#getTokenList(String, String, int, int, TokenStatus)
  */
 public enum TokenStatus
 {
-    // All valid tokens
+    /**
+     * All valid tokens
+     */
     VALID,
-    // All invalid tokens
+
+
+    /**
+     * All invalid(expired) tokens
+     */
     INVALID,
-    // All tokens
-    ALL
+
+
+    /**
+     * All tokens
+     */
+    ALL,
+    ;
 }
