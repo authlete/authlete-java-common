@@ -1915,7 +1915,6 @@ public interface AuthleteApi
             TokenCreateRequest[] request, boolean isDryRun) throws AuthleteApiException;
 
 
-
     /**
      * Call Authlete's {@code /auth/token/create/batch/status} API.
      *
