@@ -1894,4 +1894,40 @@ public interface AuthleteApi
      */
     AuthorizationTicketUpdateResponse authorizationTicketUpdate(
             AuthorizationTicketUpdateRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/token/create/batch} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @param isDryRun
+     *         Whether or not to dry-run this API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.96
+     * @since Authlete 3.0
+     */
+    TokenCreateBatchResponse tokenCreateBatch(
+            TokenCreateRequest[] request, boolean isDryRun) throws AuthleteApiException;
+
+
+
+    /**
+     * Call Authlete's {@code /auth/token/create/batch/status} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.96
+     * @since Authlete 3.0
+     */
+    TokenCreateBatchStatusResponse tokenCreateBatchStatus(
+            TokenCreateBatchStatusRequest request) throws AuthleteApiException;
 }

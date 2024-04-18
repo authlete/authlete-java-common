@@ -130,9 +130,6 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String VCI_DEFERRED_PARSE_API_PATH               = "/api/vci/deferred/parse";
     private static final String VCI_DEFERRED_ISSUE_API_PATH               = "/api/vci/deferred/issue";
     private static final String ID_TOKEN_REISSUE_API_PATH                 = "/api/idtoken/reissue";
-    private static final String AUTH_TOKEN_CREATE_BATCH_API_PATH          = "/api/auth/token/create/batch";
-    private static final String AUTH_TOKEN_CREATE_BATCH_STATUS_API_PATH   = "/api/auth/token/create/batch/status";
-
 
     private final String mBaseUrl;
     private final BasicCredentials mServiceOwnerCredentials;
@@ -1552,7 +1549,7 @@ class AuthleteApiImpl implements AuthleteApi
     @Override
     public Map<String, String> echo(Map<String, String> parameters) throws AuthleteApiException
     {
-        return (Map<String, String>)callGetApi(
+        return callGetApi(
                 null, ECHO_API_PATH, parameters, Map.class);
     }
 
@@ -1767,11 +1764,10 @@ class AuthleteApiImpl implements AuthleteApi
 
     @Override
     public TokenCreateBatchResponse tokenCreateBatch(
-            TokenCreateRequest[] request) throws AuthleteApiException
+            TokenCreateRequest[] request, boolean isDryRun) throws AuthleteApiException
     {
-        return callServicePostApi(
-                AUTH_TOKEN_CREATE_BATCH_API_PATH, request,
-                TokenCreateBatchResponse.class);
+        // This is unavailable in Authlete 2.x and older versions.
+        throw new UnsupportedOperationException("This API is not supported.");
     }
 
 
@@ -1779,8 +1775,7 @@ class AuthleteApiImpl implements AuthleteApi
     public TokenCreateBatchStatusResponse tokenCreateBatchStatus(
             TokenCreateBatchStatusRequest request) throws AuthleteApiException
     {
-        return callServicePostApi(
-                AUTH_TOKEN_CREATE_BATCH_STATUS_API_PATH, request,
-                TokenCreateBatchStatusResponse.class);
+        // This is unavailable in Authlete 2.x and older versions.
+        throw new UnsupportedOperationException("This API is not supported.");
     }
 }
