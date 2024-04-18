@@ -1767,7 +1767,8 @@ class AuthleteApiImpl implements AuthleteApi
             TokenCreateRequest[] request, boolean isDryRun) throws AuthleteApiException
     {
         // This is unavailable in Authlete 2.x and older versions.
-        throw new UnsupportedOperationException("This API is not supported.");
+        throw new AuthleteApiException(
+                "This method can't be invoked since the corresponding API is not supported.");
     }
 
 
@@ -1776,6 +1777,7 @@ class AuthleteApiImpl implements AuthleteApi
             TokenCreateBatchStatusRequest request) throws AuthleteApiException
     {
         // This is unavailable in Authlete 2.x and older versions.
-        throw new UnsupportedOperationException("This API is not supported.");
+        throw new AuthleteApiException(
+                "This method can't be invoked since the corresponding API is not supported.");
     }
 }
