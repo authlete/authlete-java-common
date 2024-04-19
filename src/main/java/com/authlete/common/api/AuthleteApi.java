@@ -1902,7 +1902,7 @@ public interface AuthleteApi
      * @param request
      *         Request parameters passed to the API.
      *
-     * @param isDryRun
+     * @param dryRun
      *         Whether or not to dry-run this API.
      *
      * @return
@@ -1912,7 +1912,7 @@ public interface AuthleteApi
      * @since Authlete 3.0
      */
     TokenCreateBatchResponse tokenCreateBatch(
-            TokenCreateRequest[] request, boolean isDryRun) throws AuthleteApiException;
+            TokenCreateRequest[] request, boolean dryRun) throws AuthleteApiException;
 
 
     /**
