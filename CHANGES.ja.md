@@ -1,8 +1,25 @@
 変更点
 ======
 
+3.96 (2024 年 04 月 20 日)
+--------------------------
+
+- `AuthleteApi` インターフェース
+    * `tokenCreateBatch(TokenCreateBatchRequest)` メソッドを追加。
+    * `getTokenCreateBatchStatus(TokenCreateBatchStatusRequest)` メソッドを追加。
+
 - `AuthleteApiImpl` クラス
     * `NullPointerException` を起こしうる不具合を修正。 (PR #91)
+
+- `Service` クラス
+    * `getTokenBatchNotificationEndpoint` メソッドを追加。
+    * `setTokenBatchNotificationEndpoint` メソッドを追加。
+
+- 新しい型
+    * `TokenBatchStatus` クラス
+    * `TokenCreateBatchResponse` クラス
+    * `TokenCreateBatchStatusRequest` クラス
+    * `TokenCreateBatchStatusResponse` クラス
 
 
 3.95 (2024 年 01 月 26 日)

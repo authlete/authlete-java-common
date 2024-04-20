@@ -1,8 +1,25 @@
 CHANGES
 =======
 
+3.96 (2024-04-20)
+-----------------
+
+- `AuthleteApi` interface
+    * Added `tokenCreateBatch(TokenCreateBatchRequest)` method.
+    * Added `getTokenCreateBatchStatus(TokenCreateBatchStatusRequest)` method.
+
 - `AuthleteApiImpl` class
     * Fixed a bug that may cause a `NullPointerException`. (PR #91)
+
+- `Service` class
+    * Added `getTokenBatchNotificationEndpoint` method.
+    * Added `setTokenBatchNotificationEndpoint` method.
+
+- New types
+    * `TokenBatchStatus` class
+    * `TokenCreateBatchResponse` class
+    * `TokenCreateBatchStatusRequest` class
+    * `TokenCreateBatchStatusResponse` class
 
 
 3.95 (2024-01-26)

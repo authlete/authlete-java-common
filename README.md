@@ -301,6 +301,8 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   - `tokenDelete(String token)`
   - `tokenRevoke(TokenRevokeRequest request)`
   - `tokenUpdate(TokenUpdateRequest request)`
+  - `tokenCreateBatch(TokenCreateRequest[] request)`
+  - `getTokenCreateBatchStatus(TokenCreateBatchStatusRequest request)`
 
   11. Methods for Requestable Scopes per Client (deprecated; Client APIs suffice)
 
