@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2023 Authlete, Inc.
+ * Copyright (C) 2014-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 80L;
+    private static final long serialVersionUID = 81L;
 
 
     /*
@@ -1850,6 +1850,15 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private long dpopNonceDuration;
+
+
+    /**
+     * The URI of the endpoint that receives token batch results.
+     *
+     * @since 3.96
+     * @since Authlete 3.0
+     */
+    private URI tokenBatchNotificationEndpoint;
 
 
     /**
@@ -11757,6 +11766,41 @@ public class Service implements Serializable
     public Service setDpopNonceDuration(long duration)
     {
         this.dpopNonceDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the endpoint that receives token batch results.
+     *
+     * @return
+     *         The URI of the endpoint that receives token batch results.
+     *
+     * @since 3.96
+     * @since Authlete 3.0
+     */
+    public URI getTokenBatchNotificationEndpoint()
+    {
+        return tokenBatchNotificationEndpoint;
+    }
+
+
+    /**
+     * Set the URI of the endpoint that receives token batch results.
+     *
+     * @param endpoint
+     *         The URI of the endpoint that receives token batch results.
+     *
+     * @return
+     *         {@code this} object
+     *
+     * @since 3.96
+     * @since Authlete 3.0
+     */
+    public Service setTokenBatchNotificationEndpoint(URI endpoint)
+    {
+        this.tokenBatchNotificationEndpoint = endpoint;
 
         return this;
     }

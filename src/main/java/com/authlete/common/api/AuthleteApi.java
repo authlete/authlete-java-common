@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2023 Authlete, Inc.
+ * Copyright (C) 2014-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -97,6 +97,9 @@ import com.authlete.common.dto.ServiceConfigurationRequest;
 import com.authlete.common.dto.ServiceListResponse;
 import com.authlete.common.dto.StandardIntrospectionRequest;
 import com.authlete.common.dto.StandardIntrospectionResponse;
+import com.authlete.common.dto.TokenCreateBatchResponse;
+import com.authlete.common.dto.TokenCreateBatchStatusRequest;
+import com.authlete.common.dto.TokenCreateBatchStatusResponse;
 import com.authlete.common.dto.TokenCreateRequest;
 import com.authlete.common.dto.TokenCreateResponse;
 import com.authlete.common.dto.TokenFailRequest;
@@ -1891,4 +1894,39 @@ public interface AuthleteApi
      */
     AuthorizationTicketUpdateResponse authorizationTicketUpdate(
             AuthorizationTicketUpdateRequest request) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/token/create/batch} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @param dryRun
+     *         Whether or not to dry-run this API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.96
+     * @since Authlete 3.0
+     */
+    TokenCreateBatchResponse tokenCreateBatch(
+            TokenCreateRequest[] request, boolean dryRun) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /auth/token/create/batch/status} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.96
+     * @since Authlete 3.0
+     */
+    TokenCreateBatchStatusResponse getTokenCreateBatchStatus(
+            TokenCreateBatchStatusRequest request) throws AuthleteApiException;
 }

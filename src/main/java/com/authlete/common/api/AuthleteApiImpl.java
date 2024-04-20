@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2023 Authlete, Inc.
+ * Copyright (C) 2017-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,81 +56,80 @@ class AuthleteApiImpl implements AuthleteApi
     }
 
 
-    private static final String AUTH_AUTHORIZATION_API_PATH            = "/api/auth/authorization";
-    private static final String AUTH_AUTHORIZATION_FAIL_API_PATH       = "/api/auth/authorization/fail";
-    private static final String AUTH_AUTHORIZATION_ISSUE_API_PATH      = "/api/auth/authorization/issue";
+    private static final String AUTH_AUTHORIZATION_API_PATH               = "/api/auth/authorization";
+    private static final String AUTH_AUTHORIZATION_FAIL_API_PATH          = "/api/auth/authorization/fail";
+    private static final String AUTH_AUTHORIZATION_ISSUE_API_PATH         = "/api/auth/authorization/issue";
     private static final String AUTH_AUTHORIZATION_TICKET_INFO_API_PATH   = "/api/auth/authorization/ticket/info";
     private static final String AUTH_AUTHORIZATION_TICKET_UPDATE_API_PATH = "/api/auth/authorization/ticket/update";
-    private static final String AUTH_TOKEN_API_PATH                    = "/api/auth/token";
-    private static final String AUTH_TOKEN_CREATE_API_PATH             = "/api/auth/token/create";
-    private static final String AUTH_TOKEN_DELETE_API_PATH             = "/api/auth/token/delete/%s";
-    private static final String AUTH_TOKEN_FAIL_API_PATH               = "/api/auth/token/fail";
-    private static final String AUTH_TOKEN_ISSUE_API_PATH              = "/api/auth/token/issue";
-    private static final String AUTH_TOKEN_REVOKE_API_PATH             = "/api/auth/token/revoke";
-    private static final String AUTH_TOKEN_UPDATE_API_PATH             = "/api/auth/token/update";
-    private static final String AUTH_TOKEN_GET_LIST_API_PATH           = "/api/auth/token/get/list";
-    private static final String AUTH_REVOCATION_API_PATH               = "/api/auth/revocation";
-    private static final String AUTH_USERINFO_API_PATH                 = "/api/auth/userinfo";
-    private static final String AUTH_USERINFO_ISSUE_API_PATH           = "/api/auth/userinfo/issue";
-    private static final String AUTH_INTROSPECTION_API_PATH            = "/api/auth/introspection";
-    private static final String AUTH_INTROSPECTION_STANDARD_API_PATH   = "/api/auth/introspection/standard";
-    private static final String SERVICE_CONFIGURATION_API_PATH         = "/api/service/configuration";
-    private static final String SERVICE_CREATE_API_PATH                = "/api/service/create";
-    private static final String SERVICE_DELETE_API_PATH                = "/api/service/delete/%d";
-    private static final String SERVICE_GET_API_PATH                   = "/api/service/get/%d";
-    private static final String SERVICE_GET_LIST_API_PATH              = "/api/service/get/list";
-    private static final String SERVICE_JWKS_GET_API_PATH              = "/api/service/jwks/get";
-    private static final String SERVICE_UPDATE_API_PATH                = "/api/service/update/%d";
-    private static final String CLIENT_CREATE_API_PATH                 = "/api/client/create";
-    private static final String CLIENT_REGISTRATION_API_PATH           = "/api/client/registration";
-    private static final String CLIENT_REGISTRATION_GET_API_PATH       = "/api/client/registration/get";
-    private static final String CLIENT_REGISTRATION_UPDATE_API_PATH    = "/api/client/registration/update";
-    private static final String CLIENT_REGISTRATION_DELETE_API_PATH    = "/api/client/registration/delete";
-    private static final String CLIENT_DELETE_API_PATH                 = "/api/client/delete/%s";
-    private static final String CLIENT_GET_API_PATH                    = "/api/client/get/%s";
-    private static final String CLIENT_GET_LIST_API_PATH               = "/api/client/get/list";
-    private static final String CLIENT_SECRET_REFRESH_API_PATH         = "/api/client/secret/refresh/%s";
-    private static final String CLIENT_SECRET_UPDATE_API_PATH          = "/api/client/secret/update/%s";
-    private static final String CLIENT_UPDATE_API_PATH                 = "/api/client/update/%d";
-    private static final String REQUESTABLE_SCOPES_DELETE_API_PATH     = "/api/client/extension/requestable_scopes/delete/%d";
-    private static final String REQUESTABLE_SCOPES_GET_API_PATH        = "/api/client/extension/requestable_scopes/get/%d";
-    private static final String REQUESTABLE_SCOPES_UPDATE_API_PATH     = "/api/client/extension/requestable_scopes/update/%d";
-    private static final String GRANTED_SCOPES_GET_API_PATH            = "/api/client/granted_scopes/get/%d";
-    private static final String GRANTED_SCOPES_DELETE_API_PATH         = "/api/client/granted_scopes/delete/%d";
-    private static final String CLIENT_AUTHORIZATION_DELETE_API_PATH   = "/api/client/authorization/delete/%d";
-    private static final String CLIENT_AUTHORIZATION_GET_LIST_API_PATH = "/api/client/authorization/get/list";
-    private static final String CLIENT_AUTHORIZATION_UPDATE_API_PATH   = "/api/client/authorization/update/%d";
-    private static final String JOSE_VERIFY_API_PATH                   = "/api/jose/verify";
-    private static final String BC_AUTHENTICATION_API_PATH             = "/api/backchannel/authentication";
-    private static final String BC_AUTHENTICATION_COMPLETE_API_PATH    = "/api/backchannel/authentication/complete";
-    private static final String BC_AUTHENTICATION_FAIL_API_PATH        = "/api/backchannel/authentication/fail";
-    private static final String BC_AUTHENTICATION_ISSUE_API_PATH       = "/api/backchannel/authentication/issue";
-    private static final String DEVICE_AUTHORIZATION_API_PATH          = "/api/device/authorization";
-    private static final String DEVICE_COMPLETE_API_PATH               = "/api/device/complete";
-    private static final String DEVICE_VERIFICATION_API_PATH           = "/api/device/verification";
-    private static final String PUSHED_AUTH_REQ_API_PATH               = "/api/pushed_auth_req";
-    private static final String HSK_CREATE_API_PATH                    = "/api/hsk/create";
-    private static final String HSK_DELETE_API_PATH                    = "/api/hsk/delete/%s";
-    private static final String HSK_GET_API_PATH                       = "/api/hsk/get/%s";
-    private static final String HSK_GET_LIST_API_PATH                  = "/api/hsk/get/list";
-    private static final String ECHO_API_PATH                          = "/api/misc/echo";
-    private static final String GM_API_PATH                            = "/api/gm";
-    private static final String CLIENT_LOCK_FLAG_UPDATE_API_PATH       = "/api/client/lock_flag/update";
-    private static final String FEDERATION_CONFIGURATION_API_PATH      = "/api/federation/configuration";
-    private static final String FEDERATION_REGISTRATION_API_PATH       = "/api/federation/registration";
-    private static final String VCI_METADATA_API_PATH                  = "/api/vci/metadata";
-    private static final String VCI_JWT_ISSUER_API_PATH                = "/api/vci/jwtissuer";
-    private static final String VCI_JWKS_API_PATH                      = "/api/vci/jwks";
-    private static final String VCI_OFFER_CREATE_API_PATH              = "/api/vci/offer/create";
-    private static final String VCI_OFFER_INFO_API_PATH                = "/api/vci/offer/info";
-    private static final String VCI_SINGLE_PARSE_API_PATH              = "/api/vci/single/parse";
-    private static final String VCI_SINGLE_ISSUE_API_PATH              = "/api/vci/single/issue";
-    private static final String VCI_BATCH_PARSE_API_PATH               = "/api/vci/batch/parse";
-    private static final String VCI_BATCH_ISSUE_API_PATH               = "/api/vci/batch/issue";
-    private static final String VCI_DEFERRED_PARSE_API_PATH            = "/api/vci/deferred/parse";
-    private static final String VCI_DEFERRED_ISSUE_API_PATH            = "/api/vci/deferred/issue";
-    private static final String ID_TOKEN_REISSUE_API_PATH              = "/api/idtoken/reissue";
-
+    private static final String AUTH_TOKEN_API_PATH                       = "/api/auth/token";
+    private static final String AUTH_TOKEN_CREATE_API_PATH                = "/api/auth/token/create";
+    private static final String AUTH_TOKEN_DELETE_API_PATH                = "/api/auth/token/delete/%s";
+    private static final String AUTH_TOKEN_FAIL_API_PATH                  = "/api/auth/token/fail";
+    private static final String AUTH_TOKEN_ISSUE_API_PATH                 = "/api/auth/token/issue";
+    private static final String AUTH_TOKEN_REVOKE_API_PATH                = "/api/auth/token/revoke";
+    private static final String AUTH_TOKEN_UPDATE_API_PATH                = "/api/auth/token/update";
+    private static final String AUTH_TOKEN_GET_LIST_API_PATH              = "/api/auth/token/get/list";
+    private static final String AUTH_REVOCATION_API_PATH                  = "/api/auth/revocation";
+    private static final String AUTH_USERINFO_API_PATH                    = "/api/auth/userinfo";
+    private static final String AUTH_USERINFO_ISSUE_API_PATH              = "/api/auth/userinfo/issue";
+    private static final String AUTH_INTROSPECTION_API_PATH               = "/api/auth/introspection";
+    private static final String AUTH_INTROSPECTION_STANDARD_API_PATH      = "/api/auth/introspection/standard";
+    private static final String SERVICE_CONFIGURATION_API_PATH            = "/api/service/configuration";
+    private static final String SERVICE_CREATE_API_PATH                   = "/api/service/create";
+    private static final String SERVICE_DELETE_API_PATH                   = "/api/service/delete/%d";
+    private static final String SERVICE_GET_API_PATH                      = "/api/service/get/%d";
+    private static final String SERVICE_GET_LIST_API_PATH                 = "/api/service/get/list";
+    private static final String SERVICE_JWKS_GET_API_PATH                 = "/api/service/jwks/get";
+    private static final String SERVICE_UPDATE_API_PATH                   = "/api/service/update/%d";
+    private static final String CLIENT_CREATE_API_PATH                    = "/api/client/create";
+    private static final String CLIENT_REGISTRATION_API_PATH              = "/api/client/registration";
+    private static final String CLIENT_REGISTRATION_GET_API_PATH          = "/api/client/registration/get";
+    private static final String CLIENT_REGISTRATION_UPDATE_API_PATH       = "/api/client/registration/update";
+    private static final String CLIENT_REGISTRATION_DELETE_API_PATH       = "/api/client/registration/delete";
+    private static final String CLIENT_DELETE_API_PATH                    = "/api/client/delete/%s";
+    private static final String CLIENT_GET_API_PATH                       = "/api/client/get/%s";
+    private static final String CLIENT_GET_LIST_API_PATH                  = "/api/client/get/list";
+    private static final String CLIENT_SECRET_REFRESH_API_PATH            = "/api/client/secret/refresh/%s";
+    private static final String CLIENT_SECRET_UPDATE_API_PATH             = "/api/client/secret/update/%s";
+    private static final String CLIENT_UPDATE_API_PATH                    = "/api/client/update/%d";
+    private static final String REQUESTABLE_SCOPES_DELETE_API_PATH        = "/api/client/extension/requestable_scopes/delete/%d";
+    private static final String REQUESTABLE_SCOPES_GET_API_PATH           = "/api/client/extension/requestable_scopes/get/%d";
+    private static final String REQUESTABLE_SCOPES_UPDATE_API_PATH        = "/api/client/extension/requestable_scopes/update/%d";
+    private static final String GRANTED_SCOPES_GET_API_PATH               = "/api/client/granted_scopes/get/%d";
+    private static final String GRANTED_SCOPES_DELETE_API_PATH            = "/api/client/granted_scopes/delete/%d";
+    private static final String CLIENT_AUTHORIZATION_DELETE_API_PATH      = "/api/client/authorization/delete/%d";
+    private static final String CLIENT_AUTHORIZATION_GET_LIST_API_PATH    = "/api/client/authorization/get/list";
+    private static final String CLIENT_AUTHORIZATION_UPDATE_API_PATH      = "/api/client/authorization/update/%d";
+    private static final String JOSE_VERIFY_API_PATH                      = "/api/jose/verify";
+    private static final String BC_AUTHENTICATION_API_PATH                = "/api/backchannel/authentication";
+    private static final String BC_AUTHENTICATION_COMPLETE_API_PATH       = "/api/backchannel/authentication/complete";
+    private static final String BC_AUTHENTICATION_FAIL_API_PATH           = "/api/backchannel/authentication/fail";
+    private static final String BC_AUTHENTICATION_ISSUE_API_PATH          = "/api/backchannel/authentication/issue";
+    private static final String DEVICE_AUTHORIZATION_API_PATH             = "/api/device/authorization";
+    private static final String DEVICE_COMPLETE_API_PATH                  = "/api/device/complete";
+    private static final String DEVICE_VERIFICATION_API_PATH              = "/api/device/verification";
+    private static final String PUSHED_AUTH_REQ_API_PATH                  = "/api/pushed_auth_req";
+    private static final String HSK_CREATE_API_PATH                       = "/api/hsk/create";
+    private static final String HSK_DELETE_API_PATH                       = "/api/hsk/delete/%s";
+    private static final String HSK_GET_API_PATH                          = "/api/hsk/get/%s";
+    private static final String HSK_GET_LIST_API_PATH                     = "/api/hsk/get/list";
+    private static final String ECHO_API_PATH                             = "/api/misc/echo";
+    private static final String GM_API_PATH                               = "/api/gm";
+    private static final String CLIENT_LOCK_FLAG_UPDATE_API_PATH          = "/api/client/lock_flag/update";
+    private static final String FEDERATION_CONFIGURATION_API_PATH         = "/api/federation/configuration";
+    private static final String FEDERATION_REGISTRATION_API_PATH          = "/api/federation/registration";
+    private static final String VCI_METADATA_API_PATH                     = "/api/vci/metadata";
+    private static final String VCI_JWT_ISSUER_API_PATH                   = "/api/vci/jwtissuer";
+    private static final String VCI_JWKS_API_PATH                         = "/api/vci/jwks";
+    private static final String VCI_OFFER_CREATE_API_PATH                 = "/api/vci/offer/create";
+    private static final String VCI_OFFER_INFO_API_PATH                   = "/api/vci/offer/info";
+    private static final String VCI_SINGLE_PARSE_API_PATH                 = "/api/vci/single/parse";
+    private static final String VCI_SINGLE_ISSUE_API_PATH                 = "/api/vci/single/issue";
+    private static final String VCI_BATCH_PARSE_API_PATH                  = "/api/vci/batch/parse";
+    private static final String VCI_BATCH_ISSUE_API_PATH                  = "/api/vci/batch/issue";
+    private static final String VCI_DEFERRED_PARSE_API_PATH               = "/api/vci/deferred/parse";
+    private static final String VCI_DEFERRED_ISSUE_API_PATH               = "/api/vci/deferred/issue";
+    private static final String ID_TOKEN_REISSUE_API_PATH                 = "/api/idtoken/reissue";
 
     private final String mBaseUrl;
     private final BasicCredentials mServiceOwnerCredentials;
@@ -1550,7 +1549,7 @@ class AuthleteApiImpl implements AuthleteApi
     @Override
     public Map<String, String> echo(Map<String, String> parameters) throws AuthleteApiException
     {
-        return (Map<String, String>)callGetApi(
+        return callGetApi(
                 null, ECHO_API_PATH, parameters, Map.class);
     }
 
@@ -1760,5 +1759,25 @@ class AuthleteApiImpl implements AuthleteApi
         return callServicePostApi(
                 AUTH_AUTHORIZATION_TICKET_UPDATE_API_PATH, request,
                 AuthorizationTicketUpdateResponse.class);
+    }
+
+
+    @Override
+    public TokenCreateBatchResponse tokenCreateBatch(
+            TokenCreateRequest[] request, boolean isDryRun) throws AuthleteApiException
+    {
+        // This is unavailable in Authlete 2.x and older versions.
+        throw new AuthleteApiException(
+                "This method can't be invoked since the corresponding API is not supported.");
+    }
+
+
+    @Override
+    public TokenCreateBatchStatusResponse getTokenCreateBatchStatus(
+            TokenCreateBatchStatusRequest request) throws AuthleteApiException
+    {
+        // This is unavailable in Authlete 2.x and older versions.
+        throw new AuthleteApiException(
+                "This method can't be invoked since the corresponding API is not supported.");
     }
 }
