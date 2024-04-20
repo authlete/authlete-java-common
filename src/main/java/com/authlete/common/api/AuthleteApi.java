@@ -1927,6 +1927,6 @@ public interface AuthleteApi
      * @since 3.96
      * @since Authlete 3.0
      */
-    TokenCreateBatchStatusResponse tokenCreateBatchStatus(
+    TokenCreateBatchStatusResponse getTokenCreateBatchStatus(
             TokenCreateBatchStatusRequest request) throws AuthleteApiException;
 }
