@@ -44,7 +44,7 @@ public class TokenCreateBatchStatusResponse extends ApiResponse
 
 
     /**
-     * Set the batch status
+     * Set the batch status.
      *
      * @param status
      *         The batch stasus.
