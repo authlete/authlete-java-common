@@ -288,7 +288,7 @@ public interface AuthleteApi
      * @return
      *         The list of access tokens.
      *
-     * @since 3.96
+     * @since 3.97
      */
     TokenListResponse getTokenList(TokenStatus tokenStatus) throws AuthleteApiException;
 
@@ -391,7 +391,7 @@ public interface AuthleteApi
      * @return
      *         The list of access tokens.
      *
-     * @since 3.96
+     * @since 3.97
      */
     TokenListResponse getTokenList(String clientIdentifier, String subject, TokenStatus tokenStatus) throws AuthleteApiException;
 
@@ -490,7 +490,7 @@ public interface AuthleteApi
      * @return
      *         The list of access tokens.
      *
-     * @since 3.96
+     * @since 3.97
      */
     TokenListResponse getTokenList(int start, int end, TokenStatus tokenStatus) throws AuthleteApiException;
 
@@ -650,7 +650,7 @@ public interface AuthleteApi
      * @return
      *         The list of access tokens.
      *
-     * @since 3.96
+     * @since 3.97
      */
     TokenListResponse getTokenList(String clientIdentifier, String subject, int start, int end, TokenStatus tokenStatus) throws AuthleteApiException;
 

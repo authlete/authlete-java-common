@@ -19,7 +19,7 @@ package com.authlete.common.types;
 /**
  * TokenStatus filtering options for using in getTokenList API.
  *
- * @since 3.96
+ * @since 3.97
  *
  * @see com.authlete.common.api.AuthleteApi#getTokenList(TokenStatus)
  * @see com.authlete.common.api.AuthleteApi#getTokenList(int, int, TokenStatus)
