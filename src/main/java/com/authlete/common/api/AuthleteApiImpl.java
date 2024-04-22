@@ -977,7 +977,6 @@ class AuthleteApiImpl implements AuthleteApi
     }
 
 
-
     @Override
     public TokenListResponse getTokenList(String clientIdentifier, String subject,
             int start, int end, TokenStatus tokenStatus) throws AuthleteApiException
