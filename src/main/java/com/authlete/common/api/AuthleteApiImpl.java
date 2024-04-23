@@ -929,10 +929,7 @@ class AuthleteApiImpl implements AuthleteApi
     @Override
     public TokenListResponse getTokenList(String clientIdentifier, String subject) throws AuthleteApiException
     {
-        return callServiceGetApi(
-                AUTH_TOKEN_GET_LIST_API_PATH,
-                buildMap("clientIdentifier", clientIdentifier, "subject", subject, "tokenStatus", TokenStatus.ALL),
-                TokenListResponse.class);
+        return getTokenList(clientIdentifier, subject, TokenStatus.ALL);
     }
 
 
@@ -949,10 +946,7 @@ class AuthleteApiImpl implements AuthleteApi
     @Override
     public TokenListResponse getTokenList(int start, int end) throws AuthleteApiException
     {
-        return callServiceGetApi(
-                AUTH_TOKEN_GET_LIST_API_PATH,
-                buildMap("start", start, "end", end, "tokenStatus", TokenStatus.ALL),
-                TokenListResponse.class);
+        return getTokenList(start, end, TokenStatus.ALL);
     }
 
 
@@ -970,10 +964,7 @@ class AuthleteApiImpl implements AuthleteApi
     public TokenListResponse getTokenList(String clientIdentifier, String subject,
                                           int start, int end) throws AuthleteApiException
     {
-        return callServiceGetApi(
-                AUTH_TOKEN_GET_LIST_API_PATH,
-                buildMap("clientIdentifier", clientIdentifier, "subject", subject, "start", start, "end", end, "tokenStatus", TokenStatus.ALL),
-                TokenListResponse.class);
+        return getTokenList(clientIdentifier, subject, start, end, TokenStatus.ALL);
     }
 
 
