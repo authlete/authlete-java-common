@@ -1,6 +1,19 @@
 CHANGES
 =======
 
+3.97 (2024-04-23)
+-----------------
+
+- `AuthleteApi` interface
+    * Added `getTokenList(TokenStatus)` method.
+    * Added `getTokenList(int start, int end, TokenStatus tokenStatus)` method.
+    * Added `getTokenList(String clientIdentifier, String subject, TokenStatus tokenStatus)` method.
+    * Added `getTokenList(String clientIdentifier, String subject, int start, int end, TokenStatus tokenStatus)` method.
+
+- New Types
+    * `TokenStatus` enum
+
+
 3.96 (2024-04-20)
 -----------------
 

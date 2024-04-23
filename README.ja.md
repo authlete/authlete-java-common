@@ -264,6 +264,10 @@ settings.setReadTimeout(5000);
   - `getTokenList(String clientIdentifier, String subject)`
   - `getTokenList(int start, int end)`
   - `getTokenList(String clientIdentifier, String subject, int start, int end)`
+  - `getTokenList(TokenStatus)`
+  - `getTokenList(int start, int end, TokenStatus tokenStatus)`
+  - `getTokenList(String clientIdentifier, String subject, TokenStatus tokenStatus)`
+  - `getTokenList(String clientIdentifier, String subject, int start, int end, TokenStatus tokenStatus)`
 
   6. アクセストークン取り消しエンドポイント実装のためのメソッド群
 

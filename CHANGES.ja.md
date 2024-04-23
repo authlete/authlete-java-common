@@ -1,6 +1,19 @@
 変更点
 ======
 
+3.97 (2024 年 04 月 23 日)
+--------------------------
+
+- `AuthleteApi` インターフェース
+    * `getTokenList(TokenStatus)` メソッドを追加。
+    * `getTokenList(int start, int end, TokenStatus tokenStatus)` メソッドを追加。
+    * `getTokenList(String clientIdentifier, String subject, TokenStatus tokenStatus)` メソッドを追加。
+    * `getTokenList(String clientIdentifier, String subject, int start, int end, TokenStatus tokenStatus)` メソッドを追加。
+
+- 新しい型
+    * `TokenStatus` 列挙型
+
+
 3.96 (2024 年 04 月 20 日)
 --------------------------
 

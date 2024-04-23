@@ -275,6 +275,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   - `getTokenList(String clientIdentifier, String subject)`
   - `getTokenList(int start, int end)`
   - `getTokenList(String clientIdentifier, String subject, int start, int end)`
+  - `getTokenList(TokenStatus)`
+  - `getTokenList(int start, int end, TokenStatus tokenStatus)`
+  - `getTokenList(String clientIdentifier, String subject, TokenStatus tokenStatus)`
+  - `getTokenList(String clientIdentifier, String subject, int start, int end, TokenStatus tokenStatus)`
 
   6. Methods for Revocation Endpoint Implementation
 
