@@ -84,6 +84,7 @@ import com.authlete.common.dto.HskListResponse;
 import com.authlete.common.dto.HskResponse;
 import com.authlete.common.dto.IDTokenReissueRequest;
 import com.authlete.common.dto.IDTokenReissueResponse;
+import com.authlete.common.dto.InfoResponse;
 import com.authlete.common.dto.IntrospectionRequest;
 import com.authlete.common.dto.IntrospectionResponse;
 import com.authlete.common.dto.JoseVerifyRequest;
@@ -111,13 +112,13 @@ import com.authlete.common.dto.TokenRequest;
 import com.authlete.common.dto.TokenResponse;
 import com.authlete.common.dto.TokenRevokeRequest;
 import com.authlete.common.dto.TokenRevokeResponse;
-import com.authlete.common.types.TokenStatus;
 import com.authlete.common.dto.TokenUpdateRequest;
 import com.authlete.common.dto.TokenUpdateResponse;
 import com.authlete.common.dto.UserInfoIssueRequest;
 import com.authlete.common.dto.UserInfoIssueResponse;
 import com.authlete.common.dto.UserInfoRequest;
 import com.authlete.common.dto.UserInfoResponse;
+import com.authlete.common.types.TokenStatus;
 
 
 /**
@@ -2144,4 +2145,15 @@ public interface AuthleteApi
      */
     TokenCreateBatchStatusResponse getTokenCreateBatchStatus(
             TokenCreateBatchStatusRequest request) throws AuthleteApiException;
+
+    /**
+     * Call Authlete's {@code /api/info} API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 3.99
+     * @since Authlete 2.3
+     */
+    InfoResponse info() throws AuthleteApiException;
 }
