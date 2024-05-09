@@ -141,6 +141,29 @@ public enum AccessRight
 
 
     /**
+     * Return true if this access right has at least the amount of access of the
+     * compared access right on any object in the list. If the access right is client
+     * specific, the serviceId is a required parameter. If the access right is
+     * service specific, this is true for all possible services regardless of value.
+     */
+    public boolean canDoAny(long serviceId, AccessRight compare)
+    {
+        if (this.clientSpecific && serviceId <= 0)
+        {
+            return false;
+        }
+        if (this.equals(compare) || this.includes.contains(compare))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    /**
      * Look up and fetch an access right value based on its
      * (lowercased) name from a JSON object.
      */
