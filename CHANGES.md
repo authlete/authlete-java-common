@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+3.98 (2024-05-09)
+-----------------
+
 - `Utils` class
     * Set the `ToNumberPolicy.LONG_OR_DOUBLE` policy to Gson objects.
 
