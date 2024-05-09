@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+3.99 (2024-05-10)
+-----------------
+
+- `AccessRight` class
+    * Added `canDoAny(long, AccessRight)` method.
+
+
 3.98 (2024-05-09)
 -----------------
 
