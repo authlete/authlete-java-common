@@ -1,6 +1,15 @@
 変更点
 ======
 
+- `AuthleteApi` クラス
+    * `getTokenCreateBatchStatus(TokenCreateBatchStatusRequest)` メソッドを削除。
+    * `getTokenCreateBatchStatus(String)` メソッドを追加。
+
+- `TokenCreateBatchResponse` クラス
+    * getNotificationToken() メソッドを削除。
+    * setNotificationToken(String) メソッドを削除。
+
+
 3.99 (2024 年 05 月 10 日)
 --------------------------
 
