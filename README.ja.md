@@ -295,7 +295,7 @@ settings.setReadTimeout(5000);
   - `tokenRevoke(TokenRevokeRequest request)`
   - `tokenUpdate(TokenUpdateRequest request)`
   - `tokenCreateBatch(TokenCreateRequest[] request)`
-  - `getTokenCreateBatchStatus(TokenCreateBatchStatusRequest request)`
+  - `getTokenCreateBatchStatus(String requestId)`
 
   11. クライアント毎の要求可能スコープ群に関するメソッド群 (非推奨; Client API で代替可能)
 
