@@ -2133,7 +2133,7 @@ public interface AuthleteApi
      * Call Authlete's {@code /auth/token/create/batch/status} API.
      *
      * @param requestId
-     *         A request Id issued from {@code /auth/token/create/batch/status} API.
+     *         A request Id issued from {@code /auth/token/create/batch} API.
      *
      * @return
      *         Response from the API.
