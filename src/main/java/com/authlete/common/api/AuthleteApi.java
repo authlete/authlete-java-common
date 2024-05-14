@@ -98,7 +98,6 @@ import com.authlete.common.dto.ServiceListResponse;
 import com.authlete.common.dto.StandardIntrospectionRequest;
 import com.authlete.common.dto.StandardIntrospectionResponse;
 import com.authlete.common.dto.TokenCreateBatchResponse;
-import com.authlete.common.dto.TokenCreateBatchStatusRequest;
 import com.authlete.common.dto.TokenCreateBatchStatusResponse;
 import com.authlete.common.dto.TokenCreateRequest;
 import com.authlete.common.dto.TokenCreateResponse;
@@ -2133,8 +2132,8 @@ public interface AuthleteApi
     /**
      * Call Authlete's {@code /auth/token/create/batch/status} API.
      *
-     * @param request
-     *         Request parameters passed to the API.
+     * @param requestId
+     *         A request Id issued from {@code /auth/token/create/batch/status} API.
      *
      * @return
      *         Response from the API.
@@ -2143,5 +2142,5 @@ public interface AuthleteApi
      * @since Authlete 3.0
      */
     TokenCreateBatchStatusResponse getTokenCreateBatchStatus(
-            TokenCreateBatchStatusRequest request) throws AuthleteApiException;
+            String requestId) throws AuthleteApiException;
 }

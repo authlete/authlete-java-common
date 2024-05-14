@@ -1,6 +1,20 @@
 CHANGES
 =======
 
+4.0 (2024-05-14)
+----------------
+
+- `AuthleteApi` class
+    * Removed `getTokenCreateBatchStatus(TokenCreateBatchStatusRequest)` method.
+    * Added `getTokenCreateBatchStatus(String)` method.
+
+- Removed `TokenCreateBatchStatusRequest`.
+
+- `TokenCreateBatchResponse` class
+    * Removed getNotificationToken() method.
+    * Removed setNotificationToken(String) method.
+
+
 3.99 (2024-05-10)
 -----------------
 
