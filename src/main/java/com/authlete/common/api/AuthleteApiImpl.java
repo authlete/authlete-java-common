@@ -1806,7 +1806,7 @@ class AuthleteApiImpl implements AuthleteApi
 
     @Override
     public TokenCreateBatchStatusResponse getTokenCreateBatchStatus(
-            TokenCreateBatchStatusRequest request) throws AuthleteApiException
+            String requestId) throws AuthleteApiException
     {
         // This is unavailable in Authlete 2.x and older versions.
         throw new AuthleteApiException(
