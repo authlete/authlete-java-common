@@ -261,6 +261,7 @@ public class AuthorizationFailRequest implements Serializable
          * @since 2.62
          */
         INVALID_TARGET,
+        ;
     }
 
 

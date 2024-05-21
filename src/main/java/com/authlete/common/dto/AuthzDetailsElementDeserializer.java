@@ -38,8 +38,9 @@ import com.google.gson.JsonParseException;
 public class AuthzDetailsElementDeserializer extends BaseJsonDeserializer
 implements JsonDeserializer<AuthzDetailsElement>
 {
-    private static String[] INDEPENDENT_FIELDS = new String[] {
-            "type", "locations", "actions", "datatypes", "identifier", "privileges"
+    private static final String[] INDEPENDENT_FIELDS = new String[]
+    {
+        "type", "locations", "actions", "datatypes", "identifier", "privileges"
     };
 
 

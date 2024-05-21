@@ -125,7 +125,7 @@ public enum ClaimsScope
     PHONE("phone",
             StandardClaims.PHONE_NUMBER,
             StandardClaims.PHONE_NUMBER_VERIFIED
-    )
+    ),
     ;
 
 

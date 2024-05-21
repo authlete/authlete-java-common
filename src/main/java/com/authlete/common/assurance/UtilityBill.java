@@ -168,7 +168,7 @@ public class UtilityBill extends Evidence
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static UtilityBill extract(Map<?,?> map) throws IdentityAssuranceException
+    public static UtilityBill extract(Map<?, ?> map) throws IdentityAssuranceException
     {
         UtilityBill instance = new UtilityBill();
 
@@ -178,7 +178,7 @@ public class UtilityBill extends Evidence
     }
 
 
-    private static void fill(UtilityBill instance, Map<?,?> map, String key)
+    private static void fill(UtilityBill instance, Map<?, ?> map, String key)
     {
         // "provider": required
         fillProvider(instance, map, key);
@@ -188,7 +188,7 @@ public class UtilityBill extends Evidence
     }
 
 
-    private static void fillProvider(UtilityBill instance, Map<?,?> map, String key)
+    private static void fillProvider(UtilityBill instance, Map<?, ?> map, String key)
     {
         // Ensure "provider" is contained.
         Helper.ensureKey(map, PROVIDER, key);
@@ -202,7 +202,7 @@ public class UtilityBill extends Evidence
     }
 
 
-    private static void fillDate(UtilityBill instance, Map<?,?> map, String key)
+    private static void fillDate(UtilityBill instance, Map<?, ?> map, String key)
     {
         // The value of "date" in the map.
         String value = Helper.extractDate(map, DATE, key, true);

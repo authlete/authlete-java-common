@@ -175,6 +175,7 @@ public class CredentialIssuerJwksResponse extends ApiResponse
          * content type "{@code application/json}".
          */
         INTERNAL_SERVER_ERROR,
+        ;
     }
 
 

@@ -126,7 +126,7 @@ implements Constraint
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static ClaimsConstraint extract(Map<?,?> map, String key) throws ConstraintException
+    public static ClaimsConstraint extract(Map<?, ?> map, String key) throws ConstraintException
     {
         ClaimsConstraint instance = new ClaimsConstraint();
         instance.setExists(map.containsKey(key));
@@ -148,7 +148,7 @@ implements Constraint
             return;
         }
 
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         for (Map.Entry<?, ?> entry : map.entrySet())
         {

@@ -30,7 +30,110 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import com.authlete.common.conf.AuthleteConfiguration;
-import com.authlete.common.dto.*;
+import com.authlete.common.dto.ApiResponse;
+import com.authlete.common.dto.AuthorizationFailRequest;
+import com.authlete.common.dto.AuthorizationFailResponse;
+import com.authlete.common.dto.AuthorizationIssueRequest;
+import com.authlete.common.dto.AuthorizationIssueResponse;
+import com.authlete.common.dto.AuthorizationRequest;
+import com.authlete.common.dto.AuthorizationResponse;
+import com.authlete.common.dto.AuthorizationTicketInfoRequest;
+import com.authlete.common.dto.AuthorizationTicketInfoResponse;
+import com.authlete.common.dto.AuthorizationTicketUpdateRequest;
+import com.authlete.common.dto.AuthorizationTicketUpdateResponse;
+import com.authlete.common.dto.AuthorizedClientListResponse;
+import com.authlete.common.dto.BackchannelAuthenticationCompleteRequest;
+import com.authlete.common.dto.BackchannelAuthenticationCompleteResponse;
+import com.authlete.common.dto.BackchannelAuthenticationFailRequest;
+import com.authlete.common.dto.BackchannelAuthenticationFailResponse;
+import com.authlete.common.dto.BackchannelAuthenticationIssueRequest;
+import com.authlete.common.dto.BackchannelAuthenticationIssueResponse;
+import com.authlete.common.dto.BackchannelAuthenticationRequest;
+import com.authlete.common.dto.BackchannelAuthenticationResponse;
+import com.authlete.common.dto.Client;
+import com.authlete.common.dto.ClientAuthorizationDeleteRequest;
+import com.authlete.common.dto.ClientAuthorizationGetListRequest;
+import com.authlete.common.dto.ClientAuthorizationUpdateRequest;
+import com.authlete.common.dto.ClientListResponse;
+import com.authlete.common.dto.ClientLockFlagUpdateRequest;
+import com.authlete.common.dto.ClientRegistrationRequest;
+import com.authlete.common.dto.ClientRegistrationResponse;
+import com.authlete.common.dto.ClientSecretRefreshResponse;
+import com.authlete.common.dto.ClientSecretUpdateRequest;
+import com.authlete.common.dto.ClientSecretUpdateResponse;
+import com.authlete.common.dto.CredentialBatchIssueRequest;
+import com.authlete.common.dto.CredentialBatchIssueResponse;
+import com.authlete.common.dto.CredentialBatchParseRequest;
+import com.authlete.common.dto.CredentialBatchParseResponse;
+import com.authlete.common.dto.CredentialDeferredIssueRequest;
+import com.authlete.common.dto.CredentialDeferredIssueResponse;
+import com.authlete.common.dto.CredentialDeferredParseRequest;
+import com.authlete.common.dto.CredentialDeferredParseResponse;
+import com.authlete.common.dto.CredentialIssuerJwksRequest;
+import com.authlete.common.dto.CredentialIssuerJwksResponse;
+import com.authlete.common.dto.CredentialIssuerMetadataRequest;
+import com.authlete.common.dto.CredentialIssuerMetadataResponse;
+import com.authlete.common.dto.CredentialJwtIssuerMetadataRequest;
+import com.authlete.common.dto.CredentialJwtIssuerMetadataResponse;
+import com.authlete.common.dto.CredentialOfferCreateRequest;
+import com.authlete.common.dto.CredentialOfferCreateResponse;
+import com.authlete.common.dto.CredentialOfferInfoRequest;
+import com.authlete.common.dto.CredentialOfferInfoResponse;
+import com.authlete.common.dto.CredentialSingleIssueRequest;
+import com.authlete.common.dto.CredentialSingleIssueResponse;
+import com.authlete.common.dto.CredentialSingleParseRequest;
+import com.authlete.common.dto.CredentialSingleParseResponse;
+import com.authlete.common.dto.DeviceAuthorizationRequest;
+import com.authlete.common.dto.DeviceAuthorizationResponse;
+import com.authlete.common.dto.DeviceCompleteRequest;
+import com.authlete.common.dto.DeviceCompleteResponse;
+import com.authlete.common.dto.DeviceVerificationRequest;
+import com.authlete.common.dto.DeviceVerificationResponse;
+import com.authlete.common.dto.FederationConfigurationRequest;
+import com.authlete.common.dto.FederationConfigurationResponse;
+import com.authlete.common.dto.FederationRegistrationRequest;
+import com.authlete.common.dto.FederationRegistrationResponse;
+import com.authlete.common.dto.GMRequest;
+import com.authlete.common.dto.GMResponse;
+import com.authlete.common.dto.GrantedScopesGetResponse;
+import com.authlete.common.dto.HskCreateRequest;
+import com.authlete.common.dto.HskListResponse;
+import com.authlete.common.dto.HskResponse;
+import com.authlete.common.dto.IDTokenReissueRequest;
+import com.authlete.common.dto.IDTokenReissueResponse;
+import com.authlete.common.dto.IntrospectionRequest;
+import com.authlete.common.dto.IntrospectionResponse;
+import com.authlete.common.dto.JoseVerifyRequest;
+import com.authlete.common.dto.JoseVerifyResponse;
+import com.authlete.common.dto.PushedAuthReqRequest;
+import com.authlete.common.dto.PushedAuthReqResponse;
+import com.authlete.common.dto.RevocationRequest;
+import com.authlete.common.dto.RevocationResponse;
+import com.authlete.common.dto.Service;
+import com.authlete.common.dto.ServiceConfigurationRequest;
+import com.authlete.common.dto.ServiceListResponse;
+import com.authlete.common.dto.StandardIntrospectionRequest;
+import com.authlete.common.dto.StandardIntrospectionResponse;
+import com.authlete.common.dto.TokenCreateBatchResponse;
+import com.authlete.common.dto.TokenCreateBatchStatusRequest;
+import com.authlete.common.dto.TokenCreateBatchStatusResponse;
+import com.authlete.common.dto.TokenCreateRequest;
+import com.authlete.common.dto.TokenCreateResponse;
+import com.authlete.common.dto.TokenFailRequest;
+import com.authlete.common.dto.TokenFailResponse;
+import com.authlete.common.dto.TokenIssueRequest;
+import com.authlete.common.dto.TokenIssueResponse;
+import com.authlete.common.dto.TokenListResponse;
+import com.authlete.common.dto.TokenRequest;
+import com.authlete.common.dto.TokenResponse;
+import com.authlete.common.dto.TokenRevokeRequest;
+import com.authlete.common.dto.TokenRevokeResponse;
+import com.authlete.common.dto.TokenUpdateRequest;
+import com.authlete.common.dto.TokenUpdateResponse;
+import com.authlete.common.dto.UserInfoIssueRequest;
+import com.authlete.common.dto.UserInfoIssueResponse;
+import com.authlete.common.dto.UserInfoRequest;
+import com.authlete.common.dto.UserInfoResponse;
 import com.authlete.common.types.TokenStatus;
 import com.authlete.common.util.Utils;
 import com.authlete.common.web.BasicCredentials;
@@ -53,7 +156,8 @@ class AuthleteApiImpl implements AuthleteApi
     {
         GET,
         POST,
-        DELETE
+        DELETE,
+        ;
     }
 
 
@@ -683,7 +787,7 @@ class AuthleteApiImpl implements AuthleteApi
 
     private static void copy(InputStream in, OutputStream out) throws IOException
     {
-        byte buf[] = new byte[8096];
+        byte[] buf = new byte[8096];
         int len;
 
         while ((len = in.read(buf)) != -1)
@@ -698,7 +802,8 @@ class AuthleteApiImpl implements AuthleteApi
         // Error message.
         String message = cause.getMessage();
 
-        if (ctx == null) {
+        if (ctx == null)
+        {
             return new AuthleteApiException(message, cause);
         }
 

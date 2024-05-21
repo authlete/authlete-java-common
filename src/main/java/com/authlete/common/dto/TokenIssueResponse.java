@@ -124,7 +124,8 @@ public class TokenIssueResponse extends ApiResponse
          * implementation should return {@code "200 OK"} to the client
          * application with an access token.
          */
-        OK
+        OK,
+        ;
     }
 
 

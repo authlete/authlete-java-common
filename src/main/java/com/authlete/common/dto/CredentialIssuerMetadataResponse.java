@@ -180,6 +180,7 @@ public class CredentialIssuerMetadataResponse extends ApiResponse
          * the content type "{@code application/json}".
          */
         INTERNAL_SERVER_ERROR,
+        ;
     }
 
 

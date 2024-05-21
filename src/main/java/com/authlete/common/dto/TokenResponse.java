@@ -972,6 +972,7 @@ public class TokenResponse extends ApiResponse
          * @since Authlete 3.0
          */
         ID_TOKEN_REISSUABLE,
+        ;
     }
 
 

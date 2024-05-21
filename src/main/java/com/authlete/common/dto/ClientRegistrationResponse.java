@@ -246,7 +246,8 @@ public class ClientRegistrationResponse extends ApiResponse
          * The endpoint implementation should return {@code "200 OK"} to the
          * client application.
          */
-        OK
+        OK,
+        ;
     }
 
 

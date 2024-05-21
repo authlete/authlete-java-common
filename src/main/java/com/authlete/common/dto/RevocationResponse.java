@@ -240,7 +240,8 @@ public class RevocationResponse extends ApiResponse
          * The request from the client was valid. The service implementation
          * should return {@code "200 OK"} to the client application.
          */
-        OK
+        OK,
+        ;
     }
 
 

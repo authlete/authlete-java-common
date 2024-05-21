@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD Suppressions X.X//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <suppress checks="MemberName" files=".*Address.java" />
+    <suppress checks="LocalVariableName" files=".*MapUtils.java" lines="309, 322, 335" />
+    <suppress checks="FallThrough" files=".*CLI.java" lines="308" />
+    <suppress checks="MissingSwitchDefault" files=".*BasicCredentials.java" lines="141" />
+    <suppress checks="FallThrough" files=".*BasicCredentials.java" lines="148" />
+    <suppress checks="WhitespaceAfter" files=".*Helper.java" lines="43, 50" />
+</suppressions>

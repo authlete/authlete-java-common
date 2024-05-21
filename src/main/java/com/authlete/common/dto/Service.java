@@ -30,13 +30,12 @@ import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.Display;
 import com.authlete.common.types.FapiMode;
 import com.authlete.common.types.GrantType;
-import com.authlete.common.types.Prompt;
 import com.authlete.common.types.JWSAlg;
+import com.authlete.common.types.Prompt;
 import com.authlete.common.types.ResponseType;
 import com.authlete.common.types.ServiceProfile;
 import com.authlete.common.types.Sns;
 import com.authlete.common.types.UserCodeCharset;
-
 
 /**
  * Information about a service.
@@ -3351,9 +3350,9 @@ public class Service implements Serializable
      */
     public Service setMetadata(Pair[] metadata)
     {
-         this.metadata = metadata;
+        this.metadata = metadata;
 
-         return this;
+        return this;
     }
 
 

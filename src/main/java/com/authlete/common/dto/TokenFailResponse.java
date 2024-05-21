@@ -123,7 +123,8 @@ public class TokenFailResponse extends ApiResponse
          * implementation should return {@code "400 Bad Request"} to the
          * client application.
          */
-        BAD_REQUEST
+        BAD_REQUEST,
+        ;
     }
 
 

@@ -223,6 +223,7 @@ public class FederationRegistrationResponse extends ApiResponse
          * {@code application/json}.
          */
         INTERNAL_SERVER_ERROR,
+        ;
     }
 
 

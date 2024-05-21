@@ -76,7 +76,7 @@ public class Utils
         {
             sb.append(string);
 
-            if (useDelimiter);
+            if (useDelimiter)
             {
                 sb.append(delimiter);
             }

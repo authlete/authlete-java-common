@@ -111,13 +111,13 @@ import com.authlete.common.dto.TokenRequest;
 import com.authlete.common.dto.TokenResponse;
 import com.authlete.common.dto.TokenRevokeRequest;
 import com.authlete.common.dto.TokenRevokeResponse;
-import com.authlete.common.types.TokenStatus;
 import com.authlete.common.dto.TokenUpdateRequest;
 import com.authlete.common.dto.TokenUpdateResponse;
 import com.authlete.common.dto.UserInfoIssueRequest;
 import com.authlete.common.dto.UserInfoIssueResponse;
 import com.authlete.common.dto.UserInfoRequest;
 import com.authlete.common.dto.UserInfoResponse;
+import com.authlete.common.types.TokenStatus;
 
 
 /**

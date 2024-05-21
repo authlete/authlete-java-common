@@ -184,6 +184,7 @@ public class CredentialJwtIssuerMetadataResponse extends ApiResponse
          * content type "{@code application/json}".
          */
         INTERNAL_SERVER_ERROR,
+        ;
     }
 
 

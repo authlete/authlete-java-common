@@ -41,7 +41,7 @@ public enum ClientRegistrationType
     /**
      * {@code "explicit"} (2).
      */
-    EXPLICIT((short)2, "explicit")
+    EXPLICIT((short)2, "explicit"),
     ;
 
 

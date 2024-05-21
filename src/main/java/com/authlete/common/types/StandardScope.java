@@ -101,7 +101,7 @@ public enum StandardScope
      * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims"
      *      >OpenID Connect Core 1.0, 5.4. Requesting Claims using Scope Values</a>
      */
-    PROFILE((short)6, "profile")
+    PROFILE((short)6, "profile"),
     ;
 
 

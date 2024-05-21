@@ -38,7 +38,7 @@ public enum AttachmentType
     /**
      * {@code "external"} (2).
      */
-    EXTERNAL((short)2, "external")
+    EXTERNAL((short)2, "external"),
     ;
 
 

@@ -169,7 +169,8 @@ public class ResourceServerSignatureResponse extends ApiResponse
          * implementation should add the response headers into the response
          * to the client application.
          */
-        OK
+        OK,
+        ;
     }
 
 

@@ -331,7 +331,7 @@ public class Document extends LinkedHashMap<String, Object>
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static Document extract(Map<?,?> map, String key) throws IdentityAssuranceException
+    public static Document extract(Map<?, ?> map, String key) throws IdentityAssuranceException
     {
         Object object = map.get(key);
 
@@ -350,7 +350,7 @@ public class Document extends LinkedHashMap<String, Object>
 
     private static void fill(Document instance, Object object, String key)
     {
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         // "type": optional
         fillType(instance, map, key);
@@ -369,7 +369,7 @@ public class Document extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillType(Document instance, Map<?,?> map, String key)
+    private static void fillType(Document instance, Map<?, ?> map, String key)
     {
         // The value of "type" in the map.
         String value = Helper.extractString(map, TYPE, key, false);
@@ -378,7 +378,7 @@ public class Document extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillNumber(Document instance, Map<?,?> map, String key)
+    private static void fillNumber(Document instance, Map<?, ?> map, String key)
     {
         // The value of "number" in the map.
         String value = Helper.extractString(map, NUMBER, key, false);
@@ -387,7 +387,7 @@ public class Document extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillIssuer(Document instance, Map<?,?> map, String key)
+    private static void fillIssuer(Document instance, Map<?, ?> map, String key)
     {
         // The value of "issuer" in the map.
         Issuer value = Issuer.extract(map, ISSUER);
@@ -396,7 +396,7 @@ public class Document extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillDateOfIssuance(Document instance, Map<?,?> map, String key)
+    private static void fillDateOfIssuance(Document instance, Map<?, ?> map, String key)
     {
         // The value of "date_of_issuance" in the map.
         String value = Helper.extractDate(map, DATE_OF_ISSUANCE, key, false);
@@ -405,7 +405,7 @@ public class Document extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillDateOfExpiry(Document instance, Map<?,?> map, String key)
+    private static void fillDateOfExpiry(Document instance, Map<?, ?> map, String key)
     {
         // The value of "date_of_expiry" in the map.
         String value = Helper.extractDate(map, DATE_OF_EXPIRY, key, false);

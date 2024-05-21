@@ -118,7 +118,8 @@ public class TokenUpdateResponse extends ApiResponse
         /**
          * The access token was updated successfully.
          */
-        OK
+        OK,
+        ;
     }
 
 

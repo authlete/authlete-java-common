@@ -76,7 +76,7 @@ public enum Display
      * consent UI consistent with a "feature phone" type display.
      * </p>
      */
-    WAP((short)4, "wap")
+    WAP((short)4, "wap"),
     ;
 
 

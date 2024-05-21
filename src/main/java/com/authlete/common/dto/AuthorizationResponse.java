@@ -1073,7 +1073,8 @@ public class AuthorizationResponse extends ApiResponse
          * The authorization request was valid and the service implementation
          * should display UI to ask for authorization from the end-user.
          */
-        INTERACTION
+        INTERACTION,
+        ;
     }
 
 

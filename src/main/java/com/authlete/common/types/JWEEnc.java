@@ -74,7 +74,7 @@ public enum JWEEnc
     /**
      * {@code "A256GCM"} (6); AES GCM using 256 bit key.
      */
-    A256GCM((short)6, "A256GCM")
+    A256GCM((short)6, "A256GCM"),
     ;
 
 

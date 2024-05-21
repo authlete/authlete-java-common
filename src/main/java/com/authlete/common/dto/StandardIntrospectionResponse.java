@@ -249,6 +249,7 @@ public class StandardIntrospectionResponse extends ApiResponse
          * @since Authlete 3.0
          */
         JWT,
+        ;
     }
 
 

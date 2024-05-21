@@ -644,6 +644,7 @@ public class BackchannelAuthenticationResponse extends ApiResponse
          * for details.
          */
         USER_IDENTIFICATION,
+        ;
     }
 
 

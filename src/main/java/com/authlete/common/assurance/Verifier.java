@@ -163,7 +163,7 @@ public class Verifier extends LinkedHashMap<String, Object>
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static Verifier extract(Map<?,?> map, String key) throws IdentityAssuranceException
+    public static Verifier extract(Map<?, ?> map, String key) throws IdentityAssuranceException
     {
         Object object = map.get(key);
 
@@ -182,7 +182,7 @@ public class Verifier extends LinkedHashMap<String, Object>
 
     private static void fill(Verifier instance, Object object, String key)
     {
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         // "organization": optional
         fillOrganization(instance, map, key);
@@ -192,7 +192,7 @@ public class Verifier extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillOrganization(Verifier instance, Map<?,?> map, String key)
+    private static void fillOrganization(Verifier instance, Map<?, ?> map, String key)
     {
         // The value of "organization" in the map.
         String value = Helper.extractString(map, ORGANIZATION, key, false);
@@ -201,7 +201,7 @@ public class Verifier extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillTxn(Verifier instance, Map<?,?> map, String key)
+    private static void fillTxn(Verifier instance, Map<?, ?> map, String key)
     {
         // The value of "txn" in the map.
         String value = Helper.extractString(map, TXN, key, false);

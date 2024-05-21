@@ -329,7 +329,8 @@ public class UserInfoIssueResponse extends ApiResponse
          * should return {@code "200 OK"} to the client application
          * with the content type {@code "application/jwt"}.
          */
-        JWT
+        JWT,
+        ;
     }
 
 

@@ -191,7 +191,8 @@ public class AuthorizationFailResponse extends ApiResponse
          * to the client application with an HTML which triggers
          * redirection.
          */
-        FORM
+        FORM,
+        ;
     }
 
 
