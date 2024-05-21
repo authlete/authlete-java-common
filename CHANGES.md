@@ -1,6 +1,34 @@
 CHANGES
 =======
 
+4.1 (2024-05-14)
+----------------
+
+- `AuthleteApi` class
+    * Removed `getTokenCreateBatchStatus(TokenCreateBatchStatusRequest)` method.
+    * Added `getTokenCreateBatchStatus(String)` method.
+
+- Removed `TokenCreateBatchStatusRequest`.
+
+- `TokenCreateBatchResponse` class
+    * Removed getNotificationToken() method.
+    * Removed setNotificationToken(String) method.
+
+
+3.99 (2024-05-10)
+-----------------
+
+- `AccessRight` class
+    * Added `canDoAny(long, AccessRight)` method.
+
+
+3.98 (2024-05-09)
+-----------------
+
+- `Utils` class
+    * Set the `ToNumberPolicy.LONG_OR_DOUBLE` policy to Gson objects.
+
+
 3.97 (2024-04-23)
 -----------------
 

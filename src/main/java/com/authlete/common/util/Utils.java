@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2022 Authlete, Inc.
+ * Copyright (C) 2015-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import com.authlete.common.dto.Scope;
 import com.authlete.common.types.Prompt;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.ToNumberPolicy;
 
 
 public class Utils
@@ -36,7 +37,10 @@ public class Utils
 
     private static GsonBuilder gsonBuilder()
     {
-        return new GsonBuilder().serializeNulls();
+        return new GsonBuilder()
+                .serializeNulls()
+                .setObjectToNumberStrategy(ToNumberPolicy.LONG_OR_DOUBLE)
+                ;
     }
 
 

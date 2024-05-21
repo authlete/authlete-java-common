@@ -1,6 +1,34 @@
 変更点
 ======
 
+4.1 (2024 年 05 月 14 日)
+------------------------
+
+- `AuthleteApi` クラス
+    * `getTokenCreateBatchStatus(TokenCreateBatchStatusRequest)` メソッドを削除。
+    * `getTokenCreateBatchStatus(String)` メソッドを追加。
+
+- `TokenCreateBatchStatusRequest` クラスを削除。
+
+- `TokenCreateBatchResponse` クラス
+    * getNotificationToken() メソッドを削除。
+    * setNotificationToken(String) メソッドを削除。
+
+
+3.99 (2024 年 05 月 10 日)
+--------------------------
+
+- `AccessRight` クラス
+    * `canDoAny(long, AccessRight)` メソッドを追加。
+
+
+3.98 (2024 年 05 月 09 日)
+--------------------------
+
+- `Utils` クラス
+    * Gson オブジェクトに `ToNumberPolicy.LONG_OR_DOUBLE` ポリシーを設定。
+
+
 3.97 (2024 年 04 月 23 日)
 --------------------------
 

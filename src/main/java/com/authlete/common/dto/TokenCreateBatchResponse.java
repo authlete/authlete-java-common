@@ -29,7 +29,6 @@ public class TokenCreateBatchResponse extends ApiResponse
 
 
     private String requestId;
-    private String notificationToken;
 
 
     /**
@@ -54,47 +53,6 @@ public class TokenCreateBatchResponse extends ApiResponse
     public TokenCreateBatchResponse setRequestId(String requestId)
     {
         this.requestId = requestId;
-
-        return this;
-    }
-
-
-    /**
-     * Get the notification token. This token will be contained in the {@code Authorization}
-     * header of the batch notification sent by the {@code /auth/token/create/batch}
-     * API to the batch notification endpoint (the value returned by {@link Service#getTokenBatchNotificationEndpoint()
-     * getTokenBatchNotificationEndpoint()} of the {@link Service service}) using
-     * HTTP {@code POST} method when the batch process has succeeded or failed.
-     * It may be necessary to validate the incoming data to the notification endpoint
-     * against this token value.
-     *
-     * @return
-     *         The notification token.
-     */
-    public String getNotificationToken()
-    {
-        return notificationToken;
-    }
-
-
-    /**
-     * Set the notification token. This token will be contained in the {@code Authorization}
-     * header of the batch notification sent by the {@code /auth/token/create/batch}
-     * API to the batch notification endpoint (the value returned by {@link Service#getTokenBatchNotificationEndpoint()
-     * getTokenBatchNotificationEndpoint()} of the {@link Service service}) using
-     * HTTP {@code POST} method when the batch process has succeeded or failed.
-     * It may be necessary to validate the incoming data to the notification endpoint
-     * against this token value.
-     *
-     * @param token
-     *         The notificationToken.
-     *
-     * @return
-     *         {@this} object.
-     */
-    public TokenCreateBatchResponse setNotificationToken(String token)
-    {
-        this.notificationToken = token;
 
         return this;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Authlete, Inc.
+ * Copyright (C) 2023-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -116,6 +116,31 @@ public enum AccessRight
             return false;
         }
         if (this.clientSpecific && (clientId <= 0 || serviceId <= 0)) // client specific also needs a service ID
+        {
+            return false;
+        }
+        if (this.equals(compare) || this.includes.contains(compare))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    /**
+     * Return true if this access right has at least the amount of access of the
+     * compared access right on any object in the list. If the access right is client
+     * specific, the serviceId is a required parameter. If the access right is
+     * service specific, this is true for all possible services regardless of value.
+     *
+     * @since 3.99
+     */
+    public boolean canDoAny(long serviceId, AccessRight compare)
+    {
+        if (this.clientSpecific && serviceId <= 0)
         {
             return false;
         }
