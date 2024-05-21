@@ -115,7 +115,6 @@ import com.authlete.common.dto.ServiceListResponse;
 import com.authlete.common.dto.StandardIntrospectionRequest;
 import com.authlete.common.dto.StandardIntrospectionResponse;
 import com.authlete.common.dto.TokenCreateBatchResponse;
-import com.authlete.common.dto.TokenCreateBatchStatusRequest;
 import com.authlete.common.dto.TokenCreateBatchStatusResponse;
 import com.authlete.common.dto.TokenCreateRequest;
 import com.authlete.common.dto.TokenCreateResponse;
