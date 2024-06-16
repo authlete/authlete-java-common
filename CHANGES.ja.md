@@ -1,8 +1,20 @@
 変更点
 ======
 
+4.2 (2024 年 06 月 16 日)
+-------------------------
+
+- `CredentialBatchIssueResponse.Action` 列挙型
+    * `ACCEPTED` を追加。
+    * `ACCEPTED_JWT` を追加。
+
+- `CredentialRequestInfo` クラス
+    * `getBindingKeys()` メソッドを追加。
+    * `setBindingKeys(String[])` メソッドを追加。
+
+
 4.1 (2024 年 05 月 14 日)
-------------------------
+-------------------------
 
 - `AuthleteApi` クラス
     * `getTokenCreateBatchStatus(TokenCreateBatchStatusRequest)` メソッドを削除。

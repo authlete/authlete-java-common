@@ -1,6 +1,18 @@
 CHANGES
 =======
 
+4.2 (2024-06-16)
+----------------
+
+- `CredentialBatchIssueResponse.Action` enum
+    * Added `ACCEPTED`.
+    * Added `ACCEPTED_JWT`.
+
+- `CredentialRequestInfo` class
+    * Added `getBindingKeys()` method.
+    * Added `setBindingKeys(String[])` method.
+
+
 4.1 (2024-05-14)
 ----------------
 
