@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Authlete, Inc.
+ * Copyright (C) 2023-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -66,6 +66,54 @@ package com.authlete.common.dto;
  *
  * <pre>
  * HTTP/1.1 200 OK
+ * Content-Type: application/jwt
+ * Cache-Control: no-store
+ *
+ * (Put the value of the "responseContent" parameter here.)
+ * </pre>
+ *
+ * <hr>
+ * <h3>{@code action} = {@link Action#ACCEPTED ACCEPTED}</h3>
+ *
+ * <p>
+ * The {@code action} value {@link Action#ACCEPTED ACCEPTED} means
+ * that transaction IDs have been issued successfully, but not a
+ * single credential has been issued. In this case, the implementation
+ * of the batch credential endpoint should return a successful response
+ * to the request sender. The HTTP status code and the content type of
+ * the response should be 202 and {@code application/json}, respectively.
+ * The value of the {@code responseContent} parameter can be used as
+ * the message body of the response. It contains the
+ * "{@code credential_responses}" parameter that conforms to the
+ * specification of "Batch Credential Response".
+ * </p>
+ *
+ * <pre>
+ * HTTP/1.1 202 Accepted
+ * Content-Type: application/json
+ * Cache-Control: no-store
+ *
+ * (Put the value of the "responseContent" parameter here.)
+ * </pre>
+ *
+ * <hr>
+ * <h3>{@code action} = {@link Action#ACCEPTED_JWT ACCEPTED_JWT}</h3>
+ *
+ * <p>
+ * The {@code action} value {@link Action#ACCEPTED_JWT ACCEPTED_JWT}
+ * means that transaction IDs have been issued successfully, but not
+ * a single credential has been issued, and the batch credential
+ * response should be encrypted. In this case, the implementation of
+ * the batch credential endpoint should return a successful response
+ * to the request sender. The HTTP status code and the content type
+ * of the response should be 202 and {@code application/jwt},
+ * respectively. The value of the {@code responseContent} parameter
+ * is an encrypted JWT and can be used as the message body of the
+ * response.
+ * </p>
+ *
+ * <pre>
+ * HTTP/1.1 202 Accepted
  * Content-Type: application/jwt
  * Cache-Control: no-store
  *
@@ -193,7 +241,7 @@ package com.authlete.common.dto;
  */
 public class CredentialBatchIssueResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -220,6 +268,56 @@ public class CredentialBatchIssueResponse extends ApiResponse
          * @since 3.86
          */
         OK_JWT,
+
+        /**
+         * Transaction IDs were issued successfully, but not a single
+         * credential was issued. The implementation of the batch credential
+         * endpoint should return a successful response with the HTTP status
+         * code "202 Accepted" and the content type {@code application/json}.
+         *
+         * <p>
+         * NOTE: <a href="https://github.com/openid/OpenID4VCI/pull/293"
+         * >OpenID4VCI PR 293</a> "rework credential and batch credential
+         * endpoint" has added the following new requirement:
+         * </p>
+         *
+         * <blockquote>
+         * <p>
+         * <i>If all requests are responded to using a {@code transaction_id},
+         * the Issuer MUST use the HTTP status code 202 (as detailed in Section
+         * 15.3.3 of [RFC9110]).</i>
+         * </p>
+         * </blockquote>
+         *
+         * @since 4.2
+         */
+        ACCEPTED,
+
+
+        /**
+         * Transaction IDs were issued successfully, but not a single
+         * credential was issued, and the batch credential response should be
+         * encrypted. The implementation of the batch credential endpoint
+         * should return a successful response with the HTTP status code
+         * "202 Accepted" and the content type {@code application/jwt}.
+         *
+         * <p>
+         * NOTE: <a href="https://github.com/openid/OpenID4VCI/pull/293"
+         * >OpenID4VCI PR 293</a> "rework credential and batch credential
+         * endpoint" has added the following new requirement:
+         * </p>
+         *
+         * <blockquote>
+         * <p>
+         * <i>If all requests are responded to using a {@code transaction_id},
+         * the Issuer MUST use the HTTP status code 202 (as detailed in Section
+         * 15.3.3 of [RFC9110]).</i>
+         * </p>
+         * </blockquote>
+         *
+         * @since 4.2
+         */
+        ACCEPTED_JWT,
 
         /**
          * The original batch credential request is wrong. This can happen,
