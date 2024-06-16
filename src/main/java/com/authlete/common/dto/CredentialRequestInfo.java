@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Authlete, Inc.
+ * Copyright (C) 2023-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -37,7 +37,7 @@ import java.io.Serializable;
  */
 public class CredentialRequestInfo implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -56,6 +56,14 @@ public class CredentialRequestInfo implements Serializable
      * The binding key specified by the proof in the credential request.
      */
     private String bindingKey;
+
+
+    /**
+     * The binding keys specified by the proofs in the credential request.
+     *
+     * @since 4.2
+     */
+    private String[] bindingKeys;
 
 
     /**
@@ -166,6 +174,7 @@ public class CredentialRequestInfo implements Serializable
      *         The binding key.
      *
      * @return
+     *         {@code this} object}.
      */
     public CredentialRequestInfo setBindingKey(String bindingKey)
     {
@@ -176,12 +185,57 @@ public class CredentialRequestInfo implements Serializable
 
 
     /**
+     * Get the binding keys specified by the proofs in the credential request.
+     * The format of each entry in the returned array is a string representation
+     * of JWK (<a href="https://www.rfc-editor.org/rfc/rfc7517.html"
+     * >RFC 7517 JSON Web Key</a>).
+     *
+     * @return
+     *         The binding keys. If the credential request does not contain
+     *         proofs, binding keys are not available. In the case, {@code null}
+     *         is returned.
+     *
+     * @since 4.2
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc7517.html"
+     *      >RFC 7517 JSON Web Key</a>
+     */
+    public String[] getBindingKeys()
+    {
+        return bindingKeys;
+    }
+
+
+    /**
+     * Set the binding keys specified by the proofs in the credential request.
+     * The format of each entry in the returned array is a string representation
+     * of JWK (<a href="https://www.rfc-editor.org/rfc/rfc7517.html"
+     * >RFC 7517 JSON Web Key</a>).
+     *
+     * @param bindingKeys
+     *         The binding keys.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.2
+     */
+    public CredentialRequestInfo setBindingKeys(String[] bindingKeys)
+    {
+        this.bindingKeys = bindingKeys;
+
+        return this;
+    }
+
+
+    /**
      * Get the details of the credential request. The format is JSON Object.
      *
      * <p>
      * The value is almost the same as the credential request except that it
-     * does not contain the {@code "format"} parameter and the {@code "proof"}
-     * parameter.
+     * does not contain the {@code "format"} parameter, the {@code "proof"}
+     * parameter, the {@code "proofs"} parameter, and the
+     * {@code credential_response_encryption} parameter.
      * </p>
      *
      * <p>
