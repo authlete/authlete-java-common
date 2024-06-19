@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.3 (2024 年 06 月 19 日)
+-------------------------
+
 - `BackchannelAuthenticationRequest` クラス
     * `getOauthClientAttestation()` メソッドを追加。
     * `setOauthClientAttestation(String)` メソッドを追加。

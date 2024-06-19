@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.3 (2024-06-19)
+----------------
+
 - `BackchannelAuthenticationRequest` class
     * Added `getOauthClientAttestation()` method.
     * Added `setOauthClientAttestation(String)` method.
