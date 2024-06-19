@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Authlete, Inc.
+ * Copyright (C) 2023-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -49,6 +49,19 @@ public enum ClientAssertionType
      * The client assertion type used by the {@code attest_jwt_client_auth}
      * client authentication method.
      * </p>
+     *
+     * <p>
+     * The draft 03 of "OAuth 2.0 Attestation-Based Client Authentication" has
+     * deprecated the usage of the {@code client_assertion} parameter and the
+     * {@code client_assertion_type} parameter, and introduced another different
+     * way to specify a pair of a client attestation and a client attestation PoP.
+     * Consequently, this enum entry is no longer used.
+     * </p>
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/"
+     *      >OAuth 2.0 Attestation-Based Client Authentication</a>
+     *
+     * @deprecated
      */
     JWT_CLIENT_ATTESTATION((short)2, "urn:ietf:params:oauth:client-assertion-type:jwt-client-attestation"),
     ;

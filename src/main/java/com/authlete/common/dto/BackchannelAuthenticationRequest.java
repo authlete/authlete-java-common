@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Authlete, Inc.
+ * Copyright (C) 2018-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -97,6 +97,26 @@ import com.authlete.common.web.URLCoder;
  * </p>
  * </dd>
  *
+ * <dt><b><code>oauthClientAttestation</code></b> (OPTIONAL; Authlete 3.0 onwards)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code OAuth-Client-Attestation} HTTP header, which is
+ * defined in the specification of <a href=
+ * "https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/"
+ * >OAuth 2.0 Attestation-Based Client Authentication</a>.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>oauthClientAttestationPop</code></b> (OPTIONAL; Authlete 3.0 onwards)</dt>
+ * <dd>
+ * <p>
+ * The value of the {@code OAuth-Client-Attestation-PoP} HTTP header, which is
+ * defined in the specification of <a href=
+ * "https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/"
+ * >OAuth 2.0 Attestation-Based Client Authentication</a>.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -104,7 +124,7 @@ import com.authlete.common.web.URLCoder;
  */
 public class BackchannelAuthenticationRequest implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
 
     /**
@@ -135,6 +155,30 @@ public class BackchannelAuthenticationRequest implements Serializable
      * Client certificate path.
      */
     private String[] clientCertificatePath;
+
+
+    /**
+     * The value of the {@code OAuth-Client-Attestation} HTTP header.
+     *
+     * @since 4.3
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/"
+     *      >OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    private String oauthClientAttestation;
+
+
+    /**
+     * The value of the {@code OAuth-Client-Attestation-PoP} HTTP header.
+     *
+     * @since 4.3
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/"
+     *      >OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    private String oauthClientAttestationPop;
 
 
     /**
@@ -317,6 +361,88 @@ public class BackchannelAuthenticationRequest implements Serializable
     public BackchannelAuthenticationRequest setClientCertificatePath(String[] path)
     {
         this.clientCertificatePath = path;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the {@code OAuth-Client-Attestation} HTTP header.
+     *
+     * @return
+     *         The value of the {@code OAuth-Client-Attestation} HTTP header.
+     *
+     * @since 4.3
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/"
+     *      >OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    public String getOauthClientAttestation()
+    {
+        return oauthClientAttestation;
+    }
+
+
+    /**
+     * Set the value of the {@code OAuth-Client-Attestation} HTTP header.
+     *
+     * @param jwt
+     *         The value of the {@code OAuth-Client-Attestation} HTTP header.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.3
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/"
+     *      >OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    public BackchannelAuthenticationRequest setOauthClientAttestation(String jwt)
+    {
+        this.oauthClientAttestation = jwt;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the {@code OAuth-Client-Attestation-PoP} HTTP header.
+     *
+     * @return
+     *         The value of the {@code OAuth-Client-Attestation-PoP} HTTP header.
+     *
+     * @since 4.3
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/"
+     *      >OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    public String getOauthClientAttestationPop()
+    {
+        return oauthClientAttestationPop;
+    }
+
+
+    /**
+     * Set the value of the {@code OAuth-Client-Attestation-PoP} HTTP header.
+     *
+     * @param jwt
+     *         The value of the {@code OAuth-Client-Attestation-PoP} HTTP header.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.3
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/"
+     *      >OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    public BackchannelAuthenticationRequest setOauthClientAttestationPop(String jwt)
+    {
+        this.oauthClientAttestationPop = jwt;
 
         return this;
     }

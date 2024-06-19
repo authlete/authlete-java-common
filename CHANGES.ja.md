@@ -1,6 +1,37 @@
 変更点
 ======
 
+- `BackchannelAuthenticationRequest` クラス
+    * `getOauthClientAttestation()` メソッドを追加。
+    * `setOauthClientAttestation(String)` メソッドを追加。
+    * `getOauthClientAttestationPop()` メソッドを追加。
+    * `setOauthClientAttestationPop(String)` メソッドを追加。
+
+- `DeviceAuthorizationRequest` クラス
+    * `getOauthClientAttestation()` メソッドを追加。
+    * `setOauthClientAttestation(String)` メソッドを追加。
+    * `getOauthClientAttestationPop()` メソッドを追加。
+    * `setOauthClientAttestationPop(String)` メソッドを追加。
+
+- `PushedAuthReqRequest` クラス
+    * `getOauthClientAttestation()` メソッドを追加。
+    * `setOauthClientAttestation(String)` メソッドを追加。
+    * `getOauthClientAttestationPop()` メソッドを追加。
+    * `setOauthClientAttestationPop(String)` メソッドを追加。
+
+- `RevocationRequest` クラス
+    * `getOauthClientAttestation()` メソッドを追加。
+    * `setOauthClientAttestation(String)` メソッドを追加。
+    * `getOauthClientAttestationPop()` メソッドを追加。
+    * `setOauthClientAttestationPop(String)` メソッドを追加。
+
+- `TokenRequest` クラス
+    * `getOauthClientAttestation()` メソッドを追加。
+    * `setOauthClientAttestation(String)` メソッドを追加。
+    * `getOauthClientAttestationPop()` メソッドを追加。
+    * `setOauthClientAttestationPop(String)` メソッドを追加。
+
+
 4.2 (2024 年 06 月 16 日)
 -------------------------
 

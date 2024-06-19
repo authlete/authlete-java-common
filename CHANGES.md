@@ -1,6 +1,37 @@
 CHANGES
 =======
 
+- `BackchannelAuthenticationRequest` class
+    * Added `getOauthClientAttestation()` method.
+    * Added `setOauthClientAttestation(String)` method.
+    * Added `getOauthClientAttestationPop()` method.
+    * Added `setOauthClientAttestationPop(String)` method.
+
+- `DeviceAuthorizationRequest` class
+    * Added `getOauthClientAttestation()` method.
+    * Added `setOauthClientAttestation(String)` method.
+    * Added `getOauthClientAttestationPop()` method.
+    * Added `setOauthClientAttestationPop(String)` method.
+
+- `PushedAuthReqRequest` class
+    * Added `getOauthClientAttestation()` method.
+    * Added `setOauthClientAttestation(String)` method.
+    * Added `getOauthClientAttestationPop()` method.
+    * Added `setOauthClientAttestationPop(String)` method.
+
+- `RevocationRequest` class
+    * Added `getOauthClientAttestation()` method.
+    * Added `setOauthClientAttestation(String)` method.
+    * Added `getOauthClientAttestationPop()` method.
+    * Added `setOauthClientAttestationPop(String)` method.
+
+- `TokenRequest` class
+    * Added `getOauthClientAttestation()` method.
+    * Added `setOauthClientAttestation(String)` method.
+    * Added `getOauthClientAttestationPop()` method.
+    * Added `setOauthClientAttestationPop(String)` method.
+
+
 4.2 (2024-06-16)
 ----------------
 
