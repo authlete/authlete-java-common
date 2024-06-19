@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2023 Authlete, Inc.
+ * Copyright (C) 2014-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -152,6 +152,9 @@ public enum ClientAuthMethod
      *
      * @since 3.74
      * @since Authlete 3.0
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/"
+     *      >OAuth 2.0 Attestation-Based Client Authentication</a>
      */
     ATTEST_JWT_CLIENT_AUTH((short)7, "attest_jwt_client_auth", 0x2),
     ;
