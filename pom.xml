@@ -28,16 +28,18 @@
         </developer>
     </developers>
 
-    <scm>
-        <connection>scm:git:git@github.com:authlete/authlete-java-common.git</connection>
-        <developerConnection>scm:git:git@github.com:authlete/authlete-java-common.git</developerConnection>
-        <url>https://github.com/authlete/authlete-java-common.git</url>
-        <tag>HEAD</tag>
-    </scm>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <git.connection>scm:git:git@github.com:authlete/authlete-java-common.git</git.connection>
+        <git.url>git@github.com:authlete/authlete-java-common.git</git.url>
     </properties>
+
+    <scm>
+        <connection>${git.connection}</connection>
+        <developerConnection>${git.connection}</developerConnection>
+        <url>${git.url}</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <dependencies>
         <dependency>
