@@ -1296,7 +1296,7 @@ public class TokenCreateRequest implements Serializable
      * @return
      *         Client Identifier.
      *
-     * @since 4.4
+     * @since 4.6
      * @since Authlete 3.0
      */
     public String getClientIdentifier()
@@ -1315,7 +1315,7 @@ public class TokenCreateRequest implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 4.4
+     * @since 4.6
      * @since Authlete 3.0
      */
     public TokenCreateRequest setClientIdentifier(String clientIdentifier)
