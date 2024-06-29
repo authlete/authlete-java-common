@@ -56,7 +56,15 @@ import com.authlete.common.types.GrantType;
  * </p>
  * </dd>
  *
- * <dt><b><code>clientId</code></b> (REQUIRED)</dt>
+ * <dt><b><code>clientId</code></b> (CONDITIONALLY REQUIRED)</dt>
+ * <dd>
+ * <p>
+ * The ID of the client application which will be associated with
+ * a newly created access token.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>clientIdentifier</code></b> (CONDITIONALLY REQUIRED)</dt>
  * <dd>
  * <p>
  * The ID of the client application which will be associated with
@@ -290,6 +298,7 @@ public class TokenCreateRequest implements Serializable
     private String jwtAtClaims;
     private String acr;
     private long authTime;
+    private String clientIdentifier;
 
 
     /**
@@ -1275,6 +1284,43 @@ public class TokenCreateRequest implements Serializable
     public TokenCreateRequest setAuthTime(long authTime)
     {
         this.authTime = authTime;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client Identifier that will be associated with a newly created
+     * access token.
+     *
+     * @return
+     *         Client Identifier.
+     *
+     * @since 4.4
+     * @since Authlete 3.0
+     */
+    public String getClientIdentifier()
+    {
+        return clientIdentifier;
+    }
+
+
+    /**
+     * Set the client Identifier that will be associated with a newly created
+     * access token.
+     *
+     * @param clientIdentifier
+     *         Client Identifier.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.4
+     * @since Authlete 3.0
+     */
+    public TokenCreateRequest setClientIdentifier(String clientIdentifier)
+    {
+        this.clientIdentifier = clientIdentifier;
 
         return this;
     }
