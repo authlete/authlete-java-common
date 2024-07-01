@@ -275,7 +275,7 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 13L;
+    private static final long serialVersionUID = 14L;
 
 
     private GrantType grantType;

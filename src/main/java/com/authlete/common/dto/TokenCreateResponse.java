@@ -119,10 +119,11 @@ public class TokenCreateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 8L;
+    private static final long serialVersionUID = 9L;
     private static final String SUMMARY_FORMAT
-        = "action=%s, grantType=%s, clientId=%d, subject=%s, scopes=%s, "
-        + "accessToken=%s, tokenType=%s, expiresIn=%d, expiresAt=%d, refreshToken=%s";
+        = "action=%s, grantType=%s, clientId=%d, clientIdentifier=%s, subject=%s, "
+        + "scopes=%s, accessToken=%s, tokenType=%s, expiresIn=%d, expiresAt=%d, "
+        + "refreshToken=%s";
 
 
     /**
@@ -204,6 +205,11 @@ public class TokenCreateResponse extends ApiResponse
      * @since Authlete 3.0.0
      */
     private String[] refreshTokenScopes;
+
+    /**
+     * @since Authlete 3.0.0
+     */
+    private String clientIdentifier;
 
 
     /**
@@ -551,7 +557,7 @@ public class TokenCreateResponse extends ApiResponse
     public String summarize()
     {
         return String.format(SUMMARY_FORMAT,
-            action, grantType, clientId, subject, Utils.join(scopes, " "),
+            action, grantType, clientId, clientIdentifier, subject, Utils.join(scopes, " "),
             accessToken, tokenType, expiresIn, expiresAt, refreshToken);
     }
 
@@ -747,6 +753,41 @@ public class TokenCreateResponse extends ApiResponse
     public TokenCreateResponse setRefreshTokenScopes(String[] refreshTokenScopes)
     {
         this.refreshTokenScopes = refreshTokenScopes;
+
+        return this;
+    }
+
+
+    /**
+     * Get the client Identifier associated with the newly issued access token.
+     *
+     * @return
+     *         Client Identifier.
+     *
+     * @since 4.7
+     * @since Authlete API 3.0
+     */
+    public String getClientIdentifier()
+    {
+        return clientIdentifier;
+    }
+
+
+    /**
+     * Set the client Identifier associated with the newly issued access token.
+     *
+     * @param clientIdentifier
+     *         Client Identifier.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.7
+     * @since Authlete API 3.0
+     */
+    public TokenCreateResponse setClientIdentifier(String clientIdentifier)
+    {
+        this.clientIdentifier = clientIdentifier;
 
         return this;
     }
