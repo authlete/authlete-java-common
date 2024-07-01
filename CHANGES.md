@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+4.7 (2024-07-01)
+----------------
+
+- `TokenCreateResponse` class
+    * Added `getClientIdentifier()` method.
+    * Added `setClientIdentifier(String)` method.
+
+
 4.6 (2024-06-30)
 ----------------
 

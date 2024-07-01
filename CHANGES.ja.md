@@ -1,6 +1,14 @@
 変更点
 ======
 
+4.7 (2024 年 07 月 01 日)
+-------------------------
+
+- `TokenCreateResponse` クラス
+    * `getClientIdentifier()` メソッドを追加。
+    * `setClientIdentifier(String)` メソッドを追加。
+
+
 4.6 (2024 年 06 月 30 日)
 -------------------------
 
