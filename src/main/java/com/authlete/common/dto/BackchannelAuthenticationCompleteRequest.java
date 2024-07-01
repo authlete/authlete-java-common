@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2023 Authlete, Inc.
+ * Copyright (C) 2018-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -85,7 +85,7 @@ import com.authlete.common.util.Utils;
  */
 public class BackchannelAuthenticationCompleteRequest implements Serializable
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     /**
@@ -261,6 +261,28 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
      * @since Authlete 2.2.27
      */
     private String accessToken;
+
+
+    /**
+     * The duration of the access token that may be issued as a result
+     * of the Authlete API call.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    private long accessTokenDuration;
+
+
+    /**
+     * The duration of the refresh token that may be issued as a result
+     * of the Authlete API call.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    private long refreshTokenDuration;
 
 
     /**
@@ -1104,6 +1126,108 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
     public BackchannelAuthenticationCompleteRequest setAccessToken(String accessToken)
     {
         this.accessToken = accessToken;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of the access token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the access token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @return
+     *         The duration of the access token in seconds.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    public long getAccessTokenDuration()
+    {
+        return accessTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the access token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the access token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @param duration
+     *         The duration of the access token in seconds.
+     *
+     * @return
+     *         {@code this} request parameter.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    public BackchannelAuthenticationCompleteRequest setAccessTokenDuration(long duration)
+    {
+        this.accessTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of the refresh token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the refresh token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @return
+     *         The duration of the refresh token in seconds.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    public long getRefreshTokenDuration()
+    {
+        return refreshTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the refresh token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the refresh token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @param duration
+     *         The duration of the refresh token in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    public BackchannelAuthenticationCompleteRequest setRefreshTokenDuration(long duration)
+    {
+        this.refreshTokenDuration = duration;
 
         return this;
     }

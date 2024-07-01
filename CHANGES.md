@@ -1,6 +1,27 @@
 CHANGES
 =======
 
+- `BackchannelAuthenticationCompleteRequest` class
+    * Added `getAccessTokenDuration()` method.
+    * Added `setAccessTokenDuration(long)` method.
+    * Added `getRefreshTokenDuration()` method.
+    * Added `setRefreshTokenDuration(long)` method.
+
+- `DeviceCompleteRequest` class
+    * Added `getAccessTokenDuration()` method.
+    * Added `setAccessTokenDuration(long)` method.
+    * Added `getRefreshTokenDuration()` method.
+    * Added `setRefreshTokenDuration(long)` method.
+
+- `TokenIssueRequest` class
+    * Added `getRefreshTokenDuration()` method.
+    * Added `setRefreshTokenDuration(long)` method.
+
+- `TokenRequest` class
+    * Added `getRefreshTokenDuration()` method.
+    * Added `setRefreshTokenDuration(long)` method.
+
+
 4.7 (2024-07-01)
 ----------------
 

@@ -156,6 +156,14 @@ import com.authlete.common.web.URLCoder;
  * </p>
  * </dd>
  *
+ * <dt><b><code>refreshTokenDuration</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The duration of the refresh token that may be issued as a result of the
+ * Authlete API call. See {@link #getRefreshTokenDuration()} for details.
+ * </p>
+ * </dd>
+ *
  * <dt><b><code>dpopNonceRequired</code></b> (OPTIONAL; Authlete 3.0 onwards)</dt>
  * <dd>
  * <p>
@@ -204,7 +212,7 @@ import com.authlete.common.web.URLCoder;
  */
 public class TokenRequest implements Serializable
 {
-    private static final long serialVersionUID = 11L;
+    private static final long serialVersionUID = 12L;
 
 
     /**
@@ -292,6 +300,17 @@ public class TokenRequest implements Serializable
      * @since Authlete 3.0
      */
     private long accessTokenDuration;
+
+
+    /**
+     * The duration of the refresh token that may be issued as a result
+     * of the Authlete API call.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    private long refreshTokenDuration;
 
 
     /**
@@ -1025,6 +1044,57 @@ public class TokenRequest implements Serializable
     public TokenRequest setAccessTokenDuration(long duration)
     {
         this.accessTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of the refresh token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the refresh token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @return
+     *         The duration of the refresh token in seconds.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    public long getRefreshTokenDuration()
+    {
+        return refreshTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the refresh token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the refresh token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @param duration
+     *         The duration of the refresh token in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    public TokenRequest setRefreshTokenDuration(long duration)
+    {
+        this.refreshTokenDuration = duration;
 
         return this;
     }
