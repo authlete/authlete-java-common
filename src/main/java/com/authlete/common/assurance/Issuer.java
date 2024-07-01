@@ -163,7 +163,7 @@ public class Issuer extends LinkedHashMap<String, Object>
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static Issuer extract(Map<?,?> map, String key) throws IdentityAssuranceException
+    public static Issuer extract(Map<?, ?> map, String key) throws IdentityAssuranceException
     {
         Object object = map.get(key);
 
@@ -182,7 +182,7 @@ public class Issuer extends LinkedHashMap<String, Object>
 
     private static void fill(Issuer instance, Object object, String key)
     {
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         // "name": optional
         fillName(instance, map, key);
@@ -192,7 +192,7 @@ public class Issuer extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillName(Issuer instance, Map<?,?> map, String key)
+    private static void fillName(Issuer instance, Map<?, ?> map, String key)
     {
         // The value of "name" in the map.
         String value = Helper.extractString(map, NAME, key, false);
@@ -201,7 +201,7 @@ public class Issuer extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillCountry(Issuer instance, Map<?,?> map, String key)
+    private static void fillCountry(Issuer instance, Map<?, ?> map, String key)
     {
         // The value of "country" in the map.
         String value = Helper.extractString(map, COUNTRY, key, false);

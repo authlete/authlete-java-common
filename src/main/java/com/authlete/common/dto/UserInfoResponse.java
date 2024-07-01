@@ -291,7 +291,8 @@ public class UserInfoResponse extends ApiResponse
          * information to Authlete's {@code /auth/userinfo/issue}
          * endpoint in order to make Authlete generate an ID token.
          */
-        OK
+        OK,
+        ;
     }
 
 

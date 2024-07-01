@@ -291,7 +291,8 @@ public class IntrospectionResponse extends ApiResponse
          * The access token is valid. The service implementation should
          * return the protected resource to the client application.
          */
-        OK
+        OK,
+        ;
     }
 
 

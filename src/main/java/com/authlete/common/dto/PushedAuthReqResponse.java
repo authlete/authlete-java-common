@@ -321,6 +321,7 @@ public class PushedAuthReqResponse extends ApiResponse
          * return {@code 500} actually.
          */
         INTERNAL_SERVER_ERROR,
+        ;
     }
 
 

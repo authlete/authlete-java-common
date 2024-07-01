@@ -211,6 +211,7 @@ public class DeviceAuthorizationResponse extends ApiResponse
          * the client application.
          */
         INTERNAL_SERVER_ERROR,
+        ;
     }
 
 

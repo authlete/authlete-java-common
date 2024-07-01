@@ -48,7 +48,7 @@ public enum Plan
     /**
      * Enterprise plan.
      */
-    ENTERPRISE((short)3)
+    ENTERPRISE((short)3),
     ;
 
 

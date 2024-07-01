@@ -93,7 +93,7 @@ public abstract class Evidence extends LinkedHashMap<String, Object>
     {
         // Extract the element at the index as a Map.
         Object object = Helper.extractObject(list, index, key, true);
-        Map<?,?> map  = Helper.ensureMap(object, index, key);
+        Map<?, ?> map  = Helper.ensureMap(object, index, key);
 
         String parent = String.format("%s[%d]", key, index);
 
