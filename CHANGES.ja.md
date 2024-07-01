@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.8 (2024 年 07 月 01 日)
+-------------------------
+
 - `BackchannelAuthenticationCompleteRequest` クラス
     * `getAccessTokenDuration()` メソッドを追加
     * `setAccessTokenDuration(long)` メソッドを追加

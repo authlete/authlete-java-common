@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.8 (2024-07-01)
+----------------
+
 - `BackchannelAuthenticationCompleteRequest` class
     * Added `getAccessTokenDuration()` method.
     * Added `setAccessTokenDuration(long)` method.
