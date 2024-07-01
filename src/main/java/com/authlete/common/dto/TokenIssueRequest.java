@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2023 Authlete, Inc.
+ * Copyright (C) 2014-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,6 +78,14 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
+ * <dt><b><code>refreshTokenDuration</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The duration of the refresh token that may be issued as a result of the
+ * Authlete API call. See {@link #getRefreshTokenDuration()} for details.
+ * </p>
+ * </dd>
+ *
  * </dl>
  * </blockquote>
  *
@@ -92,7 +100,7 @@ import java.io.Serializable;
  */
 public class TokenIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     /**
@@ -142,6 +150,17 @@ public class TokenIssueRequest implements Serializable
      * @since Authlete 3.0
      */
     private long accessTokenDuration;
+
+
+    /**
+     * The duration of the refresh token that may be issued as a result
+     * of the Authlete API call.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    private long refreshTokenDuration;
 
 
     /**
@@ -497,6 +516,57 @@ public class TokenIssueRequest implements Serializable
     public TokenIssueRequest setAccessTokenDuration(long duration)
     {
         this.accessTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of the refresh token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the refresh token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @return
+     *         The duration of the refresh token in seconds.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    public long getRefreshTokenDuration()
+    {
+        return refreshTokenDuration;
+    }
+
+
+    /**
+     * Set the duration of the refresh token that may be issued as a result of
+     * the Authlete API call.
+     *
+     * <p>
+     * When this request parameter holds a positive integer, it is used as the
+     * duration of the refresh token. In other cases, this request parameter is
+     * ignored.
+     * </p>
+     *
+     * @param duration
+     *         The duration of the refresh token in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.8
+     * @since Authlete 2.3.20
+     * @since Authlete 3.0
+     */
+    public TokenIssueRequest setRefreshTokenDuration(long duration)
+    {
+        this.refreshTokenDuration = duration;
 
         return this;
     }
