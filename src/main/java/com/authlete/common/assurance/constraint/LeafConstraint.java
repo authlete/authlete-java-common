@@ -138,7 +138,7 @@ public class LeafConstraint extends BaseConstraint
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static LeafConstraint extract(Map<?,?> map, String key) throws ConstraintException
+    public static LeafConstraint extract(Map<?, ?> map, String key) throws ConstraintException
     {
         LeafConstraint instance = new LeafConstraint();
         instance.setExists(map.containsKey(key));
@@ -160,7 +160,7 @@ public class LeafConstraint extends BaseConstraint
             return;
         }
 
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         fillEssential(instance, map);
         fillValue(instance, map);
@@ -168,7 +168,7 @@ public class LeafConstraint extends BaseConstraint
     }
 
 
-    private static void fillEssential(LeafConstraint instance, Map<?,?> map)
+    private static void fillEssential(LeafConstraint instance, Map<?, ?> map)
     {
         instance.essentialExists = map.containsKey("essential");
 
@@ -179,7 +179,7 @@ public class LeafConstraint extends BaseConstraint
     }
 
 
-    private static boolean extractBoolean(Map<?,?> map, String key)
+    private static boolean extractBoolean(Map<?, ?> map, String key)
     {
         Object value = map.get(key);
 
@@ -187,7 +187,7 @@ public class LeafConstraint extends BaseConstraint
     }
 
 
-    private static void fillValue(LeafConstraint instance, Map<?,?> map)
+    private static void fillValue(LeafConstraint instance, Map<?, ?> map)
     {
         instance.valueExists = map.containsKey("value");
 
@@ -198,7 +198,7 @@ public class LeafConstraint extends BaseConstraint
     }
 
 
-    static String extractString(Map<?,?> map, String key)
+    static String extractString(Map<?, ?> map, String key)
     {
         Object value = map.get(key);
 
@@ -211,7 +211,7 @@ public class LeafConstraint extends BaseConstraint
     }
 
 
-    private static void fillValues(LeafConstraint instance, Map<?,?> map)
+    private static void fillValues(LeafConstraint instance, Map<?, ?> map)
     {
         instance.valuesExists = map.containsKey("values");
 
@@ -222,7 +222,7 @@ public class LeafConstraint extends BaseConstraint
     }
 
 
-    private static String[] extractStringArray(Map<?,?> map, String key)
+    private static String[] extractStringArray(Map<?, ?> map, String key)
     {
         Object value = map.get(key);
 

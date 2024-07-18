@@ -129,7 +129,7 @@ public enum JWEAlg
     /**
      * {@code "PBES2-HS512+A256KW"} (17); PBES2 with HMAC SHA-512 and "A256KW".
      */
-    PBES2_HS512_A256KW((short)17, "PBES2-HS512+A256KW")
+    PBES2_HS512_A256KW((short)17, "PBES2-HS512+A256KW"),
     ;
 
 

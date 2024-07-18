@@ -51,7 +51,8 @@ public class PropertiesLoader
          * start with {@code "/"}, {@code "/"} is prepended.
          * </p>
          */
-        CLASSPATH
+        CLASSPATH,
+        ;
     }
 
 

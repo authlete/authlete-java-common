@@ -251,6 +251,7 @@ public class GMResponse extends ApiResponse
          * implementation would return {@code "500 Internal Server Error"}.
          */
         AUTHLETE_ERROR,
+        ;
     }
 
 

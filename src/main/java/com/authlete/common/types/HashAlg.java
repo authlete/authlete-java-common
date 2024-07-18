@@ -25,5 +25,6 @@ public enum HashAlg
 {
     SHA_256,
     SHA_384,
-    SHA_512
+    SHA_512,
+    ;
 }

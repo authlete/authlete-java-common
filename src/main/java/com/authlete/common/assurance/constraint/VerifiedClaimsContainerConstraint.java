@@ -74,7 +74,7 @@ public class VerifiedClaimsContainerConstraint extends BaseConstraint
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static VerifiedClaimsContainerConstraint extract(Map<?,?> map) throws ConstraintException
+    public static VerifiedClaimsContainerConstraint extract(Map<?, ?> map) throws ConstraintException
     {
         VerifiedClaimsContainerConstraint instance = new VerifiedClaimsContainerConstraint();
         instance.setExists(true);
@@ -85,7 +85,7 @@ public class VerifiedClaimsContainerConstraint extends BaseConstraint
     }
 
 
-    private static void fill(VerifiedClaimsContainerConstraint instance, Map<?,?> map)
+    private static void fill(VerifiedClaimsContainerConstraint instance, Map<?, ?> map)
     {
         instance.verifiedClaims = VerifiedClaimsConstraint.extract(map, "verified_claims");
     }
@@ -126,7 +126,7 @@ public class VerifiedClaimsContainerConstraint extends BaseConstraint
             return null;
         }
 
-        Map<?,?> map = (Map<?,?>)new Gson().fromJson(json, Map.class);
+        Map<?, ?> map = (Map<?, ?>)new Gson().fromJson(json, Map.class);
 
         return extract(map);
     }

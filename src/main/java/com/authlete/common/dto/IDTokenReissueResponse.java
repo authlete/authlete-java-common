@@ -107,6 +107,7 @@ public class IDTokenReissueResponse extends ApiResponse
         OK,
         INTERNAL_SERVER_ERROR,
         CALLER_ERROR,
+        ;
     }
 
 

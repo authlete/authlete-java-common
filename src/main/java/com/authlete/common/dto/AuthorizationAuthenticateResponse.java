@@ -147,7 +147,8 @@ public class AuthorizationAuthenticateResponse extends ApiResponse
          * The result of authentication was obtained. The service
          * implementation should return {@code "200 OK"}.
          */
-        OK
+        OK,
+        ;
     }
 
 
