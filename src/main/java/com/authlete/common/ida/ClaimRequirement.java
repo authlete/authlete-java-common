@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Authlete, Inc.
+ * Copyright (C) 2022-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,10 +51,48 @@ class ClaimRequirement
             )));
 
 
+    private boolean mEssential;
     private String mValue;
     private List<String> mValues;
     private Long mMaxAge;
+    private String mPurpose;
     private Set<String> mUnreservedKeys;
+
+
+    /**
+     * Get the value of the {@code "essential"} constraint.
+     *
+     * @return
+     *         {@code true} if the {@code "essential"} constraint is present
+     *         and its value is {@code true}. In other cases, including the
+     *         case where the {@code "essential"} constraint is missing,
+     *         {@code false} is returned.
+     *
+     * @since 4.9
+     */
+    public boolean isEssential()
+    {
+        return mEssential;
+    }
+
+
+    /**
+     * Set the value of the {@code "essential"} constraint.
+     *
+     * @param essential
+     *         The value of the {@code "essential"} constraint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.9
+     */
+    public ClaimRequirement setEssential(boolean essential)
+    {
+        mEssential = essential;
+
+        return this;
+    }
 
 
     /**
@@ -151,6 +189,51 @@ class ClaimRequirement
 
 
     /**
+     * Get the value of the {@code "purpose"} property.
+     *
+     * <p>
+     * The {@code "purpose"} property is not a constraint, but this class
+     * recognizes it to prevent it from being treated as a normal claim.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code "purpose"} property.
+     *         {@code null} if the property does not exist.
+     *
+     * @since 4.9
+     */
+    public String getPurpose()
+    {
+        return mPurpose;
+    }
+
+
+    /**
+     * Set the value of the {@code "purpose"} property.
+     *
+     * <p>
+     * The {@code "purpose"} property is not a constraint, but this class
+     * recognizes it to prevent it from being treated as a normal claim.
+     * </p>
+     *
+     * @param purpose
+     *         The value of the {@code "purpose"} property.
+     *         {@code null} if the property does not exist.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.9
+     */
+    public ClaimRequirement setPurpose(String purpose)
+    {
+        mPurpose = purpose;
+
+        return this;
+    }
+
+
+    /**
      * Get unreserved keys that were found in the map given to the
      * {@link #parse(Map)} method.
      *
@@ -236,16 +319,25 @@ class ClaimRequirement
      * </p>
      *
      * <ul>
+     * <li>{@code "essential"}
      * <li>{@code "value"}
      * <li>{@code "values"}
      * <li>{@code "max_age"}
+     * <li>{@code "purpose"}
      * </ul>
      *
      * <p>
-     * It is assumed that the value of "value" is a string, the elements of
-     * {@code "values"} are all strings, and the value of {@code "max_age"}
-     * is a number. When constraints hold values of other types, the
-     * constraints are silently ignored.
+     * It is assumed that the value of {@code "essential"} is a boolean value
+     * ({@code true} or {@code false}), the value of {@code "value"} is a string,
+     * the elements of {@code "values"} are all strings, the value of {@code
+     * "max_age"} is a number, and the value of {@code "purpose"} is a string.
+     * When constraints hold values of other types, the constraints are silently
+     * ignored.
+     * </p>
+     *
+     * <p>
+     * The {@code "purpose"} property is not a constraint, but this class
+     * recognizes it to prevent it from being treated as a normal claim.
      * </p>
      *
      * <p>
@@ -255,8 +347,9 @@ class ClaimRequirement
      * </p>
      *
      * @param map
-     *         A {@code Map} object that may contain any of the {@code "value"},
-     *         {@code "values"} and {@code "max_age"} constraints.
+     *         A {@code Map} object that may contain any of the {@code "essential"},
+     *         {@code "value"}, {@code "values"}, {@code "max_age"} constraints
+     *         and the {@code "purpose"} property.
      *
      * @return
      *         A {@code ClaimRequirement} instance that represents constraints
@@ -271,9 +364,11 @@ class ClaimRequirement
         }
 
         // Constraints in the given map.
-        String       value  = extractAsString(    map, KEY_VALUE);
-        List<String> values = extractAsStringList(map, KEY_VALUES);
-        Long         maxAge = extractAsLong(      map, KEY_MAX_AGE);
+        Boolean      essential = extractAsBoolean(   map, KEY_ESSENTIAL);
+        String       value     = extractAsString(    map, KEY_VALUE);
+        List<String> values    = extractAsStringList(map, KEY_VALUES);
+        Long         maxAge    = extractAsLong(      map, KEY_MAX_AGE);
+        String       purpose   = extractAsString(    map, KEY_PURPOSE);
 
         // Unreserved keys in the given map.
         Set<String> unreservedKeys = map.keySet().stream()
@@ -288,17 +383,38 @@ class ClaimRequirement
         }
 
         // If the given map contains no constraints.
-        if (value == null && values == null && maxAge == null)
+        if (essential == null && value == null && values == null &&
+            maxAge == null && purpose == null)
         {
             return null;
         }
 
         return new ClaimRequirement()
+                .setEssential(Boolean.TRUE.equals(essential))
                 .setValue(value)
                 .setValues(values)
                 .setMaxAge(maxAge)
+                .setPurpose(purpose)
                 .setUnreservedKeys(unreservedKeys)
                 ;
+    }
+
+
+    /**
+     * Get the value of the key as a boolean value. If the value is not a boolean
+     * value, {@code null} is returned.
+     */
+    private static Boolean extractAsBoolean(Map<String, Object> map, String key)
+    {
+        Object value = map.get(key);
+
+        // If the value is a boolean value.
+        if (value instanceof Boolean)
+        {
+            return (Boolean)value;
+        }
+
+        return null;
     }
 
 

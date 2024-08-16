@@ -1,28 +1,37 @@
 変更点
 ======
 
+- `ClaimRequirement` クラス
+    * `isEssential()` メソッドを追加。
+    * `setEssential(boolean)` メソッドを追加。
+    * `getPurpose()` メソッドを追加。
+    * `setPurpose(String)` メソッドを追加。
+    * `value`, `values`, `max_age` 制約のいずれも伴わずに `essential` または
+      `purpose` が指定されるケースをサポートするため `parse(Map)` メソッドの実装を更新。
+
+
 4.8 (2024 年 07 月 01 日)
 -------------------------
 
 - `BackchannelAuthenticationCompleteRequest` クラス
-    * `getAccessTokenDuration()` メソッドを追加
-    * `setAccessTokenDuration(long)` メソッドを追加
-    * `getRefreshTokenDuration()` メソッドを追加
-    * `setRefreshTokenDuration(long)` メソッドを追加
+    * `getAccessTokenDuration()` メソッドを追加。
+    * `setAccessTokenDuration(long)` メソッドを追加。
+    * `getRefreshTokenDuration()` メソッドを追加。
+    * `setRefreshTokenDuration(long)` メソッドを追加。
 
 - `DeviceCompleteRequest` クラス
-    * `getAccessTokenDuration()` メソッドを追加
-    * `setAccessTokenDuration(long)` メソッドを追加
-    * `getRefreshTokenDuration()` メソッドを追加
-    * `setRefreshTokenDuration(long)` メソッドを追加
+    * `getAccessTokenDuration()` メソッドを追加。
+    * `setAccessTokenDuration(long)` メソッドを追加。
+    * `getRefreshTokenDuration()` メソッドを追加。
+    * `setRefreshTokenDuration(long)` メソッドを追加。
 
 - `TokenIssueRequest` クラス
-    * `getRefreshTokenDuration()` メソッドを追加
-    * `setRefreshTokenDuration(long)` メソッドを追加
+    * `getRefreshTokenDuration()` メソッドを追加。
+    * `setRefreshTokenDuration(long)` メソッドを追加。
 
 - `TokenRequest` クラス
-    * `getRefreshTokenDuration()` メソッドを追加
-    * `setRefreshTokenDuration(long)` メソッドを追加
+    * `getRefreshTokenDuration()` メソッドを追加。
+    * `setRefreshTokenDuration(long)` メソッドを追加。
 
 
 4.7 (2024 年 07 月 01 日)

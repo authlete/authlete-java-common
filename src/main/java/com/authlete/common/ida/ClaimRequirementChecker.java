@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Authlete, Inc.
+ * Copyright (C) 2022-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -136,6 +136,40 @@ class ClaimRequirementChecker
 
         boolean satisfied = true;
 
+        // NOTE for the "essential" constraint:
+        //
+        // From a filtering point of view, the "essential" constraint is
+        // meaningless because even if "essential":true is specified and the
+        // said claim is unavailable, the authorization server must not treat
+        // the case as an error.
+        //
+        //   OpenID Connect Core 1.0 / 5.5.1. Individual Claims Requests
+        //
+        //     essential
+        //       OPTIONAL. Indicates whether the Claim being requested is an
+        //       Essential Claim. If the value is true, this indicates that the
+        //       Claim is an Essential Claim. For instance, the Claim request:
+        //
+        //         "auth_time": {"essential": true}
+        //
+        //       can be used to specify that it is Essential to return an
+        //       auth_time Claim Value.
+        //
+        //       If the value is false, it indicates that it is a Voluntary
+        //       Claim. The default is false.
+        //
+        //       By requesting Claims as Essential Claims, the RP indicates to
+        //       the End-User that releasing these Claims will ensure a smooth
+        //       authorization for the specific task requested by the End-User.
+        //       Note that even if the Claims are not available because the
+        //       End-User did not authorize their release or they are not
+        //       present, the Authorization Server MUST NOT generate an error
+        //       when Claims are not returned, whether they are Essential or
+        //       Voluntary, unless otherwise specified in the description of
+        //       the specific claim.
+        //
+        // Therefore, we do nothing here for requirement.isEssential().
+
         // If the requirement contains "value".
         if (requirement.getValue() != null)
         {
@@ -157,6 +191,13 @@ class ClaimRequirementChecker
             satisfied &= checkWithMaxAge(
                     value, requirement.getMaxAge(), getCurrentTime());
         }
+
+        // NOTE for the "purpose" property:
+        //
+        // The "purpose" property is not a constraint. It does not affect
+        // the result of this requirement check.
+        //
+        // Therefore, We do nothing here for requirement.getPurpose().
 
         return satisfied;
     }
