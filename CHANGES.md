@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.9 (2024-08-16)
+----------------
+
 - `ClaimRequirement` class
     * Added `isEssential()` method.
     * Added `setEssential(boolean)` method.

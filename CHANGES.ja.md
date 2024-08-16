@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.9 (2024 年 08 月 16 日)
+-------------------------
+
 - `ClaimRequirement` クラス
     * `isEssential()` メソッドを追加。
     * `setEssential(boolean)` メソッドを追加。
