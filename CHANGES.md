@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+- `ClaimRequirement` class
+    * Added `isEssential()` method.
+    * Added `setEssential(boolean)` method.
+    * Added `getPurpose()` method.
+    * Added `setPurpose(String)` method.
+    * Updated the implementation of the `parse(Map)` method to support cases
+      where `essential` or `purpose` is specified without any of `value`,
+      `values` and `max_age` constraints.
+
+
 4.8 (2024-07-01)
 ----------------
 

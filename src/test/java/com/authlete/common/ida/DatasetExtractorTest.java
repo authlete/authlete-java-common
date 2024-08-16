@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Authlete, Inc.
+ * Copyright (C) 2022-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -927,5 +927,210 @@ public class DatasetExtractorTest
         // Check the properties of the element.
         assertEquals("'assurance_type' is wrong.", "evidence_validation", (String)first.get("assurance_type"));
         assertEquals("'assurance_classification' is wrong.", "score_2", (String)first.get("assurance_classification"));
+    }
+
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testEssentialFalse()
+    {
+        Object original = getDataset(EVIDENCE_WITH_ASSURANCE_DETAILS);
+        Map<String, Object> request = fromJson(
+                "{" +
+                  "\"verification\":{" +
+                    "\"trust_framework\":null," +
+                    "\"assurance_process\":{" +
+                      "\"assurance_details\":null" +
+                    "}" +
+                  "}," +
+                  "\"claims\":{" +
+                    "\"given_name\":{" +
+                      "\"essential\":false" +
+                    "}" +
+                  "}" +
+                "}"
+        );
+
+        Map<String, Object> dataset = extract(request, original);
+        assertNotNull("dataset is null.", dataset);
+
+        Map<String, Object> claims = (Map<String, Object>)dataset.get("claims");
+        assertNotNull("'claims' is null.", claims);
+
+        String givenName = (String)claims.get("given_name");
+        assertEquals("'given_name' does not match.", "Sarah", givenName);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testEssentialTrue()
+    {
+        Object original = getDataset(EVIDENCE_WITH_ASSURANCE_DETAILS);
+        Map<String, Object> request = fromJson(
+                "{" +
+                  "\"verification\":{" +
+                    "\"trust_framework\":null," +
+                    "\"assurance_process\":{" +
+                      "\"assurance_details\":null" +
+                    "}" +
+                  "}," +
+                  "\"claims\":{" +
+                    "\"given_name\":{" +
+                      "\"essential\":true" +
+                    "}" +
+                  "}" +
+                "}"
+        );
+
+        Map<String, Object> dataset = extract(request, original);
+        assertNotNull("dataset is null.", dataset);
+
+        Map<String, Object> claims = (Map<String, Object>)dataset.get("claims");
+        assertNotNull("'claims' is null.", claims);
+
+        String givenName = (String)claims.get("given_name");
+        assertEquals("'given_name' does not match.", "Sarah", givenName);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testEssentialTrueAndValue()
+    {
+        Object original = getDataset(EVIDENCE_WITH_ASSURANCE_DETAILS);
+        Map<String, Object> request = fromJson(
+                "{" +
+                  "\"verification\":{" +
+                    "\"trust_framework\":null," +
+                    "\"assurance_process\":{" +
+                      "\"assurance_details\":null" +
+                    "}" +
+                  "}," +
+                  "\"claims\":{" +
+                    "\"given_name\":{" +
+                      "\"essential\":true," +
+                      "\"value\":\"Sarah\"" +
+                    "}" +
+                  "}" +
+                "}"
+        );
+
+        Map<String, Object> dataset = extract(request, original);
+        assertNotNull("dataset is null.", dataset);
+
+        Map<String, Object> claims = (Map<String, Object>)dataset.get("claims");
+        assertNotNull("'claims' is null.", claims);
+
+        String givenName = (String)claims.get("given_name");
+        assertEquals("'given_name' does not match.", "Sarah", givenName);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testEssentialTrueForUnavailableClaim()
+    {
+        String UNAVAILABLE_CLAIM_NAME = "unavailable_claim";
+
+        Object original = getDataset(EVIDENCE_WITH_ASSURANCE_DETAILS);
+        Map<String, Object> request = fromJson(
+                "{" +
+                  "\"verification\":{" +
+                    "\"trust_framework\":null," +
+                    "\"assurance_process\":{" +
+                      "\"assurance_details\":null" +
+                    "}" +
+                  "}," +
+                  "\"claims\":{" +
+                    "\"given_name\":null," +
+                    "\"" + UNAVAILABLE_CLAIM_NAME + "\":{" +
+                      "\"essential\":true" +
+                    "}" +
+                  "}" +
+                "}"
+        );
+
+        // Even if "essential":true is specified and the said claim is unavailable,
+        // the authorization server should not treat the case as an error. Refer to
+        // the description about "essential" written in OIDC Core 1.0, 5.5.1.
+        // Individual Claims Requests.
+
+        Map<String, Object> dataset = extract(request, original);
+        assertNotNull("dataset is null.", dataset);
+
+        Map<String, Object> claims = (Map<String, Object>)dataset.get("claims");
+        assertNotNull("'claims' is null.", claims);
+
+        String givenName = (String)claims.get("given_name");
+        assertEquals("'given_name' does not match.", "Sarah", givenName);
+
+        boolean available = claims.containsKey(UNAVAILABLE_CLAIM_NAME);
+        assertFalse("'" + UNAVAILABLE_CLAIM_NAME + "' is available.", available);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testPurpose()
+    {
+        Object original = getDataset(EVIDENCE_WITH_ASSURANCE_DETAILS);
+        Map<String, Object> request = fromJson(
+                "{" +
+                  "\"verification\":{" +
+                    "\"trust_framework\":null," +
+                    "\"assurance_process\":{" +
+                      "\"assurance_details\":null" +
+                    "}" +
+                  "}," +
+                  "\"claims\":{" +
+                    "\"given_name\":{" +
+                      "\"purpose\":\"the purpose for requesting given_name\"" +
+                    "}" +
+                  "}" +
+                "}"
+        );
+
+        Map<String, Object> dataset = extract(request, original);
+        assertNotNull("dataset is null.", dataset);
+
+        Map<String, Object> claims = (Map<String, Object>)dataset.get("claims");
+        assertNotNull("'claims' is null.", claims);
+
+        String givenName = (String)claims.get("given_name");
+        assertEquals("'given_name' does not match.", "Sarah", givenName);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testPurposeAndValue()
+    {
+        Object original = getDataset(EVIDENCE_WITH_ASSURANCE_DETAILS);
+        Map<String, Object> request = fromJson(
+                "{" +
+                  "\"verification\":{" +
+                    "\"trust_framework\":null," +
+                    "\"assurance_process\":{" +
+                      "\"assurance_details\":null" +
+                    "}" +
+                  "}," +
+                  "\"claims\":{" +
+                    "\"given_name\":{" +
+                      "\"purpose\":\"the purpose for requesting given_name\"," +
+                      "\"value\":\"Sarah\"" +
+                    "}" +
+                  "}" +
+                "}"
+        );
+
+        Map<String, Object> dataset = extract(request, original);
+        assertNotNull("dataset is null.", dataset);
+
+        Map<String, Object> claims = (Map<String, Object>)dataset.get("claims");
+        assertNotNull("'claims' is null.", claims);
+
+        String givenName = (String)claims.get("given_name");
+        assertEquals("'given_name' does not match.", "Sarah", givenName);
     }
 }
