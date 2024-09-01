@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `FapiMode` 列挙型
+    * `FAPI2_MESSAGE_SIGNING_RESOURCE_REQ` を追加。
+    * `FAPI2_MESSAGE_SIGNING_RESOURCE_RES` を追加。
+
+
 4.9 (2024 年 08 月 16 日)
 -------------------------
 

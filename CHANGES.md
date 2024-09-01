@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `FapiMode` enum
+    * Added `FAPI2_MESSAGE_SIGNING_RESOURCE_REQ`.
+    * Added `FAPI2_MESSAGE_SIGNING_RESOURCE_RES`.
+
+
 4.9 (2024-08-16)
 ----------------
 

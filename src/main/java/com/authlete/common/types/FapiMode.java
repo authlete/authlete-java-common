@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2023-2024 Authlete, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.authlete.common.types;
 
 
@@ -81,6 +96,38 @@ public enum FapiMode
      * </p>
      */
     FAPI2_MESSAGE_SIGNING_INTROSPECTION_RES((short)6, "fapi2_message_signing_introspection_res"),
+
+
+    /**
+     * {@code "fapi2_message_signing_resource_req"} (7).
+     *
+     * <p>
+     * The FAPI mode for "<a href=
+     * "https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.6.1"
+     * >5.6.1. Requirements for signing and verifying resource requests</a>" of
+     * "<a href="https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html"
+     * >FAPI 2.0 Message Signing</a>".
+     * </p>
+     *
+     * @since 4.10
+     */
+    FAPI2_MESSAGE_SIGNING_RESOURCE_REQ((short)7, "fapi2_message_signing_resource_req"),
+
+
+    /**
+     * {@code "fapi2_message_signing_resource_res"} (8).
+     *
+     * <p>
+     * The FAPI mode for "<a href=
+     * "https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html#section-5.6.2"
+     * >5.6.2. Requirements for signing and verifying resource responses</a>" of
+     * "<a href="https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html"
+     * >FAPI 2.0 Message Signing</a>".
+     * </p>
+     *
+     * @since 4.10
+     */
+    FAPI2_MESSAGE_SIGNING_RESOURCE_RES((short)8, "fapi2_message_signing_resource_res"),
     ;
 
 
