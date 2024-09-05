@@ -126,6 +126,7 @@ public class DeviceCompleteResponse extends ApiResponse
          * happened and urge her to re-initiate a device flow.
          */
         SERVER_ERROR,
+        ;
     }
 
 

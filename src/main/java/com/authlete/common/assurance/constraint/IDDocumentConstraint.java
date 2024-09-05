@@ -147,7 +147,7 @@ public class IDDocumentConstraint extends EvidenceConstraint
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static IDDocumentConstraint extract(Map<?,?> map) throws ConstraintException
+    public static IDDocumentConstraint extract(Map<?, ?> map) throws ConstraintException
     {
         IDDocumentConstraint instance = new IDDocumentConstraint();
         instance.setExists(true);
@@ -158,13 +158,13 @@ public class IDDocumentConstraint extends EvidenceConstraint
     }
 
 
-    private static void fill(IDDocumentConstraint instance, Map<?,?> map)
+    private static void fill(IDDocumentConstraint instance, Map<?, ?> map)
     {
         EvidenceConstraint.fill(instance, map);
 
         instance.method   = LeafConstraint.extract(    map, "method");
         instance.verifier = VerifierConstraint.extract(map, "verifier");
-        instance.time     = TimeConstraint.extract    (map, "time");
+        instance.time     = TimeConstraint.extract(    map, "time");
         instance.document = DocumentConstraint.extract(map, "document");
     }
 

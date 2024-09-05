@@ -144,6 +144,7 @@ public class BackchannelAuthenticationIssueResponse extends ApiResponse
          * has expired.
          */
         INVALID_TICKET,
+        ;
     }
 
 

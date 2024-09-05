@@ -156,7 +156,7 @@ public class VerifiedClaimsConstraint extends BaseConstraint
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static VerifiedClaimsConstraint extract(Map<?,?> map, String key) throws ConstraintException
+    public static VerifiedClaimsConstraint extract(Map<?, ?> map, String key) throws ConstraintException
     {
         VerifiedClaimsConstraint instance = new VerifiedClaimsConstraint();
         instance.setExists(map.containsKey(key));
@@ -178,7 +178,7 @@ public class VerifiedClaimsConstraint extends BaseConstraint
             return;
         }
 
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         instance.verification = VerificationConstraint.extract(map, "verification");
         instance.claims       = ClaimsConstraint.extract(map, "claims");
