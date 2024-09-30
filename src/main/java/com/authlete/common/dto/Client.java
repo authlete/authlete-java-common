@@ -83,7 +83,7 @@ import com.authlete.common.util.Utils;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 37L;
+    private static final long serialVersionUID = 38L;
 
 
     /*
@@ -575,6 +575,11 @@ public class Client implements Serializable
      * @since Authlete 3.0.0
      */
     private ResponseMode[] responseModes;
+
+    /**
+     * @since Authlete 3.0.0
+     */
+    private boolean mtlsEndpointAliasesUsed;
 
 
     /*
@@ -5107,6 +5112,60 @@ public class Client implements Serializable
 
 
     /**
+     * Get the flag indicating whether the client intends to prefer mutual TLS
+     * endpoints over non-MTLS endpoints.
+     *
+     * <p>
+     * This property corresponds to the {@code use_mtls_endpoint_aliases} client
+     * metadata that is defined in <a href="https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1"
+     * >FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases</a>.
+     * </p>
+     *
+     * @return
+     *         The flag indicating whether the client intends to prefer mutual TLS
+     *         endpoints over non-MTLS endpoints.
+     *
+     * @since 4.10
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1"
+     *      >FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases</a>
+     */
+    public boolean isMtlsEndpointAliasesUsed()
+    {
+        return mtlsEndpointAliasesUsed;
+    }
+
+
+    /**
+     * Set the flag indicating whether the client intends to prefer mutual TLS
+     * endpoints over non-MTLS endpoints.
+     *
+     * <p>
+     * This property corresponds to the {@code use_mtls_endpoint_aliases} client
+     * metadata that is defined in <a href="https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1"
+     * >FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases</a>.
+     * </p>
+     *
+     * @return
+     *         The flag indicating whether the client intends to prefer mutual TLS
+     *         endpoints over non-MTLS endpoints.
+     *
+     * @since 4.10
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1"
+     *      >FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases</a>
+     */
+    public Client setMtlsEndpointAliasUsed(boolean mtlsEndpointAliasesUsed)
+    {
+        this.mtlsEndpointAliasesUsed = mtlsEndpointAliasesUsed;
+
+        return this;
+    }
+
+
+    /**
      * Get a {@code Map} instance that represents a set of standard client
      * metadata.
      *
@@ -5384,6 +5443,13 @@ public class Client implements Serializable
 
         // credential_offer_endpoint
         put(metadata, "credential_offer_endpoint", getCredentialOfferEndpoint(), nullIncluded);
+
+        //----------------------------------------------------------------------
+        // FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases
+        //----------------------------------------------------------------------
+
+        // use_mtls_endpoint_aliases
+        put(metadata, "use_mtls_endpoint_aliases", isMtlsEndpointAliasesUsed(), falseIncluded);
 
         //----------------------------------------------------------------------
         // FAPI 2.0 Message Signing, 5.3.3. Client Metadata
