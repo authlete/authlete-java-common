@@ -5157,7 +5157,7 @@ public class Client implements Serializable
      * @see <a href="https://openid.bitbucket.io/fapi/fapi-2_0-security-profile.html#section-8.1.1"
      *      >FAPI 2.0 Security Profile, 8.1.1. use_mtls_endpoint_aliases</a>
      */
-    public Client setMtlsEndpointAliasUsed(boolean mtlsEndpointAliasesUsed)
+    public Client setMtlsEndpointAliasesUsed(boolean mtlsEndpointAliasesUsed)
     {
         this.mtlsEndpointAliasesUsed = mtlsEndpointAliasesUsed;
 
