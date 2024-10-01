@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+4.10 (2024 年 10 月 01 日)
+-------------------------
+
+- `Client` class
+    * Added `isMtlsEndpointAliasesUsed()` method.
+    * Added `setMtlsEndpointAliasesUsed(boolean)` method.
+
 - `FapiMode` enum
     * Added `FAPI2_MESSAGE_SIGNING_RESOURCE_REQ`.
     * Added `FAPI2_MESSAGE_SIGNING_RESOURCE_RES`.
