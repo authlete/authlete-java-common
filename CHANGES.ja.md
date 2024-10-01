@@ -1,12 +1,20 @@
 変更点
 ======
 
+4.11 (2024 年 10 月 01 日)
+-------------------------
+
+- `Client` クラス
+    * `setMtlsEndpointAliasUsed(boolean)` メソッドを削除。
+    * `setMtlsEndpointAliasesUsed(boolean)` メソッドを追加。
+
+
 4.10 (2024 年 10 月 01 日)
 -------------------------
 
 - `Client` クラス
     * `isMtlsEndpointAliasesUsed()` メソッドを追加。
-    * `setMtlsEndpointAliasesUsed(boolean)` メソッドを追加。
+    * `setMtlsEndpointAliasUsed(boolean)` メソッドを追加。
 
 - `FapiMode` 列挙型
     * `FAPI2_MESSAGE_SIGNING_RESOURCE_REQ` を追加。

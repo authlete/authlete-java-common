@@ -1,12 +1,20 @@
 CHANGES
 =======
 
+4.11 (2024-10-01)
+-------------------------
+
+- `Client` class
+    * Deleted `setMtlsEndpointAliasUsed(boolean)` method.
+    * Added `setMtlsEndpointAliasesUsed(boolean)` method.
+
+
 4.10 (2024-10-01)
 -------------------------
 
 - `Client` class
     * Added `isMtlsEndpointAliasesUsed()` method.
-    * Added `setMtlsEndpointAliasesUsed(boolean)` method.
+    * Added `setMtlsEndpointAliasUsed(boolean)` method.
 
 - `FapiMode` enum
     * Added `FAPI2_MESSAGE_SIGNING_RESOURCE_REQ`.
