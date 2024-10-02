@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+- `UserInfoRequest` class
+    * Deprecated the `getUri()` method.
+    * Deprecated the `setUri(String)` method.
+    * Deprecated the `getMessage()` method.
+    * Deprecated the `setMessage(String)` method.
+    * Added the `getTargetUri()` method.
+    * Added the `setTargetUri(URI)` method.
+    * Added the `isRequestBodyContained()` method.
+    * Added the `setRequestBodyContained(boolean)` method.
+
+
 4.11 (2024-10-01)
 -------------------------
 

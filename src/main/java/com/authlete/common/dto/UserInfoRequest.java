@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2023 Authlete, Inc.
+ * Copyright (C) 2015-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.net.URI;
 
 
 /**
@@ -64,7 +65,7 @@ import java.io.Serializable;
  * <dt><b><code>htu</code></b> (OPTIONAL)</dt>
  * <dd>
  * <p>
- * The URL of the userinfo endpoint, without query or path components.
+ * The URL of the userinfo endpoint, without query or fragment components.
  * If omitted, the {@code userInfoEndpoint}
  * property of {@link Service} is used as the default value.
  * See <a href="https://www.rfc-editor.org/rfc/rfc9449.html">RFC 9449 OAuth
@@ -72,30 +73,26 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
- * <dt><b><code>uri</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
+ * <dt><b><code>targetUri</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
- * The full URL of the userinfo endpoint. If omitted, the {@code userInfoEndpoint}
- * property of {@link Service} is used as the default value.
+ * The full URL of the userinfo request, including the query part, if any.
  * </p>
  * </dd>
  *
  * <dt><b><code>headers</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
- * The HTTP headers to be included in processing the signature. If this is
- * a signed request, this must include the {@code Signature} and
- * {@code Signature-Input} headers, as well as any additional headers
- * covered by the signature.
+ * The HTTP headers included in the userinfo request. They are used to compute
+ * component values, which will be part of the signature base for HTTP message
+ * signatures.
  * </p>
  * </dd>
  *
- * <dt><b><code>message</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
+ * <dt><b><code>requestBodyContained</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
- * The HTTP message body of the request, if present. If supplied,
- * this is used to validate the value of the {@code Content-Digest} header,
- * which must in turn be covered in the HTTP Message Signature.
+ * The flag indicating whether the userinfo request contains a request body.
  * </p>
  * </dd>
  *
@@ -117,7 +114,7 @@ import java.io.Serializable;
  */
 public class UserInfoRequest implements Serializable
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -163,17 +160,32 @@ public class UserInfoRequest implements Serializable
     /**
      * The full URL of the userinfo endpoint.
      *
+     * <p>
+     * This parameter has been deprecated and replaced with the
+     * {@code targetUri} parameter.
+     * </p>
+     *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     private String uri;
 
 
     /**
-     * The HTTP headers to be included in processing the signature. If this is
-     * a signed request, this must include the {@code Signature} and
-     * {@code Signature-Input} headers, as well as any additional headers
-     * covered by the signature.
+     * The full URI of the userinfo request, including the query part, if any.
+     *
+     * @since 4.12
+     * @since Authlete 2.3.26
+     */
+    private URI targetUri;
+
+
+    /**
+     * The HTTP headers included in the userinfo request. They are used to
+     * compute component values, which will be part of the signature base
+     * for HTTP message signatures.
      *
      * @since 3.38
      * @since Authlete 2.3
@@ -184,10 +196,26 @@ public class UserInfoRequest implements Serializable
     /**
      * The HTTP message body of the request, if present.
      *
+     * <p>
+     * This parameter has been deprecated. In exchange, the
+     * {@code requestBodyContained} parameter has been introduced.
+     * </p>
+     *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     private String message;
+
+
+    /**
+     * The flag indicating whether the userinfo request contains a request body.
+     *
+     * @since 4.12
+     * @since Authlete 2.3.26
+     */
+    private boolean requestBodyContained;
 
 
     /**
@@ -333,6 +361,13 @@ public class UserInfoRequest implements Serializable
      * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
+     * <p>
+     * NOTE: This parameter was added for DPoP, but now it is also used as the
+     * value of the {@code @method} derived component of HTTP message signatures
+     * (<a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.1">RFC
+     * 9421 HTTP Message Signatures, Section 2.2.1. Method</a>).
+     * </p>
+     *
      * @return
      *         The HTTP method as a string. For example, {@code "GET"}.
      *
@@ -340,6 +375,9 @@ public class UserInfoRequest implements Serializable
      *
      * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
      *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.1"
+     *      >RFC 9421 HTTP Message Signatures, Section 2.2.1. Method</a>
      */
     public String getHtm()
     {
@@ -360,6 +398,13 @@ public class UserInfoRequest implements Serializable
      * 2.0 Demonstrating Proof of Possession (DPoP)</a> for details.
      * </p>
      *
+     * <p>
+     * NOTE: This parameter was added for DPoP, but now it is also used as the
+     * value of the {@code @method} derived component of HTTP message signatures
+     * (<a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.1">RFC
+     * 9421 HTTP Message Signatures, Section 2.2.1. Method</a>).
+     * </p>
+     *
      * @param htm
      *         The HTTP method as a string. For example, {@code "GET"}.
      *
@@ -370,6 +415,9 @@ public class UserInfoRequest implements Serializable
      *
      * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
      *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.1"
+     *      >RFC 9421 HTTP Message Signatures, Section 2.2.1. Method</a>
      */
     public UserInfoRequest setHtm(String htm)
     {
@@ -449,12 +497,19 @@ public class UserInfoRequest implements Serializable
      * of the {@link Service} is used as the default value.
      * </p>
      *
+     * <p>
+     * NOTE: This parameter has been deprecated and replaced with the
+     * {@code targetUri} parameter.
+     * </p>
+     *
      * @return
      *         The URL of the userinfo endpoint.
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public String getUri()
     {
         return uri;
@@ -470,6 +525,11 @@ public class UserInfoRequest implements Serializable
      * of the {@link Service} is used as the default value.
      * </p>
      *
+     * <p>
+     * NOTE: This parameter has been deprecated and replaced with the
+     * {@code targetUri} parameter.
+     * </p>
+     *
      * @param uri
      *         The URL of the userinfo endpoint.
      *
@@ -478,19 +538,118 @@ public class UserInfoRequest implements Serializable
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public UserInfoRequest setUri(String uri)
     {
         this.uri = uri;
+
         return this;
     }
 
 
     /**
-     * Get the HTTP headers to be included in processing the signature. If this is
-     * a signed request, this must include the {@code Signature} and
-     * {@code Signature-Input} headers, as well as any additional headers
-     * covered by the signature.
+     * Get the target URI of the userinfo request, including the query part,
+     * if any.
+     *
+     * <p>
+     * This parameter is used as the value of the {@code @target-uri} derived
+     * component for HTTP message signatures (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2">RFC 9421
+     * HTTP Message Signatures, Section 2.2.2. Target URI</a>). Additionally,
+     * other derived components such as {@code @authority}, {@code @scheme},
+     * {@code @path}, {@code @query} and {@code @query-param} are computed
+     * from this parameter.
+     * </p>
+     *
+     * <p>
+     * When this parameter is omitted, the value of the {@code htu} parameter
+     * is used. The {@code htu} parameter represents the URL of the userinfo
+     * endpoint, which usually serves as the target URI of the userinfo request.
+     * The only exception is when the access token is specified as a query
+     * parameter, as defined in <a href=
+     * "https://www.rfc-editor.org/rfc/rfc6750.html#section-2.3">RFC 6750
+     * Section 2.3</a>. However, RFC 6750 states that this method <i>"SHOULD
+     * NOT be used"</i> unless other methods are not viable.
+     * </p>
+     *
+     * <p>
+     * If neither this {@code targetUri} parameter nor the {@code htu}
+     * parameter is specified, the {@code userInfoEndpoint} property of the
+     * {@link Service} is used as a fallback.
+     * </p>
+     *
+     * @return
+     *         The target URI of the userinfo request.
+     *
+     * @since 4.12
+     * @since Authlete 2.3.26
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2"
+     *      >RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI</a>
+     */
+    public URI getTargetUri()
+    {
+        return targetUri;
+    }
+
+
+    /**
+     * Set the target URI of the userinfo request, including the query part,
+     * if any.
+     *
+     * <p>
+     * This parameter is used as the value of the {@code @target-uri} derived
+     * component for HTTP message signatures (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2">RFC 9421
+     * HTTP Message Signatures, Section 2.2.2. Target URI</a>). Additionally,
+     * other derived components such as {@code @authority}, {@code @scheme},
+     * {@code @path}, {@code @query} and {@code @query-param} are computed
+     * from this parameter.
+     * </p>
+     *
+     * <p>
+     * When this parameter is omitted, the value of the {@code htu} parameter
+     * is used. The {@code htu} parameter represents the URL of the userinfo
+     * endpoint, which usually serves as the target URI of the userinfo request.
+     * The only exception is when the access token is specified as a query
+     * parameter, as defined in <a href=
+     * "https://www.rfc-editor.org/rfc/rfc6750.html#section-2.3">RFC 6750
+     * Section 2.3</a>. However, RFC 6750 states that this method <i>"SHOULD
+     * NOT be used"</i> unless other methods are not viable.
+     * </p>
+     *
+     * <p>
+     * If neither this {@code targetUri} parameter nor the {@code htu}
+     * parameter is specified, the {@code userInfoEndpoint} property of the
+     * {@link Service} is used as a fallback.
+     * </p>
+     *
+     * @param targetUri
+     *         The target URI of the userinfo request.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.12
+     * @since Authlete 2.3.26
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2"
+     *      >RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI</a>
+     */
+    public UserInfoRequest setTargetUri(URI targetUri)
+    {
+        this.targetUri = targetUri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the HTTP headers included in the userinfo request. They are used
+     * to compute component values, which will be part of the signature base
+     * for HTTP message signatures.
      *
      * @return
      *         The HTTP headers.
@@ -505,10 +664,9 @@ public class UserInfoRequest implements Serializable
 
 
     /**
-     * Set the HTTP headers to be included in processing the signature. If this is
-     * a signed request, this must include the {@code Signature} and
-     * {@code Signature-Input} headers, as well as any additional headers
-     * covered by the signature.
+     * Set the HTTP headers included in the userinfo request. They are used
+     * to compute component values, which will be part of the signature base
+     * for HTTP message signatures.
      *
      * @param headers
      *         The HTTP headers.
@@ -522,6 +680,7 @@ public class UserInfoRequest implements Serializable
     public UserInfoRequest setHeaders(Pair[] headers)
     {
         this.headers = headers;
+
         return this;
     }
 
@@ -531,12 +690,19 @@ public class UserInfoRequest implements Serializable
      * the expected value of the {@code Content-Digest} in the headers of the request
      * covered by the HTTP Message Signature.
      *
+     * <p>
+     * NOTE: This parameter has been deprecated. In exchange, the
+     * {@code requestBodyContained} parameter has been introduced.
+     * </p>
+     *
      * @return
      *         The HTTP message body.
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public String getMessage()
     {
         return message;
@@ -548,6 +714,11 @@ public class UserInfoRequest implements Serializable
      * the expected value of the {@code Content-Digest} in the headers of the request
      * covered by the HTTP Message Signature.
      *
+     * <p>
+     * NOTE: This parameter has been deprecated. In exchange, the
+     * {@code requestBodyContained} parameter has been introduced.
+     * </p>
+     *
      * @param message
      *         The HTTP message body.
      *
@@ -556,10 +727,81 @@ public class UserInfoRequest implements Serializable
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public UserInfoRequest setMessage(String message)
     {
         this.message = message;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether the userinfo request contains a request
+     * body.
+     *
+     * <p>
+     * When the userinfo request must comply with the HTTP message signing
+     * requirements defined in the FAPI 2.0 Message Signing specification, the
+     * {@code "content-digest"} component identifier must be included in the
+     * signature base of the HTTP message signature (see <a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html">RFC 9421 HTTP Message
+     * Signatures</a>) if the userinfo request contains a request body.
+     * </p>
+     *
+     * <p>
+     * When this {@code requestBodyContained} parameter is true, Authlete
+     * checks whether {@code "content-digest"} is included in the signature
+     * base, if the FAPI profile applies to the userinfo request.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the userinfo request contains a request body.
+     *
+     * @since 4.12
+     * @since Authlete 2.3.26
+     */
+    public boolean isRequestBodyContained()
+    {
+        return requestBodyContained;
+    }
+
+
+    /**
+     * Set the flag indicating whether the userinfo request contains a request
+     * body.
+     *
+     * <p>
+     * When the userinfo request must comply with the HTTP message signing
+     * requirements defined in the FAPI 2.0 Message Signing specification, the
+     * {@code "content-digest"} component identifier must be included in the
+     * signature base of the HTTP message signature (see <a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html">RFC 9421 HTTP Message
+     * Signatures</a>) if the userinfo request contains a request body.
+     * </p>
+     *
+     * <p>
+     * When this {@code requestBodyContained} parameter is true, Authlete
+     * checks whether {@code "content-digest"} is included in the signature
+     * base, if the FAPI profile applies to the userinfo request.
+     * </p>
+     *
+     * @param contained
+     *         {@code true} to indicate that the userinfo request contains
+     *         a request body.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.12
+     * @since Authlete 2.3.26
+     */
+    public UserInfoRequest setRequestBodyContained(boolean contained)
+    {
+        this.requestBodyContained = contained;
+
         return this;
     }
 
