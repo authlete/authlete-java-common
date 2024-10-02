@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.12 (2024-10-02)
+-----------------
+
 - `UserInfoRequest` class
     * Deprecated the `getUri()` method.
     * Deprecated the `setUri(String)` method.
@@ -13,7 +16,7 @@ CHANGES
 
 
 4.11 (2024-10-01)
--------------------------
+-----------------
 
 - `Client` class
     * Deleted `setMtlsEndpointAliasUsed(boolean)` method.
@@ -21,7 +24,7 @@ CHANGES
 
 
 4.10 (2024-10-01)
--------------------------
+-----------------
 
 - `Client` class
     * Added `isMtlsEndpointAliasesUsed()` method.
