@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2023 Authlete, Inc.
+ * Copyright (C) 2014-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -553,7 +553,9 @@ public class Client implements Serializable
 
     /**
      * @since Authlete 2.3.0
+     * @deprecated
      */
+    @Deprecated
     private boolean rsRequestSigned;
 
     /**
@@ -4596,11 +4598,30 @@ public class Client implements Serializable
 
 
     /**
-     * Get the key ID of a JWK containing the public key used by this client to
-     * sign requests to the resource server.
+     * Get the key ID of the JWK containing the public key used to verify HTTP
+     * message signatures signed by this client.
+     *
+     * <p>
+     * When an HTTP message signature signed by this client includes the
+     * {@code keyid} parameter (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html#section-2.3">RFC 9421
+     * HTTP Message Signatures, Section 2.3. Signature Parameters</a>),
+     * the specified key ID is used to identify the public key. If the
+     * parameter is missing, the value of this {@code rsSignedRequestKeyId}
+     * property is referenced as a fallback. If both are missing, HTTP
+     * message signature verification fails.
+     * </p>
+     *
+     * <p>
+     * The JWK identified by the key ID must include the {@code alg} property
+     * (<a href="https://www.rfc-editor.org/rfc/rfc7518.html#section-3.1">RFC
+     * 7518 JSON Web Algorithms (JWA), Section 3.1. "alg" (Algorithm) Header
+     * Parameter Values for JWS</a>).
+     * </p>
      *
      * @return
-     *         The key ID.
+     *         The key ID of the JWK containing the public key used to verify
+     *         HTTP message signatures signed by this client.
      *
      * @since 3.39
      * @since Authlete 2.3
@@ -4612,11 +4633,30 @@ public class Client implements Serializable
 
 
     /**
-     * Set the key ID of a JWK containing the public key used by this client to
-     * sign requests to the resource server.
+     * Set the key ID of the JWK containing the public key used to verify HTTP
+     * message signatures signed by this client.
+     *
+     * <p>
+     * When an HTTP message signature signed by this client includes the
+     * {@code keyid} parameter (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html#section-2.3">RFC 9421
+     * HTTP Message Signatures, Section 2.3. Signature Parameters</a>),
+     * the specified key ID is used to identify the public key. If the
+     * parameter is missing, the value of this {@code rsSignedRequestKeyId}
+     * property is referenced as a fallback. If both are missing, HTTP
+     * message signature verification fails.
+     * </p>
+     *
+     * <p>
+     * The JWK identified by the key ID must include the {@code alg} property
+     * (<a href="https://www.rfc-editor.org/rfc/rfc7518.html#section-3.1">RFC
+     * 7518 JSON Web Algorithms (JWA), Section 3.1. "alg" (Algorithm) Header
+     * Parameter Values for JWS</a>).
+     * </p>
      *
      * @param keyId
-     *         The key ID.
+     *         The key ID of the JWK containing the public key used to verify
+     *         HTTP message signatures signed by this client.
      *
      * @return
      *         {@code this} object.
@@ -4644,7 +4684,9 @@ public class Client implements Serializable
      *
      * @since 3.39
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public boolean isRsRequestSigned()
     {
         return rsRequestSigned;
@@ -4666,7 +4708,9 @@ public class Client implements Serializable
      *
      * @since 3.39
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public Client setRsRequestSigned(boolean signed)
     {
         this.rsRequestSigned = signed;

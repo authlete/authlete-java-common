@@ -1,6 +1,11 @@
 CHANGES
 =======
 
+- `Client` class
+    * Deprecated the `isRsRequestSigned()` method.
+    * Deprecated the `setRsRequestSigned(boolean)` method.
+
+
 4.12 (2024-10-02)
 -----------------
 
