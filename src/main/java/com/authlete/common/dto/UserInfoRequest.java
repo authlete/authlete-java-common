@@ -757,6 +757,13 @@ public class UserInfoRequest implements Serializable
      * base, if the FAPI profile applies to the userinfo request.
      * </p>
      *
+     * <p>
+     * NOTE: The FAPI 2.0 Message Signing specification is not applied to
+     * the userinfo endpoint until its necessity is agreed upon by the
+     * industry (cf. <a href=
+     * "https://bitbucket.org/openid/fapi/issues/723">FAPI Issue 723</a>).
+     * </p>
+     *
      * @return
      *         {@code true} if the userinfo request contains a request body.
      *
@@ -786,6 +793,13 @@ public class UserInfoRequest implements Serializable
      * When this {@code requestBodyContained} parameter is true, Authlete
      * checks whether {@code "content-digest"} is included in the signature
      * base, if the FAPI profile applies to the userinfo request.
+     * </p>
+     *
+     * <p>
+     * NOTE: The FAPI 2.0 Message Signing specification is not applied to
+     * the userinfo endpoint until its necessity is agreed upon by the
+     * industry (cf. <a href=
+     * "https://bitbucket.org/openid/fapi/issues/723">FAPI Issue 723</a>).
      * </p>
      *
      * @param contained
