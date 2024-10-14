@@ -5,6 +5,22 @@ CHANGES
     * Deprecated the `isRsRequestSigned()` method.
     * Deprecated the `setRsRequestSigned(boolean)` method.
 
+- `IntrospectionRequest` class
+    * Deprecated the `getUri()` method.
+    * Deprecated the `setUri(String)` method.
+    * Deprecated the `getMessage()` method.
+    * Deprecated the `setMessage(String)` method.
+    * Deprecated the `getRequiredComponents()` method.
+    * Deprecated the `setRequiredComponents(String[])` method.
+    * Added the `getTargetUri()` method.
+    * Added the `setTargetUri(URI)` method.
+    * Added the `isRequestBodyContained()` method.
+    * Added the `setRequestBodyContained(boolean)` method.
+
+- `IntrospectionResponse` class
+    * Added the `isResponseSigningRequired()` method.
+    * Added the `setResponseSigningRequired(boolean)` method.
+
 
 4.12 (2024-10-02)
 -----------------

@@ -5,6 +5,22 @@
     * `isRsRequestSigned()` メソッドを廃止。
     * `setRsRequestSigned(boolean)` メソッドを廃止。
 
+- `IntrospectionRequest` クラス
+    * `getUri()` メソッドを廃止。
+    * `setUri(String)` メソッドを廃止。
+    * `getMessage()` メソッドを廃止。
+    * `setMessage(String)` メソッドを廃止。
+    * `getRequiredComponents()` メソッドを廃止。
+    * `setRequiredComponents(String[])` メソッドを廃止。
+    * `getTargetUri()` メソッドを追加。
+    * `setTargetUri(URI)` メソッドを追加。
+    * `isRequestBodyContained()` メソッドを追加。
+    * `setRequestBodyContained(boolean)` メソッドを追加。
+
+- `IntrospectionResponse` クラス
+    * `isResponseSigningRequired()` メソッドを追加。
+    * `setResponseSigningRequired(boolean)` メソッドを追加。
+
 
 4.12 (2024 年 10 月 02 日)
 --------------------------

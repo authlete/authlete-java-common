@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2023 Authlete, Inc.
+ * Copyright (C) 2014-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -216,6 +216,18 @@ import com.authlete.common.util.Utils;
  * token holds may be different.
  * </p>
  *
+ * <h3>HTTP Message Signatures</h3>
+ *
+ * <p>
+ * If the {@code responseSigningRequired} response parameter from the API is
+ * {@code true}, the response from the protected resource endpoint must contain
+ * the {@code Signature} and {@code Signature-Input} HTTP fields (cf. <a href=
+ * "https://www.rfc-editor.org/rfc/rfc9421.html">RFC 9421 HTTP Message
+ * Signatures</a>) that comply with <a href=
+ * "https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html">FAPI 2.0
+ * Message Signing</a>.
+ * </p>
+ *
  * <h3>DPoP Nonce (Authlete 3.0 onwards)</h3>
  *
  * <p>
@@ -245,12 +257,18 @@ import com.authlete.common.util.Utils;
  *
  * @author Takahiko Kawasaki
  *
+ * @see <a href="https://www.rfc-editor.org/rfc/rfc9421.html"
+ *      >RFC 9421 HTTP Message Signatures</a>
+ *
  * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
  *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+ *
+ * @see <a href="https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html"
+ *      >FAPI 2.0 Message Signing</a>
  */
 public class IntrospectionResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 22L;
+    private static final long serialVersionUID = 23L;
 
 
     /**
@@ -584,6 +602,17 @@ public class IntrospectionResponse extends ApiResponse
      * @since Authlete 3.0
      */
     private String dpopNonce;
+
+
+    /**
+     * The flag indicating whether the HTTP response from the protected
+     * resource endpoint must include an HTTP message signature in
+     * compliance with FAPI 2.0 Message Signing.
+     *
+     * @since 4.13
+     * @since Authlete 2.3.27
+     */
+    private boolean responseSigningRequired;
 
 
     /**
@@ -1996,5 +2025,61 @@ public class IntrospectionResponse extends ApiResponse
     public void setDpopNonce(String dpopNonce)
     {
         this.dpopNonce = dpopNonce;
+    }
+
+
+    /**
+     * Get the flag indicating whether the HTTP response from the protected
+     * resource endpoint must include an HTTP message signature (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html">RFC 9421 HTTP Message
+     * Signatures</a>) in compliance with <a href=
+     * "https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html"
+     * >FAPI 2.0 Message Signing</a>.
+     *
+     * <p>
+     * When this response parameter is {@code true}, the HTTP response from
+     * the protected resource endpoint must include the {@code Signature}
+     * and {@code Signature-Input} HTTP fields.
+     * </p>
+     *
+     * @return
+     *         True if the HTTP response from the protected resource endpoint
+     *         must include an HTTP message signature in compliance with
+     *         FAPI 2.0 Message Signing.
+     *
+     * @since 4.13
+     * @since Authlete 2.3.27
+     */
+    public boolean isResponseSigningRequired()
+    {
+        return responseSigningRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether the HTTP response from the protected
+     * resource endpoint must include an HTTP message signature (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html">RFC 9421 HTTP Message
+     * Signatures</a>) in compliance with <a href=
+     * "https://openid.bitbucket.io/fapi/fapi-2_0-message-signing.html"
+     * >FAPI 2.0 Message Signing</a>.
+     *
+     * <p>
+     * When this response parameter is {@code true}, the HTTP response from
+     * the protected resource endpoint must include the {@code Signature}
+     * and {@code Signature-Input} HTTP fields.
+     * </p>
+     *
+     * @param responseSigningRequired
+     *         True if the HTTP response from the protected resource endpoint
+     *         must include an HTTP message signature in compliance with
+     *         FAPI 2.0 Message Signing.
+     *
+     * @since 4.13
+     * @since Authlete 2.3.27
+     */
+    public void setResponseSigningRequired(boolean responseSigningRequired)
+    {
+        this.responseSigningRequired = responseSigningRequired;
     }
 }

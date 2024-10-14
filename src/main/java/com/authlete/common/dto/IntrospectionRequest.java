@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2023 Authlete, Inc.
+ * Copyright (C) 2014-2024 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,39 +93,26 @@ import java.net.URI;
  * </p>
  * </dd>
  *
- * <dt><b><code>uri</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
+ * <dt><b><code>targetUri</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
- * The full URL of the resource server.
+ * The full URI of the resource request, including the query part, if any.
  * </p>
  * </dd>
  *
  * <dt><b><code>headers</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
- * The HTTP headers to be included in processing the signature. If this is
- * a signed request, this must include the {@code Signature} and
- * {@code Signature-Input} headers, as well as any additional headers
- * covered by the signature.
+ * The HTTP headers included in the resource request. They are used to compute
+ * component values, which will be part of the signature base for HTTP message
+ * signatures.
  * </p>
  * </dd>
  *
- * <dt><b><code>message</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
+ * <dt><b><code>requestBodyContained</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
  * <dd>
  * <p>
- * The HTTP message body of the request, if present. If supplied,
- * this is used to validate the value of the {@code Content-Digest} header,
- * which must in turn be covered in the HTTP Message Signature.
- * </p>
- * </dd>
- *
- * <dt><b><code>requiredComponents</code></b> (OPTIONAL; Authlete 2.3 onwards)</dt>
- * <dd>
- * <p>
- * The list of component identifiers required to be covered by
- * the signature on this message. If this is omitted, the set defaults to
- * including the {@code @method} and {@code @target-uri} derived components
- * as well as all headers in the {@link #getHeaders()} array.
+ * The flag indicating whether the resource request contains a request body.
  * </p>
  * </dd>
  *
@@ -180,7 +167,7 @@ import java.net.URI;
  */
 public class IntrospectionRequest implements Serializable
 {
-    private static final long serialVersionUID = 7L;
+    private static final long serialVersionUID = 8L;
 
 
     /**
@@ -237,8 +224,19 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     private String uri;
+
+
+    /**
+     * The full URL of the resource request, including the query part, if any.
+     *
+     * @since 4.13
+     * @since Authlete 2.3.27
+     */
+    private URI targetUri;
 
 
     /**
@@ -246,19 +244,30 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     private String message;
 
 
     /**
-     * HTTP headers to be included in processing the signature. If this is
-     * a signed request, this must include the Signature and Signature-Input
-     * headers, as well as any additional headers covered by the signature.
+     * The HTTP headers included in the resource request. They are used to
+     * compute component values, which will be part of the signature base
+     * for HTTP message signatures.
      *
      * @since 3.38
      * @since Authlete 2.3
      */
     private Pair[] headers;
+
+
+    /**
+     * The flag indicating whether the resource request contains a request body.
+     *
+     * @since 4.13
+     * @since Authlete 2.3.27
+     */
+    private boolean requestBodyContained;
 
 
     /**
@@ -268,7 +277,9 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     private String[] requiredComponents;
 
 
@@ -513,6 +524,13 @@ public class IntrospectionRequest implements Serializable
      * resource endpoint. This field is used to validate the {@code DPoP}
      * header.
      *
+     * <p>
+     * NOTE: This parameter was added for DPoP, but now it is also used as the
+     * value of the {@code @method} derived component of HTTP message signatures
+     * (<a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.1">RFC
+     * 9421 HTTP Message Signatures, Section 2.2.1. Method</a>).
+     * </p>
+     *
      * @return
      *         The HTTP method as a string. For example, {@code "GET"}.
      *
@@ -520,6 +538,9 @@ public class IntrospectionRequest implements Serializable
      *
      * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
      *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.1"
+     *      >RFC 9421 HTTP Message Signatures, Section 2.2.1. Method</a>
      */
     public String getHtm()
     {
@@ -537,6 +558,13 @@ public class IntrospectionRequest implements Serializable
      * is used for validation.
      * </p>
      *
+     * <p>
+     * NOTE: This parameter was added for DPoP, but now it is also used as the
+     * value of the {@code @method} derived component of HTTP message signatures
+     * (<a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.1">RFC
+     * 9421 HTTP Message Signatures, Section 2.2.1. Method</a>).
+     * </p>
+     *
      * @param htm
      *         The HTTP method as a string. For example, {@code "GET"}.
      *
@@ -547,6 +575,9 @@ public class IntrospectionRequest implements Serializable
      *
      * @see <a href="https://www.rfc-editor.org/rfc/rfc9449.html"
      *      >RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP)</a>
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.1"
+     *      >RFC 9421 HTTP Message Signatures, Section 2.2.1. Method</a>
      */
     public IntrospectionRequest setHtm(String htm)
     {
@@ -653,7 +684,9 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public String getUri()
     {
         return uri;
@@ -672,10 +705,111 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public IntrospectionRequest setUri(String uri)
     {
         this.uri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the target URI of the resource request, including the query part,
+     * if any.
+     *
+     * <p>
+     * This parameter is used as the value of the {@code @target-uri} derived
+     * component for HTTP message signatures (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2">RFC 9421
+     * HTTP Message Signatures, Section 2.2.2. Target URI</a>). Additionally,
+     * other derived components such as {@code @authority}, {@code @scheme},
+     * {@code @path}, {@code @query} and {@code @query-param} are computed
+     * from this parameter.
+     * </p>
+     *
+     * <p>
+     * When this parameter is omitted, the value of the {@code htu} parameter
+     * is used. The {@code htu} parameter represents the URL of the resource
+     * endpoint, which is identical to the target URI of the resource request
+     * as long as the request does not include a query component. Conversely,
+     * if the resource request includes a query component, the value of the
+     * {@code htu} parameter will not match the target URI, and in that case,
+     * the HTTP message signature verification will fail.
+     * </p>
+     *
+     * <p>
+     * If neither this {@code targetUri} parameter nor the {@code htu}
+     * parameter is specified, the target URI is considered unavailable.
+     * If HTTP message signing requires the {@code target-uri} derived
+     * component or other derived components computed based on the target
+     * URI, the HTTP message signature verification will fail.
+     * </p>
+     *
+     * @return
+     *         The target URI of the resource request.
+     *
+     * @since 4.13
+     * @since Authlete 2.3.27
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2"
+     *      >RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI</a>
+     */
+    public URI getTargetUri()
+    {
+        return targetUri;
+    }
+
+
+    /**
+     * Set the target URI of the resource request, including the query part,
+     * if any.
+     *
+     * <p>
+     * This parameter is used as the value of the {@code @target-uri} derived
+     * component for HTTP message signatures (<a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2">RFC 9421
+     * HTTP Message Signatures, Section 2.2.2. Target URI</a>). Additionally,
+     * other derived components such as {@code @authority}, {@code @scheme},
+     * {@code @path}, {@code @query} and {@code @query-param} are computed
+     * from this parameter.
+     * </p>
+     *
+     * <p>
+     * When this parameter is omitted, the value of the {@code htu} parameter
+     * is used. The {@code htu} parameter represents the URL of the resource
+     * endpoint, which is identical to the target URI of the resource request
+     * as long as the request does not include a query component. Conversely,
+     * if the resource request includes a query component, the value of the
+     * {@code htu} parameter will not match the target URI, and in that case,
+     * the HTTP message signature verification will fail.
+     * </p>
+     *
+     * <p>
+     * If neither this {@code targetUri} parameter nor the {@code htu}
+     * parameter is specified, the target URI is considered unavailable.
+     * If HTTP message signing requires the {@code target-uri} derived
+     * component or other derived components computed based on the target
+     * URI, the HTTP message signature verification will fail.
+     * </p>
+     *
+     * @param targetUri
+     *         The target URI of the resource request.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.13
+     * @since Authlete 2.3.27
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9421.html#section-2.2.2"
+     *      >RFC 9421 HTTP Message Signatures, Section 2.2.2. Target URI</a>
+     */
+    public IntrospectionRequest setTargetUri(URI targetUri)
+    {
+        this.targetUri = targetUri;
 
         return this;
     }
@@ -691,7 +825,9 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public String getMessage()
     {
         return message;
@@ -711,7 +847,9 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public IntrospectionRequest setMessage(String message)
     {
         this.message = message;
@@ -721,10 +859,9 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Get the HTTP headers to be included in processing the signature. If this is
-     * a signed request, this must include the {@code Signature} and
-     * {@code Signature-Input} headers, as well as any additional headers
-     * covered by the signature.
+     * Get the HTTP headers included in the resource request. They are used
+     * to compute component values, which will be part of the signature base
+     * for HTTP message signatures.
      *
      * @return
      *         The HTTP headers.
@@ -739,10 +876,9 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
-     * Set the HTTP headers to be included in processing the signature. If this is
-     * a signed request, this must include the {@code Signature} and
-     * {@code Signature-Input} headers, as well as any additional headers
-     * covered by the signature.
+     * Set the HTTP headers included in the resource request. They are used
+     * to compute component values, which will be part of the signature base
+     * for HTTP message signatures.
      *
      * @param headers
      *         The HTTP headers.
@@ -762,6 +898,74 @@ public class IntrospectionRequest implements Serializable
 
 
     /**
+     * Get the flag indicating whether the resource request contains a request
+     * body.
+     *
+     * <p>
+     * When the resource request must comply with the HTTP message signing
+     * requirements defined in the FAPI 2.0 Message Signing specification, the
+     * {@code "content-digest"} component identifier must be included in the
+     * signature base of the HTTP message signature (see <a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html">RFC 9421 HTTP Message
+     * Signatures</a>) if the resource request contains a request body.
+     * </p>
+     *
+     * <p>
+     * When this {@code requestBodyContained} parameter is {@code true},
+     * Authlete checks whether {@code "content-digest"} is included in the
+     * signature base, if the FAPI profile applies to the resource request.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the resource request contains a request body.
+     *
+     * @since 4.13
+     * @since Authlete 2.3.27
+     */
+    public boolean isRequestBodyContained()
+    {
+        return requestBodyContained;
+    }
+
+
+    /**
+     * Set the flag indicating whether the resource request contains a request
+     * body.
+     *
+     * <p>
+     * When the resource request must comply with the HTTP message signing
+     * requirements defined in the FAPI 2.0 Message Signing specification, the
+     * {@code "content-digest"} component identifier must be included in the
+     * signature base of the HTTP message signature (see <a href=
+     * "https://www.rfc-editor.org/rfc/rfc9421.html">RFC 9421 HTTP Message
+     * Signatures</a>) if the resource request contains a request body.
+     * </p>
+     *
+     * <p>
+     * When this {@code requestBodyContained} parameter is {@code true},
+     * Authlete checks whether {@code "content-digest"} is included in the
+     * signature base, if the FAPI profile applies to the resource request.
+     * </p>
+     *
+     * @param contained
+     *         {@code true} to indicate that the resource request contains
+     *         a request body.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.13
+     * @since Authlete 2.3.27
+     */
+    public IntrospectionRequest setRequestBodyContained(boolean contained)
+    {
+        this.requestBodyContained = contained;
+
+        return this;
+    }
+
+
+    /**
      * Get the list of component identifiers required to be covered by
      * the signature on this message. If this is omitted, the set defaults to
      * including the {@code @method} and {@code @target-uri} derived components
@@ -773,7 +977,9 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public String[] getRequiredComponents()
     {
         return requiredComponents;
@@ -795,7 +1001,9 @@ public class IntrospectionRequest implements Serializable
      *
      * @since 3.38
      * @since Authlete 2.3
+     * @deprecated
      */
+    @Deprecated
     public IntrospectionRequest setRequiredComponents(String[] requiredComponents)
     {
         this.requiredComponents = requiredComponents;
