@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.13 (2024 年 10 月 14 日)
+--------------------------
+
 - `Client` クラス
     * `isRsRequestSigned()` メソッドを廃止。
     * `setRsRequestSigned(boolean)` メソッドを廃止。
