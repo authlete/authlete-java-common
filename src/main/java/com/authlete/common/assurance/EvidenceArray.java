@@ -54,7 +54,7 @@ public class EvidenceArray extends ArrayList<Evidence>
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static EvidenceArray extract(Map<?,?> map, String key) throws IdentityAssuranceException
+    public static EvidenceArray extract(Map<?, ?> map, String key) throws IdentityAssuranceException
     {
         Object object = map.get(key);
 

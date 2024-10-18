@@ -115,7 +115,8 @@ public class TokenCreateResponse extends ApiResponse
          * An access token and optionally a refresh token were issued
          * successfully.
          */
-        OK
+        OK,
+        ;
     }
 
 

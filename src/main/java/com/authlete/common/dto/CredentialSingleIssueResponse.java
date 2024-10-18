@@ -317,6 +317,7 @@ public class CredentialSingleIssueResponse extends ApiResponse
          * The API call is invalid.
          */
         CALLER_ERROR,
+        ;
     }
 
 

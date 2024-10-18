@@ -201,6 +201,7 @@ public class CredentialDeferredParseResponse extends ApiResponse
          * An error occurred on Authlete side.
          */
         INTERNAL_SERVER_ERROR,
+        ;
     }
 
 
