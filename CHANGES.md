@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+4.14 (2024-12-04)
+-----------------
+
+- `Service` class
+    * Added the `isClientAssertionAudRestrictedToIssuer()` method.
+    * Added the `setClientAssertionAudRestrictedToIssuer(boolean)` method.
+
+
 4.13 (2024-10-14)
 -----------------
 

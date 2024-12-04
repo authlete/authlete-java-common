@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 81L;
+    private static final long serialVersionUID = 82L;
 
 
     /*
@@ -1859,6 +1859,16 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private URI tokenBatchNotificationEndpoint;
+
+
+    /**
+     * Whether to restrict the {@code aud} claim value in client assertions to the
+     * issuer of this service as a string.
+     *
+     * @since 4.14
+     * @since Authlete 3.0
+     */
+    private boolean clientAssertionAudRestrictedToIssuer;
 
 
     /**
@@ -11793,7 +11803,7 @@ public class Service implements Serializable
      *         The URI of the endpoint that receives token batch results.
      *
      * @return
-     *         {@code this} object
+     *         {@code this} object.
      *
      * @since 3.96
      * @since Authlete 3.0
@@ -11801,6 +11811,45 @@ public class Service implements Serializable
     public Service setTokenBatchNotificationEndpoint(URI endpoint)
     {
         this.tokenBatchNotificationEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to determine to restrict the {@code aud} claim value in client
+     * assertions to the issuer of this service as a string.
+     *
+     * @return
+     *         {@code true} if the {@code aud} claim value in client assertions
+     *         is restricted to the issuer of this service as a string.
+     *
+     * @since 4.14
+     * @since Authlete 3.0
+     */
+    public boolean isClientAssertionAudRestrictedToIssuer()
+    {
+        return clientAssertionAudRestrictedToIssuer;
+    }
+
+
+    /**
+     * Set the flag to determine whether to restrict the {@code aud} claim value
+     * in client assertions to the issuer of this service as a string.
+     *
+     * @param restricted
+     *         {@code true} to restrict the {@code aud} claim value in client assertions
+     *         to the issuer of this service as a string.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.14
+     * @since Authlete 3.0
+     */
+    public Service setClientAssertionAudRestrictedToIssuer(boolean restricted)
+    {
+        this.clientAssertionAudRestrictedToIssuer = restricted;
 
         return this;
     }
