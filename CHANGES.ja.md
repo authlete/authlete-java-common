@@ -1,6 +1,14 @@
 変更点
 ======
 
+4.14 (2024 年 12 月 04 日)
+--------------------------
+
+- `Service` クラス
+    * `isClientAssertionAudRestrictedToIssuer()` メソッドを追加。
+    * `setClientAssertionAudRestrictedToIssuer(boolean)` メソッドを追加。
+
+
 4.13 (2024 年 10 月 14 日)
 --------------------------
 
