@@ -15,14 +15,14 @@
  */
 package com.authlete.common.dto;
 
-
+import static com.authlete.common.util.MapUtils.put;
+import static com.authlete.common.util.MapUtils.putJsonObject;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import com.authlete.common.types.JWEAlg;
 import com.authlete.common.types.JWEEnc;
-import static com.authlete.common.util.MapUtils.*;
 
 
 /**

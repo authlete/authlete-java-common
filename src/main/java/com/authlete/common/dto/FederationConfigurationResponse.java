@@ -182,6 +182,7 @@ public class FederationConfigurationResponse extends ApiResponse
          * and the content type "{@code application/json}".
          */
         INTERNAL_SERVER_ERROR,
+        ;
     }
 
     private Action action;

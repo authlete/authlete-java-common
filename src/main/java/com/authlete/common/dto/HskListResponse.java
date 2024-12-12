@@ -46,6 +46,7 @@ public class HskListResponse extends ApiResponse
          * An error occurred on Authlete side.
          */
         SERVER_ERROR,
+        ;
     }
 
 

@@ -97,7 +97,7 @@ public class UtilityBillConstraint extends EvidenceConstraint
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static UtilityBillConstraint extract(Map<?,?> map) throws ConstraintException
+    public static UtilityBillConstraint extract(Map<?, ?> map) throws ConstraintException
     {
         UtilityBillConstraint instance = new UtilityBillConstraint();
         instance.setExists(true);
@@ -108,7 +108,7 @@ public class UtilityBillConstraint extends EvidenceConstraint
     }
 
 
-    private static void fill(UtilityBillConstraint instance, Map<?,?> map)
+    private static void fill(UtilityBillConstraint instance, Map<?, ?> map)
     {
         EvidenceConstraint.fill(instance, map);
 

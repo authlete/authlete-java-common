@@ -222,7 +222,7 @@ public class VerifiedClaims extends LinkedHashMap<String, Object>
 
     private static void fill(VerifiedClaims instance, Object object, String key)
     {
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         // "verification": required
         fillVerification(instance, map, key);
@@ -235,7 +235,7 @@ public class VerifiedClaims extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillVerification(VerifiedClaims instance, Map<?,?> map, String key)
+    private static void fillVerification(VerifiedClaims instance, Map<?, ?> map, String key)
     {
         // Ensure "verification" is contained.
         Helper.ensureKey(map, VERIFICATION, key);
@@ -249,7 +249,7 @@ public class VerifiedClaims extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillClaims(VerifiedClaims instance, Map<?,?> map, String key)
+    private static void fillClaims(VerifiedClaims instance, Map<?, ?> map, String key)
     {
         // Ensure "claims" is contained.
         Helper.ensureKey(map, CLAIMS, key);

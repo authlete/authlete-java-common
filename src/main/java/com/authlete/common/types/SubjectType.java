@@ -52,7 +52,7 @@ public enum SubjectType
      * Pairwise Identifier Algorithm</a> for details.
      * </p>
      */
-    PAIRWISE((short)2, "pairwise")
+    PAIRWISE((short)2, "pairwise"),
     ;
 
 

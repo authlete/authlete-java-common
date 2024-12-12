@@ -39,7 +39,7 @@ public enum CodeChallengeMethod
      * {@code code_challenge = BASE64URL-ENCODE(SHA256(ASCII(code_verifier)))}.
      * See <a href="https://tools.ietf.org/html/rfc7636">RFC 7636</a> for details.
      */
-    S256((short)2, "S256")
+    S256((short)2, "S256"),
     ;
 
 

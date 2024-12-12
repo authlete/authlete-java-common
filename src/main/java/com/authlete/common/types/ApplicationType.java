@@ -38,7 +38,7 @@ public enum ApplicationType
     /**
      * {@code "native"} (2).
      */
-    NATIVE((short)2, "native")
+    NATIVE((short)2, "native"),
     ;
 
 

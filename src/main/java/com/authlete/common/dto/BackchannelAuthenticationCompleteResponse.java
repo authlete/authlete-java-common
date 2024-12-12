@@ -180,6 +180,7 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
          * </p>
          */
         SERVER_ERROR,
+        ;
     }
 
 

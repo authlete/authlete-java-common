@@ -60,6 +60,7 @@ public class AuthorizationTicketInfoResponse extends ApiResponse
          * An error occurred on Authlete side.
          */
         AUTHLETE_ERROR,
+        ;
     }
 
 

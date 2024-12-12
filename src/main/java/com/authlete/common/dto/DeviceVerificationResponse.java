@@ -115,6 +115,7 @@ public class DeviceVerificationResponse extends ApiResponse
          * and urge her to re-initiate a device flow.
          */
         SERVER_ERROR,
+        ;
     }
 
 
