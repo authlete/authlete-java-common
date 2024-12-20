@@ -1,5 +1,29 @@
-Authlete Common Library for Java
-================================
+
+<p align="center">
+  <picture>
+    <source 
+      media="(prefers-color-scheme: dark)" 
+      srcset="https://www.authlete.com/img/logo/authlete-logo-with-dark-background-800x450.png">
+    <img 
+      src="https://www.authlete.com/img/logo/authlete-logo-with-white-background-800x450.png" 
+      alt="Authlete Logo" 
+      height="120">
+  </picture>
+</p>
+
+<h1 align="center">Authlete Java Common Library</h1>
+
+<p align="center">
+  <b>Authlete is a cloud service that provides an implementation of OAuth 2.0 & OpenID Connect. By using the Web APIs provided by Authlete, you can build a DB-less authorization server.</b>
+</p>
+
+<p align="center">
+  <a href="https://docs.authlete.com"><img src="https://img.shields.io/badge/documentation-authlete-blue.svg" alt="Documentation"></a>
+  <a href="https://authlete.com/developers/kb/"><img src="https://img.shields.io/badge/knowledge_base-authlete-blue.svg" alt="Knowledge Base"></a>
+  <a href="https://twitter.com/authlete"><img src="https://img.shields.io/twitter/follow/authlete.svg?style=social" alt="Follow on Twitter"></a>
+</p>
+
+---
 
 Overview
 --------
