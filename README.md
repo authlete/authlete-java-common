@@ -413,8 +413,7 @@ ServiceListResponse response = api.getServiceList();
 ```
 
 
-Authlete Version
-----------------
+## 💼 Authlete Version
 
 Some APIs and features don't work (even if they are defined in the `AuthleteApi`
 interface) if Authlete API server you use doesn't support them. For example,
@@ -440,8 +439,7 @@ Features available in Authlete 2.1 and onwards:
 See [Spec Sheet](https://www.authlete.com/legal/spec_sheet/) for further details.
 
 
-Note
-----
+## 📌 Note
 
 You can write an authorization server using the methods in `AuthleteApi`
 interface only, but the task will become much easier if you use utility classes
@@ -449,8 +447,7 @@ in [authlete-java-jaxrs][7] library. See [java-oauth-server][6] for an example o
 an authorization server implementation written using the utility classes.
 
 
-See Also
---------
+## 🐚 See Also
 
 - [Authlete][1] - Authlete Home Page
 - [JavaDoc][8] - JavaDoc of this library
@@ -460,8 +457,7 @@ See Also
 - [New Architecture of OAuth 2.0 and OpenID Connect Implementation][10] - Explanation about Authlete Architecture
 
 
-Contact
--------
+## ☎️ Contact
 
 | Purpose   | Email Address        |
 |:----------|:---------------------|
