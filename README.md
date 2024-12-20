@@ -1,36 +1,55 @@
-Authlete Common Library for Java
-================================
 
-Overview
---------
+<p align="center">
+  <picture>
+    <source 
+      media="(prefers-color-scheme: dark)" 
+      srcset="https://github.com/user-attachments/assets/b3dd2b93-f13a-4b4e-beee-35399c47ca29">
+    <img 
+      src="https://github.com/user-attachments/assets/ef990f27-b0cd-4fee-bbe9-95b21e8ae390" 
+      alt="Authlete Logo" 
+      height="120">
+  </picture>
+</p>
 
-This is a wrapper library for [Authlete Web APIs][2].
+<h1 align="center">Authlete Java Common Library</h1>
 
-[Authlete][1] is a cloud service that provides an implementation of
-[OAuth 2.0][3] & [OpenID Connect][4] ([overview][5]). By using the Web APIs
-provided by Authlete, you can build a _DB-less_ authorization server.
-"DB-less" here means that you don't have to prepare a database server that
-stores authorization data (e.g. access tokens), settings of authorization
-servers and settings of client applications. These data are stored in the
-Authlete server on cloud.
+<p align="center">
+  <b>Authlete is a cloud service that provides an implementation of OAuth 2.0 & OpenID Connect. By using the Web APIs provided by Authlete, you can build a DB-less authorization server.</b>
+</p>
 
-[java-oauth-server][6] is the reference implementation of an authorization
-server written using this library and [authlete-java-jaxrs][7] library.
-It is a good starting point for your own authorization server implementation.
+<p align="center">
+  <a href="https://docs.authlete.com"><img src="https://img.shields.io/badge/documentation-authlete-blue.svg" alt="Documentation"></a>
+  <a href="https://authlete.com/developers/kb/"><img src="https://img.shields.io/badge/knowledge_base-authlete-blue.svg" alt="Knowledge Base"></a>
+  <a href="https://twitter.com/authlete"><img src="https://img.shields.io/twitter/follow/authlete.svg?style=social" alt="Follow on Twitter"></a>
+</p>
 
+---
 
-License
--------
+## 📂 About This Repository
 
-  Apache License, Version 2.0
+The **Authlete Java Common Library** is a utility library that simplifies the implementation of OAuth 2.0 and OpenID Connect authorization servers and clients.
 
-  JSON files under `src/test/resources/ekyc-ida` have been copied from
-  https://bitbucket.org/openid/ekyc-ida/src/master/examples/response/ .
-  Regarding their license, ask the eKYC-IDA WG of OpenID Foundation.
+This library is designed for use with:
 
+- **<ins>[Java OAuth Server](https://github.com/authlete/java-oauth-server)</ins>**: A reference implementation of an authorization server built using this library.
+- **<ins>[Authlete Java JAX-RS Library](https://github.com/authlete/authlete-java-jaxrs)</ins>**: A good starting point for building your own authorization server.
 
-Maven
------
+👉 Visit **<ins>[authlete.com](https://www.authlete.com)</ins>** to sign up for an account.
+
+---
+
+## ✅ Get Started
+
+1. **<ins>[Sign up for an Authlete account](https://console.authlete.com/register)</ins>**.
+2. Create an **Organization** and a **Service** in the Authlete Management Console.
+3. Include this library in your Maven project (see below).
+4. Use the library to build your authorization server or integrate with Authlete APIs.
+
+---
+
+## 📦 Maven
+
+To use this library in your project, add the following Maven dependency:
 
 ```xml
 <dependency>
@@ -40,28 +59,31 @@ Maven
 </dependency>
 ```
 
-Please refer to the [CHANGES.md](CHANGES.md) file to know the latest version
-to write in place of `${authlete-java-common.version}`.
+📌 Replace `${authlete-java-common.version}` with the latest version, available in the **<ins>[CHANGES.md](https://github.com/authlete/authlete-java-common/blob/master/CHANGES.md)</ins>** file.
 
+---
 
-Source Code
------------
+## 🎓 Documentation and Learning
 
-  <code>https://github.com/authlete/authlete-java-common</code>
+Authlete provides comprehensive documentation at **<ins>[docs.authlete.com](https://docs.authlete.com)</ins>**.
 
+To get started quickly, check out:
 
-JavaDoc
--------
+- **<ins>[Getting Started](https://www.authlete.com/developers/getting_started/)</ins>**: Learn how to set up your environment and begin using Authlete.
+- **<ins>[Knowledge Base (KB)](https://authlete.com/developers/kb/)</ins>**: Explore detailed articles about Authlete features and use cases.
+- **<ins>[Quick Setup Guide](https://www.authlete.com/developers/tutorial/signup/)</ins>**: Step-by-step instructions for setting up your first authorization server.
+
+To view the JavaDocs:
 
   <code>https://authlete.github.io/authlete-java-common/</code>
 
   <code>https://authlete.github.io/authlete-java-common/index.html?overview-summary.html</code> [FRAMES]
 
 
-Description
------------
+## 🔍 Usage Details 
 
-#### How To Get AuthleteApi
+
+### How To Get AuthleteApi
 
 All the methods to communicate with [Authlete Web APIs][2] are gathered in
 `AuthleteApi` interface. To get an implementation of the interface, you need to
@@ -130,7 +152,7 @@ call the method as many times as you like without worrying about the overhead of
 file loading.
 
 
-#### AuthletePropertiesConfiguration
+### AuthletePropertiesConfiguration
 
 Among the three implementations of `AuthleteConfiguration` interface, this section
 explains `AuthletePropertiesConfiguration` class.
@@ -161,7 +183,7 @@ the encryption key and the initial vector to a constructor of
 values. See the [JavaDoc][8] for details.
 
 
-#### AuthleteApi Implementation
+### AuthleteApi Implementation
 
 Since version 2.0, authlete-java-common library includes an implementation of
 `AuthleteApi` interface using `HttpURLConnection`. Before version 2.0,
@@ -182,7 +204,7 @@ follows.
 `AuthleteApiFactory` checks existence of the above classes in this order.
 
 
-#### AuthleteApi Settings
+### AuthleteApi Settings
 
 `getSettings()` method of `AuthleteApi` interface has been available since
 the version 2.9. By configuring the instance returned by the method, you can
@@ -226,7 +248,7 @@ settings.setReadTimeout(5000);
 ```
 
 
-#### AuthleteApi Method Categories
+### AuthleteApi Method Categories
 
 Methods in `AuthleteApi` interface can be divided into some categories.
 
@@ -390,8 +412,7 @@ ServiceListResponse response = api.getServiceList();
 ```
 
 
-Authlete Version
-----------------
+## 💼 Authlete Version
 
 Some APIs and features don't work (even if they are defined in the `AuthleteApi`
 interface) if Authlete API server you use doesn't support them. For example,
@@ -417,8 +438,7 @@ Features available in Authlete 2.1 and onwards:
 See [Spec Sheet](https://www.authlete.com/legal/spec_sheet/) for further details.
 
 
-Note
-----
+## 📌 Note
 
 You can write an authorization server using the methods in `AuthleteApi`
 interface only, but the task will become much easier if you use utility classes
@@ -426,8 +446,7 @@ in [authlete-java-jaxrs][7] library. See [java-oauth-server][6] for an example o
 an authorization server implementation written using the utility classes.
 
 
-See Also
---------
+## 🐚 See Also
 
 - [Authlete][1] - Authlete Home Page
 - [JavaDoc][8] - JavaDoc of this library
@@ -437,8 +456,7 @@ See Also
 - [New Architecture of OAuth 2.0 and OpenID Connect Implementation][10] - Explanation about Authlete Architecture
 
 
-Contact
--------
+## ☎️ Contact
 
 | Purpose   | Email Address        |
 |:----------|:---------------------|
@@ -447,6 +465,47 @@ Contact
 | PR        | pr@authlete.com      |
 | Technical | support@authlete.com |
 
+# For Removal
+~Overview
+--------
+
+This is a wrapper library for [Authlete Web APIs][2].
+
+[Authlete][1] is a cloud service that provides an implementation of
+[OAuth 2.0][3] & [OpenID Connect][4] ([overview][5]). By using the Web APIs
+provided by Authlete, you can build a _DB-less_ authorization server.
+"DB-less" here means that you don't have to prepare a database server that
+stores authorization data (e.g. access tokens), settings of authorization
+servers and settings of client applications. These data are stored in the
+Authlete server on cloud.
+
+[java-oauth-server][6] is the reference implementation of an authorization
+server written using this library and [authlete-java-jaxrs][7] library.
+It is a good starting point for your own authorization server implementation.~
+
+License
+-------
+
+  Apache License, Version 2.0
+
+  JSON files under `src/test/resources/ekyc-ida` have been copied from
+  https://bitbucket.org/openid/ekyc-ida/src/master/examples/response/ .
+  Regarding their license, ask the eKYC-IDA WG of OpenID Foundation.
+
+
+Maven
+-----
+
+```xml
+<dependency>
+    <groupId>com.authlete</groupId>
+    <artifactId>authlete-java-common</artifactId>
+    <version>${authlete-java-common.version}</version>
+</dependency>
+```
+
+Please refer to the [CHANGES.md](CHANGES.md) file to know the latest version
+to write in place of `${authlete-java-common.version}`.
 
 
 [1]: https://www.authlete.com/
