@@ -73,18 +73,17 @@ To get started quickly, check out:
 - **<ins>[Knowledge Base (KB)](https://authlete.com/developers/kb/)</ins>**: Explore detailed articles about Authlete features and use cases.
 - **<ins>[Quick Setup Guide](https://www.authlete.com/developers/tutorial/signup/)</ins>**: Step-by-step instructions for setting up your first authorization server.
 
-### 📜 JavaDoc
--------
+To view the JavaDocs:
 
   <code>https://authlete.github.io/authlete-java-common/</code>
 
   <code>https://authlete.github.io/authlete-java-common/index.html?overview-summary.html</code> [FRAMES]
 
 
-### 🔍 Usage Details 
+## 🔍 Usage Details 
 
 
-#### How To Get AuthleteApi
+### How To Get AuthleteApi
 
 All the methods to communicate with [Authlete Web APIs][2] are gathered in
 `AuthleteApi` interface. To get an implementation of the interface, you need to
@@ -153,7 +152,7 @@ call the method as many times as you like without worrying about the overhead of
 file loading.
 
 
-#### AuthletePropertiesConfiguration
+### AuthletePropertiesConfiguration
 
 Among the three implementations of `AuthleteConfiguration` interface, this section
 explains `AuthletePropertiesConfiguration` class.
@@ -184,7 +183,7 @@ the encryption key and the initial vector to a constructor of
 values. See the [JavaDoc][8] for details.
 
 
-#### AuthleteApi Implementation
+### AuthleteApi Implementation
 
 Since version 2.0, authlete-java-common library includes an implementation of
 `AuthleteApi` interface using `HttpURLConnection`. Before version 2.0,
@@ -205,7 +204,7 @@ follows.
 `AuthleteApiFactory` checks existence of the above classes in this order.
 
 
-#### AuthleteApi Settings
+### AuthleteApi Settings
 
 `getSettings()` method of `AuthleteApi` interface has been available since
 the version 2.9. By configuring the instance returned by the method, you can
@@ -249,7 +248,7 @@ settings.setReadTimeout(5000);
 ```
 
 
-#### AuthleteApi Method Categories
+### AuthleteApi Method Categories
 
 Methods in `AuthleteApi` interface can be divided into some categories.
 
