@@ -3,9 +3,9 @@
   <picture>
     <source 
       media="(prefers-color-scheme: dark)" 
-      srcset="https://www.authlete.com/img/logo/authlete-logo-with-dark-background-800x450.png">
+      srcset="https://github.com/user-attachments/assets/b3dd2b93-f13a-4b4e-beee-35399c47ca29">
     <img 
-      src="https://www.authlete.com/img/logo/authlete-logo-with-white-background-800x450.png" 
+      src="https://github.com/user-attachments/assets/ef990f27-b0cd-4fee-bbe9-95b21e8ae390" 
       alt="Authlete Logo" 
       height="120">
   </picture>
