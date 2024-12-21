@@ -585,9 +585,9 @@ class AuthleteApiImpl implements AuthleteApi
 
     private static boolean isReservedRequestHeader(String key)
     {
-        return key.equals(HttpHeader.ACCEPT) ||
-               key.equals(HttpHeader.AUTHORIZATION) ||
-               key.equals(HttpHeader.CONTENT_TYPE);
+        return key.equalsIgnoreCase(HttpHeader.ACCEPT) ||
+               key.equalsIgnoreCase(HttpHeader.AUTHORIZATION) ||
+               key.equalsIgnoreCase(HttpHeader.CONTENT_TYPE);
     }
 
 

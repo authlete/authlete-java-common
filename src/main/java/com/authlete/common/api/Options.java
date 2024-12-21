@@ -24,6 +24,8 @@ import java.util.Map;
  * Request options.
  *
  * @author hidebike712
+ *
+ * @since 4.15
  */
 public class Options
 {
@@ -35,7 +37,7 @@ public class Options
      * is immutable.
      *
      * @return
-     *         The custom request headers. Note that the returned map is imuutable.
+     *         The custom request headers. Note that the returned map is immutable.
      */
     public Map<String, String> getHeaders()
     {
