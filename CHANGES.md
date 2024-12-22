@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+4.15 (2024-12-22)
+-----------------
+
+- `AuthleteApi` interface
+    * Added request options to each API method.
+
+- New classes
+    * `Options` class.
+
+
 4.14 (2024-12-04)
 -----------------
 
