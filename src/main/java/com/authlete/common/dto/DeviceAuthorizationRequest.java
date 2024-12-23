@@ -19,6 +19,7 @@ package com.authlete.common.dto;
 import java.io.Serializable;
 import java.util.Map;
 import com.authlete.common.web.URLCoder;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 
 /**
@@ -208,6 +209,7 @@ public class DeviceAuthorizationRequest implements Serializable
      * @return
      *         {@code this} object.
      */
+    @JsonSetter
     public DeviceAuthorizationRequest setParameters(String parameters)
     {
         this.parameters = parameters;

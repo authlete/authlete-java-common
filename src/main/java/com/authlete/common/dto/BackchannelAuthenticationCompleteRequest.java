@@ -20,6 +20,7 @@ import java.io.Serializable;
 import java.net.URI;
 import java.util.Map;
 import com.authlete.common.util.Utils;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 
 /**
@@ -616,6 +617,7 @@ public class BackchannelAuthenticationCompleteRequest implements Serializable
      * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
      *      >OpenID Connect Core 1.0, 5.1. Standard Claims</a>
      */
+    @JsonSetter
     public BackchannelAuthenticationCompleteRequest setClaims(String claims)
     {
         this.claims = claims;

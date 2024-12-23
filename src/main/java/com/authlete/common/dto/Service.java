@@ -36,6 +36,7 @@ import com.authlete.common.types.ResponseType;
 import com.authlete.common.types.ServiceProfile;
 import com.authlete.common.types.Sns;
 import com.authlete.common.types.UserCodeCharset;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 
 /**
@@ -4526,6 +4527,7 @@ public class Service implements Serializable
      *
      * @since 2.12
      */
+    @JsonSetter
     public Service setSupportedServiceProfiles(ServiceProfile[] profiles)
     {
         this.supportedServiceProfiles = profiles;

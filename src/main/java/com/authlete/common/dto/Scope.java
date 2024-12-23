@@ -228,6 +228,7 @@ public class Scope implements Serializable
      *
      * @since 2.12
      */
+    @JsonSetter
     public Scope setAttributes(Pair[] attributes)
     {
         this.attributes = attributes;
@@ -247,7 +248,6 @@ public class Scope implements Serializable
      *
      * @since 2.12
      */
-    @JsonSetter
     public Scope setAttributes(Iterable<Pair> attributes)
     {
         if (attributes == null)

@@ -19,6 +19,7 @@ package com.authlete.common.dto;
 import java.io.Serializable;
 import java.util.Map;
 import com.authlete.common.web.URLCoder;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 
 /**
@@ -213,6 +214,7 @@ public class RevocationRequest implements Serializable
      * parameters that the OAuth 2.0 token revocation endpoint of
      * the service implementation received from the client application.
      */
+    @JsonSetter
     public RevocationRequest setParameters(String parameters)
     {
         this.parameters = parameters;
