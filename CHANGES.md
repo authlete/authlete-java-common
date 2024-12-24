@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+4.16 (2024-12-24)
+-----------------
+
+- `AuthleteApiImpl` class
+    * Fix a bug where a `NullPointerException` is thrown when request options is not specified on each API method call.
+
+
 4.15 (2024-12-22)
 -----------------
 
