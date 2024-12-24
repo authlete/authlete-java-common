@@ -559,6 +559,12 @@ class AuthleteApiImpl implements AuthleteApi
 
     private static void setCustomRequestHeaders(HttpURLConnection con, Options options)
     {
+        // Request options are not specified.
+        if (options == null)
+        {
+            return;
+        }
+
         // Custom headers.
         Map<String, String> headers = options.getHeaders();
 
