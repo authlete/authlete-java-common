@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.net.URI;
 import java.util.Map;
 import com.authlete.common.util.Utils;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 
 /**
@@ -617,7 +616,6 @@ public class DeviceCompleteRequest implements Serializable
      *
      * @since 2.44
      */
-    @JsonSetter
     public DeviceCompleteRequest setClaims(String claims)
     {
         this.claims = claims;

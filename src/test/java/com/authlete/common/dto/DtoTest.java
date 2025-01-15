@@ -40,6 +40,8 @@ public class DtoTest
                 // Most likely this is due to duplicate ambiguous setter definitions that exist within a class
                 // One way to resolve is to use the @JsonSetter annotation on one of the setter methods
                 // (generally the one that matches the getter return value).
+
+                // You can check on JsonSetterAnnotationProcessor to check why methods are not being annotated correctly.
                 fail(e.getMessage());
             }
         }

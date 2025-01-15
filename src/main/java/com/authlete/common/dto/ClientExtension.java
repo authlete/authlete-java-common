@@ -18,7 +18,6 @@ package com.authlete.common.dto;
 
 import java.io.Serializable;
 import java.util.Set;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 
 /**
@@ -172,7 +171,6 @@ public class ClientExtension implements Serializable
      *
      * @since 1.41
      */
-    @JsonSetter
     public ClientExtension setRequestableScopes(Set<String> scopes)
     {
         if (scopes == null)

@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 
 /**
@@ -228,7 +227,6 @@ public class Scope implements Serializable
      *
      * @since 2.12
      */
-    @JsonSetter
     public Scope setAttributes(Pair[] attributes)
     {
         this.attributes = attributes;

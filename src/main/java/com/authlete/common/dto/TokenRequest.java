@@ -19,7 +19,6 @@ package com.authlete.common.dto;
 import java.io.Serializable;
 import java.util.Map;
 import com.authlete.common.web.URLCoder;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 
 /**
@@ -363,7 +362,6 @@ public class TokenRequest implements Serializable
      * parameters that the OAuth 2.0 token endpoint of the service
      * implementation received from the client application.
      */
-    @JsonSetter
     public TokenRequest setParameters(String parameters)
     {
         this.parameters = parameters;

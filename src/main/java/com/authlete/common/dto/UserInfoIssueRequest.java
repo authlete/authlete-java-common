@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import com.authlete.common.util.Utils;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 
 /**
@@ -186,7 +185,6 @@ public class UserInfoIssueRequest implements Serializable
      *
      * @see #setClaims(String)
      */
-    @JsonSetter
     public String getClaims()
     {
         return claims;
@@ -235,7 +233,6 @@ public class UserInfoIssueRequest implements Serializable
      * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
      *      >OpenID Connect Core 1.0, 5.1. Standard Claims</a>
      */
-    @JsonSetter
     public UserInfoIssueRequest setClaims(String claims)
     {
         this.claims = claims;
@@ -326,7 +323,6 @@ public class UserInfoIssueRequest implements Serializable
      *
      * @since 3.8
      */
-    @JsonSetter
     public String getClaimsForTx()
     {
         return claimsForTx;
@@ -385,7 +381,6 @@ public class UserInfoIssueRequest implements Serializable
      *
      * @since 3.8
      */
-    @JsonSetter
     public UserInfoIssueRequest setClaimsForTx(String claims)
     {
         this.claimsForTx = claims;
@@ -552,7 +547,6 @@ public class UserInfoIssueRequest implements Serializable
      *
      * @since 3.8
      */
-    @JsonSetter
     public UserInfoIssueRequest setVerifiedClaimsForTx(String[] claims)
     {
         this.verifiedClaimsForTx = claims;
