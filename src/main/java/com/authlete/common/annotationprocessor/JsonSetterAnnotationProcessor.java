@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
  * To determine which is the "correct" setter function we should set the annotation
  * to, we will look up the matching getter and use it's return type and use the setter whose argument matches the getter's
  * return type.
- * <p>
+ * </p>
  *
- * E.g. given an object with multiple setters defined:
+ * E.g. Given the below object with multiple setters defined:
  * <pre>
  * {@code
  * class AJsonObject
@@ -64,6 +64,11 @@ public class JsonSetterAnnotationProcessor
     private final Class<?> clazz;
 
     /**
+     * The resolved CTClass of the provided {@link #clazz}.
+     */
+    private final CtClass ctClass;
+
+    /**
      * A map of method name String to a list of methods that have this name.
      * Only multiple defined methods where none have {@link JsonSetter} marked against them will
      * be placed into this map.
@@ -76,9 +81,10 @@ public class JsonSetterAnnotationProcessor
      *
      * @param clazz the {@link Class} to introspect
      */
-    public JsonSetterAnnotationProcessor(Class<?> clazz)
+    public JsonSetterAnnotationProcessor(Class<?> clazz) throws NotFoundException
     {
         this.clazz = clazz;
+        this.ctClass = ClassPool.getDefault().get(clazz.getName());
         duplicateSetterMethods = initializeDuplicateSetterMethods();
     }
 
@@ -115,7 +121,7 @@ public class JsonSetterAnnotationProcessor
      *
      * @return {@link #duplicateSetterMethods}
      */
-    private Map<String, List<Method>> getDuplicateSetterMethods()
+    Map<String, List<Method>> getDuplicateSetterMethods()
     {
         return duplicateSetterMethods;
     }
@@ -126,16 +132,16 @@ public class JsonSetterAnnotationProcessor
      * <p>
      * To do this, we will first find the matching getter method by name, then using its return type
      * we will find the setter function whose first argument matches the getter's return type.
+     * </p>
      *
      * @param setterMethodName the setter method name that we are looking for
-     * @param methods all the class' methods
      * @return the setter method whose argument matches the getter methods return type
      */
-    private CtMethod getSetterMethodToAnnotate(String setterMethodName, CtMethod[] methods)
+    CtMethod getSetterMethodToAnnotate(String setterMethodName)
     {
         final String getMethodName = "g" + setterMethodName.substring(1);
 
-        for (CtMethod ctMethod : methods)
+        for (CtMethod ctMethod : ctClass.getMethods())
         {
             if (ctMethod.getName().equals(getMethodName))
             {
@@ -152,7 +158,7 @@ public class JsonSetterAnnotationProcessor
                 }
 
                 LOGGER.info(String.format("Found getter method %s.%s with return type %s", clazz.getName(), ctMethod.getName(), returnType.getName()));
-                return Arrays.stream(methods)
+                return Arrays.stream(ctClass.getMethods())
                         .filter( method -> method.getName().equals(setterMethodName))
                         .filter(method -> {
                             try
@@ -180,6 +186,7 @@ public class JsonSetterAnnotationProcessor
      * <p>
      * This function will read the compiled file's bytecode, identify which setter method to add the annotation to
      * then update the class' bytecode with the new annotation on the correct method.
+     * </p>
      *
      * @param entry a map entry of the setter method name and a list of all the setter methods with the same name
      * @throws CannotCompileException fails to write annotation changes to class file
@@ -187,16 +194,9 @@ public class JsonSetterAnnotationProcessor
      */
     private void addAnnotationToSetterMethod(Map.Entry<String, List<Method>> entry) throws CannotCompileException, IOException
     {
-        ClassPool pool = ClassPool.getDefault();
         try
         {
-            CtClass ctClass = pool.get(clazz.getName());
-            if (ctClass.isFrozen()) // The retrieved class can be in a frozen state
-            {
-                ctClass.defrost();
-            }
-
-            CtMethod method = getSetterMethodToAnnotate(entry.getKey(), ctClass.getMethods());
+            CtMethod method = getSetterMethodToAnnotate(entry.getKey());
             if (method == null)
             {
                 LOGGER.severe(String.format("Could not find setter method with argument that matches its getter method." +
@@ -205,7 +205,7 @@ public class JsonSetterAnnotationProcessor
                 return;
             }
 
-            writeAnnotationToMethod(ctClass, method);
+            writeAnnotationToMethod(method);
         }
         catch (NotFoundException e)
         {
@@ -219,14 +219,18 @@ public class JsonSetterAnnotationProcessor
      * Write the {@link JsonSetter} annotation onto the provided {@link CtClass}'s {@link CtMethod}.
      * This will edit the bytecode in the class file in the {@link #OUTPUT_CLASS_DIRECTORY} directory.
      *
-     * @param ctClass the class that should have the {@link JsonSetter} added to one of its methods
      * @param method the method that the {@link JsonSetter} annotation should be added to
      * @throws NotFoundException if method parameter types cannot be retrieved
      * @throws CannotCompileException when unable to compile the annotation change in the destination class file
      * @throws IOException if there is a problem writing the byte code change to the destination class file
      */
-    private void writeAnnotationToMethod(CtClass ctClass, CtMethod method) throws NotFoundException, CannotCompileException, IOException
+    private void writeAnnotationToMethod(CtMethod method) throws NotFoundException, CannotCompileException, IOException
     {
+        if (ctClass.isFrozen()) // The retrieved class can be in a frozen state
+        {
+            ctClass.defrost();
+        }
+
         CtClass[] params = method.getParameterTypes();
         LOGGER.info(String.format("Writing annotation: %s to: %s.%s with argument type: %s",
                 JsonSetter.class.getName(), clazz.getName(), method.getName(), params[0].getName()));
@@ -245,8 +249,9 @@ public class JsonSetterAnnotationProcessor
      * <p>
      * This program will add the {@link JsonSetter} annotation to any of the classes in {@link JsonSetterAnnotationProcessor#PACKAGE_NAME} package
      * which have multiple ambiguous setters defined so that the model object can be deserialized from json correctly.
+     * </p>
      */
-    public static void main(String[] args) throws CannotCompileException, IOException
+    public static void main(String[] args) throws CannotCompileException, IOException, NotFoundException
     {
         Reflections reflections = new Reflections(PACKAGE_NAME, new SubTypesScanner(false));
         Set<Class<?>> classes = reflections.getSubTypesOf(Object.class);

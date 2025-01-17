@@ -20,6 +20,8 @@ public class DtoTest
     /**
      * Attempt to JSON parse all dto objects.
      * This will pick up any ambiguous setter related errors.
+     * <p>
+     * Running this test directly without the "process-classes" maven step will cause the test to fail.
      */
     @Test
     public void checkAmbiguousJsonSetterMethodsForAllDtos()
@@ -29,8 +31,7 @@ public class DtoTest
 
         for (Class<?> aClass : classes)
         {
-            // Attempt to parse a blank object as each class
-            // this will ensure that the class itself passes the jackson validation
+            // Attempt to parse a blank object as each class this will ensure that the class itself passes the jackson setter validation
             try
             {
                 mapper.readValue("{}", aClass);
