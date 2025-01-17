@@ -426,6 +426,23 @@ in [authlete-java-jaxrs][7] library. See [java-oauth-server][6] for an example o
 an authorization server implementation written using the utility classes.
 
 
+Automatic Annotation of Ambiguous Json Setter Methods
+-----------------------------------------------------
+
+To address the "multiple ambiguous setter methods" json deserialization issue. 
+An annotation processor has been added to the maven build step and will run 
+during the `process-clases` maven phase.
+The `JsonSetterAnnotationProcessor` class is responsible for this process. 
+The process involves iterating over all classes in the DTO package. Then 
+finding any ambiguously defined setter methods (setter methods defined with 
+the same name) which do not have any `@JsonSetter` annotation defined. If 
+there are setters found that match these criteria, the correct setter method 
+to annotate will be determined by matching the first argument of the setter 
+method with the return type of the matching getter method.
+The new annotation is then added to the identified setter method and written 
+to the existing class file.
+
+
 See Also
 --------
 
