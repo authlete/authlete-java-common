@@ -431,7 +431,7 @@ Automatic Annotation of Ambiguous Json Setter Methods
 
 To address the "multiple ambiguous setter methods" json deserialization issue. 
 An annotation processor has been added to the maven build step and will run 
-during the `process-clases` maven phase.
+during the `process-classes` maven phase.
 The `JsonSetterAnnotationProcessor` class is responsible for this process. 
 The process involves iterating over all classes in the DTO package. Then 
 finding any ambiguously defined setter methods (setter methods defined with 
