@@ -68,6 +68,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.18.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
@@ -94,6 +100,22 @@
             <classifier>module</classifier>
             <version>2.0.1</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- add-json-setter-annotation mvn task dependency -->
+        <!-- Marked as provided so it is not included in the final jar -->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.12</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -308,6 +330,17 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.5.0</version>
                 <executions>
+                    <execution>
+                        <id>add-jsonsetter-annotations</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.authlete.common.annotationprocessor.JsonSetterAnnotationProcessor</mainClass>
+                            <classpathScope>compile</classpathScope>
+                        </configuration>
+                    </execution>
                     <execution>
                         <goals>
                             <goal>java</goal>
