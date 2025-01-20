@@ -1,4 +1,5 @@
 com.authlete.common
+com.authlete.common.annotationprocessor
 com.authlete.common.api
 com.authlete.common.assurance
 com.authlete.common.assurance.constraint
