@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+4.17 (2025-01-20)
+-----------------
+
+- New classes
+    * `JsonSetterAnnotationProcessor` class
+
+
 4.16 (2024-12-24)
 -----------------
 

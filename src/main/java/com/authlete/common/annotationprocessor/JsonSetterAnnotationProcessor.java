@@ -64,6 +64,8 @@ import java.util.stream.Collectors;
  * Using the above example object, the {@link JsonSetter} annotation would be added to the `setProperty(String[])` method since its
  * input argument of `String[]` matches the return type of the properties' getter method.
  *
+ * @since 4.17
+ *
  * @author kylegonzalez
  */
 public class JsonSetterAnnotationProcessor
