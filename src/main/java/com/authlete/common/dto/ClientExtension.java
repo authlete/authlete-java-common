@@ -54,6 +54,10 @@ public class ClientExtension implements Serializable
     private long refreshTokenDuration;
     private boolean tokenExchangePermitted;
 
+    /**
+     * @since Authlete 3.0.14
+     */
+    private long idTokenDuration;
 
     /**
      * Check whether <i>"Requestable Scopes per Client"</i> is enabled or not.
@@ -377,6 +381,70 @@ public class ClientExtension implements Serializable
     public ClientExtension setTokenExchangePermitted(boolean permitted)
     {
         this.tokenExchangePermitted = permitted;
+
+        return this;
+    }
+
+    /**
+     * Get the value of the duration of ID tokens per client in seconds.
+     *
+     * <p>
+     * In normal cases, the value of the {@link Service service}'s
+     * {@code idTokenDuration} property is used as the duration of ID
+     * tokens issued by the service. However, if this {@code idTokenDuration}
+     * property holds a non-zero positive number and its value is less than the
+     * duration configured by the service, the value is used as the duration of
+     * ID tokens issued to the client application.
+     * </p>
+     *
+     * <p>
+     * Note that the duration of ID tokens can be controlled by the scope
+     * attribute {@code "id_token.duration"}, too. Authlete chooses the
+     * minimum value among the candidates.
+     * </p>
+     *
+     * @return
+     *         The duration of ID tokens per client in seconds.
+     *
+     * @since 4.18
+     * @since Authlete 3.0.14
+     */
+    public long getIdTokenDuration()
+    {
+        return idTokenDuration;
+    }
+
+
+    /**
+     * Set the value of the duration of ID tokens per client in seconds.
+     *
+     * <p>
+     * In normal cases, the value of the {@link Service service}'s
+     * {@code idTokenDuration} property is used as the duration of ID
+     * tokens issued by the service. However, if this {@code idTokenDuration}
+     * property holds a non-zero positive number and its value is less than the
+     * duration configured by the service, the value is used as the duration of
+     * access tokens issued to the client application.
+     * </p>
+     *
+     * <p>
+     * Note that the duration of access tokens can be controlled by the scope
+     * attribute {@code "id_token.duration"}, too. Authlete chooses the
+     * minimum value among the candidates.
+     * </p>
+     *
+     * @param duration
+     *         The duration of ID tokens per client in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.18
+     * @since Authlete 3.0.14
+     */
+    public ClientExtension setIdTokenDuration(long duration)
+    {
+        this.idTokenDuration = duration;
 
         return this;
     }
