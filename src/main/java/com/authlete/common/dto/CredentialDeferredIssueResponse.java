@@ -222,6 +222,7 @@ public class CredentialDeferredIssueResponse extends ApiResponse
          * The API call is invalid.
          */
         CALLER_ERROR,
+        ;
     }
 
 

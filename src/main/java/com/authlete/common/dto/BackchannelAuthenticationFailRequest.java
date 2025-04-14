@@ -196,6 +196,7 @@ public class BackchannelAuthenticationFailRequest implements Serializable
          * </p>
          */
         SERVER_ERROR,
+        ;
     }
 
 

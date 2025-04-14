@@ -53,7 +53,7 @@ public enum ClientType
      * client authentication using other means.
      * </p>
      */
-    CONFIDENTIAL((short)2, "confidential")
+    CONFIDENTIAL((short)2, "confidential"),
     ;
 
 

@@ -100,7 +100,7 @@ public class EvidenceConstraint extends BaseConstraint
 
         Helper.ensureNotNull(object, label);
 
-        Map<?,?> map = Helper.ensureMap(object, label);
+        Map<?, ?> map = Helper.ensureMap(object, label);
 
         Class<? extends EvidenceConstraint> klass = guess(map, key, index);
 
@@ -124,7 +124,7 @@ public class EvidenceConstraint extends BaseConstraint
     }
 
 
-    private static Class<? extends EvidenceConstraint> guess(Map<?,?> map, String key, int index)
+    private static Class<? extends EvidenceConstraint> guess(Map<?, ?> map, String key, int index)
     {
         Class<? extends EvidenceConstraint> klass = guessByType(map, key, index);
 
@@ -152,7 +152,7 @@ public class EvidenceConstraint extends BaseConstraint
     }
 
 
-    private static Class<? extends EvidenceConstraint> guessByType(Map<?,?> map, String key, int index)
+    private static Class<? extends EvidenceConstraint> guessByType(Map<?, ?> map, String key, int index)
     {
         LeafConstraint type = LeafConstraint.extract(map, "type");
 
@@ -188,7 +188,7 @@ public class EvidenceConstraint extends BaseConstraint
     }
 
 
-    private static boolean containsAny(Map<?,?> map, String[] names)
+    private static boolean containsAny(Map<?, ?> map, String[] names)
     {
         for (String name : names)
         {
@@ -202,7 +202,7 @@ public class EvidenceConstraint extends BaseConstraint
     }
 
 
-    static void fill(EvidenceConstraint instance, Map<?,?> map)
+    static void fill(EvidenceConstraint instance, Map<?, ?> map)
     {
         instance.type = LeafConstraint.extract(map, "type");
     }

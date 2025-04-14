@@ -153,7 +153,7 @@ public class VerificationConstraint extends BaseConstraint
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static VerificationConstraint extract(Map<?,?> map, String key) throws ConstraintException
+    public static VerificationConstraint extract(Map<?, ?> map, String key) throws ConstraintException
     {
         VerificationConstraint instance = new VerificationConstraint();
         instance.setExists(map.containsKey(key));
@@ -175,7 +175,7 @@ public class VerificationConstraint extends BaseConstraint
             return;
         }
 
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         instance.trustFramework      = LeafConstraint.extract(         map, "trust_framework");
         instance.time                = TimeConstraint.extract(         map, "time");

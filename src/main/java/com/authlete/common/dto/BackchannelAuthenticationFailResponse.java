@@ -68,6 +68,7 @@ public class BackchannelAuthenticationFailResponse extends ApiResponse
          * </p>
          */
         INTERNAL_SERVER_ERROR,
+        ;
     }
 
 

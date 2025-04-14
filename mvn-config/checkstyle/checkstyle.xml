@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <module name="SuppressionFilter">
+        <property name="file" value="mvn-config/checkstyle/suppressions.xml" />
+    </module>
+    <!-- Filter suppress warnings to be excluded -->
+    <module name="SuppressWarningsFilter"/>
+
+    <!-- Check files encoding -->
+    <property name="charset" value="UTF-8"/>
+
+    <!-- Tabs forbidden -->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+
+    <!-- Line length max -->
+    <module name="LineLength">
+        <property name="fileExtensions" value="java"/>
+        <property name="max" value="200"/>
+        <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://|/\*\*"/>
+    </module>
+
+    <module name="TreeWalker">
+        <!-- File name -->
+        <module name="OuterTypeFilename"/>
+
+        <!-- File content -->
+        <module name="IllegalTokenText">
+            <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
+            <property name="format"
+                      value="\\u00(09|0(a|A)|0(c|C)|0(d|D)|22|27|5(C|c))|\\(0(10|11|12|14|15|42|47)|134)"/>
+            <property name="message"
+                      value="Consider using special escape sequence instead of octal value or Unicode escaped value."/>
+        </module>
+
+        <!-- Avoid unwanted unicode characters -->
+        <module name="AvoidEscapedUnicodeCharacters">
+            <property name="allowEscapesForControlCharacters" value="true"/>
+            <property name="allowByTailComment" value="true"/>
+            <property name="allowNonPrintableEscapes" value="true"/>
+        </module>
+
+        <!-- Avoid line wrapping on package, imports and statics definition -->
+        <module name="NoLineWrap">
+            <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT"/>
+        </module>
+
+        <!-- Only one top class by file -->
+        <module name="OneTopLevelClass" />
+
+        <!-- No block without any code -->
+        <module name="EmptyBlock">
+            <property name="option" value="TEXT"/>
+            <property name="tokens"
+                      value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
+        </module>
+
+        <!-- No single line loops -->
+        <module name="NeedBraces">
+            <property name="tokens"
+                      value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
+        </module>
+
+        <!-- New line needed for left and right curly -->
+        <module name="LeftCurly">
+            <property name="option" value="nl"/>
+            <property name="tokens"
+                      value="ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, ENUM_DEF,
+                    INTERFACE_DEF, LITERAL_CASE, LITERAL_CATCH, LITERAL_DEFAULT,
+                    LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF,
+                    LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, METHOD_DEF,
+                    OBJBLOCK, STATIC_INIT, RECORD_DEF, COMPACT_CTOR_DEF"/>
+        </module>
+        <module name="RightCurly">
+            <property name="id" value="RightCurlyHandle"/>
+            <property name="option" value="alone"/>
+            <property name="tokens"
+                      value="LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE,
+                    LITERAL_DO, CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT,
+                    INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF, RECORD_DEF,
+                    COMPACT_CTOR_DEF"/>
+        </module>
+        <!-- Empty curly specific case -->
+        <module name="SuppressionXpathSingleFilter">
+            <!-- suppresion is required till https://github.com/checkstyle/checkstyle/issues/7541 -->
+            <property name="id" value="RightCurlyHandle"/>
+            <property name="query" value="//RCURLY[parent::SLIST[count(./*)=1]
+                                     or preceding-sibling::*[last()][self::LCURLY]]"/>
+        </module>
+
+        <!-- Whitespaces -->
+        <module name="WhitespaceAfter">
+            <property name="tokens"
+                      value="COMMA, SEMI, LITERAL_IF, LITERAL_ELSE, LITERAL_RETURN,
+                    LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_FINALLY, DO_WHILE, ELLIPSIS,
+                    LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_CATCH, LAMBDA,
+                    LITERAL_YIELD, LITERAL_CASE"/>
+        </module>
+        <module name="NoWhitespaceAfter">
+            <property name="tokens"
+                      value="TYPECAST"/>
+        </module>
+
+        <module name="OneStatementPerLine"/>
+        <module name="MultipleVariableDeclarations"/>
+        <module name="ArrayTypeStyle"/>
+        <module name="MissingSwitchDefault"/>
+        <module name="FallThrough"/>
+        <module name="UpperEll"/>
+        <module name="ModifierOrder"/>
+
+        <!-- Empty lines between definitions -->
+        <module name="EmptyLineSeparator">
+            <property name="tokens"
+                      value="IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
+                    STATIC_INIT, INSTANCE_INIT, CTOR_DEF, VARIABLE_DEF, RECORD_DEF,
+                    COMPACT_CTOR_DEF"/>
+            <property name="allowNoEmptyLineBetweenFields" value="true"/>
+        </module>
+
+        <!-- Wraps -->
+        <module name="SeparatorWrap">
+            <property name="id" value="SeparatorWrapDot"/>
+            <property name="tokens" value="DOT"/>
+            <property name="option" value="nl"/>
+        </module>
+        <module name="SeparatorWrap">
+            <property name="id" value="SeparatorWrapComma"/>
+            <property name="tokens" value="COMMA"/>
+            <property name="option" value="EOL"/>
+        </module>
+        <module name="SeparatorWrap">
+            <!-- ELLIPSIS is EOL until https://github.com/google/styleguide/issues/259 -->
+            <property name="id" value="SeparatorWrapEllipsis"/>
+            <property name="tokens" value="ELLIPSIS"/>
+            <property name="option" value="EOL"/>
+        </module>
+        <module name="SeparatorWrap">
+            <!-- ARRAY_DECLARATOR is EOL until https://github.com/google/styleguide/issues/258 -->
+            <property name="id" value="SeparatorWrapArrayDeclarator"/>
+            <property name="tokens" value="ARRAY_DECLARATOR"/>
+            <property name="option" value="EOL"/>
+        </module>
+        <module name="SeparatorWrap">
+            <property name="id" value="SeparatorWrapMethodRef"/>
+            <property name="tokens" value="METHOD_REF"/>
+            <property name="option" value="nl"/>
+        </module>
+
+        <!-- Naming conventions -->
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-z0-9]\w*$"/>
+            <message key="name.invalidPattern"
+                     value="Method name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9_]*)*$"/>
+            <message key="name.invalidPattern"
+                     value="Package name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+<!-- Can't set this up since com/authlete/server/database/Limits.java isn't compliant-->
+<!--        <module name="TypeName">-->
+<!--            <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF,-->
+<!--                    ANNOTATION_DEF, RECORD_DEF"/>-->
+<!--            <message key="name.invalidPattern"-->
+<!--                     value="Type name ''{0}'' must match pattern ''{1}''."/>-->
+<!--        </module>-->
+        <module name="MemberName">
+            <property name="format" value="^([a-z][a-z0-9]|m|s|c)[a-zA-Z0-9]*$"/>
+            <message key="name.invalidPattern"
+                     value="Member name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="ParameterName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+            <message key="name.invalidPattern"
+                     value="Parameter name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="LambdaParameterName">
+            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <message key="name.invalidPattern"
+                     value="Lambda parameter name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="CatchParameterName">
+            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <message key="name.invalidPattern"
+                     value="Catch parameter name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="LocalVariableName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*?$"/>
+            <message key="name.invalidPattern"
+                     value="Local variable name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="PatternVariableName">
+            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <message key="name.invalidPattern"
+                     value="Pattern variable name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="ClassTypeParameterName">
+            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*$)"/>
+            <message key="name.invalidPattern"
+                     value="Class type name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="RecordComponentName">
+            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <message key="name.invalidPattern"
+                     value="Record component name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="RecordTypeParameterName">
+            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*$)"/>
+            <message key="name.invalidPattern"
+                     value="Record type name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="MethodTypeParameterName">
+            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*$)"/>
+            <message key="name.invalidPattern"
+                     value="Method type name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="InterfaceTypeParameterName">
+            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*$)"/>
+            <message key="name.invalidPattern"
+                     value="Interface type name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+
+        <module name="NoFinalizer"/>
+        <module name="GenericWhitespace">
+            <message key="ws.followed"
+                     value="GenericWhitespace ''{0}'' is followed by whitespace."/>
+            <message key="ws.preceded"
+                     value="GenericWhitespace ''{0}'' is preceded with whitespace."/>
+            <message key="ws.illegalFollow"
+                     value="GenericWhitespace ''{0}'' should followed by whitespace."/>
+            <message key="ws.notPreceded"
+                     value="GenericWhitespace ''{0}'' is not preceded with whitespace."/>
+        </module>
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+            <property name="braceAdjustment" value="0"/>
+            <property name="caseIndent" value="4"/>
+            <property name="throwsIndent" value="4"/>
+            <property name="lineWrappingIndentation" value="0"/>
+            <property name="arrayInitIndent" value="4"/>
+        </module>
+
+        <module name="NoWhitespaceBeforeCaseDefaultColon"/>
+        <module name="MethodParamPad">
+            <property name="tokens"
+                      value="CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF,
+                    SUPER_CTOR_CALL, ENUM_CONSTANT_DEF, RECORD_DEF"/>
+        </module>
+        <module name="NoWhitespaceBefore">
+            <property name="tokens"
+                      value="COMMA, SEMI, POST_INC, POST_DEC,
+                    LABELED_STAT, METHOD_REF"/>
+            <property name="allowLineBreaks" value="true"/>
+        </module>
+
+        <module name="AnnotationLocation">
+            <property name="id" value="AnnotationLocationMostCases"/>
+            <property name="tokens"
+                      value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF,
+                      RECORD_DEF, COMPACT_CTOR_DEF"/>
+        </module>
+        <module name="AnnotationLocation">
+            <property name="id" value="AnnotationLocationVariables"/>
+            <property name="tokens" value="VARIABLE_DEF"/>
+            <property name="allowSamelineMultipleAnnotations" value="true"/>
+        </module>
+
+        <!-- Imports -->
+        <module name="AvoidStarImport" />
+        <module name="UnusedImports" />
+        <module name="ImportOrder">
+            <property name="groups" value="/^java\./,javax,jakarta,org,com"/>
+            <property name="option" value="top"/>
+            <property name="separated" value="false"/>
+            <property name="ordered" value="true"/>
+            <property name="sortStaticImportsAlphabetically" value="true"/>
+        </module>
+
+        <!-- List suppress warnings -->
+        <module name="SuppressWarningsHolder" />
+        <module name="com.authlete.checkstyle.checks.EnumCommaSemicolonCheck" />
+    </module>
+</module>

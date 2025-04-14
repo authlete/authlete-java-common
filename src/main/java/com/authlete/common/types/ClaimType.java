@@ -59,7 +59,7 @@ public enum ClaimType
      * OpenID Provider.
      * </p>
      */
-    DISTRIBUTED((short)3, "distributed")
+    DISTRIBUTED((short)3, "distributed"),
     ;
 
 

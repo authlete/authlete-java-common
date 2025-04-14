@@ -457,7 +457,7 @@ public class Provider extends LinkedHashMap<String, Object>
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static Provider extract(Map<?,?> map, String key) throws IdentityAssuranceException
+    public static Provider extract(Map<?, ?> map, String key) throws IdentityAssuranceException
     {
         Object object = map.get(key);
 
@@ -476,7 +476,7 @@ public class Provider extends LinkedHashMap<String, Object>
 
     private static void fill(Provider instance, Object object, String key)
     {
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         // "name": optional
         fillName(instance, map, key);
@@ -501,7 +501,7 @@ public class Provider extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillName(Provider instance, Map<?,?> map, String key)
+    private static void fillName(Provider instance, Map<?, ?> map, String key)
     {
         // The value of "name" in the map.
         String value = Helper.extractString(map, NAME, key, false);
@@ -510,7 +510,7 @@ public class Provider extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillFormatted(Provider instance, Map<?,?> map, String key)
+    private static void fillFormatted(Provider instance, Map<?, ?> map, String key)
     {
         // The value of "formatted" in the map.
         String value = Helper.extractString(map, FORMATTED, key, false);
@@ -519,7 +519,7 @@ public class Provider extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillStreetAddress(Provider instance, Map<?,?> map, String key)
+    private static void fillStreetAddress(Provider instance, Map<?, ?> map, String key)
     {
         // The value of "street_address" in the map.
         String value = Helper.extractString(map, STREET_ADDRESS, key, false);
@@ -528,7 +528,7 @@ public class Provider extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillLocality(Provider instance, Map<?,?> map, String key)
+    private static void fillLocality(Provider instance, Map<?, ?> map, String key)
     {
         // The value of "locality" in the map.
         String value = Helper.extractString(map, LOCALITY, key, false);
@@ -537,7 +537,7 @@ public class Provider extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillRegion(Provider instance, Map<?,?> map, String key)
+    private static void fillRegion(Provider instance, Map<?, ?> map, String key)
     {
         // The value of "region" in the map.
         String value = Helper.extractString(map, REGION, key, false);
@@ -546,7 +546,7 @@ public class Provider extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillPostalCode(Provider instance, Map<?,?> map, String key)
+    private static void fillPostalCode(Provider instance, Map<?, ?> map, String key)
     {
         // The value of "postal_code" in the map.
         String value = Helper.extractString(map, POSTAL_CODE, key, false);
@@ -555,7 +555,7 @@ public class Provider extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillCountry(Provider instance, Map<?,?> map, String key)
+    private static void fillCountry(Provider instance, Map<?, ?> map, String key)
     {
         // The value of "country" in the map.
         String value = Helper.extractString(map, COUNTRY, key, false);

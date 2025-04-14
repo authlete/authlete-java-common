@@ -81,7 +81,7 @@ public class Claims extends LinkedHashMap<String, Object>
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static Claims extract(Map<?,?> map, String key) throws IdentityAssuranceException
+    public static Claims extract(Map<?, ?> map, String key) throws IdentityAssuranceException
     {
         Object object = map.get(key);
 
@@ -100,7 +100,7 @@ public class Claims extends LinkedHashMap<String, Object>
 
     private static void fill(Claims instance, Object object, String key)
     {
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         for (Map.Entry<?, ?> entry : map.entrySet())
         {
