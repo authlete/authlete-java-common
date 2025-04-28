@@ -406,7 +406,7 @@ public class ClientExtension implements Serializable
      * @return
      *         The duration of ID tokens per client in seconds.
      *
-     * @since 4.18
+     * @since 4.19
      * @since Authlete 3.0.14
      */
     public long getIdTokenDuration()
@@ -439,7 +439,7 @@ public class ClientExtension implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 4.18
+     * @since 4.19
      * @since Authlete 3.0.14
      */
     public ClientExtension setIdTokenDuration(long duration)
