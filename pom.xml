@@ -4,7 +4,7 @@
 
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>4.18</version>
+    <version>4.19-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>
@@ -38,7 +38,7 @@
         <connection>${git.connection}</connection>
         <developerConnection>${git.connection}</developerConnection>
         <url>${git.url}</url>
-        <tag>authlete-java-common-4.18</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <dependencies>
