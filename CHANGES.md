@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.18 (2025-04-29)
+-----------------
+
 - `AuthleteApi` interface
     * Added the `nativeSso(NativeSsoRequest, Options)` method.
 
