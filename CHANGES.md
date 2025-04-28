@@ -1,6 +1,48 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added the `nativeSso(NativeSsoRequest, Options)` method.
+
+- `AuthorizationIssueRequest` class
+    * Added the `getSessionId()` method.
+    * Added the `setSessionId(String)` method.
+
+- `AuthorizationResponse` class
+    * Added the `isNativeSsoRequested()` method.
+    * Added the `setNativeSsoRequested(boolean)` method.
+
+- `Service` class
+    * Added the `isNativeSsoSupported()` method.
+    * Added the `setNativeSsoSupported(boolean)` method.
+
+- `TokenCreateRequest` class
+    * Added the `getSessionId()` method.
+    * Added the `setSessionId(String)` method.
+
+- `TokenCreateRespose` class
+    * Added the `getSessionId()` method.
+    * Added the `setSessionId(String)` method.
+
+- `TokenResponse` class
+    * Added the `getSessionId()` method.
+    * Added the `setSessionId(String)` method.
+    * Added the `getDeviceSecret()` method.
+    * Added the `setDeviceSecret(String)` method.
+    * Added the `getDeviceSecretHash()` method.
+    * Added the `setDeviceSecretHash(String)` method.
+
+- `TokenResponse.Action` enum
+    * Added `NATIVE_SSO`.
+
+- `TokenType` enum
+    * Added `DEVICE_SECRET`.
+
+- New Types
+    * `NativeSsoRequest` class
+    * `NativeSsoResponse` class
+
+
 4.17 (2025-01-20)
 -----------------
 
@@ -193,7 +235,7 @@ CHANGES
 4.1 (2024-05-14)
 ----------------
 
-- `AuthleteApi` class
+- `AuthleteApi` interface
     * Removed `getTokenCreateBatchStatus(TokenCreateBatchStatusRequest)` method.
     * Added `getTokenCreateBatchStatus(String)` method.
 

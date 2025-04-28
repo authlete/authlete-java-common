@@ -1,22 +1,64 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `nativeSso(NativeSsoRequest, Options)` メソッドを追加。
+
+- `AuthorizationIssueRequest` クラス
+    * `getSessionId()` メソッドを追加。
+    * `setSessionId(String)` メソッドを追加。
+
+- `AuthorizationResponse` クラス
+    * `isNativeSsoRequested()` メソッドを追加。
+    * `setNativeSsoRequested(boolean)` メソッドを追加。
+
+- `Service` クラス
+    * `isNativeSsoSupported()` メソッドを追加。
+    * `setNativeSsoSupported(boolean)` メソッドを追加。
+
+- `TokenCreateRequest` クラス
+    * `getSessionId()` メソッドを追加。
+    * `setSessionId(String)` メソッドを追加。
+
+- `TokenCreateResponse` クラス
+    * `getSessionId()` メソッドを追加。
+    * `setSessionId(String)` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getSessionId()` メソッドを追加。
+    * `setSessionId(String)` メソッドを追加。
+    * `getDeviceSecret()` メソッドを追加。
+    * `setDeviceSecret(String)` メソッドを追加。
+    * `getDeviceSecretHash()` メソッドを追加。
+    * `setDeviceSecretHash(String)` メソッドを追加。
+
+- `TokenResponse.Action` 列挙型
+    * `NATIVE_SSO` を追加。
+
+- `TokenType` 列挙型
+    * `DEVICE_SECRET` を追加。
+
+- 新しい型
+    * `NativeSsoRequest` クラス
+    * `NativeSsoResponse` クラス
+
+
 4.17 (2025 年 1 月 20 日)
------------------
+--------------------------
 
 - 新しいクラス
     * `JsonSetterAnnotationProcessor` クラス
 
 
 4.16 (2024 年 12 月 24 日)
------------------
+--------------------------
 
 - `AuthleteApiImpl` クラス
     * リクエストオプションを指定せずに API メソッドをコールすると `NullPointerException` が発生するバグを修正。
 
 
 4.15 (2024 年 12 月 22 日)
------------------
+--------------------------
 
 - `AuthleteApi` インターフェース
     * リクエストオプションを指定できるよう各 API メソッドを変更。
@@ -192,7 +234,7 @@
 4.1 (2024 年 05 月 14 日)
 -------------------------
 
-- `AuthleteApi` クラス
+- `AuthleteApi` インターフェース
     * `getTokenCreateBatchStatus(TokenCreateBatchStatusRequest)` メソッドを削除。
     * `getTokenCreateBatchStatus(String)` メソッドを追加。
 

@@ -376,6 +376,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   - `credentialDeferredParse(CredentialDeferredParseRequest)`
   - `credentialDeferredIssue(CredentialDeferredIssueRequest)`
 
+  22. Methods for OpenID Connect Native SSO for Mobile Apps 1.0
+
+  - `nativeSso(NativeSsoRequest)`
+
 *Examples*
 
 The following code snippet is an example to get the list of your existing

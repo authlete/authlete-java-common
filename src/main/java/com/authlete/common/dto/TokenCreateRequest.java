@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2023 Authlete, Inc.
+ * Copyright (C) 2015-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -275,7 +275,7 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 14L;
+    private static final long serialVersionUID = 15L;
 
 
     private GrantType grantType;
@@ -299,6 +299,7 @@ public class TokenCreateRequest implements Serializable
     private String acr;
     private long authTime;
     private String clientIdentifier;
+    private String sessionId;
 
 
     /**
@@ -1321,6 +1322,57 @@ public class TokenCreateRequest implements Serializable
     public TokenCreateRequest setClientIdentifier(String clientIdentifier)
     {
         this.clientIdentifier = clientIdentifier;
+
+        return this;
+    }
+
+
+    /**
+     * Get the session ID associated with a newly created access token.
+     *
+     * <p>
+     * <b>NOTE</b>:
+     * A refresh token must be associated with a session ID, which is the ID
+     * of the user's authentication session, in order to be used to obtain a
+     * <a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     * >Native SSO</a>-compliant ID token in the refresh token flow.
+     * </p>
+     *
+     * @return
+     *         The session ID.
+     *
+     * @since 4.18
+     * @since Authlete 3.0
+     */
+    public String getSessionId()
+    {
+        return sessionId;
+    }
+
+
+    /**
+     * Set the session ID associated with a newly created access token.
+     *
+     * <p>
+     * <b>NOTE</b>:
+     * A refresh token must be associated with a session ID, which is the ID
+     * of the user's authentication session, in order to be used to obtain a
+     * <a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     * >Native SSO</a>-compliant ID token in the refresh token flow.
+     * </p>
+     *
+     * @param sessionId
+     *         The session ID.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.18
+     * @since Authlete 3.0
+     */
+    public TokenCreateRequest setSessionId(String sessionId)
+    {
+        this.sessionId = sessionId;
 
         return this;
     }

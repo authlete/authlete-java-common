@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Authlete, Inc.
+ * Copyright (C) 2022-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,6 +37,9 @@ import java.util.EnumSet;
  *
  * @see <a href="https://www.rfc-editor.org/rfc/rfc8693.html#section-3"
  *      >RFC 8693 OAuth 2.0 Token Exchange, Section 3. Token Type Identifiers</a>
+ *
+ * @see <a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+ *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
  */
 public enum TokenType
 {
@@ -98,6 +101,19 @@ public enum TokenType
      *      >RFC 8693 OAuth 2.0 Token Exchange, Section 3. Token Type Identifiers</a>
      */
     SAML2((short)6, "urn:ietf:params:oauth:token-type:saml2"),
+
+
+    /**
+     * Token type URI for a device secret;
+     * {@code "urn:openid:params:token-type:device-secret"}.
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
+     *
+     * @since 4.18
+     * @since Authlete 3.0
+     */
+    DEVICE_SECRET((short)7, "urn:openid:params:token-type:device-secret"),
     ;
 
 

@@ -140,6 +140,7 @@ class AuthleteApiImpl implements AuthleteApi
     private static final String VCI_DEFERRED_PARSE_API_PATH               = "/api/vci/deferred/parse";
     private static final String VCI_DEFERRED_ISSUE_API_PATH               = "/api/vci/deferred/issue";
     private static final String ID_TOKEN_REISSUE_API_PATH                 = "/api/idtoken/reissue";
+    private static final String NATIVE_SSO_API_PATH                       = "/api/nativesso";
 
     private final String mBaseUrl;
     private final BasicCredentials mServiceOwnerCredentials;
@@ -1866,5 +1867,16 @@ class AuthleteApiImpl implements AuthleteApi
         // This is unavailable in Authlete 2.x and older versions.
         throw new AuthleteApiException(
                 "This method can't be invoked since the corresponding API is not supported.");
+    }
+
+
+    @Override
+    public NativeSsoResponse nativeSso(NativeSsoRequest request, Options options) throws AuthleteApiException
+    {
+        // This API call fails because the /nativesso API
+        // is unavailable in Authlete 2.x and older versions.
+        return callServicePostApi(
+                NATIVE_SSO_API_PATH, request,
+                NativeSsoResponse.class, options);
     }
 }

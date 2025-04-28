@@ -365,6 +365,10 @@ settings.setReadTimeout(5000);
   - `credentialDeferredParse(CredentialDeferredParseRequest)`
   - `credentialDeferredIssue(CredentialDeferredIssueRequest)`
 
+  22. OpenID Connect Native SSO for Mobile Apps 1.0 に関するメソッド群
+
+  - `nativeSso(NativeSsoRequest)`
+
 *例*
 
 次のコードは既存のサービスのリストを取得する例です。

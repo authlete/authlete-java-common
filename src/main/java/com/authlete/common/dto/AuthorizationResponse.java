@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2023 Authlete, Inc.
+ * Copyright (C) 2014-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1021,7 +1021,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 20L;
+    private static final long serialVersionUID = 21L;
 
 
     /**
@@ -1260,6 +1260,11 @@ public class AuthorizationResponse extends ApiResponse
      * @since Authlete 3.0.0
      */
     private String issuableCredentials;
+
+    /**
+     * @since Authlete 3.0
+     */
+    private boolean nativeSsoRequested;
 
     /**
      * @since Authlete 1.1
@@ -2978,6 +2983,88 @@ public class AuthorizationResponse extends ApiResponse
     public void setIssuableCredentials(String credentials)
     {
         this.issuableCredentials = credentials;
+    }
+
+
+    /**
+     * Get the flag which indicates whether <a href=
+     * "https://openid.net/specs/openid-connect-native-sso-1_0.html">Native SSO</a>
+     * is requested.
+     *
+     * <p>
+     * This property is set to {@code true} when all the following conditions
+     * are satisfied:
+     * </p>
+     *
+     * <ol>
+     * <li>The service supports Native SSO (see {@link Service#isNativeSsoSupported()}).
+     * <li>The service supports the {@code openid} and {@code device_sso} scopes.
+     * <li>The client is allowed to request the {@code openid} and {@code device_sso} scopes.
+     * <li>The authorization request includes the {@code openid} and {@code device_sso} scopes.
+     * <li>The authorization request's {@code response_type} includes {@code code}.
+     * </ol>
+     *
+     * <p>
+     * <b>NOTE</b>: If the value of this property is {@code true}, the
+     * {@code sessionId} request parameter must be provided to the
+     * {@code /auth/authorization/issue} API
+     * (see {@link AuthorizationIssueRequest#setSessionId(String)}).
+     * </p>
+     *
+     * @return
+     *         True if the authorization request requests Native SSO.
+     *
+     * @since 4.18
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
+     * @see Service#isNativeSsoSupported()
+     */
+    public boolean isNativeSsoRequested()
+    {
+        return nativeSsoRequested;
+    }
+
+
+    /**
+     * Set the flag which indicates whether <a href=
+     * "https://openid.net/specs/openid-connect-native-sso-1_0.html">Native SSO</a>
+     * is requested.
+     *
+     * <p>
+     * This property should be set to {@code true} when all the following
+     * conditions are satisfied:
+     * </p>
+     *
+     * <ol>
+     * <li>The service supports Native SSO (see {@link Service#isNativeSsoSupported()}).
+     * <li>The service supports the {@code openid} and {@code device_sso} scopes.
+     * <li>The client is allowed to request the {@code openid} and {@code device_sso} scopes.
+     * <li>The authorization request includes the {@code openid} and {@code device_sso} scopes.
+     * <li>The authorization request's {@code response_type} includes {@code code}.
+     * </ol>
+     *
+     * <p>
+     * <b>NOTE</b>: If the value of this property is {@code true}, the
+     * {@code sessionId} request parameter must be provided to the
+     * {@code /auth/authorization/issue} API
+     * (see {@link AuthorizationIssueRequest#setSessionId(String)}).
+     * </p>
+     *
+     * @param requested
+     *         True if the authorization request requests Native SSO.
+     *
+     * @since 4.18
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
+     * @see Service#isNativeSsoSupported()
+     */
+    public void setNativeSsoRequested(boolean requested)
+    {
+        this.nativeSsoRequested = requested;
     }
 
 

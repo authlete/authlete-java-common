@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2023 Authlete, Inc.
+ * Copyright (C) 2014-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -221,6 +221,14 @@ import com.authlete.common.util.Utils;
  * Authlete API call. See {@link #getAccessTokenDuration()} for details.
  * </p>
  * </dd>
+ *
+ * <dt><b><code>sessionId</code></b> (OPTIONAL)</dt>
+ * <dd>
+ * <p>
+ * The session ID of the user's authentication session. See {@link #getSessionId()}
+ * for details.
+ * </p>
+ * </dd>
  * </dl>
  * </blockquote>
  *
@@ -233,7 +241,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationIssueRequest implements Serializable
 {
-    private static final long serialVersionUID = 16L;
+    private static final long serialVersionUID = 17L;
 
 
     /**
@@ -370,6 +378,15 @@ public class AuthorizationIssueRequest implements Serializable
      * @since Authlete 3.0
      */
     private long accessTokenDuration;
+
+
+    /**
+     * The session ID of the user's authentication session.
+     *
+     * @since 4.18
+     * @since Authlete 3.0
+     */
+    private String sessionId;
 
 
     /**
@@ -1629,6 +1646,89 @@ public class AuthorizationIssueRequest implements Serializable
     public AuthorizationIssueRequest setAccessTokenDuration(long duration)
     {
         this.accessTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the session ID of the user's authentication session. The specified
+     * value will be embedded in the ID token as the value of the {@code "sid"}
+     * claim.
+     *
+     * <p>
+     * This parameter needs to be provided only if you want to support the
+     * "<a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     * >OpenID Connect Native SSO for Mobile Apps 1.0</a>" specification
+     * (a.k.a. "Native SSO"). To enable support for the Native SSO specification,
+     * the {@code nativeSsoSupported} property of your {@link Service} must be
+     * set to {@code true}.
+     * </p>
+     *
+     * <p>
+     * <b>NOTE</b>: When the response from the {@code /auth/authorization} API
+     * contains the {@code nativeSsoRequested} property with a value of
+     * {@code true} (see {@link AuthorizationResponse#isNativeSsoRequested()}),
+     * the {@code sessionId} request parameter must be provided to the
+     * {@code /auth/authorization/issue} API.
+     * </p>
+     *
+     * @return
+     *         The session ID of the user's authentication session.
+     *
+     * @since 4.18
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
+     * @see AuthorizationResponse#isNativeSsoRequested()
+     * @see Service#isNativeSsoSupported()
+     */
+    public String getSessionId()
+    {
+        return sessionId;
+    }
+
+
+    /**
+     * Set the session ID of the user's authentication session. The specified
+     * value will be embedded in the ID token as the value of the {@code "sid"}
+     * claim.
+     *
+     * <p>
+     * This parameter needs to be provided only if you want to support the
+     * "<a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     * >OpenID Connect Native SSO for Mobile Apps 1.0</a>" specification
+     * (a.k.a. "Native SSO"). To enable support for the Native SSO specification,
+     * the {@code nativeSsoSupported} property of your {@link Service} must be
+     * set to {@code true}.
+     * </p>
+     *
+     * <p>
+     * <b>NOTE</b>: When the response from the {@code /auth/authorization} API
+     * contains the {@code nativeSsoRequested} property with a value of
+     * {@code true} (see {@link AuthorizationResponse#isNativeSsoRequested()}),
+     * the {@code sessionId} request parameter must be provided to the
+     * {@code /auth/authorization/issue} API.
+     * </p>
+     *
+     * @param sessionId
+     *         The session ID of the user's authentication session.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.18
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
+     * @see AuthorizationResponse#isNativeSsoRequested()
+     * @see Service#isNativeSsoSupported()
+     */
+    public AuthorizationIssueRequest setSessionId(String sessionId)
+    {
+        this.sessionId = sessionId;
 
         return this;
     }

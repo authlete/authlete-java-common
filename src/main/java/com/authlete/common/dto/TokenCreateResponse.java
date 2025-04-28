@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2023 Authlete, Inc.
+ * Copyright (C) 2015-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -119,7 +119,7 @@ public class TokenCreateResponse extends ApiResponse
     }
 
 
-    private static final long serialVersionUID = 9L;
+    private static final long serialVersionUID = 10L;
     private static final String SUMMARY_FORMAT
         = "action=%s, grantType=%s, clientId=%d, clientIdentifier=%s, subject=%s, "
         + "scopes=%s, accessToken=%s, tokenType=%s, expiresIn=%d, expiresAt=%d, "
@@ -211,6 +211,10 @@ public class TokenCreateResponse extends ApiResponse
      */
     private String clientIdentifier;
 
+    /**
+     * @since Authlete 3.0
+     */
+    private String sessionId;
 
     /**
      * Get the code indicating how the response should be interpreted.
@@ -788,6 +792,43 @@ public class TokenCreateResponse extends ApiResponse
     public TokenCreateResponse setClientIdentifier(String clientIdentifier)
     {
         this.clientIdentifier = clientIdentifier;
+
+        return this;
+    }
+
+
+    /**
+     * Get the session ID, which is the ID of the user's authentication session,
+     * associated with a newly created access token.
+     *
+     * @return
+     *         The session ID.
+     *
+     * @since 4.18
+     * @since Authlete API 3.0
+     */
+    public String getSessionId()
+    {
+        return sessionId;
+    }
+
+
+    /**
+     * Set the session ID, which is the ID of the user's authentication session,
+     * associated with a newly created access token.
+     *
+     * @param sessionId
+     *         The session ID.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.18
+     * @since Authlete API 3.0
+     */
+    public TokenCreateResponse setSessionId(String sessionId)
+    {
+        this.sessionId = sessionId;
 
         return this;
     }

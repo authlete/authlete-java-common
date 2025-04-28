@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2024 Authlete, Inc.
+ * Copyright (C) 2014-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 82L;
+    private static final long serialVersionUID = 83L;
 
 
     /*
@@ -1869,6 +1869,18 @@ public class Service implements Serializable
      * @since Authlete 3.0
      */
     private boolean clientAssertionAudRestrictedToIssuer;
+
+
+    /**
+     * Whether to support the Native SSO specification.
+     *
+     * @since 4.18
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
+     */
+    private boolean nativeSsoSupported;
 
 
     /**
@@ -11850,6 +11862,103 @@ public class Service implements Serializable
     public Service setClientAssertionAudRestrictedToIssuer(boolean restricted)
     {
         this.clientAssertionAudRestrictedToIssuer = restricted;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to determine to support the "<a href=
+     * "https://openid.net/specs/openid-connect-native-sso-1_0.html">OpenID
+     * Connect Native SSO for Mobile Apps 1&#x2E;0</a>" specification (a.k.a.
+     * "Native SSO").
+     *
+     * <p>
+     * If this property is not set to {@code true}, Native SSO-specific
+     * parameters will be ignored or treated as errors. For example, the
+     * {@code device_sso} scope will have no special meaning (Authlete will
+     * not embed the {@code sid} claim in the ID token), and the
+     * <code>urn:<wbr>openid:<wbr>params:<wbr>token-type:<wbr>device-secret</code>
+     * token type will be treated as unknown, resulting in an error.
+     * </p>
+     *
+     * <p>
+     * This property corresponds to the {@code native_sso_supported} server
+     * metadata. If this property is set to {@code true},
+     * {@code "native_sso_supported":true} will appear in the server metadata
+     * document (see <a href=
+     * "https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata"
+     * >OpenID Connect Discovery 1.0, Section 3. OpenID Provider Metadata</a>;
+     * <a href="https://www.rfc-editor.org/rfc/rfc8414.html#section-2">RFC 8414:
+     * OAuth 2.0 Authorization Server Metadata, Section 2. Authorization Server
+     * Metadata</a>).
+     * </p>
+     *
+     * <p>
+     * The Native SSO specification is supported in Authlete 3.0 and later.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the Native SSO specification is supported.
+     *
+     * @since 4.18
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
+     */
+    public boolean isNativeSsoSupported()
+    {
+        return nativeSsoSupported;
+    }
+
+
+    /**
+     * Set the flag to determine to support the "<a href=
+     * "https://openid.net/specs/openid-connect-native-sso-1_0.html">OpenID
+     * Connect Native SSO for Mobile Apps 1&#x2E;0</a>" specification (a.k.a.
+     * "Native SSO").
+     *
+     * <p>
+     * If this property is not set to {@code true}, Native SSO-specific
+     * parameters will be ignored or treated as errors. For example, the
+     * {@code device_sso} scope will have no special meaning (Authlete will
+     * not embed the {@code sid} claim in the ID token), and the
+     * <code>urn:<wbr>openid:<wbr>params:<wbr>token-type:<wbr>device-secret</code>
+     * token type will be treated as unknown, resulting in an error.
+     * </p>
+     *
+     * <p>
+     * This property corresponds to the {@code native_sso_supported} server
+     * metadata. If this property is set to {@code true},
+     * {@code "native_sso_supported":true} will appear in the server metadata
+     * document (see <a href=
+     * "https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata"
+     * >OpenID Connect Discovery 1.0, Section 3. OpenID Provider Metadata</a>;
+     * <a href="https://www.rfc-editor.org/rfc/rfc8414.html#section-2">RFC 8414:
+     * OAuth 2.0 Authorization Server Metadata, Section 2. Authorization Server
+     * Metadata</a>).
+     * </p>
+     *
+     * <p>
+     * The Native SSO specification is supported in Authlete 3.0 and later.
+     * </p>
+     *
+     * @param supported
+     *         {@code true} to support the Native SSO specification..
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.18
+     * @since Authlete 3.0
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
+     *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
+     */
+    public Service setNativeSsoSupported(boolean supported)
+    {
+        this.nativeSsoSupported = supported;
 
         return this;
     }
