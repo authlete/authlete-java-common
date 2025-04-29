@@ -45,7 +45,7 @@ import java.util.Set;
  */
 public class ClientExtension implements Serializable
 {
-    private static final long serialVersionUID = 5L;
+    private static final long serialVersionUID = 6L;
 
 
     private boolean requestableScopesEnabled;
@@ -58,6 +58,7 @@ public class ClientExtension implements Serializable
      * @since Authlete 3.0.14
      */
     private long idTokenDuration;
+    
 
     /**
      * Check whether <i>"Requestable Scopes per Client"</i> is enabled or not.
@@ -384,6 +385,7 @@ public class ClientExtension implements Serializable
 
         return this;
     }
+    
 
     /**
      * Get the value of the duration of ID tokens per client in seconds.
