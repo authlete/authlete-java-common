@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.20 (2025-05-03)
+-----------------
+
 - `AuthleteApi` interface
     * Added the `nativeSsoLogout(NativeSsoLogoutRequest, Options)` method.
 

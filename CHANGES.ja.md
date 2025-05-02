@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.20 (2025 年 05 月 03 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `nativeSsoLogout(NativeSsoLogoutRequest, Options)` メソッドを追加。
 
