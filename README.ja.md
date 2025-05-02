@@ -368,6 +368,7 @@ settings.setReadTimeout(5000);
   22. OpenID Connect Native SSO for Mobile Apps 1.0 に関するメソッド群
 
   - `nativeSso(NativeSsoRequest)`
+  - `nativeSsoLogout(NativeSsoLogoutRequest)`
 
 *例*
 
