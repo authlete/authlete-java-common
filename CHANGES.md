@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+4.19 (2025-04-29)
+-----------------
+
+- `ClientExtention` class
+    * Added the `getIdTokenDuration()` method.
+    * Added the `setIdTokenDuration(long)` method.
+
+
 4.18 (2025-04-29)
 -----------------
 
