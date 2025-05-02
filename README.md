@@ -379,6 +379,7 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   22. Methods for OpenID Connect Native SSO for Mobile Apps 1.0
 
   - `nativeSso(NativeSsoRequest)`
+  - `nativeSsoLogout(NativeSsoLogoutRequest)`
 
 *Examples*
 

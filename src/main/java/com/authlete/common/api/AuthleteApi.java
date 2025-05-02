@@ -4680,4 +4680,23 @@ public interface AuthleteApi
      */
     NativeSsoResponse nativeSso(
             NativeSsoRequest request, Options options) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /nativesso/logout} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @param options
+     *         Request options.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 4.20
+     * @since Authlete 3.0
+     */
+    NativeSsoLogoutResponse nativeSsoLogout(
+            NativeSsoLogoutRequest request, Options options) throws AuthleteApiException;
 }

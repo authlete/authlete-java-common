@@ -1,6 +1,14 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `nativeSsoLogout(NativeSsoLogoutRequest, Options)` メソッドを追加。
+
+- 新しい型
+    * `NativeSsoLogoutRequest` クラス
+    * `NativeSsoLogoutResponse` クラス
+
+
 4.19 (2025 年 04 月 29 日)
 --------------------------
 
