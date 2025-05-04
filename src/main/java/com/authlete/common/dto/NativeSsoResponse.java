@@ -64,14 +64,6 @@ package com.authlete.common.dto;
  *   "issued_token_type": "urn:ietf:params:oauth:token-type:access_token"
  * }</pre>
  *
- * <p>
- * The {@code issued_token_type} parameter in the token response is required
- * only in the token exchange flow, but the current implementation of the
- * {@code /nativesso} API always embeds the parameter, even in the authorization
- * code and refresh token flows. Since it is allowed to include any parameters
- * in token responses, this behavior should not cause any issues.
- * </p>
- *
  * <hr>
  * <h3>{@code action} = {@link Action#INTERNAL_SERVER_ERROR INTERNAL_SERVER_ERROR}</h3>
  *
