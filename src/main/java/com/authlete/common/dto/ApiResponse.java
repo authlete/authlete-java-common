@@ -85,11 +85,25 @@ public class ApiResponse implements Serializable
         this.resultMessage = message;
     }
 
+
+    /**
+     * Get the HTTP response headers returned from an Authlete API call.
+     *
+     * @return
+     *          A map of HTTP response headers. May be {@code null} or empty.
+     */
     public Map<String, List<String>> getResponseHeaders()
     {
         return responseHeaders;
     }
 
+
+    /**
+     * Set the HTTP response headers returned from an Authlete API call.
+     *
+     * @param responseHeaders
+     *          A map of HTTP response headers where each key is a header name and the corresponding value is a list of header values.
+     */
     public void setResponseHeaders(Map<String, List<String>> responseHeaders)
     {
         this.responseHeaders = responseHeaders;
