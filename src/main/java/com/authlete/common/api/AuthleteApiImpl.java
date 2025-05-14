@@ -162,6 +162,7 @@ class AuthleteApiImpl implements AuthleteApi
      */
     public AuthleteApiImpl(AuthleteConfiguration configuration)
     {
+        System.out.println("165: AuthleteApiImpl");
         if (configuration == null)
         {
             throw new IllegalArgumentException("configuration is null.");
@@ -603,6 +604,7 @@ class AuthleteApiImpl implements AuthleteApi
     private <TResponse> TResponse communicate(
             ConnectionContext ctx, Object requestBody, Class<TResponse> responseClass) throws AuthleteApiException
     {
+        System.out.println("606 communicate method called!");
         // If the request has a request body.
         if (requestBody != null)
         {
@@ -612,6 +614,8 @@ class AuthleteApiImpl implements AuthleteApi
 
         // Read the response body. (JSON is expected)
         String responseBody = readResponseBody(ctx);
+
+        Map<String, List<String>> headers = ctx.connection().getHeaderFields();
 
         // If the response does not include any entity.
         if (responseBody == null)
@@ -626,8 +630,16 @@ class AuthleteApiImpl implements AuthleteApi
             return (TResponse)responseBody;
         }
 
+
+
         // Convert the JSON into an object.
-        return Utils.fromJson(responseBody, responseClass);
+        TResponse response = Utils.fromJson(responseBody, responseClass);
+
+        if (response instanceof ApiResponse) {
+           ((ApiResponse) response).setResponseHeaders(headers);
+        }
+
+        return response;
     }
 
 
