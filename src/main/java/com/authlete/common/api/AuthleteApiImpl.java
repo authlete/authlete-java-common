@@ -162,7 +162,6 @@ class AuthleteApiImpl implements AuthleteApi
      */
     public AuthleteApiImpl(AuthleteConfiguration configuration)
     {
-        System.out.println("165: AuthleteApiImpl");
         if (configuration == null)
         {
             throw new IllegalArgumentException("configuration is null.");
