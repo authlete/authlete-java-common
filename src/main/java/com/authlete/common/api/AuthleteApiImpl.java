@@ -627,7 +627,15 @@ class AuthleteApiImpl implements AuthleteApi
         }
 
         // Convert the JSON into an object.
-        return Utils.fromJson(responseBody, responseClass);
+        TResponse response = Utils.fromJson(responseBody, responseClass);
+
+        if (response instanceof ApiResponse) {
+            // Include response headers
+            Map<String, List<String>> headers = ctx.connection().getHeaderFields();
+           ((ApiResponse) response).setResponseHeaders(headers);
+        }
+
+        return response;
     }
 
 
