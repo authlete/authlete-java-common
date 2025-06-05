@@ -600,10 +600,11 @@ public class AuthleteApiImplV3 extends AuthleteApiBasicImpl
     @Override
     public void deleteService(long apiKey, Options options) throws AuthleteApiException
     {
-        executeApiCall(
-                new DeleteApiCaller(
-                        SERVICE_DELETE_API_PATH, apiKey)
-                        .setOptions(options));
+        // Use deleteApiResponse to treat 403 business error as ApiResponse, not exception
+        deleteApiResponse(
+                mAuth,
+                String.format(SERVICE_DELETE_API_PATH, apiKey),
+                options);
     }
 
 
@@ -817,10 +818,11 @@ public class AuthleteApiImplV3 extends AuthleteApiBasicImpl
     @Override
     public void deleteClient(String clientId, Options options) throws AuthleteApiException
     {
-        executeApiCall(
-                new DeleteApiCaller(
-                        CLIENT_DELETE_API_PATH, mServiceId, clientId)
-                        .setOptions(options));
+        // Use deleteApiResponse to treat 403 business error as ApiResponse, not exception
+        deleteApiResponse(
+                mAuth,
+                String.format(CLIENT_DELETE_API_PATH, mServiceId, clientId),
+                options);
     }
 
 

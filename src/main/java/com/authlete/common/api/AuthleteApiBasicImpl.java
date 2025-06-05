@@ -28,6 +28,7 @@ import java.net.URLEncoder;
 import java.util.*;
 import java.util.Map.Entry;
 import com.authlete.common.conf.AuthleteConfiguration;
+import com.authlete.common.dto.ApiResponse;
 import com.authlete.common.dto.ClientListResponse;
 import com.authlete.common.dto.ServiceListResponse;
 import com.authlete.common.dto.TokenListResponse;
@@ -46,6 +47,8 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
 {
     private static String UTF_8 = "UTF-8";
 
+    // ThreadLocal to hold ConnectionContext for exception creation
+    private static final ThreadLocal<ConnectionContext> CURRENT_CTX = new ThreadLocal<>();
 
     protected interface AuthleteApiCall<TResponse>
     {
@@ -153,27 +156,37 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
         }
         catch (RuntimeException rte)
         {
-            Throwable cause = rte.getCause();
-            if (cause instanceof AuthleteApiException)
+            // If it's already an AuthleteApiException, rethrow to preserve context
+            if (rte instanceof AuthleteApiException)
             {
-                // Already an AuthleteApiException, unwrap and rethrow
-                throw (AuthleteApiException) cause;
+                throw (AuthleteApiException) rte;
             }
-            else if (cause instanceof IOException)
+            Throwable cause = rte.getCause();
+            if (cause instanceof IOException)
             {
-                // Wrap any IOException in AuthleteApiException
-                throw new AuthleteApiException(cause.getMessage(), cause);
+                // Wrap any IOException with HTTP context
+                throw createAuthleteApiException(cause, CURRENT_CTX.get());
             }
             else
             {
-                // Wrap any other unchecked exception
-                throw new AuthleteApiException(rte.getMessage(), rte);
+                // Wrap any other unchecked exception with HTTP context
+                throw createAuthleteApiException(rte, CURRENT_CTX.get());
             }
         }
         catch (Throwable t)
         {
-            // Wrap any other checked exception
-            throw new AuthleteApiException(t.getMessage(), t);
+            // If it's already an AuthleteApiException, rethrow to preserve context
+            if (t instanceof AuthleteApiException)
+            {
+                throw (AuthleteApiException) t;
+            }
+            // Wrap any other checked exception with HTTP context
+            throw createAuthleteApiException(t, CURRENT_CTX.get());
+        }
+        finally
+        {
+            // Clear the ConnectionContext from ThreadLocal
+            CURRENT_CTX.remove();
         }
     }
 
@@ -205,15 +218,19 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
         ConnectionContext ctx = createConnection(
                 method, auth, mBaseUrl, path, queryParams, options, mSettings);
 
+        // Store the context for exception handling
+        CURRENT_CTX.set(ctx);
+
         try
         {
-            // Communicate with the API and get a response.
+            // Communicate with the API and get a response
             return communicate(ctx, requestBody, responseClass);
         }
         finally
         {
             // Close the connection in any case.
             ctx.close();
+            CURRENT_CTX.remove();
         }
     }
 
@@ -523,7 +540,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
         }
         catch (JOSEException e)
         {
-            // We’ll rethrow as AuthleteApiException so that our caller can wrap it properly
+            // We'll rethrow as AuthleteApiException so that our caller can wrap it properly
             throw new AuthleteApiException("Failed to sign DPoP token.", e);
         }
 
@@ -540,6 +557,26 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
         {
             // Write the request body.
             writeRequestBody(ctx, requestBody);
+        }
+
+        // Check HTTP status code: treat 4xx/5xx as server errors and read error body.
+        try
+        {
+            int status = ctx.connection().getResponseCode();
+            if (responseClass != null && status >= HttpURLConnection.HTTP_BAD_REQUEST)
+            {
+                // Read the error response body
+                String errorBody = extractErrorData(ctx);
+                String statusMsg = ctx.connection().getResponseMessage();
+                Map<String, List<String>> headers = ctx.connection().getHeaderFields();
+                // Throw a proper exception with HTTP context
+                throw new AuthleteApiException("HTTP " + status + " " + statusMsg,
+                        status, statusMsg, errorBody, headers);
+            }
+        }
+        catch (IOException ioe)
+        {
+            // If we can't get status, fallback to normal flow
         }
 
         // Read the response body. (JSON is expected)
@@ -813,22 +850,29 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
     }
 
 
-    private static Map<String, String> buildMap(Object... pairs)
+    /**
+     * Perform a DELETE and return the ApiResponse (business result),
+     * treating any 4xx JSON result as a valid ApiResponse instead of exception.
+     */
+    public ApiResponse deleteApiResponse(
+            String auth, String path, Options options) throws AuthleteApiException
     {
-        int len = pairs.length;
-        Map<String, String> map = new LinkedHashMap<String, String>();
-
-        for (int i = 0; i < len; ++i)
+        try
         {
-            String key = (String)pairs[i];
-            Object obj = (len <= ++i)  ? null : pairs[i];
-            String val = (obj == null) ? null : obj.toString();
-
-            map.put(key, val);
+            // Attempt to call and parse a normal ApiResponse
+            return callApi(HttpMethod.DELETE, auth, path, null, null,
+                    com.authlete.common.dto.ApiResponse.class, options);
         }
-
-        return map;
+        catch (AuthleteApiException e)
+        {
+            // If the server sent JSON in the error, parse it into ApiResponse
+            String body = e.getResponseBody();
+            if (body != null)
+            {
+                return Utils.fromJson(body, com.authlete.common.dto.ApiResponse.class);
+            }
+            // Otherwise rethrow
+            throw e;
+        }
     }
-
-
 }
