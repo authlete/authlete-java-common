@@ -32,6 +32,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <git.connection>scm:git:git@github.com:authlete/authlete-java-common.git</git.connection>
         <git.url>git@github.com:authlete/authlete-java-common.git</git.url>
+        <nimbus.version>9.31</nimbus.version>
     </properties>
 
     <scm>
@@ -85,6 +86,12 @@
             <artifactId>nv-digest</artifactId>
             <version>1.5</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>${nimbus.version}</version>
         </dependency>
 
         <dependency>
