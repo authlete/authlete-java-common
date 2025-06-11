@@ -498,7 +498,7 @@ public class AuthleteApiImplV3 extends AuthleteApiBasicImpl
             public TokenListResponse call()
             {
                 String path = String.format(AUTH_TOKEN_GET_LIST_API_PATH, mServiceId);
-                return callGetTokenList(path, mAuth, clientIdentifier, subject, start, end, rangeGiven, tokenStatus, options);
+                return callGetTokenList(mAuth, path, clientIdentifier, subject, start, end, rangeGiven, tokenStatus, options);
             }
         });
     }
