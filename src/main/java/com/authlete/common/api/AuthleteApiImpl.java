@@ -95,7 +95,7 @@ class AuthleteApiImpl extends AuthleteApiBasicImpl
     private static final String HSK_GET_LIST_API_PATH                     = "/api/hsk/get/list";
     private static final String ECHO_API_PATH                             = "/api/misc/echo";
     private static final String GM_API_PATH                               = "/api/gm";
-    private static final String CLIENT_LOCK_FLAG_UPDATE_API_PATH          = "/api/client/lock_flag/update";
+    private static final String CLIENT_LOCK_FLAG_UPDATE_API_PATH          = "/api/client/lock_flag/update/%s";
     private static final String FEDERATION_CONFIGURATION_API_PATH         = "/api/federation/configuration";
     private static final String FEDERATION_REGISTRATION_API_PATH          = "/api/federation/registration";
     private static final String VCI_METADATA_API_PATH                     = "/api/vci/metadata";
@@ -605,7 +605,7 @@ class AuthleteApiImpl extends AuthleteApiBasicImpl
             public TokenListResponse call()
             {
                 String path = AUTH_TOKEN_GET_LIST_API_PATH;
-                return callGetTokenList(path, mServiceAuth, clientIdentifier, subject, start, end, rangeGiven, tokenStatus, options);
+                return callGetTokenList(mServiceAuth, path, clientIdentifier, subject, start, end, rangeGiven, tokenStatus, options);
             }
         });
     }
@@ -707,10 +707,11 @@ class AuthleteApiImpl extends AuthleteApiBasicImpl
     @Override
     public void deleteService(long apiKey, Options options) throws AuthleteApiException
     {
-        executeApiCall(
-                new ServiceOwnerDeleteApiCaller(
-                        SERVICE_DELETE_API_PATH, apiKey)
-                        .setOptions(options));
+        // Use deleteApiResponse to treat 403/404 business error as ApiResponse, not exception
+        deleteApiResponse(
+                mServiceOwnerAuth,
+                String.format(SERVICE_DELETE_API_PATH, apiKey),
+                options);
     }
 
 
@@ -924,10 +925,11 @@ class AuthleteApiImpl extends AuthleteApiBasicImpl
     @Override
     public void deleteClient(String clientId, Options options) throws AuthleteApiException
     {
-        executeApiCall(
-                new ServiceDeleteApiCaller(
-                        CLIENT_DELETE_API_PATH, clientId)
-                        .setOptions(options));
+        // Use deleteApiResponse to treat 403/404 business error as ApiResponse, not exception
+        deleteApiResponse(
+                mServiceOwnerAuth,
+                String.format(CLIENT_DELETE_API_PATH, clientId),
+                options);
     }
 
 
@@ -1402,7 +1404,7 @@ class AuthleteApiImpl extends AuthleteApiBasicImpl
         executeApiCall(
                 new ServicePostApiCaller<ApiResponse>(
                         ApiResponse.class, request,
-                        CLIENT_LOCK_FLAG_UPDATE_API_PATH, clientIdentifier)
+                        String.format(CLIENT_LOCK_FLAG_UPDATE_API_PATH, clientIdentifier))
                         .setOptions(options));
     }
 
