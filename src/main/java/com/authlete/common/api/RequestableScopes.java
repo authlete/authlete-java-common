@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Authlete, Inc.
+ * Copyright (C) 2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,9 +22,9 @@ import java.io.Serializable;
 /**
  * The model class for <code>/api/client/extension/requestable_scopes/<i>*</i></code> API.
  *
- * @author Takahiko Kawasaki
+ * @author Meysam Tamkin
  *
- * @since 1.4
+ * @since 4.21
  */
 class RequestableScopes implements Serializable
 {

@@ -15,6 +15,7 @@
  */
 package com.authlete.common.api;
 
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -25,8 +26,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.*;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.UUID;
 import com.authlete.common.conf.AuthleteConfiguration;
 import com.authlete.common.dto.ApiResponse;
 import com.authlete.common.dto.ClientListResponse;
@@ -34,21 +41,26 @@ import com.authlete.common.dto.ServiceListResponse;
 import com.authlete.common.dto.TokenListResponse;
 import com.authlete.common.types.TokenStatus;
 import com.authlete.common.util.Utils;
-import com.nimbusds.jose.*;
+import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.JOSEObjectType;
+import com.nimbusds.jose.JWSAlgorithm;
+import com.nimbusds.jose.JWSHeader;
+import com.nimbusds.jose.JWSObject;
+import com.nimbusds.jose.JWSSigner;
 import com.nimbusds.jose.crypto.factories.DefaultJWSSignerFactory;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
-
-import java.text.ParseException;
 
 
 public abstract class AuthleteApiBasicImpl implements AuthleteApi
 {
     private static String UTF_8 = "UTF-8";
 
+
     // ThreadLocal to hold ConnectionContext for exception creation
     private static final ThreadLocal<ConnectionContext> CURRENT_CTX = new ThreadLocal<>();
+
 
     protected interface AuthleteApiCall<TResponse>
     {
@@ -91,7 +103,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
     }
 
 
-    private void  extractDpop(AuthleteConfiguration configuration)
+    private void extractDpop(AuthleteConfiguration configuration)
     {
         if (configuration.getDpopKey() != null)
         {
@@ -115,7 +127,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
     /**
      * Call an API with HTTP GET method.
      */
-    protected  <TResponse> TResponse callGetApi(
+    protected <TResponse> TResponse callGetApi(
             String auth, String path, Class<TResponse> responseClass, Map<String, Object[]> queryParams,
              Options options) throws AuthleteApiException
     {
@@ -126,7 +138,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
     /**
      * Call an API with HTTP POST method.
      */
-    protected  <TResponse> TResponse callPostApi(
+    protected <TResponse> TResponse callPostApi(
             String auth, String path,
             Object requestBody, Class<TResponse> responseClass, Options options) throws AuthleteApiException
     {
