@@ -58,8 +58,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
     private static String UTF_8 = "UTF-8";
 
 
-    // ThreadLocal to hold ConnectionContext for exception creation
-    private static final ThreadLocal<ConnectionContext> CURRENT_CTX = new ThreadLocal<>();
+
 
 
     protected interface AuthleteApiCall<TResponse>
@@ -74,6 +73,37 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
         GET,
         POST,
         DELETE
+    }
+
+
+    /** Strategy for handling 404 responses */
+    protected enum NotFoundHandling
+    {
+        /** Throw exception for 404 (default behavior) */
+        THROW_EXCEPTION,
+        
+        /** Return null for 404 responses */
+        RETURN_NULL,
+        
+        /** Parse 404 response body as business response */
+        PARSE_AS_RESPONSE,
+        
+        /** Return default success response for 404 (useful for delete operations) */
+        RETURN_SUCCESS_RESPONSE
+    }
+
+
+    /** Strategy for handling client error responses (4xx) */
+    protected enum ClientErrorHandling
+    {
+        /** Throw exception for 4xx (default behavior) */
+        THROW_EXCEPTION,
+        
+        /** Parse 4xx response body as business response */
+        PARSE_AS_RESPONSE,
+        
+        /** Parse 4xx response body, return default response if parsing fails */
+        PARSE_OR_DEFAULT_RESPONSE
     }
 
 
@@ -157,59 +187,49 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
 
     /**
      * Execute an Authlete API call.
+     * 
+     * Note: All context handling (creation, exception wrapping, cleanup) is now
+     * centralized in the callApi method, eliminating the need for ThreadLocal context.
      */
     protected <TResponse> TResponse executeApiCall(AuthleteApiCall<TResponse> apiCall) throws AuthleteApiException
     {
-        try
-        {
-            // Invoke the passed‐in lambda. Any IOException or AuthleteApiException
-            // should have been wrapped in a RuntimeException by callApi.
-            return apiCall.call();
-        }
-        catch (RuntimeException rte)
-        {
-            // If it's already an AuthleteApiException, rethrow to preserve context
-            if (rte instanceof AuthleteApiException)
-            {
-                throw (AuthleteApiException) rte;
-            }
-            Throwable cause = rte.getCause();
-            if (cause instanceof IOException)
-            {
-                // Wrap any IOException with HTTP context
-                throw createAuthleteApiException(cause, CURRENT_CTX.get());
-            }
-            else
-            {
-                // Wrap any other unchecked exception with HTTP context
-                throw createAuthleteApiException(rte, CURRENT_CTX.get());
-            }
-        }
-        catch (Throwable t)
-        {
-            // If it's already an AuthleteApiException, rethrow to preserve context
-            if (t instanceof AuthleteApiException)
-            {
-                throw (AuthleteApiException) t;
-            }
-            // Wrap any other checked exception with HTTP context
-            throw createAuthleteApiException(t, CURRENT_CTX.get());
-        }
-        finally
-        {
-            // Clear the ConnectionContext from ThreadLocal
-            CURRENT_CTX.remove();
-        }
+        // Simply invoke the API call. All context handling is now done in callApi.
+        return apiCall.call();
     }
 
 
     /**
-     * Call an API.
+     * Call an API with centralized context handling.
      */
     protected  <TResponse> TResponse callApi(
             AuthleteApiBasicImpl.HttpMethod method, String auth,
             String path, Map<String, Object[]> queryParams,
             Object requestBody, Class<TResponse> responseClass, Options options) throws AuthleteApiException
+    {
+        return callApiWithNotFoundHandling(method, auth, path, queryParams, requestBody, responseClass, options, NotFoundHandling.THROW_EXCEPTION);
+    }
+
+
+    /**
+     * Call an API with centralized context handling and specified 404 handling strategy.
+     */
+    protected  <TResponse> TResponse callApiWithNotFoundHandling(
+            AuthleteApiBasicImpl.HttpMethod method, String auth,
+            String path, Map<String, Object[]> queryParams,
+            Object requestBody, Class<TResponse> responseClass, Options options, NotFoundHandling notFoundHandling) throws AuthleteApiException
+    {
+        return callApiWith4xxHandling(method, auth, path, queryParams, requestBody, responseClass, options, notFoundHandling, ClientErrorHandling.THROW_EXCEPTION);
+    }
+
+
+    /**
+     * Call an API with centralized context handling and specified 4xx handling strategies.
+     */
+    protected  <TResponse> TResponse callApiWith4xxHandling(
+            AuthleteApiBasicImpl.HttpMethod method, String auth,
+            String path, Map<String, Object[]> queryParams,
+            Object requestBody, Class<TResponse> responseClass, Options options, 
+            NotFoundHandling notFoundHandling, ClientErrorHandling clientErrorHandling) throws AuthleteApiException
     {
         String dpopHeader = wrapWithDpop(method, path);
         if (dpopHeader != null)
@@ -226,23 +246,33 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
             }
             headers.put("DPoP", dpopHeader);
         }
-        // Create a connection to the Authlete API.
-        ConnectionContext ctx = createConnection(
-                method, auth, mBaseUrl, path, queryParams, options, mSettings);
-
-        // Store the context for exception handling
-        CURRENT_CTX.set(ctx);
-
+        
+        ConnectionContext ctx = null;
         try
         {
+            // Create a connection to the Authlete API.
+            ctx = createConnection(method, auth, mBaseUrl, path, queryParams, options, mSettings);
+            
             // Communicate with the API and get a response
-            return communicate(ctx, requestBody, responseClass);
+            return communicate(ctx, requestBody, responseClass, notFoundHandling, clientErrorHandling);
+        }
+        catch (AuthleteApiException e)
+        {
+            // Re-throw AuthleteApiException as-is (it already has context)
+            throw e;
+        }
+        catch (Throwable t)
+        {
+            // Wrap any other throwable with HTTP context
+            throw createAuthleteApiException(t, ctx);
         }
         finally
         {
-            // Close the connection in any case.
-            ctx.close();
-            CURRENT_CTX.remove();
+            // Always close the connection context if it was created
+            if (ctx != null)
+            {
+                ctx.close();
+            }
         }
     }
 
@@ -564,6 +594,24 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
     private <TResponse> TResponse communicate(
             ConnectionContext ctx, Object requestBody, Class<TResponse> responseClass) throws AuthleteApiException
     {
+        return communicate(ctx, requestBody, responseClass, NotFoundHandling.THROW_EXCEPTION);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    private <TResponse> TResponse communicate(
+            ConnectionContext ctx, Object requestBody, Class<TResponse> responseClass, 
+            NotFoundHandling notFoundHandling) throws AuthleteApiException
+    {
+        return communicate(ctx, requestBody, responseClass, notFoundHandling, ClientErrorHandling.THROW_EXCEPTION);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    private <TResponse> TResponse communicate(
+            ConnectionContext ctx, Object requestBody, Class<TResponse> responseClass, 
+            NotFoundHandling notFoundHandling, ClientErrorHandling clientErrorHandling) throws AuthleteApiException
+    {
         // If the request has a request body.
         if (requestBody != null)
         {
@@ -571,17 +619,28 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
             writeRequestBody(ctx, requestBody);
         }
 
-        // Check HTTP status code: treat 4xx/5xx as server errors and read error body.
+        // Check HTTP status code: handle 404s and other 4xx based on strategy, treat 5xx as server errors.
         try
         {
             int status = ctx.connection().getResponseCode();
             if (responseClass != null && status >= HttpURLConnection.HTTP_BAD_REQUEST)
             {
-                // Read the error response body
+                // Special handling for 404 responses
+                if (status == HttpURLConnection.HTTP_NOT_FOUND)
+                {
+                    return handle404Response(ctx, responseClass, notFoundHandling);
+                }
+                
+                // Handle other 4xx responses based on strategy
+                if (status >= 400 && status < 500)
+                {
+                    return handle4xxResponse(ctx, responseClass, status, clientErrorHandling);
+                }
+                
+                // For 5xx errors, always throw exception
                 String errorBody = extractErrorData(ctx);
-                String statusMsg = ctx.connection().getResponseMessage();
+                String statusMsg = extractStatusMessage(ctx.connection());
                 Map<String, List<String>> headers = ctx.connection().getHeaderFields();
-                // Throw a proper exception with HTTP context
                 throw new AuthleteApiException("HTTP " + status + " " + statusMsg,
                         status, statusMsg, errorBody, headers);
             }
@@ -609,6 +668,157 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
 
         // Convert the JSON into an object.
         return Utils.fromJson(responseBody, responseClass);
+    }
+
+
+    /**
+     * Handle 404 responses based on the specified strategy.
+     */
+    @SuppressWarnings("unchecked")
+    private <TResponse> TResponse handle404Response(
+            ConnectionContext ctx, Class<TResponse> responseClass, 
+            NotFoundHandling notFoundHandling) throws AuthleteApiException
+    {
+        switch (notFoundHandling)
+        {
+            case RETURN_NULL:
+                return null;
+                
+            case PARSE_AS_RESPONSE:
+                // Try to parse the 404 response body as a valid business response
+                String errorBody = extractErrorData(ctx);
+                if (errorBody != null && responseClass != null)
+                {
+                    try
+                    {
+                        return Utils.fromJson(errorBody, responseClass);
+                    }
+                    catch (Exception e)
+                    {
+                        // If parsing fails, fall through to throw exception
+                    }
+                }
+                // Fall through to THROW_EXCEPTION
+                
+            case RETURN_SUCCESS_RESPONSE:
+                // Return a default success response for 404 (useful for delete operations)
+                return createDefaultSuccessResponse(responseClass);
+                
+            case THROW_EXCEPTION:
+            default:
+                // Default behavior: throw exception with context
+                String statusMsg = extractStatusMessage(ctx.connection());
+                Map<String, List<String>> headers = ctx.connection().getHeaderFields();
+                String body = extractErrorData(ctx);
+                throw new AuthleteApiException("HTTP 404 " + statusMsg,
+                        HttpURLConnection.HTTP_NOT_FOUND, statusMsg, body, headers);
+        }
+    }
+
+
+    /**
+     * Handle 4xx responses (other than 404) based on the specified strategy.
+     */
+    @SuppressWarnings("unchecked")
+    private <TResponse> TResponse handle4xxResponse(
+            ConnectionContext ctx, Class<TResponse> responseClass, int status,
+            ClientErrorHandling clientErrorHandling) throws AuthleteApiException
+    {
+        switch (clientErrorHandling)
+        {
+            case PARSE_AS_RESPONSE:
+                // Try to parse the 4xx response body as a valid business response
+                String errorBody = extractErrorData(ctx);
+                if (errorBody != null && responseClass != null)
+                {
+                    try
+                    {
+                        return Utils.fromJson(errorBody, responseClass);
+                    }
+                    catch (Exception e)
+                    {
+                        // If parsing fails, fall through to throw exception
+                    }
+                }
+                // Fall through to THROW_EXCEPTION
+                
+            case PARSE_OR_DEFAULT_RESPONSE:
+                // Try to parse the 4xx response body, return default if parsing fails
+                String responseBody = extractErrorData(ctx);
+                if (responseBody != null && responseClass != null)
+                {
+                    try
+                    {
+                        return Utils.fromJson(responseBody, responseClass);
+                    }
+                    catch (Exception e)
+                    {
+                        // If parsing fails, return default response instead of throwing
+                        return createDefaultErrorResponse(responseClass, status);
+                    }
+                }
+                // No response body or no response class, return default
+                return createDefaultErrorResponse(responseClass, status);
+                
+            case THROW_EXCEPTION:
+            default:
+                // Default behavior: throw exception with context
+                String statusMsg = extractStatusMessage(ctx.connection());
+                Map<String, List<String>> headers = ctx.connection().getHeaderFields();
+                String body = extractErrorData(ctx);
+                throw new AuthleteApiException("HTTP " + status + " " + statusMsg,
+                        status, statusMsg, body, headers);
+        }
+    }
+
+
+    /**
+     * Create a default success response for the given response class.
+     */
+    @SuppressWarnings("unchecked")
+    private <TResponse> TResponse createDefaultSuccessResponse(Class<TResponse> responseClass)
+    {
+        if (responseClass == null)
+        {
+            return null;
+        }
+        
+        // Special handling for ApiResponse
+        if (com.authlete.common.dto.ApiResponse.class.isAssignableFrom(responseClass))
+        {
+            com.authlete.common.dto.ApiResponse response = new com.authlete.common.dto.ApiResponse();
+            response.setResultCode("A999999"); // Generic success code
+            response.setResultMessage("Resource not found (already deleted)");
+            return (TResponse) response;
+        }
+        
+        // For other types, return null
+        return null;
+    }
+
+
+    /**
+     * Create a default error response for the given response class and status code.
+     */
+    @SuppressWarnings("unchecked")
+    private <TResponse> TResponse createDefaultErrorResponse(Class<TResponse> responseClass, int statusCode)
+    {
+        if (responseClass == null)
+        {
+            return null;
+        }
+        
+        // Special handling for ApiResponse
+        if (com.authlete.common.dto.ApiResponse.class.isAssignableFrom(responseClass))
+        {
+            com.authlete.common.dto.ApiResponse response = new com.authlete.common.dto.ApiResponse();
+            response.setResultCode("A" + statusCode + "000"); // Generic error code based on HTTP status
+            response.setResultMessage("HTTP " + statusCode + " response with empty/invalid body");
+            return (TResponse) response;
+        }
+        
+        // For other types, return null
+        return null;
     }
 
 
@@ -864,27 +1074,17 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
 
     /**
      * Perform a DELETE and return the ApiResponse (business result),
-     * treating any 4xx JSON result as a valid ApiResponse instead of exception.
+     * treating 404 as success and other 4xx with graceful handling for empty bodies.
      */
     public ApiResponse deleteApiResponse(
             String auth, String path, Options options) throws AuthleteApiException
     {
-        try
-        {
-            // Attempt to call and parse a normal ApiResponse
-            return callApi(HttpMethod.DELETE, auth, path, null, null,
-                    com.authlete.common.dto.ApiResponse.class, options);
-        }
-        catch (AuthleteApiException e)
-        {
-            // If the server sent JSON in the error, parse it into ApiResponse
-            String body = e.getResponseBody();
-            if (body != null)
-            {
-                return Utils.fromJson(body, com.authlete.common.dto.ApiResponse.class);
-            }
-            // Otherwise rethrow
-            throw e;
-        }
+        // Use enhanced strategies:
+        // - 404: Return success response (resource already deleted)
+        // - Other 4xx: Try to parse, return default response if body is null/invalid
+        return callApiWith4xxHandling(HttpMethod.DELETE, auth, path, null, null,
+                com.authlete.common.dto.ApiResponse.class, options, 
+                NotFoundHandling.RETURN_SUCCESS_RESPONSE, 
+                ClientErrorHandling.PARSE_OR_DEFAULT_RESPONSE);
     }
 }
