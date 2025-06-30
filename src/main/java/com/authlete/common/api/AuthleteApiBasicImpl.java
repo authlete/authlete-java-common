@@ -801,8 +801,8 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
         if (com.authlete.common.dto.ApiResponse.class.isAssignableFrom(responseClass))
         {
             com.authlete.common.dto.ApiResponse response = new com.authlete.common.dto.ApiResponse();
-            response.setResultCode("A999999"); // Generic success code
-            response.setResultMessage("Resource not found (already deleted)");
+            response.setResultCode("CLIENT_GENERATED_404_RESPONSE"); // Clearly not from API
+            response.setResultMessage("404 Not Found - Resource may have been already deleted");
             return (TResponse)response;
         }
         
@@ -826,7 +826,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
         if (com.authlete.common.dto.ApiResponse.class.isAssignableFrom(responseClass))
         {
             com.authlete.common.dto.ApiResponse response = new com.authlete.common.dto.ApiResponse();
-            response.setResultCode("A" + statusCode + "000"); // Generic error code based on HTTP status
+            response.setResultCode("CLIENT_GENERATED_" + statusCode + "_RESPONSE"); // Clearly not from API
             response.setResultMessage("HTTP " + statusCode + " response with empty/invalid body");
             return (TResponse)response;
         }
