@@ -58,9 +58,6 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
     private static String UTF_8 = "UTF-8";
 
 
-
-
-
     protected interface AuthleteApiCall<TResponse>
     {
         TResponse call();
