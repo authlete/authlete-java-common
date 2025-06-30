@@ -303,7 +303,7 @@ public class CLI
                 {
                     case 2:
                         value = pair[1];
-                        // FALLTHROUGH
+                        break;
 
                     case 1:
                         key = pair[0];

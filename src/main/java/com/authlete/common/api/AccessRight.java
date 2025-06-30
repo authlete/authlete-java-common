@@ -44,35 +44,25 @@ import java.util.List;
 public enum AccessRight
 {
     /** can view client details on this service or client */
-    VIEW_CLIENT
-        (true, true),
+    VIEW_CLIENT(true, true),
     /** can modify existing clients on this service or client */
-    MODIFY_CLIENT
-        (true, true, VIEW_CLIENT),
+    MODIFY_CLIENT(true, true, VIEW_CLIENT),
     /** can view the details of this service */
-    VIEW_SERVICE
-        (false, true, VIEW_CLIENT),
+    VIEW_SERVICE(false, true, VIEW_CLIENT),
     /** can use the non-destructive service API calls (auth endpoint, token endpoint, etc.) */
-    USE_SERVICE
-        (false, true, VIEW_SERVICE, VIEW_CLIENT),
+    USE_SERVICE(false, true, VIEW_SERVICE, VIEW_CLIENT),
     /** can create new clients on this service */
-    CREATE_CLIENT
-        (false, true, USE_SERVICE, VIEW_SERVICE, MODIFY_CLIENT, VIEW_CLIENT),
+    CREATE_CLIENT(false, true, USE_SERVICE, VIEW_SERVICE, MODIFY_CLIENT, VIEW_CLIENT),
     /** can modify this service */
-    MODIFY_SERVICE
-        (false, true, USE_SERVICE, VIEW_SERVICE, CREATE_CLIENT, MODIFY_CLIENT, VIEW_CLIENT),
+    MODIFY_SERVICE(false, true, USE_SERVICE, VIEW_SERVICE, CREATE_CLIENT, MODIFY_CLIENT, VIEW_CLIENT),
     /** can view default service parameters */
-    VIEW_DEFAULT_SERVICE
-        (false, false),
+    VIEW_DEFAULT_SERVICE(false, false),
     /** can create additional services */
-    CREATE_SERVICE
-        (false, false, VIEW_DEFAULT_SERVICE),
+    CREATE_SERVICE(false, false, VIEW_DEFAULT_SERVICE),
     /** can delete a specific service */
-    DELETE_SERVICE
-        (false, true),
+    DELETE_SERVICE(false, true),
     /** can call administrative functions on the Authlete server */
-    ADMIN
-        (false, false, VIEW_DEFAULT_SERVICE, CREATE_SERVICE, DELETE_SERVICE, USE_SERVICE, VIEW_SERVICE, MODIFY_SERVICE, CREATE_CLIENT, MODIFY_CLIENT, VIEW_CLIENT)
+    ADMIN(false, false, VIEW_DEFAULT_SERVICE, CREATE_SERVICE, DELETE_SERVICE, USE_SERVICE, VIEW_SERVICE, MODIFY_SERVICE, CREATE_CLIENT, MODIFY_CLIENT, VIEW_CLIENT)
     ;
 
 

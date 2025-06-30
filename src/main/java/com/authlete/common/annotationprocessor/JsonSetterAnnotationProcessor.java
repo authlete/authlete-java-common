@@ -16,17 +16,6 @@
 package com.authlete.common.annotationprocessor;
 
 
-import com.fasterxml.jackson.annotation.JsonSetter;
-import javassist.CannotCompileException;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.CtMethod;
-import javassist.NotFoundException;
-import javassist.bytecode.AnnotationsAttribute;
-import javassist.bytecode.ConstPool;
-import javassist.bytecode.annotation.Annotation;
-import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -37,6 +26,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import javassist.CannotCompileException;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtMethod;
+import javassist.NotFoundException;
+import javassist.bytecode.AnnotationsAttribute;
+import javassist.bytecode.ConstPool;
+import javassist.bytecode.annotation.Annotation;
 
 
 /**

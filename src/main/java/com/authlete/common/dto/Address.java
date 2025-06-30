@@ -36,10 +36,10 @@ public class Address implements Serializable
 
     // Some fields are intentionally in snake case.
     private String formatted;
-    private String street_address;
+    private String streetAddress;
     private String locality;
     private String region;
-    private String postal_code;
+    private String postalCode;
     private String country;
 
 
@@ -82,7 +82,7 @@ public class Address implements Serializable
      */
     public String getStreetAddress()
     {
-        return street_address;
+        return streetAddress;
     }
 
 
@@ -99,7 +99,7 @@ public class Address implements Serializable
      */
     public Address setStreetAddress(String streetAddress)
     {
-        this.street_address = streetAddress;
+        this.streetAddress = streetAddress;
 
         return this;
     }
@@ -171,7 +171,7 @@ public class Address implements Serializable
      */
     public String getPostalCode()
     {
-        return postal_code;
+        return postalCode;
     }
 
 
@@ -186,7 +186,7 @@ public class Address implements Serializable
      */
     public Address setPostaCode(String postalCode)
     {
-        this.postal_code = postalCode;
+        this.postalCode = postalCode;
 
         return this;
     }

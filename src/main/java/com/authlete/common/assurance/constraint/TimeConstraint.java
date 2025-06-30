@@ -74,7 +74,7 @@ public class TimeConstraint extends LeafConstraint
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static TimeConstraint extract(Map<?,?> map, String key) throws ConstraintException
+    public static TimeConstraint extract(Map<?, ?> map, String key) throws ConstraintException
     {
         TimeConstraint instance = new TimeConstraint();
         instance.setExists(map.containsKey(key));
@@ -96,7 +96,7 @@ public class TimeConstraint extends LeafConstraint
             return;
         }
 
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         LeafConstraint.fill(instance, map, key);
 
@@ -104,7 +104,7 @@ public class TimeConstraint extends LeafConstraint
     }
 
 
-    private static void fillMaxAge(TimeConstraint instance, Map<?,?> map)
+    private static void fillMaxAge(TimeConstraint instance, Map<?, ?> map)
     {
         instance.maxAgeExists = map.containsKey("max_age");
 
@@ -115,7 +115,7 @@ public class TimeConstraint extends LeafConstraint
     }
 
 
-    private static long extractLong(Map<?,?> map, String key)
+    private static long extractLong(Map<?, ?> map, String key)
     {
         Object value = map.get(key);
 

@@ -311,7 +311,7 @@ public class Verification extends LinkedHashMap<String, Object>
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static Verification extract(Map<?,?> map, String key) throws IdentityAssuranceException
+    public static Verification extract(Map<?, ?> map, String key) throws IdentityAssuranceException
     {
         Object object = map.get(key);
 
@@ -330,7 +330,7 @@ public class Verification extends LinkedHashMap<String, Object>
 
     private static void fill(Verification instance, Object object, String key)
     {
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         // "trust_framework": required
         fillTrustFramework(instance, map, key);
@@ -349,7 +349,7 @@ public class Verification extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillTrustFramework(Verification instance, Map<?,?> map, String key)
+    private static void fillTrustFramework(Verification instance, Map<?, ?> map, String key)
     {
         // The value of "trust_framework" in the map.
         String value = Helper.extractString(map, TRUST_FRAMEWORK, key, true);
@@ -358,7 +358,7 @@ public class Verification extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillTime(Verification instance, Map<?,?> map, String key)
+    private static void fillTime(Verification instance, Map<?, ?> map, String key)
     {
         // The value of "time" in the map.
         String value = Helper.extractDateTime(map, TIME, key, false);
@@ -367,7 +367,7 @@ public class Verification extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillVerificationProcess(Verification instance, Map<?,?> map, String key)
+    private static void fillVerificationProcess(Verification instance, Map<?, ?> map, String key)
     {
         // The value of "verification_process" in the map.
         String value = Helper.extractString(map, VERIFICATION_PROCESS, key, false);
@@ -376,7 +376,7 @@ public class Verification extends LinkedHashMap<String, Object>
     }
 
 
-    private static void fillEvidence(Verification instance, Map<?,?> map, String key)
+    private static void fillEvidence(Verification instance, Map<?, ?> map, String key)
     {
         // The value of "evidence" in the map.
         EvidenceArray value = EvidenceArray.extract(map, EVIDENCE);

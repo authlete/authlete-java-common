@@ -141,13 +141,16 @@ public class BasicCredentials
         switch (credentials.length)
         {
             case 2:
-                // Password
+                // both userId and password
+                userId   = credentials[0];
                 password = credentials[1];
-                // FALLTHROUGH
-
+                break;
             case 1:
-                // User ID
-                userId = credentials[0];
+                // only userId
+                userId   = credentials[0];
+                break;
+            default:
+                // no credentials; leave userId/password null
         }
 
         return new BasicCredentials(userId, password);

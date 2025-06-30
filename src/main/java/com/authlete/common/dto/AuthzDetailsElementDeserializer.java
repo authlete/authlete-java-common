@@ -39,7 +39,7 @@ public class AuthzDetailsElementDeserializer extends BaseJsonDeserializer
 implements JsonDeserializer<AuthzDetailsElement>
 {
     private static String[] INDEPENDENT_FIELDS = new String[] {
-            "type", "locations", "actions", "datatypes", "identifier", "privileges"
+        "type", "locations", "actions", "datatypes", "identifier", "privileges"
     };
 
 

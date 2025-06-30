@@ -28,7 +28,7 @@ public enum AssertionTarget
      * protocol's "software_statement" field, which contains a signed assertion
      * of client attributes.
      */
-    CLIENT_REGISTRATION_SOFTWARE_STATEMENT((short) 1, "software_statement")
+    CLIENT_REGISTRATION_SOFTWARE_STATEMENT((short)1, "software_statement")
     ;
 
 

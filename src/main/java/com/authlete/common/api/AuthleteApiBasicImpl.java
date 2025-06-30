@@ -280,7 +280,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
     protected TokenListResponse callGetTokenList(
             String auth, String path, String clientIdentifier, String subject, int start, int end, boolean rangeGiven, TokenStatus tokenStatus, Options options)
     {
-        Map<String,Object[]> queryParams = new LinkedHashMap<>();
+        Map<String, Object[]> queryParams = new LinkedHashMap<>();
 
         if (clientIdentifier != null)
         {
@@ -348,7 +348,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
             }
         }
 
-        return callApi(HttpMethod.GET, null, path, queryParams, null, (Class<Map<String, String>>)(Class<?>) Map.class, options);
+        return callApi(HttpMethod.GET, null, path, queryParams, null, (Class<Map<String, String>>)(Class<?>)Map.class, options);
     }
 
 
@@ -679,39 +679,43 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
             ConnectionContext ctx, Class<TResponse> responseClass, 
             NotFoundHandling notFoundHandling) throws AuthleteApiException
     {
-        switch (notFoundHandling)
+        if (notFoundHandling == NotFoundHandling.RETURN_NULL)
         {
-            case RETURN_NULL:
-                return null;
-                
-            case PARSE_AS_RESPONSE:
-                // Try to parse the 404 response body as a valid business response
-                String errorBody = extractErrorData(ctx);
-                if (errorBody != null && responseClass != null)
+            return null;
+        }
+        else if (notFoundHandling == NotFoundHandling.PARSE_AS_RESPONSE)
+        {
+            String errorBody = extractErrorData(ctx);
+            if (errorBody != null && responseClass != null)
+            {
+                try
                 {
-                    try
-                    {
-                        return Utils.fromJson(errorBody, responseClass);
-                    }
-                    catch (Exception e)
-                    {
-                        // If parsing fails, fall through to throw exception
-                    }
+                    return Utils.fromJson(errorBody, responseClass);
                 }
-                // Fall through to THROW_EXCEPTION
-                
-            case RETURN_SUCCESS_RESPONSE:
-                // Return a default success response for 404 (useful for delete operations)
-                return createDefaultSuccessResponse(responseClass);
-                
-            case THROW_EXCEPTION:
-            default:
-                // Default behavior: throw exception with context
-                String statusMsg = extractStatusMessage(ctx.connection());
-                Map<String, List<String>> headers = ctx.connection().getHeaderFields();
-                String body = extractErrorData(ctx);
-                throw new AuthleteApiException("HTTP 404 " + statusMsg,
-                        HttpURLConnection.HTTP_NOT_FOUND, statusMsg, body, headers);
+                catch (Exception ignored)
+                {
+                    // parse failed → fall back to success response
+                }
+            }
+            return createDefaultSuccessResponse(responseClass);
+        }
+        else if (notFoundHandling == NotFoundHandling.RETURN_SUCCESS_RESPONSE)
+        {
+            return createDefaultSuccessResponse(responseClass);
+        }
+        else
+        {
+            // THROW_EXCEPTION (default)
+            String statusMsg = extractStatusMessage(ctx.connection());
+            Map<String, List<String>> headers = ctx.connection().getHeaderFields();
+            String body       = extractErrorData(ctx);
+            throw new AuthleteApiException(
+                    "HTTP 404 " + statusMsg,
+                    HttpURLConnection.HTTP_NOT_FOUND,
+                    statusMsg,
+                    body,
+                    headers
+            );
         }
     }
 
@@ -724,50 +728,59 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
             ConnectionContext ctx, Class<TResponse> responseClass, int status,
             ClientErrorHandling clientErrorHandling) throws AuthleteApiException
     {
-        switch (clientErrorHandling)
+        // 1) Try to parse, or else throw
+        if (clientErrorHandling == ClientErrorHandling.PARSE_AS_RESPONSE)
         {
-            case PARSE_AS_RESPONSE:
-                // Try to parse the 4xx response body as a valid business response
-                String errorBody = extractErrorData(ctx);
-                if (errorBody != null && responseClass != null)
+            String errorBody = extractErrorData(ctx);
+            if (errorBody != null && responseClass != null)
+            {
+                try
                 {
-                    try
-                    {
-                        return Utils.fromJson(errorBody, responseClass);
-                    }
-                    catch (Exception e)
-                    {
-                        // If parsing fails, fall through to throw exception
-                    }
+                    return Utils.fromJson(errorBody, responseClass);
                 }
-                // Fall through to THROW_EXCEPTION
-                
-            case PARSE_OR_DEFAULT_RESPONSE:
-                // Try to parse the 4xx response body, return default if parsing fails
-                String responseBody = extractErrorData(ctx);
-                if (responseBody != null && responseClass != null)
+                catch (Exception ignored)
                 {
-                    try
-                    {
-                        return Utils.fromJson(responseBody, responseClass);
-                    }
-                    catch (Exception e)
-                    {
-                        // If parsing fails, return default response instead of throwing
-                        return createDefaultErrorResponse(responseClass, status);
-                    }
+                    // parsing failed → fall through to exception
                 }
-                // No response body or no response class, return default
-                return createDefaultErrorResponse(responseClass, status);
-                
-            case THROW_EXCEPTION:
-            default:
-                // Default behavior: throw exception with context
-                String statusMsg = extractStatusMessage(ctx.connection());
-                Map<String, List<String>> headers = ctx.connection().getHeaderFields();
-                String body = extractErrorData(ctx);
-                throw new AuthleteApiException("HTTP " + status + " " + statusMsg,
-                        status, statusMsg, body, headers);
+            }
+            // parsing not performed or failed → throw exception
+            String statusMsg = extractStatusMessage(ctx.connection());
+            Map<String, List<String>> headers = ctx.connection().getHeaderFields();
+            String body       = extractErrorData(ctx);
+            throw new AuthleteApiException(
+                    "HTTP " + status + " " + statusMsg,
+                    status, statusMsg, body, headers
+            );
+        }
+        // 2) Parse, or return default error response
+        else if (clientErrorHandling == ClientErrorHandling.PARSE_OR_DEFAULT_RESPONSE)
+        {
+            String responseBody = extractErrorData(ctx);
+            if (responseBody != null && responseClass != null)
+            {
+                try
+                {
+                    return Utils.fromJson(responseBody, responseClass);
+                }
+                catch (Exception e)
+                {
+                    // parsing failed → return default error response
+                    return createDefaultErrorResponse(responseClass, status);
+                }
+            }
+            // no body or no class → default error response
+            return createDefaultErrorResponse(responseClass, status);
+        }
+        // 3) THROW_EXCEPTION (default)
+        else
+        {
+            String statusMsg = extractStatusMessage(ctx.connection());
+            Map<String, List<String>> headers = ctx.connection().getHeaderFields();
+            String body       = extractErrorData(ctx);
+            throw new AuthleteApiException(
+                    "HTTP " + status + " " + statusMsg,
+                    status, statusMsg, body, headers
+            );
         }
     }
 
@@ -789,7 +802,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
             com.authlete.common.dto.ApiResponse response = new com.authlete.common.dto.ApiResponse();
             response.setResultCode("A999999"); // Generic success code
             response.setResultMessage("Resource not found (already deleted)");
-            return (TResponse) response;
+            return (TResponse)response;
         }
         
         // For other types, return null
@@ -814,7 +827,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
             com.authlete.common.dto.ApiResponse response = new com.authlete.common.dto.ApiResponse();
             response.setResultCode("A" + statusCode + "000"); // Generic error code based on HTTP status
             response.setResultMessage("HTTP " + statusCode + " response with empty/invalid body");
-            return (TResponse) response;
+            return (TResponse)response;
         }
         
         // For other types, return null
@@ -928,7 +941,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
 
     private static void copy(InputStream in, OutputStream out) throws IOException
     {
-        byte buf[] = new byte[8096];
+        byte[] buf = new byte[8096];
         int len;
 
         while ((len = in.read(buf)) != -1)
@@ -946,7 +959,8 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
         // Error message.
         String message = cause.getMessage();
 
-        if (ctx == null) {
+        if (ctx == null)
+        {
             return new AuthleteApiException(message, cause);
         }
 

@@ -27,7 +27,7 @@ class Helper
 {
     // YYYY-MM-DDThh:mm:ss
     private static Pattern DATETIME_PATTERN =
-            Pattern.compile("^\\d{4}-?\\d{2}-?\\d{2}T\\d{2}:?\\d{2}:?\\d{2}([,.]\\d{1,})?(Z|[+-]\\d{2}(:?\\d{2})?)?$");
+            Pattern.compile("^\\d{4}-?\\d{2}-?\\d{2}T\\d{2}:?\\d{2}:?\\d{2}([, .]\\d{1, })?(Z|[+-]\\d{2}(:?\\d{2})?)?$");
 
 
     // YYYY-MM-DD
@@ -50,7 +50,7 @@ class Helper
     }
 
 
-    public static void ensureKey(Map<?,?> map, String key, String parent)
+    public static void ensureKey(Map<?, ?> map, String key, String parent)
     {
         if (!map.containsKey(key))
         {
@@ -59,25 +59,25 @@ class Helper
     }
 
 
-    public static Map<?,?> ensureMap(Object object, String key)
+    public static Map<?, ?> ensureMap(Object object, String key)
     {
         if (!(object instanceof Map))
         {
             throw exception("'%s' is not an object.", key);
         }
 
-        return (Map<?,?>)object;
+        return (Map<?, ?>)object;
     }
 
 
-    public static Map<?,?> ensureMap(Object object, int index, String key)
+    public static Map<?, ?> ensureMap(Object object, int index, String key)
     {
         if (!(object instanceof Map))
         {
             throw exception("'%s[%d]' is not an object.", key, index);
         }
 
-        return (Map<?,?>)object;
+        return (Map<?, ?>)object;
     }
 
 
@@ -92,7 +92,7 @@ class Helper
     }
 
 
-    public static void ensureNoAdditionalProperties(Map<?,?> map, String parent, Set<String> validKeys)
+    public static void ensureNoAdditionalProperties(Map<?, ?> map, String parent, Set<String> validKeys)
     {
         for (Object key : map.keySet())
         {
@@ -106,7 +106,7 @@ class Helper
     }
 
 
-    public static Object extractObject(Map<?,?> map, String key, String parent, boolean required)
+    public static Object extractObject(Map<?, ?> map, String key, String parent, boolean required)
     {
         if (!map.containsKey(key))
         {
@@ -158,7 +158,7 @@ class Helper
     }
 
 
-    public static String extractString(Map<?,?> map, String key, String parent, boolean required)
+    public static String extractString(Map<?, ?> map, String key, String parent, boolean required)
     {
         Object value = extractObject(map, key, parent, required);
 
@@ -176,7 +176,7 @@ class Helper
     }
 
 
-    public static String extractDateTime(Map<?,?> map, String key, String parent, boolean required)
+    public static String extractDateTime(Map<?, ?> map, String key, String parent, boolean required)
     {
         String value = extractString(map, key, parent, required);
 
@@ -200,7 +200,7 @@ class Helper
     }
 
 
-    public static String extractDate(Map<?,?> map, String key, String parent, boolean required)
+    public static String extractDate(Map<?, ?> map, String key, String parent, boolean required)
     {
         String value = extractString(map, key, parent, required);
 

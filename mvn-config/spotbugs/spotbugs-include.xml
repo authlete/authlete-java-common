@@ -1,0 +1,30 @@
+<FindBugsFilter>
+    <Match>
+        <Bug category="SECURITY"/>
+    </Match>
+    <Match>
+        <Bug category="STYLE"/>
+    </Match>
+    <Match>
+        <Bug category="MALICIOUS_CODE"/>
+        <Confidence value="1"/> <!-- Match only high confidence -->
+    </Match>
+    <Match>
+        <Bug category="NOISE"/>
+    </Match>
+    <Match>
+        <Bug category="PERFORMANCE"/>
+        <Confidence value="1"/> <!-- Match only high confidence -->
+    </Match>
+    <Match>
+        <Bug category="CORRECTNESS"/>
+        <Confidence value="1"/> <!-- Match only high confidence -->
+    </Match>
+    <Match>
+        <Bug category="MT_CORRECTNESS"/>
+    </Match>
+    <Match>
+        <Bug category="BAD_PRACTICE"/>
+        <Confidence value="1"/> <!-- Match only high confidence -->
+    </Match>
+</FindBugsFilter>
