@@ -27,7 +27,7 @@ class Helper
 {
     // YYYY-MM-DDThh:mm:ss
     private static Pattern DATETIME_PATTERN =
-            Pattern.compile("^\\d{4}-?\\d{2}-?\\d{2}T\\d{2}:?\\d{2}:?\\d{2}([, .]\\d{1, })?(Z|[+-]\\d{2}(:?\\d{2})?)?$");
+            Pattern.compile("^\\d{4}-?\\d{2}-?\\d{2}T\\d{2}:?\\d{2}:?\\d{2}([, .]\\d{1,})?(Z|[+-]\\d{2}(:?\\d{2})?)?$");
 
 
     // YYYY-MM-DD

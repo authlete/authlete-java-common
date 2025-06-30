@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2025 Authlete, Inc.
+ * Copyright (C) 2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  * License.
  */
 package com.authlete.common.api;
+
 
 import java.net.HttpURLConnection;
 import java.util.LinkedHashMap;
@@ -136,6 +137,8 @@ import com.authlete.common.types.TokenStatus;
  * Supports Authlete API V3.
  *
  * @author Meysam Tamkin
+ *
+ * @since 4.21
  */
 public class AuthleteApiImplV3 extends AuthleteApiBasicImpl
 {

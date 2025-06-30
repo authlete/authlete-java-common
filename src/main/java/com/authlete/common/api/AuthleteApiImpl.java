@@ -221,6 +221,7 @@ class AuthleteApiImpl extends AuthleteApiBasicImpl
     private final String mServiceOwnerAuth;
     private final String mServiceAuth;
 
+    
     /**
      * The constructor with an instance of {@link AuthleteConfiguration}.
      *

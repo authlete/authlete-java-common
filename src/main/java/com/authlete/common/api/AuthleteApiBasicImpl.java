@@ -185,6 +185,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
         callApi(AuthleteApiBasicImpl.HttpMethod.DELETE, auth, path, null, null, null, options);
     }
 
+
     /**
      * Execute an Authlete API call.
      * 
