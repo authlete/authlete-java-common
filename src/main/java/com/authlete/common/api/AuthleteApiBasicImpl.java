@@ -118,7 +118,7 @@ public abstract class AuthleteApiBasicImpl implements AuthleteApi
     private JWSSigner mJwsSigner;
 
 
-    public AuthleteApiBasicImpl(AuthleteConfiguration configuration)
+    protected AuthleteApiBasicImpl(AuthleteConfiguration configuration)
     {
         if (configuration == null)
         {
