@@ -160,13 +160,6 @@
             <message key="name.invalidPattern"
                      value="Package name ''{0}'' must match pattern ''{1}''."/>
         </module>
-<!-- Can't set this up since com/authlete/server/database/Limits.java isn't compliant-->
-<!--        <module name="TypeName">-->
-<!--            <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF,-->
-<!--                    ANNOTATION_DEF, RECORD_DEF"/>-->
-<!--            <message key="name.invalidPattern"-->
-<!--                     value="Type name ''{0}'' must match pattern ''{1}''."/>-->
-<!--        </module>-->
         <module name="MemberName">
             <property name="format" value="^([a-z][a-z0-9]|m|s|c)[a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
