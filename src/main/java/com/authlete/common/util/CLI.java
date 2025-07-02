@@ -302,6 +302,7 @@ public class CLI
                 switch (pair.length)
                 {
                     case 2:
+                        key   = pair[0];
                         value = pair[1];
                         break;
 
