@@ -32,7 +32,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <git.connection>scm:git:git@github.com:authlete/authlete-java-common.git</git.connection>
         <git.url>git@github.com:authlete/authlete-java-common.git</git.url>
-        <nimbus.version>9.31</nimbus.version>
+        <nimbus.version>10.0.2</nimbus.version>
     </properties>
 
     <scm>
