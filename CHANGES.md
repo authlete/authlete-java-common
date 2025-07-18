@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+4.21 (2025-07-18)
+-----------------
+
+- Add support for HTTP URLConnection in Authlete API V3.
+- Add checkstyle integration.
+- Add spotbugs integration.
+
+
 4.20 (2025-05-03)
 -----------------
 
