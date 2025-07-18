@@ -40,14 +40,14 @@ class Helper
     }
 
 
-    public static Map<?,?> ensureMap(Object object, String key)
+    public static Map<?, ?> ensureMap(Object object, String key)
     {
         if (!(object instanceof Map))
         {
             throw exception("'%s' is not an object.", key);
         }
 
-        return (Map<?,?>)object;
+        return (Map<?, ?>)object;
     }
 
 

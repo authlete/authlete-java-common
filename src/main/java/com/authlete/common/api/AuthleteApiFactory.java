@@ -65,6 +65,13 @@ public class AuthleteApiFactory
 
 
     /**
+     * An implementation of {@link AuthleteApi} using {@link java.net.HttpURLConnection HttpURLConnection} for Authlete API V3.
+     * This implementation exists in authlete/authlete-java-common.
+     */
+    private static final String IMPL_HTTP_URL_CONNECTION_V3 = "com.authlete.common.api.AuthleteApiImplV3";
+
+
+    /**
      * Known implementations of AuthleteApi V2.
      */
     private static final String[] sKnownImplsV2 = {
@@ -79,7 +86,8 @@ public class AuthleteApiFactory
      */
     private static final String[] sKnownImplsV3 = {
         IMPL_JAX_RS_V3,
-        IMPL_JAKARTA_V3
+        IMPL_JAKARTA_V3,
+        IMPL_HTTP_URL_CONNECTION_V3
     };
 
 
@@ -110,6 +118,10 @@ public class AuthleteApiFactory
      * <ol>
      * <li><code>com.authlete.jaxrs.api.AuthleteApiImplV3</code><br/>
      * (using JAX-RS 2.0 API, contained in <code>com.authlete:authlete-java-jaxrs</code>)
+     * <li><code>com.authlete.jakarta.api.AuthleteApiImplV3</code><br/>
+     * (using Jakarta REST client API, contained in <code>com.authlete:authlete-java-jakarta</code>)
+     * <li><code>com.authlete.common.api.AuthleteApiImplV3</code><br/>
+     * (using {@link java.net.HttpURLConnection HttpURLConnection}, contained in <code>com.authlete:authlete-java-common</code>)
      * </ol>
      *
      * <p>

@@ -32,6 +32,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <git.connection>scm:git:git@github.com:authlete/authlete-java-common.git</git.connection>
         <git.url>git@github.com:authlete/authlete-java-common.git</git.url>
+        <nimbus.version>9.31</nimbus.version>
     </properties>
 
     <scm>
@@ -88,6 +89,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>${nimbus.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>jakarta.json</groupId>
             <artifactId>jakarta.json-api</artifactId>
             <version>2.0.1</version>
@@ -117,6 +124,13 @@
             <version>0.9.12</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -144,17 +158,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-site-plugin</artifactId>
-                        <configuration>
-                            <reportPlugins>
-                                <plugin>
-                                    <groupId>org.apache.maven.plugins</groupId>
-                                    <artifactId>maven-javadoc-plugin</artifactId>
-                                    <configuration>
-                                        <additionalparam>-Xdoclint:-html</additionalparam>
-                                    </configuration>
-                                </plugin>
-                            </reportPlugins>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -351,6 +354,45 @@
                     <mainClass>com.authlete.common.util.CLI</mainClass>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.2.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>10.10.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configLocation>mvn-config/checkstyle/checkstyle.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.9.3.2</version>
+                <configuration>
+                    <includeFilterFile>mvn-config/spotbugs/spotbugs-include.xml</includeFilterFile>
+                    <excludeFilterFile>mvn-config/spotbugs/spotbugs-exclude.xml</excludeFilterFile>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <failOnError>true</failOnError>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.h3xstream.findsecbugs</groupId>
+                            <artifactId>findsecbugs-plugin</artifactId>
+                            <version>1.12.0</version>
+                        </plugin>
+                    </plugins>
+                </configuration>
+            </plugin>
         </plugins>
         <extensions>
             <extension>
@@ -360,4 +402,35 @@
             </extension>
         </extensions>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.1</version>
+                <configuration>
+                    <additionalparam>-Xdoclint:-html</additionalparam>
+                    <source>8</source>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <configLocation>mvn-config/checkstyle/checkstyle.xml</configLocation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.9.3.2</version>
+                <configuration>
+                    <includeFilterFile>mvn-config/spotbugs/spotbugs-include.xml</includeFilterFile>
+                    <excludeFilterFile>mvn-config/spotbugs/spotbugs-exclude.xml</excludeFilterFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>

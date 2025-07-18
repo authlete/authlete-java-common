@@ -29,12 +29,18 @@ import java.io.Serializable;
  *
  * @since 1.24
  */
+@SuppressWarnings("checkstyle:MemberName")
 public class Address implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
 
-    // Some fields are intentionally in snake case.
+    /**
+     * Fields use snake_case for OIDC compliance.
+     * 
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#AddressClaim">
+     *      OpenID Connect Core 1.0, 5.1.1. Address Claim</a>
+     */
     private String formatted;
     private String street_address;
     private String locality;
@@ -184,7 +190,7 @@ public class Address implements Serializable
      * @return
      *         {@code this} object.
      */
-    public Address setPostaCode(String postalCode)
+    public Address setPostalCode(String postalCode)
     {
         this.postal_code = postalCode;
 

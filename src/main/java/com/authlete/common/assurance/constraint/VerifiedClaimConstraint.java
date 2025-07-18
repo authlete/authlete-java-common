@@ -96,7 +96,7 @@ public class VerifiedClaimConstraint extends LeafConstraint
             return;
         }
 
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         LeafConstraint.fill(instance, map, key);
 
@@ -104,7 +104,7 @@ public class VerifiedClaimConstraint extends LeafConstraint
     }
 
 
-    private static void fillPurpose(VerifiedClaimConstraint instance, Map<?,?> map)
+    private static void fillPurpose(VerifiedClaimConstraint instance, Map<?, ?> map)
     {
         instance.purposeExists = map.containsKey("purpose");
 

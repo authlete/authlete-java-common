@@ -448,6 +448,93 @@ The new annotation is then added to the identified setter method and written
 to the existing class file.
 
 
+Code Quality Tools
+-----------------
+
+The project now includes several code quality tools to maintain high standards:
+
+1. **Checkstyle**
+   - Added via maven-checkstyle-plugin
+   - Custom rules defined in `checkstyle.xml`
+   - Enforces coding standards and improves code quality
+
+2. **SpotBugs**
+   - Configuration split into include and exclude files
+   - `spotbugs-exclude.xml`: Defines patterns to exclude from analysis
+   - `spotbugs-include.xml`: Contains rules for various bug categories
+
+3. **Dependencies**
+   - Updated nimbus-jose-jwt to version 9.31
+   - Added new dependencies for enhanced security and functionality
+
+These tools are configured to run during the build process and help maintain code quality across the project.
+
+**Quality Standards for Contributors:**
+
+- **Code Review**: All changes must pass automated quality checks before submission
+- **Testing**: Maintain test coverage and ensure all tests pass
+- **Documentation**: Keep code documentation current and comprehensive
+- **Performance**: Consider impact on performance and optimize where necessary
+- **Security**: Follow security best practices and validate all inputs
+- **Compatibility**: Maintain backward compatibility unless breaking changes are necessary
+- **Standards**: Follow established coding conventions and project guidelines
+
+
+Contributing Guidelines
+----------------------
+
+To maintain high code quality standards, please follow these guidelines when contributing to the project:
+
+1. **Code Style**
+   - Follow the Checkstyle rules defined in `checkstyle.xml`
+   - Use consistent indentation and formatting
+   - Follow Java naming conventions
+   - Keep methods and classes focused and well-documented
+
+2. **Code Quality Checks**
+   - Run `mvn checkstyle:check` to verify code style compliance
+   - Run `mvn spotbugs:check` to detect potential bugs
+   - Ensure all tests pass before submitting changes
+   - Address any warnings or errors from quality tools
+
+3. **Documentation**
+   - Update relevant documentation when adding new features
+   - Include JavaDoc comments for public methods and classes
+   - Update README.md if introducing new functionality
+   - Provide clear commit messages
+
+4. **Testing**
+   - Write unit tests for new functionality
+   - Ensure existing tests continue to pass
+   - Test with different Authlete API versions when applicable
+
+5. **Security**
+   - Follow security best practices
+   - Validate all inputs
+   - Use secure coding patterns
+   - Review for potential vulnerabilities
+
+6. **Performance**
+   - Consider performance implications of changes
+   - Use efficient algorithms and data structures
+   - Avoid unnecessary object creation
+   - Profile critical code paths when needed
+
+7. **Compatibility**
+   - Maintain backward compatibility when possible
+   - Test with supported Java versions
+   - Verify compatibility with Authlete API versions
+   - Document any breaking changes
+
+8. **Review Process**
+   - Self-review your changes before submission
+   - Ensure code follows project conventions
+   - Address feedback from code reviews promptly
+   - Keep pull requests focused and manageable
+
+For questions about these guidelines or the development process, please reach out to the development team.
+
+
 See Also
 --------
 

@@ -276,7 +276,7 @@ public class IDDocument extends Evidence
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static IDDocument extract(Map<?,?> map) throws IdentityAssuranceException
+    public static IDDocument extract(Map<?, ?> map) throws IdentityAssuranceException
     {
         IDDocument instance = new IDDocument();
 
@@ -286,7 +286,7 @@ public class IDDocument extends Evidence
     }
 
 
-    private static void fill(IDDocument instance, Map<?,?> map, String key)
+    private static void fill(IDDocument instance, Map<?, ?> map, String key)
     {
         // "method": required
         fillMethod(instance, map, key);
@@ -302,7 +302,7 @@ public class IDDocument extends Evidence
     }
 
 
-    private static void fillMethod(IDDocument instance, Map<?,?> map, String key)
+    private static void fillMethod(IDDocument instance, Map<?, ?> map, String key)
     {
         // The value of "method" in the map.
         String value = Helper.extractString(map, METHOD, key, true);
@@ -311,7 +311,7 @@ public class IDDocument extends Evidence
     }
 
 
-    private static void fillVerifier(IDDocument instance, Map<?,?> map, String key)
+    private static void fillVerifier(IDDocument instance, Map<?, ?> map, String key)
     {
         // The value of "verifier" in the map.
         Verifier value = Verifier.extract(map, VERIFIER);
@@ -320,7 +320,7 @@ public class IDDocument extends Evidence
     }
 
 
-    private static void fillTime(IDDocument instance, Map<?,?> map, String key)
+    private static void fillTime(IDDocument instance, Map<?, ?> map, String key)
     {
         // The value of "time" in the map.
         String value = Helper.extractDateTime(map, TIME, key, false);
@@ -329,7 +329,7 @@ public class IDDocument extends Evidence
     }
 
 
-    private static void fillDocument(IDDocument instance, Map<?,?> map, String key)
+    private static void fillDocument(IDDocument instance, Map<?, ?> map, String key)
     {
         // Ensure "document" is contained.
         Helper.ensureKey(map, DOCUMENT, key);

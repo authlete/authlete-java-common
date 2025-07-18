@@ -306,11 +306,11 @@ public class MapUtils
             Map<String, Object> target,
             String key, Boolean value, MapControl control)
     {
-        boolean value_ = value.booleanValue();
+        boolean booleanValue = value.booleanValue();
 
-        if (value_ || control.isFalseIncluded())
+        if (booleanValue || control.isFalseIncluded())
         {
-            target.put(key, value_);
+            target.put(key, booleanValue);
         }
     }
 
@@ -319,11 +319,11 @@ public class MapUtils
             Map<String, Object> target,
             String key, Integer value, MapControl control)
     {
-        int value_ = ((Integer)value).intValue();
+        int intValue = ((Integer)value).intValue();
 
-        if (value_ != 0 || control.isZeroIncluded())
+        if (intValue != 0 || control.isZeroIncluded())
         {
-            target.put(key, value_);
+            target.put(key, intValue);
         }
     }
 
@@ -332,11 +332,11 @@ public class MapUtils
             Map<String, Object> target,
             String key, Number value, MapControl control)
     {
-        long value_ = ((Number)value).longValue();
+        long longValue = ((Number)value).longValue();
 
-        if (value_ != 0 || control.isZeroIncluded())
+        if (longValue != 0 || control.isZeroIncluded())
         {
-            target.put(key, value_);
+            target.put(key, longValue);
         }
     }
 

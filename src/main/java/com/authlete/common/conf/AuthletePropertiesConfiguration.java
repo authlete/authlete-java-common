@@ -547,7 +547,7 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
         String encryptedServiceOwnerApiSecret = props.getString(PROPERTY_KEY_SERVICE_OWNER_API_SECRET_ENCRYPTED);
         if (encryptedServiceOwnerApiSecret != null)
         {
-            mServiceOwnerApiSecret = createCipher(key,iv).decrypt(encryptedServiceOwnerApiSecret);
+            mServiceOwnerApiSecret = createCipher(key, iv).decrypt(encryptedServiceOwnerApiSecret);
         }
         else
         {
@@ -561,7 +561,7 @@ public class AuthletePropertiesConfiguration implements AuthleteConfiguration
         String encryptedServiceApiSecret = props.getString(PROPERTY_KEY_SERVICE_API_SECRET_ENCRYPTED);
         if (encryptedServiceApiSecret != null)
         {
-            mServiceApiSecret = createCipher(key,iv).decrypt(encryptedServiceApiSecret);
+            mServiceApiSecret = createCipher(key, iv).decrypt(encryptedServiceApiSecret);
         }
         else
         {

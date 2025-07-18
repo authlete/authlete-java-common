@@ -103,7 +103,7 @@ public class IssuerConstraint extends BaseConstraint
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static IssuerConstraint extract(Map<?,?> map, String key) throws ConstraintException
+    public static IssuerConstraint extract(Map<?, ?> map, String key) throws ConstraintException
     {
         IssuerConstraint instance = new IssuerConstraint();
         instance.setExists(map.containsKey(key));
@@ -125,7 +125,7 @@ public class IssuerConstraint extends BaseConstraint
             return;
         }
 
-        Map<?,?> map = Helper.ensureMap(object, key);
+        Map<?, ?> map = Helper.ensureMap(object, key);
 
         instance.name    = LeafConstraint.extract(map, "name");
         instance.country = LeafConstraint.extract(map, "country");

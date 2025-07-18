@@ -100,7 +100,7 @@ implements Constraint
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static EvidenceArrayConstraint extract(Map<?,?> map, String key) throws ConstraintException
+    public static EvidenceArrayConstraint extract(Map<?, ?> map, String key) throws ConstraintException
     {
         EvidenceArrayConstraint instance = new EvidenceArrayConstraint();
         instance.setExists(map.containsKey(key));
@@ -150,7 +150,7 @@ implements Constraint
             return null;
         }
 
-        List<Map<String, Object>> list = new ArrayList<Map<String,Object>>(size());
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(size());
 
         for (EvidenceConstraint constraint : this)
         {

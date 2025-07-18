@@ -27,7 +27,7 @@ public enum ClaimRuleOperation
     /**
      * The rule will fail if the claim is present and has a value.
      */
-    PROHIBITED((short) 1, "prohibited"),
+    PROHIBITED((short)1, "prohibited"),
 
 
     /**
@@ -40,7 +40,7 @@ public enum ClaimRuleOperation
      * The rule will pass if the claim is present and its value
      * equals the claim rule's comparison value.
      */
-    EQUALS((short) 3, "equals")
+    EQUALS((short)3, "equals")
     ;
 
 

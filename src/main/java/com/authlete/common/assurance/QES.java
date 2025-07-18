@@ -226,7 +226,7 @@ public class QES extends Evidence
      *         (<a href="https://openid.net/specs/openid-connect-4-identity-assurance-1_0.html"
      *         >OpenID Connect for Identity Assurance 1.0</a>).
      */
-    public static QES extract(Map<?,?> map) throws IdentityAssuranceException
+    public static QES extract(Map<?, ?> map) throws IdentityAssuranceException
     {
         QES instance = new QES();
 
@@ -236,7 +236,7 @@ public class QES extends Evidence
     }
 
 
-    private static void fill(QES instance, Map<?,?> map, String key)
+    private static void fill(QES instance, Map<?, ?> map, String key)
     {
         // "issuer": required
         fillIssuer(instance, map, key);
@@ -249,7 +249,7 @@ public class QES extends Evidence
     }
 
 
-    private static void fillIssuer(QES instance, Map<?,?> map, String key)
+    private static void fillIssuer(QES instance, Map<?, ?> map, String key)
     {
         // The value of "issuer" in the map.
         String value = Helper.extractString(map, ISSUER, key, true);
@@ -258,7 +258,7 @@ public class QES extends Evidence
     }
 
 
-    private static void fillSerialNumber(QES instance, Map<?,?> map, String key)
+    private static void fillSerialNumber(QES instance, Map<?, ?> map, String key)
     {
         // The value of "serial_number" in the map.
         String value = Helper.extractString(map, SERIAL_NUMBER, key, true);
@@ -267,7 +267,7 @@ public class QES extends Evidence
     }
 
 
-    private static void fillCreatedAt(QES instance, Map<?,?> map, String key)
+    private static void fillCreatedAt(QES instance, Map<?, ?> map, String key)
     {
         // The value of "created_at" in the map.
         String value = Helper.extractDateTime(map, CREATED_AT, key, true);
