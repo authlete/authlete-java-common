@@ -184,7 +184,7 @@
             <distributionManagement>
                 <snapshotRepository>
                     <id>authlete</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                    <url>https://central.sonatype.com/repository/maven-snapshots</url>
                 </snapshotRepository>
 
                 <repository>
@@ -207,15 +207,13 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.4</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>authlete</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>0.8.0</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <publishingServerId>authlete</publishingServerId>
+                    </configuration>
                     </plugin>
                 </plugins>
             </build>
