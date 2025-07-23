@@ -181,17 +181,6 @@
         </profile>
         <profile>
             <id>external</id>
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>authlete</id>
-                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-                </snapshotRepository>
-
-                <repository>
-                    <id>authlete</id>
-                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-            </distributionManagement>
             <repositories>
                 <repository>
                     <id>authlete-internal</id>
