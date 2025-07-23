@@ -4,7 +4,7 @@
 
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
-    <version>4.21-SNAPSHOT</version>
+    <version>4.21</version>
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>
@@ -181,6 +181,17 @@
         </profile>
         <profile>
             <id>external</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>authlete</id>
+                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+                </snapshotRepository>
+
+                <repository>
+                    <id>authlete</id>
+                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
             <repositories>
                 <repository>
                     <id>authlete-internal</id>
