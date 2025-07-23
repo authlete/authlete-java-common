@@ -39,7 +39,7 @@
         <connection>${git.connection}</connection>
         <developerConnection>${git.connection}</developerConnection>
         <url>${git.url}</url>
-        <tag>authlete-java-common-4.21</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <dependencies>
@@ -204,6 +204,19 @@
                     </snapshots>
                 </repository>
             </repositories>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.8.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>authlete</publishingServerId>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>internal</id>
@@ -274,16 +287,6 @@
                             <Built-By>Authlete, Inc.</Built-By>
                         </manifestEntries>
                     </archive>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.8.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <publishingServerId>authlete</publishingServerId>
                 </configuration>
             </plugin>
 
