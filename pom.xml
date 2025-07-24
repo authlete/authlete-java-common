@@ -213,6 +213,7 @@
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>authlete</publishingServerId>
+                            <autoPublish>true</autoPublish>
                         </configuration>
                     </plugin>
                 </plugins>
