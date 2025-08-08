@@ -17,9 +17,16 @@ package com.authlete.common.api;
 
 
 import java.lang.reflect.Constructor;
+
+import com.authlete.common.api.migration.MigrationSupportedAuthleteApiImpl;
 import com.authlete.common.conf.AuthleteApiVersion;
 import com.authlete.common.conf.AuthleteConfiguration;
 import com.authlete.common.conf.AuthletePropertiesConfiguration;
+import com.authlete.common.conf.AuthleteSimpleConfiguration;
+import com.authlete.common.util.PropertiesLoader;
+import com.authlete.common.util.TypedProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -95,6 +102,8 @@ public class AuthleteApiFactory
      * The default {@link AuthleteApi} instance.
      */
     private static volatile AuthleteApi sDefaultApi;
+
+    private static volatile MigrationSupportedAuthleteApiImpl migrationInstance;
 
 
     private AuthleteApiFactory()
@@ -307,5 +316,79 @@ public class AuthleteApiFactory
 
             return sDefaultApi;
         }
+    }
+
+
+    public static MigrationSupportedAuthleteApiImpl getMigrationSupportedApi()
+    {
+        if (migrationInstance != null)
+        {
+            return migrationInstance;
+        }
+
+        synchronized (AuthleteApiFactory.class)
+        {
+            if (migrationInstance != null)
+            {
+                return migrationInstance;
+            }
+
+            final String BASE_URL_SECONDARY = "base_url.secondary";
+            final Logger logger = LoggerFactory.getLogger(AuthleteApiFactory.class);
+
+            final AuthleteConfiguration initialConfiguration = new AuthletePropertiesConfiguration();
+            final AuthleteApi primaryAuthleteApi = AuthleteApiFactory.create(initialConfiguration);
+            AuthleteApi secondaryAuthleteApi = null;
+            logger.info("Initializing configuration for Authlete Api with version [{}]", initialConfiguration.getApiVersion());
+
+            // If V3 is specified and the base secondary endpoint is also provided we should initialise a secondary api
+            // this assumes the secondary is always version 2
+            final String secondaryBaseUrl = getProperty(BASE_URL_SECONDARY);
+            if (AuthleteApiVersion.V3.name().equalsIgnoreCase(initialConfiguration.getApiVersion()) && secondaryBaseUrl != null)
+            {
+                logger.info(
+                        "Api Version set to [{}] but the [{}] property value has also been provided. Initializing migration support mode using the provided Authlete 2.3 (secondary) [{}] and Authlete 3 (primary) [{}] endpoints.",
+                        initialConfiguration.getApiVersion(), BASE_URL_SECONDARY, secondaryBaseUrl, initialConfiguration.getBaseUrl());
+
+                final AuthleteConfiguration v2Configuration = new AuthleteSimpleConfiguration()
+                        .setBaseUrl(secondaryBaseUrl)
+                        .setApiVersion(AuthleteApiVersion.V2.name())
+                        .setServiceApiSecret(initialConfiguration.getServiceApiSecret())
+                        .setServiceApiKey(initialConfiguration.getServiceApiKey())
+                        .setServiceOwnerApiKey(initialConfiguration.getServiceOwnerApiKey())
+                        .setServiceOwnerApiSecret(initialConfiguration.getServiceOwnerApiSecret())
+                        .setDpopKey(initialConfiguration.getDpopKey())
+                        .setClientCertificate(initialConfiguration.getClientCertificate());
+
+                secondaryAuthleteApi = AuthleteApiFactory.create(v2Configuration);
+            }
+
+            migrationInstance =  new MigrationSupportedAuthleteApiImpl(primaryAuthleteApi, secondaryAuthleteApi);
+        }
+
+        return migrationInstance;
+    }
+
+    /**
+     * Taken from {@link AuthletePropertiesConfiguration}
+     * @return the configured properties file name
+     */
+    private static String getFile()
+    {
+        final String file = System.getProperty("authlete.configuration.file");
+        return file != null && !file.isEmpty() ? file : "authlete.properties";
+    }
+
+    private static String getProperty(final String property)
+    {
+        final String propertiesFile = getFile();
+        final TypedProperties props = PropertiesLoader.load(propertiesFile);
+
+        if (props == null)
+        {
+            return null;
+        }
+
+        return props.getString(property);
     }
 }
