@@ -16,11 +16,11 @@
 package com.authlete.common.ida;
 
 
+import com.authlete.common.util.digest.Digest;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
-import com.neovisionaries.security.Digest;
 import static org.junit.Assert.*;
 import java.io.IOException;
 import java.io.InputStreamReader;

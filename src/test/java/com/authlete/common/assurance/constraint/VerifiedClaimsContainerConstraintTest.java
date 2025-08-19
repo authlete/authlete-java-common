@@ -19,6 +19,8 @@ package com.authlete.common.assurance.constraint;
 
 import static org.junit.Assert.*;
 import java.io.IOException;
+
+import com.authlete.common.util.digest.Digest;
 import org.junit.Test;
 import com.authlete.common.assurance.constraint.ClaimsConstraint;
 import com.authlete.common.assurance.constraint.EvidenceArrayConstraint;
@@ -31,7 +33,6 @@ import com.authlete.common.assurance.constraint.UtilityBillConstraint;
 import com.authlete.common.assurance.constraint.VerificationConstraint;
 import com.authlete.common.assurance.constraint.VerifiedClaimsConstraint;
 import com.authlete.common.assurance.constraint.VerifiedClaimsContainerConstraint;
-import com.neovisionaries.security.Digest;
 
 
 public class VerifiedClaimsContainerConstraintTest
