@@ -22,17 +22,6 @@ import java.io.IOException;
 
 import com.authlete.common.util.digest.Digest;
 import org.junit.Test;
-import com.authlete.common.assurance.constraint.ClaimsConstraint;
-import com.authlete.common.assurance.constraint.EvidenceArrayConstraint;
-import com.authlete.common.assurance.constraint.EvidenceConstraint;
-import com.authlete.common.assurance.constraint.IDDocumentConstraint;
-import com.authlete.common.assurance.constraint.LeafConstraint;
-import com.authlete.common.assurance.constraint.QESConstraint;
-import com.authlete.common.assurance.constraint.TimeConstraint;
-import com.authlete.common.assurance.constraint.UtilityBillConstraint;
-import com.authlete.common.assurance.constraint.VerificationConstraint;
-import com.authlete.common.assurance.constraint.VerifiedClaimsConstraint;
-import com.authlete.common.assurance.constraint.VerifiedClaimsContainerConstraint;
 
 
 public class VerifiedClaimsContainerConstraintTest
