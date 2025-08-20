@@ -19,12 +19,13 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
 /**
  * Implementation of {@link Digest#updateJson(String)}.
  *
  * @author Takahiko Kawasaki
  *
- * @since 1.2
+ * @since 4.23
  */
 class JsonDigestUpdater
 {

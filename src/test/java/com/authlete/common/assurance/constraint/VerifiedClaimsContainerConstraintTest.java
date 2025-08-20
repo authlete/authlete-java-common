@@ -19,7 +19,6 @@ package com.authlete.common.assurance.constraint;
 
 import static org.junit.Assert.*;
 import java.io.IOException;
-
 import com.authlete.common.util.digest.Digest;
 import org.junit.Test;
 

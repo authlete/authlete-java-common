@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.apache.commons.codec.BinaryEncoder;
 import org.apache.commons.codec.EncoderException;
 
+
 /**
  * A wrapper class over MessageDigest with many {@code update}
  * methods in a fluent style, meaning {@code update} methods
@@ -64,13 +65,13 @@ import org.apache.commons.codec.EncoderException;
  * </pre>
  *
  * @author Takahiko Kawasaki
+ * @since 4.23
  */
 public class Digest implements Cloneable
 {
     /**
      * Features to control behaviors.
      *
-     * @since 1.2
      */
     public static enum Feature
     {
@@ -114,8 +115,6 @@ public class Digest implements Cloneable
          * <p>
          * The default value is 'disabled'.
          * </p>
-         *
-         * @since 1.5
          */
         IGNORE_JSON_OBJECT_ENTRY_WITH_VALUE_FALSE,
 
@@ -138,8 +137,6 @@ public class Digest implements Cloneable
          * <p>
          * The default value is 'disabled'.
          * </p>
-         *
-         * @since 1.5
          */
         IGNORE_JSON_OBJECT_ENTRY_WITH_VALUE_ZERO,
 
@@ -162,8 +159,6 @@ public class Digest implements Cloneable
          * <p>
          * The default value is 'disabled'.
          * </p>
-         *
-         * @since 1.5
          */
         IGNORE_JSON_OBJECT_ENTRY_WITH_VALUE_EMPTY_STRING,
 
@@ -186,8 +181,6 @@ public class Digest implements Cloneable
          * <p>
          * The default value is 'disabled'.
          * </p>
-         *
-         * @since 1.5
          */
         IGNORE_JSON_OBJECT_ENTRY_WITH_VALUE_EMPTY_ARRAY,
 
@@ -210,8 +203,6 @@ public class Digest implements Cloneable
          * <p>
          * The default value is 'disabled'.
          * </p>
-         *
-         * @since 1.5
          */
         IGNORE_JSON_OBJECT_ENTRY_WITH_VALUE_EMPTY_OBJECT,
 
@@ -310,8 +301,6 @@ public class Digest implements Cloneable
      *
      * @throws NoSuchAlgorithmException
      *         No provider supports the specified algorithm.
-     *
-     * @since 1.2
      */
     public Digest(String algorithm) throws NoSuchAlgorithmException
     {
@@ -339,8 +328,6 @@ public class Digest implements Cloneable
      *
      * @throws NoSuchProviderException
      *         The specified provider is not registered in the security provider list.
-     *
-     * @since 1.2
      */
     public Digest(String algorithm, String provider) throws NoSuchAlgorithmException, NoSuchProviderException
     {
@@ -365,8 +352,6 @@ public class Digest implements Cloneable
      *
      * @throws NoSuchAlgorithmException
      *         The provider does not support the specified algorithm.
-     *
-     * @since 1.2
      */
     public Digest(String algorithm, Provider provider) throws NoSuchAlgorithmException
     {
@@ -776,8 +761,6 @@ public class Digest implements Cloneable
      *         If the encoder throws {@link EncoderException},
      *         a {@code RuntimeException} wrapping the
      *         {@code EncoderException} is thrown.
-     *
-     * @since 1.3
      */
     public String digestAsString(BinaryEncoder encoder)
     {
@@ -810,8 +793,6 @@ public class Digest implements Cloneable
      *         If the encoder throws {@link EncoderException},
      *         a {@code RuntimeException} wrapping the
      *         {@code EncoderException} is thrown.
-     *
-     * @since 1.3
      */
     public String digestAsString(byte[] input, BinaryEncoder encoder)
     {
@@ -1026,8 +1007,6 @@ public class Digest implements Cloneable
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public Digest update(Boolean input)
     {
@@ -1054,8 +1033,6 @@ public class Digest implements Cloneable
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public Digest update(Boolean[] input)
     {
@@ -1091,8 +1068,6 @@ public class Digest implements Cloneable
      *
      * @throws IllegalArgumentException
      *         The range specified by the parameters is invalid.
-     *
-     * @since 1.4
      */
     public Digest update(Boolean[] input, int offset, int length)
     {
@@ -1212,8 +1187,6 @@ public class Digest implements Cloneable
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public Digest update(Character input)
     {
@@ -1240,8 +1213,6 @@ public class Digest implements Cloneable
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public Digest update(Character[] input)
     {
@@ -1277,8 +1248,6 @@ public class Digest implements Cloneable
      *
      * @throws IllegalArgumentException
      *         The range specified by the parameters is invalid.
-     *
-     * @since 1.4
      */
     public Digest update(Character[] input, int offset, int length)
     {
@@ -1924,8 +1893,6 @@ public class Digest implements Cloneable
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.1
      */
     public Digest update(Number number)
     {
@@ -2006,8 +1973,6 @@ public class Digest implements Cloneable
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.1
      */
     public <TNumber extends Number> Digest update(TNumber[] input)
     {
@@ -2046,8 +2011,6 @@ public class Digest implements Cloneable
      *
      * @throws IllegalArgumentException
      *         The range specified by the parameters is invalid.
-     *
-     * @since 1.1
      */
     public <TNumber extends Number> Digest update(TNumber[] input, int offset, int length)
     {
@@ -2185,8 +2148,6 @@ public class Digest implements Cloneable
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.1
      */
     public Digest update(Iterable<?> input)
     {
@@ -2224,8 +2185,6 @@ public class Digest implements Cloneable
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public Digest update(Object... input)
     {
@@ -2262,8 +2221,6 @@ public class Digest implements Cloneable
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public Digest update(Object input)
     {
@@ -2417,8 +2374,6 @@ public class Digest implements Cloneable
      *
      * @throws IOException
      *         Failed to parse the given JSON.
-     *
-     * @since 1.2
      */
     public Digest updateJson(String json) throws IOException
     {
@@ -2434,8 +2389,6 @@ public class Digest implements Cloneable
      *
      * @return
      *         {@code true} if the feature is enabled. Otherwise, {@code false}.
-     *
-     * @since 1.2
      */
     public boolean isEnabled(Feature feature)
     {
@@ -2455,8 +2408,6 @@ public class Digest implements Cloneable
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.2
      */
     public Digest setEnabled(Feature feature, boolean enabled)
     {

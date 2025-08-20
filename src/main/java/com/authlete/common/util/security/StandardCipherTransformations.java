@@ -14,6 +14,7 @@ package com.authlete.common.util.security;
  *      >javax.crypto.Cipher</a>
  *
  * @author Takahiko Kawasaki
+ * @since 4.23
  */
 public class StandardCipherTransformations
 {

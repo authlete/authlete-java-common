@@ -1,11 +1,13 @@
 package com.authlete.common.util.security;
 
+
 import static com.authlete.common.util.security.StandardCipherTransformations.AES_CBC_PKCS5PADDING;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import org.apache.commons.codec.BinaryDecoder;
 import org.apache.commons.codec.BinaryEncoder;
 import org.apache.commons.codec.binary.Base64;
+
 
 /**
  * Cipher using {@code "AES/CBC/PKCS5Padding"}.
@@ -60,29 +62,24 @@ import org.apache.commons.codec.binary.Base64;
  * </pre>
  *
  * @author Takahiko Kawasaki
+ * @since 4.23
  */
 public class AESCipher extends CodecCipher
 {
     /**
      * The default key size. The value is 16, meaning 128 bits.
-     *
-     * @since 1.4
      */
     public static final int DEFAULT_KEY_SIZE = 16;
 
 
     /**
      * The default transformation. The value is "AES/CBC/PKCS5Padding".
-     *
-     * @since 1.4
      */
     public static final String DEFAULT_TRANSFORMATION = AES_CBC_PKCS5PADDING;
 
 
     /**
      * The initial vector. The size of initial vectors for AES is always 16.
-     *
-     * @since 1.4
      */
     private static final int INITIAL_VECTOR_SIZE = 16;
 
@@ -108,8 +105,6 @@ public class AESCipher extends CodecCipher
      * This constructor just performs {@link CodecCipher#CodecCipher(String)
      * super(transformation)}.
      * </p>
-     *
-     * @since 1.3
      */
     public AESCipher(String transformation)
     {
@@ -162,8 +157,6 @@ public class AESCipher extends CodecCipher
      *         {@link #decrypt(byte[]) decrypt(byte[])} to decode an encoded input byte array.
      *         If {@code null} is given, {@link Base64} is used as the default
      *         decoder.
-     *
-     * @since 1.3
      */
     public AESCipher(String transformation, BinaryEncoder encoder, BinaryDecoder decoder)
     {
@@ -200,8 +193,6 @@ public class AESCipher extends CodecCipher
      *         A coder which works as both an encoder and a decoder.
      *         If {@code null} is given, {@link Base64} is used as the
      *         default coder.
-     *
-     * @since 1.3
      */
     public <TCoder extends BinaryEncoder & BinaryDecoder> AESCipher(String transformation, TCoder coder)
     {
@@ -299,8 +290,6 @@ public class AESCipher extends CodecCipher
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public AESCipher setKey(byte[] key, byte[] iv, int keySize)
     {
@@ -332,8 +321,6 @@ public class AESCipher extends CodecCipher
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.2
      */
     public AESCipher setKey(String key, byte[] iv)
     {
@@ -361,8 +348,6 @@ public class AESCipher extends CodecCipher
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public AESCipher setKey(String key, byte[] iv, int keySize)
     {
@@ -417,8 +402,6 @@ public class AESCipher extends CodecCipher
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public AESCipher setKey(String key, String iv, int keySize)
     {
@@ -466,8 +449,6 @@ public class AESCipher extends CodecCipher
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public AESCipher setKey(String key, int keySize)
     {
@@ -493,8 +474,6 @@ public class AESCipher extends CodecCipher
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.2
      */
     public AESCipher setKey(byte[] key, String iv)
     {
@@ -522,8 +501,6 @@ public class AESCipher extends CodecCipher
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public AESCipher setKey(byte[] key, String iv, int keySize)
     {
@@ -546,8 +523,6 @@ public class AESCipher extends CodecCipher
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.2
      */
     public AESCipher setKey(byte[] key)
     {
@@ -571,8 +546,6 @@ public class AESCipher extends CodecCipher
      *
      * @return
      *         {@code this} object.
-     *
-     * @since 1.4
      */
     public AESCipher setKey(byte[] key, int keySize)
     {

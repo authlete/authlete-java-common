@@ -67,6 +67,7 @@ import org.apache.commons.codec.binary.Base64;
  *      >javax.crypto.Cipher</a>
  *
  * @author Takahiko Kawasaki
+ * @since 4.23
  */
 public class CodecCipher
 {
