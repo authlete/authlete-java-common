@@ -1,10 +1,13 @@
 package com.authlete.common.util.digest;
 
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import static com.authlete.common.util.digest.Digest.Feature.IGNORE_JSON_OBJECT_ENTRY_WITH_VALUE_EMPTY_ARRAY;
+import static com.authlete.common.util.digest.Digest.Feature.IGNORE_JSON_OBJECT_ENTRY_WITH_VALUE_EMPTY_OBJECT;
+import static com.authlete.common.util.digest.Digest.Feature.IGNORE_JSON_OBJECT_ENTRY_WITH_VALUE_EMPTY_STRING;
+import static com.authlete.common.util.digest.Digest.Feature.IGNORE_JSON_OBJECT_ENTRY_WITH_VALUE_FALSE;
+import static com.authlete.common.util.digest.Digest.Feature.IGNORE_JSON_OBJECT_ENTRY_WITH_VALUE_NULL;
+import static com.authlete.common.util.digest.Digest.Feature.IGNORE_JSON_OBJECT_ENTRY_WITH_VALUE_ZERO;
+import static com.authlete.common.util.digest.Digest.Feature.SORT_JSON_OBJECT_ENTRY_KEYS;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -12,9 +15,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
-import static com.authlete.common.util.digest.Digest.Feature.*;
-
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Implementation of {@link Digest#updateJson(String)}.

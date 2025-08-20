@@ -1,19 +1,21 @@
 package com.authlete.common.util.digest;
 
 
-import org.apache.commons.codec.BinaryEncoder;
-import org.apache.commons.codec.EncoderException;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
-import java.security.*;
+import java.security.DigestException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.Provider;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
-
+import org.apache.commons.codec.BinaryEncoder;
+import org.apache.commons.codec.EncoderException;
 
 /**
  * A wrapper class over MessageDigest with many {@code update}
@@ -238,8 +240,7 @@ public class Digest implements Cloneable
     /**
      * Characters used to generate a hex string.
      */
-    private static final char[] mHexArray = {
-            '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' };
+    private static final char[] mHexArray = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
 
     /**

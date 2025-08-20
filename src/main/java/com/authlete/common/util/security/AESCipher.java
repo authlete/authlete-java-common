@@ -1,15 +1,11 @@
 package com.authlete.common.util.security;
 
-
+import static com.authlete.common.util.security.StandardCipherTransformations.AES_CBC_PKCS5PADDING;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import org.apache.commons.codec.BinaryDecoder;
 import org.apache.commons.codec.BinaryEncoder;
 import org.apache.commons.codec.binary.Base64;
-
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
-
-import static com.authlete.common.util.security.StandardCipherTransformations.AES_CBC_PKCS5PADDING;
-
 
 /**
  * Cipher using {@code "AES/CBC/PKCS5Padding"}.
