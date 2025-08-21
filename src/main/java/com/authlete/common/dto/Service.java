@@ -1889,7 +1889,7 @@ public class Service implements Serializable
      * @since 4.23
      * @since Authlete 3.0.16
      */
-    private boolean responseDataReduced;
+    private boolean responseLimited;
 
 
     /**
@@ -11982,9 +11982,9 @@ public class Service implements Serializable
      * @since 4.23
      * @since Authlete 3.0.16
      */
-    public boolean isResponseDataReduced()
+    public boolean isResponseLimited()
     {
-        return responseDataReduced;
+        return responseLimited;
     }
 
 
@@ -12000,9 +12000,9 @@ public class Service implements Serializable
      * @since 4.23
      * @since Authlete 3.0.16
      */
-    public Service setResponseDataReduced(boolean reduced)
+    public Service setResponseLimited(boolean reduced)
     {
-        this.responseDataReduced = reduced;
+        this.responseLimited = reduced;
 
         return this;
     }
