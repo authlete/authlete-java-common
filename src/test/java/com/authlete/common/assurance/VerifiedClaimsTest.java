@@ -21,9 +21,9 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import com.authlete.common.util.digest.Digest;
 import org.junit.Test;
 import com.google.gson.Gson;
-import com.neovisionaries.security.Digest;
 
 
 public class VerifiedClaimsTest

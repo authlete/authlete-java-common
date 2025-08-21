@@ -19,7 +19,7 @@ package com.authlete.common.conf;
 import java.util.logging.Logger;
 import com.authlete.common.util.PropertiesLoader;
 import com.authlete.common.util.TypedProperties;
-import com.neovisionaries.security.AESCipher;
+import com.authlete.common.util.security.AESCipher;
 
 
 /**

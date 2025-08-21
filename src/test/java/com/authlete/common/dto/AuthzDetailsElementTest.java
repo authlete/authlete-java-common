@@ -16,10 +16,10 @@
 package com.authlete.common.dto;
 
 
+import com.authlete.common.util.digest.Digest;
 import org.junit.Test;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
-import com.neovisionaries.security.Digest;
 import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.ArrayList;
