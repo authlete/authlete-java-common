@@ -1884,6 +1884,15 @@ public class Service implements Serializable
 
 
     /**
+     * Whether to reduce response data.
+     *
+     * @since 4.23
+     * @since Authlete 3.0.16
+     */
+    private boolean responseLimited;
+
+
+    /**
      * Get the service number.
      *
      * @return
@@ -11959,6 +11968,41 @@ public class Service implements Serializable
     public Service setNativeSsoSupported(boolean supported)
     {
         this.nativeSsoSupported = supported;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether response data is reduced.
+     *
+     * @return
+     *         {@code true} if response data is reduced.
+     *
+     * @since 4.23
+     * @since Authlete 3.0.16
+     */
+    public boolean isResponseLimited()
+    {
+        return responseLimited;
+    }
+
+
+    /**
+     * Set the flag which indicates whether response data is reduced.
+     *
+     * @param reduced
+     *         {@code true} to reduce response data.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.23
+     * @since Authlete 3.0.16
+     */
+    public Service setResponseLimited(boolean reduced)
+    {
+        this.responseLimited = reduced;
 
         return this;
     }
