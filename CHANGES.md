@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+4.23 (TBD)
+----------
+
+- `ApiResponse` class
+    * Added the `getResponseHeaders()` method.
+    * Added the `setResponseHeaders(Map<String, List<String>>)` method.
+    * Added support for extracting HTTP response headers from Authlete API calls.
+
+
 4.22 (2025-08-14)
 -----------------
 
