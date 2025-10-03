@@ -1,6 +1,18 @@
 変更点
 ======
 
+4.23 (2025 年 10 月 03 日)
+----------
+
+- `ApiResponse` クラス
+    * `getResponseHeaders()` メソッドを追加。
+    * `setResponseHeaders(Map<String, List<String>>)` メソッドを追加。
+    * AuthleteのAPI呼び出しからHTTPレスポンスヘッダーを抽出するサポートを追加しました。
+
+- `Client` クラス
+    * `isInScopeForTokenMigration()` メソッドを追加。
+    * `setInScopeForTokenMigration(boolean)` メソッドを追加。
+
 4.22 (2025 年 08 月 14 日)
 -----------------
 

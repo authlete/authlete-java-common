@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-4.23 (TBD)
+4.23 (2025-10-03)
 ----------
 
 - `ApiResponse` class
