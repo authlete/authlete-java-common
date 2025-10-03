@@ -17,6 +17,8 @@ package com.authlete.common.dto;
 
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -32,6 +34,7 @@ public class ApiResponse implements Serializable
 
     private String resultCode;
     private String resultMessage;
+    private Map<String, List<String>> responseHeaders;
 
 
     /**
@@ -80,5 +83,34 @@ public class ApiResponse implements Serializable
     public void setResultMessage(String message)
     {
         this.resultMessage = message;
+    }
+
+
+    /**
+     * Get the HTTP response headers returned from an Authlete API call.
+     *
+     * @return
+     *         A map of HTTP response headers. May be {@code null} or empty.
+     *
+     * @since 4.23
+     */
+    public Map<String, List<String>> getResponseHeaders()
+    {
+        return responseHeaders;
+    }
+
+
+    /**
+     * Set the HTTP response headers returned from an Authlete API call.
+     *
+     * @param responseHeaders
+     *         A map of HTTP response headers where each key is a header name
+     *         and the corresponding value is a list of header values.
+     *
+     * @since 4.23
+     */
+    public void setResponseHeaders(Map<String, List<String>> responseHeaders)
+    {
+        this.responseHeaders = responseHeaders;
     }
 }
