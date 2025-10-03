@@ -8,4 +8,6 @@ com.authlete.common.dto
 com.authlete.common.ida
 com.authlete.common.types
 com.authlete.common.util
+com.authlete.common.util.digest
+com.authlete.common.util.security
 com.authlete.common.web
