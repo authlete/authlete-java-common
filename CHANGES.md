@@ -9,6 +9,9 @@ CHANGES
     * Added the `setResponseHeaders(Map<String, List<String>>)` method.
     * Added support for extracting HTTP response headers from Authlete API calls.
 
+- `Client` class
+    * Added the `isInScopeForTokenMigration()` method.
+    * Added the `setInScopeForTokenMigration(boolean)` method.
 
 4.22 (2025-08-14)
 -----------------
