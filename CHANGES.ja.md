@@ -7,7 +7,7 @@
 - `ApiResponse` クラス
     * `getResponseHeaders()` メソッドを追加。
     * `setResponseHeaders(Map<String, List<String>>)` メソッドを追加。
-    * AuthleteのAPI呼び出しからHTTPレスポンスヘッダーを抽出するサポートを追加。
+    * Authlete の API 呼び出しから HTTP レスポンスヘッダーを取り出す機能をサポート。
 
 - `Client` クラス
     * `isInScopeForTokenMigration()` メソッドを追加。
