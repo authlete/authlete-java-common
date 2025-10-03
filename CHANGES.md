@@ -12,6 +12,9 @@ CHANGES
 - `Client` class
     * Added the `isInScopeForTokenMigration()` method.
     * Added the `setInScopeForTokenMigration(boolean)` method.
+ 
+- Removed `com.neovisionaries:nv-cipher` and `com.neovisionaries:nv-digest` dependencies.
+
 
 4.22 (2025-08-14)
 -----------------
