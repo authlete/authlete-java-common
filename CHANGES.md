@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-4.23 (TBD)
+4.23 (2025-10-03)
 ----------
 
 - `ApiResponse` class
@@ -12,6 +12,9 @@ CHANGES
 - `Client` class
     * Added the `isInScopeForTokenMigration()` method.
     * Added the `setInScopeForTokenMigration(boolean)` method.
+ 
+- Removed `com.neovisionaries:nv-cipher` and `com.neovisionaries:nv-digest` dependencies.
+
 
 4.22 (2025-08-14)
 -----------------
