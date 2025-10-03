@@ -13,6 +13,9 @@
     * `isInScopeForTokenMigration()` メソッドを追加。
     * `setInScopeForTokenMigration(boolean)` メソッドを追加。
 
+- `com.neovisionaries:nv-cipher` と `com.neovisionaries:nv-digest` を依存関係から削除。
+
+
 4.22 (2025 年 08 月 14 日)
 -----------------
 
