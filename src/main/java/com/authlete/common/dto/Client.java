@@ -583,6 +583,13 @@ public class Client implements Serializable
      */
     private boolean mtlsEndpointAliasesUsed;
 
+    /**
+     * Indicates if the client is inscope for token migration.
+     *
+     * @since Authlete 4.23
+     */
+    private boolean inScopeForTokenMigration;
+
 
     /*
      * For OpenID Federation 1.0.
@@ -5204,6 +5211,39 @@ public class Client implements Serializable
     public Client setMtlsEndpointAliasesUsed(boolean mtlsEndpointAliasesUsed)
     {
         this.mtlsEndpointAliasesUsed = mtlsEndpointAliasesUsed;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value that indicates whether this Client is in scope for token migration.
+     *
+     * @return
+     *         The value that indicates whether this Client is in scope for token migration.
+     *
+     * @since Authlete 4.23
+     */
+    public boolean isInScopeForTokenMigration()
+    {
+        return inScopeForTokenMigration;
+    }
+
+
+    /**
+     * Sets the flag that indicates that this Client is in scope for token migration.
+     *
+     * @param inScopeForTokenMigration
+     *         The new value for the flag to indicates whether this Client is in scope for token migration.
+     *
+     * @return
+     *         The {@link Client} after setting the provided property.
+     *
+     * @since Authlete 4.23
+     */
+    public Client setInScopeForTokenMigration(boolean inScopeForTokenMigration)
+    {
+        this.inScopeForTokenMigration = inScopeForTokenMigration;
 
         return this;
     }
