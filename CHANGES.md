@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+4.24 (2025-10-06)
+-----------------
+
+- `TokenResponse` class
+    * Added the `getAdditionalClaims()` method.
+    * Added the `setAdditionalClaims(String)` method.
+    * Enables access to additional claims data in Native SSO token responses for custom claim handling
+
+
 4.23 (2025-10-03)
 ----------
 

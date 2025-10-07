@@ -1599,6 +1599,12 @@ public class TokenResponse extends ApiResponse
     private String sessionId;
 
     /**
+     * Additional claims that need to be added to the ID token.
+     * This field contains a JSON string with claims like nonce and s_hash.
+     */
+    private String additionalClaims;
+
+    /**
      * The device secret.
      *
      * @since 4.18
@@ -3553,6 +3559,44 @@ public class TokenResponse extends ApiResponse
     public void setSessionId(String sessionId)
     {
         this.sessionId = sessionId;
+    }
+
+
+    /**
+     * Get the additional claims that need to be added to the ID token.
+     *
+     * <p>
+     * This field contains a JSON string with claims like nonce and s_hash
+     * that need to be included in the ID token when the action is NATIVE_SSO.
+     * </p>
+     *
+     * @return
+     *         The additional claims as a JSON string.
+     */
+    public String getAdditionalClaims()
+    {
+        return additionalClaims;
+    }
+
+
+    /**
+     * Set the additional claims that need to be added to the ID token.
+     *
+     * <p>
+     * This field should contain a JSON string with claims like nonce and s_hash
+     * that need to be included in the ID token when the action is NATIVE_SSO.
+     * </p>
+     *
+     * @param additionalClaims
+     *         The additional claims as a JSON string.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public TokenResponse setAdditionalClaims(String additionalClaims)
+    {
+        this.additionalClaims = additionalClaims;
+        return this;
     }
 
 
