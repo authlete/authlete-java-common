@@ -1884,6 +1884,27 @@ public class Service implements Serializable
 
 
     /**
+     * The flag indicating whether the feature of Trust status list publishing for
+     * this service is enabled or not.
+     *
+     * @since TODO
+     * @since Authlete TODO
+     */
+    private boolean tslPublishingEnabled;
+
+
+    /**
+     * Trust status list configuration data.
+     *
+     * @since TODO
+     * @since Authlete TODO
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/12/">
+     *     Trust Status List</a>
+     */
+    private TslConfigData tslConfigData;
+
+    /**
      * Get the service number.
      *
      * @return
@@ -11961,5 +11982,39 @@ public class Service implements Serializable
         this.nativeSsoSupported = supported;
 
         return this;
+    }
+
+    public Service setTslPublishingEnabled(boolean tslPublishingEnabled) {
+        this.tslPublishingEnabled = tslPublishingEnabled;
+
+        return this;
+    }
+
+    public boolean isTslPublishingEnabled() {
+        return tslPublishingEnabled;
+    }
+
+    /**
+     * Sets the {@link TslConfigData} for this service.
+     *
+     * @param tslConfigData the configuration data to be applied
+     * @return this {@code Service} instance for method chaining
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/12/">
+     *     Trust Status List</a>
+     */
+    public Service setTslConfigData(TslConfigData tslConfigData) {
+        this.tslConfigData = tslConfigData;
+
+        return this;
+    }
+
+    /**
+     * Retrieves the {@link TslConfigData} associated with this service.
+     *
+     * @return the current {@link TslConfigData}
+     */
+    public TslConfigData getTslConfigData() {
+        return tslConfigData;
     }
 }
