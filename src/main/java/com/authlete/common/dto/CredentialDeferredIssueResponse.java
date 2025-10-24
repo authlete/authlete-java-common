@@ -297,6 +297,12 @@ public class CredentialDeferredIssueResponse extends ApiResponse
          * The API call is invalid.
          */
         CALLER_ERROR,
+
+        /**
+         * The deferred credential request does not contain the access token or
+         * the access token is invalid.
+         */
+        UNAUTHORIZED,
     }
 
 

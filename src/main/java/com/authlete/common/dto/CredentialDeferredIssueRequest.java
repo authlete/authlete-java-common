@@ -165,7 +165,6 @@ public class CredentialDeferredIssueRequest implements Serializable
      */
     private int interval;
 
-
     /**
      * Get the credential order that provides an instruction for issuing a
      * credential.
@@ -195,7 +194,6 @@ public class CredentialDeferredIssueRequest implements Serializable
 
         return this;
     }
-
 
     /**
      * Get the flag that indicates whether to deny the deferred credential
@@ -268,7 +266,6 @@ public class CredentialDeferredIssueRequest implements Serializable
 
         return this;
     }
-
 
     /**
      * Get the minimum amount of time in seconds that the Wallet SHOULD wait
