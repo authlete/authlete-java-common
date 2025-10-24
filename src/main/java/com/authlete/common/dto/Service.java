@@ -1960,6 +1960,26 @@ public class Service implements Serializable
      */
     private boolean httpAliasProhibited;
 
+    /**
+     * The flag indicating whether the feature of Trust status list publishing for
+     * this service is enabled or not.
+     *
+     * @since TODO
+     * @since Authlete TODO
+     */
+    private boolean tslPublishingEnabled;
+
+
+    /**
+     * Trust status list configuration data.
+     *
+     * @since TODO
+     * @since Authlete TODO
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/12/">
+     *     Trust Status List</a>
+     */
+    private TslConfigData tslConfigData;
 
     /**
      * Get the service number.
@@ -12097,7 +12117,6 @@ public class Service implements Serializable
         return this;
     }
 
-
     /**
      * Get the version of the OpenID for Verifiable Credential Issuance
      * specification to support.
@@ -12208,6 +12227,17 @@ public class Service implements Serializable
         return this;
     }
 
+    public Service setTslPublishingEnabled(boolean tslPublishingEnabled)
+    {
+        this.tslPublishingEnabled = tslPublishingEnabled;
+
+        return this;
+    }
+
+    public boolean isTslPublishingEnabled()
+    {
+        return tslPublishingEnabled;
+    }
 
     /**
      * Get the flag to determine to support <a href=
@@ -12259,10 +12289,24 @@ public class Service implements Serializable
     public Service setClientIdMetadataDocumentSupported(boolean supported)
     {
         this.clientIdMetadataDocumentSupported = supported;
-
         return this;
     }
 
+    /**
+     * Sets the {@link TslConfigData} for this service.
+     *
+     * @param tslConfigData the configuration data to be applied
+     * @return this {@code Service} instance for method chaining
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/12/">
+     *     Trust Status List</a>
+     */
+    public Service setTslConfigData(TslConfigData tslConfigData)
+    {
+        this.tslConfigData = tslConfigData;
+
+        return this;
+    }
 
     /**
      * Get the flag that indicates whether the allowlist for client IDs
@@ -12795,10 +12839,20 @@ public class Service implements Serializable
      * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
      *      OAuth Client ID Metadata Document</a>
      */
-    public Service setHttpAliasProhibited(boolean prohibited)
-    {
+    public Service setHttpAliasProhibited(boolean prohibited) {
         this.httpAliasProhibited = prohibited;
 
         return this;
+    }
+
+    /**
+     * Retrieves the {@link TslConfigData} associated with this service.
+     *
+     * @return the current {@link TslConfigData}
+     */
+    public TslConfigData getTslConfigData()
+    {
+        return tslConfigData;
+
     }
 }

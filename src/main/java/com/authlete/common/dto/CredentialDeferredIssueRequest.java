@@ -79,6 +79,12 @@ public class CredentialDeferredIssueRequest implements Serializable
 
 
     /**
+     * The access token that came along with the deferred credential request.
+     */
+    private String accessToken;
+
+
+    /**
      * Get the credential order that provides an instruction for issuing a
      * credential.
      *
@@ -107,4 +113,33 @@ public class CredentialDeferredIssueRequest implements Serializable
 
         return this;
     }
+
+    /**
+     * Get the access token that came along with the deferred credential request.
+     *
+     * @return
+     *         The access token that the deferred credential endpoint received.
+     */
+    public String getAccessToken()
+    {
+        return accessToken;
+    }
+
+
+    /**
+     * Set the access token that came along with the deferred credential request.
+     *
+     * @param accessToken
+     *         The access token that the deferred credential endpoint received.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public CredentialDeferredIssueRequest setAccessToken(String accessToken)
+    {
+        this.accessToken = accessToken;
+
+        return this;
+    }
+
 }
