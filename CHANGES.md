@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.25 (2025-10-30)
+-----------------
+
 - `Service` class
     * Added the `getOid4vciVersion()` method.
     * Added the `setOid4vciVersion(String)` method.

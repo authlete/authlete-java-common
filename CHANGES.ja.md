@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.25 (2025 年 10 月 30 日)
+----------
+
 - `Service` クラス
     * `getOid4vciVersion()` メソッドを追加。
     * `setOid4vciVersion(String)` メソッドを追加。
