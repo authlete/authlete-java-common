@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 83L;
+    private static final long serialVersionUID = 84L;
 
 
     /*
@@ -1881,6 +1881,16 @@ public class Service implements Serializable
      *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
      */
     private boolean nativeSsoSupported;
+
+
+    /**
+     * The version of the OpenID for Verifiable Credential Issuance specification
+     * to support.
+     *
+     * @since 4.25
+     * @since Authlete 3.0.22
+     */
+    private String oid4vciVersion;
 
 
     /**
@@ -11959,6 +11969,117 @@ public class Service implements Serializable
     public Service setNativeSsoSupported(boolean supported)
     {
         this.nativeSsoSupported = supported;
+
+        return this;
+    }
+
+
+    /**
+     * Get the version of the OpenID for Verifiable Credential Issuance
+     * specification to support.
+     *
+     * <p>
+     * Valid values are as follows:
+     * </p>
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <tr bgcolor="orange">
+     *     <th>Value</th>
+     *     <th>Specification</th>
+     *   </tr>
+     *   <tr>
+     *     <td>null</td>
+     *     <td rowspan="2">
+     *       <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0-ID1.html">
+     *       OpenID for Verifiable Credential Issuance 1.0, Implementer's Draft 1</a>
+     *     </td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "1.0-ID1"}</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "1.0"}</td>
+     *     <td rowspan="2">
+     *       <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
+     *       OpenID for Verifiable Credential Issuance 1.0, Final</a>
+     *     </td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "1.0-Final"}</td>
+     *   </tr>
+     * </table>
+     * </blockquote>
+     *
+     * @return
+     *         The version of the OpenID for Verifiable Credential Issuance
+     *         specification to support.
+     *
+     * @since 4.25
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://www.authlete.com/developers/oid4vci/">
+     *      OpenID for Verifiable Credential Issuance</a>
+     */
+    public String getOid4vciVersion()
+    {
+        return oid4vciVersion;
+    }
+
+
+    /**
+     * Set the version of the OpenID for Verifiable Credential Issuance
+     * specification to support.
+     *
+     * <p>
+     * Valid values are as follows:
+     * </p>
+     *
+     * <blockquote>
+     * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+     *   <tr bgcolor="orange">
+     *     <th>Value</th>
+     *     <th>Specification</th>
+     *   </tr>
+     *   <tr>
+     *     <td>null</td>
+     *     <td rowspan="2">
+     *       <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0-ID1.html">
+     *       OpenID for Verifiable Credential Issuance 1.0, Implementer's Draft 1</a>
+     *     </td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "1.0-ID1"}</td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "1.0"}</td>
+     *     <td rowspan="2">
+     *       <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
+     *       OpenID for Verifiable Credential Issuance 1.0, Final</a>
+     *     </td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@code "1.0-Final"}</td>
+     *   </tr>
+     * </table>
+     * </blockquote>
+     *
+     * @param version
+     *         The version of the OpenID for Verifiable Credential Issuance
+     *         specification to support.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.25
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://www.authlete.com/developers/oid4vci/">
+     *      OpenID for Verifiable Credential Issuance</a>
+     */
+    public Service setOid4vciVersion(String version)
+    {
+        this.oid4vciVersion = version;
 
         return this;
     }
