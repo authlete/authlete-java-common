@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.26 (2025-11-03)
+-----------------
+
 - `CredentialIssuerMetadata` class
     * Added the `getNotificationEndpoint()` method.
     * Added the `setNotificationEndpoint(URI)` method.

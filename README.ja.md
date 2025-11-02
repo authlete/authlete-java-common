@@ -54,8 +54,6 @@ JavaDoc
 
   <code>https://authlete.github.io/authlete-java-common/</code>
 
-  <code>https://authlete.github.io/authlete-java-common/index.html?overview-summary.html</code> [FRAMES]
-
 
 説明
 ----
