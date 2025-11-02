@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023-2024 Authlete, Inc.
+ * Copyright (C) 2023-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,26 +18,103 @@ package com.authlete.common.dto;
 
 import static com.authlete.common.util.MapUtils.put;
 import static com.authlete.common.util.MapUtils.putJsonObject;
+import static com.authlete.common.util.MapUtils.putJsonArray;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import com.authlete.common.types.JWEAlg;
 import com.authlete.common.types.JWEEnc;
+import com.authlete.common.types.JWEZip;
+import com.nimbusds.jose.jwk.JWKSet;
 
 
 /**
  * A class that represents the set of credential issuer metadata.
- * The set consists of the following.
+ * The set consists of the following:
+ *
+ * <blockquote>
+ * <table border="1" cellpadding="5" style="border-collapse: collapse;">
+ *   <tr bgcolor="orange">
+ *     <th rowspan="2">Parameter</th>
+ *     <th colspan="2">Spec Version</th>
+ *   </tr>
+ *   <tr>
+ *     <td align="center">1.0-ID1</td>
+ *     <td align="center">1.0-Final</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code credential_issuer}</td>
+ *     <td align="center">&check;</td>
+ *     <td align="center">&check;</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code authorization_servers}</td>
+ *     <td align="center">&check;</td>
+ *     <td align="center">&check;</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code credential_endpoint}</td>
+ *     <td align="center">&check;</td>
+ *     <td align="center">&check;</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code batch_credential_endpoint}</td>
+ *     <td align="center">&check;</td>
+ *     <td align="center">deprecated</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code deferred_credential_endpoint}</td>
+ *     <td align="center">&check;</td>
+ *     <td align="center">&check;</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code notification_endpoint}</td>
+ *     <td align="center">&check;</td>
+ *     <td align="center">&check;</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code nonce_endpoint}</td>
+ *     <td align="center"></td>
+ *     <td align="center">&check;</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code credential_request_encryption}</td>
+ *     <td align="center"></td>
+ *     <td align="center">&check;</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code credential_response_encryption}</td>
+ *     <td align="center">&check;</td>
+ *     <td align="center">&check;</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code batch_credential_issuance}</td>
+ *     <td align="center"></td>
+ *     <td align="center">&check;</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code display}</td>
+ *     <td align="center">&check;</td>
+ *     <td align="center">&check;</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code credential_configurations_supported}</td>
+ *     <td align="center">&check;</td>
+ *     <td align="center">&check;</td>
+ *   </tr>
+ * </table>
+ * </blockquote>
+ *
+ * <p>
+ * The following parameters, which existed in the 1.0-ID1 version but have
+ * removed from the 1.0-Final version, are not supported by Authlete
+ * from the beginning:
+ * </p>
  *
  * <ul>
- * <li>{@code credential_issuer}
- * <li>{@code authorization_servers}
- * <li>{@code credential_endpoint}
- * <li>{@code batch_credential_endpoint}
- * <li>{@code deferred_credential_endpoint}
- * <li>{@code credential_response_encryption}
- * <li>{@code credential_configurations_supported}
+ * <li>{@code credential_identifiers_supported}</li>
+ * <li>{@code signed_metadata}</li>
  * </ul>
  *
  * <p>
@@ -76,14 +153,14 @@ import com.authlete.common.types.JWEEnc;
  * @since Authlete 3.0
  *
  * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
- *      >OpenID for Verifiable Credential Issuance</a>
+ *      >OpenID for Verifiable Credential Issuance 1.0</a>
  *
- * @see <a href="https://openid.github.io/OpenID4VCI/openid-4-verifiable-credential-issuance-wg-draft.html"
- *      >OpenID for Verifiable Credential Issuance, Working Draft</a>
+ * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0-ID1.html"
+ *      >OpenID for Verifiable Credential Issuance 1.0, Implementer's Draft 1</a>
  */
 public class CredentialIssuerMetadata implements Serializable
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     /**
@@ -120,11 +197,61 @@ public class CredentialIssuerMetadata implements Serializable
 
 
     /**
+     * The URL of the notification endpoint.
+     *
+     * @since 4.26
+     */
+    private URI notificationEndpoint;
+
+
+    /**
+     * The URL of the nonce endpoint.
+     *
+     * @since 4.26
+     */
+    private URI nonceEndpoint;
+
+
+    /**
      * The supported JWE alg algorithms for credential response encryption.
      *
      * @since 3.86
      */
     private JWEAlg[] credentialResponseEncryptionAlgValuesSupported;
+
+
+    /**
+     * A JSON Web Key Set containing private keys for credential request
+     * encryption.
+     *
+     * @since 4.26
+     */
+    private String credentialRequestEncryptionJwks;
+
+
+    /**
+     * The supported JWE enc algorithms for credential request encryption.
+     *
+     * @since 4.26
+     */
+    private JWEEnc[] credentialRequestEncryptionEncValuesSupported;
+
+
+    /**
+     * The supported JWE zip algorithms for credential request encryption.
+     *
+     * @since 4.26
+     */
+    private JWEZip[] credentialRequestEncryptionZipValuesSupported;
+
+
+    /**
+     * The boolean flag indicating whether credential request encryption is
+     * required.
+     *
+     * @since 4.26
+     */
+    private boolean requireCredentialRequestEncryption;
 
 
     /**
@@ -136,12 +263,37 @@ public class CredentialIssuerMetadata implements Serializable
 
 
     /**
+     * The supported JWE zip algorithms for credential response encryption.
+     *
+     * @since 4.26
+     */
+    private JWEZip[] credentialResponseEncryptionZipValuesSupported;
+
+
+    /**
      * The boolean flag indicating whether credential response encryption is
      * required.
      *
      * @since 3.86
      */
     private boolean requireCredentialResponseEncryption;
+
+
+    /**
+     * The maximum array size for the {@code proofs} parameter in a credential
+     * request.
+     *
+     * @since 4.26
+     */
+    private int batchSize;
+
+
+    /**
+     * The credential issuer's display properties in JSON array format.
+     *
+     * @since 4.26
+     */
+    private String display;
 
 
     /**
@@ -176,9 +328,18 @@ public class CredentialIssuerMetadata implements Serializable
         credentialEndpoint                             = metadata.getCredentialEndpoint();
         batchCredentialEndpoint                        = metadata.getBatchCredentialEndpoint();
         deferredCredentialEndpoint                     = metadata.getDeferredCredentialEndpoint();
+        notificationEndpoint                           = metadata.getNotificationEndpoint();
+        nonceEndpoint                                  = metadata.getNonceEndpoint();
+        credentialRequestEncryptionJwks                = metadata.getCredentialRequestEncryptionJwks();
+        credentialRequestEncryptionEncValuesSupported  = metadata.getCredentialRequestEncryptionEncValuesSupported();
+        credentialRequestEncryptionZipValuesSupported  = metadata.getCredentialRequestEncryptionZipValuesSupported();
+        requireCredentialRequestEncryption             = metadata.isRequireCredentialRequestEncryption();
         credentialResponseEncryptionAlgValuesSupported = metadata.getCredentialResponseEncryptionAlgValuesSupported();
         credentialResponseEncryptionEncValuesSupported = metadata.getCredentialResponseEncryptionEncValuesSupported();
+        credentialResponseEncryptionZipValuesSupported = metadata.getCredentialResponseEncryptionZipValuesSupported();
         requireCredentialResponseEncryption            = metadata.isRequireCredentialResponseEncryption();
+        batchSize                                      = metadata.getBatchSize();
+        display                                        = metadata.getDisplay();
         credentialsSupported                           = metadata.getCredentialsSupported();
     }
 
@@ -323,6 +484,11 @@ public class CredentialIssuerMetadata implements Serializable
      * this property should be omitted.
      * </p>
      *
+     * <p>
+     * NOTE: This metadata parameter was deprecated and is not available in the
+     * 1.0-Final version of the OID4VCI specification.
+     * </p>
+     *
      * @return
      *         The URL of the batch credential endpoint.
      */
@@ -341,10 +507,16 @@ public class CredentialIssuerMetadata implements Serializable
      * this property should be omitted.
      * </p>
      *
+     * <p>
+     * NOTE: This metadata parameter was deprecated and is not available in the
+     * 1.0-Final version of the OID4VCI specification.
+     * </p>
+     *
      * @param endpoint
      *         The URL of the batch credential endpoint.
      *
      * @return
+     *         {@code this} object.
      */
     public CredentialIssuerMetadata setBatchCredentialEndpoint(URI endpoint)
     {
@@ -394,6 +566,284 @@ public class CredentialIssuerMetadata implements Serializable
     public CredentialIssuerMetadata setDeferredCredentialEndpoint(URI endpoint)
     {
         this.deferredCredentialEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URL of the notification endpoint. This property corresponds to
+     * the {@code notification_endpoint} metadata.
+     *
+     * @return
+     *         The URL of the notification endpoint.
+     *
+     * @since 4.26
+     */
+    public URI getNotificationEndpoint()
+    {
+        return notificationEndpoint;
+    }
+
+
+    /**
+     * Set the URL of the notification endpoint. This property corresponds to
+     * the {@code notification_endpoint} metadata.
+     *
+     * @param endpoint
+     *         The URL of the notification endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.26
+     */
+    public CredentialIssuerMetadata setNotificationEndpoint(URI endpoint)
+    {
+        this.notificationEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URL of the nonce endpoint. This property corresponds to the
+     * {@code nonce_endpoint} metadata.
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @return
+     *         The URL of the nonce endpoint.
+     *
+     * @since 4.26
+     */
+    public URI getNonceEndpoint()
+    {
+        return nonceEndpoint;
+    }
+
+
+    /**
+     * Set the URL of the nonce endpoint. This property corresponds to the
+     * {@code nonce_endpoint} metadata.
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @param endpoint
+     *         The URL of the nonce endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.26
+     */
+    public CredentialIssuerMetadata setNonceEndpoint(URI endpoint)
+    {
+        this.nonceEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the JWK Set for credential request encryption.
+     *
+     * <p>
+     * The public part of this JWK Set is used as the value of the
+     * {@code credential_request_encryption.jwks} metadata.
+     * </p>
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @return
+     *         The JWK Set for credential request encryption.
+     *
+     * @since 4.26
+     */
+    public String getCredentialRequestEncryptionJwks()
+    {
+        return credentialRequestEncryptionJwks;
+    }
+
+
+    /**
+     * Set the JWK Set for credential request encryption.
+     *
+     * <p>
+     * The public part of this JWK Set is used as the value of the
+     * {@code credential_request_encryption.jwks} metadata.
+     * </p>
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @param jwks
+     *         The JWK Set for credential request encryption.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.26
+     */
+    public CredentialIssuerMetadata setCredentialRequestEncryptionJwks(String jwks)
+    {
+        this.credentialRequestEncryptionJwks = jwks;
+
+        return this;
+    }
+
+
+    /**
+     * Get the supported JWE {@code enc} algorithms for credential request
+     * encryption. This property corresponds to the
+     * {@code credential_request_encryption.enc_values_supported} metadata.
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @return
+     *         The supported JWE {@code enc} algorithms for credential request
+     *         encryption.
+     *
+     * @since 4.26
+     */
+    public JWEEnc[] getCredentialRequestEncryptionEncValuesSupported()
+    {
+        return credentialRequestEncryptionEncValuesSupported;
+    }
+
+
+    /**
+     * Set the supported JWE {@code enc} algorithms for credential request
+     * encryption. This property corresponds to the
+     * {@code credential_request_encryption.enc_values_supported} metadata.
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @param encs
+     *         The supported JWE {@code enc} algorithms for credential request
+     *         encryption.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.26
+     */
+    public CredentialIssuerMetadata setCredentialRequestEncryptionEncValuesSupported(JWEEnc[] encs)
+    {
+        this.credentialRequestEncryptionEncValuesSupported = encs;
+
+        return this;
+    }
+
+
+    /**
+     * Get the supported JWE {@code zip} algorithms for credential request
+     * encryption. This property corresponds to the
+     * {@code credential_request_encryption.zip_values_supported} metadata.
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @return
+     *         The supported JWE {@code zip} algorithms for credential request
+     *         encryption.
+     *
+     * @since 4.26
+     */
+    public JWEZip[] getCredentialRequestEncryptionZipValuesSupported()
+    {
+        return credentialRequestEncryptionZipValuesSupported;
+    }
+
+
+    /**
+     * Set the supported JWE {@code zip} algorithms for credential request
+     * encryption. This property corresponds to the
+     * {@code credential_request_encryption.zip_values_supported} metadata.
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @param zips
+     *         The supported JWE {@code zip} algorithms for credential request
+     *         encryption.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.26
+     */
+    public CredentialIssuerMetadata setCredentialRequestEncryptionZipValuesSupported(JWEZip[] zips)
+    {
+        this.credentialRequestEncryptionZipValuesSupported = zips;
+
+        return this;
+    }
+
+
+    /**
+     * Get the boolean flag indicating whether credential request encryption
+     * is required. This property corresponds to the
+     * {@code credential_request_encryption.encryption_required} metadata.
+     *
+     * <p>
+     * If this flag is {@code true}, every credential request to the credential
+     * issuer must be encrypted.
+     * </p>
+     *
+     * @return
+     *         {@code true} if credential request encryption is required.
+     *
+     * @since 4.26
+     */
+    public boolean isRequireCredentialRequestEncryption()
+    {
+        return requireCredentialRequestEncryption;
+    }
+
+
+    /**
+     * Set the boolean flag indicating whether credential request encryption
+     * is required. This property corresponds to the
+     * {@code credential_request_encryption.encryption_required} metadata.
+     *
+     * <p>
+     * If this flag is {@code true}, every credential request to the credential
+     * issuer must be encrypted
+     * </p>
+     *
+     * @param required
+     *         {@code true} to require credential request encryption.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.26
+     */
+    public CredentialIssuerMetadata setRequireCredentialRequestEncryption(boolean required)
+    {
+        this.requireCredentialRequestEncryption = required;
 
         return this;
     }
@@ -479,6 +929,55 @@ public class CredentialIssuerMetadata implements Serializable
 
 
     /**
+     * Get the supported JWE {@code zip} algorithms for credential response
+     * encryption. This property corresponds to the
+     * {@code credential_response_encryption.zip_values_supported} metadata.
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @return
+     *         The supported JWE {@code zip} algorithms for credential response
+     *         encryption.
+     *
+     * @since 4.26
+     */
+    public JWEZip[] getCredentialResponseEncryptionZipValuesSupported()
+    {
+        return credentialResponseEncryptionZipValuesSupported;
+    }
+
+
+    /**
+     * Set the supported JWE {@code zip} algorithms for credential response
+     * encryption. This property corresponds to the
+     * {@code credential_response_encryption.zip_values_supported} metadata.
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @param zips
+     *         The supported JWE {@code zip} algorithms for credential response
+     *         encryption.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.26
+     */
+    public CredentialIssuerMetadata setCredentialResponseEncryptionZipValuesSupported(JWEZip[] zips)
+    {
+        this.credentialResponseEncryptionZipValuesSupported = zips;
+
+        return this;
+    }
+
+
+    /**
      * Get the boolean flag indicating whether credential response encryption
      * is required. This property corresponds to the
      * {@code credential_response_encryption.encryption_required} metadata.
@@ -520,6 +1019,152 @@ public class CredentialIssuerMetadata implements Serializable
     public CredentialIssuerMetadata setRequireCredentialResponseEncryption(boolean required)
     {
         this.requireCredentialResponseEncryption = required;
+
+        return this;
+    }
+
+
+    /**
+     * Get the maximum array size for the {@code proofs} parameter in a
+     * credential request. This property corresponds to the
+     * {@code batch_credential_issuance.batch_size} metadata.
+     *
+     * <p>
+     * If the value of this property is 2 or greater, the
+     * {@code batch_credential_issuance} parameter will appear in the response
+     * from the credential metadata endpoint.
+     * </p>
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @return
+     *         The maximum array size for the {@code proofs} parameter in a
+     *         credential request.
+     *
+     * @since 4.26
+     */
+    public int getBatchSize()
+    {
+        return batchSize;
+    }
+
+
+    /**
+     * Set the maximum array size for the {@code proofs} parameter in a
+     * credential request. This property corresponds to the
+     * {@code batch_credential_issuance.batch_size} metadata.
+     *
+     * <p>
+     * If the value of this property is 2 or greater, the
+     * {@code batch_credential_issuance} parameter will appear in the response
+     * from the credential metadata endpoint.
+     * </p>
+     *
+     * <p>
+     * NOTE: This metadata parameter exists in the 1.0-Final version of the
+     * OID4VCI specification but is not available in the 1.0-ID1 version.
+     * </p>
+     *
+     * @param batchSize
+     *         The maximum array size for the {@code proofs} parameter in a
+     *         credential request.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.26
+     */
+    public CredentialIssuerMetadata setBatchSize(int batchSize)
+    {
+        this.batchSize = batchSize;
+
+        return this;
+    }
+
+
+    /**
+     * Get the display properties of this credential issuer in JSON array format.
+     *
+     * <p>
+     * The following is an example of {@code display} value excerpted from <a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#appendix-I.1"
+     * >Appendix I.1. Credential IssuerMetadata</a> of the OID4VCI specification.
+     * </p>
+     *
+     * <pre style="width: stretch; margin-left: 1em; margin-right: 1em; border: 1px solid black;">
+     * [
+     *   {
+     *     "name": "Example University",
+     *     "locale": "en-US",
+     *     "logo": {
+     *       "uri": "https://university.example.edu/public/logo.png",
+     *       "alt_text":"a square logo of a university"
+     *     }
+     *   },
+     *   {
+     *     "name": "Example Université",
+     *     "locale": "fr-FR",
+     *     "logo": {
+     *       "uri": "https://university.example.edu/public/logo.png",
+     *       "alt_text":"Un logo universitaire carré"
+     *     }
+     *   }
+     * ]</pre>
+     *
+     * @return
+     *         The display properties.
+     *
+     * @since 4.26
+     */
+    public String getDisplay()
+    {
+        return display;
+    }
+
+
+    /**
+     * Set the display properties of this credential issuer in JSON array format.
+     *
+     * <p>
+     * The following is an example of {@code display} value excerpted from <a href=
+     * "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#appendix-I.1"
+     * >Appendix I.1. Credential IssuerMetadata</a> of the OID4VCI specification.
+     * </p>
+     *
+     * <pre style="width: stretch; margin-left: 1em; margin-right: 1em; border: 1px solid black;">
+     * [
+     *   {
+     *     "name": "Example University",
+     *     "locale": "en-US",
+     *     "logo": {
+     *       "uri": "https://university.example.edu/public/logo.png",
+     *       "alt_text":"a square logo of a university"
+     *     }
+     *   },
+     *   {
+     *     "name": "Example Université",
+     *     "locale": "fr-FR",
+     *     "logo": {
+     *       "uri": "https://university.example.edu/public/logo.png",
+     *       "alt_text":"Un logo universitaire carré"
+     *     }
+     *   }
+     * ]</pre>
+     *
+     * @param display
+     *         The display properties.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.26
+     */
+    public CredentialIssuerMetadata setDisplay(String display)
+    {
+        this.display = display;
 
         return this;
     }
@@ -609,8 +1254,15 @@ public class CredentialIssuerMetadata implements Serializable
                (credentialEndpoint                             == null) &&
                (batchCredentialEndpoint                        == null) &&
                (deferredCredentialEndpoint                     == null) &&
+               (notificationEndpoint                           == null) &&
+               (nonceEndpoint                                  == null) &&
+               (credentialRequestEncryptionJwks                == null) &&
+               (credentialRequestEncryptionEncValuesSupported  == null) &&
+               (credentialRequestEncryptionZipValuesSupported  == null) &&
                (credentialResponseEncryptionAlgValuesSupported == null) &&
                (credentialResponseEncryptionEncValuesSupported == null) &&
+               (credentialResponseEncryptionZipValuesSupported == null) &&
+               (display                                        == null) &&
                (credentialsSupported                           == null);
     }
 
@@ -696,20 +1348,60 @@ public class CredentialIssuerMetadata implements Serializable
         put(map, "credential_endpoint",            credentialEndpoint,             false);
         put(map, "batch_credential_endpoint",      batchCredentialEndpoint,        false);
         put(map, "deferred_credential_endpoint",   deferredCredentialEndpoint,     false);
+        put(map, "notification_endpoint",          notificationEndpoint,           false);
+        put(map, "nonce_endpoint",                 nonceEndpoint,                  false);
+        put(map, "credential_request_encryption",  credentialRequestEncryption(),  false);
         put(map, "credential_response_encryption", credentialResponseEncryption(), false);
+        put(map, "batch_credential_issuance",      batchCredentialIssuance(),      false);
+        putDisplay(map);                           // display
+        putCredentialConfigurationsSupported(map); // credential_configurations_supported
+
+        return map;
+    }
+
+
+    private Map<String, Object> credentialRequestEncryption()
+    {
+        if (credentialRequestEncryptionJwks                      == null ||
+            credentialRequestEncryptionEncValuesSupported        == null ||
+            credentialRequestEncryptionEncValuesSupported.length == 0)
+        {
+            return null;
+        }
+
+        Map<String, Object> map = new LinkedHashMap<>();
+
+        put(map, "jwks",                 credentialRequestEncryptionPublicJwks(),       true);
+        put(map, "enc_values_supported", credentialRequestEncryptionEncValuesSupported, true);
+        put(map, "zip_values_supported", credentialRequestEncryptionZipValuesSupported, false);
+        put(map, "encryption_required",  requireCredentialRequestEncryption,            true);
+
+        return map;
+    }
+
+
+    private Map<String, Object> credentialRequestEncryptionPublicJwks()
+    {
+        if (credentialRequestEncryptionJwks == null)
+        {
+            return null;
+        }
+
+        JWKSet jwks;
 
         try
         {
-            // Parse the value of 'credentialsSupported' as a JSON object.
-            putJsonObject(map, "credential_configurations_supported", credentialsSupported, false);
+            // Parse the string as a JWK Set.
+            jwks = JWKSet.parse(credentialRequestEncryptionJwks);
         }
         catch (Exception cause)
         {
             throw new IllegalStateException(
-                    "The value of the 'credentialsSupported' property failed to be parsed as a JSON object.", cause);
+                    "The value of the 'credentialRequestEncryptionJwks' property failed to be parsed as a JWK Set.", cause);
         }
 
-        return map;
+        // Public keys only.
+        return jwks.toJSONObject(true);
     }
 
 
@@ -727,8 +1419,74 @@ public class CredentialIssuerMetadata implements Serializable
 
         put(map, "alg_values_supported", credentialResponseEncryptionAlgValuesSupported, true);
         put(map, "enc_values_supported", credentialResponseEncryptionEncValuesSupported, true);
+        put(map, "zip_values_supported", credentialResponseEncryptionZipValuesSupported, false);
         put(map, "encryption_required",  requireCredentialResponseEncryption,            true);
 
         return map;
+    }
+
+
+    private Map<String, Object> batchCredentialIssuance()
+    {
+        // OpenID for Verifiable Credential Issuance 1.0
+        // 12.2.4. Credential Issuer Metadata Parameters
+        //
+        //   batch_credential_issuance:
+        //
+        //     OPTIONAL. Object containing information about the Credential
+        //     Issuer's support for issuance of multiple Credentials in a batch
+        //     in the Credential Endpoint. The presence of this parameter means
+        //     that the issuer supports more than one key proof in the proofs
+        //     parameter in the Credential Request so can issue more than one
+        //     Verifiable Credential for the same Credential Dataset in a
+        //     single request/response.
+        //
+        //       batch_size:
+        //         REQUIRED. Integer value specifying the maximum array size
+        //         for the proofs parameter in a Credential Request. It MUST
+        //         be 2 or greater.
+        //
+        if (batchSize < 2)
+        {
+            return null;
+        }
+
+        // {
+        //   "batch_size": batchSize
+        // }
+        Map<String, Object> value = new LinkedHashMap<>();
+        value.put("batch_size", batchSize);
+
+        return value;
+    }
+
+
+    private void putDisplay(Map<String, Object> map)
+    {
+        try
+        {
+            // Parse the value of 'display as a JSON array.
+            putJsonArray(map, "display", display, false);
+        }
+        catch (Exception cause)
+        {
+            throw new IllegalStateException(
+                    "The value of the 'display' property failed to be parsed as a JSON array.", cause);
+        }
+    }
+
+
+    private void putCredentialConfigurationsSupported(Map<String, Object> map)
+    {
+        try
+        {
+            // Parse the value of 'credentialsSupported' as a JSON object.
+            putJsonObject(map, "credential_configurations_supported", credentialsSupported, false);
+        }
+        catch (Exception cause)
+        {
+            throw new IllegalStateException(
+                    "The value of the 'credentialsSupported' property failed to be parsed as a JSON object.", cause);
+        }
     }
 }

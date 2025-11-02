@@ -1,6 +1,30 @@
 CHANGES
 =======
 
+- `CredentialIssuerMetadata` class
+    * Added the `getNotificationEndpoint()` method.
+    * Added the `setNotificationEndpoint(URI)` method.
+    * Added the `getNonceEndpoint()` method.
+    * Added the `setNonceEndpoint(URI)` method.
+    * Added the `getCredentialRequestEncryptionJwks()` method.
+    * Added the `setCredentialRequestEncryptionJwks(String)` method.
+    * Added the `getCredentialRequestEncryptionEncValuesSupported()` method.
+    * Added the `setCredentialRequestEncryptionEncValuesSupported(JWEEnc[])` method.
+    * Added the `getCredentialRequestEncryptionZipValuesSupported()` method.
+    * Added the `setCredentialRequestEncryptionZipValuesSupported(JWEEnc[])` method.
+    * Added the `isRequireCredentialRequestEncryption()` method.
+    * Added the `setRequireCredentialRequestEncryption(boolean)` method.
+    * Added the `getCredentialResponseEncryptionZipValuesSupported()` method.
+    * Added the `setCredentialResponseEncryptionZipValuesSupported(JWEEnc[])` method.
+    * Added the `getBatchSize()` method.
+    * Added the `setBatchSize(int)` method.
+    * Added the `getDisplay()` method.
+    * Added the `setDisplay(String)` method.
+
+- New types
+    * `JWEZip` enum
+
+
 4.25 (2025-10-30)
 -----------------
 
