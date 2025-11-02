@@ -1,6 +1,30 @@
 変更点
 ======
 
+- `CredentialIssuerMetadata` クラス
+    * `getNotificationEndpoint()` メソッドを追加。
+    * `setNotificationEndpoint(URI)` メソッドを追加。
+    * `getNonceEndpoint()` メソッドを追加。
+    * `setNonceEndpoint(URI)` メソッドを追加。
+    * `getCredentialRequestEncryptionJwks()` メソッドを追加。
+    * `setCredentialRequestEncryptionJwks(String)` メソッドを追加。
+    * `getCredentialRequestEncryptionEncValuesSupported()` メソッドを追加。
+    * `setCredentialRequestEncryptionEncValuesSupported(JWEEnc[])` メソッドを追加。
+    * `getCredentialRequestEncryptionZipValuesSupported()` メソッドを追加。
+    * `setCredentialRequestEncryptionZipValuesSupported(JWEEnc[])` メソッドを追加。
+    * `isRequireCredentialRequestEncryption()` メソッドを追加。
+    * `setRequireCredentialRequestEncryption(boolean)` メソッドを追加。
+    * `getCredentialResponseEncryptionZipValuesSupported()` メソッドを追加。
+    * `setCredentialResponseEncryptionZipValuesSupported(JWEEnc[])` メソッドを追加。
+    * `getBatchSize()` メソッドを追加。
+    * `setBatchSize(int)` メソッドを追加。
+    * `getDisplay()` メソッドを追加。
+    * `setDisplay(String)` メソッドを追加。
+
+- 新しい型
+    * `JWEZip` 列挙型
+
+
 4.25 (2025 年 10 月 30 日)
 ----------
 
