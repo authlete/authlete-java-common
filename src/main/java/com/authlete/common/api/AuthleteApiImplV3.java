@@ -67,6 +67,8 @@ import com.authlete.common.dto.CredentialIssuerMetadataRequest;
 import com.authlete.common.dto.CredentialIssuerMetadataResponse;
 import com.authlete.common.dto.CredentialJwtIssuerMetadataRequest;
 import com.authlete.common.dto.CredentialJwtIssuerMetadataResponse;
+import com.authlete.common.dto.CredentialNonceRequest;
+import com.authlete.common.dto.CredentialNonceResponse;
 import com.authlete.common.dto.CredentialOfferCreateRequest;
 import com.authlete.common.dto.CredentialOfferCreateResponse;
 import com.authlete.common.dto.CredentialOfferInfoRequest;
@@ -207,6 +209,7 @@ public class AuthleteApiImplV3 extends AuthleteApiBasicImpl
     private static final String VCI_JWKS_API_PATH                             = "/api/%d/vci/jwks";
     private static final String VCI_JWT_ISSUER_API_PATH                       = "/api/%d/vci/jwtissuer";
     private static final String VCI_METADATA_API_PATH                         = "/api/%d/vci/metadata";
+    private static final String VCI_NONCE_API_PATH                            = "/api/%d/vci/nonce";
     private static final String VCI_OFFER_CREATE_API_PATH                     = "/api/%d/vci/offer/create";
     private static final String VCI_OFFER_INFO_API_PATH                       = "/api/%d/vci/offer/info";
     private static final String VCI_SINGLE_PARSE_API_PATH                     = "/api/%d/vci/single/parse";
@@ -1565,6 +1568,18 @@ public class AuthleteApiImplV3 extends AuthleteApiBasicImpl
                 new PostApiCaller<CredentialDeferredIssueResponse>(
                         CredentialDeferredIssueResponse.class, request,
                         VCI_DEFERRED_ISSUE_API_PATH, mServiceId)
+                        .setOptions(options));
+    }
+
+
+    @Override
+    public CredentialNonceResponse credentialNonce(
+            CredentialNonceRequest request, Options options) throws AuthleteApiException
+    {
+        return executeApiCall(
+                new PostApiCaller<CredentialNonceResponse>(
+                        CredentialNonceResponse.class, request,
+                        VCI_NONCE_API_PATH, mServiceId)
                         .setOptions(options));
     }
 
