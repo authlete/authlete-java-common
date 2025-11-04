@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.27 (2025-11-04)
+-----------------
+
 - `AuthleteApi` interface
     * Added the `credentialNonce(CredentialNonceRequest)` method.
     * Added the `credentialNonce(CredentialNonceRequest, Options)` method.
@@ -8,6 +11,9 @@ CHANGES
 - New types
     * `CredentialNonceRequest` class
     * `CredentialNonceResponse` class
+
+- Others
+    * PR #143: fix spotbugs-annotations dependency
 
 
 4.26 (2025-11-03)

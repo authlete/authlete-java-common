@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.27 (2025 年 11 月 04 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `credentialNonce(CredentialNonceRequest)` メソッドを追加。
     * `credentialNonce(CredentialNonceRequest, Options)` メソッドを追加。
@@ -8,6 +11,9 @@
 - 新しい型
     * `CredentialNonceRequest` クラス
     * `CredentialNonceResponse` クラス
+
+- その他
+    * PR #143: fix spotbugs-annotations dependency
 
 
 4.26 (2025 年 11 月 03 日)
