@@ -66,6 +66,8 @@ import com.authlete.common.dto.CredentialIssuerMetadataRequest;
 import com.authlete.common.dto.CredentialIssuerMetadataResponse;
 import com.authlete.common.dto.CredentialJwtIssuerMetadataRequest;
 import com.authlete.common.dto.CredentialJwtIssuerMetadataResponse;
+import com.authlete.common.dto.CredentialNonceRequest;
+import com.authlete.common.dto.CredentialNonceResponse;
 import com.authlete.common.dto.CredentialOfferCreateRequest;
 import com.authlete.common.dto.CredentialOfferCreateResponse;
 import com.authlete.common.dto.CredentialOfferInfoRequest;
@@ -204,6 +206,7 @@ class AuthleteApiImpl extends AuthleteApiBasicImpl
     private static final String FEDERATION_CONFIGURATION_API_PATH         = "/api/federation/configuration";
     private static final String FEDERATION_REGISTRATION_API_PATH          = "/api/federation/registration";
     private static final String VCI_METADATA_API_PATH                     = "/api/vci/metadata";
+    private static final String VCI_NONCE_API_PATH                        = "/api/vci/nonce";
     private static final String VCI_JWT_ISSUER_API_PATH                   = "/api/vci/jwtissuer";
     private static final String VCI_JWKS_API_PATH                         = "/api/vci/jwks";
     private static final String VCI_OFFER_CREATE_API_PATH                 = "/api/vci/offer/create";
@@ -221,7 +224,7 @@ class AuthleteApiImpl extends AuthleteApiBasicImpl
     private final String mServiceOwnerAuth;
     private final String mServiceAuth;
 
-    
+
     /**
      * The constructor with an instance of {@link AuthleteConfiguration}.
      *
@@ -1700,6 +1703,21 @@ class AuthleteApiImpl extends AuthleteApiBasicImpl
                 new ServicePostApiCaller<CredentialDeferredIssueResponse>(
                         CredentialDeferredIssueResponse.class, request,
                         VCI_DEFERRED_ISSUE_API_PATH)
+                        .setOptions(options));
+    }
+
+
+    @Override
+    public CredentialNonceResponse credentialNonce(
+            CredentialNonceRequest request, Options options) throws AuthleteApiException
+    {
+        // Note that the /vci/nonce API is not available in Authlete 2.x,
+        // so the executeApiCall below will throw an exception.
+
+        return executeApiCall(
+                new ServicePostApiCaller<CredentialNonceResponse>(
+                        CredentialNonceResponse.class, request,
+                        VCI_NONCE_API_PATH)
                         .setOptions(options));
     }
 

@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added the `credentialNonce(CredentialNonceRequest)` method.
+    * Added the `credentialNonce(CredentialNonceRequest, Options)` method.
+
+- New types
+    * `CredentialNonceRequest` class
+    * `CredentialNonceResponse` class
+
+
 4.26 (2025-11-03)
 -----------------
 

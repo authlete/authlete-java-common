@@ -362,6 +362,7 @@ settings.setReadTimeout(5000);
   - `credentialBatchIssue(CredentialBatchIssueRequest)`
   - `credentialDeferredParse(CredentialDeferredParseRequest)`
   - `credentialDeferredIssue(CredentialDeferredIssueRequest)`
+  - `credentialNonce(CredentialNonceRequest)`
 
   22. OpenID Connect Native SSO for Mobile Apps 1.0 に関するメソッド群
 

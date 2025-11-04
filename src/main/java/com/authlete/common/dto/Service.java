@@ -11102,13 +11102,37 @@ public class Service implements Serializable
 
 
     /**
-     * Get the duration of {@code c_nonce} in seconds.
+     * Get the duration (in 1.0-ID1) or validity period (time window)
+     * (in 1.0-Final) of {@code c_nonce} in seconds.
      *
      * <p>
-     * {@code c_nonce} is issued from the token endpoint of an authorization
-     * server in the pre-authorized code flow, and from the credential endpoint
-     * and the batch credential endpoint of a credential issuer. This property
-     * is used as the lifetime of the {@code c_nonce}.
+     * The method of generating {@code c_nonce} differs between OID4VCI 1.0-ID1
+     * and OID4VCI 1.0-Final.
+     * </p>
+     *
+     * <p>
+     * In 1.0-ID1, the {@code c_nonce} is issued from the token endpoint or the
+     * credential endpoint. In Authlete's implementation, the {@code c_nonce}
+     * for 1.0-ID1 is associated with an access token.
+     * </p>
+     *
+     * <p>
+     * For {@code c_nonce} in 1.0-ID1, this {@code cnonceDuration} property is
+     * used as the lifetime of {@code c_nonce}.
+     * </p>
+     *
+     * <p>
+     * In contrast, in 1.0-Final, the {@code c_nonce} is issued from the nonce
+     * endpoint. Requests to this endpoint do not include an access token, so
+     * the server cannot determine who the requester is. As a result, the
+     * {@code c_nonce} cannot be generated per access token or per client
+     * application. Consequently, the same {@code c_nonce} value is returned to
+     * anyone who accesses the endpoint within the same time window.
+     * </p>
+     *
+     * <p>
+     * For {@code c_nonce} in 1.0-Final, this {@code cnonceDuration} property
+     * specifies the validity period (time window) in seconds.
      * </p>
      *
      * <p>
@@ -11124,12 +11148,14 @@ public class Service implements Serializable
      * </p>
      *
      * <p>
+     * NOTE:
      * The {@code getCNonceDuration()} method added by the version 3.63 has
      * been renamed to {@code getCnonceDuration()} by the version 3.90.
      * </p>
      *
      * @return
-     *         The duration of {@code c_nonce} in seconds.
+     *         The duration of {@code c_nonce} in seconds in OID4VCI 1.0-ID1, or
+     *         the validity period (time window) in seconds in OID4VCI 1.0-Final.
      *
      * @since 3.90
      * @since Authlete 3.0
@@ -11144,13 +11170,37 @@ public class Service implements Serializable
 
 
     /**
-     * Set the duration of {@code c_nonce} in seconds.
+     * Set the duration (in 1.0-ID1) or validity period (time window)
+     * (in 1.0-Final) of {@code c_nonce} in seconds.
      *
      * <p>
-     * {@code c_nonce} is issued from the token endpoint of an authorization
-     * server in the pre-authorized code flow, and from the credential endpoint
-     * and the batch credential endpoint of a credential issuer. This property
-     * is used as the lifetime of the {@code c_nonce}.
+     * The method of generating {@code c_nonce} differs between OID4VCI 1.0-ID1
+     * and OID4VCI 1.0-Final.
+     * </p>
+     *
+     * <p>
+     * In 1.0-ID1, the {@code c_nonce} is issued from the token endpoint or the
+     * credential endpoint. In Authlete's implementation, the {@code c_nonce}
+     * for 1.0-ID1 is associated with an access token.
+     * </p>
+     *
+     * <p>
+     * For {@code c_nonce} in 1.0-ID1, this {@code cnonceDuration} property is
+     * used as the lifetime of {@code c_nonce}.
+     * </p>
+     *
+     * <p>
+     * In contrast, in 1.0-Final, the {@code c_nonce} is issued from the nonce
+     * endpoint. Requests to this endpoint do not include an access token, so
+     * the server cannot determine who the requester is. As a result, the
+     * {@code c_nonce} cannot be generated per access token or per client
+     * application. Consequently, the same {@code c_nonce} value is returned to
+     * anyone who accesses the endpoint within the same time window.
+     * </p>
+     *
+     * <p>
+     * For {@code c_nonce} in 1.0-Final, this {@code cnonceDuration} property
+     * specifies the validity period (time window) in seconds.
      * </p>
      *
      * <p>
@@ -11166,12 +11216,14 @@ public class Service implements Serializable
      * </p>
      *
      * <p>
+     * NOTE:
      * The {@code setCNonceDuration(long)} method added by the version 3.63 has
      * been renamed to {@code setCnonceDuration(long)} by the version 3.90.
      * </p>
      *
      * @param duration
-     *         The duration of {@code c_nonce} in seconds.
+     *         The duration of {@code c_nonce} in seconds in OID4VCI 1.0-ID1, or
+     *         the validity period (time window) in seconds in OID4VCI 1.0-Final.
      *
      * @return
      *         {@code this} object.

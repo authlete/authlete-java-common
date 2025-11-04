@@ -58,6 +58,8 @@ import com.authlete.common.dto.CredentialIssuerMetadataRequest;
 import com.authlete.common.dto.CredentialIssuerMetadataResponse;
 import com.authlete.common.dto.CredentialJwtIssuerMetadataRequest;
 import com.authlete.common.dto.CredentialJwtIssuerMetadataResponse;
+import com.authlete.common.dto.CredentialNonceRequest;
+import com.authlete.common.dto.CredentialNonceResponse;
 import com.authlete.common.dto.CredentialOfferCreateRequest;
 import com.authlete.common.dto.CredentialOfferCreateResponse;
 import com.authlete.common.dto.CredentialOfferInfoRequest;
@@ -4565,6 +4567,45 @@ public interface AuthleteApi
      */
     CredentialDeferredIssueResponse credentialDeferredIssue(
             CredentialDeferredIssueRequest request, Options options) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /vci/nonce} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 4.27
+     * @since Authlete 3.0.22
+     */
+    default CredentialNonceResponse credentialNonce(
+            CredentialNonceRequest request) throws AuthleteApiException
+    {
+        return credentialNonce(request, null);
+    }
+
+
+    /**
+     * Call Authlete's {@code /vci/nonce} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @param options
+     *         Request options.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 4.27
+     * @since Authlete 3.0.22
+     */
+    CredentialNonceResponse credentialNonce(
+            CredentialNonceRequest request, Options options) throws AuthleteApiException;
+
 
 
     /**

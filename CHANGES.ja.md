@@ -1,6 +1,15 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `credentialNonce(CredentialNonceRequest)` メソッドを追加。
+    * `credentialNonce(CredentialNonceRequest, Options)` メソッドを追加。
+
+- 新しい型
+    * `CredentialNonceRequest` クラス
+    * `CredentialNonceResponse` クラス
+
+
 4.26 (2025 年 11 月 03 日)
 --------------------------
 

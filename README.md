@@ -373,6 +373,7 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   - `credentialBatchIssue(CredentialBatchIssueRequest)`
   - `credentialDeferredParse(CredentialDeferredParseRequest)`
   - `credentialDeferredIssue(CredentialDeferredIssueRequest)`
+  - `credentialNonce(CredentialNonceRequest)`
 
   22. Methods for OpenID Connect Native SSO for Mobile Apps 1.0
 
