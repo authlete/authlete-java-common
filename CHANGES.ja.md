@@ -1,6 +1,15 @@
 変更点
 ======
 
+- `ErrorCode` 列挙型
+    * `unknown_credential_configuration` を追加。
+    * `unknown_credential_identifier` を追加。
+    * `invalid_nonce` を追加。
+    * `credential_request_denied` を追加。
+    * `invalid_notification_id` を追加。
+    * `invalid_notification_request` を追加。
+
+
 4.27 (2025 年 11 月 04 日)
 --------------------------
 
