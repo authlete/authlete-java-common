@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.28 (2025-11-05)
+-----------------
+
 - `ErrorCode` enum
     * Added `unknown_credential_configuration`
     * Added `unknown_credential_identifier`

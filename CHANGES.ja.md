@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.28 (2025 年 11 月 05 日)
+--------------------------
+
 - `ErrorCode` 列挙型
     * `unknown_credential_configuration` を追加。
     * `unknown_credential_identifier` を追加。
