@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+- `ErrorCode` enum
+    * Added `unknown_credential_configuration`
+    * Added `unknown_credential_identifier`
+    * Added `invalid_nonce`
+    * Added `credential_request_denied`
+    * Added `invalid_notification_id`
+    * Added `invalid_notification_request`
+
+
 4.27 (2025-11-04)
 -----------------
 

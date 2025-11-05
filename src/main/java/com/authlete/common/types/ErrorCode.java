@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2023 Authlete, Inc.
+ * Copyright (C) 2014-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,11 @@ package com.authlete.common.types;
  * @see <a href="https://www.rfc-editor.org/rfc/rfc7591.html#section-3.2.2"
  *      >RFC 7591, 3.2.2. Client Registration Error Response</a>
  *
- * @author Takahiko Kawasaki
+ * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-credential-request-errors"
+ *      >OpenID for Verifiable Credential Issuance 1.0, 8.3.1.2. Credential Request Errors</a>
+ *
+ * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-notification-error-response"
+ *      >OpenID for Verifiable Credential Issuance 1.0, 11.3. Notification Error Response</a>
  */
 public enum ErrorCode
 {
@@ -620,5 +624,85 @@ public enum ErrorCode
      * @since Authlete 3.0
      */
     use_dpop_nonce,
+
+
+    /**
+     * Requested Credential Configuration is unknown.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-credential-request-errors">
+     *      OpenID for Verifiable Credential Issuance 1.0, 8.3.1.2. Credential Request Errors</a>
+     *
+     * @since 4.28
+     * @since Authlete 3.0.22
+     */
+    unknown_credential_configuration,
+
+
+    /**
+     * Requested Credential identifier is unknown.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-credential-request-errors">
+     *      OpenID for Verifiable Credential Issuance 1.0, 8.3.1.2. Credential Request Errors</a>
+     *
+     * @since 4.28
+     * @since Authlete 3.0.22
+     */
+    unknown_credential_identifier,
+
+
+    /**
+     * The {@code proofs} parameter in the Credential Request uses an invalid
+     * nonce: at least one of the key proofs contains an invalid {@code c_nonce}
+     * value. The wallet should retrieve a new {@code c_nonce value} (refer to
+     * <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-nonce-endpoint"
+     * >Section 7</a>).
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-credential-request-errors">
+     *      OpenID for Verifiable Credential Issuance 1.0, 8.3.1.2. Credential Request Errors</a>
+     *
+     * @since 4.28
+     * @since Authlete 3.0.22
+     */
+    invalid_nonce,
+
+
+    /**
+     * The Credential Request has not been accepted by the Credential Issuer.
+     * The Wallet SHOULD treat this error as unrecoverable, meaning if
+     * received from a Credential Issuer the Credential cannot be issued.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-credential-request-errors">
+     *      OpenID for Verifiable Credential Issuance 1.0, 8.3.1.2. Credential Request Errors</a>
+     *
+     * @since 4.28
+     * @since Authlete 3.0.22
+     */
+    credential_request_denied,
+
+
+    /**
+     * The {@code notification_id} in the Notification Request was invalid.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-notification-error-response">
+     *      OpenID for Verifiable Credential Issuance 1.0, 11.3. Notification Error Response</a>
+     *
+     * @since 4.28
+     * @since Authlete 3.0.22
+     */
+    invalid_notification_id,
+
+
+    /**
+     * The Notification Request is missing a required parameter, includes an
+     * unsupported parameter or parameter value, repeats the same parameter,
+     * or is otherwise malformed.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-notification-error-response">
+     *      OpenID for Verifiable Credential Issuance 1.0, 11.3. Notification Error Response</a>
+     *
+     * @since 4.28
+     * @since Authlete 3.0.22
+     */
+    invalid_notification_request,
     ;
 }
