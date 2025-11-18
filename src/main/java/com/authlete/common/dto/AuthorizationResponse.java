@@ -1021,7 +1021,7 @@ import com.authlete.common.util.Utils;
  */
 public class AuthorizationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 21L;
+    private static final long serialVersionUID = 22L;
 
 
     /**
@@ -1160,6 +1160,11 @@ public class AuthorizationResponse extends ApiResponse
      * @since Authlete 2.3
      */
     private boolean clientEntityIdUsed;
+
+    /**
+     * @since Authlete 3.0.22
+     */
+    private boolean metadataDocumentUsed;
 
     /**
      * @since Authlete 1.1
@@ -1753,6 +1758,75 @@ public class AuthorizationResponse extends ApiResponse
     public void setClientEntityIdUsed(boolean used)
     {
         clientEntityIdUsed = used;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the value of the {@code client_id}
+     * request parameter included in the authorization request is the location
+     * of the client's metadata document.
+     *
+     * <p>
+     * This can happen when the service supports <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code true}, {@code client.}{@link
+     * Client#getMetadataDocumentLocation() getMetadataDocumentLocation()}
+     * returns the location of the client's metadata document.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the value of the {@code client_id} request
+     *         parameter is the location of the client's metadata document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isMetadataDocumentUsed()
+    {
+        return metadataDocumentUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the value of the {@code client_id}
+     * request parameter included in the authorization request is the location
+     * of the client's metadata document.
+     *
+     * <p>
+     * This can happen when the service supports <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code true}, {@code client.}{@link
+     * Client#getMetadataDocumentLocation() getMetadataDocumentLocation()}
+     * returns the location of the client's metadata document.
+     * </p>
+     *
+     * @param used
+     *         {@code true} to indicate that the value of the {@code client_id}
+     *         request parameter is the location of the client's metadata
+     *         document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public void setMetadataDocumentUsed(boolean used)
+    {
+        metadataDocumentUsed = used;
     }
 
 

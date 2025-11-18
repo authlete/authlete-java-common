@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2024 Authlete, Inc.
+ * Copyright (C) 2014-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import java.util.Map;
 import com.authlete.common.types.ApplicationType;
 import com.authlete.common.types.ClientAuthMethod;
 import com.authlete.common.types.ClientRegistrationType;
+import com.authlete.common.types.ClientSource;
 import com.authlete.common.types.ClientType;
 import com.authlete.common.types.DeliveryMode;
 import com.authlete.common.types.FapiMode;
@@ -80,10 +81,13 @@ import com.authlete.common.util.Utils;
  *
  * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
  *      >OpenID for Verifiable Credential Issuance</a>
+ *
+ * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+ *      >OAuth Client ID Metadata Document</a>
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 38L;
+    private static final long serialVersionUID = 39L;
 
 
     /*
@@ -584,7 +588,7 @@ public class Client implements Serializable
     private boolean mtlsEndpointAliasesUsed;
 
     /**
-     * Indicates if the client is inscope for token migration.
+     * Indicates if the client is in scope for token migration.
      *
      * @since Authlete 4.23
      */
@@ -645,6 +649,7 @@ public class Client implements Serializable
      */
     private boolean explicitlyRegistered;
 
+
     /*
      * For Verifiable Credentials
      */
@@ -658,6 +663,52 @@ public class Client implements Serializable
      * @since Authlete 3.0
      */
     private boolean credentialResponseEncryptionRequired;
+
+
+    /*
+     * For OAuth Client ID Metadata Document
+     */
+
+    /**
+     * The location of the client's metadata document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     */
+    private URI metadataDocumentLocation;
+
+    /**
+     * The time at which the metadata document will expire.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     */
+    private long metadataDocumentExpiresAt;
+
+    /**
+     * The time at which the metadata document was updated.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     */
+    private long metadataDocumentUpdatedAt;
+
+    /**
+     * Whether the client was discovered by Client ID Metadata Document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     */
+    private boolean discoveredByMetadataDocument;
+
+
+    /**
+     * The source of this client.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     */
+    private ClientSource clientSource;
 
 
     /**
@@ -5217,7 +5268,7 @@ public class Client implements Serializable
 
 
     /**
-     * Get the value that indicates whether this Client is in scope for token migration.
+     * Get the value that indicates whether this Client is inscope for token migration.
      *
      * @return
      *         The value that indicates whether this Client is in scope for token migration.
@@ -5246,6 +5297,360 @@ public class Client implements Serializable
         this.inScopeForTokenMigration = inScopeForTokenMigration;
 
         return this;
+    }
+
+
+    /**
+     * Get the location of the client's metadata document.
+     *
+     * <p>
+     * This property is available only when the client was discovered using
+     * the mechanism defined in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>. The mechanism is used only
+     * when the service supports it.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * @return
+     *         The location of the client's metadata document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public URI getMetadataDocumentLocation()
+    {
+        return metadataDocumentLocation;
+    }
+
+
+    /**
+     * Set the location of the client's metadata document.
+     *
+     * <p>
+     * This property is available only when the client was discovered using
+     * the mechanism defined in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>. The mechanism is used only
+     * when the service supports it.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * @param location
+     *         The location of the client's metadata document.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Client setMetadataDocumentLocation(URI location)
+    {
+        this.metadataDocumentLocation = location;
+
+        return this;
+    }
+
+
+    /**
+     * Get the expiration time of the client's metadata document. The value is
+     * represented as milliseconds elapsed since the Unix epoch (1970-01-01).
+     *
+     * <p>
+     * This property is meaningful only when the client was discovered using
+     * the mechanism defined in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>. The mechanism is used only
+     * when the service supports it.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * @return
+     *         The expiration time of the client's metadata document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public long getMetadataDocumentExpiresAt()
+    {
+        return metadataDocumentExpiresAt;
+    }
+
+
+    /**
+     * Set the expiration time of the client's metadata document. The value is
+     * represented as milliseconds elapsed since the Unix epoch (1970-01-01).
+     *
+     * <p>
+     * This property is meaningful only when the client was discovered using
+     * the mechanism defined in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>. The mechanism is used only
+     * when the service supports it.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * @param expiresAt
+     *         The expiration time of the client's metadata document.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Client setMetadataDocumentExpiresAt(long expiresAt)
+    {
+        this.metadataDocumentExpiresAt = expiresAt;
+
+        return this;
+    }
+
+
+    /**
+     * Get the time at which the client was last updated with its metadata
+     * document.
+     *
+     * <p>
+     * This property is meaningful only when the client was discovered using
+     * the mechanism defined in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>. The mechanism is used only
+     * when the service supports it.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * @return
+     *         The time at which the client was last updated with its metadata
+     *         document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public long getMetadataDocumentUpdatedAt()
+    {
+        return metadataDocumentUpdatedAt;
+    }
+
+
+    /**
+     * Set the time at which the client was last updated with its metadata
+     * document.
+     *
+     * <p>
+     * This property is meaningful only when the client was discovered using
+     * the mechanism defined in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>. The mechanism is used only
+     * when the service supports it.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * @param updatedAt
+     *         The time at which the client was last updated with its metadata
+     *         document.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Client setMetadataDocumentUpdatedAt(long updatedAt)
+    {
+        this.metadataDocumentUpdatedAt = updatedAt;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether this client was discovered and
+     * registered by the mechanism defined in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>.
+     *
+     * @return
+     *         {@code true} if this client was discovered and registered by
+     *         the mechanism defined in OAuth Client ID Metadata Document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isDiscoveredByMetadataDocument()
+    {
+        return discoveredByMetadataDocument;
+    }
+
+
+    /**
+     * Set the flag indicating whether this client was discovered and
+     * registered by the mechanism defined in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>.
+     *
+     * @param discovered
+     *         {@code true} to indicate that this client was discovered and
+     *         registered by the mechanism defined in OAuth Client ID Metadata
+     *         Document.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Client setDiscoveredByMetadataDocument(boolean discovered)
+    {
+        this.discoveredByMetadataDocument = discovered;
+
+        return this;
+    }
+
+
+    /**
+     * Get the source of this client.
+     *
+     * @return
+     *         The source of this client.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see #updateClientSource()
+     */
+    public ClientSource getClientSource()
+    {
+        return clientSource;
+    }
+
+
+    /**
+     * Set the source of this client.
+     *
+     * @param source
+     *         The source of this client.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see #updateClientSource()
+     */
+    public Client setClientSource(ClientSource source)
+    {
+        this.clientSource = source;
+
+        return this;
+    }
+
+
+    /**
+     * Update the {@code clientSource} property according to the current
+     * values of registration-related fields.
+     *
+     * <ol>
+     * <li>{@link ClientSource#DYNAMIC_REGISTRATION DYNAMIC_REGISTRATION}
+     *     if {@link #isDynamicallyRegistered()} returns {@code true}.
+     *
+     * <li>{@link ClientSource#AUTOMATIC_REGISTRATION AUTOMATIC_REGISTRATION}
+     *     if {@link #isAutomaticallyRegistered()} returns {@code true}.
+     *
+     * <li>{@link ClientSource#EXPLICIT_REGISTRATION EXPLICIT_REGISTRATION}
+     *     if {@link #isExplicitlyRegistered()} returns {@code true}.
+     *
+     * <li>{@link ClientSource#METADATA_DOCUMENT METADATA_DOCUMENT}
+     *     if {@link #isDiscoveredByMetadataDocument()} returns {@code true}.
+     *
+     * <li>{@link ClientSource#STATIC_REGISTRATION STATIC_REGISTRATION}
+     *     in other cases.
+     * </ol>
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     */
+    public Client updateClientSource()
+    {
+        return updateClientSource(this);
+    }
+
+
+    private static Client updateClientSource(Client client)
+    {
+        if (client == null)
+        {
+            return null;
+        }
+
+        // Derive the client source from fields.
+        ClientSource cs = deriveClientSource(client);
+
+        return client.setClientSource(cs);
+    }
+
+
+    private static ClientSource deriveClientSource(Client client)
+    {
+        if (client == null)
+        {
+            return null;
+        }
+
+        if (client.isDynamicallyRegistered())
+        {
+            // RFC 7591: OAuth 2.0 Dynamic Client Registration Protocol, or
+            // OpenID Connect Dynamic Client Registration 1.0.
+            return ClientSource.DYNAMIC_REGISTRATION;
+        }
+        else if (client.isAutomaticallyRegistered())
+        {
+            // Automatic registration defined in OpenID Federation 1.0.
+            return ClientSource.AUTOMATIC_REGISTRATION;
+        }
+        else if (client.isExplicitlyRegistered())
+        {
+            // Explicit registration defined in OpenID Federation 1.0.
+            return ClientSource.EXPLICIT_REGISTRATION;
+        }
+        else if (client.isDiscoveredByMetadataDocument())
+        {
+            // Discovery using OAuth Client ID Metadata Document.
+            return ClientSource.METADATA_DOCUMENT;
+        }
+        else
+        {
+            // Static registration.
+            return ClientSource.STATIC_REGISTRATION;
+        }
     }
 
 
@@ -5567,6 +5972,12 @@ public class Client implements Serializable
         {
             // Use the entity ID as the value of "client_id".
             value = getEntityId().toString();
+        }
+        // If "metadata document location" is preferred and available.
+        else if (control.isMetadataDocumentLocationPreferred() && getMetadataDocumentLocation() != null)
+        {
+            // Use the metadata document location as the value of "client_id".
+            value = getMetadataDocumentLocation().toString();
         }
         else
         {

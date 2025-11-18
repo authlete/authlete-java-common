@@ -1,6 +1,93 @@
 CHANGES
 =======
 
+- `AuthorizationResponse` class
+    * Added the `isMetadataDocumentUsed()` method.
+    * Added the `setMetadataDocumentUsed(boolean)` method.
+
+- `BackchannelAuthenticationCompleteResponse`  class
+    * Added the `getMetadataDocumentLocation()` method.
+    * Added the `setMetadataDocumentLocation(URI)` method.
+    * Added the `isMetadataDocumentUsed()` method.
+    * Added the `setMetadataDocumentUsed(boolean)` method.
+
+- `BackchannelAuthenticationResponse` class
+    * Added the `getMetadataDocumentLocation()` method.
+    * Added the `setMetadataDocumentLocation(URI)` method.
+    * Added the `isMetadataDocumentUsed()` method.
+    * Added the `setMetadataDocumentUsed(boolean)` method.
+
+- `Client` class
+    * Added the `getMetadataDocumentLocation()` method.
+    * Added the `setMetadataDocumentLocation(URI)` method.
+    * Added the `getMetadataDocumentExpiresAt()` method.
+    * Added the `setMetadataDocumentExpiresAt(long)` method.
+    * Added the `getMetadataDocumentUpdatedAt()` method.
+    * Added the `setMetadataDocumentUpdatedAt(long)` method.
+    * Added the `isDiscoveredByMetadataDocument()` method.
+    * Added the `setDiscoveredByMetadataDocument(boolean)` method.
+    * Added the `getClientSource()` method.
+    * Added the `setClientSource(ClientSource)` method.
+    * Added the `updateClientSource()` method.
+
+- `ClientMetadataControl` class
+    * Added the `isMetadataDocumentLocationPreferred()` method.
+    * Added the `setMetadataDocumentLocationPreferred(boolean)` method.
+
+- `DeviceAuthorizationResponse` class
+    * Added the `getMetadataDocumentLocation()` method.
+    * Added the `setMetadataDocumentLocation(URI)` method.
+    * Added the `isMetadataDocumentUsed()` method.
+    * Added the `setMetadataDocumentUsed(boolean)` method.
+
+- `DeviceVerificationResponse` class
+    * Added the `getMetadataDocumentLocation()` method.
+    * Added the `setMetadataDocumentLocation(URI)` method.
+    * Added the `isMetadataDocumentUsed()` method.
+    * Added the `setMetadataDocumentUsed(boolean)` method.
+
+- `IntrospectionResponse` class
+    * Added the `getMetadataDocumentLocation()` method.
+    * Added the `setMetadataDocumentLocation(URI)` method.
+    * Added the `isMetadataDocumentUsed()` method.
+    * Added the `setMetadataDocumentUsed(boolean)` method.
+
+- `Service` class
+    * Added the `isClientIdMetadataDocumentSupported()` method.
+    * Added the `setClientIdMetadataDocumentSupported(boolean)` method.
+
+- `TokenCreateRequest` class
+    * Added the `isMetadataDocumentUsed()` method.
+    * Added the `setMetadataDocumentUsed(boolean)` method.
+
+- `TokenInfo` class
+    * Added the `getMetadataDocumentLocation()` method.
+    * Added the `setMetadataDocumentLocation(URI)` method.
+    * Added the `isMetadataDocumentUsed()` method.
+    * Added the `setMetadataDocumentUsed(boolean)` method.
+
+- `TokenIssueResponse` class
+    * Added the `getMetadataDocumentLocation()` method.
+    * Added the `setMetadataDocumentLocation(URI)` method.
+    * Added the `isMetadataDocumentUsed()` method.
+    * Added the `setMetadataDocumentUsed(boolean)` method.
+
+- `TokenResponse` class
+    * Added the `getMetadataDocumentLocation()` method.
+    * Added the `setMetadataDocumentLocation(URI)` method.
+    * Added the `isMetadataDocumentUsed()` method.
+    * Added the `setMetadataDocumentUsed(boolean)` method.
+
+- `UserInfoResponse` class
+    * Added the `getMetadataDocumentLocation()` method.
+    * Added the `setMetadataDocumentLocation(URI)` method.
+    * Added the `isMetadataDocumentUsed()` method.
+    * Added the `setMetadataDocumentUsed(boolean)` method.
+
+- New types
+    * `ClientSource` enum
+
+
 4.28 (2025-11-05)
 -----------------
 
