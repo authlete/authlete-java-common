@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.29 (2025 年 11 月 18 日)
+--------------------------
+
 - `AuthorizationResponse` クラス
     * `isMetadataDocumentUsed()` メソッドを追加。
     * `setMetadataDocumentUsed(boolean)` メソッドを追加。

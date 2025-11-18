@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.29 (2025-11-18)
+-----------------
+
 - `AuthorizationResponse` class
     * Added the `isMetadataDocumentUsed()` method.
     * Added the `setMetadataDocumentUsed(boolean)` method.
