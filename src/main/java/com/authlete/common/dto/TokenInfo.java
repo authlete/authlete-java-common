@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022-2023 Authlete, Inc.
+ * Copyright (C) 2022-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ import java.net.URI;
  */
 public class TokenInfo implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -104,6 +104,25 @@ public class TokenInfo implements Serializable
      * @since 3.37
      */
     private boolean clientEntityIdUsed;
+
+
+    /**
+     * The location of the client's metadata document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     */
+    private URI metadataDocumentLocation;
+
+
+    /**
+     * Flag which indicates whether the location of the client's metadata
+     * document was used when the request for the token was made.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     */
+    private boolean metadataDocumentUsed;
 
 
     /**
@@ -454,6 +473,110 @@ public class TokenInfo implements Serializable
     public TokenInfo setClientEntityIdUsed(boolean used)
     {
         this.clientEntityIdUsed = used;
+
+        return this;
+    }
+
+
+    /**
+     * Get the location of the client's metadata document. This property
+     * holds a non-null value only when {@link #isMetadataDocumentUsed()}
+     * returns {@code true}.
+     *
+     * @return
+     *         The location of the client's metadata document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public URI getMetadataDocumentLocation()
+    {
+        return metadataDocumentLocation;
+    }
+
+
+    /**
+     * Set the location of the client's metadata document. This property
+     * should hold a non-null value only when {@link #isMetadataDocumentUsed()}
+     * returns {@code true}.
+     *
+     * @param location
+     *         The location of the client's metadata document.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public TokenInfo setMetadataDocumentLocation(URI location)
+    {
+        this.metadataDocumentLocation = location;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the location of the client's
+     * metadata document was used as a client ID.
+     *
+     * <p>
+     * This can happen when the service supports <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * @return
+     *         {@code true} if the location of client's metadata document
+     *         was used as a client ID.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isMetadataDocumentUsed()
+    {
+        return metadataDocumentUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the location of the client's
+     * metadata document was used as a client ID.
+     *
+     * <p>
+     * This can happen when the service supports <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * @param used
+     *         {@code true} to indicate that the location of the client's
+     *         metadata document was used as a client ID.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public TokenInfo setMetadataDocumentUsed(boolean used)
+    {
+        this.metadataDocumentUsed = used;
 
         return this;
     }

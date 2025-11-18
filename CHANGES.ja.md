@@ -1,6 +1,93 @@
 変更点
 ======
 
+- `AuthorizationResponse` クラス
+    * `isMetadataDocumentUsed()` メソッドを追加。
+    * `setMetadataDocumentUsed(boolean)` メソッドを追加。
+
+- `BackchannelAuthenticationCompleteResponse` クラス
+    * `getMetadataDocumentLocation()` メソッドを追加。
+    * `setMetadataDocumentLocation(URI)` メソッドを追加。
+    * `isMetadataDocumentUsed()` メソッドを追加。
+    * `setMetadataDocumentUsed(boolean)` メソッドを追加。
+
+- `BackchannelAuthenticationResponse` クラス
+    * `getMetadataDocumentLocation()` メソッドを追加。
+    * `setMetadataDocumentLocation(URI)` メソッドを追加。
+    * `isMetadataDocumentUsed()` メソッドを追加。
+    * `setMetadataDocumentUsed(boolean)` メソッドを追加。
+
+- `Client` クラス
+    * `getMetadataDocumentLocation()` メソッドを追加。
+    * `setMetadataDocumentLocation(URI)` メソッドを追加。
+    * `getMetadataDocumentExpiresAt()` メソッドを追加。
+    * `setMetadataDocumentExpiresAt(long)` メソッドを追加。
+    * `getMetadataDocumentUpdatedAt()` メソッドを追加。
+    * `setMetadataDocumentUpdatedAt(long)` メソッドを追加。
+    * `isDiscoveredByMetadataDocument()` メソッドを追加。
+    * `setDiscoveredByMetadataDocument(boolean)` メソッドを追加。
+    * `getClientSource()` メソッドを追加。
+    * `setClientSource(ClientSource)` メソッドを追加。
+    * `updateClientSource()` メソッドを追加。
+
+- `ClientMetadataControl` クラス
+    * `isMetadataDocumentLocationPreferred()` メソッドを追加。
+    * `setMetadataDocumentLocationPreferred(boolean)` メソッドを追加。
+
+- `DeviceAuthorizationResponse` クラス
+    * `getMetadataDocumentLocation()` メソッドを追加。
+    * `setMetadataDocumentLocation(URI)` メソッドを追加。
+    * `isMetadataDocumentUsed()` メソッドを追加。
+    * `setMetadataDocumentUsed(boolean)` メソッドを追加。
+
+- `DeviceVerificationResponse` クラス
+    * `getMetadataDocumentLocation()` メソッドを追加。
+    * `setMetadataDocumentLocation(URI)` メソッドを追加。
+    * `isMetadataDocumentUsed()` メソッドを追加。
+    * `setMetadataDocumentUsed(boolean)` メソッドを追加。
+
+- `IntrospectionResponse` クラス
+    * `getMetadataDocumentLocation()` メソッドを追加。
+    * `setMetadataDocumentLocation(URI)` メソッドを追加。
+    * `isMetadataDocumentUsed()` メソッドを追加。
+    * `setMetadataDocumentUsed(boolean)` メソッドを追加。
+
+- `Service` クラス
+    * `isClientIdMetadataDocumentSupported()` メソッドを追加。
+    * `setClientIdMetadataDocumentSupported(boolean)` メソッドを追加。
+
+- `TokenCreateRequest` クラス
+    * `isMetadataDocumentUsed()` メソッドを追加。
+    * `setMetadataDocumentUsed(boolean)` メソッドを追加。
+
+- `TokenInfo` クラス
+    * `getMetadataDocumentLocation()` メソッドを追加。
+    * `setMetadataDocumentLocation(URI)` メソッドを追加。
+    * `isMetadataDocumentUsed()` メソッドを追加。
+    * `setMetadataDocumentUsed(boolean)` メソッドを追加。
+
+- `TokenIssueResponse` クラス
+    * `getMetadataDocumentLocation()` メソッドを追加。
+    * `setMetadataDocumentLocation(URI)` メソッドを追加。
+    * `isMetadataDocumentUsed()` メソッドを追加。
+    * `setMetadataDocumentUsed(boolean)` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getMetadataDocumentLocation()` メソッドを追加。
+    * `setMetadataDocumentLocation(URI)` メソッドを追加。
+    * `isMetadataDocumentUsed()` メソッドを追加。
+    * `setMetadataDocumentUsed(boolean)` メソッドを追加。
+
+- `UserInfoResponse` クラス
+    * `getMetadataDocumentLocation()` メソッドを追加。
+    * `setMetadataDocumentLocation(URI)` メソッドを追加。
+    * `isMetadataDocumentUsed()` メソッドを追加。
+    * `setMetadataDocumentUsed(boolean)` メソッドを追加。
+
+- 新しい型
+    * `ClientSource` 列挙型
+
+
 4.28 (2025 年 11 月 05 日)
 --------------------------
 

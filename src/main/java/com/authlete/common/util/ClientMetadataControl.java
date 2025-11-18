@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Authlete, Inc.
+ * Copyright (C) 2022-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ public class ClientMetadataControl extends MapControl
     private boolean customIncluded;
     private boolean aliasPreferred;
     private boolean entityIdPreferred;
+    private boolean metadataDocumentLocationPreferred;
 
 
     @Override
@@ -179,6 +180,9 @@ public class ClientMetadataControl extends MapControl
      * @return
      *         {@code true} if the entity ID is used as the value of the
      *         {@code client_id} property when available.
+     *
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html">
+     *      OpenID Federation 1.0</a>
      */
     public boolean isEntityIdPreferred()
     {
@@ -196,10 +200,62 @@ public class ClientMetadataControl extends MapControl
      *
      * @return
      *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html">
+     *      OpenID Federation 1.0</a>
      */
     public ClientMetadataControl setEntityIdPreferred(boolean preferred)
     {
         this.entityIdPreferred = preferred;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag whether to use the location of the client's metadata
+     * document as the value of the {@code client_id} property when
+     * available.
+     *
+     * @return
+     *         {@code true} if the location of the client's metadata
+     *         document is used as the value of the {@code client_id}
+     *         property when available.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isMetadataDocumentLocationPreferred()
+    {
+        return metadataDocumentLocationPreferred;
+    }
+
+
+    /**
+     * Set the flag whether to use the location of the client's metadata
+     * document as the value of the {@code client_id} property when
+     * available.
+     *
+     * @param preferred
+     *         {@code true} to use the location of the client's metadata
+     *         document as the value of the {@code client_id} property
+     *         when available.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public ClientMetadataControl setMetadataDocumentLocationPreferred(boolean preferred)
+    {
+        this.metadataDocumentLocationPreferred = preferred;
 
         return this;
     }

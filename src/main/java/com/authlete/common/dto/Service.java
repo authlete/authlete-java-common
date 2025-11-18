@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 84L;
+    private static final long serialVersionUID = 85L;
 
 
     /*
@@ -1891,6 +1891,17 @@ public class Service implements Serializable
      * @since Authlete 3.0.22
      */
     private String oid4vciVersion;
+
+
+    /**
+     * Whether to support <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     */
+    private boolean clientIdMetadataDocumentSupported;
 
 
     /**
@@ -12132,6 +12143,61 @@ public class Service implements Serializable
     public Service setOid4vciVersion(String version)
     {
         this.oid4vciVersion = version;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag to determine to support <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>.
+     *
+     * <p>
+     * This flag corresponds to the {@code client_id_metadata_document_supported}
+     * metadata parameter.
+     * </p>
+     *
+     * @return
+     *         {@code true} if OAuth Client ID Metadata Document is supported.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isClientIdMetadataDocumentSupported()
+    {
+        return clientIdMetadataDocumentSupported;
+    }
+
+
+    /**
+     * Set the flag to determine to support <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>.
+     *
+     * <p>
+     * This flag corresponds to the {@code client_id_metadata_document_supported}
+     * metadata parameter.
+     * </p>
+     *
+     * @param supported
+     *         {@code true} to support OAuth Client ID Metadata Document.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Service setClientIdMetadataDocumentSupported(boolean supported)
+    {
+        this.clientIdMetadataDocumentSupported = supported;
 
         return this;
     }

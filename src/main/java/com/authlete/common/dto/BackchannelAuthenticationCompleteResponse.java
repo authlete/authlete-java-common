@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2023 Authlete, Inc.
+ * Copyright (C) 2018-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,7 +139,7 @@ import com.authlete.common.types.DeliveryMode;
  */
 public class BackchannelAuthenticationCompleteResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 8L;
+    private static final long serialVersionUID = 9L;
 
 
     /**
@@ -217,6 +217,22 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
      * @since Authlete 2.3.0
      */
     private boolean clientEntityIdUsed;
+
+    /**
+     * The location of the client's metadata document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     */
+    private URI metadataDocumentLocation;
+
+    /**
+     * Whether the client's metadata document was used.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     */
+    private boolean metadataDocumentUsed;
 
     /**
      * @since Authlete 2.0.0
@@ -581,17 +597,128 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
 
 
     /**
+     * Get the location of the client's metadata document. This property
+     * holds a non-null value only when {@link #isMetadataDocumentUsed()}
+     * returns {@code true}.
+     *
+     * @return
+     *         The location of the client's metadata document.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public URI getMetadataDocumentLocation()
+    {
+        return metadataDocumentLocation;
+    }
+
+
+    /**
+     * Set the location of the client's metadata document. This property
+     * should hold a non-null value only when {@link #isMetadataDocumentUsed()}
+     * returns {@code true}.
+     *
+     * @param location
+     *         The location of the client's metadata document.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public BackchannelAuthenticationCompleteResponse setMetadataDocumentLocation(URI location)
+    {
+        this.metadataDocumentLocation = location;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether the location of the client's
+     * metadata document was used as a client ID.
+     *
+     * <p>
+     * This can happen when the service supports <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * @return
+     *         {@code true} if the location of client's metadata document
+     *         was used as a client ID.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isMetadataDocumentUsed()
+    {
+        return metadataDocumentUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether the location of the client's
+     * metadata document was used as a client ID.
+     *
+     * <p>
+     * This can happen when the service supports <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>.
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()})
+     * </p>
+     *
+     * @param used
+     *         {@code true} to indicate that the location of the client's
+     *         metadata document was used as a client ID.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public BackchannelAuthenticationCompleteResponse setMetadataDocumentUsed(boolean used)
+    {
+        this.metadataDocumentUsed = used;
+
+        return this;
+    }
+
+
+    /**
      * Get the client identifier used in the backchannel authentication
      * request.
      *
-     * <p>
-     * When {@link #isClientIdAliasUsed()} returns {@code true}, this method
-     * returns the same value as {@link #getClientIdAlias()} does. Otherwise,
-     * if {@link #isClientEntityIdUsed()} returns {@code true}, this method
-     * returns the same value as {@link #getClientEntityId()}{@code .toString()}
-     * does. In other cases, this method returns the string representation of
-     * the value returned from {@link #getClientId()}.
-     * </p>
+     * <ol>
+     * <li>When {@link #isClientEntityIdUsed()} returns {@code true}, this
+     *     method returns the same value as {@link #getClientIdAlias()} does.
+     *
+     * <li>Otherwise, if {@link #isClientEntityIdUsed()} returns {@code true},
+     *     this method returns the same value as
+     *     {@link #getClientEntityId()}{@code .toString()} does.
+     *
+     * <li>Otherwise, if {@link #isMetadataDocumentUsed()} returns {@code true},
+     *     this method returns the same value as
+     *     {@link #getMetadataDocumentLocation()}{@code .toString()} does.
+     *
+     * <li>In other cases, this method returns the string representation of
+     *     the value returned from {@link #getClientId()}.
+     * </ol>
      *
      * @return
      *         The client identifier used in the backchannel authentication
@@ -606,6 +733,10 @@ public class BackchannelAuthenticationCompleteResponse extends ApiResponse
         else if (clientEntityIdUsed)
         {
             return clientEntityId.toString();
+        }
+        else if (metadataDocumentUsed)
+        {
+            return metadataDocumentLocation.toString();
         }
         else
         {

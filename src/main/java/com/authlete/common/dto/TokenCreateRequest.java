@@ -275,7 +275,7 @@ import com.authlete.common.types.GrantType;
  */
 public class TokenCreateRequest implements Serializable
 {
-    private static final long serialVersionUID = 15L;
+    private static final long serialVersionUID = 16L;
 
 
     private GrantType grantType;
@@ -287,6 +287,7 @@ public class TokenCreateRequest implements Serializable
     private Property[] properties;
     private boolean clientIdAliasUsed;
     private boolean clientEntityIdUsed;
+    private boolean metadataDocumentUsed;
     private String accessToken;
     private String refreshToken;
     private boolean accessTokenPersistent;
@@ -595,8 +596,8 @@ public class TokenCreateRequest implements Serializable
      * </p>
      *
      * <p>
-     * Note that {@code clientIdAliasUsed} and {@code clientEntityIdUsed} are
-     * mutually exclusive.
+     * Note that {@code clientIdAliasUsed}, {@code clientEntityIdUsed}, and
+     * {@code metadataDocumentUsed} are mutually exclusive.
      * </p>
      *
      * @return
@@ -633,8 +634,8 @@ public class TokenCreateRequest implements Serializable
      * </p>
      *
      * <p>
-     * Note that {@code clientIdAliasUsed} and {@code clientEntityIdUsed} are
-     * mutually exclusive.
+     * Note that {@code clientIdAliasUsed}, {@code clientEntityIdUsed}, and
+     * {@code metadataDocumentUsed} are mutually exclusive.
      * </p>
      *
      * @param used
@@ -679,8 +680,8 @@ public class TokenCreateRequest implements Serializable
      * </p>
      *
      * <p>
-     * Note that {@code clientIdAliasUsed} and {@code clientEntityIdUsed} are
-     * mutually exclusive.
+     * Note that {@code clientIdAliasUsed}, {@code clientEntityIdUsed}, and
+     * {@code metadataDocumentUsed} are mutually exclusive.
      * </p>
      *
      * @return
@@ -721,8 +722,8 @@ public class TokenCreateRequest implements Serializable
      * </p>
      *
      * <p>
-     * Note that {@code clientIdAliasUsed} and {@code clientEntityIdUsed} are
-     * mutually exclusive.
+     * Note that {@code clientIdAliasUsed}, {@code clientEntityIdUsed}, and
+     * {@code metadataDocumentUsed} are mutually exclusive.
      * </p>
      *
      * @param used
@@ -738,6 +739,77 @@ public class TokenCreateRequest implements Serializable
     public TokenCreateRequest setClientEntityIdUsed(boolean used)
     {
         this.clientEntityIdUsed = used;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag which indicates whether to emulate that the location of
+     * the client's metadata document is used as a client ID.
+     *
+     * <p>
+     * If the service supports <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()}), the
+     * location of the client's metadata document can be used as a client ID.
+     * </p>
+     *
+     * <p>
+     * Note that {@code clientIdAliasUsed}, {@code clientEntityIdUsed}, and
+     * {@code metadataDocumentUsed} are mutually exclusive.
+     * </p>
+     *
+     * @return
+     *         {@code true} to emulate that the location of the client's
+     *         metadata document is used as a client ID.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isMetadataDocumentUsed()
+    {
+        return metadataDocumentUsed;
+    }
+
+
+    /**
+     * Set the flag which indicates whether to emulate that the location of
+     * the client's metadata document is used as a client ID.
+     *
+     * <p>
+     * If the service supports <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >OAuth Client ID Metadata Document</a>
+     * (cf. {@link Service#isClientIdMetadataDocumentSupported()}), the
+     * location of the client's metadata document can be used as a client ID.
+     * </p>
+     *
+     * <p>
+     * Note that {@code clientIdAliasUsed}, {@code clientEntityIdUsed}, and
+     * {@code metadataDocumentUsed} are mutually exclusive.
+     * </p>
+     *
+     * @param used
+     *         {@code true} to emulate that the location of the client's
+     *         metadata document is used as a client ID.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.29
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public TokenCreateRequest setMetadataDocumentUsed(boolean used)
+    {
+        this.metadataDocumentUsed = used;
 
         return this;
     }
