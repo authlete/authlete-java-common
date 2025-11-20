@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.30 (2025-11-20)
+-----------------
+
 - `AuthorizationRequest` class
     * Added the `getCimdOptions()` method.
     * Added the `setCimdOptions(CimdOptions)` method.

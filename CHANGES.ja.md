@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.30 (2025 年 11 月 20 日)
+--------------------------
+
 - `AuthorizationRequest` クラス
     * `getCimdOptions()` メソッドを追加。
     * `setCimdOptions(CimdOptions)` メソッドを追加。
