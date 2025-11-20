@@ -1,6 +1,38 @@
 CHANGES
 =======
 
+- `AuthorizationRequest` class
+    * Added the `getCimdOptions()` method.
+    * Added the `setCimdOptions(CimdOptions)` method.
+
+- `BackchannelAuthenticationRequest` class
+    * Added the `getCimdOptions()` method.
+    * Added the `setCimdOptions(CimdOptions)` method.
+
+- `DeviceAuthorizationRequest` class
+    * Added the `getCimdOptions()` method.
+    * Added the `setCimdOptions(CimdOptions)` method.
+
+- `Service` class
+    * Added the `isCimdWhitelistEnabled()` method.
+    * Added the `setCimdWhitelistEnabled(boolean)` method.
+    * Added the `getCimdWhitelist()` method.
+    * Added the `setCimdWhitelist(String[])` method.
+    * Added the `isCimdAlwaysRetrieved()` method.
+    * Added the `setCimdAlwaysRetrieved(boolean)` method.
+    * Added the `isCimdHttpPermitted()` method.
+    * Added the `setCimdHttpPermitted(boolean)` method.
+    * Added the `isCimdQueryPermitted()` method.
+    * Added the `setCimdQueryPermitted(boolean)` method.
+
+- `TokenRequest` class
+    * Added the `getCimdOptions()` method.
+    * Added the `setCimdOptions(CimdOptions)` method.
+
+- New types
+    * `CimdOptions` class
+
+
 4.29 (2025-11-18)
 -----------------
 
