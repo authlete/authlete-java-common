@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2024 Authlete, Inc.
+ * Copyright (C) 2014-2025 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -212,7 +212,7 @@ import com.authlete.common.web.URLCoder;
  */
 public class TokenRequest implements Serializable
 {
-    private static final long serialVersionUID = 12L;
+    private static final long serialVersionUID = 13L;
 
 
     /**
@@ -344,6 +344,15 @@ public class TokenRequest implements Serializable
      *      >OAuth 2.0 Attestation-Based Client Authentication</a>
      */
     private String oauthClientAttestationPop;
+
+
+    /**
+     * Options for CIMD processing.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     */
+    private CimdOptions cimdOptions;
 
 
     /**
@@ -1244,6 +1253,51 @@ public class TokenRequest implements Serializable
     public TokenRequest setOauthClientAttestationPop(String jwt)
     {
         this.oauthClientAttestationPop = jwt;
+
+        return this;
+    }
+
+
+    /**
+     * Get options for <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> processing.
+     *
+     * @return
+     *         Options for CIMD processing.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public CimdOptions getCimdOptions()
+    {
+        return cimdOptions;
+    }
+
+
+    /**
+     * Set options for <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> processing.
+     *
+     * @param options
+     *         Options for CIMD processing.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public TokenRequest setCimdOptions(CimdOptions options)
+    {
+        this.cimdOptions = options;
 
         return this;
     }

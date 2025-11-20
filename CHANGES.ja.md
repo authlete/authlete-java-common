@@ -1,6 +1,38 @@
 変更点
 ======
 
+- `AuthorizationRequest` クラス
+    * `getCimdOptions()` メソッドを追加。
+    * `setCimdOptions(CimdOptions)` メソッドを追加。
+
+- `BackchannelAuthenticationRequest` クラス
+    * `getCimdOptions()` メソッドを追加。
+    * `setCimdOptions(CimdOptions)` メソッドを追加。
+
+- `DeviceAuthorizationRequest` クラス
+    * `getCimdOptions()` メソッドを追加。
+    * `setCimdOptions(CimdOptions)` メソッドを追加。
+
+- `Service` クラス
+    * `isCimdWhitelistEnabled()` メソッドを追加。
+    * `setCimdWhitelistEnabled(boolean)` メソッドを追加。
+    * `getCimdWhitelist()` メソッドを追加。
+    * `setCimdWhitelist(String[])` メソッドを追加。
+    * `isCimdAlwaysRetrieved()` メソッドを追加。
+    * `setCimdAlwaysRetrieved(boolean)` メソッドを追加。
+    * `isCimdHttpPermitted()` メソッドを追加。
+    * `setCimdHttpPermitted(boolean)` メソッドを追加。
+    * `isCimdQueryPermitted()` メソッドを追加。
+    * `setCimdQueryPermitted(boolean)` メソッドを追加。
+
+- `TokenRequest` クラス
+    * `getCimdOptions()` メソッドを追加。
+    * `setCimdOptions(CimdOptions)` メソッドを追加。
+
+- 新しい型
+    * `CimdOptions` クラス
+
+
 4.29 (2025 年 11 月 18 日)
 --------------------------
 

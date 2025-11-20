@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 85L;
+    private static final long serialVersionUID = 86L;
 
 
     /*
@@ -1902,6 +1902,53 @@ public class Service implements Serializable
      * @since Authlete 3.0.22
      */
     private boolean clientIdMetadataDocumentSupported;
+
+
+    /**
+     * Whether to enable the whitelist for client IDs in the CIMD context.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     */
+    private boolean cimdWhitelistEnabled;
+
+
+    /**
+     * The whitelist for client IDs in the CIMD context.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     */
+    private String[] cimdWhitelist;
+
+
+    /**
+     * Whether to always retrieve client metadata in the CIMD context
+     * regardless of the cache's validity.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     */
+    private boolean cimdAlwaysRetrieved;
+
+
+    /**
+     * Whether to allow the {@code http} scheme in client IDs in the CIMD
+     * context.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     */
+    private boolean cimdHttpPermitted;
+
+
+    /**
+     * Whether to allow a query component in client IDs in the CIMD context.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     */
+    private boolean cimdQueryPermitted;
 
 
     /**
@@ -12198,6 +12245,466 @@ public class Service implements Serializable
     public Service setClientIdMetadataDocumentSupported(boolean supported)
     {
         this.clientIdMetadataDocumentSupported = supported;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag that indicates whether the whitelist for client IDs
+     * in the <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> context is enabled or not.
+     *
+     * <p>
+     * If the whitelist is enabled, the client ID in a request must match at
+     * least one entry in the whitelist to be considered a valid client ID
+     * in the CIMD context.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the whitelist for client IDs in the CIMD
+     *         context is enabled.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isCimdWhitelistEnabled()
+    {
+        return cimdWhitelistEnabled;
+    }
+
+
+    /**
+     * Set the flag that indicates whether the whitelist for client IDs
+     * in the <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> context is enabled or not.
+     *
+     * <p>
+     * If the whitelist is enabled, the client ID in a request must match at
+     * least one entry in the whitelist to be considered a valid client ID
+     * in the CIMD context.
+     * </p>
+     *
+     * @param enabled
+     *         {@code true} to enable the whitelist for client IDs in the
+     *         CIMD context.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Service setCimdWhitelistEnabled(boolean enabled)
+    {
+        this.cimdWhitelistEnabled = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get the whitelist for client IDs in the <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> context.
+     *
+     * <p>
+     * When the whitelist feature is enabled (see {@link #isCimdWhitelistEnabled()}),
+     * the whitelist specified by this property is consulted to determine
+     * whether the client ID in a request is valid in the CIMD context.
+     * In this case, the client ID must match at least one entry in the
+     * whitelist.
+     * </p>
+     *
+     * <p>
+     * Each entry in the whitelist must be a valid URI. The comparison between
+     * a whitelist entry and a client ID is performed as follows:
+     * </p>
+     *
+     * <ol>
+     * <li>[scheme] Simple string comparison.
+     * <li>[authority] Simple string comparison.
+     * <li>[path] The client ID's path must contain all path segments of
+     *     the whitelist entry in the same order.
+     * <li>[query] Simple string comparison, but only if the whitelist
+     *     entry has a query component.
+     * </ol>
+     *
+     * <p>
+     * For example, if the whitelist contains "{@code https://example.com/a/b}",
+     * then "{@code https://example.com/a/b/c}" is considered valid, but
+     * "{@code https://example.com/a}" is not.
+     * </p>
+     *
+     * @return
+     *         The whitelist for client IDs in the CIMD context.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public String[] getCimdWhitelist()
+    {
+        return cimdWhitelist;
+    }
+
+
+    /**
+     * Set the whitelist for client IDs in the <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> context.
+     *
+     * <p>
+     * When the whitelist feature is enabled (see {@link #isCimdWhitelistEnabled()}),
+     * the whitelist specified by this property is consulted to determine
+     * whether the client ID in a request is valid in the CIMD context.
+     * In this case, the client ID must match at least one entry in the
+     * whitelist.
+     * </p>
+     *
+     * <p>
+     * Each entry in the whitelist must be a valid URI. The comparison between
+     * a whitelist entry and a client ID is performed as follows:
+     * </p>
+     *
+     * <ol>
+     * <li>[scheme] Simple string comparison.
+     * <li>[authority] Simple string comparison.
+     * <li>[path] The client ID's path must contain all path segments of
+     *     the whitelist entry in the same order.
+     * <li>[query] Simple string comparison, but only if the whitelist
+     *     entry has a query component.
+     * </ol>
+     *
+     * <p>
+     * For example, if the whitelist contains "{@code https://example.com/a/b}",
+     * then "{@code https://example.com/a/b/c}" is considered valid, but
+     * "{@code https://example.com/a}" is not.
+     * </p>
+     *
+     * @param whitelist
+     *         The whitelist for client IDs in the CIMD context.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Service setCimdWhitelist(String[] whitelist)
+    {
+        this.cimdWhitelist = whitelist;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag that indicates whether Authlete should always fetch the
+     * client metadata from the location specified by the client ID (when
+     * <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> applies), regardless of whether a cached copy already exists
+     * and has not yet expired.
+     *
+     * <p>
+     * Under normal circumstances, client metadata retrieved from the location
+     * referenced by the client ID is stored in the database with an expiration
+     * time calculated using HTTP caching mechanisms (see <a href=
+     * "https://www.rfc-editor.org/rfc/rfc9111.html">RFC 9111 HTTP Caching</a>).
+     * Until that expiration time is reached, Authlete does not attempt to
+     * retrieve the client metadata again.
+     * </p>
+     *
+     * <p>
+     * When this flag is set to {@code true}, Authlete retrieves the client
+     * metadata regardless of the cache's validity.
+     * </p>
+     *
+     * <p>
+     * Some Authlete APIs accept a {@code cimdOptions.alwaysRetrieved} request
+     * parameter (see {@link CimdOptions}). If the parameter is provided and
+     * its value is {@code true}, it takes precedence over this service
+     * configuration.
+     * </p>
+     *
+     * <p>
+     * This flag is effective only when the service supports CIMD (see {@link
+     * Service#isClientIdMetadataDocumentSupported()}) and CIMD is actually
+     * used to resolve client metadata. For example, if the client ID in a
+     * request does not appear to be a valid URI, CIMD will not be used even
+     * if the service is configured to support it. In such cases, this flag
+     * has no effect.
+     * </p>
+     *
+     * <p>
+     * Client metadata retrieval is performed only in the initiating request
+     * of an authorization flow, and not in any subsequent requests. For
+     * example, in the authorization code flow, metadata may be retrieved
+     * during the authorization request, but not during the subsequent token
+     * request. In contrast, in the client credentials flow, metadata retrieval
+     * may occur because the token request itself is the initiating request
+     * in the flow.
+     * </p>
+     *
+     * @return
+     *         {@code true} if Authlete attempts to retrieve client metadata
+     *         regardless of the cache's validity.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isCimdAlwaysRetrieved()
+    {
+        return cimdAlwaysRetrieved;
+    }
+
+
+    /**
+     * Set the flag that indicates whether Authlete should always fetch the
+     * client metadata from the location specified by the client ID (when
+     * <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> applies), regardless of whether a cached copy already exists
+     * and has not yet expired.
+     *
+     * <p>
+     * Under normal circumstances, client metadata retrieved from the location
+     * referenced by the client ID is stored in the database with an expiration
+     * time calculated using HTTP caching mechanisms (see <a href=
+     * "https://www.rfc-editor.org/rfc/rfc9111.html">RFC 9111 HTTP Caching</a>).
+     * Until that expiration time is reached, Authlete does not attempt to
+     * retrieve the client metadata again.
+     * </p>
+     *
+     * <p>
+     * When this flag is set to {@code true}, Authlete retrieves the client
+     * metadata regardless of the cache's validity.
+     * </p>
+     *
+     * <p>
+     * Some Authlete APIs accept a {@code cimdOptions.alwaysRetrieved} request
+     * parameter (see {@link CimdOptions}). If the parameter is provided and
+     * its value is {@code true}, it takes precedence over this service
+     * configuration.
+     * </p>
+     *
+     * <p>
+     * This flag is effective only when the service supports CIMD (see {@link
+     * Service#isClientIdMetadataDocumentSupported()}) and CIMD is actually
+     * used to resolve client metadata. For example, if the client ID in a
+     * request does not appear to be a valid URI, CIMD will not be used even
+     * if the service is configured to support it. In such cases, this flag
+     * has no effect.
+     * </p>
+     *
+     * <p>
+     * Client metadata retrieval is performed only in the initiating request
+     * of an authorization flow, and not in any subsequent requests. For
+     * example, in the authorization code flow, metadata may be retrieved
+     * during the authorization request, but not during the subsequent token
+     * request. In contrast, in the client credentials flow, metadata retrieval
+     * may occur because the token request itself is the initiating request
+     * in the flow.
+     * </p>
+     *
+     * @param always
+     *         {@code true} to instruct Authlete to retrieve client metadata
+     *         regardless of the cache's validity.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Service setCimdAlwaysRetrieved(boolean always)
+    {
+        this.cimdAlwaysRetrieved = always;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag that indicates whether the {@code http} scheme in the client
+     * ID is permitted (when <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> applies).
+     *
+     * <p>
+     * The specification requires the {@code https} scheme, but if this flag is
+     * set to {@code true}, Authlete also allows the {@code http} scheme. The
+     * main purpose of this option is to make development easier for developers
+     * who run CIMD-enabled servers and a web server publishing client metadata
+     * on their local machines without TLS.
+     * </p>
+     *
+     * <p>
+     * Given this purpose, it is not recommended to enable this option in
+     * production environments unless a whitelist is used (see {@link
+     * Service#isCimdWhitelistEnabled()}).
+     * </p>
+     *
+     * <p>
+     * Some Authlete APIs accept a {@code cimdOptions.httpPermitted} request
+     * parameter (see {@link CimdOptions}). If the parameter is provided and
+     * its value is {@code true}, it takes precedence over this service
+     * configuration.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the {@code http} scheme in the client ID is
+     *         permitted.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isCimdHttpPermitted()
+    {
+        return cimdHttpPermitted;
+    }
+
+
+    /**
+     * Set the flag that indicates whether the {@code http} scheme in the client
+     * ID is permitted (when <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> applies).
+     *
+     * <p>
+     * The specification requires the {@code https} scheme, but if this flag is
+     * set to {@code true}, Authlete also allows the {@code http} scheme. The
+     * main purpose of this option is to make development easier for developers
+     * who run CIMD-enabled servers and a web server publishing client metadata
+     * on their local machines without TLS.
+     * </p>
+     *
+     * <p>
+     * Given this purpose, it is not recommended to enable this option in
+     * production environments unless a whitelist is used (see {@link
+     * Service#isCimdWhitelistEnabled()}).
+     * </p>
+     *
+     * <p>
+     * Some Authlete APIs accept a {@code cimdOptions.httpPermitted} request
+     * parameter (see {@link CimdOptions}). If the parameter is provided and
+     * its value is {@code true}, it takes precedence over this service
+     * configuration.
+     * </p>
+     *
+     * @param permitted
+     *         {@code true} to permit the {@code http} scheme in the client ID.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Service setCimdHttpPermitted(boolean permitted)
+    {
+        this.cimdHttpPermitted = permitted;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag that indicates whether a query component in the client ID
+     * is permitted (when <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> applies).
+     *
+     * <p>
+     * Although the specification states that a client ID <i>"SHOULD NOT
+     * include a query string component,"</i> it does technically allow it.
+     * However, query components are prone to misuse. Therefore, Authlete does
+     * not allow them by default. Setting this flag to {@code true} relaxes
+     * that restriction.
+     * </p>
+     *
+     * <p>
+     * Some Authlete APIs accept a {@code cimdOptions.queryPermitted} request
+     * parameter (see {@link CimdOptions}). If the parameter is provided and
+     * its value is {@code true}, it takes precedence over this service
+     * configuration.
+     * </p>
+     *
+     * @return
+     *         {@code true} if a query component in the client ID is permitted.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isCimdQueryPermitted()
+    {
+        return cimdQueryPermitted;
+    }
+
+
+    /**
+     * Set the flag that indicates whether a query component in the client ID
+     * is permitted (when <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> applies).
+     *
+     * <p>
+     * Although the specification states that a client ID <i>"SHOULD NOT
+     * include a query string component,"</i> it does technically allow it.
+     * However, query components are prone to misuse. Therefore, Authlete does
+     * not allow them by default. Setting this flag to {@code true} relaxes
+     * that restriction.
+     * </p>
+     *
+     * <p>
+     * Some Authlete APIs accept a {@code cimdOptions.queryPermitted} request
+     * parameter (see {@link CimdOptions}). If the parameter is provided and
+     * its value is {@code true}, it takes precedence over this service
+     * configuration.
+     * </p>
+     *
+     * @param permitted
+     *         {@code true} to permit a query component in the client ID.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.30
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Service setCimdQueryPermitted(boolean permitted)
+    {
+        this.cimdQueryPermitted = permitted;
 
         return this;
     }
