@@ -1,6 +1,17 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isCimdAllowlistEnabled()` メソッドを追加。
+    * `setCimdAllowlistEnabled(boolean)` メソッドを追加。
+    * `getCimdAllowlist()` メソッドを追加。
+    * `setCimdAllowlist(String[])` メソッドを追加。
+    * `isCimdWhitelistEnabled()` メソッドを削除。
+    * `setCimdWhitelistEnabled(boolean)` メソッドを削除。
+    * `getCimdWhitelist()` メソッドを削除。
+    * `setCimdWhitelist(String[])` メソッドを削除。
+
+
 4.30 (2025 年 11 月 20 日)
 --------------------------
 
