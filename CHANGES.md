@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.31 (2025-11-25)
+-----------------
+
 - `Service` class
     * Added the `isCimdAllowlistEnabled()` method.
     * Added the `setCimdAllowlistEnabled(boolean)` method.

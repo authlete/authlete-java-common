@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.31 (2025 年 11 月 25 日)
+--------------------------
+
 - `Service` クラス
     * `isCimdAllowlistEnabled()` メソッドを追加。
     * `setCimdAllowlistEnabled(boolean)` メソッドを追加。
