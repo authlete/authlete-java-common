@@ -1,6 +1,17 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added the `isCimdAllowlistEnabled()` method.
+    * Added the `setCimdAllowlistEnabled(boolean)` method.
+    * Added the `getCimdAllowlist()` method.
+    * Added the `setCimdAllowlist(String[])` method.
+    * Removed the `isCimdWhitelistEnabled()` method.
+    * Removed the `setCimdWhitelistEnabled(boolean)` method.
+    * Removed the `getCimdWhitelist()` method.
+    * Removed the `setCimdWhitelist(String[])` method.
+
+
 4.30 (2025-11-20)
 -----------------
 

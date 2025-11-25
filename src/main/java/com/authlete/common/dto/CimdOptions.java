@@ -182,8 +182,8 @@ public class CimdOptions implements Serializable
      *
      * <p>
      * Given this purpose, it is not recommended to enable this option in
-     * production environments unless a whitelist is used (see {@link
-     * Service#isCimdWhitelistEnabled()}).
+     * production environments unless an allowlist is used (see {@link
+     * Service#isCimdAllowlistEnabled()}).
      * </p>
      *
      * <p>
@@ -216,8 +216,8 @@ public class CimdOptions implements Serializable
      *
      * <p>
      * Given this purpose, it is not recommended to enable this option in
-     * production environments unless a whitelist is used (see {@link
-     * Service#isCimdWhitelistEnabled()}).
+     * production environments unless an allowlist is used (see {@link
+     * Service#isCimdAllowlistEnabled()}).
      * </p>
      *
      * <p>

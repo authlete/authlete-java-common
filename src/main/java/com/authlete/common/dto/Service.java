@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 86L;
+    private static final long serialVersionUID = 87L;
 
 
     /*
@@ -1905,21 +1905,21 @@ public class Service implements Serializable
 
 
     /**
-     * Whether to enable the whitelist for client IDs in the CIMD context.
+     * Whether to enable the allowlist for client IDs in the CIMD context.
      *
-     * @since 4.30
+     * @since 4.31
      * @since Authlete 3.0.22
      */
-    private boolean cimdWhitelistEnabled;
+    private boolean cimdAllowlistEnabled;
 
 
     /**
-     * The whitelist for client IDs in the CIMD context.
+     * The allowlist for client IDs in the CIMD context.
      *
-     * @since 4.30
+     * @since 4.31
      * @since Authlete 3.0.22
      */
-    private String[] cimdWhitelist;
+    private String[] cimdAllowlist;
 
 
     /**
@@ -12251,162 +12251,162 @@ public class Service implements Serializable
 
 
     /**
-     * Get the flag that indicates whether the whitelist for client IDs
+     * Get the flag that indicates whether the allowlist for client IDs
      * in the <a href=
      * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
      * >CIMD</a> context is enabled or not.
      *
      * <p>
-     * If the whitelist is enabled, the client ID in a request must match at
-     * least one entry in the whitelist to be considered a valid client ID
+     * If the allowlist is enabled, the client ID in a request must match at
+     * least one entry in the allowlist to be considered a valid client ID
      * in the CIMD context.
      * </p>
      *
      * @return
-     *         {@code true} if the whitelist for client IDs in the CIMD
+     *         {@code true} if the allowlist for client IDs in the CIMD
      *         context is enabled.
      *
-     * @since 4.30
+     * @since 4.31
      * @since Authlete 3.0.22
      *
      * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
      *      OAuth Client ID Metadata Document</a>
      */
-    public boolean isCimdWhitelistEnabled()
+    public boolean isCimdAllowlistEnabled()
     {
-        return cimdWhitelistEnabled;
+        return cimdAllowlistEnabled;
     }
 
 
     /**
-     * Set the flag that indicates whether the whitelist for client IDs
+     * Set the flag that indicates whether the allowlist for client IDs
      * in the <a href=
      * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
      * >CIMD</a> context is enabled or not.
      *
      * <p>
-     * If the whitelist is enabled, the client ID in a request must match at
-     * least one entry in the whitelist to be considered a valid client ID
+     * If the allowlist is enabled, the client ID in a request must match at
+     * least one entry in the allowlist to be considered a valid client ID
      * in the CIMD context.
      * </p>
      *
      * @param enabled
-     *         {@code true} to enable the whitelist for client IDs in the
+     *         {@code true} to enable the allowlist for client IDs in the
      *         CIMD context.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 4.30
+     * @since 4.31
      * @since Authlete 3.0.22
      *
      * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
      *      OAuth Client ID Metadata Document</a>
      */
-    public Service setCimdWhitelistEnabled(boolean enabled)
+    public Service setCimdAllowlistEnabled(boolean enabled)
     {
-        this.cimdWhitelistEnabled = enabled;
+        this.cimdAllowlistEnabled = enabled;
 
         return this;
     }
 
 
     /**
-     * Get the whitelist for client IDs in the <a href=
+     * Get the allowlist for client IDs in the <a href=
      * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
      * >CIMD</a> context.
      *
      * <p>
-     * When the whitelist feature is enabled (see {@link #isCimdWhitelistEnabled()}),
-     * the whitelist specified by this property is consulted to determine
+     * When the allowlist feature is enabled (see {@link #isCimdAllowlistEnabled()}),
+     * the allowlist specified by this property is consulted to determine
      * whether the client ID in a request is valid in the CIMD context.
      * In this case, the client ID must match at least one entry in the
-     * whitelist.
+     * allowlist.
      * </p>
      *
      * <p>
-     * Each entry in the whitelist must be a valid URI. The comparison between
-     * a whitelist entry and a client ID is performed as follows:
+     * Each entry in the allowlist must be a valid URI. The comparison between
+     * an allowlist entry and a client ID is performed as follows:
      * </p>
      *
      * <ol>
      * <li>[scheme] Simple string comparison.
      * <li>[authority] Simple string comparison.
      * <li>[path] The client ID's path must contain all path segments of
-     *     the whitelist entry in the same order.
-     * <li>[query] Simple string comparison, but only if the whitelist
+     *     the allowlist entry in the same order.
+     * <li>[query] Simple string comparison, but only if the allowlist
      *     entry has a query component.
      * </ol>
      *
      * <p>
-     * For example, if the whitelist contains "{@code https://example.com/a/b}",
+     * For example, if the allowlist contains "{@code https://example.com/a/b}",
      * then "{@code https://example.com/a/b/c}" is considered valid, but
      * "{@code https://example.com/a}" is not.
      * </p>
      *
      * @return
-     *         The whitelist for client IDs in the CIMD context.
+     *         The allowlist for client IDs in the CIMD context.
      *
-     * @since 4.30
+     * @since 4.31
      * @since Authlete 3.0.22
      *
      * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
      *      OAuth Client ID Metadata Document</a>
      */
-    public String[] getCimdWhitelist()
+    public String[] getCimdAllowlist()
     {
-        return cimdWhitelist;
+        return cimdAllowlist;
     }
 
 
     /**
-     * Set the whitelist for client IDs in the <a href=
+     * Set the allowlist for client IDs in the <a href=
      * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
      * >CIMD</a> context.
      *
      * <p>
-     * When the whitelist feature is enabled (see {@link #isCimdWhitelistEnabled()}),
-     * the whitelist specified by this property is consulted to determine
+     * When the allowlist feature is enabled (see {@link #isCimdAllowlistEnabled()}),
+     * the allowlist specified by this property is consulted to determine
      * whether the client ID in a request is valid in the CIMD context.
      * In this case, the client ID must match at least one entry in the
-     * whitelist.
+     * allowlist.
      * </p>
      *
      * <p>
-     * Each entry in the whitelist must be a valid URI. The comparison between
-     * a whitelist entry and a client ID is performed as follows:
+     * Each entry in the allowlist must be a valid URI. The comparison between
+     * an allowlist entry and a client ID is performed as follows:
      * </p>
      *
      * <ol>
      * <li>[scheme] Simple string comparison.
      * <li>[authority] Simple string comparison.
      * <li>[path] The client ID's path must contain all path segments of
-     *     the whitelist entry in the same order.
-     * <li>[query] Simple string comparison, but only if the whitelist
+     *     the allowlist entry in the same order.
+     * <li>[query] Simple string comparison, but only if the allowlist
      *     entry has a query component.
      * </ol>
      *
      * <p>
-     * For example, if the whitelist contains "{@code https://example.com/a/b}",
+     * For example, if the allowlist contains "{@code https://example.com/a/b}",
      * then "{@code https://example.com/a/b/c}" is considered valid, but
      * "{@code https://example.com/a}" is not.
      * </p>
      *
-     * @param whitelist
-     *         The whitelist for client IDs in the CIMD context.
+     * @param allowlist
+     *         The allowlist for client IDs in the CIMD context.
      *
      * @return
      *         {@code this} object.
      *
-     * @since 4.30
+     * @since 4.31
      * @since Authlete 3.0.22
      *
      * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
      *      OAuth Client ID Metadata Document</a>
      */
-    public Service setCimdWhitelist(String[] whitelist)
+    public Service setCimdAllowlist(String[] allowlist)
     {
-        this.cimdWhitelist = whitelist;
+        this.cimdAllowlist = allowlist;
 
         return this;
     }
@@ -12559,8 +12559,8 @@ public class Service implements Serializable
      *
      * <p>
      * Given this purpose, it is not recommended to enable this option in
-     * production environments unless a whitelist is used (see {@link
-     * Service#isCimdWhitelistEnabled()}).
+     * production environments unless an allowlist is used (see {@link
+     * Service#isCimdAllowlistEnabled()}).
      * </p>
      *
      * <p>
@@ -12602,8 +12602,8 @@ public class Service implements Serializable
      *
      * <p>
      * Given this purpose, it is not recommended to enable this option in
-     * production environments unless a whitelist is used (see {@link
-     * Service#isCimdWhitelistEnabled()}).
+     * production environments unless an allowlist is used (see {@link
+     * Service#isCimdAllowlistEnabled()}).
      * </p>
      *
      * <p>
