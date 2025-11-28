@@ -1964,19 +1964,19 @@ public class Service implements Serializable
      * The flag indicating whether the feature of Trust status list publishing for
      * this service is enabled or not.
      *
-     * @since TODO
-     * @since Authlete TODO
+     * @since 4.30
+     * @since Authlete 3.1
      */
     private boolean tslPublishingEnabled;
 
 
     /**
-     * Trust status list configuration data.
+     * TSL configuration data.
      *
-     * @since TODO
-     * @since Authlete TODO
+     * @since 4.30
+     * @since Authlete 3.1
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/12/">
+     * @see <https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/13/>
      *     Trust Status List</a>
      */
     private TslConfigData tslConfigData;
@@ -12227,6 +12227,16 @@ public class Service implements Serializable
         return this;
     }
 
+    /*
+     * Sets whether TSL publishing is enabled for this service.
+     *
+     * @param tslPublishingEnabled {@code true} to enable TSL publishing;
+     *                             {@code false} to disable it.
+     * @return this {@link Service} instance for method chaining
+     *
+     * @since 4.30
+     * @since Authlete 3.1
+     */
     public Service setTslPublishingEnabled(boolean tslPublishingEnabled)
     {
         this.tslPublishingEnabled = tslPublishingEnabled;
@@ -12234,6 +12244,15 @@ public class Service implements Serializable
         return this;
     }
 
+    /**
+     * Get the flag indicating whether the feature of TSL publishing
+     * for this service is enabled or not.
+     *
+     * @return {@code true} if the feature of TSL publishing is enabled.
+     *
+     * @since 4.30
+     * @since Authlete 3.1
+     */
     public boolean isTslPublishingEnabled()
     {
         return tslPublishingEnabled;
@@ -12298,7 +12317,10 @@ public class Service implements Serializable
      * @param tslConfigData the configuration data to be applied
      * @return this {@code Service} instance for method chaining
      *
-     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/12/">
+     * @since 4.30
+     * @since Authlete 3.1
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/13/">
      *     Trust Status List</a>
      */
     public Service setTslConfigData(TslConfigData tslConfigData)
@@ -12849,6 +12871,9 @@ public class Service implements Serializable
      * Retrieves the {@link TslConfigData} associated with this service.
      *
      * @return the current {@link TslConfigData}
+     *
+     * @since 4.30
+     * @since Authlete 3.1
      */
     public TslConfigData getTslConfigData()
     {

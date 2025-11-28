@@ -5,10 +5,14 @@
     <groupId>com.authlete</groupId>
     <artifactId>authlete-java-common</artifactId>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <version>4.33-SNAPSHOT</version>
 =======
     <version>4.21</version>
 >>>>>>> b3dde3000 (tsl support in progress)
+=======
+    <version>4.31</version>
+>>>>>>> ef348607f (tsl support)
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>
