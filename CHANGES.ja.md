@@ -1,6 +1,11 @@
 変更点
 ======
 
+- `Service` クラス
+    * `isHttpAliasProhibited()` メソッドを追加。
+    * `setHttpAliasProhibited(boolean)` メソッドを追加。
+
+
 4.31 (2025 年 11 月 25 日)
 --------------------------
 

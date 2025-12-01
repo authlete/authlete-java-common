@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 87L;
+    private static final long serialVersionUID = 88L;
 
 
     /*
@@ -1949,6 +1949,16 @@ public class Service implements Serializable
      * @since Authlete 3.0.22
      */
     private boolean cimdQueryPermitted;
+
+
+    /**
+     * Whether to prohibit client ID aliases that start with {@code https://}
+     * or {@code http://}.
+     *
+     * @since 4.32
+     * @since Authlete 3.0.22
+     */
+    private boolean httpAliasProhibited;
 
 
     /**
@@ -4302,6 +4312,8 @@ public class Service implements Serializable
      *         {@code false} if the feature is disabled.
      *
      * @since 2.2
+     *
+     * @see #isHttpAliasProhibited()
      */
     public boolean isClientIdAliasEnabled()
     {
@@ -4328,6 +4340,8 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 2.2
+     *
+     * @see #isHttpAliasProhibited()
      */
     public Service setClientIdAliasEnabled(boolean enabled)
     {
@@ -12705,6 +12719,85 @@ public class Service implements Serializable
     public Service setCimdQueryPermitted(boolean permitted)
     {
         this.cimdQueryPermitted = permitted;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag that indicates whether to prohibit client ID aliases that
+     * start with {@code https://} or {@code http://}.
+     *
+     * <p>
+     * The primary purpose of this flag is to prevent the use of client ID
+     * aliases that may conflict with entity IDs in <a href=
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID Federation
+     * 1.0</a> or metadata document locations in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a>.
+     * </p>
+     *
+     * <p>
+     * For backward compatibility, the default value of this flag is set to
+     * {@code false}, but it is recommended to set it to {@code true} whenever
+     * possible.
+     * </p>
+     *
+     * @return
+     *         {@code true} if client ID aliases that start with {@code https://}
+     *         or {@code http://} are prohibited.
+     *
+     * @since 4.32
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html">
+     *      OpenID Federation 1.0</a>
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isHttpAliasProhibited()
+    {
+        return httpAliasProhibited;
+    }
+
+
+    /**
+     * Set the flag that indicates whether to prohibit client ID aliases that
+     * start with {@code https://} or {@code http://}.
+     *
+     * <p>
+     * The primary purpose of this flag is to prevent the use of client ID
+     * aliases that may conflict with entity IDs in <a href=
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID Federation
+     * 1.0</a> or metadata document locations in <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a>.
+     * </p>
+     *
+     * <p>
+     * For backward compatibility, the default value of this flag is set to
+     * {@code false}, but it is recommended to set it to {@code true} whenever
+     * possible.
+     * </p>
+     *
+     * @param prohibited
+     *         {@code true} to prohibit client ID aliases that start with
+     *         {@code https://} or {@code http://}.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.32
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html">
+     *      OpenID Federation 1.0</a>
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Service setHttpAliasProhibited(boolean prohibited)
+    {
+        this.httpAliasProhibited = prohibited;
 
         return this;
     }
