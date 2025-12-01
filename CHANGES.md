@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.32 (2025-12-01)
+-----------------
+
 - `Service` class
     * Added the `isHttpAliasProhibited()` method.
     * Added the `setHttpAliasProhibited(boolean)` method.
