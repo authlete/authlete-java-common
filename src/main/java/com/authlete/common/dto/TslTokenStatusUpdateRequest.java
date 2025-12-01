@@ -18,7 +18,7 @@ public class TslTokenStatusUpdateRequest implements Serializable {
         this.tokenId = tokenId;
     }
 
-    public String getSubject() {
+    public String getTokenId() {
         return tokenId;
     }
 
