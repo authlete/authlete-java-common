@@ -12234,8 +12234,8 @@ public class Service implements Serializable
      *                             {@code false} to disable it.
      * @return this {@link Service} instance for method chaining
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public Service setTslPublishingEnabled(boolean tslPublishingEnabled)
     {
@@ -12250,8 +12250,8 @@ public class Service implements Serializable
      *
      * @return {@code true} if the feature of TSL publishing is enabled.
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public boolean isTslPublishingEnabled()
     {
@@ -12317,8 +12317,8 @@ public class Service implements Serializable
      * @param tslConfigData the configuration data to be applied
      * @return this {@code Service} instance for method chaining
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      *
      * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/13/">
      *     Trust Status List</a>
@@ -12872,8 +12872,8 @@ public class Service implements Serializable
      *
      * @return the current {@link TslConfigData}
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public TslConfigData getTslConfigData()
     {

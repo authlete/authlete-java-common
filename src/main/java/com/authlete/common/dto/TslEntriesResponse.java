@@ -1,14 +1,48 @@
 package com.authlete.common.dto;
 
+/**
+ * Response from Authlete's {@code /tsl/entries/list} API.
+ *
+ * This class contains list of TSL token entries.
+ *
+ * @since 4.31
+ * @since Authlete 3.0.22
+ *
+ */
 public class TslEntriesResponse {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The start index (inclusive) for the result set of the query.
+     *
+     * @since 4.31
+     * @since Authlete 3.0.22
+     */
     private int start;
 
+    /**
+     * The end index (exclusive) for the result set of the query.
+     *
+     * @since 4.31
+     * @since Authlete 3.0.22
+     */
     private int end;
 
+    /**
+     * Total count of the entries
+     *
+     * @since 4.31
+     * @since Authlete 3.0.22
+     */
     private int totalCount;
+
+    /**
+     * TSL token entries
+     *
+     * @since 4.31
+     * @since Authlete 3.0.22
+     */
 
     private TslEntry[] tslEntries;
 
