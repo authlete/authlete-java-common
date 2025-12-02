@@ -17,8 +17,8 @@ import java.net.URI;
  * <li>{@code publishEndpoint}
  * </ul>
  *
- * @since 4.30
- * @since Authlete 3.1
+ * @since 4.31
+ * @since Authlete 3.0.22
  *
  * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/13/"
  *      >Token Status List (TSL)</a>
@@ -31,40 +31,40 @@ public class TslConfigData implements Serializable
     /**
      * The format of the TSL. Possible values are JWT and CWT. Currently only JWT is supported
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     private TslPublishFormat format;
 
     /**
      * The validity of the TSL in hours
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     private long validity;
 
     /**
      * Publish TSL after every X hours
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     private long publishFrequency;
 
     /**
      * Time to live in hours which provides indication to verifiers to cache this TSL
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     private long timeToLive;
 
     /**
      * Endpoint where to publish this TSL
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     private URI publishEndpoint;
 
@@ -97,8 +97,8 @@ public class TslConfigData implements Serializable
      *
      * @return this {@link TslConfigData} instance for method chaining
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public TslConfigData setFormat(TslPublishFormat format)
     {
@@ -112,8 +112,8 @@ public class TslConfigData implements Serializable
      *
      * @return the {@link TslPublishFormat} in use.
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public TslPublishFormat getFormat()
     {
@@ -126,8 +126,8 @@ public class TslConfigData implements Serializable
      * @param validity the validity duration
      * @return this {@link TslConfigData} instance for method chaining
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public TslConfigData setValidity(long validity) {
         this.validity = validity;
@@ -140,8 +140,8 @@ public class TslConfigData implements Serializable
      *
      * @return the validity duration
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public long getValidity()
     {
@@ -154,8 +154,8 @@ public class TslConfigData implements Serializable
      * @param publishFrequency the publishing frequency
      * @return this {@link TslConfigData} instance for method chaining
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      *
      */
     public TslConfigData setPublishFrequency(long publishFrequency)
@@ -170,8 +170,8 @@ public class TslConfigData implements Serializable
      *
      * @return the publishing frequency
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public long getPublishFrequency()
     {
@@ -184,8 +184,8 @@ public class TslConfigData implements Serializable
      * @param timeToLive the TTL value
      * @return this {@link TslConfigData} instance for method chaining
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public TslConfigData setTimeToLive(long timeToLive)
     {
@@ -199,8 +199,8 @@ public class TslConfigData implements Serializable
      *
      * @return the TTL value
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public long getTimeToLive()
     {
@@ -214,8 +214,8 @@ public class TslConfigData implements Serializable
      *
      * @return this {@link TslConfigData} instance for method chaining
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public TslConfigData setPublishEndpoint(URI publishEndpoint)
     {
@@ -229,8 +229,8 @@ public class TslConfigData implements Serializable
      *
      * @return the publish endpoint URI.
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     public URI getPublishEndpoint()
     {

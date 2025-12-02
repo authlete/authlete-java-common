@@ -1984,8 +1984,8 @@ public class Service implements Serializable
      * The flag indicating whether the feature of Trust status list publishing for
      * this service is enabled or not.
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      */
     private boolean tslPublishingEnabled;
 
@@ -1993,8 +1993,8 @@ public class Service implements Serializable
     /**
      * TSL configuration data.
      *
-     * @since 4.30
-     * @since Authlete 3.1
+     * @since 4.31
+     * @since Authlete 3.0.22
      *
      * @see <https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/13/>
      *     Trust Status List</a>
