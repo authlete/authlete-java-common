@@ -145,7 +145,6 @@ public class CredentialDeferredIssueRequest implements Serializable
      */
     private CredentialIssuanceOrder order;
 
-
     /**
      * The flag that indicates whether to deny the deferred credential request.
      *
