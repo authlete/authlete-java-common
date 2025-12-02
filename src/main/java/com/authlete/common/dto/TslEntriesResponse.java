@@ -9,7 +9,8 @@ package com.authlete.common.dto;
  * @since Authlete 3.0.22
  *
  */
-public class TslEntriesResponse {
+public class TslEntriesResponse
+{
 
     private static final long serialVersionUID = 1L;
 
@@ -46,43 +47,51 @@ public class TslEntriesResponse {
 
     private TslEntry[] tslEntries;
 
-    public TslEntriesResponse setStart(int start) {
+    public TslEntriesResponse setStart(int start)
+    {
         this.start = start;
 
         return this;
     }
 
-    public int getStart() {
+    public int getStart()
+    {
         return start;
     }
 
-    public TslEntriesResponse setEnd(int end) {
+    public TslEntriesResponse setEnd(int end)
+    {
         this.end = end;
 
         return this;
     }
 
-    public int getEnd() {
+    public int getEnd()
+    {
         return end;
     }
 
-    public TslEntriesResponse setTotalCount(int totalCount) {
+    public TslEntriesResponse setTotalCount(int totalCount)
+    {
         this.totalCount = totalCount;
 
         return this;
     }
 
-    public int getTotalCount() {
+    public int getTotalCount()
+    {
         return totalCount;
     }
 
-    public TslEntriesResponse setTslEntries(TslEntry[] tslEntries) {
+    public TslEntriesResponse setTslEntries(TslEntry[] tslEntries)
+    {
         this.tslEntries = tslEntries;
 
         return this;
     }
 
-    public TslEntry[] getTslEntries() {
+    public TslEntry[] getTslEntries()
+    {
         return tslEntries;
     }
 }
