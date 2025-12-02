@@ -90,16 +90,6 @@ public class TslConfigData implements Serializable
         publishEndpoint = tslConfigData.getPublishEndpoint();
     }
 
-    /**
-     * Sets the TSL publish format.
-     *
-     * @param format the {@link TslPublishFormat} to use for publishing.
-     *
-     * @return this {@link TslConfigData} instance for method chaining
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
-     */
     public TslConfigData setFormat(TslPublishFormat format)
     {
         this.format = format;
@@ -107,57 +97,22 @@ public class TslConfigData implements Serializable
         return this;
     }
 
-    /**
-     * Returns the configured TSL publish format.
-     *
-     * @return the {@link TslPublishFormat} in use.
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
-     */
     public TslPublishFormat getFormat()
     {
         return format;
     }
 
-    /**
-     * Sets the validity period for the TSL in hours.
-     *
-     * @param validity the validity duration
-     * @return this {@link TslConfigData} instance for method chaining
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
-     */
     public TslConfigData setValidity(long validity) {
         this.validity = validity;
 
         return this;
     }
 
-    /**
-     * Returns the validity period of the TSL.
-     *
-     * @return the validity duration
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
-     */
     public long getValidity()
     {
         return validity;
     }
 
-    /**
-     * Sets the frequency in hours at which the TSL should be published.
-     *
-     * @param publishFrequency the publishing frequency
-     * @return this {@link TslConfigData} instance for method chaining
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
-     *
-     */
     public TslConfigData setPublishFrequency(long publishFrequency)
     {
         this.publishFrequency = publishFrequency;
@@ -165,28 +120,11 @@ public class TslConfigData implements Serializable
         return this;
     }
 
-    /**
-     * Returns the publish frequency of the TSL.
-     *
-     * @return the publishing frequency
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
-     */
     public long getPublishFrequency()
     {
         return publishFrequency;
     }
 
-    /**
-     * Sets the time to live in hours which provides indication to verifiers to cache this TSL
-     *
-     * @param timeToLive the TTL value
-     * @return this {@link TslConfigData} instance for method chaining
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
-     */
     public TslConfigData setTimeToLive(long timeToLive)
     {
         this.timeToLive = timeToLive;
@@ -194,29 +132,11 @@ public class TslConfigData implements Serializable
         return this;
     }
 
-    /**
-     * Returns the time-to-live (TTL) in hours value for the TSL.
-     *
-     * @return the TTL value
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
-     */
     public long getTimeToLive()
     {
         return timeToLive;
     }
 
-    /**
-     * Sets the endpoint URI where the TSL will be published.
-     *
-     * @param publishEndpoint the publish endpoint URI.
-     *
-     * @return this {@link TslConfigData} instance for method chaining
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
-     */
     public TslConfigData setPublishEndpoint(URI publishEndpoint)
     {
         this.publishEndpoint = publishEndpoint;
@@ -224,14 +144,6 @@ public class TslConfigData implements Serializable
         return this;
     }
 
-    /**
-     * Returns the endpoint URI where the TSL is published.
-     *
-     * @return the publish endpoint URI.
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
-     */
     public URI getPublishEndpoint()
     {
         return publishEndpoint;
