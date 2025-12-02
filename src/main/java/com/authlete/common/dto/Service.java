@@ -13081,7 +13081,8 @@ public class Service implements Serializable
      * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
      *      OAuth Client ID Metadata Document</a>
      */
-    public Service setHttpAliasProhibited(boolean prohibited) {
+    public Service setHttpAliasProhibited(boolean prohibited)
+    {
         this.httpAliasProhibited = prohibited;
 
         return this;
