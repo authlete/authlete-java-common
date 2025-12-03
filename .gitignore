@@ -1,4 +1,5 @@
 target/
+.idea/
 authlete.properties
 .settings
 .project

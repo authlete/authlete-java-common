@@ -77,7 +77,6 @@ public class CredentialDeferredIssueRequest implements Serializable
      */
     private CredentialIssuanceOrder order;
 
-
     /**
      * Get the credential order that provides an instruction for issuing a
      * credential.
