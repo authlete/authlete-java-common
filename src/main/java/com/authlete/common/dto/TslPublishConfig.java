@@ -12,7 +12,8 @@ package com.authlete.common.dto;
  * @since 4.31
  * @since Authlete 3.0.22
  */
-public class TslPublishConfig {
+public class TslPublishConfig
+{
 
     private static final long serialVersionUID = 1L;
 
@@ -48,7 +49,8 @@ public class TslPublishConfig {
      * @param serviceNumber
      *         The service number.
      */
-    public void setServiceNumber(int serviceNumber) {
+    public void setServiceNumber(int serviceNumber)
+    {
         this.serviceNumber = serviceNumber;
     }
 
@@ -57,7 +59,8 @@ public class TslPublishConfig {
      *
      * @return The service number.
      */
-    public int getServiceNumber() {
+    public int getServiceNumber()
+    {
         return serviceNumber;
     }
 
@@ -67,7 +70,8 @@ public class TslPublishConfig {
      * @param nextTslPublishTime
      *         The next publish time, in seconds.
      */
-    public void setNextTslPublishTime(long nextTslPublishTime) {
+    public void setNextTslPublishTime(long nextTslPublishTime)
+    {
         this.nextTslPublishTime = nextTslPublishTime;
     }
 
@@ -76,7 +80,8 @@ public class TslPublishConfig {
      *
      * @return The next publish time, in seconds.
      */
-    public long getNextTslPublishTime() {
+    public long getNextTslPublishTime()
+    {
         return nextTslPublishTime;
     }
 }
