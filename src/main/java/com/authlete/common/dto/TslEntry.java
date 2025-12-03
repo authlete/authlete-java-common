@@ -3,18 +3,24 @@ package com.authlete.common.dto;
 import com.authlete.common.types.TslTokenStatus;
 
 /**
- * This class contains token entries on which to build the TSL
+ * Represents a single token entry used in constructing a Token Status List (TSL).
+ *
+ * <p>
+ * Each entry corresponds to an issued VC/token and includes its index, unique
+ * token ID, current status, and usage flag. These objects are typically returned
+ * as part of a list in {@code /tsl/entries/list} responses.
+ * </p>
  *
  * @since 4.31
  * @since Authlete 3.0.22
- *
  */
 public class TslEntry
 {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Token index that represents the token in the issued VC/token.
+     * The token index associated with the issued VC/token.
+     * This index helps uniquely identify the token within a service.
      *
      * @since 4.31
      * @since Authlete 3.0.22
@@ -22,7 +28,8 @@ public class TslEntry
     private int tokenIndex;
 
     /**
-     * Unique ID assigned to each issued VC/token.
+     * The unique token ID assigned at issuance time.
+     * This value is globally unique per token/VC.
      *
      * @since 4.31
      * @since Authlete 3.0.22
@@ -30,59 +37,111 @@ public class TslEntry
     private String tokenId;
 
     /**
-     * Current status of the issued VC/token.
+     * The current status of the issued VC/token.
+     *
+     * @see TslTokenStatus
      *
      * @since 4.31
      * @since Authlete 3.0.22
      */
-
     private TslTokenStatus tokenStatus;
 
+    /**
+     * Indicates whether this token entry has been marked as used.
+     */
     private boolean isUsed;
 
+    /**
+     * Set the token index associated with this entry.
+     *
+     * @param tokenIndex
+     *         The token index.
+     *
+     * @return {@code this} object for method chaining.
+     */
     public TslEntry setTokenIndex(int tokenIndex)
     {
         this.tokenIndex = tokenIndex;
-
         return this;
     }
 
+    /**
+     * Get the token index associated with this entry.
+     *
+     * @return The token index.
+     */
     public int getTokenIndex()
     {
         return tokenIndex;
     }
 
+    /**
+     * Set the unique token ID for this entry.
+     *
+     * @param tokenId
+     *         The unique token identifier.
+     *
+     * @return {@code this} object for method chaining.
+     */
     public TslEntry setTokenId(String tokenId)
     {
         this.tokenId = tokenId;
-
         return this;
     }
 
+    /**
+     * Get the unique token ID associated with this entry.
+     *
+     * @return The token ID.
+     */
     public String getTokenId()
     {
         return tokenId;
     }
 
+    /**
+     * Set the current token status.
+     *
+     * @param tokenStatus
+     *         The status of the token.
+     *
+     * @return {@code this} object for method chaining.
+     */
     public TslEntry setTokenStatus(TslTokenStatus tokenStatus)
     {
         this.tokenStatus = tokenStatus;
-
         return this;
     }
 
+    /**
+     * Get the current status of the issued token.
+     *
+     * @return The token status.
+     */
     public TslTokenStatus getTokenStatus()
     {
         return tokenStatus;
     }
 
+    /**
+     * Set the usage flag for this token entry.
+     *
+     * @param isUsed
+     *         {@code true} if the entry is already used; {@code false} otherwise.
+     *
+     * @return {@code this} object for method chaining.
+     */
     public TslEntry setIsUsed(boolean isUsed)
     {
         this.isUsed = isUsed;
-
         return this;
     }
 
+    /**
+     * Check whether this token entry has been marked as used.
+     *
+     * @return {@code true} if the entry is used; {@code false} otherwise.
+     */
     public boolean isUsed()
     {
         return isUsed;
