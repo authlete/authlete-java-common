@@ -2,7 +2,8 @@ package com.authlete.common.types;
 
 import java.util.EnumSet;
 
-public enum TslTokenStatus {
+public enum TslTokenStatus
+{
 
     VALID((short)0, "valid"),
     INVALID((short)1, "invalid"),
@@ -15,7 +16,8 @@ public enum TslTokenStatus {
     private final String mString;
 
 
-    private TslTokenStatus(short value, String string) {
+    private TslTokenStatus(short value, String string)
+    {
         mValue  = value;
         mString = string;
     }
@@ -24,7 +26,8 @@ public enum TslTokenStatus {
     /**
      * Get the integer representation of this enum instance.
      */
-    public short getValue() {
+    public short getValue()
+    {
         return mValue;
     }
 

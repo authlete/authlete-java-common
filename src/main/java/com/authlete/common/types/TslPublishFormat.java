@@ -2,7 +2,8 @@ package com.authlete.common.types;
 
 import java.util.EnumSet;
 
-public enum TslPublishFormat {
+public enum TslPublishFormat
+{
 
     /**
      * Currently jwt is supported. TSL publishing cwt format will be supported in the next iteration
