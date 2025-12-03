@@ -29,7 +29,7 @@ public class TslConfigData implements Serializable
     private static final long serialVersionUID = 1L;
 
     /**
-     * The format of the TSL. Possible values are JWT and CWT. Currently only JWT is supported
+     * The format of the TSL. Possible values are jwt and cwt. Currently only jwt is supported
      *
      * @since 4.31
      * @since Authlete 3.0.22
@@ -37,7 +37,7 @@ public class TslConfigData implements Serializable
     private TslPublishFormat format;
 
     /**
-     * The validity of the TSL in hours
+     * The validity of the TSL in hours.
      *
      * @since 4.31
      * @since Authlete 3.0.22
@@ -45,7 +45,7 @@ public class TslConfigData implements Serializable
     private long validity;
 
     /**
-     * Publish TSL after every X hours
+     * Publish TSL after every X hours.
      *
      * @since 4.31
      * @since Authlete 3.0.22
@@ -71,7 +71,8 @@ public class TslConfigData implements Serializable
     /**
      * The default constructor.
      */
-    public TslConfigData() {
+    public TslConfigData()
+    {
     }
 
     /**
@@ -129,7 +130,8 @@ public class TslConfigData implements Serializable
      * @since 4.31
      * @since Authlete 3.0.22
      */
-    public TslConfigData setValidity(long validity) {
+    public TslConfigData setValidity(long validity)
+    {
         this.validity = validity;
 
         return this;

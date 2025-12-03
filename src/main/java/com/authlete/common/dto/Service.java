@@ -1981,7 +1981,7 @@ public class Service implements Serializable
     private boolean httpAliasProhibited;
 
     /**
-     * The flag indicating whether the feature of Trust status list publishing for
+     * The flag indicating whether the feature of TSL publishing for
      * this service is enabled or not.
      *
      * @since 4.31
