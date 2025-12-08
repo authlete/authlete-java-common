@@ -17,10 +17,10 @@ import java.net.URI;
  * <li>{@code publishEndpoint}
  * </ul>
  *
- * @since 4.31
+ * @since 4.33
  * @since Authlete 3.0.22
  *
- * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/13/"
+ * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/"
  *      >Token Status List (TSL)</a>
  */
 public class TslConfigData implements Serializable
@@ -30,41 +30,26 @@ public class TslConfigData implements Serializable
 
     /**
      * The format of the TSL. Possible values are jwt and cwt. Currently only jwt is supported
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private TslPublishFormat format;
 
     /**
      * The validity of the TSL in hours.
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private long validity;
 
     /**
      * Publish TSL after every X hours.
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private long publishFrequency;
 
     /**
      * Time to live in hours which provides indication to verifiers to cache this TSL
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private long timeToLive;
 
     /**
      * Endpoint where to publish this TSL
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private URI publishEndpoint;
 
@@ -92,13 +77,13 @@ public class TslConfigData implements Serializable
     }
 
     /**
-     * Sets the publish format for the TSL configuration.
+     * Sets the publishing format for the TSL configuration.
      *
-     * @param format the {@link TslPublishFormat} value to set
-     * @return this {@code TslConfigData} instance for method chaining
+     * @param format
+     *          the {@link TslPublishFormat} value to set
      *
-     * @since 4.31
-     * @since Authlete 3.0.22
+     * @return
+     *          this {@code TslConfigData} instance for method chaining
      */
     public TslConfigData setFormat(TslPublishFormat format)
     {
@@ -108,12 +93,10 @@ public class TslConfigData implements Serializable
     }
 
     /**
-     * Returns the publish format of the TSL configuration.
+     * Returns the publishing format of the TSL configuration.
      *
-     * @return the {@link TslPublishFormat} value currently configured
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
+     * @return
+     *          the {@link TslPublishFormat} value currently configured
      */
     public TslPublishFormat getFormat()
     {
@@ -123,12 +106,11 @@ public class TslConfigData implements Serializable
     /**
      * Sets the TSL validity in hours.
      *
-     * @param TSL validity in hours
+     * @param validity
+     *          validity in hours
      *
-     * @return this {@code TslConfigData} instance for method chaining
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
+     * @return
+     *          this {@code TslConfigData} instance for method chaining
      */
     public TslConfigData setValidity(long validity)
     {
@@ -140,10 +122,8 @@ public class TslConfigData implements Serializable
     /**
      * Returns the TSL validity in hours.
      *
-     * @return TSL validity
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
+     * @return
+     *          TSL validity
      */
     public long getValidity()
     {
@@ -153,12 +133,11 @@ public class TslConfigData implements Serializable
     /**
      * Sets the TSL publishing frequency in every X hours.
      *
-     * @param TSL publish frequency
+     * @param publishFrequency
+     *          TSL publish frequency
      *
-     * @return this {@code TslConfigData} instance for method chaining
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
+     * @return
+     *          this {@code TslConfigData} instance for method chaining
      */
     public TslConfigData setPublishFrequency(long publishFrequency)
     {
@@ -170,10 +149,8 @@ public class TslConfigData implements Serializable
     /**
      * Returns the TSL publishing frequency.
      *
-     * @return TSL publishing frequency
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
+     * @return
+     *          TSL publishing frequency
      */
     public long getPublishFrequency()
     {
@@ -183,12 +160,11 @@ public class TslConfigData implements Serializable
     /**
      * Sets the ttl value of TSL in hours.
      *
-     * @param ttl value
+     * @param timeToLive
+     *          the ttl value
      *
-     * @return this {@code TslConfigData} instance for method chaining
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
+     * @return
+     *          this {@code TslConfigData} instance for method chaining
      */
     public TslConfigData setTimeToLive(long timeToLive)
     {
@@ -200,10 +176,8 @@ public class TslConfigData implements Serializable
     /**
      * Returns the ttl value.
      *
-     * @return ttl value
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
+     * @return
+     *          ttl value
      */
     public long getTimeToLive()
     {
@@ -213,12 +187,11 @@ public class TslConfigData implements Serializable
     /**
      * Sets the TSL publishing endpoint.
      *
-     * @param publish endpoint
+     * @param publishEndpoint
+     *          TSL publish endpoint
      *
-     * @return this {@code TslConfigData} instance for method chaining
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
+     * @return
+     *          this {@code TslConfigData} instance for method chaining
      */
     public TslConfigData setPublishEndpoint(URI publishEndpoint)
     {
@@ -230,10 +203,8 @@ public class TslConfigData implements Serializable
     /**
      * Returns the TSL publishing endpoint.
      *
-     * @return publishing endpoint
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
+     * @return
+     *          TSL publishing endpoint
      */
     public URI getPublishEndpoint()
     {

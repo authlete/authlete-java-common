@@ -3,7 +3,7 @@ package com.authlete.common.dto;
 import java.io.Serializable;
 
 /**
- * Request to Authlete's {@code /tsl/publish} API.
+ * Request to Authlete's {@code /service/tsl/publish} API.
  *
  * <p>
  * This class represents a request to publish a Token Status List (TSL) for
@@ -15,10 +15,10 @@ import java.io.Serializable;
  * For more details about Token Status Lists (TSL), see:
  * </p>
  *
- * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/13/">
+ * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/">
  *      Token Status List (TSL) Specification</a>
  *
- * @since 4.31
+ * @since 4.33
  * @since Authlete 3.0.22
  */
 public class TslPublishRequest implements Serializable
@@ -32,9 +32,6 @@ public class TslPublishRequest implements Serializable
      * This uniquely identifies the service within Authlete's environment. When
      * this request is processed, the TSL for this service will be published.
      * </p>
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private int serviceNumber;
 
@@ -43,16 +40,22 @@ public class TslPublishRequest implements Serializable
      *
      * @param serviceNumber
      *         The service number to publish the TSL for.
+     *
+     * @return
+     *         {@code this} object.
      */
-    public void setServiceNumber(int serviceNumber)
+    public TslPublishRequest setServiceNumber(int serviceNumber)
     {
         this.serviceNumber = serviceNumber;
+
+        return this;
     }
 
     /**
      * Get the service number whose TSL is to be published.
      *
-     * @return The service number.
+     * @return
+     *          The service number.
      */
     public int getServiceNumber()
     {

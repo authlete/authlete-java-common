@@ -9,7 +9,7 @@ package com.authlete.common.dto;
  * next TSL will be published.
  * </p>
  *
- * @since 4.31
+ * @since 4.33
  * @since Authlete 3.0.22
  */
 public class TslPublishConfig
@@ -24,9 +24,6 @@ public class TslPublishConfig
      * This uniquely identifies the service whose TSL will be published at
      * the configured next publish time.
      * </p>
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private int serviceNumber;
 
@@ -37,9 +34,6 @@ public class TslPublishConfig
      * <p>
      * This value allows services to schedule periodic TSL publication.
      * </p>
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private long nextTslPublishTime;
 
@@ -48,16 +42,22 @@ public class TslPublishConfig
      *
      * @param serviceNumber
      *         The service number.
+     *
+     * @return
+     *         {@code this} object.
      */
-    public void setServiceNumber(int serviceNumber)
+    public TslPublishConfig setServiceNumber(int serviceNumber)
     {
         this.serviceNumber = serviceNumber;
+
+        return this;
     }
 
     /**
      * Get the service number associated with this TSL publish configuration.
      *
-     * @return The service number.
+     * @return
+     *          The service number.
      */
     public int getServiceNumber()
     {
@@ -69,10 +69,15 @@ public class TslPublishConfig
      *
      * @param nextTslPublishTime
      *         The next publish time, in seconds.
+     *
+     * @return
+     *         {@code this} object.
      */
-    public void setNextTslPublishTime(long nextTslPublishTime)
+    public TslPublishConfig setNextTslPublishTime(long nextTslPublishTime)
     {
         this.nextTslPublishTime = nextTslPublishTime;
+
+        return this;
     }
 
     /**
