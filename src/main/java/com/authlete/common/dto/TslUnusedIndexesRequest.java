@@ -3,7 +3,7 @@ package com.authlete.common.dto;
 import java.io.Serializable;
 
 /**
- * Request to Authlete's {@code /service/populate/unused/indexes} API.
+ * Request to Authlete's {@code /service/tsl/unused/indexes} API.
  *
  * <p>
  * This class represents a request to pre-populate unused token indexes for a
@@ -12,10 +12,10 @@ import java.io.Serializable;
  * of token indices within a Token Status List (TSL) environment.
  * </p>
  *
- * @since 4.31
+ * @since 4.33
  * @since Authlete 3.0.22
  */
-public class TslPopulateUnusedIndexesRequest implements Serializable
+public class TslUnusedIndexesRequest implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
@@ -26,9 +26,6 @@ public class TslPopulateUnusedIndexesRequest implements Serializable
      * This value uniquely identifies the service under which the unused
      * indexes will be created.
      * </p>
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private int serviceNumber;
 
@@ -37,16 +34,22 @@ public class TslPopulateUnusedIndexesRequest implements Serializable
      *
      * @param serviceNumber
      *         The service number to populate indexes for.
+     *
+     * @return
+     *         {@code this} object.
      */
-    public void setServiceNumber(int serviceNumber)
+    public TslUnusedIndexesRequest setServiceNumber(int serviceNumber)
     {
         this.serviceNumber = serviceNumber;
+
+        return this;
     }
 
     /**
      * Get the service number for which unused token indexes should be populated.
      *
-     * @return The service number.
+     * @return
+     *          The service number.
      */
     public int getServiceNumber()
     {

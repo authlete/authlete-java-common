@@ -24,10 +24,10 @@ import java.io.Serializable;
  * For more details about Token Status Lists (TSL), see:
  * </p>
  *
- * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/13/">
+ * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/">
  *      Token Status List (TSL) Specification</a>
  *
- * @since 4.31
+ * @since 4.33
  * @since Authlete 3.0.22
  */
 public class TslTokenStatusUpdateRequest implements Serializable
@@ -36,27 +36,16 @@ public class TslTokenStatusUpdateRequest implements Serializable
 
     /**
      * The token ID used to identify the issued VC/token whose status is to be changed.
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private String tokenId;
 
     /**
      * The token status to be set.
-     *
-     * @see TslTokenStatus
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private TslTokenStatus tokenStatus;
 
     /**
      * The index of the token in the issued TSL.
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private int tokenIndex;
 
@@ -65,16 +54,22 @@ public class TslTokenStatusUpdateRequest implements Serializable
      *
      * @param tokenId
      *         The unique token identifier.
+     *
+     * @return
+     *         {@code this} object.
      */
-    public void setTokenId(String tokenId)
+    public TslTokenStatusUpdateRequest setTokenId(String tokenId)
     {
         this.tokenId = tokenId;
+
+        return this;
     }
 
     /**
      * Get the token ID of the issued VC/token whose status is being updated.
      *
-     * @return The token ID.
+     * @return
+     *          The token ID.
      */
     public String getTokenId()
     {
@@ -86,16 +81,22 @@ public class TslTokenStatusUpdateRequest implements Serializable
      *
      * @param tokenStatus
      *         The new token status.
+     *
+     * @return
+     *         {@code this} object.
      */
-    public void setTokenStatus(TslTokenStatus tokenStatus)
+    public TslTokenStatusUpdateRequest setTokenStatus(TslTokenStatus tokenStatus)
     {
         this.tokenStatus = tokenStatus;
+
+        return this;
     }
 
     /**
      * Get the token status currently set for this update request.
      *
-     * @return The token status.
+     * @return
+     *          The token status.
      */
     public TslTokenStatus getTokenStatus()
     {
@@ -107,16 +108,22 @@ public class TslTokenStatusUpdateRequest implements Serializable
      *
      * @param tokenIndex
      *         The index of the token.
+     *
+     * @return
+     *         {@code this} object.
      */
-    public void setTokenIndex(int tokenIndex)
+    public TslTokenStatusUpdateRequest setTokenIndex(int tokenIndex)
     {
         this.tokenIndex = tokenIndex;
+
+        return this;
     }
 
     /**
      * Get the token index in the issued TSL.
      *
-     * @return The token index.
+     * @return
+     *          The token index.
      */
     public int getIndex()
     {

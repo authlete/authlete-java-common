@@ -11,7 +11,7 @@ import com.authlete.common.types.TslTokenStatus;
  * as part of a list in {@code /tsl/entries/list} responses.
  * </p>
  *
- * @since 4.31
+ * @since 4.33
  * @since Authlete 3.0.22
  */
 public class TslEntry
@@ -21,54 +21,46 @@ public class TslEntry
     /**
      * The token index associated with the issued VC/token.
      * This index helps uniquely identify the token within a service.
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private int tokenIndex;
 
     /**
      * The unique token ID assigned at issuance time.
      * This value is globally unique per token/VC.
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private String tokenId;
 
     /**
      * The current status of the issued VC/token.
-     *
-     * @see TslTokenStatus
-     *
-     * @since 4.31
-     * @since Authlete 3.0.22
      */
     private TslTokenStatus tokenStatus;
 
     /**
      * Indicates whether this token entry has been marked as used.
      */
-    private boolean isUsed;
+    private boolean used;
 
     /**
      * Set the token index associated with this entry.
      *
      * @param tokenIndex
-     *         The token index.
+     *          The token index.
      *
-     * @return {@code this} object for method chaining.
+     * @return
+     *          {@code this} object for method chaining.
      */
     public TslEntry setTokenIndex(int tokenIndex)
     {
         this.tokenIndex = tokenIndex;
+
         return this;
     }
 
     /**
      * Get the token index associated with this entry.
      *
-     * @return The token index.
+     * @return
+     *          The token index.
      */
     public int getTokenIndex()
     {
@@ -79,20 +71,23 @@ public class TslEntry
      * Set the unique token ID for this entry.
      *
      * @param tokenId
-     *         The unique token identifier.
+     *          The unique token identifier.
      *
-     * @return {@code this} object for method chaining.
+     * @return
+     *          {@code this} object for method chaining.
      */
     public TslEntry setTokenId(String tokenId)
     {
         this.tokenId = tokenId;
+
         return this;
     }
 
     /**
      * Get the unique token ID associated with this entry.
      *
-     * @return The token ID.
+     * @return
+     *          The token ID.
      */
     public String getTokenId()
     {
@@ -103,20 +98,23 @@ public class TslEntry
      * Set the current token status.
      *
      * @param tokenStatus
-     *         The status of the token.
+     *          The status of the token.
      *
-     * @return {@code this} object for method chaining.
+     * @return
+     *          {@code this} object for method chaining.
      */
     public TslEntry setTokenStatus(TslTokenStatus tokenStatus)
     {
         this.tokenStatus = tokenStatus;
+
         return this;
     }
 
     /**
      * Get the current status of the issued token.
      *
-     * @return The token status.
+     * @return
+     *          The token status.
      */
     public TslTokenStatus getTokenStatus()
     {
@@ -126,24 +124,27 @@ public class TslEntry
     /**
      * Set the usage flag for this token entry.
      *
-     * @param isUsed
-     *         {@code true} if the entry is already used; {@code false} otherwise.
+     * @param used
+     *          {@code true} if the entry is already used; {@code false} otherwise.
      *
-     * @return {@code this} object for method chaining.
+     * @return
+     *          {@code this} object for method chaining.
      */
-    public TslEntry setIsUsed(boolean isUsed)
+    public TslEntry setUsed(boolean used)
     {
-        this.isUsed = isUsed;
+        this.used = used;
+
         return this;
     }
 
     /**
      * Check whether this token entry has been marked as used.
      *
-     * @return {@code true} if the entry is used; {@code false} otherwise.
+     * @return
+     *          {@code true} if the entry is used; {@code false} otherwise.
      */
-    public boolean isUsed()
+    public boolean getUsed()
     {
-        return isUsed;
+        return used;
     }
 }
