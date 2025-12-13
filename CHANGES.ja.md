@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.33 (2025 年 12 月 13 日)
+--------------------------
+
 - `Service` クラス
     * `isCimdMetadataPolicyEnabled()` メソッドを追加。
     * `setCimdMetadataPolicyEnabled(boolean)` メソッドを追加。
