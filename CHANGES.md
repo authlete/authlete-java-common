@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added the `isCimdMetadataPolicyEnabled()` method.
+    * Added the `setCimdMetadataPolicyEnabled(boolean)` method.
+    * Added the `getCimdMetadataPolicy()` method.
+    * Added the `setCimdMetadataPolicy(String)` method.
+
+
 4.32 (2025-12-01)
 -----------------
 
