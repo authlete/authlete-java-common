@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 88L;
+    private static final long serialVersionUID = 89L;
 
 
     /*
@@ -1949,6 +1949,26 @@ public class Service implements Serializable
      * @since Authlete 3.0.22
      */
     private boolean cimdQueryPermitted;
+
+
+    /**
+     * Whether to apply the metadata policy to client metadata that is obtained
+     * through the CIMD mechanism.
+     *
+     * @since 4.33
+     * @since Authlete 3.0.23
+     */
+    private boolean cimdMetadataPolicyEnabled;
+
+
+    /**
+     * The metadata policy applied to client metadata that is obtained through
+     * the CIMD mechanism.
+     *
+     * @since 4.33
+     * @since Authlete 3.0.23
+     */
+    private String cimdMetadataPolicy;
 
 
     /**
@@ -12719,6 +12739,206 @@ public class Service implements Serializable
     public Service setCimdQueryPermitted(boolean permitted)
     {
         this.cimdQueryPermitted = permitted;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag that indicates whether to apply the metadata policy to
+     * client metadata that is obtained through the <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> mechanism.
+     *
+     * <p>
+     * If this flag is set to {@code true}, the metadata policy specified by
+     * the {@code cimdMetadataPolicy} property, if available, is applied to
+     * the client metadata that is obtained through the CIMD mechanism.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the metadata policy is applied to client
+     *         metadata that is obtained through the CIMD mechanism.
+     *
+     * @since 4.33
+     * @since Authlete 3.0.23
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public boolean isCimdMetadataPolicyEnabled()
+    {
+        return cimdMetadataPolicyEnabled;
+    }
+
+
+    /**
+     * Set the flag that indicates whether to apply the metadata policy to
+     * client metadata that is obtained through the <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> mechanism.
+     *
+     * <p>
+     * If this flag is set to {@code true}, the metadata policy specified by
+     * the {@code cimdMetadataPolicy} property, if available, is applied to
+     * the client metadata that is obtained through the CIMD mechanism.
+     * </p>
+     *
+     * @param enabled
+     *         {@code true} to apply the metadata policy to client metadata
+     *         that is obtained through the CIMD mechanism.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.33
+     * @since Authlete 3.0.23
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     */
+    public Service setCimdMetadataPolicyEnabled(boolean enabled)
+    {
+        this.cimdMetadataPolicyEnabled = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get the metadata policy applied to client metadata that is obtained
+     * through the <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> mechanism.
+     *
+     * <p>
+     * If the {@code cimdMetadataPolicyEnabled} property is set to {@code true},
+     * the metadata policy specified by this {@code cimdMetadataPolicy} property
+     * is applied to client metadata that is obtained through the CIMD mechanism.
+     * </p>
+     *
+     * <p>
+     * The metadata policy must comply with the grammar defined in <a href=
+     * "https://openid.net/specs/openid-federation-1_0.html#name-metadata-policy"
+     * >6.1. Metadata Policy</a> of the <a href=
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID Federation
+     * 1.0</a> specification. Below is an example of metadata policy:
+     * </p>
+     *
+     * <pre style="border: 1px solid black; margin: 1em; padding-top: 0.5em; padding-bottom: 0.5em;">
+     * {
+     *   <font color="navy">"grant_types"</font>: {
+     *     <font color="darkgreen">"default"</font>: [
+     *       <font color="brown">"authorization_code"</font>
+     *     ],
+     *     <font color="darkgreen">"subset_of"</font>: [
+     *       <font color="brown">"authorization_code"</font>,
+     *       <font color="brown">"refresh_token"</font>
+     *     ],
+     *     <font color="darkgreen">"superset_of"</font>: [
+     *       <font color="brown">"authorization_code"</font>
+     *     ]
+     *   },
+     *   <font color="navy">"token_endpoint_auth_method"</font>: {
+     *     <font color="darkgreen">"one_of"</font>: [
+     *       <font color="brown">"private_key_jwt"</font>,
+     *       <font color="brown">"self_signed_tls_client_auth"</font>
+     *     ],
+     *     <font color="darkgreen">"essential"</font>: <font color="chocolate">true</font>
+     *   },
+     *   <font color="navy">"token_endpoint_auth_signing_alg"</font> : {
+     *     <font color="darkgreen">"one_of"</font>: [
+     *       <font color="brown">"PS256"</font>,
+     *       <font color="brown">"ES256</font>"
+     *     ]
+     *   }
+     * }</pre>
+     *
+     * @return
+     *         The metadata policy applied to client metadata that is obtained
+     *         through the CIMD mechanism.
+     *
+     * @since 4.33
+     * @since Authlete 3.0.23
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html#name-metadata-policy">
+     *      OpenID Federation 1.0, Section 6.1. Metadata Policy</a>
+     */
+    public String getCimdMetadataPolicy()
+    {
+        return cimdMetadataPolicy;
+    }
+
+
+    /**
+     * Set the metadata policy applied to client metadata that is obtained
+     * through the <a href=
+     * "https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
+     * >CIMD</a> mechanism.
+     *
+     * <p>
+     * If the {@code cimdMetadataPolicyEnabled} property is set to {@code true},
+     * the metadata policy specified by this {@code cimdMetadataPolicy} property
+     * is applied to client metadata that is obtained through the CIMD mechanism.
+     * </p>
+     *
+     * <p>
+     * The metadata policy must comply with the grammar defined in <a href=
+     * "https://openid.net/specs/openid-federation-1_0.html#name-metadata-policy"
+     * >6.1. Metadata Policy</a> of the <a href=
+     * "https://openid.net/specs/openid-federation-1_0.html">OpenID Federation
+     * 1.0</a> specification. Below is an example of metadata policy:
+     * </p>
+     *
+     * <pre style="border: 1px solid black; margin: 1em; padding-top: 0.5em; padding-bottom: 0.5em;">
+     * {
+     *   <font color="navy">"grant_types"</font>: {
+     *     <font color="darkgreen">"default"</font>: [
+     *       <font color="brown">"authorization_code"</font>
+     *     ],
+     *     <font color="darkgreen">"subset_of"</font>: [
+     *       <font color="brown">"authorization_code"</font>,
+     *       <font color="brown">"refresh_token"</font>
+     *     ],
+     *     <font color="darkgreen">"superset_of"</font>: [
+     *       <font color="brown">"authorization_code"</font>
+     *     ]
+     *   },
+     *   <font color="navy">"token_endpoint_auth_method"</font>: {
+     *     <font color="darkgreen">"one_of"</font>: [
+     *       <font color="brown">"private_key_jwt"</font>,
+     *       <font color="brown">"self_signed_tls_client_auth"</font>
+     *     ],
+     *     <font color="darkgreen">"essential"</font>: <font color="chocolate">true</font>
+     *   },
+     *   <font color="navy">"token_endpoint_auth_signing_alg"</font> : {
+     *     <font color="darkgreen">"one_of"</font>: [
+     *       <font color="brown">"PS256"</font>,
+     *       <font color="brown">"ES256</font>"
+     *     ]
+     *   }
+     * }</pre>
+     *
+     * @param policy
+     *         The metadata policy applied to client metadata that is obtained
+     *         through the CIMD mechanism.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.33
+     * @since Authlete 3.0.23
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/">
+     *      OAuth Client ID Metadata Document</a>
+     * @see <a href="https://openid.net/specs/openid-federation-1_0.html#name-metadata-policy">
+     *      OpenID Federation 1.0, Section 6.1. Metadata Policy</a>
+     */
+    public Service setCimdMetadataPolicy(String policy)
+    {
+        this.cimdMetadataPolicy = policy;
 
         return this;
     }
