@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2021 Authlete, Inc.
+ * Copyright (C) 2019-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import com.google.gson.GsonBuilder;
  */
 public class AuthzDetailsElement implements Serializable
 {
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
 
     private String type;
@@ -40,6 +40,43 @@ public class AuthzDetailsElement implements Serializable
     private String identifier;
     private String[] privileges;
     private String otherFields;
+
+
+    /**
+     * The default constructor.
+     */
+    public AuthzDetailsElement()
+    {
+    }
+
+
+    /**
+     * The copy constructor.
+     *
+     * @param element
+     *         The source instance.
+     *
+     * @since 4.34
+     */
+    public AuthzDetailsElement(AuthzDetailsElement element)
+    {
+        if (element != null)
+        {
+            this.type        = element.type;
+            this.locations   = copy(element.locations);
+            this.actions     = copy(element.actions);
+            this.dataTypes   = copy(element.dataTypes);
+            this.identifier  = element.identifier;
+            this.privileges  = copy(element.privileges);
+            this.otherFields = element.otherFields;
+        }
+    }
+
+
+    private static String[] copy(String[] source)
+    {
+        return (source != null) ? source.clone() : null;
+    }
 
 
     /**
