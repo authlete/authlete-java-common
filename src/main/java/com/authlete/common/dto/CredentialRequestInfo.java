@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023-2024 Authlete, Inc.
+ * Copyright (C) 2023-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -32,12 +32,12 @@ import java.io.Serializable;
  * @since 3.66
  * @since Authlete 3.0
  *
- * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html"
- *      >OpenID for Verifiable Credential Issuance</a>
+ * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
+ *      OpenID for Verifiable Credential Issuance 1.0</a>
  */
 public class CredentialRequestInfo implements Serializable
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -70,6 +70,25 @@ public class CredentialRequestInfo implements Serializable
      * The details about the credential request.
      */
     private String details;
+
+
+    /**
+     * The {@code credential_configuration_id} parameter in the credential
+     * request.
+     *
+     * @since 4.34
+     * @since Authlete 3.0.25
+     */
+    private String credentialConfigurationId;
+
+
+    /**
+     * The {@code credential_identifier} parameter in the credential request.
+     *
+     * @since 4.34;
+     * @since Authlete 3.0.25
+     */
+    private String credentialIdentifier;
 
 
     /**
@@ -118,9 +137,18 @@ public class CredentialRequestInfo implements Serializable
     /**
      * Get the value of the {@code format} parameter in the credential request.
      *
+     * <p>
+     * This {@code format} property is available only when the supported OID4VCI
+     * specification version is {@code "1.0-ID1"} (i.e., when the Service's
+     * {@code oid4vciVersion} is unset or set to {@code "1.0-ID1"}) and the
+     * credential request contains the {@code format} parameter. Note that in
+     * the final version of the specification, the {@code format} parameter is
+     * deprecated.
+     * </p>
+     *
      * @return
      *         The value of the {@code format} parameter in the credential request.
-     *         Such as {@code "vc+sd-jwt"}.
+     *         Such as {@code "dc+sd-jwt"}.
      */
     public String getFormat()
     {
@@ -131,9 +159,18 @@ public class CredentialRequestInfo implements Serializable
     /**
      * Set the value of the {@code format} parameter in the credential request.
      *
+     * <p>
+     * This {@code format} property is available only when the supported OID4VCI
+     * specification version is {@code "1.0-ID1"} (i.e., when the Service's
+     * {@code oid4vciVersion} is unset or set to {@code "1.0-ID1"}) and the
+     * credential request contains the {@code format} parameter. Note that in
+     * the final version of the specification, the {@code format} parameter is
+     * deprecated.
+     * </p>
+     *
      * @param format
      *         The value of the {@code format} parameter in the credential request.
-     *         Such as {@code "jwt_vc_json"} and {@code "vc+sd-jwt"}.
+     *         Such as {@code "jwt_vc_json"} and {@code "dc+sd-jwt"}.
      *
      * @return
      *         {@code this} object.
@@ -296,6 +333,116 @@ public class CredentialRequestInfo implements Serializable
     public CredentialRequestInfo setDetails(String details)
     {
         this.details = details;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the {@code credential_configuration_id} parameter in
+     * the credential request.
+     *
+     * <p>
+     * This property is not available when the supported OID4VCI specification
+     * version is {@code "1.0-ID1"} (i.e., when the Service's
+     * {@code oid4vciVersion} is unset or set to {@code "1.0-ID1"}), because
+     * the {@code credential_configuration_id} parameter does not exist in
+     * OID4VCI 1.0 ID1.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code credential_configuration_id} parameter
+     *         in the credential request.
+     *
+     * @since 4.34
+     * @since Authlete 3.0.25
+     */
+    public String getCredentialConfigurationId()
+    {
+        return credentialConfigurationId;
+    }
+
+
+    /**
+     * Set the value of the {@code credential_configuration_id} parameter in
+     * the credential request.
+     *
+     * <p>
+     * This property is not available when the supported OID4VCI specification
+     * version is {@code "1.0-ID1"} (i.e., when the Service's
+     * {@code oid4vciVersion} is unset or set to {@code "1.0-ID1"}), because
+     * the {@code credential_configuration_id} parameter does not exist in
+     * OID4VCI 1.0 ID1.
+     * </p>
+     *
+     * @param id
+     *         The value of the {@code credential_configuration_id} parameter
+     *         in the credential request.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.34
+     * @since Authlete 3.0.25
+     */
+    public CredentialRequestInfo setCredentialConfigurationId(String id)
+    {
+        this.credentialConfigurationId = id;
+
+        return this;
+    }
+
+
+    /**
+     * Get the value of the {@code credential_identifier} parameter in the
+     * credential request.
+     *
+     * <p>
+     * This property is not available when the supported OID4VCI specification
+     * version is {@code "1.0-ID1"} (i.e., when the Service's
+     * {@code oid4vciVersion} is unset or set to {@code "1.0-ID1"}), because
+     * Authlete does not support the {@code credential_identifier} parameter
+     * for OID4VCI 1.0 ID1.
+     * </p>
+     *
+     * @return
+     *         The value of the {@code credential_identifier} parameter in the
+     *         credential request.
+     *
+     * @since 4.34
+     * @since Authlete 3.0.25
+     */
+    public String getCredentialIdentifier()
+    {
+        return credentialIdentifier;
+    }
+
+
+    /**
+     * Set the value of the {@code credential_identifier} parameter in the
+     * credential request.
+     *
+     * <p>
+     * This property is not available when the supported OID4VCI specification
+     * version is {@code "1.0-ID1"} (i.e., when the Service's
+     * {@code oid4vciVersion} is unset or set to {@code "1.0-ID1"}), because
+     * Authlete does not support the {@code credential_identifier} parameter
+     * for OID4VCI 1.0 ID1.
+     * </p>
+     *
+     * @param identifier
+     *         The value of the {@code credential_identifier} parameter in the
+     *         credential request.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.34
+     * @since Authlete 3.0.25
+     */
+    public CredentialRequestInfo setCredentialIdentifier(String identifier)
+    {
+        this.credentialIdentifier = identifier;
 
         return this;
     }
