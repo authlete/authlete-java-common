@@ -1,6 +1,20 @@
 CHANGES
 =======
 
+4.34 (2026-01-03)
+-----------------
+
+- `AuthzDetailsElement` class
+    * Added the default constructor explicitly.
+    * Added a copy constructor (`AuthzDetailsElement(AuthzDetailsElement)`).
+
+- `CredentialRequestInfo` class
+    * Added the `getCredentialConfigurationId()` method.
+    * Added the `setCredentialConfigurationId(String)` method.
+    * Added the `getCredentialIdentifier()` method.
+    * Added the `setCredentialIdentifier(String)` method.
+
+
 4.33 (2025-12-13)
 -----------------
 

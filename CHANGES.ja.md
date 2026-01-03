@@ -1,6 +1,20 @@
 変更点
 ======
 
+4.34 (2026 年 01 月 03 日)
+--------------------------
+
+- `AuthzDetailsElement` クラス
+    * デフォルトコンストラクタを明示的に追加。
+    * コピーコンストラクタ (`AuthzDetailsElement(AuthzDetailsElement)`) を追加。
+
+- `CredentialRequestInfo` クラス
+    * `getCredentialConfigurationId()` メソッドを追加。
+    * `setCredentialConfigurationId(String)` メソッドを追加。
+    * `getCredentialIdentifier()` メソッドを追加。
+    * `setCredentialIdentifier(String)` メソッドを追加。
+
+
 4.33 (2025 年 12 月 13 日)
 --------------------------
 
