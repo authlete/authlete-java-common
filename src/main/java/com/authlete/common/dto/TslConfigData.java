@@ -1,6 +1,6 @@
 package com.authlete.common.dto;
 
-import com.authlete.common.types.TslPublishFormat;
+import com.authlete.common.types.TslFormat;
 
 import java.io.Serializable;
 import java.net.URI;
@@ -31,7 +31,7 @@ public class TslConfigData implements Serializable
     /**
      * The format of the TSL. Possible values are jwt and cwt. Currently only jwt is supported
      */
-    private TslPublishFormat format;
+    private TslFormat format;
 
     /**
      * The validity of the TSL in hours.
@@ -80,12 +80,12 @@ public class TslConfigData implements Serializable
      * Sets the publishing format for the TSL configuration.
      *
      * @param format
-     *          the {@link TslPublishFormat} value to set
+     *          the {@link TslFormat} value to set
      *
      * @return
      *          this {@code TslConfigData} instance for method chaining
      */
-    public TslConfigData setFormat(TslPublishFormat format)
+    public TslConfigData setFormat(TslFormat format)
     {
         this.format = format;
 
@@ -96,9 +96,9 @@ public class TslConfigData implements Serializable
      * Returns the publishing format of the TSL configuration.
      *
      * @return
-     *          the {@link TslPublishFormat} value currently configured
+     *          the {@link TslFormat} value currently configured
      */
-    public TslPublishFormat getFormat()
+    public TslFormat getFormat()
     {
         return format;
     }
