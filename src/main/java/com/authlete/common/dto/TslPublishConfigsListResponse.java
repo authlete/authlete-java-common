@@ -32,6 +32,7 @@ package com.authlete.common.dto;
  * <ul>
  *   <li>{@code serviceID} – The service ID.</li>
  *   <li>{@code nextTslPublishTime} – The scheduled Unix timestamp (seconds) for the next TSL publication.</li>
+ *   <li>{@code format} – The TSL format.</li>
  * </ul>
  *
  * @since 4.33
@@ -42,7 +43,9 @@ public class TslPublishConfigsListResponse extends ApiResponse
     private static final long serialVersionUID = 1L;
 
     /**
-     * The result of the {@code /tsl/publish/configs/list} API call.
+     * The next action that the implementation of the publish TSL endpoint
+     * should take after getting a response from Authlete's
+     * {@code /tsl/publish/configs/list} API.
      */
     public enum Action
     {
@@ -63,17 +66,18 @@ public class TslPublishConfigsListResponse extends ApiResponse
      *
      * <p>
      * Each element in the array contains the publishing schedule for a service,
-     * including the service ID and the next scheduled publish time.
+     * including the service ID, format and the next TSL scheduled publish time.
      * </p>
      */
     private TslPublishConfigInfo[] info;
 
 
     /**
-     * Get the result of the {@code /tsl/publish/configs/list} API call.
+     * Get the next action that the implementation of the TSL publish endpoint should
+     * take after getting a response from Authlete's {@code /tsl/publish/configs/list} API.
      *
      * @return
-     *         The result of the API call.
+     *         The next action.
      */
     public Action getAction()
     {
@@ -81,10 +85,11 @@ public class TslPublishConfigsListResponse extends ApiResponse
     }
 
     /**
-     * Set the result of the {@code /tsl/publish/configs/list} API call.
+     * Set the next action that the implementation of the TSL endpoint should
+     * take after getting a response from Authlete's {@code /tsl/publish/configs/list} API.
      *
      * @param action
-     *         The result of the API call.
+     *         The next action.
      *
      * @return
      *         {@code this} object.

@@ -24,7 +24,7 @@ import java.io.Serializable;
  * This class represents a request to pre-populate unused token indexes for a
  * particular service. These unused indexes are later consumed when issuing
  * Verifiable Credentials (VCs) or access tokens, allowing efficient allocation
- * of token indices within a Token Status List (TSL) environment.
+ * of token indexes within a Token Status List (TSL) environment.
  * </p>
  *
  * @since 4.33
@@ -98,8 +98,5 @@ public class TslUnusedIndexesRequest implements Serializable
     {
         return unusedTokenIndexesAdd;
     }
-
-
-
 
 }

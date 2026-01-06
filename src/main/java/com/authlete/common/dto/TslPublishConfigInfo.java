@@ -7,7 +7,7 @@ import com.authlete.common.types.TslFormat;
  *
  * <p>
  * This class contains per-service settings related to TSL publication, including
- * the service ID and the Unix timestamp (in seconds) indicating when the
+ * the service ID, format and the Unix timestamp (in seconds) indicating when the
  * next TSL will be published.
  * </p>
  *
@@ -40,12 +40,12 @@ public class TslPublishConfigInfo
     private long nextTslPublishTime;
 
     /**
-     * The TSL format of the published TSL for this service.
+     * The TSL format of the TSL for this service.
      */
     private TslFormat format;
 
     /**
-     * Set the service ID associated with this TSL publish configuration.
+     * Set the service ID associated with this TSL publish configurations.
      *
      * @param serviceId
      *         The service ID.
@@ -61,7 +61,7 @@ public class TslPublishConfigInfo
     }
 
     /**
-     * Get the service ID associated with this TSL publish configuration.
+     * Get the service ID associated with this TSL publish configurations.
      *
      * @return
      *          The service ID.
@@ -98,7 +98,7 @@ public class TslPublishConfigInfo
     }
 
     /**
-     * Sets the format of the published TSL
+     * Sets the format of the TSL
      *
      * @param format
      *         The TSL format.

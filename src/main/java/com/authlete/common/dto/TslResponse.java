@@ -34,9 +34,6 @@ public class TslResponse extends ApiResponse
      * The next action that the implementation of the TSL endpoint
      * should take after getting a response from Authlete's
      * {@code /tsl} API.
-     *
-     * @since 4.33
-     * @since Authlete 3.0.22
      */
     public enum Action
     {

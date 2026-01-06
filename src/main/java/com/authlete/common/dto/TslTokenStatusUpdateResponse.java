@@ -35,9 +35,6 @@ public class TslTokenStatusUpdateResponse extends ApiResponse {
      * The next action that the implementation of the token status update endpoint
      * should take after getting a response from Authlete's
      * {@code /tsl/token/status} API.
-     *
-     * @since 4.33
-     * @since Authlete 3.0.22
      */
     public enum Action
     {

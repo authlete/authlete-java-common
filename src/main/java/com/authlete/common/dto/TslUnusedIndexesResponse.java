@@ -22,7 +22,7 @@ package com.authlete.common.dto;
  * This class represents a response to pre-populate unused token indexes for a
  * particular service. These unused indexes are later consumed when issuing
  * Verifiable Credentials (VCs) or access tokens, allowing efficient allocation
- * of token indices within a Token Status List (TSL) environment.
+ * of token indexes within a Token Status List (TSL) environment.
  * </p>
  *
  * @since 4.33
@@ -37,14 +37,11 @@ public class TslUnusedIndexesResponse extends ApiResponse {
      * The next action that the implementation of the TSL unused indexes endpoint
      * should take after getting a response from Authlete's
      * {@code /tsl/unused/indexes} API.
-     *
-     * @since 4.33
-     * @since Authlete 3.0.22
      */
     public enum Action
     {
         /**
-         * A TSL publish response has been prepared successfully.
+         * A TSL unused indexes has been populated successfully.
          */
         OK,
 
