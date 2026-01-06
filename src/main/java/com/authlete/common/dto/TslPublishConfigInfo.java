@@ -1,31 +1,33 @@
 package com.authlete.common.dto;
 
+import com.authlete.common.types.TslFormat;
+
 /**
- * Represents the Token Status List (TSL) publish configuration for a service.
+ * Represents the Token Status List (TSL) publish configurations for a service.
  *
  * <p>
  * This class contains per-service settings related to TSL publication, including
- * the service identifier and the Unix timestamp (in seconds) indicating when the
+ * the service ID and the Unix timestamp (in seconds) indicating when the
  * next TSL will be published.
  * </p>
  *
  * @since 4.33
  * @since Authlete 3.0.22
  */
-public class TslPublishConfig
+public class TslPublishConfigInfo
 {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * The service number for which the TSL publication schedule applies.
+     * The service ID for which the TSL publication schedule applies.
      *
      * <p>
      * This uniquely identifies the service whose TSL will be published at
      * the configured next publish time.
      * </p>
      */
-    private int serviceNumber;
+    private long serviceId;
 
     /**
      * The Unix timestamp (in seconds) indicating when the next TSL
@@ -38,30 +40,35 @@ public class TslPublishConfig
     private long nextTslPublishTime;
 
     /**
-     * Set the service number associated with this TSL publish configuration.
+     * The TSL format of the published TSL for this service.
+     */
+    private TslFormat format;
+
+    /**
+     * Set the service ID associated with this TSL publish configuration.
      *
-     * @param serviceNumber
-     *         The service number.
+     * @param serviceId
+     *         The service ID.
      *
      * @return
      *         {@code this} object.
      */
-    public TslPublishConfig setServiceNumber(int serviceNumber)
+    public TslPublishConfigInfo setServiceId(long serviceId)
     {
-        this.serviceNumber = serviceNumber;
+        this.serviceId = serviceId;
 
         return this;
     }
 
     /**
-     * Get the service number associated with this TSL publish configuration.
+     * Get the service ID associated with this TSL publish configuration.
      *
      * @return
-     *          The service number.
+     *          The service ID.
      */
-    public int getServiceNumber()
+    public long getServiceId()
     {
-        return serviceNumber;
+        return serviceId;
     }
 
     /**
@@ -73,7 +80,7 @@ public class TslPublishConfig
      * @return
      *         {@code this} object.
      */
-    public TslPublishConfig setNextTslPublishTime(long nextTslPublishTime)
+    public TslPublishConfigInfo setNextTslPublishTime(long nextTslPublishTime)
     {
         this.nextTslPublishTime = nextTslPublishTime;
 
@@ -89,4 +96,32 @@ public class TslPublishConfig
     {
         return nextTslPublishTime;
     }
+
+    /**
+     * Sets the format of the published TSL
+     *
+     * @param format
+     *         The TSL format.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public TslPublishConfigInfo setTslFormat(TslFormat format)
+    {
+        this.format = format;
+
+        return this;
+    }
+
+    /**
+     * Gets the format of the TSL.
+     *
+     * @return
+     *         The TSL format.
+     */
+    public TslFormat getTslFormat()
+    {
+        return format;
+    }
+
 }

@@ -20,11 +20,12 @@ import com.authlete.common.types.TslFormat;
 import java.io.Serializable;
 
 /**
- * Request to Authlete's {@code /tsl/publish} API.
+ * Request to Authlete's {@code /tsl} API.
  *
  * <p>
- * This class represents a request to publish a Token Status List (TSL) for
- * a specific service.
+ * This class represents a request to retrieve a published Token Status List (TSL)
+ * for a specific service. The request requires the caller to specify the
+ * {@code tslFormat} for the requested TSL.
  * </p>
  *
  * <p>
@@ -37,17 +38,17 @@ import java.io.Serializable;
  * @since 4.33
  * @since Authlete 3.0.22
  */
-public class TslPublishRequest implements Serializable
+public class TslRequest implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The format of the to be published TSL.
+     * The requested TSL format. Currently only JWT format is supported.
      */
     private TslFormat format;
 
     /**
-     * Set the to be published TSL format
+     * Set the requested TSL format
      *
      * @param format
      *         The TSL format.
@@ -55,7 +56,7 @@ public class TslPublishRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public TslPublishRequest setTslFormat(TslFormat format)
+    public TslRequest setTslFormat(TslFormat format)
     {
         this.format = format;
 
@@ -63,7 +64,7 @@ public class TslPublishRequest implements Serializable
     }
 
     /**
-     * Get the to be published TSL format.
+     * Get the requested TSL format.
      *
      * @return
      *         The TSL format.

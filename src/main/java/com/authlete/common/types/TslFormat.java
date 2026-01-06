@@ -2,7 +2,7 @@ package com.authlete.common.types;
 
 import java.util.EnumSet;
 
-public enum TslPublishFormat
+public enum TslFormat
 {
 
     /**
@@ -11,13 +11,13 @@ public enum TslPublishFormat
     JWT((short)1, "jwt");
 
 
-    private static final TslPublishFormat[] sValues = values();
-    private static final TslPublishFormat.Helper sHelper = new TslPublishFormat.Helper(sValues);
+    private static final TslFormat[] sValues = values();
+    private static final TslFormat.Helper sHelper = new TslFormat.Helper(sValues);
     private final short mValue;
     private final String mString;
 
 
-    private TslPublishFormat(short value, String string)
+    private TslFormat(short value, String string)
     {
         mValue  = value;
         mString = string;
@@ -42,7 +42,7 @@ public enum TslPublishFormat
      * @return
      *         An instance of this enum, or {@code null} if not found.
      */
-    public static TslPublishFormat getByValue(short value)
+    public static TslFormat getByValue(short value)
     {
         if (value < 1 || sValues.length < value)
         {
@@ -66,49 +66,49 @@ public enum TslPublishFormat
     }
 
 
-    public static int toBits(EnumSet<TslPublishFormat> set)
+    public static int toBits(EnumSet<TslFormat> set)
     {
         return sHelper.toBits(set);
     }
 
 
-    public static TslPublishFormat[] toArray(int bits)
+    public static TslFormat[] toArray(int bits)
     {
         return sHelper.toArray(bits);
     }
 
 
-    public static EnumSet<TslPublishFormat> toSet(int bits)
+    public static EnumSet<TslFormat> toSet(int bits)
     {
         return sHelper.toSet(bits);
     }
 
 
-    public static EnumSet<TslPublishFormat> toSet(TslPublishFormat[] array)
+    public static EnumSet<TslFormat> toSet(TslFormat[] array)
     {
         return sHelper.toSet(array);
     }
 
 
-    private static class Helper extends EnumHelper<TslPublishFormat>
+    private static class Helper extends EnumHelper<TslFormat>
     {
-        public Helper(TslPublishFormat[] values)
+        public Helper(TslFormat[] values)
         {
-            super(TslPublishFormat.class, values);
+            super(TslFormat.class, values);
         }
 
 
         @Override
-        protected short getValue(TslPublishFormat entry)
+        protected short getValue(TslFormat entry)
         {
             return entry.getValue();
         }
 
 
         @Override
-        protected TslPublishFormat[] newArray(int size)
+        protected TslFormat[] newArray(int size)
         {
-            return new TslPublishFormat[size];
+            return new TslFormat[size];
         }
     }
 }
