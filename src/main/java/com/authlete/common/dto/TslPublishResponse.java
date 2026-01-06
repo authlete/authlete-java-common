@@ -34,9 +34,6 @@ public class TslPublishResponse extends ApiResponse
      * The next action that the implementation of the publish TSL endpoint
      * should take after getting a response from Authlete's
      * {@code /tsl/publish} API.
-     *
-     * @since 4.33
-     * @since Authlete 3.0.22
      */
     public enum Action
     {
@@ -50,6 +47,11 @@ public class TslPublishResponse extends ApiResponse
          * configuration.
          */
         FORBIDDEN,
+
+        /**
+         * Invalid TSL format
+         */
+        INVALID_TSL_FORMAT,
     }
 
     private Action action;
