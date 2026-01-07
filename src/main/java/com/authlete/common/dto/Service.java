@@ -1975,11 +1975,31 @@ public class Service implements Serializable
      * Whether to prohibit client ID aliases that start with {@code https://}
      * or {@code http://}.
      *
-     * @since 4.32
+     * @since 4.33
      * @since Authlete 3.0.22
      */
     private boolean httpAliasProhibited;
 
+    /**
+     * The flag indicating whether the feature of TSL publishing for
+     * this service is enabled or not.
+     *
+     * @since 4.33
+     * @since Authlete 3.0.22
+     */
+    private boolean tslPublishingEnabled;
+
+
+    /**
+     * TSL configuration data.
+     *
+     * @since 4.33
+     * @since Authlete 3.0.22
+     *
+     * @see <https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/>
+     *     Trust Status List</a>
+     */
+    private TslConfigData tslConfigData;
 
     /**
      * Get the service number.
@@ -12117,7 +12137,6 @@ public class Service implements Serializable
         return this;
     }
 
-
     /**
      * Get the version of the OpenID for Verifiable Credential Issuance
      * specification to support.
@@ -12228,6 +12247,39 @@ public class Service implements Serializable
         return this;
     }
 
+    /*
+     * Sets whether TSL publishing is enabled for this service.
+     *
+     * @param tslPublishingEnabled
+     *          {@code true} to enable TSL publishing. {@code false} to disable it.
+     *
+     * @return
+     *          this {@link Service} instance for method chaining
+     *
+     * @since 4.33
+     * @since Authlete 3.0.22
+     */
+    public Service setTslPublishingEnabled(boolean tslPublishingEnabled)
+    {
+        this.tslPublishingEnabled = tslPublishingEnabled;
+
+        return this;
+    }
+
+    /**
+     * Get the flag indicating whether the feature of TSL publishing
+     * for this service is enabled or not.
+     *
+     * @return
+     *          {@code true} if the feature of TSL publishing is enabled.
+     *
+     * @since 4.33
+     * @since Authlete 3.0.22
+     */
+    public boolean isTslPublishingEnabled()
+    {
+        return tslPublishingEnabled;
+    }
 
     /**
      * Get the flag to determine to support <a href=
@@ -12279,10 +12331,30 @@ public class Service implements Serializable
     public Service setClientIdMetadataDocumentSupported(boolean supported)
     {
         this.clientIdMetadataDocumentSupported = supported;
-
         return this;
     }
 
+    /**
+     * Sets the {@link TslConfigData} for this service.
+     *
+     * @param tslConfigData
+     *          the configuration data to be applied
+     *
+     * @return
+     *          this {@code Service} instance for method chaining
+     *
+     * @since 4.33
+     * @since Authlete 3.0.22
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-status-list/">
+     *     Trust Status List</a>
+     */
+    public Service setTslConfigData(TslConfigData tslConfigData)
+    {
+        this.tslConfigData = tslConfigData;
+
+        return this;
+    }
 
     /**
      * Get the flag that indicates whether the allowlist for client IDs
@@ -13020,5 +13092,20 @@ public class Service implements Serializable
         this.httpAliasProhibited = prohibited;
 
         return this;
+    }
+
+    /**
+     * Retrieves the {@link TslConfigData} associated with this service.
+     *
+     * @return
+     *          the current {@link TslConfigData}
+     *
+     * @since 4.33
+     * @since Authlete 3.0.22
+     */
+    public TslConfigData getTslConfigData()
+    {
+        return tslConfigData;
+
     }
 }
