@@ -54,7 +54,7 @@ public class TslUnusedIndexesRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public TslUnusedIndexesRequest setUnusedTokenIndexLeft(long unusedTokenIndexesLeft)
+    public TslUnusedIndexesRequest setUnusedTokenIndexesLeft(long unusedTokenIndexesLeft)
     {
         this.unusedTokenIndexesLeft = unusedTokenIndexesLeft;
 
@@ -67,7 +67,7 @@ public class TslUnusedIndexesRequest implements Serializable
      * @return
      *         The unused token indexes left value.
      */
-    public long getUnusedTokenIndexLeft()
+    public long getUnusedTokenIndexesLeft()
     {
         return unusedTokenIndexesLeft;
     }
@@ -81,7 +81,7 @@ public class TslUnusedIndexesRequest implements Serializable
      * @return
      *         {@code this} object.
      */
-    public TslUnusedIndexesRequest setUnusedTokenIndexAdd(long unusedTokenIndexesAdd)
+    public TslUnusedIndexesRequest setUnusedTokenIndexesAdd(long unusedTokenIndexesAdd)
     {
         this.unusedTokenIndexesAdd = unusedTokenIndexesAdd;
 
@@ -94,7 +94,7 @@ public class TslUnusedIndexesRequest implements Serializable
      * @return
      *         The unused token indexes add value.
      */
-    public long getUnusedTokenIndexAdd()
+    public long getUnusedTokenIndexesAdd()
     {
         return unusedTokenIndexesAdd;
     }
