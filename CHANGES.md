@@ -1,6 +1,23 @@
 CHANGES
 =======
 
+- `CredentialDeferredIssueRequest` class
+    * Added the `isDenied()` method.
+    * Added the `setDenied(boolean)` method.
+    * Added the `getInterval()` method.
+    * Added the `setInterval(int)` method.
+
+- `CredentialDeferredIssueResponse.Action` enum
+    * Added `ACCEPTED`.
+    * Added `ACCEPTED_JWT`.
+
+- `CredentialSingleIssueRequest` class
+    * Added the `isDenied()` method.
+    * Added the `setDenied(boolean)` method.
+    * Added the `getInterval()` method.
+    * Added the `setInterval(int)` method.
+
+
 4.34 (2026-01-03)
 -----------------
 
