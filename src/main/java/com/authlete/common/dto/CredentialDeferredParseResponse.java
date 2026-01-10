@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Authlete, Inc.
+ * Copyright (C) 2023-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -33,14 +33,15 @@ package com.authlete.common.dto;
  * The {@code action} value {@link Action#OK OK} means that the deferred
  * credential request is valid. In this case, the implementation of the
  * deferred credential endpoint should call the {@code /vci/deferred/issue}
- * API in order to issue a verifiable credential, or return the
- * {@code issuance_pending} error if the verifiable credential is not ready
- * yet.
+ * API in order to issue a verifiable credential, deny the deferred credential
+ * request, or notify that the requested credential is not ready yet.
  * </p>
  *
  * <p>
- * The following is an example error response telling the request sender
- * that the verifiable credential is not ready yet.
+ * Note that if the Authlete Server version is older than 3.0.25 and the
+ * target specification version is "1.0-ID1", you need to manually construct
+ * an error response containing {@code "error":"issuance_pending"}, as shown
+ * below, without using the {@code /vci/deferred/issue} API.
  * </p>
  *
  * <pre>

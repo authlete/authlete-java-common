@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Authlete, Inc.
+ * Copyright (C) 2023-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -291,6 +291,13 @@ public class CredentialSingleIssueResponse extends ApiResponse
          * example, when the process for encrypting the credential response
          * with the encryption parameters specified in the credential request
          * failed.
+         *
+         * <p>
+         * Since Authlete 3.0.25, this action is returned also when the
+         * credential issuer has decided not to issue a credential for the
+         * presented transaction ID (that is, when the {@code /vci/single/issue}
+         * API is called with {@code denied} set to {@code true}).
+         * </p>
          *
          * @since 3.86
          */

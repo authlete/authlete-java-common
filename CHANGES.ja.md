@@ -1,6 +1,23 @@
 変更点
 ======
 
+- `CredentialDeferredIssueRequest` クラス
+    * `isDenied()` メソッドを追加。
+    * `setDenied(boolean)` メソッドを追加。
+    * `getInterval()` メソッドを追加。
+    * `setInterval(int)` メソッドを追加。
+
+- `CredentialDeferredIssueResponse.Action` 列挙型
+    * `ACCEPTED` を追加。
+    * `ACCEPTED_JWT` を追加。
+
+- `CredentialSingleIssueRequest` クラス
+    * `isDenied()` メソッドを追加。
+    * `setDenied(boolean)` メソッドを追加。
+    * `getInterval()` メソッドを追加。
+    * `setInterval(int)` メソッドを追加。
+
+
 4.34 (2026 年 01 月 03 日)
 --------------------------
 

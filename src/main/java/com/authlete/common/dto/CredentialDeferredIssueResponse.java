@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Authlete, Inc.
+ * Copyright (C) 2023-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -64,6 +64,51 @@ package com.authlete.common.dto;
  *
  * <pre>
  * HTTP/1.1 200 OK
+ * Content-Type: application/jwt
+ * Cache-Control: no-store
+ *
+ * (Put the value of the "responseContent" parameter here.)
+ * </pre>
+ *
+ * <hr>
+ * <h3>{@code action} = {@link Action#ACCEPTED ACCEPTED}</h3>
+ *
+ * <p>
+ * The {@code action} value {@link Action#ACCEPTED ACCEPTED} means that
+ * the requested credential is not ready yet. In this case, the
+ * implementation of the deferred credential endpoint should return a
+ * successful response to the request sender. The HTTP status code and the
+ * content type of the response should be 202 and {@code application/json},
+ * respectively. The value of the {@code responseContent} parameter can
+ * be used as the message body of the response. It contains the
+ * "{@code transaction_id}" parameter that conforms to the specification
+ * of "Deferred Credential Response".
+ * </p>
+ *
+ * <pre>
+ * HTTP/1.1 202 Accepted
+ * Content-Type: application/json
+ * Cache-Control: no-store
+ *
+ * (Put the value of the "responseContent" parameter here.)
+ * </pre>
+ *
+ * <hr>
+ * <h3>{@code action} = {@link Action#ACCEPTED_JWT ACCEPTED_JWT}</h3>
+ *
+ * <p>
+ * The {@code action} value {@link Action#ACCEPTED_JWT ACCEPTED_JWT} means
+ * that the requested credential is not ready yet and the deferred credential
+ * response should be encrypted. In this case, the implementation of the
+ * deferred credential endpoint should return a successful response to the
+ * request sender. The HTTP status code and the content type of the response
+ * should be 202 and {@code application/jwt}, respectively. The value of the
+ * {@code responseContent} parameter is an encrypted JWT and can be used
+ * as the message body of the response.
+ * </p>
+ *
+ * <pre>
+ * HTTP/1.1 202 Accepted
  * Content-Type: application/jwt
  * Cache-Control: no-store
  *
@@ -169,7 +214,7 @@ package com.authlete.common.dto;
  */
 public class CredentialDeferredIssueResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
 
     /**
@@ -198,10 +243,40 @@ public class CredentialDeferredIssueResponse extends ApiResponse
         OK_JWT,
 
         /**
+         * The requested credential is not ready yet. The implementation of
+         * the deferred credential endpoint should return a successful response
+         * with the HTTP status code "202 Accepted" and the content type
+         * {@code application/json}.
+         *
+         * @since 4.35
+         * @since Authlete 3.0.25
+         */
+        ACCEPTED,
+
+        /**
+         * The requested credential is not ready yet and the deferred
+         * credential response should be encrypted. The implementation of the
+         * deferred credential endpoint should return a successful response
+         * with the HTTP status code "202 Accepted" and the content type
+         * {@code application/jwt}.
+         *
+         * @since 4.35
+         * @since Authlete 3.0.25
+         */
+        ACCEPTED_JWT,
+
+        /**
          * The original deferred credential request is wrong. This can happen,
          * for example, when the process for encrypting the deferred credential
          * response with the encryption parameters specified in the deferred
          * credential request failed.
+         *
+         * <p>
+         * Since Authlete 3.0.25, this action is returned also when the
+         * credential issuer has decided not to issue a credential for the
+         * presented transaction ID (that is, when the {@code /vci/deferred/issue}
+         * API is called with {@code denied} set to {@code true}).
+         * </p>
          *
          * @since 3.86
          */
