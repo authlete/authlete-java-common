@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.35 (2026-01-10)
+-----------------
+
 - `CredentialDeferredIssueRequest` class
     * Added the `isDenied()` method.
     * Added the `setDenied(boolean)` method.

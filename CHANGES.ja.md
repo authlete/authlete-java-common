@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.35 (2026 年 01 月 10 日)
+--------------------------
+
 - `CredentialDeferredIssueRequest` クラス
     * `isDenied()` メソッドを追加。
     * `setDenied(boolean)` メソッドを追加。
