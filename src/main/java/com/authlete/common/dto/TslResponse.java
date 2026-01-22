@@ -52,6 +52,11 @@ public class TslResponse extends ApiResponse
          * Invalid TSL format
          */
         INVALID_TSL_FORMAT,
+
+        /**
+         * TSL not found
+         */
+        NO_TSL_FOUND
     }
 
     private Action action;
