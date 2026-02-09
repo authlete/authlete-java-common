@@ -43,14 +43,6 @@ public class AuthzDetailsElement implements Serializable
 
 
     /**
-     * The default constructor.
-     */
-    public AuthzDetailsElement()
-    {
-    }
-
-    
-    /**
      * Get the type of this element.
      *
      * <p>
