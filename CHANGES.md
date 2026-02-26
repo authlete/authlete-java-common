@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.36 (2026-02-26)
+-----------------
+
 - `ClientAuthMethod` enum
     * Added `SPIFFE_JWT`.
 
