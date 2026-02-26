@@ -270,10 +270,17 @@ public class CredentialRequestInfo implements Serializable
      *
      * <p>
      * The value is almost the same as the credential request except that it
-     * does not contain the {@code "format"} parameter, the {@code "proof"}
-     * parameter, the {@code "proofs"} parameter, and the
-     * {@code credential_response_encryption} parameter.
+     * does not contain the following parameters:
      * </p>
+     *
+     * <ul>
+     * <li>{@code credential_configuration_id}
+     * <li>{@code credential_identifier}
+     * <li>{@code credential_response_encryption}
+     * <li>{@code format}
+     * <li>{@code proof}
+     * <li>{@code proofs}
+     * </ul>
      *
      * <p>
      * For example, when the original credential request holds the following:
