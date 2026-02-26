@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+- `ClientAuthMethod` enum
+    * Added `SPIFFE_JWT`.
+
+- `Client` class
+    * Added the `getSpiffeId()` method.
+    * Added the `setSpiffeId(URI)` method.
+    * Added the `getSpiffeBundleEndpoint()` method.
+    * Added the `setSpiffeBundleEndpoint(URI)` method.
+
+
 4.35 (2026-01-10)
 -----------------
 

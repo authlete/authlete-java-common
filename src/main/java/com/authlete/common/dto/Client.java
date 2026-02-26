@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2025 Authlete, Inc.
+ * Copyright (C) 2014-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -87,7 +87,7 @@ import com.authlete.common.util.Utils;
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 39L;
+    private static final long serialVersionUID = 40L;
 
 
     /*
@@ -709,6 +709,24 @@ public class Client implements Serializable
      * @since Authlete 3.0.22
      */
     private ClientSource clientSource;
+
+
+    /**
+     * The SPIFFE ID.
+     *
+     * @since 4.36
+     * @since Authlete 3.0.28
+     */
+    private URI spiffeId;
+
+
+    /**
+     * The SPIFFE Bundle Endpoint.
+     *
+     * @since 4.36
+     * @since Authlete 3.0.28
+     */
+    private URI spiffeBundleEndpoint;
 
 
     /**
@@ -5655,6 +5673,140 @@ public class Client implements Serializable
 
 
     /**
+     * Get the SPIFFE ID. This property corresponds to the {@code spiffe_id}
+     * client metadata.
+     *
+     * <p>
+     * The value of this property is compared against the SPIFFE ID contained
+     * in the SVID presented by the client during SPIFFE Client Authentication.
+     * </p>
+     *
+     * <p>
+     * According to the <a href=
+     * "https://github.com/spiffe/spiffe/blob/main/standards/SPIFFE-ID.md">SPIFFE
+     * ID specification</a>, the characters allowed in the path component of a
+     * SPIFFE ID are limited to {@code [a-zA-Z0-9.-_]}. However, in the value
+     * of this property (i.e., in the value of the {@code spiffe_id} client
+     * metadata), the final path segment may be specified using a wildcard
+     * {@code *} (e.g., <code>spiffe://<wbr>example.com/<wbr>workload/*</code>).
+     * When comparing it with the SPIFFE ID in the SVID, the wildcard is taken
+     * into account.
+     * </p>
+     *
+     * @return
+     *         The SPIFFE ID.
+     *
+     * @since 4.36
+     * @since Authlete 3.0.28
+     *
+     * @see <a href="https://spiffe.io/">SPIFFE</a>
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-spiffe-client-auth/">
+     *      OAuth SPIFFE Client Authentication</a>
+     */
+    public URI getSpiffeId()
+    {
+        return spiffeId;
+    }
+
+
+    /**
+     * Set the SPIFFE ID. This property corresponds to the {@code spiffe_id}
+     * client metadata.
+     *
+     * <p>
+     * The value of this property is compared against the SPIFFE ID contained
+     * in the SVID presented by the client during SPIFFE Client Authentication.
+     * </p>
+     *
+     * <p>
+     * According to the <a href=
+     * "https://github.com/spiffe/spiffe/blob/main/standards/SPIFFE-ID.md">SPIFFE
+     * ID specification</a>, the characters allowed in the path component of a
+     * SPIFFE ID are limited to {@code [a-zA-Z0-9.-_]}. However, in the value
+     * of this property (i.e., in the value of the {@code spiffe_id} client
+     * metadata), the final path segment may be specified using a wildcard
+     * {@code *} (e.g., <code>spiffe://<wbr>example.com/<wbr>workload/*</code>).
+     * When comparing it with the SPIFFE ID in the SVID, the wildcard is taken
+     * into account.
+     * </p>
+     *
+     * @param spiffeId
+     *         The SPIFFE ID.
+     *
+     * @since 4.36
+     * @since Authlete 3.0.28
+     *
+     * @see <a href="https://spiffe.io/">SPIFFE</a>
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-spiffe-client-auth/">
+     *      OAuth SPIFFE Client Authentication</a>
+     */
+    public Client setSpiffeId(URI spiffeId)
+    {
+        this.spiffeId = spiffeId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the SPIFFE Bundle Endpoint. This property corresponds to the
+     * {@code spiffe_bundle_endpoint} client metadata.
+     *
+     * <p>
+     * The authorization server retrieves the SPIFFE Bundle from the location
+     * indicated by this property (i.e., by the {@code spiffe_bundle_endpoint}
+     * client metadata) in order to verify the SVID presented by the client
+     * during SPIFFE Client Authentication. The SPIFFE Bundle is, in essence,
+     * a JWK Set.
+     * </p>
+     *
+     * @return
+     *         The SPIFFE Bundle Endpoint.
+     *
+     * @since 4.36
+     * @since Authlete 3.0.28
+     *
+     * @see <a href="https://spiffe.io/">SPIFFE</a>
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-spiffe-client-auth/">
+     *      OAuth SPIFFE Client Authentication</a>
+     */
+    public URI getSpiffeBundleEndpoint()
+    {
+        return spiffeBundleEndpoint;
+    }
+
+
+    /**
+     * Set the SPIFFE Bundle Endpoint. This property corresponds to the
+     * {@code spiffe_bundle_endpoint} client metadata.
+     *
+     * <p>
+     * The authorization server retrieves the SPIFFE Bundle from the location
+     * indicated by this property (i.e., by the {@code spiffe_bundle_endpoint}
+     * client metadata) in order to verify the SVID presented by the client
+     * during SPIFFE Client Authentication. The SPIFFE Bundle is, in essence,
+     * a JWK Set.
+     * </p>
+     *
+     * @param endpoint
+     *         The SPIFFE Bundle Endpoint.
+     *
+     * @since 4.36
+     * @since Authlete 3.0.28
+     *
+     * @see <a href="https://spiffe.io/">SPIFFE</a>
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-spiffe-client-auth/">
+     *      OAuth SPIFFE Client Authentication</a>
+     */
+    public Client setSpiffeBundleEndpoint(URI endpoint)
+    {
+        this.spiffeBundleEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
      * Get a {@code Map} instance that represents a set of standard client
      * metadata.
      *
@@ -5946,6 +6098,16 @@ public class Client implements Serializable
 
         // response_modes
         put(metadata, "response_modes", getResponseModes(), nullIncluded);
+
+        //----------------------------------------------------------------------
+        // OAuth SPIFFE Client Authentication
+        //----------------------------------------------------------------------
+
+        // spiffe_id
+        put(metadata, "spiffe_id", getSpiffeId(), nullIncluded);
+
+        // spiffe_bundle_endpoint
+        put(metadata, "spiffe_bundle_endpoint", getSpiffeBundleEndpoint(), nullIncluded);
 
         //----------------------------------------------------------------------
         // Custom Metadata

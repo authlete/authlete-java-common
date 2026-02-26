@@ -1,6 +1,16 @@
 変更点
 ======
 
+- `ClientAuthMethod` 列挙型
+    * `SPIFFE_JWT` を追加。
+
+- `Client` クラス
+    * `getSpiffeId()` メソッドを追加。
+    * `setSpiffeId(URI)` メソッドを追加。
+    * `getSpiffeBundleEndpoint()` メソッドを追加。
+    * `setSpiffeBundleEndpoint(URI)` メソッドを追加。
+
+
 4.35 (2026 年 01 月 10 日)
 --------------------------
 
