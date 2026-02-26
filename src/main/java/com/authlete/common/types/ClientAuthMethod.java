@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2024 Authlete, Inc.
+ * Copyright (C) 2014-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -157,6 +157,22 @@ public enum ClientAuthMethod
      *      >OAuth 2.0 Attestation-Based Client Authentication</a>
      */
     ATTEST_JWT_CLIENT_AUTH((short)7, "attest_jwt_client_auth", 0x2),
+
+
+    /**
+     * {@code "spiffe_jwt"} (8).
+     *
+     * <p>
+     * OAuth SPIFFE Client Authentication using JWT-SVID.
+     * </p>
+     *
+     * @since 4.36
+     * @since Authlete 3.0.28
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-spiffe-client-auth/">
+     *      OAuth SPIFFE Client Authentication</a>
+     */
+    SPIFFE_JWT((short)8, "spiffe_jwt", 0x2),
     ;
 
 
