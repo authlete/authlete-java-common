@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023-2024 Authlete, Inc.
+ * Copyright (C) 2023-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -64,6 +64,22 @@ public enum ClientAssertionType
      * @deprecated
      */
     JWT_CLIENT_ATTESTATION((short)2, "urn:ietf:params:oauth:client-assertion-type:jwt-client-attestation"),
+
+
+    /**
+     * {@code "urn:ietf:params:oauth:client-assertion-type:jwt-spiffe"}.
+     *
+     * <p>
+     * The client assertion type used by the OAuth SPIFFE Client Authentication.
+     * </p>
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-spiffe-client-auth/">
+     *      OAuth SPIFFE Client Authentication</a>
+     *
+     * @since 4.37
+     * @since Authlete 3.0.28
+     */
+    JWT_SPIFFE((short)3, "urn:ietf:params:oauth:client-assertion-type:jwt-spiffe"),
     ;
 
 

@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+- `ClientAssertionType` enum
+    * Added `JWT_SPIFFE`.
+
+
 4.36 (2026-02-26)
 -----------------
 
