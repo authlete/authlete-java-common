@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+4.38 (2026-03-04)
+-----------------
+
+- `TokenUpdateRequest` class
+    * Added the `getRefreshToken()` method.
+    * Added the `setRefreshToken(String)` method.
+    * Added the `getRefreshTokenHash()` method.
+    * Added the `setRefreshTokenHash(String)` method.
+
+
 4.37 (2026-03-02)
 -----------------
 
@@ -294,7 +304,7 @@ CHANGES
 - `Client` class
     * Added the `isInScopeForTokenMigration()` method.
     * Added the `setInScopeForTokenMigration(boolean)` method.
- 
+
 - Removed `com.neovisionaries:nv-cipher` and `com.neovisionaries:nv-digest` dependencies.
 
 
