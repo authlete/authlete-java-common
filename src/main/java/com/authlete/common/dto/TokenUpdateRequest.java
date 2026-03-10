@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2023 Authlete, Inc.
+ * Copyright (C) 2016-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -90,6 +90,28 @@ import java.io.Serializable;
  * </p>
  * </dd>
  *
+ * <dt><b><code>refreshToken</code></b></dt>
+ * <dd>
+ * <p>
+ * The refresh token value associated with the access token to update.
+ * </p>
+ * <p>
+ * The value of the {@code accessToken} parameter and the {@code accessTokenHash}
+ * parameter take precedence.
+ * </p>
+ * </dd>
+ *
+ * <dt><b><code>refreshTokenHash</code></b></dt>
+ * <dd>
+ * <p>
+ * The hash of the refresh token value associated with the access token to update.
+ * </p>
+ * <p>
+ * The value of the {@code accessToken} parameter, the {@code accessTokenHash} parameter
+ * and the {@code refreshToken} parameter take precedence.
+ * </p>
+ * </dd>
+ *
  * <dt><b><code>accessTokenValueUpdated</code></b></dt>
  * <dd>
  * <p>
@@ -152,7 +174,7 @@ import java.io.Serializable;
  */
 public class TokenUpdateRequest implements Serializable
 {
-    private static final long serialVersionUID = 8L;
+    private static final long serialVersionUID = 9L;
 
 
     private String accessToken;
@@ -170,6 +192,8 @@ public class TokenUpdateRequest implements Serializable
     private AuthzDetails authorizationDetails;
     private boolean forExternalAttachment;
     private String tokenId;
+    private String refreshToken;
+    private String refreshTokenHash;
 
 
     /**
@@ -925,6 +949,95 @@ public class TokenUpdateRequest implements Serializable
     public TokenUpdateRequest setTokenId(String tokenId)
     {
         this.tokenId = tokenId;
+
+        return this;
+    }
+
+
+    /**
+     * Get the refresh token associated with the access token to update.
+     *
+     * <p>
+     * The value of the {@code accessToken} parameter and the {@code accessTokenHash}
+     * parameter take precedence.
+     * </p>
+     *
+     * @return
+     *         The refresh token associated with the access token to update.
+     *
+     * @since 4.38
+     */
+    public String getRefreshToken()
+    {
+        return refreshToken;
+    }
+
+
+    /**
+     * Set the refresh token associated with the access token to update.
+     *
+     * <p>
+     * The value of the {@code accessToken} parameter and the {@code accessTokenHash}
+     * parameter take precedence.
+     * </p>
+     *
+     * @param refreshToken
+     *         The refresh token associated with the access token to update.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.38
+     */
+    public TokenUpdateRequest setRefreshToken(String refreshToken)
+    {
+        this.refreshToken = refreshToken;
+
+        return this;
+    }
+
+
+    /**
+     * Get the hash of the refresh token value associated with the access token to update.
+     *
+     * <p>
+     * The value of the {@code accessToken} parameter, the {@code accessTokenHash}
+     * parameter and the {@code refreshToken} parameter take precedence.
+     * </p>
+     *
+     * @return
+     *         The hash of the refresh token value associated with the access token to
+     *         update.
+     *
+     * @since 4.38
+     */
+    public String getRefreshTokenHash()
+    {
+        return refreshTokenHash;
+    }
+
+
+    /**
+     * Set the hash of the refresh token value associated with the access
+     * token to update.
+     *
+     * <p>
+     * The value of the {@code accessToken} parameter, the {@code accessTokenHash}
+     * parameter and the {@code refreshToken} parameter take precedence.
+     * </p>
+     *
+     * @param refreshTokenHash
+     *         The hash of the refresh token value associated with the
+     *         access token to update.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.38
+     */
+    public TokenUpdateRequest setRefreshTokenHash(String refreshTokenHash)
+    {
+        this.refreshTokenHash = refreshTokenHash;
 
         return this;
     }

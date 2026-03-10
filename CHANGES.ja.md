@@ -1,6 +1,16 @@
 変更点
 ======
 
+4.38 (2026 年 03 月 04 日)
+--------------------------
+
+- `TokenUpdateRequest` クラス
+    * `getRefreshToken()` メソッドを追加。
+    * `setRefreshToken(String)` メソッドを追加。
+    * `getRefreshTokenHash()` メソッドを追加。
+    * `setRefreshTokenHash(String)` メソッドを追加。
+
+
 4.37 (2026 年 03 月 02 日)
 --------------------------
 
