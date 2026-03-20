@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2025 Authlete, Inc.
+ * Copyright (C) 2014-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 89L;
+    private static final long serialVersionUID = 90L;
 
 
     /*
@@ -1979,6 +1979,25 @@ public class Service implements Serializable
      * @since Authlete 3.0.22
      */
     private boolean httpAliasProhibited;
+
+
+    /**
+     * The challenge endpoint defined in
+     * OAuth 2&#x2E;0 Attestation-Based Client Authentication.
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     */
+    private URI challengeEndpoint;
+
+
+    /**
+     * The time window of attestation challenges in seconds.
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     */
+    private long attestationChallengeTimeWindow;
 
 
     /**
@@ -13018,6 +13037,102 @@ public class Service implements Serializable
     public Service setHttpAliasProhibited(boolean prohibited)
     {
         this.httpAliasProhibited = prohibited;
+
+        return this;
+    }
+
+
+    /**
+     * Get the URI of the challenge endpoint that is defined in
+     * OAuth 2&#x2E;0 Attestation-Based Client Authentication.
+     *
+     * @return
+     *         The URI of the challenge endpoint.
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    public URI getChallengeEndpoint()
+    {
+        return challengeEndpoint;
+    }
+
+
+    /**
+     * Set the URI of the challenge endpoint that is defined in
+     * OAuth 2&#x2E;0 Attestation-Based Client Authentication.
+     *
+     * @param endpoint
+     *         The URI of the challenge endpoint.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    public Service setChallengeEndpoint(URI endpoint)
+    {
+        this.challengeEndpoint = endpoint;
+
+        return this;
+    }
+
+
+    /**
+     * Get the time window of attestation challenges in seconds.
+     *
+     * <p>
+     * The value of this property is used as the time window of attestation
+     * challenges issued from the challenge endpoint defined in the
+     * OAuth 2.0 Attestation-Based Client Authentication.
+     * </p>
+     *
+     * @return
+     *         The time window of attestation challenges in seconds.
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    public long getAttestationChallengeTimeWindow()
+    {
+        return attestationChallengeTimeWindow;
+    }
+
+
+    /**
+     * Set the time window of attestation challenges in seconds.
+     *
+     * <p>
+     * The value of this property is used as the time window of attestation
+     * challenges issued from the challenge endpoint defined in the
+     * OAuth 2.0 Attestation-Based Client Authentication.
+     * </p>
+     *
+     * @param timeWindow
+     *         The time window of attestation challenges in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    public Service setAttestationChallengeTimeWindow(long timeWindow)
+    {
+        this.attestationChallengeTimeWindow = timeWindow;
 
         return this;
     }

@@ -380,6 +380,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
   - `nativeSso(NativeSsoRequest)`
   - `nativeSsoLogout(NativeSsoLogoutRequest)`
 
+  23. Methods for OAuth 2.0 Attestation-Based Client Authentication
+
+  - `attestationChallenge(AttestationChallengeRequest)`
+
 *Examples*
 
 The following code snippet is an example to get the list of your existing
