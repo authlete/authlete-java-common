@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2025 Authlete, Inc.
+ * Copyright (C) 2014-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -704,5 +704,44 @@ public enum ErrorCode
      * @since Authlete 3.0.22
      */
     invalid_notification_request,
+
+
+    /**
+     * The Client Attestation PoP JWT is not using an expected server-provided
+     * challenge.
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     */
+    use_attestation_challenge,
+
+
+    /**
+     * The Client Attestation JWT is deemed to be not fresh enough to be
+     * accepted by the server.
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     */
+    use_fresh_attestation,
+
+
+    /**
+     * The attestation or its proof of possession could not be successfully
+     * verified.
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     */
+    invalid_client_attestation,
     ;
 }

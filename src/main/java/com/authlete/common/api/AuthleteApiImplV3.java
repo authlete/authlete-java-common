@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2025 Authlete, Inc.
+ * Copyright (C) 2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import java.util.Map;
 import com.authlete.common.conf.AuthleteApiVersion;
 import com.authlete.common.conf.AuthleteConfiguration;
 import com.authlete.common.dto.ApiResponse;
+import com.authlete.common.dto.AttestationChallengeRequest;
+import com.authlete.common.dto.AttestationChallengeResponse;
 import com.authlete.common.dto.AuthorizationFailRequest;
 import com.authlete.common.dto.AuthorizationFailResponse;
 import com.authlete.common.dto.AuthorizationIssueRequest;
@@ -144,6 +146,7 @@ import com.authlete.common.types.TokenStatus;
  */
 public class AuthleteApiImplV3 extends AuthleteApiBasicImpl
 {
+    private static final String ATTESTATION_CHALLENGE_API_PATH                = "/api/%d/attestation/challenge";
     private static final String AUTH_AUTHORIZATION_API_PATH                   = "/api/%d/auth/authorization";
     private static final String AUTH_AUTHORIZATION_FAIL_API_PATH              = "/api/%d/auth/authorization/fail";
     private static final String AUTH_AUTHORIZATION_ISSUE_API_PATH             = "/api/%d/auth/authorization/issue";
@@ -1665,6 +1668,18 @@ public class AuthleteApiImplV3 extends AuthleteApiBasicImpl
                 new PostApiCaller<NativeSsoLogoutResponse>(
                         NativeSsoLogoutResponse.class, request,
                         NATIVE_SSO_LOGOUT_API_PATH, mServiceId)
+                        .setOptions(options));
+    }
+
+
+    @Override
+    public AttestationChallengeResponse attestationChallenge(
+            AttestationChallengeRequest request, Options options) throws AuthleteApiException
+    {
+        return executeApiCall(
+                new PostApiCaller<AttestationChallengeResponse>(
+                        AttestationChallengeResponse.class, request,
+                        ATTESTATION_CHALLENGE_API_PATH, mServiceId)
                         .setOptions(options));
     }
 }

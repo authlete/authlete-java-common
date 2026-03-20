@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2025 Authlete, Inc.
+ * Copyright (C) 2014-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import com.authlete.common.dto.AuthorizationIssueRequest;
 import com.authlete.common.dto.AuthorizationIssueResponse;
 import com.authlete.common.dto.AuthorizationRequest;
 import com.authlete.common.dto.AuthorizationResponse;
+import com.authlete.common.dto.AttestationChallengeRequest;
+import com.authlete.common.dto.AttestationChallengeResponse;
 import com.authlete.common.dto.AuthorizationTicketInfoRequest;
 import com.authlete.common.dto.AuthorizationTicketInfoResponse;
 import com.authlete.common.dto.AuthorizationTicketUpdateRequest;
@@ -4842,4 +4844,42 @@ public interface AuthleteApi
      */
     NativeSsoLogoutResponse nativeSsoLogout(
             NativeSsoLogoutRequest request, Options options) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /attestation/challenge} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     */
+    default AttestationChallengeResponse attestationChallenge(
+            AttestationChallengeRequest request) throws AuthleteApiException
+    {
+        return attestationChallenge(request, null);
+    }
+
+
+    /**
+     * Call Authlete's {@code /attestation/challenge} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @param options
+     *         Request options.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     */
+    AttestationChallengeResponse attestationChallenge(
+            AttestationChallengeRequest request, Options options) throws AuthleteApiException;
 }

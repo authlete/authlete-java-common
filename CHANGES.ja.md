@@ -1,6 +1,46 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `attestationChallenge(AttestationChallengeRequest)` メソッドを追加。
+    * `attestationChallenge(AttestationChallengeRequest, Options)` メソッドを追加。
+
+- `BackchannelAuthenticationResponse` クラス
+    * `getAttestationChallenge()` メソッドを追加。
+    * `setAttestationChallenge(String)` メソッドを追加。
+
+- `DeviceAuthorizationResponse` クラス
+    * `getAttestationChallenge()` メソッドを追加。
+    * `setAttestationChallenge(String)` メソッドを追加。
+
+- `ErrorCode` 列挙型
+    * `use_attestation_challenge` を追加。
+    * `use_fresh_attestation` を追加。
+    * `invalid_client_attestation` を追加。
+
+- `PushedAuthReqResponse` クラス
+    * `getAttestationChallenge()` メソッドを追加。
+    * `setAttestationChallenge(String)` メソッドを追加。
+
+- `RevocationResponse` クラス
+    * `getAttestationChallenge()` メソッドを追加。
+    * `setAttestationChallenge(String)` メソッドを追加。
+
+- `Service` クラス
+    * `getChallengeEndpoint()` メソッドを追加。
+    * `setChallengeEndpoint(URI)` メソッドを追加。
+    * `getAttestationChallengeTimeWindow()` メソッドを追加。
+    * `setAttestationChallengeTimeWindow(long)` メソッドを追加。
+
+- `TokenResponse` クラス
+    * `getAttestationChallenge()` メソッドを追加。
+    * `setAttestationChallenge(String)` メソッドを追加。
+
+- 新しい型
+    * `AttestationChallengeRequest` クラス
+    * `AttestationChallengeResponse` クラス
+
+
 4.38 (2026 年 03 月 04 日)
 --------------------------
 

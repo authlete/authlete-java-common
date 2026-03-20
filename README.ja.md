@@ -369,6 +369,10 @@ settings.setReadTimeout(5000);
   - `nativeSso(NativeSsoRequest)`
   - `nativeSsoLogout(NativeSsoLogoutRequest)`
 
+  23. OAuth 2.0 Attestation-Based Client Authentication に関するメソッド群
+
+  - `attestationChallenge(AttestationChallengeRequest)`
+
 *例*
 
 次のコードは既存のサービスのリストを取得する例です。

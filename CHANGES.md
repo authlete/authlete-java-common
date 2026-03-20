@@ -1,6 +1,46 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added the `attestationChallenge(AttestationChallengeRequest)` method.
+    * Added the `attestationChallenge(AttestationChallengeRequest, Options)` method.
+
+- `BackchannelAuthenticationResponse` class
+    * Added the `getAttestationChallenge()` method.
+    * Added the `setAttestationChallenge(String)` method.
+
+- `DeviceAuthorizationResponse` class
+    * Added the `getAttestationChallenge()` method.
+    * Added the `setAttestationChallenge(String)` method.
+
+- `ErrorCode` enum
+    * Added `use_attestation_challenge`.
+    * Added `use_fresh_attestation`.
+    * Added `invalid_client_attestation`.
+
+- `PushedAuthReqResponse` class
+    * Added the `getAttestationChallenge()` method.
+    * Added the `setAttestationChallenge(String)` method.
+
+- `RevocationResponse` class
+    * Added the `getAttestationChallenge()` method.
+    * Added the `setAttestationChallenge(String)` method.
+
+- `Service` class
+    * Added the `getChallengeEndpoint()` method.
+    * Added the `setChallengeEndpoint(URI)` method.
+    * Added the `getAttestationChallengeTimeWindow()` method.
+    * Added the `setAttestationChallengeTimeWindow(long)` method.
+
+- `TokenResponse` class
+    * Added the `getAttestationChallenge()` method.
+    * Added the `setAttestationChallenge(String)` method.
+
+- New types
+    * `AttestationChallengeRequest` class
+    * `AttestationChallengeResponse` class
+
+
 4.38 (2026-03-04)
 -----------------
 

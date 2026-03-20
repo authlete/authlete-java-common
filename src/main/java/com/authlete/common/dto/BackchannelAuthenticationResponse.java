@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2025 Authlete, Inc.
+ * Copyright (C) 2018-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -594,11 +594,39 @@ import com.authlete.common.types.UserIdentificationHintType;
  * </dd>
  * </dl>
  *
+ * <br/>
+ * <hr>
+ * <h3>Attestation Challenge (Authlete 3.0.28 onwards)</h3>
+ *
+ * <p>
+ * Since version 3.0.28, Authlete recognizes the {@code challenge} claim in
+ * Client Attestation PoP JWTs. If the {@code challenge} claim is required
+ * (= if the service's challenge endpoint is configured), the Authlete API
+ * checks whether the {@code challenge} claim in the presented Client
+ * Attestation PoP JWT is identical to the expected value.
+ * </p>
+ *
+ * <p>
+ * If the {@code attestationChallenge} response parameter from the API is not
+ * null, its value is the expected attestation challenge value for Client
+ * Attestation PoP JWT. The expected value needs to be conveyed to the client
+ * application as the value of the {@code OAuth-Client-Attestation-Challenge}
+ * HTTP header.
+ * </p>
+ *
+ * <pre style="border: solid 1px black; padding: 0.5em;"
+ * >OAuth-Client-Attestation-Challenge: (The value returned from {@link #getAttestationChallenge()})</pre>
+ *
+ * <p>
+ * See <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/"
+ * >OAuth 2.0 Attestation-Based Client Authentication</a> for details.
+ * </p>
+ *
  * @since 2.32
  */
 public class BackchannelAuthenticationResponse extends ApiResponse
 {
-    private static final long serialVersionUID = 12L;
+    private static final long serialVersionUID = 13L;
 
 
     /**
@@ -827,6 +855,16 @@ public class BackchannelAuthenticationResponse extends ApiResponse
      * @since Authlete 2.0.0
      */
     private String ticket;
+
+    /**
+     * The expected attestation challenge value for Client Attestation PoP JWT,
+     * which should be used as the value of the
+     * {@code OAuth-Client-Attestation-Challenge} HTTP header.
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     */
+    private String attestationChallenge;
 
 
     /**
@@ -2346,6 +2384,77 @@ public class BackchannelAuthenticationResponse extends ApiResponse
     public BackchannelAuthenticationResponse setTicket(String ticket)
     {
         this.ticket = ticket;
+
+        return this;
+    }
+
+
+    /**
+     * Get the expected attestation challenge value for Client Attestation PoP
+     * JWT, which should be used as the value of the
+     * {@code OAuth-Client-Attestation-Challenge} HTTP header.
+     *
+     * <p>
+     * When this response parameter is not null, the implementation of the
+     * backchannel authentication endpoint should add the
+     * {@code OAuth-Client-Attestation-Challenge} HTTP header in the response
+     * from the endpoint to the client application, using the value of this
+     * response parameter as the value of the HTTP header.
+     * </p>
+     *
+     * <pre>
+     * OAuth-Client-Attestation-Challenge: (<i>The value of this {@code attestationChallenge} response parameter</i>)
+     * </pre>
+     *
+     * @return
+     *         The expected attestation challenge value for Client Attestation
+     *         PoP JWT.
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    public String getAttestationChallenge()
+    {
+        return attestationChallenge;
+    }
+
+
+    /**
+     * Set the expected attestation challenge value for Client Attestation PoP
+     * JWT, which should be used as the value of the
+     * {@code OAuth-Client-Attestation-Challenge} HTTP header.
+     *
+     * <p>
+     * When this response parameter is not null, the implementation of the
+     * backchannel authentication endpoint should add the
+     * {@code OAuth-Client-Attestation-Challenge} HTTP header in the response
+     * from the endpoint to the client application, using the value of this
+     * response parameter as the value of the HTTP header.
+     * </p>
+     *
+     * <pre>
+     * OAuth-Client-Attestation-Challenge: (<i>The value of this {@code attestationChallenge} response parameter</i>)
+     * </pre>
+     *
+     * @param challenge
+     *         The expected attestation challenge value for Client Attestation
+     *         PoP JWT.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.39
+     * @since Authlete 3.0.28
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     */
+    public BackchannelAuthenticationResponse setAttestationChallenge(String challenge)
+    {
+        this.attestationChallenge = challenge;
 
         return this;
     }
