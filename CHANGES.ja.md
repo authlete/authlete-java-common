@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.39 (2026 年 03 月 20 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `attestationChallenge(AttestationChallengeRequest)` メソッドを追加。
     * `attestationChallenge(AttestationChallengeRequest, Options)` メソッドを追加。

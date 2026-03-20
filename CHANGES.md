@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.39 (2026-03-20)
+-----------------
+
 - `AuthleteApi` interface
     * Added the `attestationChallenge(AttestationChallengeRequest)` method.
     * Added the `attestationChallenge(AttestationChallengeRequest, Options)` method.
