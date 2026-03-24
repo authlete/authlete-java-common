@@ -739,6 +739,12 @@ public class Service implements Serializable
 
 
     /**
+     * Duration of authorization code in seconds.
+     */
+    private Long authorizationCodeDuration;
+
+
+    /**
      * Duration of authorization response JWTs.
      *
      * @since 2.28
@@ -3083,6 +3089,35 @@ public class Service implements Serializable
     public Service setIdTokenDuration(long duration)
     {
         this.idTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of authorization code in seconds.
+     *
+     * @return
+     *         The duration of authorization code in seconds.
+     */
+    public Long getAuthorizationCodeDuration()
+    {
+        return authorizationCodeDuration;
+    }
+
+
+    /**
+     * Set the duration of authorization code in seconds.
+     *
+     * @param duration
+     *         The duration of authorization code in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Service setAuthorizationCodeDuration(Long duration)
+    {
+        this.authorizationCodeDuration = duration;
 
         return this;
     }
