@@ -745,6 +745,11 @@ public class Service implements Serializable
      * A value of {@code 0} means that this property is not set and that the
      * implementation falls back to the default configuration on the server.
      * </p>
+     *
+     * <p>
+     * For FAPI 2.0, the lifetime of authorization codes is capped to 60
+     * seconds. See OpenID FAPI 2.0 Security Profile for details.
+     * </p>
      */
     private long authorizationCodeDuration;
 
