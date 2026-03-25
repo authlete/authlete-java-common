@@ -1,6 +1,14 @@
 変更点
 ======
 
+4.40 (2026 年 03 月 24 日)
+--------------------------
+
+- `Service` クラス
+    * `getAuthorizationCodeDuration()` メソッドを追加。
+    * `setAuthorizationCodeDuration(long)` メソッドを追加。
+
+
 4.39 (2026 年 03 月 20 日)
 --------------------------
 
