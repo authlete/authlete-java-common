@@ -752,6 +752,7 @@ public class Service implements Serializable
      * </p>
      *
      * @since Authlete 3.0.29
+     * @since 4.40
      */
     private long authorizationCodeDuration;
 
