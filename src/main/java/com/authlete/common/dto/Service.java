@@ -750,6 +750,8 @@ public class Service implements Serializable
      * For FAPI 2.0, the lifetime of authorization codes is capped to 60
      * seconds. See OpenID FAPI 2.0 Security Profile for details.
      * </p>
+     *
+     * @since Authlete 3.0.29
      */
     private long authorizationCodeDuration;
 
@@ -3109,6 +3111,8 @@ public class Service implements Serializable
      *
      * @return
      *         The duration of authorization code in seconds.
+     *
+     * @since 3.0.29
      */
     public long getAuthorizationCodeDuration()
     {
@@ -3124,6 +3128,8 @@ public class Service implements Serializable
      *
      * @return
      *         {@code this} object.
+     *
+     * @since 3.0.29
      */
     public Service setAuthorizationCodeDuration(long duration)
     {
