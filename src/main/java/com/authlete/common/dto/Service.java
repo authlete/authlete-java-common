@@ -740,8 +740,13 @@ public class Service implements Serializable
 
     /**
      * Duration of authorization code in seconds.
+     *
+     * <p>
+     * A value of {@code 0} means that this property is not set and that the
+     * implementation falls back to the default configuration on the server.
+     * </p>
      */
-    private Long authorizationCodeDuration;
+    private long authorizationCodeDuration;
 
 
     /**
@@ -3100,7 +3105,7 @@ public class Service implements Serializable
      * @return
      *         The duration of authorization code in seconds.
      */
-    public Long getAuthorizationCodeDuration()
+    public long getAuthorizationCodeDuration()
     {
         return authorizationCodeDuration;
     }
@@ -3115,7 +3120,7 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      */
-    public Service setAuthorizationCodeDuration(Long duration)
+    public Service setAuthorizationCodeDuration(long duration)
     {
         this.authorizationCodeDuration = duration;
 
