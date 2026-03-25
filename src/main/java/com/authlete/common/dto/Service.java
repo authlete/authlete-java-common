@@ -751,8 +751,8 @@ public class Service implements Serializable
      * seconds. See OpenID FAPI 2.0 Security Profile for details.
      * </p>
      *
-     * @since Authlete 3.0.29
      * @since 4.40
+     * @since Authlete 3.0.29
      */
     private long authorizationCodeDuration;
 
