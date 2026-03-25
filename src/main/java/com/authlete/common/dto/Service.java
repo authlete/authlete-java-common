@@ -739,6 +739,25 @@ public class Service implements Serializable
 
 
     /**
+     * Duration of authorization code in seconds.
+     *
+     * <p>
+     * A value of {@code 0} means that this property is not set and that the
+     * implementation falls back to the default configuration on the server.
+     * </p>
+     *
+     * <p>
+     * For FAPI 2.0, the lifetime of authorization codes is capped to 60
+     * seconds. See OpenID FAPI 2.0 Security Profile for details.
+     * </p>
+     *
+     * @since 4.40
+     * @since Authlete 3.0.29
+     */
+    private long authorizationCodeDuration;
+
+
+    /**
      * Duration of authorization response JWTs.
      *
      * @since 2.28
@@ -3083,6 +3102,39 @@ public class Service implements Serializable
     public Service setIdTokenDuration(long duration)
     {
         this.idTokenDuration = duration;
+
+        return this;
+    }
+
+
+    /**
+     * Get the duration of authorization code in seconds.
+     *
+     * @return
+     *         The duration of authorization code in seconds.
+     *
+     * @since 3.0.29
+     */
+    public long getAuthorizationCodeDuration()
+    {
+        return authorizationCodeDuration;
+    }
+
+
+    /**
+     * Set the duration of authorization code in seconds.
+     *
+     * @param duration
+     *         The duration of authorization code in seconds.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 3.0.29
+     */
+    public Service setAuthorizationCodeDuration(long duration)
+    {
+        this.authorizationCodeDuration = duration;
 
         return this;
     }

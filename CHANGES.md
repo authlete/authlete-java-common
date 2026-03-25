@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+4.40 (2026-03-24)
+-----------------
+
+- `Service` class
+    * Added the `getAuthorizationCodeDuration()` method.
+    * Added the `setAuthorizationCodeDuration(long)` method.
+
+
 4.39 (2026-03-20)
 -----------------
 
