@@ -61,6 +61,8 @@ public enum AccessRight
     VIEW_DEFAULT_SERVICE(false, false),
     /** can create additional services */
     CREATE_SERVICE(false, false, VIEW_DEFAULT_SERVICE),
+    /** can view audit logs */
+    VIEW_AUDIT_LOG(false, false),
     /** can delete a specific service */
     DELETE_SERVICE(false, true),
     /** can call administrative functions on the Authlete server */
