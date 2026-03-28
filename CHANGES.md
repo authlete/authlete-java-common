@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+- `Client` class
+    * Added the `getHaipVersion()` method.
+    * Added the `setHaipVersion(String)` method.
+
+- `Service` class
+    * Added the `getHaipVersion()` method.
+    * Added the `setHaipVersion(String)` method.
+
+
 4.40 (2026-03-24)
 -----------------
 

@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 90L;
+    private static final long serialVersionUID = 91L;
 
 
     /*
@@ -2017,6 +2017,15 @@ public class Service implements Serializable
      * @since Authlete 3.0.28
      */
     private long attestationChallengeTimeWindow;
+
+
+    /**
+     * The HAIP version to comply with.
+     *
+     * @since 4.41
+     * @since Authlete 3.0.29
+     */
+    private String haipVersion;
 
 
     /**
@@ -13185,6 +13194,85 @@ public class Service implements Serializable
     public Service setAttestationChallengeTimeWindow(long timeWindow)
     {
         this.attestationChallengeTimeWindow = timeWindow;
+
+        return this;
+    }
+
+
+    /**
+     * Get the HAIP version to comply with. Valid values for this property are
+     * as follows:
+     *
+     * <ul>
+     * <li>{@code "1.0"}
+     * </ul>
+     *
+     * <p>
+     * If this property is set, requests to this service undergo additional
+     * validation based on the specified version of the <a href=
+     * "https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html"
+     * >HAIP</a> specification.
+     * </p>
+     *
+     * <p>
+     * Note that even if this property is not set, additional validation based
+     * on the HAIP specification is performed if the {@link Client}'s
+     * {@code haipVersion} is set or if a scope with the {@code haip} attribute
+     * is included in the request.
+     * </p>
+     *
+     * @return
+     *         The HAIP version to comply with.
+     *
+     * @since 4.41
+     * @since 3.0.29
+     *
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     */
+    public String getHaipVersion()
+    {
+        return haipVersion;
+    }
+
+
+    /**
+     * Set the HAIP version to comply with. Valid values for this property are
+     * as follows:
+     *
+     * <ul>
+     * <li>{@code "1.0"}
+     * </ul>
+     *
+     * <p>
+     * If this property is set, requests to this service undergo additional
+     * validation based on the specified version of the <a href=
+     * "https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html"
+     * >HAIP</a> specification.
+     * </p>
+     *
+     * <p>
+     * Note that even if this property is not set, additional validation based
+     * on the HAIP specification is performed if the {@link Client}'s
+     * {@code haipVersion} is set or if a scope with the {@code haip} attribute
+     * is included in the request.
+     * </p>
+     *
+     * @param version
+     *         The HAIP version to comply with.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.41
+     * @since 3.0.29
+     *
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     */
+    public Service setHaipVersion(String version)
+    {
+        this.haipVersion = version;
 
         return this;
     }
