@@ -1,6 +1,15 @@
 変更点
 ======
 
+- `Client` クラス
+    * `getHaipVersion()` メソッドを追加。
+    * `setHaipVersion(String)` メソッドを追加。
+
+- `Service` クラス
+    * `getHaipVersion()` メソッドを追加。
+    * `setHaipVersion(String)` メソッドを追加。
+
+
 4.40 (2026 年 03 月 24 日)
 --------------------------
 
