@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.41 (2026-03-28)
+-----------------
+
 - `Client` class
     * Added the `getHaipVersion()` method.
     * Added the `setHaipVersion(String)` method.
