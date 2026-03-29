@@ -49,8 +49,10 @@ public enum AccessRight
     MODIFY_CLIENT(true, true, VIEW_CLIENT),
     /** can view the details of this service */
     VIEW_SERVICE(false, true, VIEW_CLIENT),
+    /** can use the introspection endpoint */
+    USE_INTROSPECTION(false, true),
     /** can use the non-destructive service API calls (auth endpoint, token endpoint, etc.) */
-    USE_SERVICE(false, true, VIEW_SERVICE, VIEW_CLIENT),
+    USE_SERVICE(false, true, USE_INTROSPECTION, VIEW_SERVICE, VIEW_CLIENT),
     /** can create new clients on this service */
     CREATE_CLIENT(false, true, USE_SERVICE, VIEW_SERVICE, MODIFY_CLIENT, VIEW_CLIENT),
     /** can modify this service */
