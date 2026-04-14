@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.42 (2026-04-14)
+-----------------
+
 - `Service` class
     * Added the `getClientAttesterRoots()` method.
     * Added the `setClientAttesterRoots(String[])` method.

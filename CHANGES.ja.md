@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.42 (2026 年 04 月 14 日)
+--------------------------
+
 - `Service` クラス
     * `getClientAttesterRoots()` メソッドを追加。
     * `setClientAttesterRoots(String[])` メソッドを追加。
