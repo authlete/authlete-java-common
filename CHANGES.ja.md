@@ -1,6 +1,21 @@
 変更点
 ======
 
+- `Service` クラス
+    * `getClientAttesterRoots()` メソッドを追加。
+    * `setClientAttesterRoots(String[])` メソッドを追加。
+    * `isClientAttesterRootsEnabled()` メソッドを追加。
+    * `setClientAttesterRootsEnabled(boolean)` メソッドを追加。
+    * `isClientAttesterRootsOnly()` メソッドを追加。
+    * `setClientAttesterRootsOnly(boolean)` メソッドを追加。
+    * `getKeyAttesterRoots()` メソッドを追加。
+    * `setKeyAttesterRoots(String[])` メソッドを追加。
+    * `isKeyAttesterRootsEnabled()` メソッドを追加。
+    * `setKeyAttesterRootsEnabled(boolean)` メソッドを追加。
+    * `isKeyAttesterRootsOnly()` メソッドを追加。
+    * `setKeyAttesterRootsOnly(boolean)` メソッドを追加。
+
+
 4.41 (2026 年 03 月 28 日)
 --------------------------
 

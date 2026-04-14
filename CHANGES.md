@@ -1,6 +1,21 @@
 CHANGES
 =======
 
+- `Service` class
+    * Added the `getClientAttesterRoots()` method.
+    * Added the `setClientAttesterRoots(String[])` method.
+    * Added the `isClientAttesterRootsEnabled()` method.
+    * Added the `setClientAttesterRootsEnabled(boolean)` method.
+    * Added the `isClientAttesterRootsOnly()` method.
+    * Added the `setClientAttesterRootsOnly(boolean)` method.
+    * Added the `getKeyAttesterRoots()` method.
+    * Added the `setKeyAttesterRoots(String[])` method.
+    * Added the `isKeyAttesterRootsEnabled()` method.
+    * Added the `setKeyAttesterRootsEnabled(boolean)` method.
+    * Added the `isKeyAttesterRootsOnly()` method.
+    * Added the `setKeyAttesterRootsOnly(boolean)` method.
+
+
 4.41 (2026-03-28)
 -----------------
 

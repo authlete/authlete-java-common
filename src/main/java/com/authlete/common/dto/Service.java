@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 91L;
+    private static final long serialVersionUID = 92L;
 
 
     /*
@@ -2026,6 +2026,62 @@ public class Service implements Serializable
      * @since Authlete 3.0.29
      */
     private String haipVersion;
+
+
+    /**
+     * The trusted root certificates for Client Attestation JWT.
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    private String[] clientAttesterRoots;
+
+
+    /**
+     * Whether to enable the trusted root certificates for Client Attestation JWT.
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    private boolean clientAttesterRootsEnabled;
+
+
+    /**
+     * Whether to refer to only the trusted root certificates for Client
+     * Attestation JWT, without referring to system-installed ones.
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    private boolean clientAttesterRootsOnly;
+
+
+    /**
+     * The trusted root certificates for Key Attestation JWT.
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    private String[] keyAttesterRoots;
+
+
+    /**
+     * Whether to enable the trusted root certificates for Key Attestation JWT.
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    private boolean keyAttesterRootsEnabled;
+
+
+    /**
+     * Whether to refer to only the trusted root certificates for Key
+     * Attestation JWT, without referring to system-installed ones.
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    private boolean keyAttesterRootsOnly;
 
 
     /**
@@ -13273,6 +13329,460 @@ public class Service implements Serializable
     public Service setHaipVersion(String version)
     {
         this.haipVersion = version;
+
+        return this;
+    }
+
+
+    /**
+     * Get the trusted root certificates used to validate the certificate chain
+     * specified in the {@code x5c} header parameter of the Client Attestation
+     * JWT.
+     *
+     * <p>
+     * If the Client Attestation JWT includes the {@code x5c} header parameter,
+     * Authlete validates the specified certificate chain. During validation,
+     * Authlete uses the X.509 certificates specified by this property as
+     * trusted root certificates when the {@code clientAttesterRootsEnabled}
+     * property is set to {@code true}. System-installed root certificates are
+     * also used unless the {@code clientAttesterRootsOnly} property is set to
+     * {@code true}.
+     * </p>
+     *
+     * <p>
+     * Each element in this property represents an X.509 certificate. The value
+     * is a base64-encoded string of the certificate in DER format, with or
+     * without PEM markers. The base64-encoded string may contain newlines and
+     * other whitespace characters.
+     * </p>
+     *
+     * <p>
+     * When Authlete returns this certificate list from its APIs, the certificates
+     * are provided in PEM format with PEM markers.
+     * </p>
+     *
+     * <p>
+     * Note that the <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html"
+     * >OpenID4VC High Assurance Interoperability Profile 1.0</a> specification
+     * requires the Client Attestation JWT to include the {@code x5c} header
+     * parameter.
+     * </p>
+     *
+     * @return
+     *         Trusted root certificates used to validate the certificate chain
+     *         of the Client Attestation JWT.
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #isClientAttesterRootsEnabled()
+     * @see #isClientAttesterRootsOnly()
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public String[] getClientAttesterRoots()
+    {
+        return clientAttesterRoots;
+    }
+
+
+    /**
+     * Set the trusted root certificates used to validate the certificate chain
+     * specified in the {@code x5c} header parameter of the Client Attestation
+     * JWT.
+     *
+     * <p>
+     * If the Client Attestation JWT includes the {@code x5c} header parameter,
+     * Authlete validates the specified certificate chain. During validation,
+     * Authlete uses the X.509 certificates specified by this property as
+     * trusted root certificates when the {@code clientAttesterRootsEnabled}
+     * property is set to {@code true}. System-installed root certificates are
+     * also used unless the {@code clientAttesterRootsOnly} property is set to
+     * {@code true}.
+     * </p>
+     *
+     * <p>
+     * Each element in this property represents an X.509 certificate. The value
+     * is a base64-encoded string of the certificate in DER format, with or
+     * without PEM markers. The base64-encoded string may contain newlines and
+     * other whitespace characters.
+     * </p>
+     *
+     * <p>
+     * When Authlete returns this certificate list from its APIs, the certificates
+     * are provided in PEM format with PEM markers.
+     * </p>
+     *
+     * <p>
+     * Note that the <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html"
+     * >OpenID4VC High Assurance Interoperability Profile 1.0</a> specification
+     * requires the Client Attestation JWT to include the {@code x5c} header
+     * parameter.
+     * </p>
+     *
+     * @param certificates
+     *         Trusted root certificates used to validate the certificate chain
+     *         of the Client Attestation JWT.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #setClientAttesterRootsEnabled(boolean)
+     * @see #setClientAttesterRootsOnly(boolean)
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public Service setClientAttesterRoots(String[] certificates)
+    {
+        this.clientAttesterRoots = certificates;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to use the trusted root certificates
+     * specified by the {@code clientAttesterRoots} property to validate the
+     * certificate chain specified in the {@code x5c} header parameter of the
+     * Client Attestation JWT.
+     *
+     * @return
+     *         {@code true} if the trusted root certificates specified by the
+     *         {@code clientAttesterRoots} property are used to validate the
+     *         certificate chain of the Client Attestation JWT.
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #getClientAttesterRoots()
+     * @see #isClientAttesterRootsOnly()
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public boolean isClientAttesterRootsEnabled()
+    {
+        return clientAttesterRootsEnabled;
+    }
+
+
+    /**
+     * Set the flag indicating whether to use the trusted root certificates
+     * specified by the {@code clientAttesterRoots} property to validate the
+     * certificate chain specified in the {@code x5c} header parameter of the
+     * Client Attestation JWT.
+     *
+     * @param enabled
+     *         {@code true} to use the trusted root certificates specified by
+     *         the {@code clientAttesterRoots} property.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #setClientAttesterRoots(String[])
+     * @see #setClientAttesterRootsOnly(boolean)
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public Service setClientAttesterRootsEnabled(boolean enabled)
+    {
+        this.clientAttesterRootsEnabled = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to use only the trusted root certificates
+     * specified by the {@code clientAttesterRoots} property to validate the
+     * certificate chain specified in the {@code x5c} header parameter of the
+     * Client Attestation JWT, without using system-installed root certificates.
+     *
+     * @return
+     *         {@code true} if only the trusted root certificates specified by
+     *         the {@code clientAttesterRoots} property are used.
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #getClientAttesterRoots()
+     * @see #isClientAttesterRootsEnabled()
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public boolean isClientAttesterRootsOnly()
+    {
+        return clientAttesterRootsOnly;
+    }
+
+
+    /**
+     * Set the flag indicating whether to use only the trusted root certificates
+     * specified by the {@code clientAttesterRoots} property to validate the
+     * certificate chain specified in the {@code x5c} header parameter of the
+     * Client Attestation JWT, without using system-installed root certificates.
+     *
+     * @param only
+     *         {@code true} to use only the trusted root certificates specified
+     *         by the {@code clientAttesterRoots} property.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-attestation-based-client-auth/">
+     *      OAuth 2.0 Attestation-Based Client Authentication</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #setClientAttesterRoots(String[])
+     * @see #isClientAttesterRootsEnabled()
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public Service setClientAttesterRootsOnly(boolean only)
+    {
+        this.clientAttesterRootsOnly = only;
+
+        return this;
+    }
+
+
+    /**
+     * Get the trusted root certificates used to validate the certificate chain
+     * specified in the {@code x5c} header parameter of the Key Attestation JWT.
+     *
+     * <p>
+     * If the Key Attestation JWT includes the {@code x5c} header parameter,
+     * Authlete validates the specified certificate chain. During validation,
+     * Authlete uses the X.509 certificates specified by this property as
+     * trusted root certificates when the {@code keyAttesterRootsEnabled}
+     * property is set to {@code true}. System-installed root certificates are
+     * also used unless the {@code keyAttesterRootsOnly} property is set to
+     * {@code true}.
+     * </p>
+     *
+     * <p>
+     * Each element in this property represents an X.509 certificate. The value
+     * is a base64-encoded string of the certificate in DER format, with or
+     * without PEM markers. The base64-encoded string may contain newlines and
+     * other whitespace characters.
+     * </p>
+     *
+     * <p>
+     * When Authlete returns this certificate list from its APIs, the certificates
+     * are provided in PEM format with PEM markers.
+     * </p>
+     *
+     * <p>
+     * Note that the <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html"
+     * >OpenID4VC High Assurance Interoperability Profile 1.0</a> specification
+     * requires the Key Attestation JWT to include the {@code x5c} header
+     * parameter.
+     * </p>
+     *
+     * @return
+     *         Trusted root certificates used to validate the certificate chain
+     *         of the Key Attestation JWT.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
+     *      OpenID for Verifiable Credential Issuance 1.0</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #isKeyAttesterRootsEnabled()
+     * @see #isKeyAttesterRootsOnly()
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public String[] getKeyAttesterRoots()
+    {
+        return keyAttesterRoots;
+    }
+
+
+    /**
+     * Set the trusted root certificates used to validate the certificate chain
+     * specified in the {@code x5c} header parameter of the Key Attestation JWT.
+     *
+     * <p>
+     * If the Key Attestation JWT includes the {@code x5c} header parameter,
+     * Authlete validates the specified certificate chain. During validation,
+     * Authlete uses the X.509 certificates specified by this property as
+     * trusted root certificates when the {@code keyAttesterRootsEnabled}
+     * property is set to {@code true}. System-installed root certificates are
+     * also used unless the {@code keyAttesterRootsOnly} property is set to
+     * {@code true}.
+     * </p>
+     *
+     * <p>
+     * Each element in this property represents an X.509 certificate. The value
+     * is a base64-encoded string of the certificate in DER format, with or
+     * without PEM markers. The base64-encoded string may contain newlines and
+     * other whitespace characters.
+     * </p>
+     *
+     * <p>
+     * When Authlete returns this certificate list from its APIs, the certificates
+     * are provided in PEM format with PEM markers.
+     * </p>
+     *
+     * <p>
+     * Note that the <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html"
+     * >OpenID4VC High Assurance Interoperability Profile 1.0</a> specification
+     * requires the Key Attestation JWT to include the {@code x5c} header
+     * parameter.
+     * </p>
+     *
+     * @param certificates
+     *         Trusted root certificates used to validate the certificate chain
+     *         of the Key Attestation JWT.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
+     *      OpenID for Verifiable Credential Issuance 1.0</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #setKeyAttesterRootsEnabled(boolean)
+     * @see #setKeyAttesterRootsOnly(boolean)
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public Service setKeyAttesterRoots(String[] certificates)
+    {
+        this.keyAttesterRoots = certificates;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to use the trusted root certificates
+     * specified by the {@code keyAttesterRoots} property to validate the
+     * certificate chain specified in the {@code x5c} header parameter of the
+     * Key Attestation JWT.
+     *
+     * @return
+     *         {@code true} if the trusted root certificates specified by the
+     *         {@code keyAttesterRoots} property are used to validate the
+     *         certificate chain of the Key Attestation JWT.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
+     *      OpenID for Verifiable Credential Issuance 1.0</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #getKeyAttesterRoots()
+     * @see #isKeyAttesterRootsOnly()
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public boolean isKeyAttesterRootsEnabled()
+    {
+        return keyAttesterRootsEnabled;
+    }
+
+
+    /**
+     * Set the flag indicating whether to use the trusted root certificates
+     * specified by the {@code keyAttesterRoots} property to validate the
+     * certificate chain specified in the {@code x5c} header parameter of the
+     * Key Attestation JWT.
+     *
+     * @param enabled
+     *         {@code true} to use the trusted root certificates specified by
+     *         the {@code keyAttesterRoots} property.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
+     *      OpenID for Verifiable Credential Issuance 1.0</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #setKeyAttesterRoots(String[])
+     * @see #setKeyAttesterRootsOnly(boolean)
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public Service setKeyAttesterRootsEnabled(boolean enabled)
+    {
+        this.keyAttesterRootsEnabled = enabled;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to use only the trusted root certificates
+     * specified by the {@code keyAttesterRoots} property to validate the
+     * certificate chain specified in the {@code x5c} header parameter of the
+     * Key Attestation JWT, without using system-installed root certificates.
+     *
+     * @return
+     *         {@code true} if only the trusted root certificates specified by
+     *         the {@code keyAttesterRoots} property are used.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
+     *      OpenID for Verifiable Credential Issuance 1.0</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #getKeyAttesterRoots()
+     * @see #isKeyAttesterRootsEnabled()
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public boolean isKeyAttesterRootsOnly()
+    {
+        return keyAttesterRootsOnly;
+    }
+
+
+    /**
+     * Set the flag indicating whether to use only the trusted root certificates
+     * specified by the {@code keyAttesterRoots} property to validate the
+     * certificate chain specified in the {@code x5c} header parameter of the
+     * Key Attestation JWT, without using system-installed root certificates.
+     *
+     * @param only
+     *         {@code true} to use only the trusted root certificates specified
+     *         by the {@code keyAttesterRoots} property.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @see <a href="https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html">
+     *      OpenID for Verifiable Credential Issuance 1.0</a>
+     * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
+     *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
+     * @see #setKeyAttesterRoots(String[])
+     * @see #isKeyAttesterRootsEnabled()
+     *
+     * @since 4.42
+     * @since Authlete 3.0.31
+     */
+    public Service setKeyAttesterRootsOnly(boolean only)
+    {
+        this.keyAttesterRootsOnly = only;
 
         return this;
     }
