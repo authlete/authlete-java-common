@@ -1,6 +1,9 @@
 変更点
 ======
 
+4.43 (2026 年 05 月 10 日)
+--------------------------
+
 - `AuthleteApi` インターフェース
     * `backchannelLogoutToken(BackchannelLogoutTokenRequest)` メソッドを追加。
     * `backchannelLogoutToken(BackchannelLogoutTokenRequest, Options)` メソッドを追加。

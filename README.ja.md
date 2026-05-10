@@ -373,6 +373,10 @@ settings.setReadTimeout(5000);
 
   - `attestationChallenge(AttestationChallengeRequest)`
 
+  24. OpenID Connect Back-Channel Logout 1.0 に関するメソッド群
+
+  - `backchannelLogoutToken(BackchannelLogoutTokenRequest)`
+
 *例*
 
 次のコードは既存のサービスのリストを取得する例です。

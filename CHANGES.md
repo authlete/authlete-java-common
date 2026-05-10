@@ -1,6 +1,9 @@
 CHANGES
 =======
 
+4.43 (2026-05-10)
+-----------------
+
 - `AuthleteApi` interface
     * Added the `backchannelLogoutToken(BackchannelLogoutTokenRequest)` method.
     * Added the `backchannelLogoutToken(BackchannelLogoutTokenRequest, Options)` method.

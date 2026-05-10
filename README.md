@@ -384,6 +384,10 @@ Methods in `AuthleteApi` interface can be divided into some categories.
 
   - `attestationChallenge(AttestationChallengeRequest)`
 
+  24. Methods for OpenID Connect Back-Channel Logout 1.0
+
+  - `backchannelLogoutToken(BackchannelLogoutTokenRequest)`
+
 *Examples*
 
 The following code snippet is an example to get the list of your existing
