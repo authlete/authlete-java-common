@@ -84,10 +84,13 @@ import com.authlete.common.util.Utils;
  *
  * @see <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-client-id-metadata-document/"
  *      >OAuth Client ID Metadata Document</a>
+ *
+ * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html"
+ *      >OpenID Connect Back-Channel Logout 1.0</a>
  */
 public class Client implements Serializable
 {
-    private static final long serialVersionUID = 41L;
+    private static final long serialVersionUID = 42L;
 
 
     /*
@@ -736,6 +739,25 @@ public class Client implements Serializable
      * @since Authlete 3.0.29
      */
     private String haipVersion;
+
+
+    /**
+     * The Back-Channel Logout URI.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     */
+    private URI backchannelLogoutUri;
+
+
+    /**
+     * The flag indicating whether this client requires Logout Tokens to
+     * include the {@code sid} claim.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     */
+    private boolean backchannelLogoutSessionRequired;
 
 
     /**
@@ -5841,7 +5863,7 @@ public class Client implements Serializable
      *         The HAIP version to comply with.
      *
      * @since 4.41
-     * @since 3.0.29
+     * @since Authlete 3.0.29
      *
      * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
      *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
@@ -5881,7 +5903,7 @@ public class Client implements Serializable
      *         {@code this} object.
      *
      * @since 4.41
-     * @since 3.0.29
+     * @since Authlete 3.0.29
      *
      * @see <a href="https://openid.net/specs/openid4vc-high-assurance-interoperability-profile-1_0.html">
      *      OpenID4VC High Assurance Interoperability Profile 1.0</a>
@@ -5889,6 +5911,110 @@ public class Client implements Serializable
     public Client setHaipVersion(String version)
     {
         this.haipVersion = version;
+
+        return this;
+    }
+
+
+    /**
+     * Get the Back-Channel Logout URI. This property corresponds to the
+     * <code>backchannel_<wbr>logout_<wbr>uri</code> client metadata parameter
+     * defined in the <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID
+     * Connect Back-Channel Logout 1.0</a> specification.
+     *
+     * @return
+     *         The Back-Channel Logout URI.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
+     *      OpenID Connect Back-Channel Logout 1.0</a>
+     */
+    public URI getBackchannelLogoutUri()
+    {
+        return backchannelLogoutUri;
+    }
+
+
+    /**
+     * Set the Back-Channel Logout URI. This property corresponds to the
+     * <code>backchannel_<wbr>logout_<wbr>uri</code> client metadata parameter
+     * defined in the <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID
+     * Connect Back-Channel Logout 1.0</a> specification.
+     *
+     * @param uri
+     *         The Back-Channel Logout URI.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
+     *      OpenID Connect Back-Channel Logout 1.0</a>
+     */
+    public Client setBackchannelLogoutUri(URI uri)
+    {
+        this.backchannelLogoutUri = uri;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether this client requires <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html#LogoutToken"
+     * >Logout Token</a>s to include the {@code sid} claim. This property
+     * corresponds to the <code>backchannel_<wbr>logout_<wbr>sesssion_<wbr>required</code>
+     * client metadata parameter defined in the <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID
+     * Connect Back-Channel Logout 1.0</a> specification.
+     *
+     * @return
+     *         The flag indicating whether this client requires Logout Tokens
+     *         to include the {@code sid} claim.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
+     *      OpenID Connect Back-Channel Logout 1.0</a>
+     */
+    public boolean isBackchannelLogoutSessionRequired()
+    {
+        return backchannelLogoutSessionRequired;
+    }
+
+
+    /**
+     * Set the flag indicating whether this client requires <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html#LogoutToken"
+     * >Logout Token</a>s to include the {@code sid} claim. This property
+     * corresponds to the <code>backchannel_<wbr>logout_<wbr>sesssion_<wbr>required</code>
+     * client metadata parameter defined in the <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID
+     * Connect Back-Channel Logout 1.0</a> specification.
+     *
+     * @param required
+     *         {@code true} to require Logout Tokens to include the {@code sid}
+     *         claim.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
+     *      OpenID Connect Back-Channel Logout 1.0</a>
+     */
+    public Client setBackchannelLogoutSessionRequired(boolean required)
+    {
+        this.backchannelLogoutSessionRequired = required;
 
         return this;
     }
@@ -6196,6 +6322,16 @@ public class Client implements Serializable
 
         // spiffe_bundle_endpoint
         put(metadata, "spiffe_bundle_endpoint", getSpiffeBundleEndpoint(), nullIncluded);
+
+        //----------------------------------------------------------------------
+        // OpenID Connect Back-Channel Logout 1.0
+        //----------------------------------------------------------------------
+
+        // backchannel_logout_uri
+        put(metadata, "backchannel_logout_uri", getBackchannelLogoutUri(), nullIncluded);
+
+        // backchannel_logout_session_required
+        put(metadata, "backchannel_logout_session_required", isBackchannelLogoutSessionRequired(), falseIncluded);
 
         //----------------------------------------------------------------------
         // Custom Metadata

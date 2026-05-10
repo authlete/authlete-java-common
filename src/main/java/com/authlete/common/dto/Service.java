@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 92L;
+    private static final long serialVersionUID = 93L;
 
 
     /*
@@ -2082,6 +2082,25 @@ public class Service implements Serializable
      * @since Authlete 3.0.31
      */
     private boolean keyAttesterRootsOnly;
+
+
+    /**
+     * Whether to support the OpenID Connect Back-Channel Logout 1&#x2E;0
+     * specification.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     */
+    private boolean backchannelLogoutSupported;
+
+
+    /**
+     * Whether to support the {@code sid} claim in Logout Tokens.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     */
+    private boolean backchannelLogoutSessionSupported;
 
 
     /**
@@ -13783,6 +13802,166 @@ public class Service implements Serializable
     public Service setKeyAttesterRootsOnly(boolean only)
     {
         this.keyAttesterRootsOnly = only;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to support the <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID
+     * Connect Back-Channel Logout 1&#x2E;0</a> specification. This property
+     * corresponds to the <code>backchannel_<wbr>logout_<wbr>supported</code>
+     * server metadata parameter defined in the specification.
+     *
+     * <p>
+     * The <code>/api<wbr>/<i>{service-id}</i><wbr>/backchannel<wbr>/logout<wbr>/token</code>
+     * API can be used to generate a <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html#LogoutToken"
+     * >Logout Token</a>. See {@link BackchannelLogoutTokenRequest} and
+     * {@link BackchannelLogoutTokenResponse} for details.
+     * </p>
+     *
+     * @return
+     *         The flag indicating whether to support the <a href=
+     *         "https://openid.net/specs/openid-connect-backchannel-1_0.html"
+     *         >OpenID Connect Back-Channel Logout 1.0</a> specification.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
+     *      OpenID Connect Back-Channel Logout 1.0</a>
+     * @see BackchannelLogoutTokenRequest
+     * @see BackchannelLogoutTokenResponse
+     */
+    public boolean isBackchannelLogoutSupported()
+    {
+        return backchannelLogoutSupported;
+    }
+
+
+    /**
+     * Set the flag indicating whether to support the <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID
+     * Connect Back-Channel Logout 1&#x2E;0</a> specification. This property
+     * corresponds to the <code>backchannel_<wbr>logout_<wbr>supported</code>
+     * server metadata parameter defined in the specification.
+     *
+     * <p>
+     * The <code>/api<wbr>/<i>{service-id}</i><wbr>/backchannel<wbr>/logout<wbr>/token</code>
+     * API can be used to generate a <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html#LogoutToken"
+     * >Logout Token</a>. See {@link BackchannelLogoutTokenRequest} and
+     * {@link BackchannelLogoutTokenResponse} for details.
+     * </p>
+     *
+     * @param supported
+     *         {@code true} to indicate that this service supports the <a href=
+     *         "https://openid.net/specs/openid-connect-backchannel-1_0.html"
+     *         >OpenID Connect Back-Channel Logout 1.0</a> specification.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
+     *      OpenID Connect Back-Channel Logout 1.0</a>
+     * @see BackchannelLogoutTokenRequest
+     * @see BackchannelLogoutTokenResponse
+     */
+    public Service setBackchannelLogoutSupported(boolean supported)
+    {
+        this.backchannelLogoutSupported = supported;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to support the {@code sid} claim of
+     * <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html#LogoutToken"
+     * >Logout Token</a>s. This property corresponds to the
+     * <code>backchannel_<wbr>logout_<wbr>session_<wbr>supported</code> server
+     * metadata parameter defined in the <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID
+     * Connect Back-Channel Logout 1.0</a> specification.
+     *
+     * <p>
+     * If this property is set to {@code true}, the {@code sessionId} request
+     * parameter for the <code>/auth<wbr>/authorization<wbr>/issue</code> API
+     * (see {@link AuthorizationIssueRequest#getSessionId()}) is recognized,
+     * and the specified value is embedded in ID Tokens as the value of the
+     * {@code sid} claim.
+     * </p>
+     *
+     * <p>
+     * If this property is set to {@code true}, API calls to the
+     * <code>/api/<i>{service-id}</i><wbr>/backchannel<wbr>/logout<wbr>/token</code>
+     * API should include the {@code sessionId} request parameter (see
+     * {@link BackchannelLogoutTokenRequest#getSessionId()}).
+     * </p>
+     *
+     * @return
+     *         The flag indicating whether to support the {@code sid} claim
+     *         of Logout Tokens.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
+     *      OpenID Connect Back-Channel Logout 1.0</a>
+     */
+    public boolean isBackchannelLogoutSessionSupported()
+    {
+        return backchannelLogoutSessionSupported;
+    }
+
+
+    /**
+     * Set the flag indicating whether to support the {@code sid} claim of
+     * <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html#LogoutToken"
+     * >Logout Token</a>s. This property corresponds to the
+     * <code>backchannel_<wbr>logout_<wbr>session_<wbr>supported</code> server
+     * metadata parameter defined in the <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID
+     * Connect Back-Channel Logout 1.0</a> specification.
+     *
+     * <p>
+     * If this property is set to {@code true}, the {@code sessionId} request
+     * parameter for the <code>/auth<wbr>/authorization<wbr>/issue</code> API
+     * (see {@link AuthorizationIssueRequest#getSessionId()}) is recognized,
+     * and the specified value is embedded in ID Tokens as the value of the
+     * {@code sid} claim.
+     * </p>
+     *
+     * <p>
+     * If this property is set to {@code true}, API calls to the
+     * <code>/api/<i>{service-id}</i><wbr>/backchannel<wbr>/logout<wbr>/token</code>
+     * API should include the {@code sessionId} request parameter (see
+     * {@link BackchannelLogoutTokenRequest#getSessionId()}).
+     * </p>
+     *
+     * @param supported
+     *         {@code true} to indicate that the {@code sid} claim of Logout
+     *         Tokens is supported.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
+     *      OpenID Connect Back-Channel Logout 1.0</a>
+     */
+    public Service setBackchannelLogoutSessionSupported(boolean supported)
+    {
+        this.backchannelLogoutSessionSupported = supported;
 
         return this;
     }

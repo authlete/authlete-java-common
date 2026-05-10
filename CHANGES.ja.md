@@ -1,6 +1,27 @@
 変更点
 ======
 
+- `AuthleteApi` インターフェース
+    * `backchannelLogoutToken(BackchannelLogoutTokenRequest)` メソッドを追加。
+    * `backchannelLogoutToken(BackchannelLogoutTokenRequest, Options)` メソッドを追加。
+
+- `Client` クラス
+    * `getBackchannelLogoutUri()` メソッドを追加。
+    * `setBackchannelLogoutUri(URI)` メソッドを追加。
+    * `isBackchannelLogoutSessionRequired()` メソッドを追加。
+    * `setBackchannelLogoutSessionRequired(boolean)` メソッドを追加。
+
+- `Service` クラス
+    * `isBackchannelLogoutSupported()` メソッドを追加。
+    * `setBackchannelLogoutSupported(boolean)` メソッドを追加。
+    * `isBackchannelLogoutSessionSupported()` メソッドを追加。
+    * `setBackchannelLogoutSessionSupported(boolean)` メソッドを追加。
+
+- 新しい型
+    * `BackchannelLogoutTokenRequest` クラス
+    * `BackchannelLogoutTokenResponse` クラス
+
+
 4.42 (2026 年 04 月 14 日)
 --------------------------
 

@@ -44,6 +44,8 @@ import com.authlete.common.dto.BackchannelAuthenticationIssueRequest;
 import com.authlete.common.dto.BackchannelAuthenticationIssueResponse;
 import com.authlete.common.dto.BackchannelAuthenticationRequest;
 import com.authlete.common.dto.BackchannelAuthenticationResponse;
+import com.authlete.common.dto.BackchannelLogoutTokenRequest;
+import com.authlete.common.dto.BackchannelLogoutTokenResponse;
 import com.authlete.common.dto.Client;
 import com.authlete.common.dto.ClientAuthorizationDeleteRequest;
 import com.authlete.common.dto.ClientAuthorizationGetListRequest;
@@ -196,6 +198,7 @@ public class AuthleteApiImplV3 extends AuthleteApiBasicImpl
     private static final String BACKCHANNEL_AUTHENTICATION_COMPLETE_API_PATH  = "/api/%d/backchannel/authentication/complete";
     private static final String BACKCHANNEL_AUTHENTICATION_FAIL_API_PATH      = "/api/%d/backchannel/authentication/fail";
     private static final String BACKCHANNEL_AUTHENTICATION_ISSUE_API_PATH     = "/api/%d/backchannel/authentication/issue";
+    private static final String BACKCHANNEL_LOGOUT_TOKEN_API_PATH             = "/api/%d/backchannel/logout/token";
     private static final String DEVICE_AUTHORIZATION_API_PATH                 = "/api/%d/device/authorization";
     private static final String DEVICE_COMPLETE_API_PATH                      = "/api/%d/device/complete";
     private static final String DEVICE_VERIFICATION_API_PATH                  = "/api/%d/device/verification";
@@ -1680,6 +1683,18 @@ public class AuthleteApiImplV3 extends AuthleteApiBasicImpl
                 new PostApiCaller<AttestationChallengeResponse>(
                         AttestationChallengeResponse.class, request,
                         ATTESTATION_CHALLENGE_API_PATH, mServiceId)
+                        .setOptions(options));
+    }
+
+
+    @Override
+    public BackchannelLogoutTokenResponse backchannelLogoutToken(
+            BackchannelLogoutTokenRequest request, Options options) throws AuthleteApiException
+    {
+        return executeApiCall(
+                new PostApiCaller<BackchannelLogoutTokenResponse>(
+                        BackchannelLogoutTokenResponse.class, request,
+                        BACKCHANNEL_LOGOUT_TOKEN_API_PATH, mServiceId)
                         .setOptions(options));
     }
 }

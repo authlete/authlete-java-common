@@ -1,6 +1,27 @@
 CHANGES
 =======
 
+- `AuthleteApi` interface
+    * Added the `backchannelLogoutToken(BackchannelLogoutTokenRequest)` method.
+    * Added the `backchannelLogoutToken(BackchannelLogoutTokenRequest, Options)` method.
+
+- `Client` class
+    * Added the `getBackchannelLogoutUri()` method.
+    * Added the `setBackchannelLogoutUri(URI)` method.
+    * Added the `isBackchannelLogoutSessionRequired()` method.
+    * Added the `setBackchannelLogoutSessionRequired(boolean)` method.
+
+- `Service` class
+    * Added the `isBackchannelLogoutSupported()` method.
+    * Added the `setBackchannelLogoutSupported(boolean)` method.
+    * Added the `isBackchannelLogoutSessionSupported()` method.
+    * Added the `setBackchannelLogoutSessionSupported(boolean)` method.
+
+- New types
+    * `BackchannelLogoutTokenRequest` class
+    * `BackchannelLogoutTokenResponse` class
+
+
 4.42 (2026-04-14)
 -----------------
 
