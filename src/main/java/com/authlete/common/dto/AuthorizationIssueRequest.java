@@ -1,11 +1,11 @@
 /*
- * Copyright (C) 2014-2025 Authlete, Inc.
+ * Copyright (C) 2014-2026 Authlete, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -45,9 +45,9 @@ import com.authlete.common.util.Utils;
  * is required unless the authorization request has come with
  * {@code response_type=none} (which means the client application
  * did not request any token to be returned). See "<a href=
- * "http://openid.net/specs/oauth-v2-multiple-response-types-1_0.html#none"
+ * "https://openid.net/specs/oauth-v2-multiple-response-types-1_0.html#none"
  * >4. None Response Type</a>" in <a href=
- * "http://openid.net/specs/oauth-v2-multiple-response-types-1_0.html"
+ * "https://openid.net/specs/oauth-v2-multiple-response-types-1_0.html"
  * >OAuth 2.0 Multiple Response Type Encoding Practices</a> for
  * details about {@code response_type=none}.
  * </p>
@@ -73,7 +73,7 @@ import com.authlete.common.util.Utils;
  * <p>
  * The claims of the end-user (= pieces of information about the
  * end-user) in JSON format. See
- * <a href="http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+ * <a href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
  * >OpenID Connect Core 1.0, 5.1. Standard Claims</a> for details
  * about the format.
  * </p>
@@ -122,7 +122,7 @@ import com.authlete.common.util.Utils;
  * If you add <code>"offline_access"</code> scope although it is not
  * included in the original request, keep in mind that the specification
  * requires explicit consent from the user for the scope (<a href=
- * "http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess"
+ * "https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess"
  * >OpenID Connect Core 1.0, 11. Offline Access</a>). When
  * <code>"offline_access"</code> is included in the original request, the
  * current implementation of Authlete's {@code /auth/authorization} API
@@ -234,7 +234,7 @@ import com.authlete.common.util.Utils;
  *
  * @see AuthorizationResponse
  *
- * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+ * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
  *      >OpenID Connect Core 1.0, 5.1. Standard Claims</a>
  *
  * @author Takahiko Kawasaki
@@ -659,7 +659,7 @@ public class AuthorizationIssueRequest implements Serializable
      * </p>
      *
      * <p>
-     * See <a href="http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+     * See <a href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
      * >OpenID Connect Core 1.0, 5.1. Standard Claims</a> for further details
      * about the format.
      * </p>
@@ -670,7 +670,7 @@ public class AuthorizationIssueRequest implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @see <a href="http://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
+     * @see <a href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims"
      *      >OpenID Connect Core 1.0, 5.1. Standard Claims</a>
      */
     public AuthorizationIssueRequest setClaims(String claims)
@@ -750,7 +750,7 @@ public class AuthorizationIssueRequest implements Serializable
      * Keys listed below should not be used and they would be ignored on
      * the server side even if they were used. It's because they are reserved
      * in <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a> and
-     * <a href="http://openid.net/specs/openid-connect-core-1_0.html"
+     * <a href="https://openid.net/specs/openid-connect-core-1_0.html"
      * >OpenID Connect Core 1.0</a>.
      * </p>
      *
@@ -835,7 +835,7 @@ public class AuthorizationIssueRequest implements Serializable
      * If you add <code>"offline_access"</code> scope although it is not
      * included in the original request, keep in mind that the specification
      * requires explicit consent from the user for the scope (<a href=
-     * "http://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess"
+     * "https://openid.net/specs/openid-connect-core-1_0.html#OfflineAccess"
      * >OpenID Connect Core 1.0, 11. Offline Access</a>). When
      * <code>"offline_access"</code> is included in the original request, the
      * current implementation of Authlete's /api/auth/authorization API checks
@@ -1657,7 +1657,7 @@ public class AuthorizationIssueRequest implements Serializable
      * claim.
      *
      * <p>
-     * This parameter needs to be provided only if you want to support the
+     * This parameter needs to be provided if you want to support the
      * "<a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
      * >OpenID Connect Native SSO for Mobile Apps 1.0</a>" specification
      * (a.k.a. "Native SSO"). To enable support for the Native SSO specification,
@@ -1669,8 +1669,26 @@ public class AuthorizationIssueRequest implements Serializable
      * <b>NOTE</b>: When the response from the {@code /auth/authorization} API
      * contains the {@code nativeSsoRequested} property with a value of
      * {@code true} (see {@link AuthorizationResponse#isNativeSsoRequested()}),
-     * the {@code sessionId} request parameter must be provided to the
+     * this {@code sessionId} request parameter must be provided to the
      * {@code /auth/authorization/issue} API.
+     * </p>
+     *
+     * <p>
+     * Also, if your server's
+     * <code>backchannel_<wbr>logout_<wbr>session_<wbr>supported</code> metadata
+     * parameter is set to {@code true} (see
+     * {@link Service#isBackchannelLogoutSessionSupported()}), this
+     * {@code sessionId} request parameter should be provided. See the <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID
+     * Connect Back-Channel Logout 1.0</a> specification for the metadata
+     * parameter.
+     * </p>
+     *
+     * <p>
+     * In the current Authlete implementation, this {@code sessionId} request
+     * parameter is recognized only when Native SSO is requested or the
+     * <code>backchannel_<wbr>logout_<wbr>session_<wbr>supported</code> server
+     * metadata parameter is set to {@code true}.
      * </p>
      *
      * @return
@@ -1683,6 +1701,10 @@ public class AuthorizationIssueRequest implements Serializable
      *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
      * @see AuthorizationResponse#isNativeSsoRequested()
      * @see Service#isNativeSsoSupported()
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html"
+     *      >OpenID Connect Back-Channel Logout 1.0</a>
+     * @see Service#isBackchannelLogoutSessionSupported()
      */
     public String getSessionId()
     {
@@ -1696,7 +1718,7 @@ public class AuthorizationIssueRequest implements Serializable
      * claim.
      *
      * <p>
-     * This parameter needs to be provided only if you want to support the
+     * This parameter needs to be provided if you want to support the
      * "<a href="https://openid.net/specs/openid-connect-native-sso-1_0.html"
      * >OpenID Connect Native SSO for Mobile Apps 1.0</a>" specification
      * (a.k.a. "Native SSO"). To enable support for the Native SSO specification,
@@ -1708,8 +1730,26 @@ public class AuthorizationIssueRequest implements Serializable
      * <b>NOTE</b>: When the response from the {@code /auth/authorization} API
      * contains the {@code nativeSsoRequested} property with a value of
      * {@code true} (see {@link AuthorizationResponse#isNativeSsoRequested()}),
-     * the {@code sessionId} request parameter must be provided to the
+     * this {@code sessionId} request parameter must be provided to the
      * {@code /auth/authorization/issue} API.
+     * </p>
+     *
+     * <p>
+     * Also, if your server's
+     * <code>backchannel_<wbr>logout_<wbr>session_<wbr>supported</code> metadata
+     * parameter is set to {@code true} (see
+     * {@link Service#isBackchannelLogoutSessionSupported()}), this
+     * {@code sessionId} request parameter should be provided. See the <a href=
+     * "https://openid.net/specs/openid-connect-backchannel-1_0.html">OpenID
+     * Connect Back-Channel Logout 1.0</a> specification for the metadata
+     * parameter.
+     * </p>
+     *
+     * <p>
+     * In the current Authlete implementation, this {@code sessionId} request
+     * parameter is recognized only when Native SSO is requested or the
+     * <code>backchannel_<wbr>logout_<wbr>session_<wbr>supported</code> server
+     * metadata parameter is set to {@code true}.
      * </p>
      *
      * @param sessionId
@@ -1725,6 +1765,10 @@ public class AuthorizationIssueRequest implements Serializable
      *      >OpenID Connect Native SSO for Mobile Apps 1.0</a>
      * @see AuthorizationResponse#isNativeSsoRequested()
      * @see Service#isNativeSsoSupported()
+     *
+     * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html"
+     *      >OpenID Connect Back-Channel Logout 1.0</a>
+     * @see Service#isBackchannelLogoutSessionSupported()
      */
     public AuthorizationIssueRequest setSessionId(String sessionId)
     {

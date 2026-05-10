@@ -38,6 +38,8 @@ import com.authlete.common.dto.BackchannelAuthenticationIssueRequest;
 import com.authlete.common.dto.BackchannelAuthenticationIssueResponse;
 import com.authlete.common.dto.BackchannelAuthenticationRequest;
 import com.authlete.common.dto.BackchannelAuthenticationResponse;
+import com.authlete.common.dto.BackchannelLogoutTokenRequest;
+import com.authlete.common.dto.BackchannelLogoutTokenResponse;
 import com.authlete.common.dto.Client;
 import com.authlete.common.dto.ClientAuthorizationGetListRequest;
 import com.authlete.common.dto.ClientAuthorizationUpdateRequest;
@@ -4882,4 +4884,42 @@ public interface AuthleteApi
      */
     AttestationChallengeResponse attestationChallenge(
             AttestationChallengeRequest request, Options options) throws AuthleteApiException;
+
+
+    /**
+     * Call Authlete's {@code /backchannel/logout/token} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     */
+    default BackchannelLogoutTokenResponse backchannelLogoutToken(
+            BackchannelLogoutTokenRequest request) throws AuthleteApiException
+    {
+        return backchannelLogoutToken(request, null);
+    }
+
+
+    /**
+     * Call Authlete's {@code /backchannel/logout/token} API.
+     *
+     * @param request
+     *         Request parameters passed to the API.
+     *
+     * @param options
+     *         Request options.
+     *
+     * @return
+     *         Response from the API.
+     *
+     * @since 4.43
+     * @since Authlete 3.0.32
+     */
+    BackchannelLogoutTokenResponse backchannelLogoutToken(
+            BackchannelLogoutTokenRequest request, Options options) throws AuthleteApiException;
 }

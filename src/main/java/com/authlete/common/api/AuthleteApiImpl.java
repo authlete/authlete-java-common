@@ -43,6 +43,8 @@ import com.authlete.common.dto.BackchannelAuthenticationIssueRequest;
 import com.authlete.common.dto.BackchannelAuthenticationIssueResponse;
 import com.authlete.common.dto.BackchannelAuthenticationRequest;
 import com.authlete.common.dto.BackchannelAuthenticationResponse;
+import com.authlete.common.dto.BackchannelLogoutTokenRequest;
+import com.authlete.common.dto.BackchannelLogoutTokenResponse;
 import com.authlete.common.dto.Client;
 import com.authlete.common.dto.ClientAuthorizationDeleteRequest;
 import com.authlete.common.dto.ClientAuthorizationGetListRequest;
@@ -195,6 +197,7 @@ class AuthleteApiImpl extends AuthleteApiBasicImpl
     private static final String BC_AUTHENTICATION_COMPLETE_API_PATH       = "/api/backchannel/authentication/complete";
     private static final String BC_AUTHENTICATION_FAIL_API_PATH           = "/api/backchannel/authentication/fail";
     private static final String BC_AUTHENTICATION_ISSUE_API_PATH          = "/api/backchannel/authentication/issue";
+    private static final String BC_LOGOUT_TOKEN_API_PATH                  = "/api/backchannel/logout/token";
     private static final String DEVICE_AUTHORIZATION_API_PATH             = "/api/device/authorization";
     private static final String DEVICE_COMPLETE_API_PATH                  = "/api/device/complete";
     private static final String DEVICE_VERIFICATION_API_PATH              = "/api/device/verification";
@@ -1826,6 +1829,21 @@ class AuthleteApiImpl extends AuthleteApiBasicImpl
                 new ServicePostApiCaller<AttestationChallengeResponse>(
                         AttestationChallengeResponse.class, request,
                         ATTESTATION_CHALLENGE_API_PATH)
+                        .setOptions(options));
+    }
+
+
+    @Override
+    public BackchannelLogoutTokenResponse backchannelLogoutToken(
+            BackchannelLogoutTokenRequest request, Options options) throws AuthleteApiException
+    {
+        // Note that the /backchannel/logout/token API is not available in
+        // Authlete 2.x, so the executeApiCall below will throw an exception.
+
+        return executeApiCall(
+                new ServicePostApiCaller<BackchannelLogoutTokenResponse>(
+                        BackchannelLogoutTokenResponse.class, request,
+                        BC_LOGOUT_TOKEN_API_PATH)
                         .setOptions(options));
     }
 }
