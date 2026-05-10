@@ -1,7 +1,7 @@
 変更点
 ======
 
-4.43 (2026 年 05 月 10 日)
+4.44 (2026 年 05 月 10 日)
 --------------------------
 
 - `AuthleteApi` インターフェース
@@ -23,6 +23,14 @@
 - 新しい型
     * `BackchannelLogoutTokenRequest` クラス
     * `BackchannelLogoutTokenResponse` クラス
+
+
+4.43 (2026 年 04 月 17 日)
+--------------------------
+
+- `AccessRight` 列挙型
+    * `USE_INTROSPECTION` を追加。
+    * `VIEW_AUDIT_LOG` を追加。
 
 
 4.42 (2026 年 04 月 14 日)

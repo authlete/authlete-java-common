@@ -4895,7 +4895,7 @@ public interface AuthleteApi
      * @return
      *         Response from the API.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      */
     default BackchannelLogoutTokenResponse backchannelLogoutToken(
@@ -4917,7 +4917,7 @@ public interface AuthleteApi
      * @return
      *         Response from the API.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      */
     BackchannelLogoutTokenResponse backchannelLogoutToken(

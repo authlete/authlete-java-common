@@ -744,7 +744,7 @@ public class Client implements Serializable
     /**
      * The Back-Channel Logout URI.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      */
     private URI backchannelLogoutUri;
@@ -754,7 +754,7 @@ public class Client implements Serializable
      * The flag indicating whether this client requires Logout Tokens to
      * include the {@code sid} claim.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      */
     private boolean backchannelLogoutSessionRequired;
@@ -5926,7 +5926,7 @@ public class Client implements Serializable
      * @return
      *         The Back-Channel Logout URI.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      *
      * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
@@ -5951,7 +5951,7 @@ public class Client implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      *
      * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
@@ -5978,7 +5978,7 @@ public class Client implements Serializable
      *         The flag indicating whether this client requires Logout Tokens
      *         to include the {@code sid} claim.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      *
      * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
@@ -6006,7 +6006,7 @@ public class Client implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      *
      * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">

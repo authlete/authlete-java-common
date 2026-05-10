@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-4.43 (2026-05-10)
+4.44 (2026-05-10)
 -----------------
 
 - `AuthleteApi` interface
@@ -23,6 +23,14 @@ CHANGES
 - New types
     * `BackchannelLogoutTokenRequest` class
     * `BackchannelLogoutTokenResponse` class
+
+
+4.43 (2026-04-17)
+-----------------
+
+- `AccessRight` enum
+    * Added `USE_INTROSPECTION`.
+    * Added `VIEW_AUDIT_LOG`.
 
 
 4.42 (2026-04-14)

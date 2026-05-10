@@ -2088,7 +2088,7 @@ public class Service implements Serializable
      * Whether to support the OpenID Connect Back-Channel Logout 1&#x2E;0
      * specification.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      */
     private boolean backchannelLogoutSupported;
@@ -2097,7 +2097,7 @@ public class Service implements Serializable
     /**
      * Whether to support the {@code sid} claim in Logout Tokens.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      */
     private boolean backchannelLogoutSessionSupported;
@@ -13827,7 +13827,7 @@ public class Service implements Serializable
      *         "https://openid.net/specs/openid-connect-backchannel-1_0.html"
      *         >OpenID Connect Back-Channel Logout 1.0</a> specification.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      *
      * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
@@ -13864,7 +13864,7 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      *
      * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
@@ -13909,7 +13909,7 @@ public class Service implements Serializable
      *         The flag indicating whether to support the {@code sid} claim
      *         of Logout Tokens.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      *
      * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
@@ -13953,7 +13953,7 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 4.43
+     * @since 4.44
      * @since Authlete 3.0.32
      *
      * @see <a href="https://openid.net/specs/openid-connect-backchannel-1_0.html">
