@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+4.45 (2026-05-18)
+-----------------
+
+- `AccessRight` enum
+    * Fixed `MODIFY_SERVICE`, `CREATE_CLIENT`, and `ADMIN` to include `USE_INTROSPECTION`.
+
+
 4.44 (2026-05-10)
 -----------------
 

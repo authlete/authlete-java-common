@@ -54,9 +54,9 @@ public enum AccessRight
     /** can use the non-destructive service API calls (auth endpoint, token endpoint, etc.) */
     USE_SERVICE(false, true, USE_INTROSPECTION, VIEW_SERVICE, VIEW_CLIENT),
     /** can create new clients on this service */
-    CREATE_CLIENT(false, true, USE_SERVICE, VIEW_SERVICE, MODIFY_CLIENT, VIEW_CLIENT),
+    CREATE_CLIENT(false, true, USE_INTROSPECTION, USE_SERVICE, VIEW_SERVICE, MODIFY_CLIENT, VIEW_CLIENT),
     /** can modify this service */
-    MODIFY_SERVICE(false, true, USE_SERVICE, VIEW_SERVICE, CREATE_CLIENT, MODIFY_CLIENT, VIEW_CLIENT),
+    MODIFY_SERVICE(false, true, USE_INTROSPECTION, USE_SERVICE, VIEW_SERVICE, CREATE_CLIENT, MODIFY_CLIENT, VIEW_CLIENT),
     /** can view default service parameters */
     VIEW_DEFAULT_SERVICE(false, false),
     /** can create additional services */
@@ -66,7 +66,7 @@ public enum AccessRight
     /** can delete a specific service */
     DELETE_SERVICE(false, true),
     /** can call administrative functions on the Authlete server */
-    ADMIN(false, false, VIEW_DEFAULT_SERVICE, CREATE_SERVICE, DELETE_SERVICE, USE_SERVICE, VIEW_SERVICE, MODIFY_SERVICE, CREATE_CLIENT, MODIFY_CLIENT, VIEW_CLIENT)
+    ADMIN(false, false, VIEW_DEFAULT_SERVICE, CREATE_SERVICE, DELETE_SERVICE, USE_INTROSPECTION, USE_SERVICE, VIEW_SERVICE, MODIFY_SERVICE, CREATE_CLIENT, MODIFY_CLIENT, VIEW_CLIENT)
     ;
 
 
