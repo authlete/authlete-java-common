@@ -2104,6 +2104,32 @@ public class Service implements Serializable
 
 
     /**
+     * Opt-in flag that asks the Authlete server to return a reduced
+     * representation of this service (and of clients embedded in
+     * service-scoped responses) on the endpoints that previously used
+     * the internal {@code buildLimited()} shape, namely
+     * {@code /auth/authorization}, {@code /auth/token/get/list} and
+     * {@code /client/authorization/get/list}.
+     *
+     * <p>
+     * When this flag is {@code false} (the default for new services),
+     * those endpoints return the full DTO as specified by the
+     * Authlete API. When it is {@code true}, the responses are reduced
+     * to a small whitelist of fields and serialized using a matching
+     * limited Gson configuration so unset fields do not leak as
+     * {@code false}, {@code 0} or {@code null}. This is intended as
+     * a transitional opt-in for existing Authlete 3.0 deployments
+     * that relied on the previous limited-by-default behavior; new
+     * services should leave it disabled.
+     * </p>
+     *
+     * @since 4.46
+     * @since Authlete 3.0.33
+     */
+    private boolean returnLimited;
+
+
+    /**
      * Get the service number.
      *
      * @return
@@ -13962,6 +13988,57 @@ public class Service implements Serializable
     public Service setBackchannelLogoutSessionSupported(boolean supported)
     {
         this.backchannelLogoutSessionSupported = supported;
+
+        return this;
+    }
+
+
+    /**
+     * Get the opt-in flag that asks the Authlete server to return a
+     * reduced representation of this service (and of clients embedded
+     * in service-scoped responses) on the endpoints that previously
+     * used the internal limited-build shape: {@code /auth/authorization},
+     * {@code /auth/token/get/list} and {@code /client/authorization/get/list}.
+     *
+     * <p>
+     * Defaults to {@code false} for new services. Intended as a
+     * transitional opt-in for existing Authlete 3.0 deployments that
+     * relied on the previous limited-by-default behavior.
+     * </p>
+     *
+     * @return
+     *         {@code true} if responses on the affected endpoints
+     *         should be reduced to a small whitelist of fields.
+     *
+     * @since 4.46
+     * @since Authlete 3.0.33
+     */
+    public boolean isReturnLimited()
+    {
+        return returnLimited;
+    }
+
+
+    /**
+     * Set the opt-in flag that asks the Authlete server to return a
+     * reduced representation of this service (and of clients embedded
+     * in service-scoped responses) on the endpoints that previously
+     * used the internal limited-build shape: {@code /auth/authorization},
+     * {@code /auth/token/get/list} and {@code /client/authorization/get/list}.
+     *
+     * @param returnLimited
+     *         {@code true} to opt in to limited responses on those
+     *         endpoints.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.46
+     * @since Authlete 3.0.33
+     */
+    public Service setReturnLimited(boolean returnLimited)
+    {
+        this.returnLimited = returnLimited;
 
         return this;
     }
