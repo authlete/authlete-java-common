@@ -2103,6 +2103,9 @@ public class Service implements Serializable
     private boolean backchannelLogoutSessionSupported;
 
 
+    private boolean returnLimited;
+
+
     /**
      * The flag indicating whether to refrain from issuing an ID token when the
      * {@code openid} scope has been removed from the scopes to be granted by
@@ -14045,6 +14048,57 @@ public class Service implements Serializable
     public Service setIdTokenDroppedOnIssueWithoutOpenid(boolean dropped)
     {
         this.idTokenDroppedOnIssueWithoutOpenid = dropped;
+
+        return this;
+    }
+
+
+    /**
+     * Get the opt-in flag that asks the Authlete server to return a
+     * reduced representation of this service (and of clients embedded
+     * in service-scoped responses) on the endpoints that previously
+     * used the internal limited-build shape: {@code /auth/authorization},
+     * {@code /auth/token/get/list} and {@code /client/authorization/get/list}.
+     *
+     * <p>
+     * Defaults to {@code false} for new services. Intended as a
+     * transitional opt-in for existing Authlete 3.0 deployments that
+     * relied on the previous limited-by-default behavior.
+     * </p>
+     *
+     * @return
+     *         {@code true} if responses on the affected endpoints
+     *         should be reduced to a small whitelist of fields.
+     *
+     * @since 4.48
+     * @since Authlete 3.0.33
+     */
+    public boolean isReturnLimited()
+    {
+        return returnLimited;
+    }
+
+
+    /**
+     * Set the opt-in flag that asks the Authlete server to return a
+     * reduced representation of this service (and of clients embedded
+     * in service-scoped responses) on the endpoints that previously
+     * used the internal limited-build shape: {@code /auth/authorization},
+     * {@code /auth/token/get/list} and {@code /client/authorization/get/list}.
+     *
+     * @param returnLimited
+     *         {@code true} to opt in to limited responses on those
+     *         endpoints.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.48
+     * @since Authlete 3.0.33
+     */
+    public Service setReturnLimited(boolean returnLimited)
+    {
+        this.returnLimited = returnLimited;
 
         return this;
     }

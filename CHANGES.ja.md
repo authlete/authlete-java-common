@@ -7,6 +7,8 @@
 - `Service` クラス
     * `isIdTokenDroppedOnIssueWithoutOpenid()` メソッドを追加。
     * `setIdTokenDroppedOnIssueWithoutOpenid(boolean)` メソッドを追加。
+    * `isReturnLimited()` メソッドを追加。
+    * `setReturnLimited(boolean)` メソッドを追加。
 
 
 4.47 (2026 年 07 月 09 日)

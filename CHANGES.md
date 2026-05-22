@@ -7,6 +7,8 @@ CHANGES
 - `Service` class
     * Added the `isIdTokenDroppedOnIssueWithoutOpenid()` method.
     * Added the `setIdTokenDroppedOnIssueWithoutOpenid(boolean)` method.
+    * Added the `isReturnLimited()` method.
+    * Added the `setReturnLimited(boolean)` method.
 
 
 4.47 (2026-07-09)
