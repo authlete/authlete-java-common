@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+4.46 (2026-05-22)
+-----------------
+
+- `Service` class
+    * Added the `isReturnLimited()` method.
+    * Added the `setReturnLimited(boolean)` method.
+
+
 4.45 (2026-05-18)
 -----------------
 
