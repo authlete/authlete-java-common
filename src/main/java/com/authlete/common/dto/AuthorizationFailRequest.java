@@ -261,6 +261,17 @@ public class AuthorizationFailRequest implements Serializable
          * @since 2.62
          */
         INVALID_TARGET,
+
+        /**
+         * The requested scope is invalid.
+         *
+         * <p>
+         * Using this reason will result in {@code error=invalid_scope}.
+         * </p>
+         *
+         * @since 3.0.33
+         */
+        INVALID_SCOPE,
     }
 
 
