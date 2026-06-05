@@ -272,6 +272,27 @@ public class AuthorizationFailRequest implements Serializable
          * @since 3.0.33
          */
         INVALID_SCOPE,
+
+        /**
+         * The client is not authorized to perform the requested operation.
+         *
+         * <p>
+         *  Using this reason will result in {@code error=unauthorized_client}.
+         * </p>
+         * @since 3.0.33
+         */
+        UNAUTHORIZED_CLIENT,
+
+        /**
+         * The requested operation is temporarily unavailable and cannot be performed at this time.
+         *
+         * <p>
+         *  Using this reason will result in {@code error=temporarily_unavailable}.
+         * </p>
+         *
+         * @since 3.0.33
+         */
+        TEMPORARILY_UNAVAILABLE,
     }
 
 
