@@ -1,6 +1,15 @@
 変更点
 ======
 
+4.46 ()
+--------------------------
+
+- `AuthorizationFailRequest.Reason` 列挙型
+  * `INVALID_SCOPE` を追加。
+  * `UNAUTHORIZED_CLIENT` を追加。
+  * `TEMPORARILY_UNAVAILABLE` を追加。
+
+
 4.45 (2026 年 05 月 18 日)
 --------------------------
 

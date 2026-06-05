@@ -1,6 +1,15 @@
 CHANGES
 =======
 
+4.46 ()
+-----------------
+
+- `AuthorizationFailRequest.Reason` enum
+  * Added `INVALID_SCOPE`
+  * Added `UNAUTHORIZED_CLIENT`
+  * Added `TEMPORARILY_UNAVAILABLE`
+
+
 4.45 (2026-05-18)
 -----------------
 
