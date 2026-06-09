@@ -9,6 +9,12 @@
   * `UNAUTHORIZED_CLIENT` を追加。
   * `TEMPORARILY_UNAVAILABLE` を追加。
 
+- `TokenFailRequest.Reason` 列挙型
+  * `INVALID_CLIENT` を追加。
+  * `INVALID_GRANT` を追加。
+  * `UNAUTHORIZED_CLIENT` を追加。
+  * `UNSUPPORTED_GRANT_TYPE` を追加。
+  * `INVALID_SCOPE` を追加。
 
 4.45 (2026 年 05 月 18 日)
 --------------------------

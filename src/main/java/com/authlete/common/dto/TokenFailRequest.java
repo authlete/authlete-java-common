@@ -63,37 +63,92 @@ public class TokenFailRequest implements Serializable
          * Unknown reason.
          *
          * <p>
-         * Using this reason will result in
-         * {@code "error":"server_error"}.
+         * Using this reason will result in {@code "error":"server_error"}.
          * </p>
          */
         UNKNOWN,
 
         /**
-         * The resource owner's credentials ({@code username} and
-         * {@code password}) contained in the token request whose
-         * flow is <a href="http://tools.ietf.org/html/rfc6749#section-4.3">
-         * "Resource Owner Password Credentials"</a>) are invalid.
+         * The resource owner's credentials ({@code username} and {@code password}) contained in the token request whose flow is <a href="http://tools.ietf.org/html/rfc6749#section-4.3"> "Resource
+         * Owner Password Credentials"</a>) are invalid.
          *
          * <p>
-         * Using this reason will result in
-         * {@code "error":"invalid_request"}.
+         * Using this reason will result in {@code "error":"invalid_request"}.
          * </p>
          */
         INVALID_RESOURCE_OWNER_CREDENTIALS,
 
         /**
-         * The requested resource is invalid, missing, unknown, or malformed.
-         * See <i>"Resource Indicators for OAuth 2.0"</i> for details.
+         * The requested resource is invalid, missing, unknown, or malformed. See <i>"Resource Indicators for OAuth 2.0"</i> for details.
          *
          * <p>
-         * Using this reason will result in
-         * {@code "error":"invalid_target"}.
+         * Using this reason will result in {@code "error":"invalid_target"}.
          * </p>
          *
          * @since 2.62
          */
         INVALID_TARGET,
+
+        /**
+         * Client authentication failed (e.g., unknown client, no client authentication included, or unsupported
+         * authentication method).  The authorization server MAY return an HTTP 401 (Unauthorized) status code to indicate
+         * which HTTP authentication schemes are supported. If the client attempted to authenticate via the "Authorization"
+         * request header field, the authorization server MUST respond with an HTTP 401 (Unauthorized) status code and
+         * include the "WWW-Authenticate" response header field matching the authentication scheme used by the client.
+         *
+         * <p>
+         * Using this reason will result in {@code "error":"invalid_client"}.
+         * </p>
+         *
+         * @since 4.46
+         */
+        INVALID_CLIENT,
+
+        /**
+         * The provided authorization grant (e.g., authorization code, resource owner credentials) or refresh token is
+         * invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to
+         * another client.
+         *
+         * <p>
+         * Using this reason will result in {@code "error":"invalid_grant"}.
+         * </p>
+         *
+         * @since 4.46
+         */
+        INVALID_GRANT,
+
+        /**
+         * The authenticated client is not authorized to use this authorization grant type.
+         *
+         * <p>
+         * Using this reason will result in {@code "error":"unauthorized_client"}.
+         * </p>
+         *
+         * @since 4.46
+         */
+        UNAUTHORIZED_CLIENT,
+
+        /**
+         * The authorization grant type is not supported by the authorization server.
+         *
+         * <p>
+         * Using this reason will result in {@code "error":"unsupported_grant_type"}.
+         * </p>
+         *
+         * @since 4.46
+         */
+        UNSUPPORTED_GRANT_TYPE,
+
+        /**
+         * The requested scope is invalid, unknown, malformed, or exceeds the scope granted by the resource owner.
+         *
+         * <p>
+         * Using this reason will result in {@code "error":"invalid_scope"}.
+         * </p>
+         *
+         * @since 4.46
+         */
+        INVALID_SCOPE,
     }
 
 

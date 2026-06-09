@@ -9,6 +9,13 @@ CHANGES
   * Added `UNAUTHORIZED_CLIENT`
   * Added `TEMPORARILY_UNAVAILABLE`
 
+- `TokenFailRequest.Reason` enum
+  * Added `INVALID_CLIENT`
+  * Added `INVALID_GRANT`
+  * Added `UNAUTHORIZED_CLIENT`
+  * Added `UNSUPPORTED_GRANT_TYPE`
+  * Added `INVALID_SCOPE`
+
 
 4.45 (2026-05-18)
 -----------------
