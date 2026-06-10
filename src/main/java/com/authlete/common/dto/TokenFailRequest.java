@@ -105,19 +105,6 @@ public class TokenFailRequest implements Serializable
         INVALID_CLIENT,
 
         /**
-         * The provided authorization grant (e.g., authorization code, resource owner credentials) or refresh token is
-         * invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to
-         * another client.
-         *
-         * <p>
-         * Using this reason will result in {@code "error":"invalid_grant"}.
-         * </p>
-         *
-         * @since 4.46
-         */
-        INVALID_GRANT,
-
-        /**
          * The authenticated client is not authorized to use this authorization grant type.
          *
          * <p>
@@ -127,17 +114,6 @@ public class TokenFailRequest implements Serializable
          * @since 4.46
          */
         UNAUTHORIZED_CLIENT,
-
-        /**
-         * The authorization grant type is not supported by the authorization server.
-         *
-         * <p>
-         * Using this reason will result in {@code "error":"unsupported_grant_type"}.
-         * </p>
-         *
-         * @since 4.46
-         */
-        UNSUPPORTED_GRANT_TYPE,
 
         /**
          * The requested scope is invalid, unknown, malformed, or exceeds the scope granted by the resource owner.
