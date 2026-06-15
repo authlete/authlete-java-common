@@ -261,6 +261,40 @@ public class AuthorizationFailRequest implements Serializable
          * @since 2.62
          */
         INVALID_TARGET,
+
+        /**
+         * The requested scope is invalid, unknown, or malformed.
+         *
+         * <p>
+         * Using this reason will result in {@code error=invalid_scope}.
+         * </p>
+         *
+         * @since 4.46
+         */
+        INVALID_SCOPE,
+
+        /**
+         * The client is not authorized to request an authorization code using this method.
+         *
+         * <p>
+         *  Using this reason will result in {@code error=unauthorized_client}.
+         * </p>
+         * @since 4.46
+         */
+        UNAUTHORIZED_CLIENT,
+
+        /**
+         * The authorization server is currently unable to handle the request due to a temporary overloading or maintenance
+         * of the server. (This error code is needed because a 503 Service Unavailable HTTP status code cannot be returned
+         * to the client via an HTTP redirect.)
+         *
+         * <p>
+         *  Using this reason will result in {@code error=temporarily_unavailable}.
+         * </p>
+         *
+         * @since 4.46
+         */
+        TEMPORARILY_UNAVAILABLE,
     }
 
 
