@@ -26,7 +26,11 @@ public class TokenRevokeResponse extends ApiResponse
 {
     private static final long serialVersionUID = 1L;
 
-
+    /**
+     * If the
+     * target has more than 20 tokens, the response `count` will be 20 and the remainder 
+     * is left untouched. To fully wipe them, call the endpoint repeatedly until `count` returns 0.
+     */
     private int count;
 
 

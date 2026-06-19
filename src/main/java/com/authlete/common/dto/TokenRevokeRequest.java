@@ -79,6 +79,14 @@ import java.io.Serializable;
  * the API returns {@code 400 Bad Request}.
  * </p>
  * </ol>
+ * 
+ * <p>
+ * Bulk revocation with `clientIdentifier` only, `clientIdentifier` + `subject`, 
+ * or `subject` only deletes at most **20 tokens per request** 
+ * (the default of `token.revoke.count.max` in `ServerConfiguration.java`). If the
+ * target has more than 20 tokens, the response `count` will be 20 and the remainder 
+ * is left untouched. To fully wipe them, call the endpoint repeatedly until `count` returns 0.
+ * </p>
  *
  * @since 3.26
  * @since Authlete 2.2.29
