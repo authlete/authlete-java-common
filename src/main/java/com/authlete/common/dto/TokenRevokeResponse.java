@@ -28,14 +28,17 @@ public class TokenRevokeResponse extends ApiResponse
 
     /**
      * If the
-     * target has more than 20 tokens, the response `count` will be 20 and the remainder 
-     * is left untouched. To fully wipe them, call the endpoint repeatedly until `count` returns 0.
+     * target has more than 20 tokens, the response {@code count} will be 20 and the remainder 
+     * is left untouched. To fully wipe them, call the endpoint repeatedly until {@code count} returns 0.
      */
     private int count;
 
 
     /**
      * Get the number of revoked tokens.
+     * If the
+     * target has more than 20 tokens, the response {@code count} will be 20 and the remainder 
+     * is left untouched. To fully wipe them, call the endpoint repeatedly until {@code count} returns 0.
      *
      * @return
      *         The number of revoked tokens.
@@ -48,6 +51,9 @@ public class TokenRevokeResponse extends ApiResponse
 
     /**
      * Set the number of revoked tokens.
+     * If the
+     * target has more than 20 tokens, the response {@code count} will be 20 and the remainder 
+     * is left untouched. To fully wipe them, call the endpoint repeatedly until {@code count} returns 0.
      *
      * @param count
      *         The number of revoked tokens.
