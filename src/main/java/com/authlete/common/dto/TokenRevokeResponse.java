@@ -27,18 +27,18 @@ public class TokenRevokeResponse extends ApiResponse
     private static final long serialVersionUID = 1L;
 
     /**
-     * If the
-     * target has more than 20 tokens, the response {@code count} will be 20 and the remainder 
-     * is left untouched. To fully wipe them, call the endpoint repeatedly until {@code count} returns 0.
+     * The maximum amount of tokens that can be revoked per request is 20.
+     * If 20 is returned then additional token revocation requests should be made until this value 
+     * is 0 to ensure that all tokens are revoked.
      */
     private int count;
 
 
     /**
      * Get the number of revoked tokens.
-     * If the
-     * target has more than 20 tokens, the response {@code count} will be 20 and the remainder 
-     * is left untouched. To fully wipe them, call the endpoint repeatedly until {@code count} returns 0.
+     * The maximum amount of tokens that can be revoked per request is 20.
+     * If 20 is returned then additional token revocation requests should be made until this value 
+     * is 0 to ensure that all tokens are revoked.
      *
      * @return
      *         The number of revoked tokens.
@@ -51,9 +51,9 @@ public class TokenRevokeResponse extends ApiResponse
 
     /**
      * Set the number of revoked tokens.
-     * If the
-     * target has more than 20 tokens, the response {@code count} will be 20 and the remainder 
-     * is left untouched. To fully wipe them, call the endpoint repeatedly until {@code count} returns 0.
+     * The maximum amount of tokens that can be revoked per request is 20.
+     * If 20 is returned then additional token revocation requests should be made until this value 
+     * is 0 to ensure that all tokens are revoked.
      *
      * @param count
      *         The number of revoked tokens.
