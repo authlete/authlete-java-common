@@ -82,7 +82,7 @@ import java.io.Serializable;
  * 
  * <p>
  * Bulk revocation with {@code clientIdentifier} only, {@code clientIdentifier} + {@code subject}, 
- * or {@code subject} only deletes at most {@code 20 tokens per request}
+ * or {@code subject} only deletes at most <b>20 tokens per request</b>
  * (the default of {@code token.revoke.count.max} in {@code ServerConfiguration.java}). If the
  * target has more than 20 tokens, the response {@code count} will be 20 and the remainder 
  * is left untouched. To fully wipe them, call the endpoint repeatedly until {@code count} returns 0.
