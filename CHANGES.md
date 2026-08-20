@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+4.48 (Unreleased)
+-----------------
+
+- `Service` class
+    * Added the `isIdTokenDroppedOnIssueWithoutOpenid()` method.
+    * Added the `setIdTokenDroppedOnIssueWithoutOpenid(boolean)` method.
+
+
 4.47 (2026-07-09)
 -----------------
 
