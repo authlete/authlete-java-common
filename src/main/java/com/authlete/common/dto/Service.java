@@ -13996,9 +13996,14 @@ public class Service implements Serializable
      *
      * <p>
      * When this flag is {@code true}, no ID token is issued in that case, so
-     * that ID token issuance follows the granted {@code openid} scope. Flows
-     * whose {@code response_type} contains {@code id_token} are not affected,
-     * because the response type itself requires an ID token.
+     * that ID token issuance follows the granted {@code openid} scope.
+     * </p>
+     *
+     * <p>
+     * Two kinds of flow are not affected, because both require an ID token:
+     * flows whose {@code response_type} contains {@code id_token}, and flows
+     * that requested Native SSO. For those, the ID token continues to be
+     * issued based on the original authorization request.
      * </p>
      *
      * @return
