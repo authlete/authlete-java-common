@@ -2110,7 +2110,7 @@ public class Service implements Serializable
      * {@code /auth/authorization/issue} API.
      *
      * @since 4.48
-     * @since Authlete 3.0.36
+     * @since Authlete 3.0.37
      */
     private boolean idTokenDroppedOnIssueWithoutOpenid;
 
@@ -14012,7 +14012,7 @@ public class Service implements Serializable
      *         of the {@code /auth/authorization/issue} API.
      *
      * @since 4.48
-     * @since Authlete 3.0.36
+     * @since Authlete 3.0.37
      */
     public boolean isIdTokenDroppedOnIssueWithoutOpenid()
     {
@@ -14040,7 +14040,7 @@ public class Service implements Serializable
      *         {@code this} object.
      *
      * @since 4.48
-     * @since Authlete 3.0.36
+     * @since Authlete 3.0.37
      */
     public Service setIdTokenDroppedOnIssueWithoutOpenid(boolean dropped)
     {
