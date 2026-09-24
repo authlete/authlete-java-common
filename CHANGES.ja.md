@@ -1,6 +1,14 @@
 変更点
 ======
 
+4.48 (未リリース)
+-----------------
+
+- `Service` クラス
+    * `isIdTokenDroppedOnIssueWithoutOpenid()` メソッドを追加。
+    * `setIdTokenDroppedOnIssueWithoutOpenid(boolean)` メソッドを追加。
+
+
 4.47 (2026 年 07 月 09 日)
 -----------------
 

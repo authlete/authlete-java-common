@@ -330,7 +330,7 @@ import com.authlete.common.types.UserCodeCharset;
  */
 public class Service implements Serializable
 {
-    private static final long serialVersionUID = 93L;
+    private static final long serialVersionUID = 94L;
 
 
     /*
@@ -2101,6 +2101,18 @@ public class Service implements Serializable
      * @since Authlete 3.0.32
      */
     private boolean backchannelLogoutSessionSupported;
+
+
+    /**
+     * The flag indicating whether to refrain from issuing an ID token when the
+     * {@code openid} scope has been removed from the scopes to be granted by
+     * the {@code scopes} request parameter of the
+     * {@code /auth/authorization/issue} API.
+     *
+     * @since 4.48
+     * @since Authlete 3.0.37
+     */
+    private boolean idTokenDroppedOnIssueWithoutOpenid;
 
 
     /**
@@ -13962,6 +13974,77 @@ public class Service implements Serializable
     public Service setBackchannelLogoutSessionSupported(boolean supported)
     {
         this.backchannelLogoutSessionSupported = supported;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether to refrain from issuing an ID token when
+     * the {@code openid} scope has been removed from the scopes to be granted
+     * by the {@code scopes} request parameter of the
+     * {@code /auth/authorization/issue} API.
+     *
+     * <p>
+     * The {@code scopes} request parameter of the
+     * {@code /auth/authorization/issue} API can narrow down the scopes that
+     * were requested by the original authorization request. When the
+     * {@code openid} scope is removed in this way, the {@code scope} of the
+     * issued access token no longer contains {@code openid}, but, for
+     * historical reasons, an ID token is issued nevertheless.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code true}, no ID token is issued in that case, so
+     * that ID token issuance follows the granted {@code openid} scope.
+     * </p>
+     *
+     * <p>
+     * Two kinds of flow are not affected, because both require an ID token:
+     * flows whose {@code response_type} contains {@code id_token}, and flows
+     * that requested Native SSO. For those, the ID token continues to be
+     * issued based on the original authorization request.
+     * </p>
+     *
+     * @return
+     *         {@code true} if no ID token is issued when the {@code openid}
+     *         scope has been removed by the {@code scopes} request parameter
+     *         of the {@code /auth/authorization/issue} API.
+     *
+     * @since 4.48
+     * @since Authlete 3.0.37
+     */
+    public boolean isIdTokenDroppedOnIssueWithoutOpenid()
+    {
+        return idTokenDroppedOnIssueWithoutOpenid;
+    }
+
+
+    /**
+     * Set the flag indicating whether to refrain from issuing an ID token when
+     * the {@code openid} scope has been removed from the scopes to be granted
+     * by the {@code scopes} request parameter of the
+     * {@code /auth/authorization/issue} API.
+     *
+     * <p>
+     * See the description of {@link #isIdTokenDroppedOnIssueWithoutOpenid()}
+     * for details.
+     * </p>
+     *
+     * @param dropped
+     *         {@code true} to refrain from issuing an ID token when the
+     *         {@code openid} scope has been removed by the {@code scopes}
+     *         request parameter of the {@code /auth/authorization/issue} API.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.48
+     * @since Authlete 3.0.37
+     */
+    public Service setIdTokenDroppedOnIssueWithoutOpenid(boolean dropped)
+    {
+        this.idTokenDroppedOnIssueWithoutOpenid = dropped;
 
         return this;
     }
