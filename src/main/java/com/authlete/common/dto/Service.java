@@ -14070,8 +14070,8 @@ public class Service implements Serializable
      *         {@code true} if responses on the affected endpoints
      *         should be reduced to a small whitelist of fields.
      *
-     * @since 4.48
-     * @since Authlete 3.0.33
+     * @since 4.49
+     * @since Authlete 3.0.39
      */
     public boolean isReturnLimited()
     {
@@ -14093,8 +14093,8 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 4.48
-     * @since Authlete 3.0.33
+     * @since 4.49
+     * @since Authlete 3.0.39
      */
     public Service setReturnLimited(boolean returnLimited)
     {

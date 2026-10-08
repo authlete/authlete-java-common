@@ -1,14 +1,20 @@
 CHANGES
 =======
 
-4.48 (Unreleased)
+4.49 (Unreleased)
+-----------------
+
+- `Service` class
+    * Added the `isReturnLimited()` method.
+    * Added the `setReturnLimited(boolean)` method.
+
+
+4.48 (2026-09-25)
 -----------------
 
 - `Service` class
     * Added the `isIdTokenDroppedOnIssueWithoutOpenid()` method.
     * Added the `setIdTokenDroppedOnIssueWithoutOpenid(boolean)` method.
-    * Added the `isReturnLimited()` method.
-    * Added the `setReturnLimited(boolean)` method.
 
 
 4.47 (2026-07-09)
