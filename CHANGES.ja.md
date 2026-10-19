@@ -5,8 +5,8 @@
 -----------------
 
 - `Service` クラス
-    * `isReturnLimited()` メソッドを追加。
-    * `setReturnLimited(boolean)` メソッドを追加。
+    * `isReturnFullPayload()` メソッドを追加。
+    * `setReturnFullPayload(boolean)` メソッドを追加。
 
 
 4.48 (2026 年 09 月 25 日)

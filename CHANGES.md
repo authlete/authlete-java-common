@@ -5,8 +5,8 @@ CHANGES
 -----------------
 
 - `Service` class
-    * Added the `isReturnLimited()` method.
-    * Added the `setReturnLimited(boolean)` method.
+    * Added the `isReturnFullPayload()` method.
+    * Added the `setReturnFullPayload(boolean)` method.
 
 
 4.48 (2026-09-25)

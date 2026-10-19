@@ -2103,7 +2103,15 @@ public class Service implements Serializable
     private boolean backchannelLogoutSessionSupported;
 
 
-    private boolean returnLimited;
+    /**
+     * Whether to return full representations of the service and clients
+     * from {@code /auth/authorization}, {@code /auth/token/get/list} and
+     * {@code /client/authorization/get/list}.
+     *
+     * @since 4.49
+     * @since Authlete 3.0.39
+     */
+    private boolean returnFullPayload;
 
 
     /**
@@ -14054,41 +14062,58 @@ public class Service implements Serializable
 
 
     /**
-     * Get the opt-in flag that asks the Authlete server to return a
-     * reduced representation of this service (and of clients embedded
-     * in service-scoped responses) on the endpoints that previously
-     * used the internal limited-build shape: {@code /auth/authorization},
-     * {@code /auth/token/get/list} and {@code /client/authorization/get/list}.
+     * Get the flag indicating whether the Authlete server returns full
+     * representations of this service and its clients from the
+     * {@code /auth/authorization}, {@code /auth/token/get/list} and
+     * {@code /client/authorization/get/list} APIs.
      *
      * <p>
-     * Defaults to {@code false} for new services. Intended as a
-     * transitional opt-in for existing Authlete 3.0 deployments that
-     * relied on the previous limited-by-default behavior.
+     * When this flag is {@code false}, those APIs return limited
+     * representations that contain only a subset of the properties.
+     * Properties that are omitted from a limited representation appear
+     * with their default values (e.g. {@code 0}, {@code false} or
+     * {@code null}) after deserialization, which does not reflect the
+     * actual configuration.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code true}, those APIs return full
+     * representations.
+     * </p>
+     *
+     * <p>
+     * Setting this flag to {@code true} is recommended. Services created
+     * via the Authlete console have this flag enabled by default. Note
+     * that services created via the {@code /service/create} API without
+     * this property have this flag disabled, and that updating a service
+     * via the {@code /service/update} API with an older client library
+     * that does not know this property keeps it disabled.
      * </p>
      *
      * @return
-     *         {@code true} if responses on the affected endpoints
-     *         should be reduced to a small whitelist of fields.
+     *         {@code true} if the APIs return full representations.
      *
      * @since 4.49
      * @since Authlete 3.0.39
      */
-    public boolean isReturnLimited()
+    public boolean isReturnFullPayload()
     {
-        return returnLimited;
+        return returnFullPayload;
     }
 
 
     /**
-     * Set the opt-in flag that asks the Authlete server to return a
-     * reduced representation of this service (and of clients embedded
-     * in service-scoped responses) on the endpoints that previously
-     * used the internal limited-build shape: {@code /auth/authorization},
-     * {@code /auth/token/get/list} and {@code /client/authorization/get/list}.
+     * Set the flag indicating whether the Authlete server returns full
+     * representations of this service and its clients from the
+     * {@code /auth/authorization}, {@code /auth/token/get/list} and
+     * {@code /client/authorization/get/list} APIs.
      *
-     * @param returnLimited
-     *         {@code true} to opt in to limited responses on those
-     *         endpoints.
+     * <p>
+     * See the description of {@link #isReturnFullPayload()} for details.
+     * </p>
+     *
+     * @param returnFullPayload
+     *         {@code true} to make the APIs return full representations.
      *
      * @return
      *         {@code this} object.
@@ -14096,9 +14121,9 @@ public class Service implements Serializable
      * @since 4.49
      * @since Authlete 3.0.39
      */
-    public Service setReturnLimited(boolean returnLimited)
+    public Service setReturnFullPayload(boolean returnFullPayload)
     {
-        this.returnLimited = returnLimited;
+        this.returnFullPayload = returnFullPayload;
 
         return this;
     }
