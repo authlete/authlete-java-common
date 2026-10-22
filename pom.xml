@@ -114,13 +114,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>0.9.12</version>
-            <scope>test</scope>
-        </dependency>
-
         <!-- add-json-setter-annotation mvn task dependency -->
         <!-- Marked as provided so it is not included in the final jar -->
         <dependency>
