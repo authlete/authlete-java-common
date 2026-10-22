@@ -1,7 +1,15 @@
 CHANGES
 =======
 
-4.48 (Unreleased)
+4.49 (Unreleased)
+-----------------
+
+- `Service` class
+    * Added the `isReturnFullPayload()` method.
+    * Added the `setReturnFullPayload(boolean)` method.
+
+
+4.48 (2026-09-25)
 -----------------
 
 - `Service` class

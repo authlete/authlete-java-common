@@ -2104,6 +2104,17 @@ public class Service implements Serializable
 
 
     /**
+     * Whether to return full representations of the service and clients
+     * from {@code /auth/authorization}, {@code /auth/token/get/list} and
+     * {@code /client/authorization/get/list}.
+     *
+     * @since 4.49
+     * @since Authlete 3.0.39
+     */
+    private boolean returnFullPayload;
+
+
+    /**
      * The flag indicating whether to refrain from issuing an ID token when the
      * {@code openid} scope has been removed from the scopes to be granted by
      * the {@code scopes} request parameter of the
@@ -14045,6 +14056,74 @@ public class Service implements Serializable
     public Service setIdTokenDroppedOnIssueWithoutOpenid(boolean dropped)
     {
         this.idTokenDroppedOnIssueWithoutOpenid = dropped;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether the Authlete server returns full
+     * representations of this service and its clients from the
+     * {@code /auth/authorization}, {@code /auth/token/get/list} and
+     * {@code /client/authorization/get/list} APIs.
+     *
+     * <p>
+     * When this flag is {@code false}, those APIs return limited
+     * representations that contain only a subset of the properties.
+     * Properties that are omitted from a limited representation appear
+     * with their default values (e.g. {@code 0}, {@code false} or
+     * {@code null}) after deserialization, which does not reflect the
+     * actual configuration.
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code true}, those APIs return full
+     * representations.
+     * </p>
+     *
+     * <p>
+     * Setting this flag to {@code true} is recommended. Services created
+     * via the Authlete console have this flag enabled by default. Note
+     * that services created via the {@code /service/create} API without
+     * this property have this flag disabled, and that updating a service
+     * via the {@code /service/update} API with an older client library
+     * that does not know this property keeps it disabled.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the APIs return full representations.
+     *
+     * @since 4.49
+     * @since Authlete 3.0.39
+     */
+    public boolean isReturnFullPayload()
+    {
+        return returnFullPayload;
+    }
+
+
+    /**
+     * Set the flag indicating whether the Authlete server returns full
+     * representations of this service and its clients from the
+     * {@code /auth/authorization}, {@code /auth/token/get/list} and
+     * {@code /client/authorization/get/list} APIs.
+     *
+     * <p>
+     * See the description of {@link #isReturnFullPayload()} for details.
+     * </p>
+     *
+     * @param returnFullPayload
+     *         {@code true} to make the APIs return full representations.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.49
+     * @since Authlete 3.0.39
+     */
+    public Service setReturnFullPayload(boolean returnFullPayload)
+    {
+        this.returnFullPayload = returnFullPayload;
 
         return this;
     }
