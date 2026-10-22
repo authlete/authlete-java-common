@@ -1,12 +1,15 @@
 変更点
 ======
 
-4.49 (未リリース)
+4.51 (未リリース)
 -----------------
 
 - `Service` クラス
     * `isReturnFullPayload()` メソッドを追加。
     * `setReturnFullPayload(boolean)` メソッドを追加。
+
+- `pom.xml`
+    * 重複していた `scope=test` の `org.reflections:reflections` 依存を削除。
 
 
 4.48 (2026 年 09 月 25 日)
