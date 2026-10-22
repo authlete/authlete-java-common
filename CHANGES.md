@@ -1,12 +1,15 @@
 CHANGES
 =======
 
-4.49 (Unreleased)
+4.51 (Unreleased)
 -----------------
 
 - `Service` class
     * Added the `isReturnFullPayload()` method.
     * Added the `setReturnFullPayload(boolean)` method.
+
+- `pom.xml`
+    * Removed the duplicate `org.reflections:reflections` dependency with `scope=test`.
 
 
 4.48 (2026-09-25)
