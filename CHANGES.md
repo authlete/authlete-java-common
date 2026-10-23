@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-4.51 (Unreleased)
+4.49 (2026-10-23)
 -----------------
 
 - `Service` class
