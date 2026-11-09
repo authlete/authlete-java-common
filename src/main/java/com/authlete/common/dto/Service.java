@@ -1015,13 +1015,6 @@ public class Service implements Serializable
 
 
     /**
-     * The identifiers of the protected resources this authorization server
-     * advertises in its metadata ({@code protected_resources}).
-     */
-    private String[] protectedResources;
-
-
-    /**
      * Supported evidence. This property corresponds to the
      * {@code evidence_supported} server metadata which is defined in
      * OpenID Connect for Identity Assurance 1.0.
@@ -2131,6 +2124,34 @@ public class Service implements Serializable
      * @since Authlete 3.0.37
      */
     private boolean idTokenDroppedOnIssueWithoutOpenid;
+
+
+    /**
+     * The resource identifiers of the protected resources that can be used with
+     * this authorization server. This property corresponds to the
+     * {@code protected_resources} server metadata defined in
+     * <a href="https://www.rfc-editor.org/rfc/rfc9728.html#section-4">RFC 9728
+     * OAuth 2.0 Protected Resource Metadata, Section 4</a>.
+     *
+     * <p>
+     * When an authorization server knows the protected resources it serves, it
+     * can advertise them here so that clients can discover which resources are
+     * available and request access tokens scoped to them, typically via the
+     * {@code resource} request parameter defined in RFC 8707. A client can
+     * cross-check this list against a resource's own
+     * {@code authorization_servers} metadata.
+     * </p>
+     *
+     * <p>
+     * Each value is a resource identifier, which is an {@code https} URL with no
+     * fragment component (RFC 9728, Section 1.2). An empty or unset list omits
+     * the {@code protected_resources} parameter from the published metadata.
+     * </p>
+     *
+     * @since 4.50
+     * @since Authlete 3.0.40
+     */
+    private String[] protectedResources;
 
 
     /**
@@ -6088,37 +6109,6 @@ public class Service implements Serializable
     public Service setSupportedTrustFrameworks(String[] frameworks)
     {
         this.supportedTrustFrameworks = frameworks;
-
-        return this;
-    }
-
-
-    /**
-     * Get the identifiers of the protected resources this authorization server
-     * advertises ({@code protected_resources} in its metadata).
-     *
-     * @return
-     *         The protected resource identifiers.
-     */
-    public String[] getProtectedResources()
-    {
-        return protectedResources;
-    }
-
-
-    /**
-     * Set the identifiers of the protected resources this authorization server
-     * advertises ({@code protected_resources} in its metadata).
-     *
-     * @param protectedResources
-     *         The protected resource identifiers.
-     *
-     * @return
-     *         {@code this} object.
-     */
-    public Service setProtectedResources(String[] protectedResources)
-    {
-        this.protectedResources = protectedResources;
 
         return this;
     }
@@ -14094,6 +14084,65 @@ public class Service implements Serializable
     public Service setIdTokenDroppedOnIssueWithoutOpenid(boolean dropped)
     {
         this.idTokenDroppedOnIssueWithoutOpenid = dropped;
+
+        return this;
+    }
+
+
+    /**
+     * Get the resource identifiers of the protected resources that can be used
+     * with this authorization server. This property corresponds to the
+     * {@code protected_resources} server metadata.
+     *
+     * <p>
+     * Each value is a resource identifier, which is an {@code https} URL with no
+     * fragment component. An empty or unset list means the
+     * {@code protected_resources} parameter is omitted from the published
+     * metadata. Clients typically use these identifiers as the value of the
+     * {@code resource} request parameter defined in RFC 8707.
+     * </p>
+     *
+     * @return
+     *         The resource identifiers of the protected resources that can be
+     *         used with this authorization server.
+     *
+     * @see <a href="https://www.rfc-editor.org/rfc/rfc9728.html#section-4"
+     *      >RFC 9728 OAuth 2.0 Protected Resource Metadata, Section 4</a>
+     *
+     * @since 4.50
+     * @since Authlete 3.0.40
+     */
+    public String[] getProtectedResources()
+    {
+        return protectedResources;
+    }
+
+
+    /**
+     * Set the resource identifiers of the protected resources that can be used
+     * with this authorization server. This property corresponds to the
+     * {@code protected_resources} server metadata.
+     *
+     * <p>
+     * See the description of {@link #getProtectedResources()} for details. Each
+     * value should be an {@code https} URL with no fragment component; an empty
+     * or unset list omits the {@code protected_resources} parameter from the
+     * published metadata.
+     * </p>
+     *
+     * @param resources
+     *         The resource identifiers of the protected resources that can be
+     *         used with this authorization server.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.50
+     * @since Authlete 3.0.40
+     */
+    public Service setProtectedResources(String[] resources)
+    {
+        this.protectedResources = resources;
 
         return this;
     }
