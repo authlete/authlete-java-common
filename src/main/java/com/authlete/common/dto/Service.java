@@ -1015,6 +1015,13 @@ public class Service implements Serializable
 
 
     /**
+     * The identifiers of the protected resources this authorization server
+     * advertises in its metadata ({@code protected_resources}).
+     */
+    private String[] protectedResources;
+
+
+    /**
      * Supported evidence. This property corresponds to the
      * {@code evidence_supported} server metadata which is defined in
      * OpenID Connect for Identity Assurance 1.0.
@@ -6081,6 +6088,37 @@ public class Service implements Serializable
     public Service setSupportedTrustFrameworks(String[] frameworks)
     {
         this.supportedTrustFrameworks = frameworks;
+
+        return this;
+    }
+
+
+    /**
+     * Get the identifiers of the protected resources this authorization server
+     * advertises ({@code protected_resources} in its metadata).
+     *
+     * @return
+     *         The protected resource identifiers.
+     */
+    public String[] getProtectedResources()
+    {
+        return protectedResources;
+    }
+
+
+    /**
+     * Set the identifiers of the protected resources this authorization server
+     * advertises ({@code protected_resources} in its metadata).
+     *
+     * @param protectedResources
+     *         The protected resource identifiers.
+     *
+     * @return
+     *         {@code this} object.
+     */
+    public Service setProtectedResources(String[] protectedResources)
+    {
+        this.protectedResources = protectedResources;
 
         return this;
     }
