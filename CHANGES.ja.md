@@ -1,6 +1,14 @@
 変更点
 ======
 
+4.50 (未リリース)
+-----------------
+
+- `Service` クラス
+    * `getProtectedResources()` メソッドを追加。
+    * `setProtectedResources(String[])` メソッドを追加。
+
+
 4.49 (2026 年 10 月 23 日)
 -----------------
 
