@@ -2148,7 +2148,7 @@ public class Service implements Serializable
      * the {@code protected_resources} parameter from the published metadata.
      * </p>
      *
-     * @since 4.50
+     * @since 4.51
      * @since Authlete 3.0.40
      */
     private String[] protectedResources;
@@ -14109,7 +14109,7 @@ public class Service implements Serializable
      * @see <a href="https://www.rfc-editor.org/rfc/rfc9728.html#section-4"
      *      >RFC 9728 OAuth 2.0 Protected Resource Metadata, Section 4</a>
      *
-     * @since 4.50
+     * @since 4.51
      * @since Authlete 3.0.40
      */
     public String[] getProtectedResources()
@@ -14137,7 +14137,7 @@ public class Service implements Serializable
      * @return
      *         {@code this} object.
      *
-     * @since 4.50
+     * @since 4.51
      * @since Authlete 3.0.40
      */
     public Service setProtectedResources(String[] resources)

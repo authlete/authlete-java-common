@@ -1,12 +1,18 @@
 CHANGES
 =======
 
-4.50 (Unreleased)
+4.51 (2026-11-10)
 -----------------
 
 - `Service` class
     * Added the `getProtectedResources()` method.
     * Added the `setProtectedResources(String[])` method.
+
+
+4.50 (2026-11-09)
+-----------------
+
+- No functional changes.
 
 
 4.49 (2026-10-23)
