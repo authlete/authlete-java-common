@@ -2155,6 +2155,17 @@ public class Service implements Serializable
 
 
     /**
+     * The flag indicating whether the signature algorithm of client
+     * assertions is optional, that is, whether a client may omit the
+     * {@code token_endpoint_auth_signing_alg} client metadata.
+     *
+     * @since 4.52
+     * @since Authlete 3.0.40
+     */
+    private boolean clientAssertionSignAlgOptional;
+
+
+    /**
      * Get the service number.
      *
      * @return
@@ -14211,6 +14222,111 @@ public class Service implements Serializable
     public Service setReturnFullPayload(boolean returnFullPayload)
     {
         this.returnFullPayload = returnFullPayload;
+
+        return this;
+    }
+
+
+    /**
+     * Get the flag indicating whether the signature algorithm of client
+     * assertions is optional, that is, whether a client may omit the
+     * {@code token_endpoint_auth_signing_alg} client metadata.
+     *
+     * <p>
+     * This flag affects the JWT-based client authentication methods
+     * ({@code private_key_jwt}, {@code client_secret_jwt} and
+     * {@code spiffe_jwt}).
+     * </p>
+     *
+     * <p>
+     * When this flag is {@code false} (the default), the behavior is the
+     * traditional one.
+     * </p>
+     *
+     * <ul>
+     * <li>
+     * If the {@code token_endpoint_auth_signing_alg} client metadata is
+     * omitted in dynamic client registration (RFC 7591) or in client
+     * registration of OpenID Federation 1.0, a default value is
+     * assigned ({@code RS256}, or {@code HS256} when the client
+     * authentication method is {@code client_secret_jwt} in dynamic
+     * client registration).
+     * </li>
+     * <li>
+     * JWT-based client authentication fails when the signature algorithm
+     * is not registered for the client.
+     * </li>
+     * </ul>
+     *
+     * <p>
+     * When this flag is {@code true}, the behavior follows the description
+     * of the {@code token_endpoint_auth_signing_alg} client metadata in
+     * OpenID Connect Dynamic Client Registration 1.0, which states
+     * that <i>"The default, if omitted, is that any algorithm supported by
+     * the OP and the RP MAY be used."</i>
+     * </p>
+     *
+     * <ul>
+     * <li>
+     * No default value is assigned to the
+     * {@code token_endpoint_auth_signing_alg} client metadata when it is
+     * omitted.
+     * </li>
+     * <li>
+     * When the signature algorithm is not registered for the client,
+     * JWT-based client authentication uses the algorithm specified by the
+     * {@code alg} header parameter of the client assertion. The algorithm
+     * still has to be suitable for the client authentication method
+     * (asymmetric for {@code private_key_jwt} and {@code spiffe_jwt},
+     * symmetric for {@code client_secret_jwt}).
+     * </li>
+     * <li>
+     * When the signature algorithm is registered for the client, the
+     * client assertion must be signed with that algorithm as before.
+     * </li>
+     * </ul>
+     *
+     * <p>
+     * Note that this flag does not change the signature algorithm that
+     * has already been registered for existing clients.
+     * </p>
+     *
+     * @return
+     *         {@code true} if the signature algorithm of client assertions
+     *         is optional.
+     *
+     * @since 4.52
+     * @since Authlete 3.0.40
+     */
+    public boolean isClientAssertionSignAlgOptional()
+    {
+        return clientAssertionSignAlgOptional;
+    }
+
+
+    /**
+     * Set the flag indicating whether the signature algorithm of client
+     * assertions is optional, that is, whether a client may omit the
+     * {@code token_endpoint_auth_signing_alg} client metadata.
+     *
+     * <p>
+     * See the description of {@link #isClientAssertionSignAlgOptional()}
+     * for details.
+     * </p>
+     *
+     * @param optional
+     *         {@code true} to make the signature algorithm of client
+     *         assertions optional.
+     *
+     * @return
+     *         {@code this} object.
+     *
+     * @since 4.52
+     * @since Authlete 3.0.40
+     */
+    public Service setClientAssertionSignAlgOptional(boolean optional)
+    {
+        this.clientAssertionSignAlgOptional = optional;
 
         return this;
     }
