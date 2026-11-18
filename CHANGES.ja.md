@@ -1,6 +1,14 @@
 変更点
 ======
 
+4.52 (未リリース)
+-----------------
+
+- `Service` クラス
+    * `isClientAssertionSignAlgOptional()` メソッドを追加。
+    * `setClientAssertionSignAlgOptional(boolean)` メソッドを追加。
+
+
 4.51 (2026 年 11 月 10 日)
 -----------------
 

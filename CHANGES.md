@@ -1,6 +1,14 @@
 CHANGES
 =======
 
+4.52 (Unreleased)
+-----------------
+
+- `Service` class
+    * Added the `isClientAssertionSignAlgOptional()` method.
+    * Added the `setClientAssertionSignAlgOptional(boolean)` method.
+
+
 4.51 (2026-11-10)
 -----------------
 
