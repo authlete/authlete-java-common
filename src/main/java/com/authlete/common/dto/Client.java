@@ -1632,11 +1632,20 @@ public class Client implements Serializable
 
 
     /**
-     * Get the sector identifier host component as derived from either the
-     * {@code sector_identifier_uri} or the registered {@code redirect_uri}.
-     * If no {@code sector_identifier_uri} is registered and multiple
-     * {@code redirect_uri}s are also registered, this value is undefined
-     * and the field returns {@code null}.
+     * Get the sector identifier host component, which is derived from the
+     * client's configuration as follows.
+     *
+     * <ol>
+     *   <li>If {@code sector_identifier_uri} is registered, the host component
+     *       of that URI.</li>
+     *   <li>Otherwise, if all the registered {@code redirect_uri}s share one
+     *       and the same host component, that host component.</li>
+     *   <li>Otherwise, {@code null}. This is the case when no
+     *       {@code redirect_uri} is registered, when the registered
+     *       {@code redirect_uri}s have two or more distinct host components, or
+     *       when a {@code redirect_uri} has no host component (for example,
+     *       {@code com.example.app:/callback}).</li>
+     * </ol>
      *
      * @return
      *         The derived sector identifier, if available, or {@code null} otherwise.
@@ -1653,11 +1662,20 @@ public class Client implements Serializable
 
 
     /**
-     * Set the sector identifier host component as derived from either the
-     * {@code sector_identifier_uri} or the registered {@code redirect_uri}.
-     * If no {@code sector_identifier_uri} is registered and multiple
-     * {@code redirect_uri}s are also registered, this value is undefined
-     * and the field is {@code null}.
+     * Set the sector identifier host component, which is derived from the
+     * client's configuration as follows.
+     *
+     * <ol>
+     *   <li>If {@code sector_identifier_uri} is registered, the host component
+     *       of that URI.</li>
+     *   <li>Otherwise, if all the registered {@code redirect_uri}s share one
+     *       and the same host component, that host component.</li>
+     *   <li>Otherwise, {@code null}. This is the case when no
+     *       {@code redirect_uri} is registered, when the registered
+     *       {@code redirect_uri}s have two or more distinct host components, or
+     *       when a {@code redirect_uri} has no host component (for example,
+     *       {@code com.example.app:/callback}).</li>
+     * </ol>
      *
      * @param derivedSectorIdentifier
      *         The derived sector identifier, if available, or {@code null} otherwise.
