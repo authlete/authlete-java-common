@@ -251,6 +251,13 @@ import com.authlete.common.types.GrantType;
  * The value of the {@code resource}s to associate with the token.
  * Can be {@code null}.
  * </p>
+ * <p>
+ * The resources are bound only to the access token issued by the
+ * {@code /auth/token/create} API, and are used as the {@code aud} of the
+ * access token. The refresh token issued together is not bound to any
+ * resources, so they are not carried over to access tokens obtained by
+ * refreshing it.
+ * </p>
  * </dd>
  *
  * <dt><b><code>forExternalAttachment</code></b> (OPTIONAL)</dt>
@@ -1124,6 +1131,14 @@ public class TokenCreateRequest implements Serializable
      * {@code "resource"} request parameters which is defined in
      * <i>"RFC8707 Resource Indicators for OAuth 2.0"</i>.
      *
+     * <p>
+     * The resources are bound only to the access token issued by the
+     * {@code /auth/token/create} API, and are used as the {@code aud} of the
+     * access token. The refresh token issued together is not bound to any
+     * resources, so they are not carried over to access tokens obtained by
+     * refreshing it.
+     * </p>
+     *
      * @return
      *         Array of resource URIs.
      *
@@ -1136,9 +1151,17 @@ public class TokenCreateRequest implements Serializable
 
 
     /**
-     * Get the resources. This represents the value of one or more
+     * Set the resources. This represents the value of one or more
      * {@code "resource"} request parameters which is defined in
      * <i>"RFC8707 Resource Indicators for OAuth 2.0"</i>.
+     *
+     * <p>
+     * The resources are bound only to the access token issued by the
+     * {@code /auth/token/create} API, and are used as the {@code aud} of the
+     * access token. The refresh token issued together is not bound to any
+     * resources, so they are not carried over to access tokens obtained by
+     * refreshing it.
+     * </p>
      *
      * @param resources
      *         Array of resource URIs.
